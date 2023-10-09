@@ -1,4 +1,4 @@
-package com.example.duantotnghiepgiaythethaonova.controller;
+package com.example.duantotnghiepgiaythethaonova.controller.admin;
 
 
 import org.springframework.stereotype.Controller;
