@@ -1,5 +1,6 @@
 package com.example.duantotnghiepgiaythethaonova.entity;
 
+
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -13,20 +14,20 @@ import java.util.Date;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "SanPham")
+@Table(name = "HoaDonCT")
 @Builder
-public class SanPham implements Serializable {
+public class HoaDonChiTiet implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdSanPham")
-    private Integer IdSanPham;
-    @Column(name = "TenSanPham")
-    private String TenSanPham;
-    @Column(name = "Gia")
-    private BigDecimal Gia;
-    @Column(name = "MoTa")
-    private String MoTa;
+    @Column(name = "IdHoaDonCT")
+    private Integer IdHoaDonCT;
+    @Column(name = "DonGia")
+    private BigDecimal DonGia;
+    @Column(name = "SoLuong")
+    private Integer SoLuong;
+    @Column(name = "TongTien")
+    private BigDecimal TongTien;
     @Column(name = "NgayTao")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Temporal(TemporalType.TIMESTAMP)
@@ -43,18 +44,12 @@ public class SanPham implements Serializable {
     private Boolean DaXoa;
 
     @ManyToOne
-    @JoinColumn(name = "IdDanhMuc")
-    private DanhMuc danhMuc;
+    @JoinColumn(name = "IdHoaDon")
+    private HoaDon hoaDon;
 
     @ManyToOne
-    @JoinColumn(name = "IdChatLieu")
-    private ChatLieu chatLieu;
-
-    @ManyToOne
-    @JoinColumn(name = "IdThuongHieu")
-    private ThuongHieu thuongHieu;
-
-
+    @JoinColumn(name = "IdCTSP")
+    private ChiTietSanPham chiTietSanPham;
 
 
 }

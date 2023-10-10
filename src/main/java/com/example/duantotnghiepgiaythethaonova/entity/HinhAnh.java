@@ -5,7 +5,6 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -13,20 +12,16 @@ import java.util.Date;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "SanPham")
+@Table(name = "HinhAnh")
 @Builder
-public class SanPham implements Serializable {
+public class HinhAnh implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdSanPham")
-    private Integer IdSanPham;
-    @Column(name = "TenSanPham")
-    private String TenSanPham;
-    @Column(name = "Gia")
-    private BigDecimal Gia;
-    @Column(name = "MoTa")
-    private String MoTa;
+    @Column(name = "IdHinhAnh")
+    private Integer IdHinhAnh;
+    @Column(name = "TenAnh")
+    private String TenAnh;
     @Column(name = "NgayTao")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Temporal(TemporalType.TIMESTAMP)
@@ -39,22 +34,12 @@ public class SanPham implements Serializable {
     private String NguoiTao;
     @Column(name = "NguoiCapNhat")
     private String NguoiCapNhat;
-    @Column(name = "DaXoa")
-    private Boolean DaXoa;
 
     @ManyToOne
-    @JoinColumn(name = "IdDanhMuc")
-    private DanhMuc danhMuc;
+    @JoinColumn(name = "IdMauSac")
+    private MauSac mauSac;
 
     @ManyToOne
-    @JoinColumn(name = "IdChatLieu")
-    private ChatLieu chatLieu;
-
-    @ManyToOne
-    @JoinColumn(name = "IdThuongHieu")
-    private ThuongHieu thuongHieu;
-
-
-
-
+    @JoinColumn(name = "IdSanPham")
+    private SanPham sanPham;
 }

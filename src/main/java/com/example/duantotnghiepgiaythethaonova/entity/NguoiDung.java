@@ -5,7 +5,6 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -13,20 +12,31 @@ import java.util.Date;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "SanPham")
+@Table(name = "NguoiDung")
 @Builder
-public class SanPham implements Serializable {
+public class NguoiDung implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdSanPham")
-    private Integer IdSanPham;
-    @Column(name = "TenSanPham")
-    private String TenSanPham;
-    @Column(name = "Gia")
-    private BigDecimal Gia;
-    @Column(name = "MoTa")
-    private String MoTa;
+    @Column(name = "IdNguoiDung")
+    private Integer IdNguoiDung;
+    @Column(name = "MaNguoiDung")
+    private String MaNguoiDung;
+    @Column(name = "TenNguoiDung")
+    private String TenNguoiDung;
+    @Column(name = "AnhNhanVien")
+    private String AnhNhanVien;
+    @Enumerated(EnumType.STRING)
+    @Column(name = "AuthProvider")
+    private AuthenticationProvider authProvider;
+    @Column(name = "DiaChi")
+    private String DiaChi;
+    @Column(name = "Email")
+    private String Email;
+    @Column(name = "MatKhau")
+    private String MatKhau;
+    @Column(name = "SoDienThoai")
+    private String SoDienThoai;
     @Column(name = "NgayTao")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Temporal(TemporalType.TIMESTAMP)
@@ -41,20 +51,7 @@ public class SanPham implements Serializable {
     private String NguoiCapNhat;
     @Column(name = "DaXoa")
     private Boolean DaXoa;
-
-    @ManyToOne
-    @JoinColumn(name = "IdDanhMuc")
-    private DanhMuc danhMuc;
-
-    @ManyToOne
-    @JoinColumn(name = "IdChatLieu")
-    private ChatLieu chatLieu;
-
-    @ManyToOne
-    @JoinColumn(name = "IdThuongHieu")
-    private ThuongHieu thuongHieu;
-
-
-
+    @Column(name = "TrangThai")
+    private Integer TrangThai;
 
 }

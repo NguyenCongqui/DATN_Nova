@@ -5,7 +5,6 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 import java.util.Date;
 
 @Entity
@@ -13,20 +12,26 @@ import java.util.Date;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "SanPham")
+@Table(name = "GiamGia")
 @Builder
-public class SanPham implements Serializable {
+public class KhuyenMai implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdSanPham")
-    private Integer IdSanPham;
-    @Column(name = "TenSanPham")
-    private String TenSanPham;
-    @Column(name = "Gia")
-    private BigDecimal Gia;
-    @Column(name = "MoTa")
-    private String MoTa;
+    @Column(name = "IdGiamGia")
+    private Integer IdKhuyenMai;
+    @Column(name = "TenKhuyenMai")
+    private String TenKhuyenMai;
+    @Column(name = "GiaTriToiThieu")
+    private Integer GiaTriToiThieu;
+    @Column(name = "NgayBatDau")
+    private Date NgayBatDau;
+    @Column(name = "NgayKetThuc")
+    private Date NgayKetThuc;
+    @Column(name = "PhamTramGiam")
+    private Integer PhanTramGiam;
+    @Column(name = "TrangThai")
+    private Boolean TrangThai;
     @Column(name = "NgayTao")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Temporal(TemporalType.TIMESTAMP)
@@ -39,22 +44,7 @@ public class SanPham implements Serializable {
     private String NguoiTao;
     @Column(name = "NguoiCapNhat")
     private String NguoiCapNhat;
-    @Column(name = "DaXoa")
-    private Boolean DaXoa;
-
-    @ManyToOne
-    @JoinColumn(name = "IdDanhMuc")
-    private DanhMuc danhMuc;
-
-    @ManyToOne
-    @JoinColumn(name = "IdChatLieu")
-    private ChatLieu chatLieu;
-
-    @ManyToOne
-    @JoinColumn(name = "IdThuongHieu")
-    private ThuongHieu thuongHieu;
-
-
-
+    @Column(name = "Xoa")
+    private Boolean Xoa;
 
 }
