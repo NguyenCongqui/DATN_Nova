@@ -6,7 +6,9 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Setter
@@ -61,5 +63,15 @@ public class ChiTietSanPham implements Serializable {
     @ManyToOne
     @JoinColumn(name = "IdDeGiay")
     private DeGiay deGiay;
+
+    @ManyToOne
+    @JoinColumn(name = "IdSanPham")
+    private SanPham sanPham;
+
+    @OneToMany(mappedBy = "chiTietSanPham" , cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<HoaDonChiTiet> hoaDonChiTiets;
+
+    @OneToMany(mappedBy = "chiTietSanPham")
+    private List<GioHangChiTiet> gioHangChiTiets = new ArrayList<GioHangChiTiet>();
 
 }

@@ -5,7 +5,9 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Setter
@@ -37,8 +39,10 @@ public class GioHang implements Serializable {
     @Column(name = "TrangThai")
     private Integer TrangThai;
 
-
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "IdKhachHang")
     private KhachHang khachHang;
+
+    @OneToMany(mappedBy = "gioHang")
+    private List<GioHangChiTiet> gioHangChiTiets = new ArrayList<GioHangChiTiet>();
 }

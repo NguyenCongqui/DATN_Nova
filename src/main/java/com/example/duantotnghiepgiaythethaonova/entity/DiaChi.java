@@ -21,14 +21,14 @@ public class DiaChi implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdDiaChi")
     private Integer IdDiaChi;
-    @Column(name = "DiaChi")
-    private String DiaChi;
     @Column(name = "HoTen")
     private String HoTen;
+    @Column(name = "DiaChi")
+    private String DiaChi;
     @Column(name = "SoDienThoai")
     private String SoDienThoai;
     @Column(name = "LaDiaChiMacDinh")
-    private boolean LaDiaChiMacDinh = false ;
+    private boolean LaDiaChiMacDinh = false;
     @Column(name = "NgayTao")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Temporal(TemporalType.TIMESTAMP)

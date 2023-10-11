@@ -22,6 +22,10 @@ public class HinhAnh implements Serializable {
     private Integer IdHinhAnh;
     @Column(name = "TenAnh")
     private String TenAnh;
+    @Column(name = "LaAnhChinh")
+    private Boolean LaAnhChinh;
+    @Column(name = "CoHienThi")
+    private Boolean CoHienThi;
     @Column(name = "NgayTao")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Temporal(TemporalType.TIMESTAMP)

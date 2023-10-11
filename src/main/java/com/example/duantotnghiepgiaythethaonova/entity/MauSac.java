@@ -5,7 +5,9 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -39,4 +41,11 @@ public class MauSac implements Serializable {
     private String NguoiCapNhat;
     @Column(name = "DaXoa")
     private Boolean DaXoa;
+
+    @OneToMany(mappedBy = "mauSac", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<ChiTietSanPham> chiTietSanPhams;
+
+    @OneToMany(mappedBy = "mauSac", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<HinhAnh> hinhAnhs;
+
 }

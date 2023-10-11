@@ -6,7 +6,9 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Setter
@@ -54,7 +56,10 @@ public class SanPham implements Serializable {
     @JoinColumn(name = "IdThuongHieu")
     private ThuongHieu thuongHieu;
 
+    @OneToMany(mappedBy = "sanPham", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<HinhAnh> hinhAnhs;
 
-
+    @OneToMany(mappedBy = "sanPham", orphanRemoval = true)
+    private List<ChiTietSanPham> chiTietSanPhams = new ArrayList<ChiTietSanPham>();
 
 }

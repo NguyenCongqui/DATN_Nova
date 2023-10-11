@@ -1,11 +1,14 @@
 package com.example.duantotnghiepgiaythethaonova.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Setter
@@ -53,5 +56,13 @@ public class NguoiDung implements Serializable {
     private Boolean DaXoa;
     @Column(name = "TrangThai")
     private Integer TrangThai;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "nguoiDung", fetch = FetchType.EAGER)
+    private List<NguoiDung_VaiTro> listNguoiDungVaiTro;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "nguoiDung")
+    private List<GiaoDich> giaoDichs = new ArrayList<GiaoDich>();
 
 }

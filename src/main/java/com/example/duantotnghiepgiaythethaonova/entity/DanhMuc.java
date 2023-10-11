@@ -6,6 +6,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 @Setter
@@ -36,4 +37,7 @@ public class DanhMuc implements Serializable {
     private String NguoiCapNhat;
     @Column(name = "DaXoa")
     private Boolean DaXoa;
+
+    @OneToMany(mappedBy = "danhMuc", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<SanPham> sanPhams;
 }

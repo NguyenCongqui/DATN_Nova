@@ -69,7 +69,7 @@ public class HoaDon implements Serializable {
     @JoinColumn(name = "IdKhachHang")
     private KhachHang khachHang;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "IdKhuyenMai")
     private KhuyenMai khuyenMai;
 
@@ -77,12 +77,23 @@ public class HoaDon implements Serializable {
     @JoinColumn(name = "IdNguoiDung")
     private NguoiDung nguoiDung;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "IdTrangThai")
     private TrangThai trangThai;
 
     @JsonIgnore
     @OneToMany(mappedBy = "hoaDon")
     private List<HoaDonChiTiet> hoaDonChiTiets;
+
+//    public String LoaiHoaDon2() {
+//        String LoaiHoaDon2;
+//        if (LoaiHoaDon == 0) {
+//            LoaiHoaDon2 = "Đơn đặt hàng";
+//        } else {
+//            LoaiHoaDon2 = "Đơn tại quầy";
+//        }
+//        return LoaiHoaDon2;
+//    }
+
 
 }

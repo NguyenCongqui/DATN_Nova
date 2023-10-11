@@ -42,7 +42,7 @@ public class GiaoDich implements Serializable {
     @JoinColumn(name = "IdHoaDon")
     private HoaDon hoaDon;
 
-    @ManyToOne
+    @OneToOne
     @JoinColumn(name = "IdTrangThai")
     private TrangThai trangThai;
 

@@ -1,11 +1,13 @@
 package com.example.duantotnghiepgiaythethaonova.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 
 
 @Entity
@@ -37,5 +39,9 @@ public class VaiTro implements Serializable {
     private String NguoiTao;
     @Column(name = "NguoiCapNhat")
     private String NguoiCapNhat;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "vaiTro", fetch = FetchType.EAGER)
+    private List<NguoiDung_VaiTro> listNguoiDungVaiTro;
 
 }
