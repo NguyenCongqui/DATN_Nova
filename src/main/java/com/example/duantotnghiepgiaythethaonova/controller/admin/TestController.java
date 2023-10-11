@@ -6,11 +6,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/admin/test")
+@RequestMapping("/admin/home")
 public class TestController {
 
     @GetMapping()
-    public String test(){
-        return "/admin/test/view";
+    public String dashboard() {
+        return"/admin/home/dashboard";
+
     }
+
 }
