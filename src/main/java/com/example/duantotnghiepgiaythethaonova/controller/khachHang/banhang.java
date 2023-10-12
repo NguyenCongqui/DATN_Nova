@@ -10,6 +10,6 @@ public class banhang {
 
     @GetMapping
     public String view (){
-        return "client/test";
+        return "customer/view/home";
     }
 }
