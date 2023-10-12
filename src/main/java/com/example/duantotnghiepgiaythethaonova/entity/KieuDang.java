@@ -13,16 +13,16 @@ import java.util.List;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "DanhMuc")
+@Table(name = "KieuDang")
 @Builder
-public class DanhMuc implements Serializable {
+public class KieuDang implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdDanhMuc")
-    private Integer IdDanhMuc;
-    @Column(name = "TenDanhMuc")
-    private String TenDanhMuc;
+    @Column(name = "IdKieuDang")
+    private Integer IdKieuDang;
+    @Column(name = "TenKieuDang")
+    private String TenKieuDang;
     @Column(name = "NgayTao")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Temporal(TemporalType.TIMESTAMP)
@@ -38,6 +38,6 @@ public class DanhMuc implements Serializable {
     @Column(name = "DaXoa")
     private Boolean DaXoa;
 
-    @OneToMany(mappedBy = "danhMuc", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "kieuDang", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<SanPham> sanPhams;
 }

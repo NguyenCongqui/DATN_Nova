@@ -45,8 +45,8 @@ public class SanPham implements Serializable {
     private Boolean DaXoa;
 
     @ManyToOne
-    @JoinColumn(name = "IdDanhMuc")
-    private DanhMuc danhMuc;
+    @JoinColumn(name = "IdKieuDang")
+    private KieuDang kieuDang;
 
     @ManyToOne
     @JoinColumn(name = "IdChatLieu")

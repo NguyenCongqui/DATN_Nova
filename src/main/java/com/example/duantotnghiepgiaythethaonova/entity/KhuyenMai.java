@@ -12,13 +12,13 @@ import java.util.Date;
 @Getter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "GiamGia")
+@Table(name = "KhuyenMai")
 @Builder
 public class KhuyenMai implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "IdGiamGia")
+    @Column(name = "IdKhuyenMai")
     private Integer IdKhuyenMai;
     @Column(name = "TenKhuyenMai")
     private String TenKhuyenMai;
