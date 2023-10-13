@@ -6,13 +6,18 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/admin/home")
+@RequestMapping("/admin/home1")
 public class TestController {
 
+//    @GetMapping()
+//    public String dashboard() {
+//        return "/admin/pages/landing_page";
+//
+//    }
     @GetMapping()
-    public String dashboard() {
-        return"/admin/home/dashboard";
-
+    public String loginSubmit(){
+        return "/admin/pages/landing_page";
     }
+
 
 }
