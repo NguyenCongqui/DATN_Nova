@@ -9,11 +9,11 @@
 
     <link rel="stylesheet" th:href="@{/static/admin/css/bootstrap.css}">
 
-    <link rel="stylesheet" th:href="@{/stactic/admin/css/Chart.min.css}">
+<!--    <link rel="stylesheet" th:href="@{/stactic/admin/css/Chart.min.css}">-->
 
     <link rel="stylesheet" th:href="@{/static/admin/css/perfect-scrollbar.css}">
     <link rel="stylesheet" th:href="@{/static/admin/css/app.css}">
-    <link rel="shortcut icon" th:href="@{/static/admin/images/Logon-Nova.jpg}" type="image/x-icon">
+    <link rel="shortcut icon" th:href="@{/static/admin/images/favicon.svg}" type="image/x-icon">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/999051c9de.js"
             crossorigin="anonymous"></script>
@@ -26,6 +26,7 @@
     <span th:replace="admin/fragments/sidebar :: sidebar"></span>
     <div id="main"><!--Content id-->
         <span th:replace="admin/fragments/header :: header"></span>
+        <hr>
         <div class="main-content container-fluid" layout:fragment="content"><!--dynamic content-->
             <!--you can replace this using page-->
         </div>
@@ -36,7 +37,7 @@
 <script th:src="@{/static/admin/js/perfect-scrollbar.min.js}"></script>
 <script th:src="@{/static/admin/js/app.js}"></script>
 
-<script th:src="@{/static/admin/js/Chart.min.js}"></script>
+<!--<script th:src="@{/static/admin/js/Chart.min.js}"></script>-->
 <script th:src="@{/static/admin/js/apexcharts.min.js}"></script>
 <script th:src="@{/static/admin/js/dashboard.js}"></script>
 
