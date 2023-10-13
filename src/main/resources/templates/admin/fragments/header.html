@@ -5,7 +5,7 @@
     <title>Title</title>
 </head>
 <body>
-    <nav class="navbar navbar-header navbar-expand navbar-light" th:fragment="header"><!--header-->
+<nav class="navbar navbar-header navbar-expand navbar-light" th:fragment="header"><!--header-->
     <a class="sidebar-toggler" href="#"><span class="navbar-toggler-icon"></span></a>
     <button class="btn navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
@@ -57,9 +57,9 @@
                 <a href="#" data-bs-toggle="dropdown"
                    class="nav-link dropdown-toggle nav-link-lg nav-link-user">
                     <div class="avatar me-1">
-                        <img src="assets/images/avatar/avatar-s-1.png" alt="" srcset="">
+                        <img th:src="@{/static/admin/images/actor.png}" alt="" srcset="">
                     </div>
-                    <div class="d-none d-md-block d-lg-inline-block">Hi, Saugi</div>
+                    <div class="d-none d-md-block d-lg-inline-block">Hi, Linh</div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
                     <a class="dropdown-item" href="#"><i data-feather="user"></i> Account</a>

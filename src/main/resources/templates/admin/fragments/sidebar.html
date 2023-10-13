@@ -7,19 +7,15 @@
 <body>
 <div id="sidebar" class='active' th:fragment="sidebar"><!--sidebar-->
     <div class="sidebar-wrapper active">
-        <div class="sidebar-header">
-            <img src="admin/images/logo.svg" alt="" srcset="">
+        <div class="sidebar-header img1">
+            <a th:href="@{/admin/home}"><img th:src="@{/static/admin/images/Logon-Nova.jpg}" alt="" srcset=""> </a>
         </div>
         <div class="sidebar-menu">
             <ul class="menu">
-
-
-                <li class='sidebar-title'>Dashboard</li>
-
-
+                <li class='sidebar-title' th:href="@{/admin/home}">Dashboard</li>
 
                 <li class="sidebar-item active ">
-                    <a th:href="@{/admin/index}" class='sidebar-link'>
+                    <a th:href="@{/admin/home}" class='sidebar-link'>
                         <i data-feather="home" width="20"></i>
                         <span>Trang Chủ</span>
                     </a>
@@ -37,7 +33,7 @@
                 <hr>
                 <li class="sidebar-item  ">
                     <a th:href="@{/admin/index}" class='sidebar-link'>
-                        <i class="fas fa-fw fa-shopping-cart"  width="20"></i>
+                        <i class="fas fa-fw fa-shopping-cart" width="20"></i>
                         <span>Bán Hàng</span>
                     </a>
 
@@ -162,8 +158,6 @@
                     </ul>
 
                 </li>
-
-
 
 
                 <br>
