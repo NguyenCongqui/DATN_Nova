@@ -21,11 +21,11 @@ public class KichCo extends BaseEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdKichCo")
     private Integer IdKichCo;
-    @Column(name = "MaKichCo")
-    private String MaKichCo;
+//    @Column(name = "MaKichCo")
+//    private String MaKichCo;
     @Column(name = "TenKichCo")
     private String TenKichCo;
-    //    @Column(name = "NgayTao")
+//    @Column(name = "NgayTao")
 //    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 //    @Temporal(TemporalType.TIMESTAMP)
 //    private Date NgayTao;
