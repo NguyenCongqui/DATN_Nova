@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "NguoiDung")
 @Builder
-public class NguoiDung implements Serializable {
+public class NguoiDung extends BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -40,18 +40,18 @@ public class NguoiDung implements Serializable {
     private String MatKhau;
     @Column(name = "SoDienThoai")
     private String SoDienThoai;
-    @Column(name = "NgayTao")
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date NgayTao;
-    @Column(name = "NgayCapNhat")
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date NgayCapNhat;
-    @Column(name = "NguoiTao")
-    private String NguoiTao;
-    @Column(name = "NguoiCapNhat")
-    private String NguoiCapNhat;
+//    @Column(name = "NgayTao")
+//    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Date NgayTao;
+//    @Column(name = "NgayCapNhat")
+//    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Date NgayCapNhat;
+//    @Column(name = "NguoiTao")
+//    private String NguoiTao;
+//    @Column(name = "NguoiCapNhat")
+//    private String NguoiCapNhat;
     @Column(name = "DaXoa")
     private Boolean DaXoa;
     @Column(name = "TrangThai")

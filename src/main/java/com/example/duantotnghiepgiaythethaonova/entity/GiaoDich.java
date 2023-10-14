@@ -15,24 +15,24 @@ import java.util.Date;
 @Table(name = "GiaoDich")
 @Builder
 
-public class GiaoDich implements Serializable {
+public class GiaoDich extends BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdGiaoDich")
     private Integer IdGiaoDich;
-    @Column(name = "NgayTao")
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date NgayTao;
-    @Column(name = "NgayCapNhat")
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date NgayCapNhat;
-    @Column(name = "NguoiTao")
-    private String NguoiTao;
-    @Column(name = "NguoiCapNhat")
-    private String NguoiCapNhat;
+//    @Column(name = "NgayTao")
+//    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Date NgayTao;
+//    @Column(name = "NgayCapNhat")
+//    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Date NgayCapNhat;
+//    @Column(name = "NguoiTao")
+//    private String NguoiTao;
+//    @Column(name = "NguoiCapNhat")
+//    private String NguoiCapNhat;
 
     @ManyToOne
     @JoinColumn(name = "IdNguoiDung")

@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "HoaDon")
 @Builder
-public class HoaDon implements Serializable {
+public class HoaDon extends BaseEntity implements Serializable {
 
 
     @Id
@@ -50,18 +50,18 @@ public class HoaDon implements Serializable {
     private BigDecimal TongTienDonHang;
     @Column(name = "TongTienHoaDon")
     private BigDecimal TongTienHoaDon;
-    @Column(name = "NgayTao")
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date NgayTao;
-    @Column(name = "NgayCapNhat")
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date NgayCapNhat;
-    @Column(name = "NguoiTao")
-    private String NguoiTao;
-    @Column(name = "NguoiCapNhat")
-    private String NguoiCapNhat;
+//    @Column(name = "NgayTao")
+//    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Date NgayTao;
+//    @Column(name = "NgayCapNhat")
+//    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Date NgayCapNhat;
+//    @Column(name = "NguoiTao")
+//    private String NguoiTao;
+//    @Column(name = "NguoiCapNhat")
+//    private String NguoiCapNhat;
     @Column(name = "DaXoa")
     private Boolean DaXoa;
 

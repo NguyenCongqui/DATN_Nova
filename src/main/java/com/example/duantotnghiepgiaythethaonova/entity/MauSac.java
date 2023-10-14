@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "MauSac")
 @Builder
-public class MauSac implements Serializable {
+public class MauSac extends BaseEntity implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -27,18 +27,18 @@ public class MauSac implements Serializable {
     private String MaMauSac;
     @Column(name = "TenMauSac")
     private String TenMauSac;
-    @Column(name = "NgayTao")
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date NgayTao;
-    @Column(name = "NgayCapNhat")
-    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-    @Temporal(TemporalType.TIMESTAMP)
-    private Date NgayCapNhat;
-    @Column(name = "NguoiTao")
-    private String NguoiTao;
-    @Column(name = "NguoiCapNhat")
-    private String NguoiCapNhat;
+//    @Column(name = "NgayTao")
+//    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Date NgayTao;
+//    @Column(name = "NgayCapNhat")
+//    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+//    @Temporal(TemporalType.TIMESTAMP)
+//    private Date NgayCapNhat;
+//    @Column(name = "NguoiTao")
+//    private String NguoiTao;
+//    @Column(name = "NguoiCapNhat")
+//    private String NguoiCapNhat;
     @Column(name = "DaXoa")
     private Boolean DaXoa;
 

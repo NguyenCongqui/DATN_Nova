@@ -1,8 +1,6 @@
 package com.example.duantotnghiepgiaythethaonova.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.EntityListeners;
-import jakarta.persistence.MappedSuperclass;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,6 +9,7 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedBy;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.util.Date;
 
@@ -24,6 +23,8 @@ public abstract class BaseEntity {
 	
 	@Column(name="NgayTao",updatable=false)
 	@CreatedDate
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date NgayTao;
 	
 	@Column(name="NguoiTao",updatable=false)
@@ -32,6 +33,8 @@ public abstract class BaseEntity {
 	
 	@Column(name="NgayCapNhat",updatable=true)
 	@LastModifiedDate
+	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date NgayCapNhat;
 	
 	@Column(name="NguoiCapNhat",updatable=true)
