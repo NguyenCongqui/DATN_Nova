@@ -25,8 +25,8 @@
 <div id="app"><!--Main content-->
     <span th:replace="~{admin/fragments/sidebar :: sidebar}"></span>
     <div id="main"><!--Content id-->
-        <span th:replace="~{admin/fragments/header :: header}"></span>
-        <hr>
+        <span th:replace="~{admin/fragments/header :: header}"><hr></span>
+
         <div class="main-content container-fluid" layout:fragment="content"><!--dynamic content-->
             <!--you can replace this using page-->
         </div>

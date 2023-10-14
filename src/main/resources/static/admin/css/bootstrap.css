@@ -85,7 +85,7 @@ body {
     font-size: .9rem;
     font-weight: 400;
     line-height: 1.5;
-    color: #727e8c;
+    color: #858796;
     background-color: #fff;
     -webkit-text-size-adjust: 100%;
     -webkit-tap-highlight-color: rgba(0, 0, 0, 0)
@@ -4103,6 +4103,9 @@ textarea.form-control-lg {
     display: block
 }
 
+.bg-white {
+    background-color: #fff!important;
+}
 .navbar {
     position: relative;
     display: flex;
@@ -4461,7 +4464,7 @@ textarea.form-control-lg {
 }
 
 .navbar-dark .navbar-text a, .navbar-dark .navbar-text a:focus, .navbar-dark .navbar-text a:hover {
-    color: #fff
+    color: #fff;
 }
 
 .card {
