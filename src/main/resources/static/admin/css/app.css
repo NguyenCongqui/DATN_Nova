@@ -37,7 +37,9 @@
 }
 
 * {
-    font-family: Raleway
+    font-family:  Arial, sans-serif;
+    font-size: 16px;
+
 }
 
 #app {
