@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TrangThaiRepository extends JpaRepository<TrangThai, Integer> {
 
-    @Query(value = "select e from TrangThai e where e.Name like :name" ,nativeQuery = true)
+    @Query(value = "select * from TrangThai where Name = :name" ,nativeQuery = true)
     TrangThai findByTenTrangThai(@Param("name") String name);
 }

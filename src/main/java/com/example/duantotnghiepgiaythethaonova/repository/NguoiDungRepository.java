@@ -16,14 +16,11 @@ import java.util.Optional;
 @Repository
 public interface NguoiDungRepository extends JpaRepository<NguoiDung, Integer> {
 
-    @Query(value = "select e from NguoiDung e where e.DaXoa = false" , nativeQuery = true)
+    @Query(value = "select * from NguoiDung where DaXoa = false" , nativeQuery = true)
     List<NguoiDung> getAll();
 
-    @Query(value = "select e from NguoiDung e where e.IdNguoiDung= :id")
-    NguoiDung getById(@Param("id") Integer id);
-
-    @Query(value = "select e from NguoiDung e where e.TrangThai = 0 and e.TenNguoiDung like :name")
-    List<NguoiDung> searchByName(@Param("name") String name);
+//    @Query(value = "select e from NguoiDung e where e.TrangThai = 0 and e.TenNguoiDung like :name")
+//    List<NguoiDung> searchByName(@Param("name") String name);
 
     @Query(value = "select MAX(IdNguoiDung) from NguoiDung", nativeQuery = true)
     Integer getMaxId();
@@ -32,7 +29,7 @@ public interface NguoiDungRepository extends JpaRepository<NguoiDung, Integer> {
     @Query(value = "UPDATE NguoiDung SET DaXoa = true where IdNguoiDung= :id" ,nativeQuery = true)
     void XoaNguoiDung(@Param("id") Integer id);
 
-    @Query(value = "select e from NguoiDung e where e.TrangThai= ?1",nativeQuery = true)
+    @Query(value = "select * from NguoiDung  where TrangThai= ?1",nativeQuery = true)
     List<NguoiDung> findByTrangThai(Integer trangThai);
 
     @Query(value = "select * from NguoiDung  where Email= ?1 AND DaXoa= false" ,nativeQuery = true)
@@ -58,7 +55,7 @@ public interface NguoiDungRepository extends JpaRepository<NguoiDung, Integer> {
     @Query(value = "SELECT * FROM NguoiDung where DaXoa = false and TrangThai = ?" , nativeQuery = true)
     Page<NguoiDung> timKiemNguoiDungByTrangThai(Integer trangThai, Pageable pageable);
 
-    @Query(value = "SELECT * FROM NguoiDung WHERE MaNguoiDung =:maNguoiDung", nativeQuery = true)
+    @Query(value = "SELECT * FROM NguoiDung WHERE MaNguoiDung = :maNguoiDung", nativeQuery = true)
     NguoiDung findNguoiDungByMaNguoiDung(@Param("maNguoiDung") String maNguoiDung);
 
     @Query(value ="select * from NguoiDung where DaXoa = false and TrangThai = ?" , nativeQuery = true)
