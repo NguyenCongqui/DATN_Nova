@@ -3,6 +3,7 @@ package com.example.duantotnghiepgiaythethaonova.controller.admin.NhanVien;
 import com.example.duantotnghiepgiaythethaonova.dto.NguoiDungDTO;
 import com.example.duantotnghiepgiaythethaonova.entity.NguoiDung;
 import com.example.duantotnghiepgiaythethaonova.entity.NguoiDung_VaiTro;
+import com.example.duantotnghiepgiaythethaonova.entity.VaiTro;
 import com.example.duantotnghiepgiaythethaonova.repository.NguoiDungRepository;
 import com.example.duantotnghiepgiaythethaonova.repository.NguoiDung_VaiTroRepository;
 import com.example.duantotnghiepgiaythethaonova.repository.VaiTroRepository;
@@ -11,11 +12,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -45,9 +46,8 @@ public class NhanVienController {
             nguoiDungDTO.setSoDienThoai(nguoiDung.getSoDienThoai());
             nguoiDungDTO.setNgayTao(nguoiDung.getNgayTao());
             nguoiDungDTO.setAnhNhanVien(nguoiDung.getAnhNhanVien());
+            nguoiDungDTO.setIdNguoiDung(nguoiDung.getIdNguoiDung());
             nguoiDungDTO.setTrangThai(nguoiDung.getTrangThai());
-            nguoiDung.setIdNguoiDung(nguoiDung.getIdNguoiDung());
-
             listNguoiDungDTO.add(nguoiDungDTO);
         }
         return listNguoiDungDTO;
@@ -70,6 +70,39 @@ public class NhanVienController {
         model.addAttribute("size" , size);
         return "/admin/NhanVien/danhsach";
     }
+
+
+    //Add
+    @RequestMapping("/NhanVien/themMoi")
+    public String themNguoiDung(Model model) {
+        NguoiDung nguoiDung = new NguoiDung();
+        List<VaiTro> vaiTro = vaiTroRepository.findAll();
+        model.addAttribute("nguoiDung", nguoiDung);
+        model.addAttribute("phanQuyen", vaiTro);
+        return "admin/NhanVien/themNhanVien";
+    }
+
+    //Update
+//    @RequestMapping("admin/chinhSuaNhanVien/id-nhan-vien={id}")
+//    public String chinhSuaNguoiDung(@PathVariable("id") Long id, Model model) {
+//        NguoiDung nguoiDung = nguoiDungService.getNguoiDungById(id);
+//        List<VaiTro> vaiTro = vaiTroRepository.findAll();
+//        model.addAttribute("nguoiDungEdit", nguoiDung);
+//        model.addAttribute("phanQuyen", vaiTro);
+//        return "admin/NhanVien/chinhSuaNhanVien";
+//    }
+//
+//    @PostMapping("/updateStatus")
+//    public ResponseEntity<String> updateStatus(@RequestParam("userId") Long id, @RequestParam("status") int trangThai) {
+//        try {
+//            nguoiDungService.updateUserStatus(id, trangThai);
+//            return ResponseEntity.ok("Cập nhật trạng thái thành công");
+//        } catch (IllegalArgumentException e) {
+//            return ResponseEntity.badRequest().body("Người dùng không tồn tại");
+//        } catch (Exception e) {
+//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Lỗi khi cập nhật trạng thái");
+//        }
+//    }
 
 
 }

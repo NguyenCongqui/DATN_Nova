@@ -23,7 +23,7 @@ public abstract class BaseEntity {
 	
 	@Column(name="NgayTao",updatable=false)
 	@CreatedDate
-	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date NgayTao;
 	
@@ -33,7 +33,7 @@ public abstract class BaseEntity {
 	
 	@Column(name="NgayCapNhat",updatable=true)
 	@LastModifiedDate
-	@DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
+	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date NgayCapNhat;
 	

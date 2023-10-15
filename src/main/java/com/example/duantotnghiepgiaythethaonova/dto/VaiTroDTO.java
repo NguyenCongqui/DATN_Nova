@@ -12,9 +12,9 @@ import java.util.List;
 @AllArgsConstructor
 public class VaiTroDTO extends BaseDTO<VaiTroDTO>{
 
-    private String code;
+    private String Code;
 
-    private String name;
+    private String TenVaiTro;
 
     private List<NguoiDung_VaiTroDTO> listNguoiDungVaiTroDTO = new ArrayList<NguoiDung_VaiTroDTO>();
 }
