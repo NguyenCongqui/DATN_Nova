@@ -1,4 +1,4 @@
 package com.example.duantotnghiepgiaythethaonova.repository;
 
-public class SanPhamREpository {
+public interface SanPhamRepository {
 }
