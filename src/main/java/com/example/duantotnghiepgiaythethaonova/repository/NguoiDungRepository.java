@@ -49,7 +49,7 @@ public interface NguoiDungRepository extends JpaRepository<NguoiDung, Integer> {
     @Query(value = "UPDATE NguoiDung SET TrangThai = 1 where IdNguoiDung = :id", nativeQuery = true)
     void capNhatTrangThaiThanhKhongHoatDongTheoMa(@Param("id") Integer id);
 
-    @Query(value = "SELECT * FROM NguoiDung where IdNguoiDung = ? AND DaXoa = 0 ORDER BY NgayTao DESC" , nativeQuery = true)
+    @Query(value = "SELECT * FROM NguoiDung where DaXoa = 0 ORDER BY NgayTao DESC" , nativeQuery = true)
     Page<NguoiDung> findAllNguoiDung(Pageable pageable);
 
     @Query(value = "SELECT * FROM NguoiDung where DaXoa = 0 and TrangThai = ?" , nativeQuery = true)

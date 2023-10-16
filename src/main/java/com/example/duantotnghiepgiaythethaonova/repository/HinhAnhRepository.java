@@ -81,4 +81,4 @@ true AND ha.IdMauSac IN (:mauSacIds) ORDER BY ha.IdMauSac DESC
     @Query(value = "SELECT sum(9 + (SELECT count(distinct(mau_sac_id)) from san_pham_chi_tiet WHERE san_pham_id = :sanPhamId AND da_xoa = false)) as 'countHinhAnhToiDaDuocThem'", nativeQuery = true)
     int getCountHinhAnhChoPhepThemBySanPhamId(@Param("sanPhamId") Long sanPhamId);
 }
-}
+

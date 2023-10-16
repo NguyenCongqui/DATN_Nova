@@ -1,6 +1,7 @@
 package com.example.duantotnghiepgiaythethaonova.repository;
 
 import com.example.duantotnghiepgiaythethaonova.entity.ChatLieu;
+import com.example.duantotnghiepgiaythethaonova.entity.KichCo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
