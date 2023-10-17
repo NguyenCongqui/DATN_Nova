@@ -19,13 +19,13 @@ public class HinhAnh extends BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdHinhAnh")
-    private Integer IdHinhAnh;
+    private Integer idHinhAnh;
     @Column(name = "TenAnh")
-    private String TenAnh;
+    private String tenAnh;
     @Column(name = "LaAnhChinh")
-    private Boolean LaAnhChinh;
+    private Boolean laAnhChinh;
     @Column(name = "CoHienThi")
-    private Boolean CoHienThi;
+    private Boolean coHienThi;
 //    @Column(name = "NgayTao")
 //    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 //    @Temporal(TemporalType.TIMESTAMP)

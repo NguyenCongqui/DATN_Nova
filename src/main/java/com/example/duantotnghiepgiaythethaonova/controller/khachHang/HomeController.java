@@ -7,6 +7,9 @@ import com.example.duantotnghiepgiaythethaonova.entity.KichCo;
 import com.example.duantotnghiepgiaythethaonova.entity.MauSac;
 import com.example.duantotnghiepgiaythethaonova.entity.SanPham;
 import com.example.duantotnghiepgiaythethaonova.service.HinhAnhService;
+import com.example.duantotnghiepgiaythethaonova.service.KichCoService;
+import com.example.duantotnghiepgiaythethaonova.service.MauSacService;
+import com.example.duantotnghiepgiaythethaonova.service.SanPhamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -27,6 +30,15 @@ import java.util.stream.IntStream;
 public class HomeController {
     @Autowired
     private HinhAnhService hinhAnhService;
+
+    @Autowired
+    private SanPhamService sanPhamService;
+
+    @Autowired
+    private KichCoService kichCoService;
+
+    @Autowired
+    private MauSacService mauSacService;
 
     @ModelAttribute("listGia")
     public List<String> getListGia() {
@@ -49,8 +61,8 @@ public class HomeController {
 //        Page<SanPham> resultPage = sanPhamService.showSanPhamExistHomePage(pageable);
 //        for (SanPham sp : resultPage.getContent()) {
 //            ShowSanPhamdto ssptq = new ShowSanPhamdto();
-//            List<Long> mauSacIds = sanPhamChiTietService.getLstMauSacBySanPhamId(sp.getId());
-//            List<HinhAnh> lstHinhAnh = hinhAnhService.getHinhAnhChinhBySanPhamIdAndMauSacIds(sp.getId(), mauSacIds);
+//            List<Integer> mauSacIds = sanPhamChiTietService.getLstMauSacBySanPhamId(sp.getIdSanPham());
+//            List<HinhAnh> lstHinhAnh = hinhAnhService.getHinhAnhChinhBySanPhamIdAndMauSacIds(sp.getIdSanPham(), mauSacIds);
 //            List<String> lstHinhAnhStr = new ArrayList<>();
 //
 //            for (HinhAnh ha : lstHinhAnh) {
@@ -62,11 +74,11 @@ public class HomeController {
 //                }
 //            }
 //            ssptq.setAnhChinhs(lstHinhAnhStr);
-//            ssptq.setSanPhamId(sp.getId());
+//            ssptq.setSanPhamId(sp.getIdSanPham());
 //            ssptq.setGia(sp.getGia());
 //            ssptq.setTenSanPham(sp.getTenSanPham());
-//            List<KichCo> lstKichCo = kichCoService.selectAllKichCoBySanPhamId(sp.getId());
-//            List<MauSac> lstMauSac = mauSacService.getAllMauSacExistBySPId(sp.getId());
+//            List<KichCo> lstKichCo = kichCoService.selectAllKichCoBySanPhamId(sp.getIdSanPham());
+//            List<MauSac> lstMauSac = mauSacService.getAllMauSacExistBySPId(sp.getIdSanPham());
 //            ssptq.setLstKichCo(lstKichCo);
 //            ssptq.setLstMauSac(lstMauSac);
 //            lstSSPTQ.add(ssptq);
