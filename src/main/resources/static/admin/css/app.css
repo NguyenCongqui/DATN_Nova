@@ -1117,8 +1117,8 @@ footer {
 }
 
 .navbar {
-    height: 70px;
-    padding: 1.5rem
+    height: 90px;
+    padding: 1.5rem;
 }
 
 .navbar .nav-link-user img {
@@ -1127,7 +1127,8 @@ footer {
 
 .navbar.navbar-header li {
     display: flex;
-    align-items: center
+    align-items: center;
+
 }
 
 .navbar.navbar-header li.nav-icon {

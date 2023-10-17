@@ -34,8 +34,8 @@
                 <div class="col-lg-4">
                     <div class="card mb-4">
                         <div class="card-body text-center">
-                            <div th:if="*{anhNhanVien != null and !anhNhanVien.isEmpty()}">
-                                <img th:src="@{/admin/img/{imageFileName}(imageFileName=*{anhNhanVien})}"
+                            <div th:if="*{AnhNhanVien != null and !AnhNhanVien.isEmpty()}">
+                                <img th:src="@{/admin/img/{imageFileName}(imageFileName=*{AnhNhanVien})}"
                                      class="user-image" width="240px" height="309px">
                             </div>
                             <div th:unless="*{anhNhanVien != null and !anhNhanVien.isEmpty()}">

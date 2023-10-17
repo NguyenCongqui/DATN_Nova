@@ -100,28 +100,28 @@
                         </thead>
                         <tbody>
                             <tr th:each="user, stt : *{listNguoiDungDTO}" class="text-center"
-                                th:data-user-id="${user.id}">
+                                th:data-user-id="${user.IdNguoiDung}">
                                 <td th:text="${(page - 1) * size + stt.count}" style="vertical-align: middle;"></td>
                                 <td style="vertical-align: middle;">
-                                    <div th:if="${user.anhNhanVien != null and !user.anhNhanVien.isEmpty()}">
-                                        <img th:src="@{/admin/img/{imageFileName}(imageFileName=${user.anhNhanVien})}"
+                                    <div th:if="${user.AnhNhanVien != null and !user.AnhNhanVien.isEmpty()}">
+                                        <img th:src="@{/admin/img/{imageFileName}(imageFileName=${user.AnhNhanVien})}"
                                             class="user-image" width="100px" height="120px">
                                     </div>
-                                    <div th:unless="${user.anhNhanVien != null and !user.anhNhanVien.isEmpty()}">
+                                    <div th:unless="${user.AnhNhanVien != null and !user.AnhNhanVien.isEmpty()}">
                                         <img th:src="@{/admin/img/noImage.png}" class="user-image" width="100px"
                                             height="120px">
                                     </div>
                                 </td>
-                                <td style="vertical-align: middle;" th:text="${user.maNhanVien}"></td>
-                                <td style="vertical-align: middle;" th:text="${user.tenNguoiDung}"></td>
+                                <td style="vertical-align: middle;" th:text="${user.MaNhanVien}"></td>
+                                <td style="vertical-align: middle;" th:text="${user.TenNguoiDung}"></td>
 
                                 <td style="vertical-align: middle;">
                                     <div class="btn-group">
                                         <div class="custom-control custom-switch">
                                             <input type="checkbox" class="custom-control-input"
-                                                th:id="'trangThai-' + ${user.id}" th:checked="${user.trangThai eq 0}">
+                                                th:id="'trangThai-' + ${user.IdNguoiDung}" th:checked="${user.TrangThai eq 0}">
                                             <label class="custom-control-label"
-                                                th:for="'trangThai-' + ${user.id}"></label>
+                                                th:for="'trangThai-' + ${user.IdNguoiDung}"></label>
                                         </div>
                                     </div>
                                 </td>
@@ -135,20 +135,20 @@
                                     </div> -->
                                     <!-- From xóa -->
                                     <div class="btn-group">
-                                        <a th:href="@{'/admin/thongTinNhanVien/MaNhanVien=' + ${user.maNhanVien}}"
+                                        <a th:href="@{'/admin/thongTinNhanVien/MaNhanVien=' + ${user.MaNhanVien}}"
                                             class="btn btn-info btn-sm button-thongTinNhanVien" type="submit">
                                             <i class="far fa-user"></i>
                                         </a>
-                                        <a th:href="@{'/admin/chinhSuaNhanVien/id-nhan-vien=' + ${user.id}}"
+                                        <a th:href="@{'/admin/chinhSuaNhanVien/id-nhan-vien=' + ${user.IdNguoiDung}}"
                                             class="btn btn-warning btn-sm button-chinhSuaNhanVien" type="submit">
                                             <i class="fas fa-edit text-primary"></i>
                                         </a>
-                                        <button class="btn btn-danger xoaNhanVien" th:attr="data-id=${user.id}"
-                                            th:data-target="'#modalXoaNhanVien-' + ${user.id}">
+                                        <button class="btn btn-danger xoaNhanVien" th:attr="data-id=${user.IdNguoiDung}"
+                                            th:data-target="'#modalXoaNhanVien-' + ${user.IdNguoiDung}">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                         </button>
                                         <br>
-                                        <div class="modal fade xoaNhanVien" th:id="'modalXoaNhanVien-' + ${user.id}"
+                                        <div class="modal fade xoaNhanVien" th:id="'modalXoaNhanVien-' + ${user.IdNguoiDung}"
                                             tabindex="-1" aria-labelledby="XoaHDCTModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">

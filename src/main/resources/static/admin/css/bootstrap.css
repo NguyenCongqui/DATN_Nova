@@ -4106,6 +4106,10 @@ textarea.form-control-lg {
 .bg-white {
     background-color: #fff!important;
 }
+.bg-white1 {
+    background-color: #fff!important;
+    height: 80px;
+}
 .navbar {
     position: relative;
     display: flex;

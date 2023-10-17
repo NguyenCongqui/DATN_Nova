@@ -102,7 +102,7 @@ $(document).ready(function () {
             $.get('/xoaNhanVien/' + idNhanVien, function (response) {
                 // Hiển thị thông báo xóa sản phẩm thành công với SweetAlert2
                 Swal.fire({
-                    icon: 'success', title: 'Đã xóa nhân viên thành công', showConfirmButton: false, timer: 2000
+                    icon: 'success', title: 'Đã xóa nhân viên thành công!', showConfirmButton: false, timer: 2000
                 }).then(function () {
                     // Lưu trạng thái đã xác nhận vào sessionStorage
                     sessionStorage.setItem('isConfirmed', true);

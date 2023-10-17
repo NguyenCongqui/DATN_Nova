@@ -36,18 +36,17 @@ public class NhanVienController {
     @Autowired
     private VaiTroRepository vaiTroRepository;
 
-    private List<NguoiDungDTO> convertPageToList(Page<NguoiDung> page){
+    private List<NguoiDungDTO> convertPageToList(Page<NguoiDung> page) {
         List<NguoiDungDTO> listNguoiDungDTO = new ArrayList<>();
-        for(NguoiDung nguoiDung : page.getContent()){
+        for (NguoiDung nguoiDung : page.getContent()) {
             NguoiDungDTO nguoiDungDTO = new NguoiDungDTO();
             nguoiDungDTO.setMaNhanVien(nguoiDung.getMaNguoiDung());
             nguoiDungDTO.setTenNguoiDung(nguoiDung.getTenNguoiDung());
             nguoiDungDTO.setEmail(nguoiDung.getEmail());
             nguoiDungDTO.setSoDienThoai(nguoiDung.getSoDienThoai());
             nguoiDungDTO.setNgayTao(nguoiDung.getNgayTao());
-            nguoiDungDTO.setAnhNhanVien(nguoiDung.getAnhNhanVien());
-            nguoiDungDTO.setIdNguoiDung(nguoiDung.getIdNguoiDung());
             nguoiDungDTO.setTrangThai(nguoiDung.getTrangThai());
+            nguoiDungDTO.setAnhNhanVien(nguoiDung.getAnhNhanVien());
             listNguoiDungDTO.add(nguoiDungDTO);
         }
         return listNguoiDungDTO;
@@ -55,20 +54,23 @@ public class NhanVienController {
 
 
 
+    //List
     @GetMapping("/admin/NhanVien/danhSach")
-    public String getUsers(@RequestParam(defaultValue = "1") Integer page,
-                           @RequestParam(defaultValue = "4") Integer size,
-                           Model model){
-        NguoiDungDTO nguoiDungDTO = new NguoiDungDTO();
-        PageRequest pageable =PageRequest.of(page - 1 ,size , Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
-        Page<NguoiDung> staffs =nguoiDungRepository.findAllNguoiDung(pageable);
-        List<NguoiDungDTO> listNguoiDungDTO = convertPageToList(staffs);
-        nguoiDungDTO.setListNguoiDungDTO(listNguoiDungDTO);
-        model.addAttribute("NguoiDungDTO" , nguoiDungDTO);
-        model.addAttribute("totalPages" , staffs.getTotalPages());
-        model.addAttribute("page" , page);
-        model.addAttribute("size" , size);
-        return "/admin/NhanVien/danhsach";
+    public String getUsers(
+            @RequestParam(defaultValue = "1") int page,
+            @RequestParam(defaultValue = "4") int size,
+            Model model
+    ) {
+        NguoiDungDTO dto = new NguoiDungDTO();
+        PageRequest pageable = PageRequest.of(page - 1, size, Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        Page<NguoiDung> users = nguoiDungRepository.findAllNguoiDung(pageable);
+        List<NguoiDungDTO> listNguoiDungDTO = convertPageToList(users);
+        dto.setListNguoiDungDTO(listNguoiDungDTO);
+        model.addAttribute("NguoiDungDTO", dto);
+        model.addAttribute("totalPages", users.getTotalPages());
+        model.addAttribute("page", page);
+        model.addAttribute("size", size);
+        return "admin/NhanVien/danhSachNhanVien";
     }
 
 
