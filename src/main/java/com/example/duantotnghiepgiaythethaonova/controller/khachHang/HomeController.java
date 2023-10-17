@@ -27,7 +27,7 @@ import java.util.stream.IntStream;
 public class HomeController {
     @Autowired
     private HinhAnhService hinhAnhService;
-  private
+ 
     @ModelAttribute("listGia")
     public List<String> getListGia() {
         List<String> gia = new ArrayList<>();
@@ -39,56 +39,56 @@ public class HomeController {
         gia.add("1.000.000VNĐ+");
         return gia;
     }
-    @GetMapping("home")
-    public String home(Model model) {
-        int currentPage = 1;
-        int pageSize = 8;
-        Pageable pageable = PageRequest.of(currentPage - 1, pageSize);
-        SanPhamTaiQuayDTO resultSP = new SanPhamTaiQuayDTO();
-        List<ShowSanPhamdto> lstSSPTQ = new ArrayList<>();
-        Page<SanPham> resultPage = sanPhamService.showSanPhamExistHomePage(pageable);
-        for (SanPham sp : resultPage.getContent()) {
-            ShowSanPhamdto ssptq = new ShowSanPhamdto();
-            List<Long> mauSacIds = sanPhamChiTietService.getLstMauSacBySanPhamId(sp.getId());
-            List<HinhAnh> lstHinhAnh = hinhAnhService.getHinhAnhChinhBySanPhamIdAndMauSacIds(sp.getId(), mauSacIds);
-            List<String> lstHinhAnhStr = new ArrayList<>();
-
-            for (HinhAnh ha : lstHinhAnh) {
-                lstHinhAnhStr.add(ha.getTenAnh());
-            }
-            if (lstHinhAnhStr.size() < mauSacIds.size()) {
-                for (int i = 0; i < mauSacIds.size() - lstHinhAnhStr.size() - 1; i++) {
-                    lstHinhAnhStr.add("default.png");
-                }
-            }
-            ssptq.setAnhChinhs(lstHinhAnhStr);
-            ssptq.setSanPhamId(sp.getId());
-            ssptq.setGia(sp.getGia());
-            ssptq.setTenSanPham(sp.getTenSanPham());
-            List<KichCo> lstKichCo = kichCoService.selectAllKichCoBySanPhamId(sp.getId());
-            List<MauSac> lstMauSac = mauSacService.getAllMauSacExistBySPId(sp.getId());
-            ssptq.setLstKichCo(lstKichCo);
-            ssptq.setLstMauSac(lstMauSac);
-            lstSSPTQ.add(ssptq);
-        }
-        resultSP.setLstShowSanPhamTaiQuayDTO(lstSSPTQ);
-        model.addAttribute("resultSP", resultSP);
-
-        int totalPages = resultPage.getTotalPages();
-        if (totalPages > 0) {
-            int start = Math.max(1, currentPage - 2);
-            int end = Math.min(currentPage + 2, totalPages);
-            if (totalPages > 5) {
-                if (end == totalPages) {
-                    start = end - 5;
-                } else if (start == 1) {
-                    end = start + 5;
-                }
-            }
-            List<Integer> pageNumbers = IntStream.rangeClosed(start, end).boxed().collect(Collectors.toList());
-            model.addAttribute("pageNumbers", pageNumbers);
-        }
-        model.addAttribute("sanPhamPage", resultPage);
-        return "customer/view/home";
-    }
+//    @GetMapping("home")
+//    public String home(Model model) {
+//        int currentPage = 1;
+//        int pageSize = 8;
+//        Pageable pageable = PageRequest.of(currentPage - 1, pageSize);
+//        SanPhamTaiQuayDTO resultSP = new SanPhamTaiQuayDTO();
+//        List<ShowSanPhamdto> lstSSPTQ = new ArrayList<>();
+//        Page<SanPham> resultPage = sanPhamService.showSanPhamExistHomePage(pageable);
+//        for (SanPham sp : resultPage.getContent()) {
+//            ShowSanPhamdto ssptq = new ShowSanPhamdto();
+//            List<Long> mauSacIds = sanPhamChiTietService.getLstMauSacBySanPhamId(sp.getId());
+//            List<HinhAnh> lstHinhAnh = hinhAnhService.getHinhAnhChinhBySanPhamIdAndMauSacIds(sp.getId(), mauSacIds);
+//            List<String> lstHinhAnhStr = new ArrayList<>();
+//
+//            for (HinhAnh ha : lstHinhAnh) {
+//                lstHinhAnhStr.add(ha.getTenAnh());
+//            }
+//            if (lstHinhAnhStr.size() < mauSacIds.size()) {
+//                for (int i = 0; i < mauSacIds.size() - lstHinhAnhStr.size() - 1; i++) {
+//                    lstHinhAnhStr.add("default.png");
+//                }
+//            }
+//            ssptq.setAnhChinhs(lstHinhAnhStr);
+//            ssptq.setSanPhamId(sp.getId());
+//            ssptq.setGia(sp.getGia());
+//            ssptq.setTenSanPham(sp.getTenSanPham());
+//            List<KichCo> lstKichCo = kichCoService.selectAllKichCoBySanPhamId(sp.getId());
+//            List<MauSac> lstMauSac = mauSacService.getAllMauSacExistBySPId(sp.getId());
+//            ssptq.setLstKichCo(lstKichCo);
+//            ssptq.setLstMauSac(lstMauSac);
+//            lstSSPTQ.add(ssptq);
+//        }
+//        resultSP.setLstShowSanPhamTaiQuayDTO(lstSSPTQ);
+//        model.addAttribute("resultSP", resultSP);
+//
+//        int totalPages = resultPage.getTotalPages();
+//        if (totalPages > 0) {
+//            int start = Math.max(1, currentPage - 2);
+//            int end = Math.min(currentPage + 2, totalPages);
+//            if (totalPages > 5) {
+//                if (end == totalPages) {
+//                    start = end - 5;
+//                } else if (start == 1) {
+//                    end = start + 5;
+//                }
+//            }
+//            List<Integer> pageNumbers = IntStream.rangeClosed(start, end).boxed().collect(Collectors.toList());
+//            model.addAttribute("pageNumbers", pageNumbers);
+//        }
+//        model.addAttribute("sanPhamPage", resultPage);
+//        return "customer/view/home";
+//    }
 }
