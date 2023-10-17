@@ -27,33 +27,32 @@ public class KichCoServiceImpl implements KichCoService {
     }
 
     @Override
-    public Optional<KichCo> findById(int id) {
+    public <S extends KichCo> S save(S entity) {
+        entity.setDaXoa(false);
+        return kichCoRepository.save(entity);
+    }
+
+    @Override
+    public Optional<KichCo> findById(Integer id) {
         return kichCoRepository.findById(id);
     }
 
     @Override
-    public <S extends KichCo> S save(S entity) {
-        entity.setDaXoa(false);
-        return kichCoRepository.save(entity);    }
-
-    @Override
-    public List<KichCo> selectAllKichCoBySanPhamId(int IdSanPham) {
-        return kichCoRepository.selectAllKichCoBySanPhamId(IdSanPham);
+    public List<KichCo> selectAllKichCoBySanPhamId(Integer sanPhamId) {
+        return kichCoRepository.selectAllKichCoBySanPhamId(sanPhamId);
     }
-
     @Override
     public Page<KichCo> selectAllKichCoExist(Pageable pageable) {
         return kichCoRepository.selectAllKichCoExist(pageable);
     }
-
     @Override
     public Page<KichCo> getKichCoExistByName(String tenKichCo, Pageable pageable) {
         return kichCoRepository.getKichCoExistByName(tenKichCo, pageable);
     }
-
     @Override
     public void delete(KichCo entity) {
         entity.setDaXoa(true);
         kichCoRepository.save(entity);
     }
+
 }

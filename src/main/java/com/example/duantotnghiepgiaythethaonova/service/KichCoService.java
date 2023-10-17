@@ -10,11 +10,11 @@ import java.util.Optional;
 public interface KichCoService {
     List<KichCo> selectAllKichCoExist();
 
-    Optional<KichCo> findById(int id);
+    Optional<KichCo> findById(Integer id);
 
     <S extends KichCo> S save(S entity);
 
-    List<KichCo> selectAllKichCoBySanPhamId(int IdSanPham);
+    List<KichCo> selectAllKichCoBySanPhamId(Integer sanPhamId);
 
     Page<KichCo> selectAllKichCoExist(Pageable pageable);
 

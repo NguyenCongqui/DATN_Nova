@@ -1,5 +1,6 @@
+
 function flexUrlSubmit(url, method, formName) {
-    $("#flexUrlTableForm" + formName).attr("action", "/admin/kich-co/" + url);
+    $("#flexUrlTableForm" + formName).attr("action", "/admin/kich-co" + url);
     $("#flexUrlTableForm" + formName).attr("method", method);
     document.getElementById("flexUrlTableForm" + formName).submit();
 }
@@ -29,7 +30,7 @@ function showConfirmModalDeleteDialog(id, name) {
 
 function submitDeleteProduct() {
     var kcId = $("#yesOptionDeleteModalId").attr("cl-id");
-    flexUrlSubmit("delete/" + kcId, "get", "KichCo");
+    flexUrlSubmit("/delete/" + kcId, "get", "KichCo");
 }
 
 function submitCreateOrUpdate() {
