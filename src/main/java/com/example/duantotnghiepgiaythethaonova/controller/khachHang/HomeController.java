@@ -27,7 +27,7 @@ import java.util.stream.IntStream;
 public class HomeController {
     @Autowired
     private HinhAnhService hinhAnhService;
- 
+
     @ModelAttribute("listGia")
     public List<String> getListGia() {
         List<String> gia = new ArrayList<>();
