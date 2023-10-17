@@ -14,7 +14,7 @@ public interface SanPhamService {
 
     Page<SanPham> getSanPhamExist(Pageable pageable);
 
-    Page<SanPham> searchProductExist(SPAndSPCTSearchDto data, Pageable pageable);
+//    Page<SanPham> searchProductExist(SPAndSPCTSearchDto data, Pageable pageable);
 
     void delete(SanPham entity);
 
@@ -23,7 +23,7 @@ public interface SanPhamService {
     int selectCountSanPhamByLoaiSanPhamId(Integer loaiSanPhamId);
 
     int selectCountSanPhamByPhongCachId(Integer phongCachId);
-
-    int selectCountSanPhamByChatLieuId(Integer chatLieuId);
+//
+//    int selectCountSanPhamByChatLieuId(Integer chatLieuId);
 
 }

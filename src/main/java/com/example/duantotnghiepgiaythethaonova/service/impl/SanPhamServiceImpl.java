@@ -6,6 +6,7 @@ import com.example.duantotnghiepgiaythethaonova.repository.SanPhamRepository;
 import com.example.duantotnghiepgiaythethaonova.repository.SanPhamSearchRepository;
 import com.example.duantotnghiepgiaythethaonova.service.SanPhamService;
 import lombok.AllArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -16,7 +17,8 @@ import java.util.Optional;
 public class SanPhamServiceImpl implements SanPhamService {
 
     private final SanPhamRepository sanPhamRepository;
-    private final SanPhamSearchRepository sanPhamSearchRepository;
+
+//    private final SanPhamSearchRepository sanPhamSearchRepository;
 
 
     @Override
@@ -35,10 +37,10 @@ public class SanPhamServiceImpl implements SanPhamService {
         return sanPhamRepository.getSanPhamExist(pageable);
     }
 
-    @Override
-    public Page<SanPham> searchProductExist(SPAndSPCTSearchDto data, Pageable pageable) {
-        return sanPhamSearchRepository.searchProductExist(data, pageable);
-    }
+//    @Override
+//    public Page<SanPham> searchProductExist(SPAndSPCTSearchDto data, Pageable pageable) {
+//        return sanPhamSearchRepository.searchProductExist(data, pageable);
+//    }
 
     @Override
     public void delete(SanPham entity) {
@@ -61,8 +63,8 @@ public class SanPhamServiceImpl implements SanPhamService {
         return sanPhamRepository.selectCountSanPhamByPhongCachId(phongCachId);
     }
 
-    @Override
-    public int selectCountSanPhamByChatLieuId(Integer chatLieuId) {
-        return sanPhamRepository.selectCountSanPhamByChatLieuId(chatLieuId);
-    }
+//    @Override
+//    public int selectCountSanPhamByChatLieuId(Integer chatLieuId) {
+//        return sanPhamRepository.selectCountSanPhamByChatLieuId(chatLieuId);
+//    }
 }

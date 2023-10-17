@@ -31,8 +31,8 @@ public class HomeController {
     @Autowired
     private HinhAnhService hinhAnhService;
 
-    @Autowired
-    private SanPhamService sanPhamService;
+//    @Autowired
+//    private SanPhamService sanPhamService;
 
     @Autowired
     private KichCoService kichCoService;
