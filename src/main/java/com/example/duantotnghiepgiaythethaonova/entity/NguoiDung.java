@@ -22,24 +22,24 @@ public class NguoiDung extends BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdNguoiDung")
-    private Integer IdNguoiDung;
+    private Integer idNguoiDung;
     @Column(name = "MaNguoiDung")
-    private String MaNguoiDung;
+    private String maNguoiDung;
     @Column(name = "TenNguoiDung")
-    private String TenNguoiDung;
+    private String tenNguoiDung;
     @Column(name = "AnhNhanVien")
-    private String AnhNhanVien;
+    private String anhNhanVien;
     @Enumerated(EnumType.STRING)
     @Column(name = "AuthProvider")
     private AuthenticationProvider authProvider;
     @Column(name = "DiaChi")
-    private String DiaChi;
+    private String diaChi;
     @Column(name = "Email")
-    private String Email;
+    private String email;
     @Column(name = "MatKhau")
-    private String MatKhau;
+    private String matKhau;
     @Column(name = "SoDienThoai")
-    private String SoDienThoai;
+    private String soDienThoai;
 //    @Column(name = "NgayTao")
 //    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 //    @Temporal(TemporalType.TIMESTAMP)
@@ -53,9 +53,9 @@ public class NguoiDung extends BaseEntity implements Serializable {
 //    @Column(name = "NguoiCapNhat")
 //    private String NguoiCapNhat;
     @Column(name = "DaXoa")
-    private Boolean DaXoa;
+    private Boolean daXoa;
     @Column(name = "TrangThai")
-    private Integer TrangThai;
+    private Integer trangThai;
 
     @JsonIgnore
     @OneToMany(mappedBy = "nguoiDung", fetch = FetchType.EAGER)

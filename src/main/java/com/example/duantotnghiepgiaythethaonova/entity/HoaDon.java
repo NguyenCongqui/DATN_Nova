@@ -23,33 +23,33 @@ public class HoaDon extends BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdHoaDon")
-    private Integer IdHoaDon;
+    private Integer idHoaDon;
     @Column(name = "MaHoaDon")
-    private String MaHoaDon;
+    private String maHoaDon;
     @Column(name = "DiaChiGiaoHang")
-    private String DiaChiGiaoHang;
+    private String diaChiGiaoHang;
     @Column(name = "EmailNguoiNhan")
-    private String EmailNguoiNhan;
+    private String emailNguoiNhan;
     @Column(name = "GhiChu")
-    private String GhiChu;
+    private String ghiChu;
     @Column(name = "LoaiHoaDon")
-    private Integer LoaiHoaDon;
+    private Integer loaiHoaDon;
     @Column(name = "NguoiNhan")
-    private String NguoiNhan;
+    private String nguoiNhan;
     @Column(name = "SoDienThoaiNguoiNhan")
-    private String SoDienThoaiNguoiNhan;
+    private String soDienThoaiNguoiNhan;
     @Column(name = "ThoiGianGiaoHang")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Temporal(TemporalType.TIMESTAMP)
-    private Date ThoiGianGiaoHang;
+    private Date thoiGianGiaoHang;
     @Column(name = "TienShip")
-    private BigDecimal TienShip;
+    private BigDecimal tienShip;
     @Column(name = "TienGiam")
-    private BigDecimal TienGiam;
+    private BigDecimal tienGiam;
     @Column(name = "TongTienDonHang")
-    private BigDecimal TongTienDonHang;
+    private BigDecimal tongTienDonHang;
     @Column(name = "TongTienHoaDon")
-    private BigDecimal TongTienHoaDon;
+    private BigDecimal tongTienHoaDon;
 //    @Column(name = "NgayTao")
 //    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 //    @Temporal(TemporalType.TIMESTAMP)
@@ -63,7 +63,7 @@ public class HoaDon extends BaseEntity implements Serializable {
 //    @Column(name = "NguoiCapNhat")
 //    private String NguoiCapNhat;
     @Column(name = "DaXoa")
-    private Boolean DaXoa;
+    private Boolean daXoa;
 
     @ManyToOne
     @JoinColumn(name = "IdKhachHang")

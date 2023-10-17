@@ -22,11 +22,11 @@ public class VaiTro extends BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdVaiTro")
-    private Integer IdVaiTro;
+    private Integer idVaiTro;
     @Column(name = "Code")
-    private String Code;
+    private String code;
     @Column(name = "TenVaiTro")
-    private String TenVaiTro;
+    private String tenVaiTro;
 //    @Column(name = "NgayTao")
 //    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 //    @Temporal(TemporalType.TIMESTAMP)

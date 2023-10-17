@@ -20,7 +20,7 @@ public class GiaoDich extends BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdGiaoDich")
-    private Integer IdGiaoDich;
+    private Integer idGiaoDich;
 //    @Column(name = "NgayTao")
 //    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 //    @Temporal(TemporalType.TIMESTAMP)

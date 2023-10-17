@@ -22,13 +22,13 @@ public class SanPham extends BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdSanPham")
-    private Integer IdSanPham;
+    private Integer idSanPham;
     @Column(name = "TenSanPham")
-    private String TenSanPham;
+    private String tenSanPham;
     @Column(name = "Gia")
-    private BigDecimal Gia;
+    private BigDecimal gia;
     @Column(name = "MoTa")
-    private String MoTa;
+    private String moTa;
 //    @Column(name = "NgayTao")
 //    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 //    @Temporal(TemporalType.TIMESTAMP)
@@ -42,7 +42,7 @@ public class SanPham extends BaseEntity implements Serializable {
 //    @Column(name = "NguoiCapNhat")
 //    private String NguoiCapNhat;
     @Column(name = "DaXoa")
-    private Boolean DaXoa;
+    private Boolean daXoa;
 
     @ManyToOne
     @JoinColumn(name = "IdKieuDang")

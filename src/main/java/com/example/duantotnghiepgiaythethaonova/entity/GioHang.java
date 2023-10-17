@@ -21,9 +21,9 @@ public class GioHang extends BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdGioHang")
-    private Integer IdGioHang;
+    private Integer idGioHang;
     @Column(name = "TongTien")
-    private Integer TongTien;
+    private Integer tongTien;
 //    @Column(name = "NgayTao")
 //    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 //    @Temporal(TemporalType.TIMESTAMP)
@@ -37,7 +37,7 @@ public class GioHang extends BaseEntity implements Serializable {
 //    @Column(name = "NguoiCapNhat")
 //    private String NguoiCapNhat;
     @Column(name = "TrangThai")
-    private Integer TrangThai;
+    private Integer trangThai;
 
     @OneToOne
     @JoinColumn(name = "IdKhachHang")

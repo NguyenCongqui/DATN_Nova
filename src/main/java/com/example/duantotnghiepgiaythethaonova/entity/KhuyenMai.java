@@ -19,19 +19,19 @@ public class KhuyenMai extends BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdKhuyenMai")
-    private Integer IdKhuyenMai;
+    private Integer idKhuyenMai;
     @Column(name = "TenKhuyenMai")
-    private String TenKhuyenMai;
+    private String tenKhuyenMai;
     @Column(name = "GiaTriToiThieu")
-    private Integer GiaTriToiThieu;
+    private Integer giaTriToiThieu;
     @Column(name = "NgayBatDau")
-    private Date NgayBatDau;
+    private Date ngayBatDau;
     @Column(name = "NgayKetThuc")
-    private Date NgayKetThuc;
+    private Date ngayKetThuc;
     @Column(name = "PhamTramGiam")
-    private Integer PhanTramGiam;
+    private Integer phanTramGiam;
     @Column(name = "TrangThai")
-    private Boolean TrangThai;
+    private Boolean trangThai;
 //    @Column(name = "NgayTao")
 //    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 //    @Temporal(TemporalType.TIMESTAMP)
@@ -45,6 +45,6 @@ public class KhuyenMai extends BaseEntity implements Serializable {
 //    @Column(name = "NguoiCapNhat")
 //    private String NguoiCapNhat;
     @Column(name = "Xoa")
-    private Boolean Xoa;
+    private Boolean xoa;
 
 }

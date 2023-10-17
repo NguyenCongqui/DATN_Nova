@@ -22,20 +22,20 @@ public class KhachHang extends BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdKhachHang")
-    private Integer IdKhachHang;
+    private Integer idKhachHang;
     @Column(name = "HoTen")
-    private String HoTen;
+    private String hoTen;
     @Enumerated(EnumType.STRING)
     @Column(name = "AuthProvider")
     private AuthenticationProvider authProvider;
     @Column(name = "SoLanMua")
-    private Integer SoLanMua;
+    private Integer soLanMua;
     @Column(name = "Email")
-    private String Email;
+    private String email;
     @Column(name = "MatKhau")
-    private String MatKhau;
+    private String matKhau;
     @Column(name = "SoDienThoai")
-    private String SoDienThoai;
+    private String soDienThoai;
 //    @Column(name = "NgayTao")
 //    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 //    @Temporal(TemporalType.TIMESTAMP)
@@ -49,7 +49,7 @@ public class KhachHang extends BaseEntity implements Serializable {
 //    @Column(name = "NguoiCapNhat")
 //    private String NguoiCapNhat;
     @Column(name = "TrangThai")
-    private Integer TrangThai;
+    private Integer trangThai;
 
     @OneToMany(mappedBy = "khachHang")
     private List<DiaChi> listDiaChi = new ArrayList<DiaChi>();

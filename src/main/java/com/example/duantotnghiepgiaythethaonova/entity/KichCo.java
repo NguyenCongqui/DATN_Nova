@@ -20,11 +20,11 @@ public class KichCo extends BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdKichCo")
-    private Integer IdKichCo;
+    private Integer idKichCo;
 //    @Column(name = "MaKichCo")
 //    private String MaKichCo;
     @Column(name = "TenKichCo")
-    private String TenKichCo;
+    private String tenKichCo;
 //    @Column(name = "NgayTao")
 //    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 //    @Temporal(TemporalType.TIMESTAMP)
@@ -38,7 +38,7 @@ public class KichCo extends BaseEntity implements Serializable {
 //    @Column(name = "NguoiCapNhat")
 //    private String NguoiCapNhat;
     @Column(name = "DaXoa")
-    private Boolean DaXoa;
+    private Boolean daXoa;
 
     @OneToMany(mappedBy = "kichCo", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ChiTietSanPham> chiTietSanPhams;

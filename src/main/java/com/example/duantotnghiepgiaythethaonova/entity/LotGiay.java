@@ -20,9 +20,9 @@ public class LotGiay extends BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdLotGiay")
-    private Integer IdLotGiay;
+    private Integer idLotGiay;
     @Column(name = "TenLotGiay")
-    private String TenLotGiay;
+    private String tenLotGiay;
 //    @Column(name = "NgayTao")
 //    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 //    @Temporal(TemporalType.TIMESTAMP)
@@ -36,7 +36,7 @@ public class LotGiay extends BaseEntity implements Serializable {
 //    @Column(name = "NguoiCapNhat")
 //    private String NguoiCapNhat;
     @Column(name = "DaXoa")
-    private Boolean DaXoa;
+    private Boolean daXoa;
 
     @OneToMany(mappedBy = "lotGiay", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ChiTietSanPham> chiTietSanPhams;

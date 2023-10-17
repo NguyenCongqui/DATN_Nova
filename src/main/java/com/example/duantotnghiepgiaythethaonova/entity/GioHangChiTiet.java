@@ -20,13 +20,13 @@ public class GioHangChiTiet extends BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdGioHangCT")
-    private Integer IdGioHangCT;
+    private Integer idGioHangCT;
     @Column(name = "DonGia")
-    private Integer DonGia;
+    private Integer donGia;
     @Column(name = "SoLuong")
-    private Integer SoLuong;
+    private Integer soLuong;
     @Column(name = "TongTien")
-    private BigDecimal ThanhTien;
+    private BigDecimal thanhTien;
 //    @Column(name = "NgayTao")
 //    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 //    @Temporal(TemporalType.TIMESTAMP)
@@ -40,9 +40,9 @@ public class GioHangChiTiet extends BaseEntity implements Serializable {
 //    @Column(name = "NguoiCapNhat")
 //    private String NguoiCapNhat;
     @Column(name = "TrangThai")
-    private Integer TrangThai;
+    private Integer trangThai;
     @Column(name = "DaXoa")
-    private Boolean DaXoa;
+    private Boolean daXoa;
 
     @ManyToOne
     @JoinColumn(name = "IdGioHang")

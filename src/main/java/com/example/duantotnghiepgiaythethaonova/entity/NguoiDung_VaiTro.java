@@ -17,7 +17,7 @@ public class NguoiDung_VaiTro implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdNguoiDung_VaiTro")
-    private Integer IdNguoiDung_VaiTro;
+    private Integer idNguoiDung_VaiTro;
 
     @ManyToOne
     @JoinColumn(name = "IdNguoiDung")

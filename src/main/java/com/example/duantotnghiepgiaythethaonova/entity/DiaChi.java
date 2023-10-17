@@ -20,15 +20,15 @@ public class DiaChi extends BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdDiaChi")
-    private Integer IdDiaChi;
+    private Integer idDiaChi;
     @Column(name = "HoTen")
-    private String HoTen;
+    private String hoTen;
     @Column(name = "DiaChi")
-    private String DiaChi;
+    private String diaChi;
     @Column(name = "SoDienThoai")
-    private String SoDienThoai;
+    private String soDienThoai;
     @Column(name = "LaDiaChiMacDinh")
-    private boolean LaDiaChiMacDinh = false;
+    private boolean laDiaChiMacDinh = false;
 //    @Column(name = "NgayTao")
 //    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 //    @Temporal(TemporalType.TIMESTAMP)

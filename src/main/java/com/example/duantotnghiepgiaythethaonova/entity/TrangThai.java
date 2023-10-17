@@ -17,7 +17,7 @@ public class TrangThai implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdTrangThai")
-    private Integer IdTrangThai;
+    private Integer idTrangThai;
     @Column(name = "Name")
-    private String Name;
+    private String name;
 }

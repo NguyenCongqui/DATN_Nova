@@ -22,11 +22,11 @@ public class MauSac extends BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdMauSac")
-    private Integer IdMauSac;
+    private Integer idMauSac;
     @Column(name = "MaMauSac")
-    private String MaMauSac;
+    private String maMauSac;
     @Column(name = "TenMauSac")
-    private String TenMauSac;
+    private String tenMauSac;
 //    @Column(name = "NgayTao")
 //    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 //    @Temporal(TemporalType.TIMESTAMP)
@@ -40,7 +40,7 @@ public class MauSac extends BaseEntity implements Serializable {
 //    @Column(name = "NguoiCapNhat")
 //    private String NguoiCapNhat;
     @Column(name = "DaXoa")
-    private Boolean DaXoa;
+    private Boolean daXoa;
 
     @OneToMany(mappedBy = "mauSac", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<ChiTietSanPham> chiTietSanPhams;

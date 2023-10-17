@@ -20,9 +20,9 @@ public class ChatLieu extends BaseEntity implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdChatLieu")
-    private Integer IdChatLieu;
+    private Integer idChatLieu;
     @Column(name = "TenChatLieu")
-    private String TenChatLieu;
+    private String tenChatLieu;
 //    @Column(name = "NgayTao")
 //    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 //    @Temporal(TemporalType.TIMESTAMP)
@@ -36,7 +36,7 @@ public class ChatLieu extends BaseEntity implements Serializable {
 //    @Column(name = "NguoiCapNhat")
 //    private String NguoiCapNhat;
     @Column(name = "DaXoa")
-    private Boolean DaXoa;
+    private Boolean daXoa;
 
     @OneToMany(mappedBy = "chatLieu", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<SanPham> sanPhams;
