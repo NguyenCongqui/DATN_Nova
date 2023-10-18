@@ -14,12 +14,12 @@ import java.util.List;
 @Repository
 public interface LotGiayRepository extends JpaRepository<LotGiay,Integer> {
 
-    @Query(value = "SELECT * FROM LotGiay c WHERE  c.DaXoa = 0 ORDER BY c.IdLotGiay DESC ",nativeQuery = true)
+    @Query(value = "SELECT * FROM LotGiay c WHERE  c.daXoa = 0 ORDER BY c.idLotGiay DESC ",nativeQuery = true)
     Page<LotGiay> selectAllChatLieuExist(Pageable pageable);
 
-    @Query(value = "SELECT * FROM LotGiay c WHERE  c.DaXoa = 0 ORDER BY c.IdLotGiay DESC ",nativeQuery = true)
+    @Query(value = "SELECT * FROM LotGiay c WHERE  c.daXoa = 0 ORDER BY c.idLotGiay DESC ",nativeQuery = true)
     List<LotGiay> selectAllChatLieuExist();
 
-    @Query(value = "SELECT * FROM LotGiay c WHERE  c.DaXoa = 0 AND c.TenLotGiay like %:TenLotGiay% ORDER BY c.IdLotGiay DESC ",nativeQuery = true)
-    Page<LotGiay> getChatLieuExistByName(@Param("TenLotGiay") String tenLotGiay, Pageable pageable);
+    @Query(value = "SELECT * FROM LotGiay c WHERE  c.daXoa = 0 AND c.tenLotGiay like %:tenLotGiay% ORDER BY c.idLotGiay DESC ",nativeQuery = true)
+    Page<LotGiay> getChatLieuExistByName(@Param("tenLotGiay") String tenLotGiay, Pageable pageable);
 }
