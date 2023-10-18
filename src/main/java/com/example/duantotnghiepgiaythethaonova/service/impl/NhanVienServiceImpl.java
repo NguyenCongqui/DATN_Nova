@@ -1,11 +1,13 @@
 package com.example.duantotnghiepgiaythethaonova.service.impl;
 
+import com.example.duantotnghiepgiaythethaonova.config.BcryptedPasswordEncoderConfig;
 import com.example.duantotnghiepgiaythethaonova.entity.NguoiDung;
 import com.example.duantotnghiepgiaythethaonova.entity.NguoiDung_VaiTro;
 import com.example.duantotnghiepgiaythethaonova.entity.VaiTro;
 import com.example.duantotnghiepgiaythethaonova.repository.NguoiDungRepository;
 import com.example.duantotnghiepgiaythethaonova.repository.NguoiDung_VaiTroRepository;
 import com.example.duantotnghiepgiaythethaonova.repository.VaiTroRepository;
+import com.example.duantotnghiepgiaythethaonova.service.MailService;
 import com.example.duantotnghiepgiaythethaonova.service.NhanVienService;
 import com.example.duantotnghiepgiaythethaonova.util.RanDomUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,11 +31,13 @@ public class NhanVienServiceImpl implements NhanVienService {
     @Autowired
     NguoiDung_VaiTroRepository nguoiDung_vaiTroRepository;
 
-//    @Autowired
-//    MailService mailService;
-//
+    @Autowired
+    MailService mailService;
 //    @Autowired
 //    private BcryptedPasswordEncoderConfig passwordEncoder;
+
+    @Autowired
+    private BcryptedPasswordEncoderConfig passwordEncoder;
 
 
     @Override
@@ -84,15 +88,16 @@ public class NhanVienServiceImpl implements NhanVienService {
         nguoiDung.setSoDienThoai(soDienThoai);
         nguoiDung.setDaXoa(false);
         nguoiDung.setAnhNhanVien(anhNhanVien);
-        nguoiDung.setMatKhau(new String( password));
+        nguoiDung.setMatKhau(new String(password));
+        nguoiDung.setMatKhau(passwordEncoder.encode(new String(password)));
 //      nguoiDung.setMatKhau(passwordEncoder.encode(new String(password)));
 
-//        mailService.sendMail("linhnkph24164@fpt.edu.vn",
-//                nguoiDung.getEmail(),
-//                "Bạn đã đăng ký tài khoản thành công !",
-//                "Họ tên  : " + nguoiDung.getTenNguoiDung() + "\n" +
-//                        "Số điện thoại  :" + nguoiDung.getSoDienThoai()
-//                        + "Mật khẩu : " + new String(password));
+        mailService.sendMail("linhnkph24164@fpt.edu.vn",
+                nguoiDung.getEmail(),
+                "Bạn đã đăng ký thành công !",
+                "Họ tên  : " + nguoiDung.getTenNguoiDung() + "\n" +
+                        "Số điện thoại  :" + nguoiDung.getSoDienThoai()
+                        + "Mật khẩu : " + new String(password));
 
         // Kiểm tra xem đã lưu thành công vào cơ sở dữ liệu hay chưa
         NguoiDung savedNguoiDung = nguoiDungRepository.save(nguoiDung);
@@ -180,14 +185,13 @@ public class NhanVienServiceImpl implements NhanVienService {
     @Override
     public ResponseEntity<String> XoaNhanVien(Integer id) {
         Optional<NguoiDung> optionalNguoiDung = nguoiDungRepository.findById(id);
-        if (optionalNguoiDung.isPresent()){
-            NguoiDung nguoiDung =optionalNguoiDung.get();
+        if (optionalNguoiDung.isPresent()) {
+            NguoiDung nguoiDung = optionalNguoiDung.get();
             nguoiDung.setDaXoa(true);
             nguoiDungRepository.save(nguoiDung);
             String message = "Xóa thành công!";
             return ResponseEntity.ok(message);
-        }
-        else{
+        } else {
             String errorMessage = "Không tìm thấy người dùng !";
             return ResponseEntity.notFound().build();
         }
