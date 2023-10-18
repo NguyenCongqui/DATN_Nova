@@ -21,8 +21,8 @@ public class KichCo extends BaseEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdKichCo")
     private Integer idKichCo;
-//    @Column(name = "MaKichCo")
-//    private String MaKichCo;
+    @Column(name = "MaKichCo")
+    private String MaKichCo;
     @Column(name = "TenKichCo")
     private String tenKichCo;
 //    @Column(name = "NgayTao")
