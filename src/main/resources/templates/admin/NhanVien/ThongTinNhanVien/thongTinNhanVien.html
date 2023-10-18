@@ -34,8 +34,8 @@
                 <div class="col-lg-4">
                     <div class="card mb-4">
                         <div class="card-body text-center">
-                            <div th:if="*{AnhNhanVien != null and !AnhNhanVien.isEmpty()}">
-                                <img th:src="@{/admin/img/{imageFileName}(imageFileName=*{AnhNhanVien})}"
+                            <div th:if="*{anhNhanVien != null and !anhNhanVien.isEmpty()}">
+                                <img th:src="@{/admin/img/{imageFileName}(imageFileName=*{anhNhanVien})}"
                                      class="user-image" width="240px" height="309px">
                             </div>
                             <div th:unless="*{anhNhanVien != null and !anhNhanVien.isEmpty()}">
@@ -81,7 +81,7 @@
                                     <p class="mb-0">Chức vụ</p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><span th:text="${phanQuyen.VaiTro.TenVaiTro}"></span></p>
+                                    <p class="text-muted mb-0"><span th:text="${phanQuyen.vaiTro.tenVaiTro}"></span></p>
                                 </div>
                             </div>
                             <hr>

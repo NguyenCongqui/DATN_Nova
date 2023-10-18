@@ -25,19 +25,19 @@ public abstract class BaseEntity {
 	@CreatedDate
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date NgayTao;
+	private Date ngayTao;
 	
 	@Column(name="NguoiTao",updatable=false)
 	@CreatedBy
-	private String NguoiTao;
+	private String nguoiTao;
 	
 	@Column(name="NgayCapNhat",updatable=true)
 	@LastModifiedDate
 	@DateTimeFormat(pattern = "yyyy-MM-dd HH:mm")
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date NgayCapNhat;
+	private Date ngayCapNhat;
 	
 	@Column(name="NguoiCapNhat",updatable=true)
 	@LastModifiedBy
-	private String NguoiCapNhat;
+	private String nguoiCapNhat;
 }

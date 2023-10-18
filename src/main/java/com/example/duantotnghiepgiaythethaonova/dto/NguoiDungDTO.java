@@ -12,6 +12,7 @@ import java.util.List;
 @NoArgsConstructor
 public class NguoiDungDTO extends BaseDTO<NguoiDungDTO>{
 
+    private Integer idNguoiDung;
 
     private String tenDangNhap;
 

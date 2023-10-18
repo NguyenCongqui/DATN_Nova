@@ -13,7 +13,7 @@ public interface INguoiDungPaginRepository extends PagingAndSortingRepository<Ng
 
     Page<NguoiDung> findAll(Pageable pageable);
 
-    @Query(value = "select * from NguoiDung where DaXoa = 0" , nativeQuery = true)
+    @Query(value = "select * from NguoiDung where daXoa = 0" , nativeQuery = true)
     Page<NguoiDung> GetAll(Pageable pageable);
 
 }

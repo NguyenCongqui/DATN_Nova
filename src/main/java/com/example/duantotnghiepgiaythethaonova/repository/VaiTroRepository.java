@@ -9,7 +9,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface VaiTroRepository extends JpaRepository<VaiTro, Integer> {
 
-    @Query(value = "SELECT * FROM VaiTro  where Code = :vaiTro", nativeQuery = true)
+    @Query(value = "SELECT * FROM VaiTro  where code = :vaiTro", nativeQuery = true)
     VaiTro findByTenVaiTro(@Param("vaiTro") String vaiTro);
 
 

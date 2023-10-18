@@ -12,13 +12,14 @@ import java.util.Date;
 @AllArgsConstructor
 @SuperBuilder
 public abstract class BaseDTO<T extends BaseDTO> {
+
     private Integer id;
 
-    private Date NgayTao;
+    private Date ngayTao;
 
-    private String NguoiTao;
+    private String nguoiTao;
 
-    private Date NgayCapNhat;
+    private Date ngayCapNhat;
 
-    private String NguoiCapNhat;
+    private String nguoiCapNhat;
 }

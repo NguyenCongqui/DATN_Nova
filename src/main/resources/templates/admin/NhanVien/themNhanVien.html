@@ -72,8 +72,8 @@
                                 <select class="form-control" id="selectVaiTro" name="vaiTro">
                                     <option value="">Chọn chức vụ</option>
                                     <option th:each="phanQuyen : ${phanQuyen}"
-                                            th:unless="${phanQuyen.TenVaiTro == 'Khách hàng'}"
-                                            th:value="${phanQuyen.IdVaiTro}" th:text="${phanQuyen.TenVaiTro}"></option>
+                                            th:unless="${phanQuyen.tenVaiTro == 'Khách hàng'}"
+                                            th:value="${phanQuyen.idVaiTro}" th:text="${phanQuyen.tenVaiTro}"></option>
                                 </select>
                             </div>
                         </div>

@@ -47,12 +47,11 @@ public class NhanVienController {
             nguoiDungDTO.setNgayTao(nguoiDung.getNgayTao());
             nguoiDungDTO.setTrangThai(nguoiDung.getTrangThai());
             nguoiDungDTO.setAnhNhanVien(nguoiDung.getAnhNhanVien());
+            nguoiDungDTO.setIdNguoiDung(nguoiDung.getIdNguoiDung());
             listNguoiDungDTO.add(nguoiDungDTO);
         }
         return listNguoiDungDTO;
     }
-
-
 
     //List
     @GetMapping("/admin/NhanVien/danhSach")
@@ -62,7 +61,7 @@ public class NhanVienController {
             Model model
     ) {
         NguoiDungDTO dto = new NguoiDungDTO();
-        PageRequest pageable = PageRequest.of(page - 1, size, Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        PageRequest pageable = PageRequest.of(page - 1, size, Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idNguoiDung"));
         Page<NguoiDung> users = nguoiDungRepository.findAllNguoiDung(pageable);
         List<NguoiDungDTO> listNguoiDungDTO = convertPageToList(users);
         dto.setListNguoiDungDTO(listNguoiDungDTO);
@@ -72,7 +71,6 @@ public class NhanVienController {
         model.addAttribute("size", size);
         return "admin/NhanVien/danhSachNhanVien";
     }
-
 
     //Add
     @RequestMapping("/NhanVien/themMoi")

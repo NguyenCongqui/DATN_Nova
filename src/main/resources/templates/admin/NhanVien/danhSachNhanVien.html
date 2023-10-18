@@ -5,8 +5,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Quản lý nhân viên</title>
-<!--    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>-->
-    <link rel="stylesheet" th:href="@{/admin/css/nhanVien/nhanVien.css}">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <link rel="stylesheet" th:href="@{/static/admin/css/nhanVien/nhanVien.css}">
     <script th:src="@{/static/admin/js/nhanVien/nhanVien.js}"></script>
     <style>
         .button-thongTinNhanVien{
@@ -100,28 +100,28 @@
                         </thead>
                         <tbody>
                             <tr th:each="user, stt : *{listNguoiDungDTO}" class="text-center"
-                                th:data-user-id="${user.IdNguoiDung}">
+                                th:data-user-id="${user.idNguoiDung}">
                                 <td th:text="${(page - 1) * size + stt.count}" style="vertical-align: middle;"></td>
                                 <td style="vertical-align: middle;">
-                                    <div th:if="${user.AnhNhanVien != null and !user.AnhNhanVien.isEmpty()}">
-                                        <img th:src="@{/admin/img/{imageFileName}(imageFileName=${user.AnhNhanVien})}"
+                                    <div th:if="${user.anhNhanVien != null and !user.anhNhanVien.isEmpty()}">
+                                        <img th:src="@{/static/admin/img/{imageFileName}(imageFileName=${user.anhNhanVien})}"
                                             class="user-image" width="100px" height="120px">
                                     </div>
-                                    <div th:unless="${user.AnhNhanVien != null and !user.AnhNhanVien.isEmpty()}">
-                                        <img th:src="@{/admin/img/noImage.png}" class="user-image" width="100px"
+                                    <div th:unless="${user.anhNhanVien != null and !user.anhNhanVien.isEmpty()}">
+                                        <img th:src="@{/static/admin/img/noImage.png}" class="user-image" width="100px"
                                             height="120px">
                                     </div>
                                 </td>
-                                <td style="vertical-align: middle;" th:text="${user.MaNhanVien}"></td>
-                                <td style="vertical-align: middle;" th:text="${user.TenNguoiDung}"></td>
+                                <td style="vertical-align: middle;" th:text="${user.maNhanVien}"></td>
+                                <td style="vertical-align: middle;" th:text="${user.tenNguoiDung}"></td>
 
                                 <td style="vertical-align: middle;">
                                     <div class="btn-group">
                                         <div class="custom-control custom-switch">
                                             <input type="checkbox" class="custom-control-input"
-                                                th:id="'trangThai-' + ${user.IdNguoiDung}" th:checked="${user.TrangThai eq 0}">
+                                                th:id="'trangThai-' + ${user.idNguoiDung}" th:checked="${user.trangThai eq 0}">
                                             <label class="custom-control-label"
-                                                th:for="'trangThai-' + ${user.IdNguoiDung}"></label>
+                                                th:for="'trangThai-' + ${user.idNguoiDung}"></label>
                                         </div>
                                     </div>
                                 </td>
@@ -135,20 +135,20 @@
                                     </div> -->
                                     <!-- From xóa -->
                                     <div class="btn-group">
-                                        <a th:href="@{'/admin/thongTinNhanVien/MaNhanVien=' + ${user.MaNhanVien}}"
+                                        <a th:href="@{'/admin/thongTinNhanVien/MaNhanVien=' + ${user.maNhanVien}}"
                                             class="btn btn-info btn-sm button-thongTinNhanVien" type="submit">
                                             <i class="far fa-user"></i>
                                         </a>
-                                        <a th:href="@{'/admin/chinhSuaNhanVien/id-nhan-vien=' + ${user.IdNguoiDung}}"
+                                        <a th:href="@{'/admin/chinhSuaNhanVien/id-nhan-vien=' + ${user.idNguoiDung}}"
                                             class="btn btn-warning btn-sm button-chinhSuaNhanVien" type="submit">
                                             <i class="fas fa-edit text-primary"></i>
                                         </a>
-                                        <button class="btn btn-danger xoaNhanVien" th:attr="data-id=${user.IdNguoiDung}"
-                                            th:data-target="'#modalXoaNhanVien-' + ${user.IdNguoiDung}">
+                                        <button class="btn btn-danger xoaNhanVien" th:attr="data-id=${user.idNguoiDung}"
+                                            th:data-target="'#modalXoaNhanVien-' + ${user.idNguoiDung}">
                                             <i class="fa fa-trash" aria-hidden="true"></i>
                                         </button>
                                         <br>
-                                        <div class="modal fade xoaNhanVien" th:id="'modalXoaNhanVien-' + ${user.IdNguoiDung}"
+                                        <div class="modal fade xoaNhanVien" th:id="'modalXoaNhanVien-' + ${user.idNguoiDung}"
                                             tabindex="-1" aria-labelledby="XoaHDCTModalLabel" aria-hidden="true">
                                             <div class="modal-dialog modal-dialog-centered">
                                                 <div class="modal-content">
