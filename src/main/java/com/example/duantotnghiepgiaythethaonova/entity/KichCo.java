@@ -22,7 +22,7 @@ public class KichCo extends BaseEntity implements Serializable {
     @Column(name = "IdKichCo")
     private Integer idKichCo;
     @Column(name = "MaKichCo")
-    private String MaKichCo;
+    private String maKichCo;
     @Column(name = "TenKichCo")
     private String tenKichCo;
 //    @Column(name = "NgayTao")
