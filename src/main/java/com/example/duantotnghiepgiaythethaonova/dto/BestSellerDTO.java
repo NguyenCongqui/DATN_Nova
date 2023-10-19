@@ -9,18 +9,20 @@ import lombok.Setter;
 @Setter
 @AllArgsConstructor
 @NoArgsConstructor
+
 public class BestSellerDTO {
+
     private Integer idSanPham;
     private String tenSanPham;
     private String anhChinhs;
     private Double giaBan;
-    private Integer doanhSo;
+    private Long doanhSo;
     private String kieuDang;
     private String chatLieu;
     private String kichCo;
     private String mauSac;
 
-    public BestSellerDTO(Integer id, Integer doanhSo){
+    public BestSellerDTO(Integer id, Long doanhSo){
         this.idSanPham = id;
         this.doanhSo = doanhSo;
         this.anhChinhs = "";
