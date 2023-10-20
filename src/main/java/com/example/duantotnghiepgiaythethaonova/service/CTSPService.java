@@ -39,5 +39,5 @@ public interface CTSPService {
 
     Optional<ChiTietSanPham> selectSanPhamChiTietDuplicate(Integer mauSacId, Integer kichCoId, Integer sanPhamId);
 
-    void WritingToExcelProduct(List<SanPhamProductManageDTO> lstDto) throws IOException;
+//    void WritingToExcelProduct(List<SanPhamProductManageDTO> lstDto) throws IOException;
 }

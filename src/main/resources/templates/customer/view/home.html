@@ -15,7 +15,8 @@
     <div class="container">
         <h2 class="page-title">Sản Phẩm Mới</h2>
     </div>
-    <div class="container">
+    <div class="container"
+         th:each="item, istat : ${resultSP.lstShowSanPhamTaiQuayDTO}" th:object="${resultSP}">
         <div class="tab-content">
             <!-- Tab1 - Latest Product -->
             <div id="latest" role="tabpanel" class="tab-pane fade in active">
@@ -24,24 +25,31 @@
                     <div class="product-item">
                         <div class="product-item-inner">
                             <div abbr="" class="product-img-wrap">
-                                <img src="../../../static/customer/img/product-img/big/product_125470001.jpg" alt="">
+                                <div class="carousel-item" th:name="'divImgIsActive'+${istat.index}"
+                                     th:id="'imgActive'+${istat.index}+${istatAC.index}"
+                                     th:classappend="${#numbers.formatInteger(istat.index+''+istatAC.index,5) == #numbers.formatInteger(istat.index+''+0,5)? 'active':''}"
+                                     th:each="img, istatAC : ${item.anhChinhs}">
+                                    <img th:src="${'/customer/images/'+img}" class="d-block img-responsive"
+                                         alt="...">
+                                </div>
                             </div>
                             <div class="product-button">
-                                <a href="#" class="js_tooltip" data-mode="top" data-tip="Add To Cart"><i class="fa fa-shopping-bag"></i></a>
+                                <a th:href="${'/customer/shop-details/'+item.sanPhamId}" href="#" class="js_tooltip" data-mode="top" data-tip="Thêm Vào Giỏ"><i class="fa fa-shopping-bag"></i></a>
                                 <a href="#" class="js_tooltip" data-mode="top" data-tip="Add To Whishlist"><i class="fa fa-heart"></i></a>
                                 <a href="#" class="js_tooltip" data-mode="top" data-tip="Quick&nbsp;View"><i class="fa fa-eye"></i></a>
                             </div>
                         </div>
                         <div class="product-detail">
                             <a class="tag" href="#">Men Fashion</a>
-                            <p class="product-title"><a href="product_detail.html">Giày thể thao</a></p>
+                            <p class="product-title"><a href="product_detail.html" th:text="${item.tenSanPham}">Giày thể thao</a></p>
                             <div class="product-rating">
                                 <div class="star-rating" itemprop="reviewRating" itemscope="" itemtype="http://schema.org/Rating" title="Rated 4 out of 5">
                                     <span style="width: 60%"></span>
                                 </div>
 
                             </div>
-                            <h5 class="item-price">100.000 vnd</h5>
+                            // giá tiền sp
+                            <h5 class="item-price" th:text="${#numbers.formatDecimal(item.gia, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></h5>
                         </div>
                     </div>
                 </div>
