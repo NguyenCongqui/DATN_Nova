@@ -9,10 +9,10 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 
-import com.example.duantotnghiepgiaythethaonova.dto.KichCoDTO;
-import com.example.duantotnghiepgiaythethaonova.entity.KichCo;
+import com.example.duantotnghiepgiaythethaonova.dto.DeGiayDTO;
+import com.example.duantotnghiepgiaythethaonova.entity.DeGiay;
 import com.example.duantotnghiepgiaythethaonova.entity.NguoiDung;
-import com.example.duantotnghiepgiaythethaonova.service.KichCoService;
+import com.example.duantotnghiepgiaythethaonova.service.DeGiayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -31,56 +31,57 @@ import javax.servlet.http.HttpSession;
 
 
 @Controller
-@RequestMapping("admin/kich-co")
+@RequestMapping("admin/de-giay")
 public class DeGiayController {
+
     @Autowired
     private HttpSession session;
 
     @Autowired
-    private KichCoService kichCoService;
+    private DeGiayService kichCoService;
 
     @GetMapping("")
     public String chatLieu(Model model, HttpServletRequest request, @RequestParam("page") Optional<Integer> page,
                            @RequestParam("size") Optional<Integer> size,
                            @RequestParam("messageSuccess") Optional<String> messageSuccess,
                            @RequestParam("messageDanger") Optional<String> messageDanger) {
-        String[] tenKichCoSearch = request.getParameterValues("tenKichCoSearch");
+        String[] tenKichCoSearch = request.getParameterValues("tenDeGiaySearch");
         int currentPage = page.orElse(1);
         int pageSize = size.orElse(10);
         Pageable pageable = PageRequest.of(currentPage - 1, pageSize);
-        Page<KichCo> resultPage = null;
-        NguoiDung  nguoiDung = (NguoiDung) session.getAttribute("NguoiDung");
+        Page<DeGiay> resultPage = null;
+        NguoiDung nguoiDung = (NguoiDung) session.getAttribute("NguoiDung");
         if (tenKichCoSearch == null) {
-            List<KichCoDTO> dtos = new ArrayList<>();
+            List<DeGiayDTO> dtos = new ArrayList<>();
             resultPage = kichCoService.selectAllKichCoExist(pageable);
-            for (KichCo kichCo : resultPage.getContent()) {
-                KichCoDTO dto = new KichCoDTO();
-                dto.setIdKichCo(kichCo.getIdKichCo());
-                dto.setTenKichCo(kichCo.getTenKichCo());
+            for (DeGiay kichCo : resultPage.getContent()) {
+                DeGiayDTO dto = new DeGiayDTO();
+                dto.setIdDeGiay(kichCo.getIdDeGiay());
+                dto.setTenDeGiay(kichCo.getTenDeGiay());
                 dtos.add(dto);
             }
-            model.addAttribute("kichCos", dtos);
+            model.addAttribute("deGiays", dtos);
         } else {
-            if(!tenKichCoSearch[0].isEmpty()) {
-                List<KichCoDTO> dtos = new ArrayList<>();
+            if (!tenKichCoSearch[0].isEmpty()) {
+                List<DeGiayDTO> dtos = new ArrayList<>();
                 resultPage = kichCoService.getKichCoExistByName(tenKichCoSearch[0], pageable);
-                for (KichCo kichCo : resultPage.getContent()) {
-                    KichCoDTO dto = new KichCoDTO();
-                    dto.setIdKichCo(kichCo.getIdKichCo());
-                    dto.setTenKichCo(kichCo.getTenKichCo());
+                for (DeGiay kichCo : resultPage.getContent()) {
+                    DeGiayDTO dto = new DeGiayDTO();
+                    dto.setIdDeGiay(kichCo.getIdDeGiay());
+                    dto.setTenDeGiay(kichCo.getTenDeGiay());
                     dtos.add(dto);
                 }
-                model.addAttribute("kichCos", dtos);
-            }else {
-                List<KichCoDTO> dtos = new ArrayList<>();
+                model.addAttribute("deGiays", dtos);
+            } else {
+                List<DeGiayDTO> dtos = new ArrayList<>();
                 resultPage = kichCoService.selectAllKichCoExist(pageable);
-                for (KichCo kichCo : resultPage.getContent()) {
-                    KichCoDTO dto = new KichCoDTO();
-                    dto.setIdKichCo(kichCo.getIdKichCo());
-                    dto.setTenKichCo(kichCo.getTenKichCo());
+                for (DeGiay kichCo : resultPage.getContent()) {
+                    DeGiayDTO dto = new DeGiayDTO();
+                    dto.setIdDeGiay(kichCo.getIdDeGiay());
+                    dto.setTenDeGiay(kichCo.getTenDeGiay());
                     dtos.add(dto);
                 }
-                model.addAttribute("kichCos", dtos);
+                model.addAttribute("deGiays", dtos);
             }
         }
         int totalPages = resultPage.getTotalPages();
@@ -104,102 +105,59 @@ public class DeGiayController {
             model.addAttribute("messageDanger", messageDanger.get());
         }
         model.addAttribute("resultPage", resultPage);
-        return "admin/kichCo/kichCoManage";
+        return "admin/deGiay/deGiayManage";
     }
 
-//    @PostMapping("createOrUpdate")
-//    public String createOrUpdate(RedirectAttributes redirect,@RequestParam("tenKichCoCreateOrUpdate") String tenKichCo,
-//                                 @RequestParam("kichCoIdCreateOrUpdate") String kichCoId) {
-//        final String redirectUrl = "redirect:/admin/kich-co";
-//        if(tenKichCo != null && kichCoId!= null) {
-//            if(tenKichCo.isEmpty()) {
-//                redirect.addFlashAttribute("messageDanger","Tên kích cỡ không được để trống");
-//                return redirectUrl;
-//            }
-//            Optional<KichCo> opt = kichCoService.findById(Integer.parseInt(kichCoId));
-//            KichCo cl = new KichCo();
-//            if(opt.isPresent()) {
-//                opt.get().setTenKichCo(tenKichCo);
-//                opt.get().setNgayCapNhat(new Date());
-//                redirect.addFlashAttribute("messageSuccess","Cập nhật kích cỡ thành công");
-//                kichCoService.save(opt.get());
-//                return redirectUrl;
-//            }else {
-////                KichCo cl = new KichCo();
-//                cl.setTenKichCo(tenKichCo);
-//                cl.setNgayTao(new Date());
-//                redirect.addFlashAttribute("messageSuccess","Thêm mới kích cỡ thành công");
-//                redirect.addFlashAttribute("messageSuccess","Thêm mới kích cỡ thành công");
-//                kichCoService.save(cl);
-//                return redirectUrl;
-//            }
-//        }else {
-//            redirect.addFlashAttribute("messageDanger","Đã xảy ra lỗi khi cập nhật kích cỡ");
-//            return redirectUrl;
-//        }
-//    }
-//
-//    @GetMapping("info/{id}")
-//    public String info(@PathVariable("id") Integer id, Model model,RedirectAttributes redirect) {
-//        Optional<KichCo> opt = kichCoService.findById(id);
-//        if(opt.isPresent()) {
-//            model.addAttribute("kichCo", opt.get());
-//        }else {
-//            redirect.addFlashAttribute("messageDanger","Đã xảy ra lỗi khi tìm chi tiết kích cỡ");
-//            return "redirect:/admin/kich-co";
-//        }
-//        return "admin/kichCo/infoKichCo";
-//    }
 
     @PostMapping("createOrUpdate")
     public String createOrUpdate(RedirectAttributes redirect,
-                                 @RequestParam("tenKichCoCreateOrUpdate") String tenKichCo,
-                                 @RequestParam("kichCoIdCreateOrUpdate") String kichCoId) {
-        final String redirectUrl = "redirect:/admin/kich-co";
+                                 @RequestParam("tenDeGiayCreateOrUpdate") String tenKichCo,
+                                 @RequestParam("DeGiayIdCreateOrUpdate") String kichCoId) {
+        final String redirectUrl = "redirect:/admin/de-giay";
         if (tenKichCo != null && !tenKichCo.isEmpty() && kichCoId != null && !kichCoId.isEmpty()) {
-            Optional<KichCo> opt = kichCoService.findById(Integer.parseInt(kichCoId));
+            Optional<DeGiay> opt = kichCoService.findById(Integer.parseInt(kichCoId));
             if (opt.isPresent()) {
-                KichCo cl = opt.get();
-                cl.setTenKichCo(tenKichCo);
+                DeGiay cl = opt.get();
+                cl.setTenDeGiay(tenKichCo);
                 cl.setNgayCapNhat(new Date());
-                redirect.addFlashAttribute("messageSuccess", "Cập nhật kích cỡ thành công");
+                redirect.addFlashAttribute("messageSuccess", "Cập nhật đế giày thành công");
                 kichCoService.save(cl);
             } else {
-                KichCo cl = new KichCo();
-                cl.setTenKichCo(tenKichCo);
+                DeGiay cl = new DeGiay();
+                cl.setTenDeGiay(tenKichCo);
                 cl.setNgayTao(new Date());
-                redirect.addFlashAttribute("messageSuccess", "Thêm mới kích cỡ thành công");
+                redirect.addFlashAttribute("messageSuccess", "Thêm mới đế giày thành công");
                 kichCoService.save(cl);
             }
         } else {
-            redirect.addFlashAttribute("messageDanger", "Tên kích cỡ không được để trống");
+            redirect.addFlashAttribute("messageDanger", "Tên đế giày không được để trống");
         }
         return redirectUrl;
     }
 
     @GetMapping("info/{id}")
     public String info(@PathVariable("id") Integer id, Model model, RedirectAttributes redirect) {
-        Optional<KichCo> opt = kichCoService.findById(id);
+        Optional<DeGiay> opt = kichCoService.findById(id);
         if (opt.isPresent()) {
-            model.addAttribute("kichCo", opt.get());
-            return "admin/kichCo/infoKichCo";
+            model.addAttribute("DeGiay", opt.get());
+            return "admin/DeGiay/infoDeGiay";
         } else {
-            redirect.addFlashAttribute("messageDanger", "Đã xảy ra lỗi khi tìm chi tiết kích cỡ");
-            return "redirect:/admin/kich-co";
+            redirect.addFlashAttribute("messageDanger", "Đã xảy ra lỗi khi tìm chi tiết đế giày");
+            return "redirect:/admin/de-giay";
         }
     }
 
 
     @GetMapping("delete/{id}")
-    public String delete(@PathVariable("id") Integer id, Model model,RedirectAttributes redirect) {
-        Optional<KichCo> opt = kichCoService.findById(id);
-        if(opt.isPresent()) {
+    public String delete(@PathVariable("id") Integer id, Model model, RedirectAttributes redirect) {
+        Optional<DeGiay> opt = kichCoService.findById(id);
+        if (opt.isPresent()) {
             kichCoService.delete(opt.get());
-            redirect.addFlashAttribute("messageSuccess","Xóa kích cỡ thành công");
-            return "redirect:/admin/kich-co";
-        }else {
-            redirect.addFlashAttribute("messageDanger","Đã xảy ra lỗi khi xóa kích cỡ");
-            return "redirect:/admin/kich-co";
+            redirect.addFlashAttribute("messageSuccess", "Xóa đế giày thành công");
+            return "redirect:/admin/de-giay";
+        } else {
+            redirect.addFlashAttribute("messageDanger", "Đã xảy ra lỗi khi xóa đế giày");
+            return "redirect:/admin/de-giay";
         }
     }
 }

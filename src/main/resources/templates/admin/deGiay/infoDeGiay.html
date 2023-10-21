@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{admin/layouts/dashboard}">
 <head>
-    <script type="text/javascript" th:src="@{/static/admin/js/kichCo/kichCo.js}"></script>
+    <script type="text/javascript" th:src="@{/static/admin/js/deGiay/deGiay.js}"></script>
 </head>
 
 <body>
@@ -46,10 +46,10 @@
         <!-- Begin Page Content -->
         <div class="card shadow mb-1 pt-sm-2 pb-sm-3">
             <div class="col-lg-12">
-                <div class="row" th:object="${kichCo}">
+                <div class="row" th:object="${deGiay}">
                     <div class="col-sm-4 mt-2">
-                        <label>Tên kích cỡ:</label>
-                        <input type="text" class="form-control" th:field="*{TenKichCo}" placeholder="Tên kích cỡ"
+                        <label>Tên dây giày:</label>
+                        <input type="text" class="form-control" th:field="*{TenDeGiay}" placeholder="Tên đế giày"
                             readonly>
                     </div>
                     <div class="col-sm-4 mt-2">

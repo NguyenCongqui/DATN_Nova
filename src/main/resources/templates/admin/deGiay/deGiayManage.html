@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{admin/layouts/dashboard}">
 <head>
-    <script type="text/javascript" th:src="@{/static/admin/js/kichCo/kichCo.js}"></script>
+    <script type="text/javascript" th:src="@{/static/admin/js/deGiay/deGiay.js}"></script>
 </head>
 
 <body>
@@ -60,29 +60,29 @@
     <!-- Begin Page Content -->
     <div>
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Quản lý kích cỡ</h1>
+        <h1 class="h3 mb-2 text-gray-800">Quản lý dây giày</h1>
         <h5 th:text="${messageSuccess}" data-delay="3000"></h5>
         <h5 th:text="${messageDanger}" data-delay="3000"></h5>
         <!--        <h3>haha</h3>-->
 
         <hr>
-        <form th:action="@{/admin/kich-co}" id="flexUrlTableFormKichCo" enctype="multipart/form-data" method="get">
-            <input type="number" name="page" id="inputPageKichCo" hidden>
+        <form th:action="@{/admin/de-giay}" id="flexUrlTableFormDeGiay" enctype="multipart/form-data" method="get">
+            <input type="number" name="page" id="inputPageDeGiay" hidden>
             <div class="card shadow mb-1 pt-sm-2 pb-sm-3">
                 <div class="col-lg-12">
                     <div class="row">
                         <div class="mb-3 row">
-                            <label for="TenKichCo">Tên kích cỡ:</label>
+                            <label for="TenDeGiay">Tên đế giày:</label>
                             <br>
                             <div class="col-sm-10">
-                                <input type="text" class="form-control-plaintext" id="TenKichCo"
-                                       placeholder="Tên kích cỡ" name="tenKichCoSearch">
+                                <input type="text" class="form-control-plaintext" id="TenDeGiay"
+                                       placeholder="Tên kích cỡ" name="tenDeGiaySearch">
                             </div>
                         </div>
                         <div class="col-sm-2 offset-10 mt-2">
                             <div class="float-right">
                                 <a class="btn btn-primary "
-                                   onclick="flexUrlSubmit('', 'get', 'KichCo')">Tìm kiếm <i class="bi bi-search"></i></a>
+                                   onclick="flexUrlSubmit('', 'get', 'DeGiay')">Tìm kiếm <i class="bi bi-search"></i></a>
                             </div>
                         </div>
                     </div>
@@ -115,31 +115,31 @@
                             </tr>
                             </thead>
                             <tbody class="text-center">
-                            <tr th:each="item, istat : ${kichCos}">
+                            <tr th:each="item, istat : ${deGiays}">
                                 <td style="vertical-align: middle;"
                                     th:text="${resultPage.number * resultPage.size + istat.index + 1}"></td>
-                                <td style="vertical-align: middle;" th:text="${item.TenKichCo}"
-                                    id="tenKichCoStr"></td>
+                                <td style="vertical-align: middle;" th:text="${item.TenDeGiay}"
+                                    id="tenDeGiayStr"></td>
                                 </td>
                                 <td style="vertical-align: middle;">
                                     <div class="btn-group">
                                         <a class="btn btn-outline-info btn-sm" id="info" data-toggle="popover"
                                            data-trigger="hover" data-placement="top"
                                            data-content="Chi tiết kích cỡ"
-                                           th:href="@{'/admin/kich-co/info/' + ${item.IdKichCo}}">
+                                           th:href="@{'/admin/de-giay/info/' + ${item.IdDeGiay}}">
                                             <img th:src="@{/static/admin/img/icons/info.svg}"></a>
 
                                         <a class="btn btn-outline-primary btn-sm" data-toggle="popover"
                                            data-trigger="hover" data-placement="top"
-                                           data-content="Cập nhật kích cỡ" th:cl-id="${item.IdKichCo}"
-                                           th:cl-name="${item.TenKichCo}"
+                                           data-content="Cập nhật kích cỡ" th:cl-id="${item.IdDeGiay}"
+                                           th:cl-name="${item.TenDeGiay}"
                                            onclick="openPopupCreateOrUpdate('update',this.getAttribute('cl-id'),this.getAttribute('cl-name'))"><img
                                                 th:src="@{/static/admin/img/icons/edit.svg}"></a>
 
-                                        <a class="btn btn-outline-danger btn-sm" th:data-id="${item.IdKichCo}"
+                                        <a class="btn btn-outline-danger btn-sm" th:data-id="${item.IdDeGiay}"
                                            data-toggle="popover" data-trigger="hover" data-placement="top"
-                                           data-content="Xóa kích cỡ" th:data-name="${item.TenKichCo}"
-                                           page-name="KichCo"
+                                           data-content="Xóa kích cỡ" th:data-name="${item.TenDeGiay}"
+                                           page-name="DeGiay"
                                            onclick="showConfirmModalDeleteDialog(this.getAttribute('data-id'), this.getAttribute('data-name'), this.getAttribute('page-name'))"><img
                                                 th:src="@{/static/admin/img/icons/trash.svg}"></a>
                                     </div>
@@ -165,7 +165,7 @@
                         <nav aria-label="Page navigation example" th:if="${resultPage.totalPages >0}">
                             <ul class="pagination justify-content-center">
                                 <li th:class="${1 == resultPage.number + 1}? 'page-item active' : 'page-item'">
-                                    <button id="firstPageKichCo" class="page-link">
+                                    <button id="firstPageDeGiay" class="page-link">
                                         Trang đầu
                                     </button>
                                 </li>
@@ -174,15 +174,15 @@
                                 </li>
                                 <li th:each="pageNumber : ${#numbers.sequence(resultPage.number + 1 > 2 ? resultPage.number + 1 - 2 : 1, resultPage.number + 1 + 2 < resultPage.totalPages ? resultPage.number + 1 + 2 : resultPage.totalPages)}"
                                     th:class="${pageNumber == resultPage.number + 1}? 'page-item active' : 'page-item'">
-                                    <button th:id="pageNumberKichCo+${pageNumber}" class="page-link"
+                                    <button th:id="pageNumberDeGiay+${pageNumber}" class="page-link"
                                             th:text="${pageNumber}">
                                     </button>
                                     <script th:inline="javascript">
                                         $(document).ready(function () {
-                                            $('#pageNumberKichCo[[${pageNumber}]]').on("click", function () {
+                                            $('#pageNumberDeGiay[[${pageNumber}]]').on("click", function () {
                                                 var num = parseInt("[[${pageNumber}]]");
-                                                $('#inputPageKichCo').attr("value", num);
-                                                $('#flexUrlTableFormKichCo').submit();
+                                                $('#inputPageDeGiay').attr("value", num);
+                                                $('#flexUrlTableFormDeGiay').submit();
                                             })
                                         });
                                     </script>
@@ -193,7 +193,7 @@
                                 </li>
                                 <li
                                         th:class="${ resultPage.totalPages == resultPage.number + 1}? 'page-item active' : 'page-item'">
-                                    <button class="page-link" id="lastPageKichCo">
+                                    <button class="page-link" id="lastPageDeGiay">
                                         Trang cuối
                                     </button>
                                 </li>
@@ -201,15 +201,15 @@
                         </nav>
                         <script th:inline="javascript">
                             $(document).ready(function () {
-                                $('#firstPageKichCo').on("click", function () {
+                                $('#firstPageDeGiay').on("click", function () {
                                     var num = 1;
-                                    $('#inputPageKichCo').attr("value", num);
-                                    $('#flexUrlTableFormKichCo').submit();
+                                    $('#inputPageDeGiay').attr("value", num);
+                                    $('#flexUrlTableFormDeGiay').submit();
                                 })
-                                $('#lastPageKichCo').on("click", function () {
+                                $('#lastPageDeGiay').on("click", function () {
                                     var num = parseInt("[[${resultPage.totalPages}]]");
-                                    $('#inputPageKichCo').attr("value", num);
-                                    $('#flexUrlTableFormKichCo').submit();
+                                    $('#inputPageDeGiay').attr("value", num);
+                                    $('#flexUrlTableFormDeGiay').submit();
                                 })
                             });
                         </script>
@@ -229,11 +229,11 @@
                 </div>
                 <div class="modal-body">
                     <div class="col-sm-12">
-                        <form method="post" id="formCreateOrUpdate" action="/admin/kich-co/createOrUpdate">
-                            <label for="TenKichCo">Tên kích cỡ:</label>
-                            <input type="text" class="form-control" id="tenKichCoCreateOrUpdate"
-                                   placeholder="Tên kích cỡ" name="tenKichCoCreateOrUpdate">
-                            <input type="number" name="kichCoIdCreateOrUpdate" id="kichCoIdCreateOrUpdate" hidden>
+                        <form method="post" id="formCreateOrUpdate" action="/admin/de-giay/createOrUpdate">
+                            <label for="TenDeGiay">Tên dây giày:</label>
+                            <input type="text" class="form-control" id="tenDeGiayCreateOrUpdate"
+                                   placeholder="Tên kích cỡ" name="tenDeGiayCreateOrUpdate">
+                            <input type="number" name="deGiayIdCreateOrUpdate" id="deGiayIdCreateOrUpdate" hidden>
                         </form>
                     </div>
                 </div>
@@ -252,7 +252,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Xác nhận xóa kích cỡ</h5>
+                    <h5 class="modal-title">Xác nhận xóa đế giày</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -284,7 +284,7 @@
                 </div>
                 <div class="modal-footer">
                     <a type="button" class="btn btn-outline-dark" data-dismiss="modal">Đóng</a>
-                    <a onclick="flexUrlSubmit('deleteAllByIdsKichCo', 'post', 'KichCo')" type="button"
+                    <a onclick="flexUrlSubmit('deleteAllByIdsDeGiay', 'post', 'DeGiay')" type="button"
                        class="btn btn-danger text-light">Xóa</a>
                 </div>
             </div>
