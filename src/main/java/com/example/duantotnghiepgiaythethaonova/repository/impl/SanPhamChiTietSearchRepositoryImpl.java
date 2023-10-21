@@ -44,7 +44,7 @@ public class SanPhamChiTietSearchRepositoryImpl implements SanPhamChiTietSearchR
 		QSanPhamChiTiet qSanPhamChiTiet = QSanPhamChiTiet.sanPhamChiTiet;
 		QSanPham qSanPham = QSanPham.sanPham;
 		QKieuDang qKieuDang = QKieuDang.kieuDang;
-		QDeGiay qPhongCach = QDeGiay.deGiay;
+//		QDeGiay qPhongCach = QDeGiay.deGiay;
 		QChatLieu qChatLieu = QChatLieu.chatLieu;
 		QMauSac qMauSac = QMauSac.mauSac;
 		QKichCo qKichCo = QKichCo.kichCo;

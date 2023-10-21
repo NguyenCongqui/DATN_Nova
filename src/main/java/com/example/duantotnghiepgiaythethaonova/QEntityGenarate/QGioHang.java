@@ -16,7 +16,7 @@ import static com.querydsl.core.types.PathMetadataFactory.forVariable;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QGioHang extends EntityPathBase<GioHang> {
 
-    private static final long serialVersionUID = 1917660477L;
+    private static final Integer serialVersionUID = 1917660477;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 

@@ -15,7 +15,7 @@ import static com.querydsl.core.types.PathMetadataFactory.forVariable;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QHinhAnh extends EntityPathBase<HinhAnh> {
 
-    private static final long serialVersionUID = -1489804098L;
+    private static final Integer serialVersionUID = -1489804098;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 

@@ -19,7 +19,7 @@ import static com.querydsl.core.types.PathMetadataFactory.forVariable;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QSanPham extends EntityPathBase<SanPham> {
 
-    private static final long serialVersionUID = -546909310L;
+    private static final Integer serialVersionUID = -546909310;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 
@@ -56,7 +56,7 @@ public class QSanPham extends EntityPathBase<SanPham> {
     //inherited
     public final StringPath nguoiTao = _super.nguoiTao;
 
-    public final QDeGiay phongCach;
+//    public final QDeGiay phongCach;
 
     public final ListPath<ChiTietSanPham, QSanPhamChiTiet> sanPhamChiTiets = this.<ChiTietSanPham, QSanPhamChiTiet>createList("sanPhamChiTiets", ChiTietSanPham.class, QSanPhamChiTiet.class, PathInits.DIRECT2);
 
@@ -83,7 +83,7 @@ public class QSanPham extends EntityPathBase<SanPham> {
         this.chatLieu = inits.isInitialized("chatLieu") ? new QChatLieu(forProperty("chatLieu")) : null;
         this.kieuDang = inits.isInitialized("kieuDang") ? new QKieuDang(forProperty("kieuDang")) : null;
         this.thuongHieu = inits.isInitialized("loaiSanPham") ? new QThuongHieu(forProperty("loaiSanPham")) : null;
-        this.phongCach = inits.isInitialized("phongCach") ? new QDeGiay(forProperty("phongCach")) : null;
+//        this.phongCach = inits.isInitialized("phongCach") ? new QDeGiay(forProperty("phongCach")) : null;
     }
 
 }

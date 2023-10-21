@@ -17,7 +17,7 @@ import static com.querydsl.core.types.PathMetadataFactory.forVariable;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QTrangThai extends EntityPathBase<TrangThai> {
 
-    private static final long serialVersionUID = -1633370570L;
+    private static final Integer serialVersionUID = -1633370570;
 
     public static final QTrangThai trangThai = new QTrangThai("trangThai");
 

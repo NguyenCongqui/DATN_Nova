@@ -17,7 +17,7 @@ import static com.querydsl.core.types.PathMetadataFactory.forVariable;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QChatLieu extends EntityPathBase<ChatLieu> {
 
-    private static final long serialVersionUID = -311681337L;
+    private static final Integer serialVersionUID = -311681337;
 
     public static final QChatLieu chatLieu = new QChatLieu("chatLieu");
 

@@ -15,7 +15,7 @@ import static com.querydsl.core.types.PathMetadataFactory.forVariable;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QHoaDonChiTiet extends EntityPathBase<HoaDonChiTiet> {
 
-    private static final long serialVersionUID = 1637748381L;
+    private static final Integer serialVersionUID = 1637748381;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 

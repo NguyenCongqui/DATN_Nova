@@ -15,7 +15,7 @@ import static com.querydsl.core.types.PathMetadataFactory.forVariable;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QDiaChi extends EntityPathBase<DiaChi> {
 
-    private static final long serialVersionUID = 2053760874L;
+    private static final Integer serialVersionUID = 2053760874;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 

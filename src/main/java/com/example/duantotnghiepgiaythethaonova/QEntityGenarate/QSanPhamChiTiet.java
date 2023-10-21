@@ -17,7 +17,7 @@ import static com.querydsl.core.types.PathMetadataFactory.forVariable;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QSanPhamChiTiet extends EntityPathBase<ChiTietSanPham> {
 
-    private static final long serialVersionUID = 165118662L;
+    private static final Integer serialVersionUID = 165118662;
 
     private static final PathInits INITS = PathInits.DIRECT2;
 

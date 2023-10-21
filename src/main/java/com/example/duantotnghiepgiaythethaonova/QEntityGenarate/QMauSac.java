@@ -17,7 +17,7 @@ import static com.querydsl.core.types.PathMetadataFactory.forVariable;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QMauSac extends EntityPathBase<MauSac> {
 
-    private static final long serialVersionUID = -1990321258L;
+    private static final Integer serialVersionUID = -1990321258;
 
     public static final QMauSac mauSac = new QMauSac("mauSac");
 

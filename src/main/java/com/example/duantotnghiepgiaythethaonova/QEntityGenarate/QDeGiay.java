@@ -1,6 +1,8 @@
 package com.example.duantotnghiepgiaythethaonova.QEntityGenarate;
 
+import com.example.duantotnghiepgiaythethaonova.entity.ChiTietSanPham;
 import com.example.duantotnghiepgiaythethaonova.entity.DeGiay;
+import com.example.duantotnghiepgiaythethaonova.entity.KichCo;
 import com.example.duantotnghiepgiaythethaonova.entity.SanPham;
 import com.querydsl.core.annotations.Generated;
 import com.querydsl.core.types.Path;
@@ -16,9 +18,9 @@ import static com.querydsl.core.types.PathMetadataFactory.forVariable;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QDeGiay extends EntityPathBase<DeGiay> {
 
-    private static final long serialVersionUID = 592882353L;
+    private static final Integer serialVersionUID = -2040708367;
 
-    public static final QDeGiay deGiay = new QDeGiay("phongCach");
+    public static final QKichCo kichCo = new QKichCo("kichCo");
 
     public final QBaseEntity _super = new QBaseEntity(this);
 
@@ -39,9 +41,9 @@ public class QDeGiay extends EntityPathBase<DeGiay> {
     //inherited
     public final StringPath nguoiTao = _super.nguoiTao;
 
-    public final ListPath<SanPham, QSanPham> sanPhams = this.<SanPham, QSanPham>createList("sanPhams", SanPham.class, QSanPham.class, PathInits.DIRECT2);
+    public final ListPath<ChiTietSanPham, QSanPhamChiTiet> sanPhamChiTiets = this.<ChiTietSanPham, QSanPhamChiTiet>createList("sanPhamChiTiets", ChiTietSanPham.class, QSanPhamChiTiet.class, PathInits.DIRECT2);
 
-    public final StringPath tenPhongCach = createString("tenPhongCach");
+    public final StringPath tenKichCo = createString("tenDeGiay");
 
     public QDeGiay(String variable) {
         super(DeGiay.class, forVariable(variable));

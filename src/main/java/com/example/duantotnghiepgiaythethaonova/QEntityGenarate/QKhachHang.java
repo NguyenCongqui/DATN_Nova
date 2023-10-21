@@ -16,7 +16,7 @@ import static com.querydsl.core.types.PathMetadataFactory.forVariable;
 @Generated("com.querydsl.codegen.DefaultEntitySerializer")
 public class QKhachHang extends EntityPathBase<KhachHang> {
 
-    private static final long serialVersionUID = 1186222585L;
+    private static final Integer serialVersionUID = 1186222585;
 
     public static final QKhachHang khachHang = new QKhachHang("khachHang");
 
