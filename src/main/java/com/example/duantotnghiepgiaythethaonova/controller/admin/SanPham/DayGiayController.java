@@ -1,6 +1,5 @@
 package com.example.duantotnghiepgiaythethaonova.controller.admin.SanPham;
 
-
 import com.example.duantotnghiepgiaythethaonova.dto.DayGiayDTO;
 import com.example.duantotnghiepgiaythethaonova.entity.DayGiay;
 import com.example.duantotnghiepgiaythethaonova.entity.NguoiDung;
@@ -24,11 +23,9 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Controller
+@RequestMapping("admin/day-giay")
 public class DayGiayController {
 
-    @Controller
-    @RequestMapping("admin/day-giay")
-    public class KichCoController {
         @Autowired
         private HttpSession session;
 
@@ -156,4 +153,3 @@ public class DayGiayController {
             }
         }
     }
-}
