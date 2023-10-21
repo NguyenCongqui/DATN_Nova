@@ -3,6 +3,10 @@ package com.example.duantotnghiepgiaythethaonova.service.impl;
 import com.example.duantotnghiepgiaythethaonova.entity.DayGiay;
 import com.example.duantotnghiepgiaythethaonova.repository.DayGiayRepository;
 import com.example.duantotnghiepgiaythethaonova.service.DayGiayService;
+import lombok.AllArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -12,40 +16,44 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@AllArgsConstructor
+@Slf4j
 public class DayGiayServiceImpl implements DayGiayService {
 
-    @Autowired
-    DayGiayRepository dayGiayRepository;
+    private DayGiayRepository kichCoRepository;
+    private static Logger logger = LoggerFactory.getLogger(DayGiayServiceImpl.class);
 
     @Override
-    public List<DayGiay> selectAllKieuDangExist() {
-        return dayGiayRepository.selectAllChatLieuExist();
-    }
-
-    @Override
-    public Optional<DayGiay> findById(Integer id) {
-        return dayGiayRepository.findById(id);
+    public List<DayGiay> selectAllKichCoExist() {
+        return kichCoRepository.selectAllKichCoExist();
     }
 
     @Override
     public <S extends DayGiay> S save(S entity) {
         entity.setDaXoa(false);
-        return dayGiayRepository.save(entity);
+        return kichCoRepository.save(entity);
     }
 
     @Override
-    public Page<DayGiay> selectAllKieuDangExist(Pageable pageable) {
-        return dayGiayRepository.selectAllChatLieuExist(pageable);
+    public Optional<DayGiay> findById(Integer id) {
+        return kichCoRepository.findById(id);
     }
 
+    @Override
+    public List<DayGiay> selectAllKichCoBySanPhamId(Integer sanPhamId) {
+        return kichCoRepository.selectAllKichCoBySanPhamId(sanPhamId);
+    }
+    @Override
+    public Page<DayGiay> selectAllKichCoExist(Pageable pageable) {
+        return kichCoRepository.selectAllKichCoExist(pageable);
+    }
+    @Override
+    public Page<DayGiay> getKichCoExistByName(String tenKichCo, Pageable pageable) {
+        return kichCoRepository.getKichCoExistByName(tenKichCo, pageable);
+    }
     @Override
     public void delete(DayGiay entity) {
         entity.setDaXoa(true);
-        dayGiayRepository.save(entity);
-    }
-
-    @Override
-    public Page<DayGiay> getKieuDangExistByName(String tenDayGiay, Pageable pageable) {
-        return dayGiayRepository.getChatLieuExistByName(tenDayGiay, pageable);
+        kichCoRepository.save(entity);
     }
 }

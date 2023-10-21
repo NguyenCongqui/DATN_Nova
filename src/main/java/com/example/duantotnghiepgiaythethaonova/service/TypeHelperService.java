@@ -15,7 +15,7 @@ public interface TypeHelperService {
 
 	String convertObjectTypeString(String input);
 
-	List<Long> convertObjectTypeListLong(List<Long> input);
+	List<Integer> convertObjectTypeListInteger(List<Integer> input);
 
 	int convertObjectTypeListInt(Integer input);
 

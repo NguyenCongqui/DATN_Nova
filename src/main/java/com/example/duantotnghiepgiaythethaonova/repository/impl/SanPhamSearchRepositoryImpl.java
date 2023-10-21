@@ -1,6 +1,7 @@
 package com.example.duantotnghiepgiaythethaonova.repository.impl;
 
 import com.example.duantotnghiepgiaythethaonova.QEntityGenarate.*;
+import com.example.duantotnghiepgiaythethaonova.constant.OptionContants;
 import com.example.duantotnghiepgiaythethaonova.dto.search.SPAndSPCTSearchDto;
 import com.example.duantotnghiepgiaythethaonova.entity.SanPham;
 import com.example.duantotnghiepgiaythethaonova.repository.SanPhamSearchRepository;
@@ -9,8 +10,8 @@ import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.PathBuilderFactory;
 import com.querydsl.jpa.JPQLQuery;
 import com.querydsl.jpa.impl.JPAQuery;
-import jakarta.persistence.EntityManager;
 import lombok.AllArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
@@ -18,6 +19,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.support.Querydsl;
 import org.springframework.stereotype.Repository;
 
+import javax.persistence.EntityManager;
 import java.math.BigDecimal;
 import java.time.Instant;
 import java.util.Date;
@@ -41,9 +43,7 @@ public class SanPhamSearchRepositoryImpl implements SanPhamSearchRepository {
 		QSanPhamChiTiet qSanPhamChiTiet = QSanPhamChiTiet.sanPhamChiTiet;
 		QSanPham qSanPham = QSanPham.sanPham;
 		QKieuDang qKieuDang = QKieuDang.kieuDang;
-		QDeGiay qPhongCach = QDeGiay.deGiay;
 		QChatLieu qChatLieu = QChatLieu.chatLieu;
-		QThuongHieu qThuongHieu = QThuongHieu.thuongHieu;
 		QMauSac qMauSac = QMauSac.mauSac;
 		QKichCo qKichCo = QKichCo.kichCo;
 		
@@ -53,8 +53,7 @@ public class SanPhamSearchRepositoryImpl implements SanPhamSearchRepository {
 		
 		List<Integer> lstKieuDang = dataSearch.getKieuDangIds();
 		List<Integer> lstChatLieu = dataSearch.getChatLieuIds();
-		List<Integer> lstThuongHieu = dataSearch.getThuongHieuIds();
-		List<Integer> lstDeGiay = dataSearch.getDeGiayIds();
+		List<Integer> lstLoaiSanPham = dataSearch.getThuongHieuIds();
 		List<Integer> lstKichCo = dataSearch.getKichCoIds();
 		List<Integer> lstMauSac = dataSearch.getMauSacIds();
 		List<Boolean> lstCoHienThi = dataSearch.getCoHienThi();
@@ -82,30 +81,26 @@ public class SanPhamSearchRepositoryImpl implements SanPhamSearchRepository {
 			where.and(qSanPhamChiTiet.coHienThi.eq(dataSearch.getCoHienThi().get(0)));
 		}
 		
-		if(lstKieuDang.size() != 0 && !lstKieuDang.get(0).equals(-1L)) {
-				where.and(qKieuDang.daXoa.isFalse());
-				where.and(qSanPham.kieuDang.id.in(lstKieuDang));
-		}
-		if(lstChatLieu.size() != 0 && !lstChatLieu.get(0).equals(-1L)) {
-			where.and(qChatLieu.daXoa.isFalse());
-			where.and(qSanPham.chatLieu.id.in(lstChatLieu));
-		}
-		if(lstDeGiay.size() != 0 && !lstDeGiay.get(0).equals(-1L)) {
-			where.and(qPhongCach.daXoa.isFalse());
-			where.and(qSanPham.phongCach.id.in(lstDeGiay));
-		}
-		if(lstThuongHieu.size() != 0 && !lstThuongHieu.get(0).equals(-1L)) {
-			where.and(qThuongHieu.daXoa.isFalse());
-			where.and(qSanPham.thuongHieu.id.in(lstThuongHieu));
-		}
-		if(lstMauSac.size() != 0 && !lstMauSac.get(0).equals(-1L)) {
-			where.and(qMauSac.daXoa.isFalse());
-			where.and(qSanPhamChiTiet.mauSac.id.in(lstMauSac));
-		}
-		if(lstKichCo.size() != 0 && !lstKichCo.get(0).equals(-1L)) {
-			where.and(qKichCo.daXoa.isFalse());
-			where.and(qSanPhamChiTiet.kichCo.id.in(lstKichCo));
-		}
+//		if(lstKieuDang.size() != 0 && !lstKieuDang.get(0).equals(-1L)) {
+//				where.and(qKieuDang.daXoa.isFalse());
+//				where.and(qSanPham.kieuDang.id.in(lstKieuDang));
+//		}
+//		if(lstChatLieu.size() != 0 && !lstChatLieu.get(0).equals(-1L)) {
+//			where.and(qChatLieu.daXoa.isFalse());
+//			where.and(qSanPham.chatLieu.id.in(lstChatLieu));
+//
+////		if(lstLoaiSanPham.size() != 0 && !lstLoaiSanPham.get(0).equals(-1L)) {
+////			where.and(qThuongH.daXoa.isFalse());
+////			where.and(qSanPham.loaiSanPham.id.in(lstLoaiSanPham));
+////		}
+//		if(lstMauSac.size() != 0 && !lstMauSac.get(0).equals(-1L)) {
+//			where.and(qMauSac.daXoa.isFalse());
+//			where.and(qSanPhamChiTiet.mauSac.id.in(lstMauSac));
+//		}
+//		if(lstKichCo.size() != 0 && !lstKichCo.get(0).equals(-1L)) {
+//			where.and(qKichCo.daXoa.isFalse());
+//			where.and(qSanPhamChiTiet.kichCo.id.in(lstKichCo));
+//		}
 		
 		if(!dataSearch.getTenSanPham().equalsIgnoreCase("-1")) {
 			if(StringUtils.isNotEmpty(dataSearch.getTenSanPham())) {
@@ -212,28 +207,26 @@ public class SanPhamSearchRepositoryImpl implements SanPhamSearchRepository {
 //		}
 		
 		query.select(qSanPham).from(qSanPham)
-				.leftJoin(qPhongCach).on(qSanPham.phongCach.id.eq(qPhongCach.id))
 				.innerJoin(qKieuDang).on(qSanPham.kieuDang.id.eq(qKieuDang.id))
 				.innerJoin(qChatLieu).on(qSanPham.chatLieu.id.eq(qChatLieu.id))
-				.innerJoin(qLoaiSanPham).on(qSanPham.loaiSanPham.id.eq(qLoaiSanPham.id))
 				.innerJoin(qSanPhamChiTiet).on(qSanPhamChiTiet.sanPham.id.eq(qSanPham.id))
 				.innerJoin(qMauSac).on(qSanPhamChiTiet.mauSac.id.eq(qMauSac.id))
 				.innerJoin(qKichCo).on(qSanPhamChiTiet.kichCo.id.eq(qKichCo.id))
 				.where(where).groupBy(qSanPham.id);
 		List<SanPham> result = querydsl.applyPagination(pageable, query).fetch();
-		Long totalElements = query.fetchCount();
+		Integer totalElements = Math.toIntExact(query.fetchCount());
 		return new PageImpl<SanPham>(result, pageable, totalElements);
 	}
 	
 //	convert type of value not null
 //	@author cuongdd3
 	public SPAndSPCTSearchDto convertSearchNotNull(SPAndSPCTSearchDto dataSearch) {
-		List<Long> lstKieuDangId = typeHelperService.convertObjectTypeListLong(dataSearch.getKieuDangIds());
-		List<Long> lstChatLieuId = typeHelperService.convertObjectTypeListLong(dataSearch.getChatLieuIds());
-		List<Long> lstLoaiSanPhamId = typeHelperService.convertObjectTypeListLong(dataSearch.getLoaiSanPhamIds());
-		List<Long> lstPhongCachId = typeHelperService.convertObjectTypeListLong(dataSearch.getPhongCachIds());
-		List<Long> lstKichCoId = typeHelperService.convertObjectTypeListLong(dataSearch.getKichCoIds());
-		List<Long> lstMauSacId = typeHelperService.convertObjectTypeListLong(dataSearch.getMauSacIds());
+		List<Integer> lstKieuDangId = typeHelperService.convertObjectTypeListInteger(dataSearch.getKieuDangIds());
+		List<Integer> lstChatLieuId = typeHelperService.convertObjectTypeListInteger(dataSearch.getChatLieuIds());
+//		List<Integer> lstLoaiSanPhamId = typeHelperService.convertObjectTypeListInteger(dataSearch.getLoaiSanPhamIds());
+//		List<Integer> lstPhongCachId = typeHelperService.convertObjectTypeListInteger(dataSearch.getPhongCachIds());
+		List<Integer> lstKichCoId = typeHelperService.convertObjectTypeListInteger(dataSearch.getKichCoIds());
+		List<Integer> lstMauSacId = typeHelperService.convertObjectTypeListInteger(dataSearch.getMauSacIds());
 		String tenSanPham = typeHelperService.convertObjectTypeString(dataSearch.getTenSanPham());
 		BigDecimal giaHienHanhMin = typeHelperService.convertObjectTypeBigDecimal(dataSearch.getGiaMin());
 		BigDecimal giaHienHanhMax = typeHelperService.convertObjectTypeBigDecimal(dataSearch.getGiaMax());
@@ -248,7 +241,7 @@ public class SanPhamSearchRepositoryImpl implements SanPhamSearchRepository {
 		Date ngayCapNhatMax = typeHelperService.convertObjectTypeDate(dataSearch.getNgayCapNhatMax());
 		String tieuChiGia = typeHelperService.convertObjectTypeString(dataSearch.getTieuChiGia());
 		String giaOption = typeHelperService.convertObjectTypeString(dataSearch.getGiaOption());
-		SPAndSPCTSearchDto result = new SPAndSPCTSearchDto(lstKieuDangId, lstChatLieuId, lstLoaiSanPhamId, lstPhongCachId, lstKichCoId, lstMauSacId, tenSanPham, giaHienHanhMin, giaHienHanhMax, soLuongMin, soLuongMax, coHienThi, nguoiTaoSPCT, nguoiCapNhatSPCT, ngayTaoMin, ngayTaoMax, ngayCapNhatMin, ngayCapNhatMax, tieuChiGia, giaOption);
-		return result;
+//		SPAndSPCTSearchDto result = new SPAndSPCTSearchDto(lstKieuDangId, lstChatLieuId, lstLoaiSanPhamId, lstPhongCachId, lstKichCoId, lstMauSacId, tenSanPham, giaHienHanhMin, giaHienHanhMax, soLuongMin, soLuongMax, coHienThi, nguoiTaoSPCT, nguoiCapNhatSPCT, ngayTaoMin, ngayTaoMax, ngayCapNhatMin, ngayCapNhatMax, tieuChiGia, giaOption);
+		return null;
 	}
 }

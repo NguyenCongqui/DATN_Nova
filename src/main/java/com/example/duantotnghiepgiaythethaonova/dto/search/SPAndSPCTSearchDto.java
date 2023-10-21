@@ -21,8 +21,6 @@ public class SPAndSPCTSearchDto {
 
     private List<Integer>  thuongHieuIds;
 
-    private List<Integer>  deGiayIds;
-
     private List<Integer> kichCoIds;
 
     private List<Integer> mauSacIds;
