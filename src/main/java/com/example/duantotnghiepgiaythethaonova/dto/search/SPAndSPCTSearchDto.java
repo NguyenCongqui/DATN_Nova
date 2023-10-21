@@ -1,12 +1,13 @@
 package com.example.duantotnghiepgiaythethaonova.dto.search;
 
-import jakarta.validation.constraints.DecimalMin;
-import jakarta.validation.constraints.Min;
+
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.DecimalMin;
+import javax.validation.constraints.Min;
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.List;
