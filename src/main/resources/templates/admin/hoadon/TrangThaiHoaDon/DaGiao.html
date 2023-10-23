@@ -4,9 +4,9 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Đã hủy</title>
-    <link rel="stylesheet" th:href="@{/static/admin/css/hoaDon/donTaiQuay/donTaiQuay.css}">
-    <script th:src="@{/static/admin/js/hoadon/DonTaiQuay/DaHuyTaiQuay.js}"></script>
+    <title>Đã giao hàng</title>
+    <link rel="stylesheet" th:href="@{/static/admin/css/hoaDon/TrangThaiHoaDon/daGiao.css}">
+    <script th:src="@{/static/admin/js/hoadon/TrangThaiHoaDon/daGiao.js}"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.js"></script>
 </head>
@@ -14,26 +14,29 @@
 <body>
 <div class="container-fluid" layout:fragment="content" th:object="${HoaDonDTO}">
     <div class="tab-buttons">
-        <button class="tab-button" onclick="redirectToDaThanhToan()">Đã thanh toán</button>
-        <button class="tab-button active" onclick="redirectToDahuyTaiQuay()">Đã hủy</button>
+        <button class="tab-button" onclick="redirectToChoxacNhan()">Chờ xác nhận</button>
+        <button class="tab-button" onclick="redirectToChoGiaoHang()">Chờ giao hàng</button>
+        <button class="tab-button" onclick="redirectToDangGiao()">Đang giao</button>
+        <button class="tab-button active" onclick="redirectToDaGiao()">Đã giao</button>
+        <button class="tab-button" onclick="redirectToDahuy()">Đã hủy</button>
     </div>
-
-    <h1>Đã hủy</h1>
-
+    <h1>
+        Đã giao
+    </h1>
     <div class="hduong">
-        <input type="text" class="form-control custom-input" placeholder="Tìm kiếm..."
-               id="search-input-daHuy">
+        <input type="text" class="form-control custom-input" placeholder="Tìm kiếm..." id="search-input-daGiao">
         <div class="input-group-append">
-            <button class="btn btn-primary btnTimKiem" type="button">Tìm kiếm</button>
+            <button class="btn btn-primary btnTimKiem" type="button" id="timKiem-DaGiao">Tìm kiếm
+            </button>
         </div>
 
-        <input type="date" class="form-control" id="search-input-date-daHuyTaiQuay">
-        <button class="btn btn-primary" type="button" id="search-button-ngayTao-daHuy">
+        <input type="date" class="form-control" id="search-input-date-DaGiao">
+        <button class="btn btn-primary" type="button" id="timKiemNgay-DaGiao">
             <i class="fas fa-search"></i>
         </button>
 
         <div class="col-md-4">
-            <button id="btn-tatCaHoaDonDaHuy" type="button"
+            <button id="btn-tatCaHoaDonDaGiao" type="button"
                     class="dt-button buttons-html5 btn btn-white btn-success btn-bold"
                     data-toggle="tooltip" title='Tất cả hóa đơn'>
 											<span> <i class="fas fa-sync-alt"></i>
@@ -41,11 +44,13 @@
             </button>
         </div>
     </div>
-    <table id="user-table-daThanhToan" class="table">
+    <table id="user-table-DaGiao" class="table">
         <thead>
         <tr>
-            <th>STT</th>
+            <th scope="col">STT</th>
             <th scope="col">Mã đơn</th>
+            <th scope="col">Họ tên</th>
+            <th scope="col">Số điện thoại</th>
             <th scope="col">Ngày tạo đơn</th>
             <th scope="col">Tổng tiền</th>
             <th scope="col">Ghi chú</th>
@@ -55,37 +60,39 @@
         <tbody>
         <tr th:each="hoaDon, stt : *{listHoaDonDTO}">
             <td th:text="${(page - 1) * size + stt.count}"></td>
-            <th scope="row" th:text="${hoaDon.maDon}"></th>
+            <td scope="row" th:text="${hoaDon.maDon}"></td>
+            <td th:text="${hoaDon.nguoiNhan}"></td>
+            <td th:text="${hoaDon.sdtNguoiNhan}"></td>
             <td th:text="${#dates.format(hoaDon.ngayTao, 'dd/MM/yyyy')}"></td>
             <td th:text="${#numbers.formatDecimal(hoaDon.tongTienHoaDon, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></td>
             <td th:text="${hoaDon.ghiChu}"></td>
             <td>
-                <!--XEM CHI TIẾT HÓA ĐƠN-->
-                <div class="btn-group">
-                    <a th:href="@{'/DonTaiQuay/ChiTietHoaDon/DonDaHuy/hoa-don-id=' + ${hoaDon.id}}"
-                       class="btn btn-warning btn-sm"
-                       type="submit">
-                        <i class="fas fa-info-circle"></i>
-                    </a>
+                <div class="button-group-a">
+                    <div class="btn-group">
+                        <a th:href="@{'/ChiTietHoaDon/DaGiaoHang/hoa-don-id=' + ${hoaDon.id}}"
+                           class="btn btn-warning btn-sm"
+                           type="submit">
+                            <i class="fas fa-info-circle"></i>
+                        </a>
+                    </div>
                 </div>
             </td>
         </tr>
         </tbody>
     </table>
-
     <div th:if="*{!listHoaDonDTO.isEmpty() and #strings.contains(#httpServletRequest.requestURI, '/danhSach')}">
         <ul class="pagination">
-            <li th:each="pageNumber : ${#numbers.sequence(1, pagedaHuy)}">
-                <a th:href="@{/admin/DaHuyTaiQuay/danhSach(page=${pageNumber})}" th:text="${pageNumber}"
+            <li th:each="pageNumber : ${#numbers.sequence(1, pageDaGiao)}">
+                <a th:href="@{/admin/DonHang/DaGiaoHang/danhSach(page=${pageNumber})}" th:text="${pageNumber}"
                    th:class="${pageNumber == page ? 'active-page' : ''}"></a>
             </li>
         </ul>
     </div>
 
-    <div th:if="*{!listHoaDonDTO.isEmpty() and #strings.contains(#httpServletRequest.requestURI, '/TimKiem')}">
+    <div th:if="*{!listHoaDonDTO.isEmpty() and #strings.contains(#httpServletRequest.requestURI, '/timKiem')}">
         <ul class="pagination">
-            <li th:each="pageNumber : ${#numbers.sequence(1, pagedaHuy)}">
-                <a th:with="searchUrl=@{/admin/DaHuyTaiQuay/TimKiem/__${duLieuTimKiem}__(page=${pageNumber})}"
+            <li th:each="pageNumber : ${#numbers.sequence(1, pageDaGiao)}">
+                <a th:with="searchUrl=@{/admin/DonHang/DaGiaoHang/timKiem/__${duLieuTimKiem}__(page=${pageNumber})}"
                    th:href="${searchUrl}" th:text="${pageNumber}"
                    th:class="${pageNumber == page ? 'active-page' : ''}"></a>
             </li>
@@ -94,8 +101,8 @@
 
     <div th:if="*{!listHoaDonDTO.isEmpty() and #strings.contains(#httpServletRequest.requestURI, '/Ngay')}">
         <ul class="pagination">
-            <li th:each="pageNumber : ${#numbers.sequence(1, pagedaHuy)}">
-                <a th:with="searchUrl=@{/admin/DaHuyTaiQuay/Ngay/__${duLieuTimKiem}__(page=${pageNumber})}"
+            <li th:each="pageNumber : ${#numbers.sequence(1, pageDaGiao)}">
+                <a th:with="searchUrl=@{/admin/DonHang/DaGiaoHang/Ngay/__${duLieuTimKiem}__(page=${pageNumber})}"
                    th:href="${searchUrl}" th:text="${pageNumber}"
                    th:class="${pageNumber == page ? 'active-page' : ''}"></a>
             </li>
