@@ -1,6 +1,5 @@
 package com.example.duantotnghiepgiaythethaonova.repository;
 
-import com.example.duantotnghiepgiaythethaonova.entity.DayGiay;
 import com.example.duantotnghiepgiaythethaonova.entity.LotGiay;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -13,13 +12,15 @@ import java.util.List;
 
 @Repository
 public interface LotGiayRepository extends JpaRepository<LotGiay,Integer> {
+    @Query(value = "SELECT * FROM LotGiay c WHERE  c.DaXoa = 0 ORDER BY c.IdLotGiay DESC ",nativeQuery = true)
+    Page<LotGiay> selectAllKichCoExist(Pageable pageable);
 
-    @Query(value = "SELECT * FROM LotGiay c WHERE  c.daXoa = 0 ORDER BY c.idLotGiay DESC ",nativeQuery = true)
-    Page<LotGiay> selectAllChatLieuExist(Pageable pageable);
+    @Query(value = "SELECT * FROM LotGiay c WHERE  c.DaXoa = 0 ORDER BY c.IdLotGiay DESC ",nativeQuery = true)
+    List<LotGiay> selectAllKichCoExist();
 
-    @Query(value = "SELECT * FROM LotGiay c WHERE  c.daXoa = 0 ORDER BY c.idLotGiay DESC ",nativeQuery = true)
-    List<LotGiay> selectAllChatLieuExist();
+    @Query(value = "SELECT * FROM LotGiay c WHERE  c.DaXoa = 0 AND c.TenLotGiay like %:TenLotGiay% ORDER BY c.IdLotGiay DESC ",nativeQuery = true)
+    Page<LotGiay> getKichCoExistByName(@Param("TenLotGiay") String tenKichCo, Pageable pageable);
 
-    @Query(value = "SELECT * FROM LotGiay c WHERE  c.daXoa = 0 AND c.tenLotGiay like %:tenLotGiay% ORDER BY c.idLotGiay DESC ",nativeQuery = true)
-    Page<LotGiay> getChatLieuExistByName(@Param("tenLotGiay") String tenLotGiay, Pageable pageable);
+    @Query(value = "SELECT  c.* FROM LotGiay c join SanPhamCT s1 on s1.IdLotGiay = c.IdLotGiay WHERE c.DaXoa = false and s1.IdSanPham = :IdSanPham group by c.IdLotGiay", nativeQuery = true)
+    List<LotGiay> selectAllKichCoBySanPhamId(@Param("IdSanPham") Integer sanPhamId);
 }
