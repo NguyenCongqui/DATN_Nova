@@ -3,7 +3,7 @@ package com.example.duantotnghiepgiaythethaonova.QEntityGenarate;
 import static com.querydsl.core.types.PathMetadataFactory.*;
 
 import com.example.duantotnghiepgiaythethaonova.entity.NguoiDung_VaiTro;
-import com.example.duantotnghiepgiaythethaonova.entity.QVaiTro;
+//import com.example.duantotnghiepgiaythethaonova.entity.QVaiTro;
 import com.querydsl.core.types.dsl.*;
 
 import com.querydsl.core.types.PathMetadata;

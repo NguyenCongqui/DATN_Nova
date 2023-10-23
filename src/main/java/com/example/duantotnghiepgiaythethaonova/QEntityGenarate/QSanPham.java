@@ -4,7 +4,7 @@ import static com.querydsl.core.types.PathMetadataFactory.*;
 
 import com.example.duantotnghiepgiaythethaonova.entity.ChiTietSanPham;
 import com.example.duantotnghiepgiaythethaonova.entity.HinhAnh;
-import com.example.duantotnghiepgiaythethaonova.entity.QThuongHieu;
+//import com.example.duantotnghiepgiaythethaonova.entity.QThuongHieu;
 import com.example.duantotnghiepgiaythethaonova.entity.SanPham;
 import com.querydsl.core.types.dsl.*;
 

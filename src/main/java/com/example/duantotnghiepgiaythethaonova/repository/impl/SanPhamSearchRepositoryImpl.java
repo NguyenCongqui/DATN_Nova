@@ -40,7 +40,7 @@ public class SanPhamSearchRepositoryImpl implements SanPhamSearchRepository {
 		JPQLQuery<SanPham> query = new JPAQuery<>(entityManager);
 		
 		BooleanBuilder where = new BooleanBuilder();
-		QSanPhamChiTiet qSanPhamChiTiet = QSanPhamChiTiet.sanPhamChiTiet;
+		QChiTietSanPham qSanPhamChiTiet = QChiTietSanPham.chiTietSanPham;
 		QSanPham qSanPham = QSanPham.sanPham;
 		QKieuDang qKieuDang = QKieuDang.kieuDang;
 		QChatLieu qChatLieu = QChatLieu.chatLieu;
@@ -108,21 +108,21 @@ public class SanPhamSearchRepositoryImpl implements SanPhamSearchRepository {
 			}
 		}
 		
-		if(!dataSearch.getTieuChiGia().equalsIgnoreCase("-1")) {
-			if(StringUtils.isNotEmpty(dataSearch.getTieuChiGia())) {
-				if(dataSearch.getTieuChiGia().equalsIgnoreCase(OptionContants.caoDenThap)) {
-					query.orderBy(qSanPham.gia.desc());
-				}else if(dataSearch.getTieuChiGia().equalsIgnoreCase(OptionContants.thapDenCao)) {
-					query.orderBy(qSanPham.gia.asc());
-				}else {
-					query.orderBy(qSanPham.id.desc());
-				}
-			}else {
-				query.orderBy(qSanPham.id.desc());
-			}
-		}else {
-			query.orderBy(qSanPham.id.desc());
-		}
+//		if(!dataSearch.getTieuChiGia().equalsIgnoreCase("-1")) {
+//			if(StringUtils.isNotEmpty(dataSearch.getTieuChiGia())) {
+//				if(dataSearch.getTieuChiGia().equalsIgnoreCase(OptionContants.caoDenThap)) {
+//					query.orderBy(qSanPham.gia.desc());
+//				}else if(dataSearch.getTieuChiGia().equalsIgnoreCase(OptionContants.thapDenCao)) {
+//					query.orderBy(qSanPham.gia.asc());
+//				}else {
+//					query.orderBy(qSanPham.id.desc());
+//				}
+//			}else {
+//				query.orderBy(qSanPham.id.desc());
+//			}
+//		}else {
+//			query.orderBy(qSanPham.id.desc());
+//		}
 		
 		if(!dataSearch.getNguoiTaoSPCT().equalsIgnoreCase("-1")) {
 			if(StringUtils.isNotEmpty(dataSearch.getNguoiTaoSPCT())) {
@@ -206,13 +206,13 @@ public class SanPhamSearchRepositoryImpl implements SanPhamSearchRepository {
 //			}
 //		}
 		
-		query.select(qSanPham).from(qSanPham)
-				.innerJoin(qKieuDang).on(qSanPham.kieuDang.id.eq(qKieuDang.id))
-				.innerJoin(qChatLieu).on(qSanPham.chatLieu.id.eq(qChatLieu.id))
-				.innerJoin(qSanPhamChiTiet).on(qSanPhamChiTiet.sanPham.id.eq(qSanPham.id))
-				.innerJoin(qMauSac).on(qSanPhamChiTiet.mauSac.id.eq(qMauSac.id))
-				.innerJoin(qKichCo).on(qSanPhamChiTiet.kichCo.id.eq(qKichCo.id))
-				.where(where).groupBy(qSanPham.id);
+//		query.select(qSanPham).from(qSanPham)
+//				.innerJoin(qKieuDang).on(qSanPham.kieuDang.id.eq(qKieuDang.id))
+//				.innerJoin(qChatLieu).on(qSanPham.chatLieu.id.eq(qChatLieu.id))
+//				.innerJoin(qSanPhamChiTiet).on(qSanPhamChiTiet.sanPham.id.eq(qSanPham.id))
+//				.innerJoin(qMauSac).on(qSanPhamChiTiet.mauSac.id.eq(qMauSac.id))
+//				.innerJoin(qKichCo).on(qSanPhamChiTiet.kichCo.id.eq(qKichCo.id))
+//				.where(where).groupBy(qSanPham.id);
 		List<SanPham> result = querydsl.applyPagination(pageable, query).fetch();
 		Integer totalElements = Math.toIntExact(query.fetchCount());
 		return new PageImpl<SanPham>(result, pageable, totalElements);

@@ -43,7 +43,7 @@ public class SanPhamChiTietSearchRepositoryImpl implements SanPhamChiTietSearchR
 		
 		BooleanBuilder where = new BooleanBuilder();
 
-		QSanPhamChiTiet qSanPhamChiTiet = QSanPhamChiTiet.sanPhamChiTiet;
+		QChiTietSanPham qSanPhamChiTiet = QChiTietSanPham.chiTietSanPham;
 		QSanPham qSanPham = QSanPham.sanPham;
 		QKieuDang qKieuDang = QKieuDang.kieuDang;
 		QChatLieu qChatLieu = QChatLieu.chatLieu;
@@ -169,17 +169,17 @@ public class SanPhamChiTietSearchRepositoryImpl implements SanPhamChiTietSearchR
 //				where.and(qSanPham.ngayCapNhat.between(dataSearch.getNgayCapNhatMin(), now));
 //			}
 //		}
-		
-		query.select(qSanPhamChiTiet).from(qSanPhamChiTiet)
-				.leftJoin(qMauSac).on(qSanPhamChiTiet.mauSac.id.eq(qMauSac.id))
-				.innerJoin(qKichCo).on(qSanPhamChiTiet.kichCo.id.eq(qKichCo.id))
-				.innerJoin(qSanPham).on(qSanPhamChiTiet.sanPham.id.eq(qSanPham.id))
-				.innerJoin(qKieuDang).on(qSanPham.kieuDang.id.eq(qKieuDang.id))
-				.innerJoin(qChatLieu).on(qSanPham.chatLieu.id.eq(qChatLieu.id))
-//				.innerJoin(qLoaiSanPham).on(qSanPham.loaiSanPham.id.eq(qLoaiSanPham.id))
-				.where(where)
-				.orderBy(qSanPhamChiTiet.sanPham.id.desc())
-				.fetch();
+//
+//		query.select(qSanPhamChiTiet).from(qSanPhamChiTiet)
+//				.leftJoin(qMauSac).on(qSanPhamChiTiet.mauSac.idMauSac.eq(qMauSac.id))
+//				.innerJoin(qKichCo).on(qSanPhamChiTiet.kichCo.id.eq(qKichCo.id))
+//				.innerJoin(qSanPham).on(qSanPhamChiTiet.sanPham.id.eq(qSanPham.id))
+//				.innerJoin(qKieuDang).on(qSanPham.kieuDang.id.eq(qKieuDang.id))
+//				.innerJoin(qChatLieu).on(qSanPham.chatLieu.id.eq(qChatLieu.id))
+////				.innerJoin(qLoaiSanPham).on(qSanPham.loaiSanPham.id.eq(qLoaiSanPham.id))
+//				.where(where)
+//				.orderBy(qSanPhamChiTiet.sanPham.id.desc())
+//				.fetch();
 		List<ChiTietSanPham> result = querydsl.applyPagination(pageable, query).fetch();
 		Integer totalElements = Math.toIntExact(query.fetchCount());
 		return new PageImpl<ChiTietSanPham>(result, pageable, totalElements);
