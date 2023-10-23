@@ -44,6 +44,7 @@ public class SanPhamSearchRepositoryImpl implements SanPhamSearchRepository {
 		QSanPham qSanPham = QSanPham.sanPham;
 		QKieuDang qKieuDang = QKieuDang.kieuDang;
 		QChatLieu qChatLieu = QChatLieu.chatLieu;
+		QThuongHieu qThuongHieu = QThuongHieu.thuongHieu;
 		QMauSac qMauSac = QMauSac.mauSac;
 		QKichCo qKichCo = QKichCo.kichCo;
 		
@@ -53,7 +54,7 @@ public class SanPhamSearchRepositoryImpl implements SanPhamSearchRepository {
 		
 		List<Integer> lstKieuDang = dataSearch.getKieuDangIds();
 		List<Integer> lstChatLieu = dataSearch.getChatLieuIds();
-		List<Integer> lstLoaiSanPham = dataSearch.getThuongHieuIds();
+		List<Integer> lstThuongHieu = dataSearch.getThuongHieuIds();
 		List<Integer> lstKichCo = dataSearch.getKichCoIds();
 		List<Integer> lstMauSac = dataSearch.getMauSacIds();
 		List<Boolean> lstCoHienThi = dataSearch.getCoHienThi();
@@ -81,26 +82,26 @@ public class SanPhamSearchRepositoryImpl implements SanPhamSearchRepository {
 			where.and(qSanPhamChiTiet.coHienThi.eq(dataSearch.getCoHienThi().get(0)));
 		}
 		
-//		if(lstKieuDang.size() != 0 && !lstKieuDang.get(0).equals(-1L)) {
-//				where.and(qKieuDang.daXoa.isFalse());
-//				where.and(qSanPham.kieuDang.id.in(lstKieuDang));
-//		}
-//		if(lstChatLieu.size() != 0 && !lstChatLieu.get(0).equals(-1L)) {
-//			where.and(qChatLieu.daXoa.isFalse());
-//			where.and(qSanPham.chatLieu.id.in(lstChatLieu));
-//
-////		if(lstLoaiSanPham.size() != 0 && !lstLoaiSanPham.get(0).equals(-1L)) {
-////			where.and(qThuongH.daXoa.isFalse());
-////			where.and(qSanPham.loaiSanPham.id.in(lstLoaiSanPham));
-////		}
-//		if(lstMauSac.size() != 0 && !lstMauSac.get(0).equals(-1L)) {
-//			where.and(qMauSac.daXoa.isFalse());
-//			where.and(qSanPhamChiTiet.mauSac.id.in(lstMauSac));
-//		}
-//		if(lstKichCo.size() != 0 && !lstKichCo.get(0).equals(-1L)) {
-//			where.and(qKichCo.daXoa.isFalse());
-//			where.and(qSanPhamChiTiet.kichCo.id.in(lstKichCo));
-//		}
+		if(lstKieuDang.size() != 0 && !lstKieuDang.get(0).equals(-1L)) {
+				where.and(qKieuDang.daXoa.isFalse());
+				where.and(qSanPham.kieuDang.idKieuDang.in(lstKieuDang));
+		}
+		if(lstChatLieu.size() != 0 && !lstChatLieu.get(0).equals(-1L)) {
+			where.and(qChatLieu.daXoa.isFalse());
+			where.and(qSanPham.chatLieu.idChatLieu.in(lstChatLieu));
+		}
+		if(lstThuongHieu.size() != 0 && !lstThuongHieu.get(0).equals(-1L)) {
+			where.and(qThuongHieu.daXoa.isFalse());
+			where.and(qSanPham.thuongHieu.idThuongHieu.in(lstThuongHieu));
+		}
+		if(lstMauSac.size() != 0 && !lstMauSac.get(0).equals(-1L)) {
+			where.and(qMauSac.daXoa.isFalse());
+			where.and(qSanPhamChiTiet.mauSac.idMauSac.in(lstMauSac));
+		}
+		if(lstKichCo.size() != 0 && !lstKichCo.get(0).equals(-1L)) {
+			where.and(qKichCo.daXoa.isFalse());
+			where.and(qSanPhamChiTiet.kichCo.idKichCo.in(lstKichCo));
+		}
 		
 		if(!dataSearch.getTenSanPham().equalsIgnoreCase("-1")) {
 			if(StringUtils.isNotEmpty(dataSearch.getTenSanPham())) {
@@ -108,21 +109,21 @@ public class SanPhamSearchRepositoryImpl implements SanPhamSearchRepository {
 			}
 		}
 		
-//		if(!dataSearch.getTieuChiGia().equalsIgnoreCase("-1")) {
-//			if(StringUtils.isNotEmpty(dataSearch.getTieuChiGia())) {
-//				if(dataSearch.getTieuChiGia().equalsIgnoreCase(OptionContants.caoDenThap)) {
-//					query.orderBy(qSanPham.gia.desc());
-//				}else if(dataSearch.getTieuChiGia().equalsIgnoreCase(OptionContants.thapDenCao)) {
-//					query.orderBy(qSanPham.gia.asc());
-//				}else {
-//					query.orderBy(qSanPham.id.desc());
-//				}
-//			}else {
-//				query.orderBy(qSanPham.id.desc());
-//			}
-//		}else {
-//			query.orderBy(qSanPham.id.desc());
-//		}
+		if(!dataSearch.getTieuChiGia().equalsIgnoreCase("-1")) {
+			if(StringUtils.isNotEmpty(dataSearch.getTieuChiGia())) {
+				if(dataSearch.getTieuChiGia().equalsIgnoreCase(OptionContants.caoDenThap)) {
+					query.orderBy(qSanPham.gia.desc());
+				}else if(dataSearch.getTieuChiGia().equalsIgnoreCase(OptionContants.thapDenCao)) {
+					query.orderBy(qSanPham.gia.asc());
+				}else {
+					query.orderBy(qSanPham.idSanPham.desc());
+				}
+			}else {
+				query.orderBy(qSanPham.idSanPham.desc());
+			}
+		}else {
+			query.orderBy(qSanPham.idSanPham.desc());
+		}
 		
 		if(!dataSearch.getNguoiTaoSPCT().equalsIgnoreCase("-1")) {
 			if(StringUtils.isNotEmpty(dataSearch.getNguoiTaoSPCT())) {
@@ -206,13 +207,14 @@ public class SanPhamSearchRepositoryImpl implements SanPhamSearchRepository {
 //			}
 //		}
 		
-//		query.select(qSanPham).from(qSanPham)
-//				.innerJoin(qKieuDang).on(qSanPham.kieuDang.id.eq(qKieuDang.id))
-//				.innerJoin(qChatLieu).on(qSanPham.chatLieu.id.eq(qChatLieu.id))
-//				.innerJoin(qSanPhamChiTiet).on(qSanPhamChiTiet.sanPham.id.eq(qSanPham.id))
-//				.innerJoin(qMauSac).on(qSanPhamChiTiet.mauSac.id.eq(qMauSac.id))
-//				.innerJoin(qKichCo).on(qSanPhamChiTiet.kichCo.id.eq(qKichCo.id))
-//				.where(where).groupBy(qSanPham.id);
+		query.select(qSanPham).from(qSanPham)
+				.innerJoin(qKieuDang).on(qSanPham.kieuDang.idKieuDang.eq(qKieuDang.idKieuDang))
+				.innerJoin(qChatLieu).on(qSanPham.chatLieu.idChatLieu.eq(qChatLieu.idChatLieu))
+				.innerJoin(qThuongHieu).on(qSanPham.thuongHieu.idThuongHieu.eq(qThuongHieu.idThuongHieu))
+				.innerJoin(qSanPhamChiTiet).on(qSanPhamChiTiet.sanPham.idSanPham.eq(qSanPham.idSanPham))
+				.innerJoin(qMauSac).on(qSanPhamChiTiet.mauSac.idMauSac.eq(qMauSac.idMauSac))
+				.innerJoin(qKichCo).on(qSanPhamChiTiet.kichCo.idKichCo.eq(qKichCo.idKichCo))
+				.where(where).groupBy(qSanPham.idSanPham);
 		List<SanPham> result = querydsl.applyPagination(pageable, query).fetch();
 		Integer totalElements = Math.toIntExact(query.fetchCount());
 		return new PageImpl<SanPham>(result, pageable, totalElements);
@@ -223,8 +225,7 @@ public class SanPhamSearchRepositoryImpl implements SanPhamSearchRepository {
 	public SPAndSPCTSearchDto convertSearchNotNull(SPAndSPCTSearchDto dataSearch) {
 		List<Integer> lstKieuDangId = typeHelperService.convertObjectTypeListInteger(dataSearch.getKieuDangIds());
 		List<Integer> lstChatLieuId = typeHelperService.convertObjectTypeListInteger(dataSearch.getChatLieuIds());
-//		List<Integer> lstLoaiSanPhamId = typeHelperService.convertObjectTypeListInteger(dataSearch.getLoaiSanPhamIds());
-//		List<Integer> lstPhongCachId = typeHelperService.convertObjectTypeListInteger(dataSearch.getPhongCachIds());
+		List<Integer> lstThuongHieuId = typeHelperService.convertObjectTypeListInteger(dataSearch.getThuongHieuIds());
 		List<Integer> lstKichCoId = typeHelperService.convertObjectTypeListInteger(dataSearch.getKichCoIds());
 		List<Integer> lstMauSacId = typeHelperService.convertObjectTypeListInteger(dataSearch.getMauSacIds());
 		String tenSanPham = typeHelperService.convertObjectTypeString(dataSearch.getTenSanPham());
@@ -241,7 +242,7 @@ public class SanPhamSearchRepositoryImpl implements SanPhamSearchRepository {
 		Date ngayCapNhatMax = typeHelperService.convertObjectTypeDate(dataSearch.getNgayCapNhatMax());
 		String tieuChiGia = typeHelperService.convertObjectTypeString(dataSearch.getTieuChiGia());
 		String giaOption = typeHelperService.convertObjectTypeString(dataSearch.getGiaOption());
-//		SPAndSPCTSearchDto result = new SPAndSPCTSearchDto(lstKieuDangId, lstChatLieuId, lstLoaiSanPhamId, lstPhongCachId, lstKichCoId, lstMauSacId, tenSanPham, giaHienHanhMin, giaHienHanhMax, soLuongMin, soLuongMax, coHienThi, nguoiTaoSPCT, nguoiCapNhatSPCT, ngayTaoMin, ngayTaoMax, ngayCapNhatMin, ngayCapNhatMax, tieuChiGia, giaOption);
-		return null;
+		SPAndSPCTSearchDto result = new SPAndSPCTSearchDto(lstKieuDangId, lstChatLieuId, lstThuongHieuId, lstKichCoId, lstMauSacId, tenSanPham, giaHienHanhMin, giaHienHanhMax, soLuongMin, soLuongMax, coHienThi, nguoiTaoSPCT, nguoiCapNhatSPCT, ngayTaoMin, ngayTaoMax, ngayCapNhatMin, ngayCapNhatMax, tieuChiGia, giaOption);
+		return result;
 	}
 }

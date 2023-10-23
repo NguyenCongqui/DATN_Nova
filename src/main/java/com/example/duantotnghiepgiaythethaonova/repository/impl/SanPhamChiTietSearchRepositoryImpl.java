@@ -1,11 +1,11 @@
 package com.example.duantotnghiepgiaythethaonova.repository.impl;
 
-
 import com.example.duantotnghiepgiaythethaonova.QEntityGenarate.*;
 import com.example.duantotnghiepgiaythethaonova.dto.search.SPAndSPCTSearchDto;
 import com.example.duantotnghiepgiaythethaonova.entity.ChiTietSanPham;
 import com.example.duantotnghiepgiaythethaonova.service.SanPhamChiTietSearchRepository;
 import com.example.duantotnghiepgiaythethaonova.service.TypeHelperService;
+
 import com.querydsl.core.BooleanBuilder;
 import com.querydsl.core.types.dsl.PathBuilderFactory;
 import com.querydsl.jpa.JPQLQuery;
@@ -37,69 +37,72 @@ public class SanPhamChiTietSearchRepositoryImpl implements SanPhamChiTietSearchR
 	@Override
 	public Page<ChiTietSanPham> searchProductDetailExist(SPAndSPCTSearchDto data, Pageable pageable){
 		SPAndSPCTSearchDto dataSearch = convertSearchNotNull(data);
-		
+
 		JPQLQuery<ChiTietSanPham> query = new JPAQuery<>(entityManager);
 		Querydsl querydsl = new Querydsl(entityManager, new PathBuilderFactory().create(ChiTietSanPham.class));
-		
+
 		BooleanBuilder where = new BooleanBuilder();
 
 		QChiTietSanPham qSanPhamChiTiet = QChiTietSanPham.chiTietSanPham;
 		QSanPham qSanPham = QSanPham.sanPham;
 		QKieuDang qKieuDang = QKieuDang.kieuDang;
 		QChatLieu qChatLieu = QChatLieu.chatLieu;
+		QThuongHieu qThuongHieu = QThuongHieu.thuongHieu;
 		QMauSac qMauSac = QMauSac.mauSac;
 		QKichCo qKichCo = QKichCo.kichCo;
 
-		
 		where.and(qSanPhamChiTiet.daXoa.isFalse());
 		where.and(qSanPham.daXoa.isFalse());
-		
-		
+
+
 		List<Integer> lstKieuDang = dataSearch.getKieuDangIds();
 		List<Integer> lstChatLieu = dataSearch.getChatLieuIds();
-		List<Integer> lstThuongHieu= dataSearch.getThuongHieuIds();
+		List<Integer> lstThuongHieu = dataSearch.getThuongHieuIds();
 		List<Integer> lstKichCo = dataSearch.getKichCoIds();
 		List<Integer> lstMauSac = dataSearch.getMauSacIds();
-		
+
 		where.and(qSanPhamChiTiet.coHienThi.isTrue());
-		
-//		if(!lstKieuDang.isEmpty() && !lstKieuDang.get(0).equals(-1L)) {
-//			where.and(qSanPham.kieuDang.id.in(lstKieuDang));
-//		}
-//		if(!lstChatLieu.isEmpty() && !lstChatLieu.get(0).equals(-1L)) {
-//			where.and(qSanPham.chatLieu.id.in(lstChatLieu));
-//		}
-//
-//		if(!lstThuongHieu.isEmpty() && !lstThuongHieu.get(0).equals(-1L)) {
-//			where.and(qSanPham.thuongHieu.id.in(lstThuongHieu));
-//		}
-//		if(!lstMauSac.isEmpty() && !lstMauSac.get(0).equals(-1L)) {
-//			where.and(qSanPhamChiTiet.mauSac.id.in(lstMauSac));
-//		}
-//		if(!lstKichCo.isEmpty() && !lstKichCo.get(0).equals(-1L)) {
-//			where.and(qSanPhamChiTiet.kichCo.id.in(lstKichCo));
-//		}
-//
+
+		if(!lstKieuDang.isEmpty() && !lstKieuDang.get(0).equals(-1L)) {
+			where.and(qSanPham.kieuDang.idKieuDang.in(lstKieuDang));
+		}
+		if(!lstChatLieu.isEmpty() && !lstChatLieu.get(0).equals(-1L)) {
+			where.and(qSanPham.chatLieu.idChatLieu.in(lstChatLieu));
+		}
+		if(!lstThuongHieu.isEmpty() && !lstThuongHieu.get(0).equals(-1L)) {
+			where.and(qSanPham.thuongHieu.idThuongHieu.in(lstThuongHieu));
+		}
+		if(!lstMauSac.isEmpty() && !lstMauSac.get(0).equals(-1L)) {
+			where.and(qSanPhamChiTiet.mauSac.idMauSac.in(lstMauSac));
+		}
+		if(!lstKichCo.isEmpty() && !lstKichCo.get(0).equals(-1L)) {
+			where.and(qSanPhamChiTiet.kichCo.idKichCo.in(lstKichCo));
+		}
+
 		if(!dataSearch.getTenSanPham().equalsIgnoreCase("-1")) {
 			if(StringUtils.isNotEmpty(dataSearch.getTenSanPham())) {
 				where.and(qSanPham.tenSanPham.containsIgnoreCase(dataSearch.getTenSanPham()));
 			}
 		}
-		
 
-		
+		if(lstThuongHieu.size() != 0 && !lstThuongHieu.get(0).equals(-1L)) {
+			where.and(qThuongHieu.daXoa.isFalse());
+			where.and(qSanPham.thuongHieu.idThuongHieu.in(lstThuongHieu));
+			where.and(qSanPham.thuongHieu.idThuongHieu.in(lstThuongHieu));
+		}
+
 		if(!dataSearch.getNguoiTaoSPCT().equalsIgnoreCase("-1")) {
 			if(StringUtils.isNotEmpty(dataSearch.getNguoiTaoSPCT())) {
 				where.and(qSanPham.nguoiTao.containsIgnoreCase(dataSearch.getNguoiTaoSPCT()));
 			}
 		}
-		
+
 		if(!dataSearch.getNguoiCapNhatSPCT().equalsIgnoreCase("-1")) {
 			if(StringUtils.isNotEmpty(dataSearch.getNguoiCapNhatSPCT())) {
 				where.and(qSanPham.nguoiTao.containsIgnoreCase(dataSearch.getNguoiCapNhatSPCT()));
 			}
 		}
-		
+
 		if(dataSearch.getSoLuongMin().intValue() != -1 &&
 				dataSearch.getSoLuongMax().intValue() != -1) {
 			if(StringUtils.isNotEmpty(dataSearch.getSoLuongMin().toString()) &&
@@ -114,10 +117,10 @@ public class SanPhamChiTietSearchRepositoryImpl implements SanPhamChiTietSearchR
 				dataSearch.getSoLuongMax().intValue() != -1) {
 			where.and(qSanPhamChiTiet.soLuong.loe(dataSearch.getSoLuongMax()));
 		}
-		
+
 		if(!dataSearch.getGiaMin().toString().equalsIgnoreCase("-1") &&
 				!dataSearch.getGiaMax().toString().equalsIgnoreCase("-1") ) {
-			if(!dataSearch.getGiaMin().toString().isEmpty() && 
+			if(!dataSearch.getGiaMin().toString().isEmpty() &&
 					!dataSearch.getGiaMax().toString().isEmpty()) {
 				where.and(qSanPham.gia.between(dataSearch.getGiaMin(), dataSearch.getGiaMax()));
 			}
@@ -133,14 +136,14 @@ public class SanPhamChiTietSearchRepositoryImpl implements SanPhamChiTietSearchR
 				where.and(qSanPham.gia.loe(dataSearch.getGiaMax()));
 			}
 		}
-		
+
 		//Check validate Date eq epoch
 		final Date CheckDate = Date.from(Instant.EPOCH);
 //		Date now = Date.from(Instant.now());
-		
+
 		if(!dataSearch.getNgayTaoMin().toString().equalsIgnoreCase(""+CheckDate) &&
 				!dataSearch.getNgayTaoMax().toString().equalsIgnoreCase(""+CheckDate)) {
-			if(!dataSearch.getNgayTaoMin().toString().isEmpty() && 
+			if(!dataSearch.getNgayTaoMin().toString().isEmpty() &&
 					!dataSearch.getNgayTaoMax().toString().isEmpty()) {
 				where.and(qSanPhamChiTiet.ngayTao.between(dataSearch.getNgayTaoMin(), dataSearch.getNgayTaoMax()));
 			}
@@ -153,44 +156,44 @@ public class SanPhamChiTietSearchRepositoryImpl implements SanPhamChiTietSearchR
 //				where.and(qSanPham.ngayTao.between(dataSearch.getNgayTaoMin(), now));
 //			}
 //		}
-		
-		
+
+
 		if(!dataSearch.getNgayCapNhatMin().toString().equalsIgnoreCase(""+CheckDate) &&
 				!dataSearch.getNgayCapNhatMax().toString().equalsIgnoreCase(""+CheckDate)) {
-			if(!dataSearch.getNgayCapNhatMin().toString().isEmpty() && 
+			if(!dataSearch.getNgayCapNhatMin().toString().isEmpty() &&
 					!dataSearch.getNgayCapNhatMax().toString().isEmpty()) {
 				where.and(qSanPhamChiTiet.ngayCapNhat.between(dataSearch.getNgayCapNhatMin(), dataSearch.getNgayCapNhatMax()));
 			}
 		}
-		
+
 //		if(!dataSearch.getNgayCapNhatMin().toString().equalsIgnoreCase(""+CheckDate) &&
 //				dataSearch.getNgayCapNhatMax().toString().equalsIgnoreCase(""+CheckDate)) {
 //			if(!dataSearch.getNgayCapNhatMin().toString().isEmpty()) {
 //				where.and(qSanPham.ngayCapNhat.between(dataSearch.getNgayCapNhatMin(), now));
 //			}
 //		}
-//
-//		query.select(qSanPhamChiTiet).from(qSanPhamChiTiet)
-//				.leftJoin(qMauSac).on(qSanPhamChiTiet.mauSac.idMauSac.eq(qMauSac.id))
-//				.innerJoin(qKichCo).on(qSanPhamChiTiet.kichCo.id.eq(qKichCo.id))
-//				.innerJoin(qSanPham).on(qSanPhamChiTiet.sanPham.id.eq(qSanPham.id))
-//				.innerJoin(qKieuDang).on(qSanPham.kieuDang.id.eq(qKieuDang.id))
-//				.innerJoin(qChatLieu).on(qSanPham.chatLieu.id.eq(qChatLieu.id))
-////				.innerJoin(qLoaiSanPham).on(qSanPham.loaiSanPham.id.eq(qLoaiSanPham.id))
-//				.where(where)
-//				.orderBy(qSanPhamChiTiet.sanPham.id.desc())
-//				.fetch();
+
+		query.select(qSanPhamChiTiet).from(qSanPhamChiTiet)
+				.leftJoin(qMauSac).on(qSanPhamChiTiet.mauSac.idMauSac.eq(qMauSac.idMauSac))
+				.innerJoin(qKichCo).on(qSanPhamChiTiet.kichCo.idKichCo.eq(qKichCo.idKichCo))
+				.innerJoin(qSanPham).on(qSanPhamChiTiet.sanPham.idSanPham.eq(qSanPham.idSanPham))
+				.innerJoin(qKieuDang).on(qSanPham.kieuDang.idKieuDang.eq(qKieuDang.idKieuDang))
+				.innerJoin(qChatLieu).on(qSanPham.chatLieu.idChatLieu.eq(qChatLieu.idChatLieu))
+				.innerJoin(qThuongHieu).on(qSanPham.thuongHieu.idThuongHieu.eq(qThuongHieu.idThuongHieu))
+				.where(where)
+				.orderBy(qSanPhamChiTiet.sanPham.idSanPham.desc())
+				.fetch();
 		List<ChiTietSanPham> result = querydsl.applyPagination(pageable, query).fetch();
 		Integer totalElements = Math.toIntExact(query.fetchCount());
 		return new PageImpl<ChiTietSanPham>(result, pageable, totalElements);
 	}
-	
+
 //	convert type of value not null
 //	@author cuongdd3
 	public SPAndSPCTSearchDto convertSearchNotNull(SPAndSPCTSearchDto dataSearch) {
 		List<Integer> lstKieuDangId = typeHelperService.convertObjectTypeListInteger(dataSearch.getKieuDangIds());
 		List<Integer> lstChatLieuId = typeHelperService.convertObjectTypeListInteger(dataSearch.getChatLieuIds());
-//		List<Integer> lstLoaiSanPhamId = typeHelperService.convertObjectTypeListInteger(dataSearch.getLoaiSanPhamIds());
+		List<Integer> lstThuongHieuId = typeHelperService.convertObjectTypeListInteger(dataSearch.getThuongHieuIds());
 		List<Integer> lstKichCoId = typeHelperService.convertObjectTypeListInteger(dataSearch.getKichCoIds());
 		List<Integer> lstMauSacId = typeHelperService.convertObjectTypeListInteger(dataSearch.getMauSacIds());
 		String tenSanPham = typeHelperService.convertObjectTypeString(dataSearch.getTenSanPham());
@@ -206,8 +209,7 @@ public class SanPhamChiTietSearchRepositoryImpl implements SanPhamChiTietSearchR
 		Date ngayCapNhatMin = typeHelperService.convertObjectTypeDate(dataSearch.getNgayCapNhatMin());
 		Date ngayCapNhatMax = typeHelperService.convertObjectTypeDate(dataSearch.getNgayCapNhatMax());
 		String tieuChiGia = typeHelperService.convertObjectTypeString(dataSearch.getTieuChiGia());
-
-//		SPAndSPCTSearchDto result = new SPAndSPCTSearchDto(lstKieuDangId, lstChatLieuId, lstKichCoId, lstMauSacId, tenSanPham, soLuongMin, soLuongMax, coHienThi, nguoiTaoSPCT, nguoiCapNhatSPCT, ngayTaoMin, ngayTaoMax, ngayCapNhatMin, ngayCapNhatMax, tieuChiGia, null);
-		return null;
+		SPAndSPCTSearchDto result = new SPAndSPCTSearchDto(lstKieuDangId, lstChatLieuId, lstThuongHieuId, lstKichCoId, lstMauSacId, tenSanPham, giaHienHanhMin, giaHienHanhMax, soLuongMin, soLuongMax, coHienThi, nguoiTaoSPCT, nguoiCapNhatSPCT, ngayTaoMin, ngayTaoMax, ngayCapNhatMin, ngayCapNhatMax, tieuChiGia, null);
+		return result;
 	}
 }

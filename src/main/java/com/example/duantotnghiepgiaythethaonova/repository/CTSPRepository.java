@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface CTSPRepository extends JpaRepository<ChiTietSanPham, Integer>, SanPhamChiTietSearchRepository {
+public interface CTSPRepository extends JpaRepository<ChiTietSanPham, Integer> {
     @Query(value = "SELECT * FROM SanPhamCT c WHERE c.DaXoa = 0", nativeQuery = true)
     List<ChiTietSanPham> getLstSanPhamChiTietExist();
 
@@ -32,7 +32,8 @@ public interface CTSPRepository extends JpaRepository<ChiTietSanPham, Integer>, 
     @Query(value = "SELECT s1.* FROM SanPhamCT s1 where s1.DaXoa = 0 and s1.CoHienThi = 1 order by s1.IdSanPhamCT", nativeQuery = true)
     Page<ChiTietSanPham> getAllProductDetailIsShowTrue(Pageable pageable);
 
-    @Query(value = "SELECT DISTINCT s.IdMauSac FROM SanPhamCT s WHERE s.IdSanPham = :id AND s.DaXoa = 0 ORDER BY s.IdMauSac DESC", nativeQuery = true)
+//    @Query(value = "SELECT DISTINCT s.IdMauSac FROM SanPhamCT s WHERE s.IdSanPham = :id AND s.DaXoa = 0 ORDER BY s.IdMauSac DESC", nativeQuery = true)
+    @Query(value = "select distinct s.mauSac.idMauSac from ChiTietSanPham s where s.sanPham.idSanPham = :id and s.daXoa = false ORDER BY s.mauSac.idMauSac desc ")
     List<Integer> getLstMauSacBySanPhamId(@Param("id") Integer sanPhamId);
 
     @Query(value = "SELECT * FROM SanPhamCT s WHERE s.IdSanPham = :IdSanPham AND s.IdMauSac = :IdMauSac AND s.IdKichCo = :IdKichCo AND s.DaXoa = 0", nativeQuery = true)

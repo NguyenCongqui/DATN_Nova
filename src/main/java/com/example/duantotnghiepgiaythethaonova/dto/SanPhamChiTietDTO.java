@@ -19,6 +19,12 @@ public class SanPhamChiTietDTO extends BaseDTO<BaseDTO> {
 	private Integer kichCoId;
 
 	private Integer mauSacId;
+
+//	private Integer dayGiayId;
+//
+//	private Integer deGiayId;
+//
+//	private Integer lotGiayId;
 	
 	@NotNull(message = "Số lượng không được để trống")
 	@Min(value = 0, message = "Số lượng không được nhỏ hơn 0")
@@ -31,6 +37,12 @@ public class SanPhamChiTietDTO extends BaseDTO<BaseDTO> {
 	private String tenKichCo ;
 	
 	private String tenMauSac ;
+
+//	private String tenDayGiay ;
+//
+//	private String tenDeGiay ;
+//
+//	private String tenLotGiay ;
 	
 	private SanPhamDTO sanPhamDTO ;
 
