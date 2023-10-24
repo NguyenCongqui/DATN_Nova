@@ -19,10 +19,10 @@ import java.util.Objects;
 @RequiredArgsConstructor
 public class ThongKeServiceImp implements ThongKeService {
 
-    private final HoaDonService hoaDonService;
-    private final CTSPRepository sanPhamChiTietRepository;
-    private final HoaDonRepository hoaDonRepository;
-    private final HinhAnhService hinhAnhService;
+//    private final HoaDonService hoaDonService;
+//    private final CTSPRepository sanPhamChiTietRepository;
+//    private final HoaDonRepository hoaDonRepository;
+//    private final HinhAnhService hinhAnhService;
     private static final Long TRANGTHAI_HOAN_THANH = 7L;
     private static final Long TRANGTHAI_DA_GIAO = 4L;
     private static final Long TRANGTHAI_DANG_GIAO = 3L;
