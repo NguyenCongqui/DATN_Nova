@@ -63,8 +63,8 @@ public class SanPhamServiceImpl implements SanPhamService {
         return sanPhamRepository.selectCountSanPhamByPhongCachId(phongCachId);
     }
 
-//    @Override
-//    public int selectCountSanPhamByChatLieuId(Integer chatLieuId) {
-//        return sanPhamRepository.selectCountSanPhamByChatLieuId(chatLieuId);
-//    }
+    @Override
+    public int selectCountSanPhamByChatLieuId(Integer chatLieuId) {
+        return sanPhamRepository.selectCountSanPhamByChatLieuId(chatLieuId);
+    }
 }

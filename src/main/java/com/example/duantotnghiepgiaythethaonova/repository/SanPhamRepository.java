@@ -35,6 +35,10 @@ AND th.DaXoa = false AND sp.DaXoa = false
 """, nativeQuery = true)
     int selectCountSanPhamByPhongCachId(@Param("phongCachId") Integer phongCachId);
 
-//    @Query(value = "select count(*) from `san_pham` s left join `chat_lieu` p on s.chat_lieu_id = p.id where s.chat_lieu_id = :chatLieuId and p.da_xoa = false and s.da_xoa = false", nativeQuery = true)
-//    int selectCountSanPhamByChatLieuId(@Param("chatLieuId") Integer chatLieuId);
+    @Query(value = """
+select count(*) from SanPham s left join ChatLieu p 
+on s.IdChatLieu = p.IdChatLieu where s.IdChatLieu = :IdChatLieu and p.DaXoa = 0 and s.DaXoa = 0
+""",
+            nativeQuery = true)
+    int selectCountSanPhamByChatLieuId(@Param("IdChatLieu") Integer chatLieuId);
 }

@@ -24,6 +24,6 @@ public interface SanPhamService {
 
     int selectCountSanPhamByPhongCachId(Integer phongCachId);
 //
-//    int selectCountSanPhamByChatLieuId(Integer chatLieuId);
+    int selectCountSanPhamByChatLieuId(Integer chatLieuId);
 
 }
