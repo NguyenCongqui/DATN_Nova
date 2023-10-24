@@ -60,7 +60,7 @@
     <!-- Begin Page Content -->
     <div>
         <!-- Page Heading -->
-        <h1 class="h3 mb-2 text-gray-800">Quản lý dây giày</h1>
+        <h1 class="h3 mb-2 text-gray-800">Quản lý đế giày</h1>
         <h5 th:text="${messageSuccess}" data-delay="3000"></h5>
         <h5 th:text="${messageDanger}" data-delay="3000"></h5>
         <!--        <h3>haha</h3>-->
@@ -76,7 +76,7 @@
                             <br>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control-plaintext" id="TenDeGiay"
-                                       placeholder="Tên kích cỡ" name="tenDeGiaySearch">
+                                       placeholder="Tên đế giày" name="tenDeGiaySearch">
                             </div>
                         </div>
                         <div class="col-sm-2 offset-10 mt-2">
@@ -105,12 +105,12 @@
                             <thead class="text-nowrap text-center">
                             <tr>
                                 <th>#</th>
-                                <th>Tên kích cỡ</th>
+                                <th>Tên đế giày</th>
                                 <th>Thao tác</th>
                             </tr>
                             <tr th:if="${!resultPage.hasContent()}">
                                 <td colspan="11">
-                                    <h4><i>Không có kích cỡ nào phù hợp</i></h4>
+                                    <h4><i>Không có đế giày nào phù hợp</i></h4>
                                 </td>
                             </tr>
                             </thead>
@@ -125,20 +125,20 @@
                                     <div class="btn-group">
                                         <a class="btn btn-outline-info btn-sm" id="info" data-toggle="popover"
                                            data-trigger="hover" data-placement="top"
-                                           data-content="Chi tiết kích cỡ"
+                                           data-content="Chi tiết đế giày"
                                            th:href="@{'/admin/de-giay/info/' + ${item.IdDeGiay}}">
                                             <img th:src="@{/static/admin/img/icons/info.svg}"></a>
 
                                         <a class="btn btn-outline-primary btn-sm" data-toggle="popover"
                                            data-trigger="hover" data-placement="top"
-                                           data-content="Cập nhật kích cỡ" th:cl-id="${item.IdDeGiay}"
+                                           data-content="Cập nhật đế giày" th:cl-id="${item.IdDeGiay}"
                                            th:cl-name="${item.TenDeGiay}"
                                            onclick="openPopupCreateOrUpdate('update',this.getAttribute('cl-id'),this.getAttribute('cl-name'))"><img
                                                 th:src="@{/static/admin/img/icons/edit.svg}"></a>
 
                                         <a class="btn btn-outline-danger btn-sm" th:data-id="${item.IdDeGiay}"
                                            data-toggle="popover" data-trigger="hover" data-placement="top"
-                                           data-content="Xóa kích cỡ" th:data-name="${item.TenDeGiay}"
+                                           data-content="Xóa đế giày" th:data-name="${item.TenDeGiay}"
                                            page-name="DeGiay"
                                            onclick="showConfirmModalDeleteDialog(this.getAttribute('data-id'), this.getAttribute('data-name'), this.getAttribute('page-name'))"><img
                                                 th:src="@{/static/admin/img/icons/trash.svg}"></a>
@@ -230,9 +230,9 @@
                 <div class="modal-body">
                     <div class="col-sm-12">
                         <form method="post" id="formCreateOrUpdate" action="/admin/de-giay/createOrUpdate">
-                            <label for="TenDeGiay">Tên dây giày:</label>
+                            <label for="TenDeGiay">Tên đế giày:</label>
                             <input type="text" class="form-control" id="tenDeGiayCreateOrUpdate"
-                                   placeholder="Tên kích cỡ" name="tenDeGiayCreateOrUpdate">
+                                   placeholder="Tên đế giày" name="tenDeGiayCreateOrUpdate">
                             <input type="number" name="deGiayIdCreateOrUpdate" id="deGiayIdCreateOrUpdate" hidden>
                         </form>
                     </div>

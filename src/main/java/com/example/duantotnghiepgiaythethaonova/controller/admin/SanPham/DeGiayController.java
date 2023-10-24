@@ -33,7 +33,6 @@ import javax.servlet.http.HttpSession;
 @Controller
 @RequestMapping("admin/de-giay")
 public class DeGiayController {
-
     @Autowired
     private HttpSession session;
 
@@ -112,7 +111,7 @@ public class DeGiayController {
     @PostMapping("createOrUpdate")
     public String createOrUpdate(RedirectAttributes redirect,
                                  @RequestParam("tenDeGiayCreateOrUpdate") String tenKichCo,
-                                 @RequestParam("DeGiayIdCreateOrUpdate") String kichCoId) {
+                                 @RequestParam("deGiayIdCreateOrUpdate") String kichCoId) {
         final String redirectUrl = "redirect:/admin/de-giay";
         if (tenKichCo != null && !tenKichCo.isEmpty() && kichCoId != null && !kichCoId.isEmpty()) {
             Optional<DeGiay> opt = kichCoService.findById(Integer.parseInt(kichCoId));
@@ -139,8 +138,8 @@ public class DeGiayController {
     public String info(@PathVariable("id") Integer id, Model model, RedirectAttributes redirect) {
         Optional<DeGiay> opt = kichCoService.findById(id);
         if (opt.isPresent()) {
-            model.addAttribute("DeGiay", opt.get());
-            return "admin/DeGiay/infoDeGiay";
+            model.addAttribute("deGiay", opt.get());
+            return "admin/deGiay/infoDeGiay";
         } else {
             redirect.addFlashAttribute("messageDanger", "Đã xảy ra lỗi khi tìm chi tiết đế giày");
             return "redirect:/admin/de-giay";

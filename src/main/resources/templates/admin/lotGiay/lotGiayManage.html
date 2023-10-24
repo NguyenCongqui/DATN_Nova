@@ -27,11 +27,11 @@
                 <div class="col-lg-12">
                     <div class="row">
                         <div class="mb-3 row">
-                            <label for="TenLotGiay">Tên kích cỡ:</label>
+                            <label for="TenLotGiay">Tên lót giày:</label>
                             <br>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control-plaintext" id="TenLotGiay"
-                                       placeholder="Tên kích cỡ" name="tenLotGiaySearch">
+                                       placeholder="Tên lót giày" name="tenLotGiaySearch">
                             </div>
                         </div>
                         <div class="col-sm-2 offset-10 mt-2">
@@ -60,12 +60,12 @@
                             <thead class="text-nowrap text-center">
                             <tr>
                                 <th>#</th>
-                                <th>Tên kích cỡ</th>
+                                <th>Tên lót giày</th>
                                 <th>Thao tác</th>
                             </tr>
                             <tr th:if="${!resultPage.hasContent()}">
                                 <td colspan="11">
-                                    <h4><i>Không có kích cỡ nào phù hợp</i></h4>
+                                    <h4><i>Không có lót giày nào phù hợp</i></h4>
                                 </td>
                             </tr>
                             </thead>
@@ -80,20 +80,20 @@
                                     <div class="btn-group">
                                         <a class="btn btn-outline-info btn-sm" id="info" data-toggle="popover"
                                            data-trigger="hover" data-placement="top"
-                                           data-content="Chi tiết kích cỡ"
+                                           data-content="Chi tiết lót giày"
                                            th:href="@{'/admin/lot-giay/info/' + ${item.IdLotGiay}}">
                                             <img th:src="@{/static/admin/img/icons/info.svg}"></a>
 
                                         <a class="btn btn-outline-primary btn-sm" data-toggle="popover"
                                            data-trigger="hover" data-placement="top"
-                                           data-content="Cập nhật kích cỡ" th:cl-id="${item.IdLotGiay}"
+                                           data-content="Cập nhật lót giày" th:cl-id="${item.IdLotGiay}"
                                            th:cl-name="${item.TenLotGiay}"
                                            onclick="openPopupCreateOrUpdate('update',this.getAttribute('cl-id'),this.getAttribute('cl-name'))"><img
                                                 th:src="@{/static/admin/img/icons/edit.svg}"></a>
 
                                         <a class="btn btn-outline-danger btn-sm" th:data-id="${item.IdLotGiay}"
                                            data-toggle="popover" data-trigger="hover" data-placement="top"
-                                           data-content="Xóa kích cỡ" th:data-name="${item.TenLotGiay}"
+                                           data-content="Xóa lót giày" th:data-name="${item.TenLotGiay}"
                                            page-name="LotGiay"
                                            onclick="showConfirmModalDeleteDialog(this.getAttribute('data-id'), this.getAttribute('data-name'), this.getAttribute('page-name'))"><img
                                                 th:src="@{/static/admin/img/icons/trash.svg}"></a>
@@ -187,7 +187,7 @@
                         <form method="post" id="formCreateOrUpdate" action="/admin/lot-giay/createOrUpdate">
                             <label for="TenLotGiay">Tên lót giày:</label>
                             <input type="text" class="form-control" id="tenLotGiayCreateOrUpdate"
-                                   placeholder="Tên kích cỡ" name="tenLotGiayCreateOrUpdate">
+                                   placeholder="Tên lót giày " name="tenLotGiayCreateOrUpdate">
                             <input type="number" name="lotGiayIdCreateOrUpdate" id="lotGiayIdCreateOrUpdate" hidden>
                         </form>
                     </div>
@@ -207,7 +207,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Xác nhận xóa kích cỡ</h5>
+                    <h5 class="modal-title">Xác nhận xóa lót giày</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">

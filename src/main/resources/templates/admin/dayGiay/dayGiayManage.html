@@ -72,11 +72,11 @@
                 <div class="col-lg-12">
                     <div class="row">
                         <div class="mb-3 row">
-                            <label for="TenDayGiay">Tên kích cỡ:</label>
+                            <label for="TenDayGiay">Tên dây giày:</label>
                             <br>
                             <div class="col-sm-10">
                                 <input type="text" class="form-control-plaintext" id="TenDayGiay"
-                                       placeholder="Tên kích cỡ" name="tenDayGiaySearch">
+                                       placeholder="Tên dây giày" name="tenDayGiaySearch">
                             </div>
                         </div>
                         <div class="col-sm-2 offset-10 mt-2">
@@ -105,12 +105,12 @@
                             <thead class="text-nowrap text-center">
                             <tr>
                                 <th>#</th>
-                                <th>Tên kích cỡ</th>
+                                <th>Tên dây giày</th>
                                 <th>Thao tác</th>
                             </tr>
                             <tr th:if="${!resultPage.hasContent()}">
                                 <td colspan="11">
-                                    <h4><i>Không có kích cỡ nào phù hợp</i></h4>
+                                    <h4><i>Không có dây giày nào phù hợp</i></h4>
                                 </td>
                             </tr>
                             </thead>
@@ -125,20 +125,20 @@
                                     <div class="btn-group">
                                         <a class="btn btn-outline-info btn-sm" id="info" data-toggle="popover"
                                            data-trigger="hover" data-placement="top"
-                                           data-content="Chi tiết kích cỡ"
+                                           data-content="Chi tiết dây giày"
                                            th:href="@{'/admin/day-giay/info/' + ${item.IdDayGiay}}">
                                             <img th:src="@{/static/admin/img/icons/info.svg}"></a>
 
                                         <a class="btn btn-outline-primary btn-sm" data-toggle="popover"
                                            data-trigger="hover" data-placement="top"
-                                           data-content="Cập nhật kích cỡ" th:cl-id="${item.IdDayGiay}"
+                                           data-content="Cập nhật dây giày" th:cl-id="${item.IdDayGiay}"
                                            th:cl-name="${item.TenDayGiay}"
                                            onclick="openPopupCreateOrUpdate('update',this.getAttribute('cl-id'),this.getAttribute('cl-name'))"><img
                                                 th:src="@{/static/admin/img/icons/edit.svg}"></a>
 
                                         <a class="btn btn-outline-danger btn-sm" th:data-id="${item.IdDayGiay}"
                                            data-toggle="popover" data-trigger="hover" data-placement="top"
-                                           data-content="Xóa kích cỡ" th:data-name="${item.TenDayGiay}"
+                                           data-content="Xóa dây giày" th:data-name="${item.TenDayGiay}"
                                            page-name="DayGiay"
                                            onclick="showConfirmModalDeleteDialog(this.getAttribute('data-id'), this.getAttribute('data-name'), this.getAttribute('page-name'))"><img
                                                 th:src="@{/static/admin/img/icons/trash.svg}"></a>
@@ -232,7 +232,7 @@
                         <form method="post" id="formCreateOrUpdate" action="/admin/day-giay/createOrUpdate">
                             <label for="TenDayGiay">Tên dây giày:</label>
                             <input type="text" class="form-control" id="tenDayGiayCreateOrUpdate"
-                                   placeholder="Tên kích cỡ" name="tenDayGiayCreateOrUpdate">
+                                   placeholder="Tên dây giày" name="tenDayGiayCreateOrUpdate">
                             <input type="number" name="dayGiayIdCreateOrUpdate" id="dayGiayIdCreateOrUpdate" hidden>
                         </form>
                     </div>
@@ -252,7 +252,7 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title">Xác nhận xóa kích cỡ</h5>
+                    <h5 class="modal-title">Xác nhận xóa dây giày</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
