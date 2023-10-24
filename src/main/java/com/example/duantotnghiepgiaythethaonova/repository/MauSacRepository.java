@@ -22,7 +22,7 @@ public interface MauSacRepository extends JpaRepository<MauSac,Integer> {
     @Query(value = "SELECT * FROM MauSac c WHERE c.DaXoa = 0 AND c.TenMauSac like %:TenMauSac% ORDER BY c.IdMauSac DESC", nativeQuery = true)
     Page<MauSac> getMauSacExistByName(@Param("TenMauSac") String tenMauSac, Pageable page);
 
-    @Query(value = "SELECT DISTINCT m.* FROM MauSac m LEFT JOIN SanPhamCT s ON m.IdMauSac = s.IdMauSac WHERE s.IdSanPham = :spId AND s.DaXoa = 0 ORDER BY m.IdSanPham DESC", nativeQuery = true)
+    @Query(value = "SELECT DISTINCT m.* FROM MauSac m LEFT JOIN SanPhamCT s ON m.IdMauSac = s.IdMauSac WHERE s.IdSanPham = :spId AND s.DaXoa = 0 ORDER BY m.IdMauSac DESC", nativeQuery = true)
     List<MauSac> getAllMauSacExistBySPId(@Param("spId") Integer spId);
 
 }

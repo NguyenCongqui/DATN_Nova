@@ -48,7 +48,7 @@ public interface HinhAnhRepository extends JpaRepository<HinhAnh, Integer> {
 
     @Query(value = "SELECT ha.* FROM dbo.HinhAnh ha WHERE ha.\n" +
             "IdSanPham = :sanPhamId AND ha.CoHienThi = \n" +
-            "true AND ha.LaAnhChinh = true\n" +
+            "1 AND ha.LaAnhChinh = 1\n" +
             "AND ha.IdMauSac IN (:mauSacIds) ORDER BY ha.IdMauSac DESC", nativeQuery = true)
     List<HinhAnh> getHinhAnhChinhBySanPhamIdAndMauSacIds(@Param("sanPhamId") Integer sanPhamId, @Param("mauSacIds") List<Integer> mauSacIds);
 

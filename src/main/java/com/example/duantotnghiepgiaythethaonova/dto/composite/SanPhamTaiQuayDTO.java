@@ -15,7 +15,7 @@ import java.util.List;
 @NoArgsConstructor
 public class SanPhamTaiQuayDTO {
 
-    private List<ShowSanPhamdto> lstShowSanPhamTaiQuayDTO;
+    private List<ShowSanPhamdto> lstShowSanPhamTaiQua;
     private Integer hoaDonId;
 
     @NotNull(message = "Kích cỡ không được để trống")

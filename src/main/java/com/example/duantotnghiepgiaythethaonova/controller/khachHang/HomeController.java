@@ -74,6 +74,7 @@ public class HomeController {
         SanPhamTaiQuayDTO resultSP = new SanPhamTaiQuayDTO();
         List<ShowSanPhamdto> lstSSPTQ = new ArrayList<>();
         Page<SanPham> resultPage = sanPhamService.showSanPhamExistHomePage(pageable);
+//        System.out.println(sanPhamService.showSanPhamExistHomePage(pageable));
         for (SanPham sp : resultPage.getContent()) {
             ShowSanPhamdto ssptq = new ShowSanPhamdto();
             List<Integer> mauSacIds = chiTietSanPhamService.getLstMauSacBySanPhamId(sp.getIdSanPham());
@@ -98,7 +99,7 @@ public class HomeController {
             ssptq.setLstMauSac(lstMauSac);
             lstSSPTQ.add(ssptq);
         }
-        resultSP.setLstShowSanPhamTaiQuayDTO(lstSSPTQ);
+        resultSP.setLstShowSanPhamTaiQua(lstSSPTQ);
         model.addAttribute("resultSP", resultSP);
 
         int totalPages = resultPage.getTotalPages();

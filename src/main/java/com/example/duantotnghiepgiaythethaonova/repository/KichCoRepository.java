@@ -21,6 +21,6 @@ public interface KichCoRepository extends JpaRepository<KichCo,Integer> {
     @Query(value = "SELECT * FROM KichCo c WHERE c.DaXoa = 0 AND c.TenKichCo like %:TenKichCo% ORDER BY c.IdKichCo DESC", nativeQuery = true)
     Page<KichCo> getKichCoExistByName(@Param("TenKichCo") String tenKichCo, Pageable pageable);
 
-    @Query(value = "SELECT  c.* FROM KichCo c join SanPhamCT s1 on s1.IdKichCo = c.IdKichCo WHERE c.DaXoa = 0 and s1.IdSanPham = :IdSanPham group by c.IdKichCo", nativeQuery = true)
+    @Query(value = "SELECT  c.* FROM KichCo c join SanPhamCT s1 on s1.IdKichCo = c.IdKichCo WHERE c.DaXoa = 0 and s1.IdSanPham = :IdSanPham", nativeQuery = true)
     List<KichCo> selectAllKichCoBySanPhamId(@Param("IdSanPham") Integer sanPhamId);
 }
