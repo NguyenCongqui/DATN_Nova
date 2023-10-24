@@ -12,9 +12,11 @@ import com.example.duantotnghiepgiaythethaonova.service.MailService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
 
+@Service
 public class KhachHangServiceImpl implements KhachHangService {
 
     @Autowired
