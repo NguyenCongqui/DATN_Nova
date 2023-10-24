@@ -98,12 +98,14 @@
                 </li>
 
                 <li class="sidebar-item  has-sub">
-                    <a href="#" class='sidebar-link'>
+<!--                    th:if="${#request.isUserInRole('ROLE_ADMIN')}"-->
+                    <a href="#" class='sidebar-link' data-target="#collapseNhanVien"
+                       aria-expanded="true" aria-controls="collapseNhanVien">
                         <i class="fas fa-user" width="20"></i>
                         <span>Nhân viên</span>
                     </a>
 
-                    <ul class="submenu">
+                    <ul id="collapseNhanVien" class="submenu">
                         <li>
                             <a th:href="@{/admin/NhanVien/danhSach}">Danh sách</a>
                         </li>
@@ -166,6 +168,13 @@
                 <br>
                 <br>
                 <br>
+<!--                <script th:inline="javascript">-->
+<!--                    $(document).ready(function () {-->
+<!--                        $('#nguoiDangDangNhap').click(function () {-->
+<!--                            window.location.href = "/admin/thongTinNhanVienDangDangNhap";-->
+<!--                        });-->
+<!--                    });-->
+<!--                </script>-->
 
             </ul>
         </div>

@@ -136,16 +136,16 @@
                                     <!-- From xóa -->
                                     <div class="btn-group">
                                         <a th:href="@{'/admin/thongTinNhanVien/MaNhanVien=' + ${user.maNhanVien}}"
-                                            class="btn btn-info btn-sm button-thongTinNhanVien" type="submit">
+                                            class="btn btn-info btn-sm button-thongTinNhanVien" type="submit" data-content="Thông tin nhân viên">
                                             <i class="far fa-user"></i>
                                         </a>
                                         <a th:href="@{'/admin/chinhSuaNhanVien/id-nhan-vien=' + ${user.idNguoiDung}}"
-                                            class="btn btn-warning btn-sm button-chinhSuaNhanVien" type="submit">
+                                            class="btn btn-warning btn-sm button-chinhSuaNhanVien" type="submit" data-content="Update nhân viên">
                                             <i class="fas fa-edit text-primary"></i>
                                         </a>
                                         <button class="btn btn-danger xoaNhanVien" th:attr="data-id=${user.idNguoiDung}"
                                             th:data-target="'#modalXoaNhanVien-' + ${user.idNguoiDung}">
-                                            <i class="fa fa-trash" aria-hidden="true"></i>
+                                            <i class="fa fa-trash" aria-hidden="true" data-content="Xóa nhân viên"></i>
                                         </button>
                                         <br>
                                         <div class="modal fade xoaNhanVien" th:id="'modalXoaNhanVien-' + ${user.idNguoiDung}"
