@@ -29,12 +29,12 @@
                                      th:id="'imgActive'+${istat.index}+${istatAC.index}"
                                      th:classappend="${#numbers.formatInteger(istat.index+''+istatAC.index,5) == #numbers.formatInteger(istat.index+''+0,5)? 'active':''}"
                                      th:each="img, istatAC : ${item.anhChinhs}">
-                                    <img th:src="${'/customer/images/'+img}" class="d-block img-responsive"
+                                    <img th:src="${'/khachhang/images/'+img}" class="d-block img-responsive"
                                          alt="...">
                                 </div>
                             </div>
                             <div class="product-button">
-                                <a th:href="${'/customer/shop-details/'+item.sanPhamId}" href="#" class="js_tooltip" data-mode="top" data-tip="Thêm Vào Giỏ"><i class="fa fa-shopping-bag"></i></a>
+                                <a th:href="${'/khachhang/shop-details/'+item.sanPhamId}" href="#" class="js_tooltip" data-mode="top" data-tip="Thêm Vào Giỏ"><i class="fa fa-shopping-bag"></i></a>
                                 <a href="#" class="js_tooltip" data-mode="top" data-tip="Add To Whishlist"><i class="fa fa-heart"></i></a>
                                 <a href="#" class="js_tooltip" data-mode="top" data-tip="Quick&nbsp;View"><i class="fa fa-eye"></i></a>
                             </div>

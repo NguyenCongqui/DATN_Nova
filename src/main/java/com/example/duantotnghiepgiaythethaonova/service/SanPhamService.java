@@ -14,7 +14,7 @@ public interface SanPhamService {
 
     Page<SanPham> getSanPhamExist(Pageable pageable);
 
-//    Page<SanPham> searchProductExist(SPAndSPCTSearchDto data, Pageable pageable);
+    Page<SanPham> searchProductExist(SPAndSPCTSearchDto data, Pageable pageable);
 
     void delete(SanPham entity);
 

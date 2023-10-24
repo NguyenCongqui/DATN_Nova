@@ -18,7 +18,7 @@ public class SanPhamServiceImpl implements SanPhamService {
 
     private final SanPhamRepository sanPhamRepository;
 
-//    private final SanPhamSearchRepository sanPhamSearchRepository;
+    private final SanPhamSearchRepository sanPhamSearchRepository;
 
 
     @Override
@@ -37,10 +37,10 @@ public class SanPhamServiceImpl implements SanPhamService {
         return sanPhamRepository.getSanPhamExist(pageable);
     }
 
-//    @Override
-//    public Page<SanPham> searchProductExist(SPAndSPCTSearchDto data, Pageable pageable) {
-//        return sanPhamSearchRepository.searchProductExist(data, pageable);
-//    }
+    @Override
+    public Page<SanPham> searchProductExist(SPAndSPCTSearchDto data, Pageable pageable) {
+        return sanPhamSearchRepository.searchProductExist(data, pageable);
+    }
 
     @Override
     public void delete(SanPham entity) {
