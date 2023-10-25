@@ -1,5 +1,5 @@
 function flexUrlSubmit(url, method, formName) {
-    $("#flexUrlTableForm" + formName).attr("action", "/admin/chat-lieu/" + url);
+    $("#flexUrlTableForm" + formName).attr("action", "/admin/chat-lieu" + url);
     $("#flexUrlTableForm" + formName).attr("method", method);
     document.getElementById("flexUrlTableForm" + formName).submit();
 }
@@ -29,7 +29,7 @@ function showConfirmModalDeleteDialog(id, name) {
 
 function submitDeleteProduct() {
     var productId = $("#yesOptionDeleteModalId").attr("cl-id");
-    flexUrlSubmit("delete/" + productId, "get", "ChatLieu");
+    flexUrlSubmit("/delete/" + productId, "get", "ChatLieu");
 }
 
 function submitCreateOrUpdate() {
