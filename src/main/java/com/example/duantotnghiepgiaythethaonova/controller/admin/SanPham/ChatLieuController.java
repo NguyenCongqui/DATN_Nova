@@ -102,7 +102,8 @@ public class ChatLieuController {
     }
 
     @PostMapping("createOrUpdate")
-    public String createOrUpdate(RedirectAttributes redirect, @RequestParam("tenChatLieuCreateOrUpdate") String tenChatLieu,
+    public String createOrUpdate(RedirectAttributes redirect,
+                                 @RequestParam("tenChatLieuCreateOrUpdate") String tenChatLieu,
                                  @RequestParam("chatLieuIdCreateOrUpdate") String chatLieuId) {
         final String redirectUrl = "redirect:/admin/chat-lieu";
         if (tenChatLieu != null && chatLieuId != null) {
