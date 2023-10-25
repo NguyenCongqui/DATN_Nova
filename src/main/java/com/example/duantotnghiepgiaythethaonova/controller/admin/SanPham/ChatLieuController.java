@@ -44,7 +44,7 @@ public class ChatLieuController {
             for (ChatLieu chatLieu : resultPage.getContent()) {
                 ChatLieuDTO dto = new ChatLieuDTO();
                 int soSanPhamCungChatLieu = sanPhamService.selectCountSanPhamByChatLieuId(chatLieu.getIdChatLieu());
-                dto.setId(chatLieu.getIdChatLieu());
+                dto.setIdChatLieu(chatLieu.getIdChatLieu());
                 dto.setTenChatLieu(chatLieu.getTenChatLieu());
                 dto.setSoSanPhamCungChatLieu(soSanPhamCungChatLieu);
                 dtos.add(dto);
@@ -57,7 +57,7 @@ public class ChatLieuController {
                 for (ChatLieu chatLieu : resultPage.getContent()) {
                     ChatLieuDTO dto = new ChatLieuDTO();
                     int soSanPhamCungChatLieu = sanPhamService.selectCountSanPhamByChatLieuId(chatLieu.getIdChatLieu());
-                    dto.setId(chatLieu.getIdChatLieu());
+                    dto.setIdChatLieu(chatLieu.getIdChatLieu());
                     dto.setTenChatLieu(chatLieu.getTenChatLieu());
                     dto.setSoSanPhamCungChatLieu(soSanPhamCungChatLieu);
                     dtos.add(dto);
@@ -69,7 +69,7 @@ public class ChatLieuController {
                 for (ChatLieu chatLieu : resultPage.getContent()) {
                     ChatLieuDTO dto = new ChatLieuDTO();
                     int soSanPhamCungChatLieu = sanPhamService.selectCountSanPhamByChatLieuId(chatLieu.getIdChatLieu());
-                    dto.setId(chatLieu.getIdChatLieu());
+                    dto.setIdChatLieu(chatLieu.getIdChatLieu());
                     dto.setTenChatLieu(chatLieu.getTenChatLieu());
                     dto.setSoSanPhamCungChatLieu(soSanPhamCungChatLieu);
                     dtos.add(dto);
