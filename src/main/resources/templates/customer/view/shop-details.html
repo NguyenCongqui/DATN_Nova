@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{customer/layout/index}"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script th:src="@{/static/customer/view/shop-details.js}"></script>
+    <script th:src="@{/static/admin/js/banHang/banHangOnline/AddToCart.js}"></script>
+</head>
+<body>
+
+<div layout:fragment="content">
+    <div id="flexUrlTableFormShopDetails" th:object="${shopDetails}">
+    <div class="page-content-wraper" >
+        <!-- Bread Crumb -->
+        <section class="breadcrumb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <nav class="breadcrumb-link">
+                            <a href="#">Home</a>
+                            <a href="#">Categories</a>
+                            <span>Men Polos & Tees</span>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- Bread Crumb -->
+
+        <!-- Page Content -->
+        <section id="product-ID_XXXX" class="content-page single-product-content">
+
+<!-- Product -->
+<div id="product-detail" class="container">
+    <div class="row">
+        <div class="col-lg-9 col-md-12 product-content sidebar-position-right">
+            <div class="row">
+                <!-- Product Image -->
+                <div class="col-lg-6 col-md-12 col-sm-12 mb-30">
+                    <div class="product-page-image">
+                        <!-- Slick Image Slider -->
+                        <div class="product-image-slider product-image-gallery" id="product-image-gallery" data-pswp-uid="3">
+                            <div class="item" th:each="img, istat : ${shopDetails.anhChinhs1}"
+                                 th:id="'nav-item-s1-'+${istat.index}">
+                                <a class="product-gallery-item" th:href="${'/khachhang/images/'+img}"
+                                   data-size=""  th:data-med="${'/khachhang/images/'+img}" data-med-size=""
+                                   th:tab-id="'tabs-s1-'+${istat.index}" th:id="'imgActiveS1'+${istat.index}"
+                                   th:classappend="${istat.index == 0? 'active':''}"
+                                   th:nav-id="'nav-item-s1-'+${istat.index}"
+                                   onmouseover="changeTab(this.getAttribute('tab-id'),this.getAttribute('nav-id'))"
+                                >
+                                    <img th:src="${'/khachhang/images/'+img}" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <!-- End Slick Image Slider -->
+
+                        <a href="javascript:void(0)" id="zoom-images-button" class="zoom-images-button"><i class="fa fa-expand" aria-hidden="true"></i></a>
+
+
+                    </div>
+
+                    <!-- Slick Thumb Slider -->
+                    <div class="product-image-slider-thumbnails">
+                        <div class="item" th:id="'tabs-s1-'+${istat.index}"
+                             th:classappend="${istat.index == 0? 'active':''}"
+                             th:each="img, istat : ${shopDetails.anhChinhs1}"
+                        >
+                            <img th:src="${'/khachhang/images/'+img}" alt="image 1" />
+                        </div>
+
+                    </div>
+                    <!-- End Slick Thumb Slider -->
+                </div>
+                <!-- End Product Image -->
+
+                <!-- Product Content -->
+                <div class="col-lg-6 col-md-12 col-sm-12 mb-30">
+                    <div class="product-page-content">
+                        <h2 class="product-title" th:text="${shopDetails.tenSanPham}">Giày Thượng đình</h2>
+
+
+                        <div class="product-price">
+                            <del>1.000.000 VND</del><span><span class="product-price-sign"></span>
+                        <span class="product-price-text" th:text="${#numbers.formatDecimal(shopDetails.gia, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></span></span>
+                        </div>
+                        <p class="product-description">
+                            When an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic remaining essentially unchanged.
+                        </p>
+                        <div class="row product-filters" th:data-id="${shopDetails.sanPhamId}">
+                            <form class="col-md-12 filters-color">
+                                <label for="select-color">Màu Sắc</label>
+                                <div class="color-selector"
+                                     onclick="chooseOptionColorLabel(this.getAttribute('id'),this.getAttribute('name'), this.getAttribute('input-name'), this.getAttribute('input-id'))"
+                                     th:for="'mauSacInpId'+${istat.index}" th:id="labelMS+${istat.index}"
+
+                                     th:each="ms, istat : ${shopDetails.lstMauSac}" th:name="labelMSName"
+                                     th:input-name="mauSacId" th:input-id="'mauSacInpId'+${istat.index}"
+                                >
+                                    <div class="entry" th:style="'background:'+ ${ms.maMauSac}"
+
+                                         th:value="${ms.idMauSac}" th:id="'mauSacInpId'+${istat.index}"
+                                         th:field="*{mauSacId}"></div>
+                                </div>
+                            </form>
+                            <form class="col-md-12 filters-size">
+                                <label for="select-size">Size</label>
+                                <div class="size-selector" th:for="${tenKichCo}" name="kichCoIdsName"
+                                     th:id="'KichCoIdsRadio'+${istat.index}"
+                                     th:input-id="'tenKichCoRadioId'+${istat.index}" input-name="kichCoId"
+                                     onclick="chooseOptionLabel(this.getAttribute('name'),this.getAttribute('id'),this.getAttribute('input-name'),this.getAttribute('input-id'))"
+                                     th:each="item, istat : ${shopDetails.lstKichCo}"
+                                >
+                                    <div class="entry" th:field="*{kichCoId}" th:value="${item.idKichCo}"
+                                         th:id="'tenKichCoRadioId'+${istat.index}" >[[${item.tenKichCo}]]</div>
+                                </div>
+                            </form>
+                        </div>
+                        <p>Số lượng hiện có: <span class="soLuongHienCoCus"
+                                                   th:id="'soLuongHienCoCus' + ${shopDetails.sanPhamId}"></span></p>
+                        <form class="single-variation-wrap">
+                            <div class="product-quantity">
+                                <span data-value="+" class="quantity-btn quantityPlus"></span>
+                                <input class="quantity input-lg daucatmoi" step="1" min="1" name="quantity" value="1" title="Quantity" type="number"  th:field="*{soLuong}"/>
+                                <span data-value="-" class="quantity-btn quantityMinus"></span>
+                            </div>
+                            <button id="themVaoGioHang" th:data-id="${shopDetails.sanPhamId}" type="submit" class="btn btn-lg btn-black"><i class="fa fa-shopping-bag" aria-hidden="true"></i>Thêm Vào Giỏ</button>
+                        </form>
+                        <div class="single-add-to-wrap">
+                            <a class="single-add-to-wishlist"><i class="fa fa-heart left" aria-hidden="true"></i><span>Add to Wishlist</span></a>
+                            <a class="single-add-to-compare "><i class="fa fa-refresh left" aria-hidden="true"></i><span>Add to Compare</span></a>
+                        </div>
+                        <div class="product-meta">
+                            <span>SKU : <span class="sku" itemprop="sku">005687</span></span>
+                            <span>Thể Loại : <span class="category" itemprop="category">Giày</span></span>
+                        </div>
+                        <div class="product-share">
+                            <span>Share :</span>
+                            <ul>
+                                <li><a href="https://www.facebook.com/sharer/sharer.php?u=http://nileforest.com/" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                                <li><a href="http://twitter.com/share?url=http://nileforest.com/" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                                <li><a href="http://plus.google.com/share?url=http://nileforest.com/" target="_blank"><i class="fa fa-google-plus"></i></a></li>
+                                <li><a href="mailto:?subject=Check this http://nileforest.com/" target="_blank"><i class="fa fa-envelope"></i></a></li>
+                                <li><a href="../../../pinterest.com/pin/create/button/index68d2.html?url=http://nileforest.com/exampleImage.jpg" target="_blank"><i class="fa fa-pinterest"></i></a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="sidebar-widget-outline product-banner-icon-text promo-box">
+            <div class="promo-item">
+                <div class="icon"><i class="fa fa-truck" aria-hidden="true"></i></div>
+                <div class="info">
+                    <a href="#">
+                        <h6 class="normal">Free Shipping</h6>
+                    </a>
+                    <p>On Order Over $150</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- End Product -->
+
+<!-- Product Content Tab -->
+<div class="product-tabs-wrapper container">
+    <ul class="product-content-tabs nav nav-tabs" role="tablist">
+
+        <li class="nav-item">
+            <a class="active" href="#tab_description" role="tab" data-toggle="tab">Mô tả Sản Phẩm</a>
+        </li>
+        <li class="nav-item">
+            <a class="" href="#tab_additional_information" role="tab" data-toggle="tab">Thông Tin Sản Phẩm</a>
+        </li>
+    </ul>
+    <div class="product-content-Tabs_wraper tab-content container">
+        <div id="tab_description" role="tabpanel" class="tab-pane fade in active">
+            <!-- Accordian Title -->
+            <h6 class="product-collapse-title" data-toggle="collapse" data-target="#tab_description-coll">Description</h6>
+            <!-- End Accordian Title -->
+            <!-- Mô tả sản phẩm -->
+            <div id="tab_description-coll" class="shop_description product-collapse collapse container">
+                <div class="row">
+                    <div class=" col-md-6">
+                        <p>
+                            Etiam molestie sit amet arcu vel dictum. Integer mattis est nec porta porttitor. Maecenas condimentum sapien eget urna condimentum, non sagittis ante dapibus. Donec congue libero ut ex malesuada auctor. Vivamus at urna et erat aliquam pharetra. Nulla facilisi. Morbi feugiat tortor finibus elit aliquet tempor.
+                            Generated 5 paragraphs, 453 words, 3065 bytes of Lorem Ipsum
+                        </p>
+                        <h4>Vivamus at urna</h4>
+                        <ul>
+                            <li>Etiam molestie sit amet arcu vel dictum</li>
+                            <li>Integer mattis est nec porta porttitor</li>
+                            <li>Maecenas condimentum sapien eget urna condimentum</li>
+                            <li>Donec congue libero ut ex malesuada auctor</li>
+                            <li>Generated 5 paragraphs, 453 words</li>
+                        </ul>
+                    </div>
+                    <div class="col-md-6">
+                        <p>
+                            Etiam molestie sit amet arcu vel dictum. Integer mattis est nec porta porttitor. Maecenas condimentum sapien eget urna condimentum, non sagittis ante dapibus. Donec congue libero ut ex malesuada auctor. Vivamus at urna et erat aliquam pharetra. Nulla facilisi. Morbi feugiat tortor finibus elit aliquet tempor.
+                            Generated 5 paragraphs, 453 words, 3065 bytes of Lorem Ipsum
+                        </p>
+                        <h4>hadding four</h4>
+                        <h5>hadding five</h5>
+                        <h6>hadding six</h6>
+                    </div>
+                </div>
+            </div>
+            <!-- Kết thúc mô tả sản phẩm -->
+        </div>
+
+        <div id="tab_additional_information" role="tabpanel" class="tab-pane fade">
+            <!-- Accordian Title -->
+            <h6 class="product-collapse-title" data-toggle="collapse" data-target="#tab_additional_information-coll">Additional Information</h6>
+            <!-- End Accordian Title -->
+            <!-- Thông tin sản phẩm -->
+            <div id="tab_additional_information-coll" class="container product-collapse collapse">
+
+                <table class="shop_attributes">
+                    <tbody>
+                    <tr>
+                        <th>Color</th>
+                        <td>Đen, Xamh, Trắng</td>
+                    </tr>
+                    <tr>
+                        <th>Weight</th>
+                        <td>5 kg</td>
+                    </tr>
+                    <tr>
+                        <th>Dimensions</th>
+                        <td>60 x 40 x 60 cm</td>
+                    </tr>
+                    <tr>
+                        <th>Washcare</th>
+                        <td>Dry Clean</td>
+                    </tr>
+                    <tr>
+                        <th>Composition</th>
+                        <td>100% Polyester</td>
+                    </tr>
+                    <tr>
+                        <th>Lining composition</th>
+                        <td>100% Polyester</td>
+                    </tr>
+                    <tr>
+                        <th>Other info</th>
+                        <td>Ullamcorper nisl mus integer mollis vestibulu</td>
+                    </tr>
+                    </tbody>
+                </table>
+
+            </div>
+            <!-- kết thúc thông tin sản phẩm-->
+        </div>
+
+
+    </div>
+</div>
+<!-- End Product Content Tab -->
+
+</div>
+</div>
+</body>
+</html>

@@ -24,10 +24,12 @@
     <link href="../../../static/customer/css/style.css" rel="stylesheet" type="text/css" />
     <!-- template css -->
     <link href="../../../static/customer/plugins/rev_slider/css/settings-ver.5.3.1.css" rel="stylesheet" type="text/css" />
+
+    <link href="/static/customer/plugins/photoswipe_popup/photoswipe.css" rel="stylesheet" type="text/css" />
+    <link href="/static/customer/plugins/photoswipe_popup/default-skin/default-skin.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
 <span th:replace="customer/layout/header :: header"></span>
-<span th:replace="customer/layout/banner :: banner"></span>
 <section layout:fragment="content">
     <div>
 
@@ -64,6 +66,8 @@
 <script type="text/javascript" src="../../../static/customer/js/custom.js"></script>
 <!-- custom js -->
 <!-- end jquery -->
-
+<script type="text/javascript" src="/static/customer/plugins/photoswipe_popup/photoswipe.min.js"></script>
+<script type="text/javascript" src="/static/customer/plugins/photoswipe_popup/photoswipe-ui-default.min.js"></script>
+<script type="text/javascript" src="/static/customer/plugins/photoswipe_popup/photoswipe-core.js"></script>
 </body>
 </html>
