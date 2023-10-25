@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Data
 public class ThuongHieuDTO {
-    
+
     private Integer IdThuongHieu;
 
     private int soSanPhamCungThuongHieu;
