@@ -83,26 +83,26 @@ public class NhanVienController {
     }
 
     //Update
-//    @RequestMapping("admin/chinhSuaNhanVien/id-nhan-vien={id}")
-//    public String chinhSuaNguoiDung(@PathVariable("id") Long id, Model model) {
-//        NguoiDung nguoiDung = nguoiDungService.getNguoiDungById(id);
-//        List<VaiTro> vaiTro = vaiTroRepository.findAll();
-//        model.addAttribute("nguoiDungEdit", nguoiDung);
-//        model.addAttribute("phanQuyen", vaiTro);
-//        return "admin/NhanVien/chinhSuaNhanVien";
-//    }
-//
-//    @PostMapping("/updateStatus")
-//    public ResponseEntity<String> updateStatus(@RequestParam("userId") Long id, @RequestParam("status") int trangThai) {
-//        try {
-//            nguoiDungService.updateUserStatus(id, trangThai);
-//            return ResponseEntity.ok("Cập nhật trạng thái thành công");
-//        } catch (IllegalArgumentException e) {
-//            return ResponseEntity.badRequest().body("Người dùng không tồn tại");
-//        } catch (Exception e) {
-//            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Lỗi khi cập nhật trạng thái");
-//        }
-//    }
+    @RequestMapping("admin/chinhSuaNhanVien/id-nhan-vien={id}")
+    public String chinhSuaNguoiDung(@PathVariable("id") Integer id, Model model) {
+        NguoiDung nguoiDung = nguoiDungService.getNguoiDungById(id);
+        List<VaiTro> vaiTro = vaiTroRepository.findAll();
+        model.addAttribute("nguoiDungEdit", nguoiDung);
+        model.addAttribute("phanQuyen", vaiTro);
+        return "admin/NhanVien/chinhSuaNhanVien";
+    }
+
+    @PostMapping("/updateStatus")
+    public ResponseEntity<String> updateStatus(@RequestParam("userId") Integer id, @RequestParam("status") int trangThai) {
+        try {
+            nguoiDungService.updateUserStatus(id, trangThai);
+            return ResponseEntity.ok("Cập nhật trạng thái thành công");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.badRequest().body("Người dùng không tồn tại");
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Lỗi khi cập nhật trạng thái");
+        }
+    }
 
 
 }

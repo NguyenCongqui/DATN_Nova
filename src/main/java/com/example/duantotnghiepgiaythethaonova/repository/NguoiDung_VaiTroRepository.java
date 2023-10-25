@@ -9,6 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface NguoiDung_VaiTroRepository extends JpaRepository<NguoiDung_VaiTro, Integer> {
 
-    @Query(value = "select * from NguoiDung_VaiTro where IdNguoiDung_VaiTro = ?", nativeQuery = true)
+    @Query(value = "select * from NguoiDung_VaiTro where idNguoiDung_VaiTro = ?", nativeQuery = true)
     NguoiDung_VaiTro findByNguoiDungId(Integer id);
 }

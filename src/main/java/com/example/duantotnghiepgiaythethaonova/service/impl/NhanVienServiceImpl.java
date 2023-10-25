@@ -54,7 +54,7 @@ public class NhanVienServiceImpl implements NhanVienService {
 
         //Check trùng email
         NguoiDung existingNguoiDungByEmail = nguoiDungRepository.findByEmail(email);
-        if (existingNguoiDungByEmail.getEmail() != null) {
+        if (existingNguoiDungByEmail != null) {
             response.put("warning", true);
             response.put("error", "Email này đã tồn tại!");
             return response;
@@ -92,12 +92,12 @@ public class NhanVienServiceImpl implements NhanVienService {
         nguoiDung.setMatKhau(passwordEncoder.encode(new String(password)));
 //      nguoiDung.setMatKhau(passwordEncoder.encode(new String(password)));
 
-        mailService.sendMail("linhnkph24164@fpt.edu.vn",
-                nguoiDung.getEmail(),
-                "Bạn đã đăng ký thành công !",
-                "Họ tên  : " + nguoiDung.getTenNguoiDung() + "\n" +
-                        "Số điện thoại  :" + nguoiDung.getSoDienThoai()
-                        + "Mật khẩu : " + new String(password));
+//        mailService.sendMail("linhnkph24164@fpt.edu.vn",
+//                nguoiDung.getEmail(),
+//                "Bạn đã đăng ký thành công !",
+//                "Họ tên  : " + nguoiDung.getTenNguoiDung() + "\n" +
+//                        "Số điện thoại  :" + nguoiDung.getSoDienThoai()
+//                        + "Mật khẩu : " + new String(password));
 
         // Kiểm tra xem đã lưu thành công vào cơ sở dữ liệu hay chưa
         NguoiDung savedNguoiDung = nguoiDungRepository.save(nguoiDung);

@@ -15,11 +15,11 @@ import java.util.List;
 public interface ThuongHieuRepository extends JpaRepository<ThuongHieu, Integer> {
 
     @Query(value = "SELECT * FROM ThuongHieu c WHERE  c.daXoa = 0 ORDER BY c.idThuongHieu DESC ",nativeQuery = true)
-    Page<ThuongHieu> selectAllChatLieuExist(Pageable pageable);
+    Page<ThuongHieu> selectAllThuongHieuExist(Pageable pageable);
 
     @Query(value = "SELECT * FROM ThuongHieu c WHERE  c.daXoa = 0 ORDER BY c.idThuongHieu DESC ",nativeQuery = true)
-    List<ThuongHieu> selectAllChatLieuExist();
+    List<ThuongHieu> selectAllThuongHieuExist();
 
     @Query(value = "SELECT * FROM ThuongHieu c WHERE  c.daXoa = 0 AND c.tenThuongHieu like %:tenThuongHieu% ORDER BY c.idThuongHieu DESC ",nativeQuery = true)
-    Page<ThuongHieu> getChatLieuExistByName(@Param("tenThuongHieu") String tenThuongHieu, Pageable pageable);
+    Page<ThuongHieu> getThuongHieuExistByName(@Param("tenThuongHieu") String tenThuongHieu, Pageable pageable);
 }
