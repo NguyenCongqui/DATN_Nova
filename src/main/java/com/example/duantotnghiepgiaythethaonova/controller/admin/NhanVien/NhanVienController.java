@@ -96,11 +96,11 @@ public class NhanVienController {
     public ResponseEntity<String> updateStatus(@RequestParam("userId") Integer id, @RequestParam("status") int trangThai) {
         try {
             nguoiDungService.updateUserStatus(id, trangThai);
-            return ResponseEntity.ok("Cập nhật trạng thái thành công");
+            return ResponseEntity.ok("Cập nhật trạng thái thành công!");
         } catch (IllegalArgumentException e) {
-            return ResponseEntity.badRequest().body("Người dùng không tồn tại");
+            return ResponseEntity.badRequest().body("Người dùng không tồn tại!");
         } catch (Exception e) {
-            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Lỗi khi cập nhật trạng thái");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Lỗi khi cập nhật trạng thái!");
         }
     }
 
