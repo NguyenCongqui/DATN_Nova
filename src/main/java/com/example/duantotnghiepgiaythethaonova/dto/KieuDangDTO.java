@@ -5,13 +5,12 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
-public class KieuDangDTO extends BaseDTO<KieuDangDTO>{
-
-    private String tenKieuDang;
-
-    private Boolean daXoa;
-
-
+@NoArgsConstructor
+public class KieuDangDTO extends BaseDTO<BaseDTO> {
+	private Integer IdKieuDang;
+	
+	private String TenKieuDang;
+	
+	private Boolean DaXoa;
 }
