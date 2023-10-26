@@ -33,7 +33,7 @@ public class KhuyenMai extends BaseEntity implements Serializable {
     private Date ngayBatDau;
     @Column(name = "NgayKetThuc")
     private Date ngayKetThuc;
-    @Column(name = "PhamTramGiam")
+    @Column(name = "PhanTramGiam")
     private Integer phanTramGiam;
     @Column(name = "TrangThai")
     private Boolean trangThai;
