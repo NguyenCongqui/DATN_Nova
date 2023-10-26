@@ -15,6 +15,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;
 
@@ -22,42 +23,37 @@ import java.util.Optional;
 @AllArgsConstructor
 @Slf4j
 public class ThuongHieuServiceImpl implements ThuongHieuService {
-
     private ThuongHieuRepository thuongHieuRepository;
-    private static Logger logger = LoggerFactory.getLogger(ThuongHieuServiceImpl.class);
-
+    private static Logger logger = LoggerFactory.getLogger(ChatLieuServiceImpl.class);
 
     @Override
-    public Page<ThuongHieu> selectAllThuongHieuExist(Pageable pageable) {
-        logger.info("Select all thuong hieu exist");
-        return thuongHieuRepository.selectAllThuongHieuExist(pageable);
+    public List<ThuongHieu> selectAllLoaiHangExist() {
+        return thuongHieuRepository.selectAllThuongHieuExist();
     }
 
     @Override
-    public Optional<ThuongHieu> findById(Integer id) {
-        return thuongHieuRepository.findById(id);
-    }
-
-    @Override
+    @Transactional
     public <S extends ThuongHieu> S save(S entity) {
         entity.setDaXoa(false);
         return thuongHieuRepository.save(entity);
     }
 
     @Override
-    public List<ThuongHieu> selectAllThuongHieuExist() {
-        logger.info("Select all thuong hieu exist");
-        return thuongHieuRepository.selectAllThuongHieuExist();
+    public Optional<ThuongHieu> findById(Integer id) {
+        return thuongHieuRepository.findById(id);
     }
-
     @Override
-    public Page<ThuongHieu> getThuongHieuExistByName(String tenThuongHieu, Pageable pageable) {
-        return thuongHieuRepository.getThuongHieuExistByName(tenThuongHieu, pageable);
+    public Page<ThuongHieu> selectAllThuongHieuExist(Pageable page) {
+        return thuongHieuRepository.selectAllThuongHieuExist(page);
     }
-
+    @Override
+    public Page<ThuongHieu> getThuongHieuExistByName(String tenThuongHieu, Pageable page) {
+        return thuongHieuRepository.getThuongHieuExistByName(tenThuongHieu, page);
+    }
     @Override
     public void delete(ThuongHieu entity) {
         entity.setDaXoa(true);
         thuongHieuRepository.save(entity);
     }
+
 }

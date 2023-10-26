@@ -9,24 +9,16 @@ import java.util.List;
 import java.util.Optional;
 
 public interface ThuongHieuService {
-
-    Page<ThuongHieu> selectAllThuongHieuExist(Pageable pageable);
-    //phan trang
+    List<ThuongHieu> selectAllLoaiHangExist();
 
     Optional<ThuongHieu> findById(Integer id);
-    //tim theo id
 
-    <S extends  ThuongHieu> S save(S entity);
-    //them
+    <S extends ThuongHieu> S save(S entity);
 
-    List<ThuongHieu> selectAllThuongHieuExist();
-    //goi cac chat lieu ton tai
+    Page<ThuongHieu> selectAllThuongHieuExist(Pageable page);
 
-    Page<ThuongHieu> getThuongHieuExistByName(String tenThuongHieu, Pageable pageable);
-    //tim chat lieu theo ten , phan trang
+    Page<ThuongHieu> getThuongHieuExistByName(String tenThuongHieu, Pageable page);
 
     void delete(ThuongHieu entity);
-    //xoa
-
 
 }

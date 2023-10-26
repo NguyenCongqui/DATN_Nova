@@ -2,10 +2,9 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{admin/layouts/dashboard}">
 <head>
-    <script type="text/javascript" th:src="@{/static/admin/js/dayGiay/dayGiay.js}"></script>
-<!--    <link rel="stylesheet" th:href="@{/static/admin/css/sb-admin-2.min.css}">-->
+    <script type="text/javascript" th:src="@{/static/admin/js/thuongHieu/thuongHieu.js}"></script>
+    <!--    <link rel="stylesheet" th:href="@{/static/admin/css/sb-admin-2.min.css}">-->
 </head>
-
 <body>
     <section layout:fragment="content" class="container-fluid">
         <div id="toastsCustomCss">
@@ -47,29 +46,29 @@
         <!-- Begin Page Content -->
         <div class="card shadow mb-1 pt-sm-2 pb-sm-3">
             <div class="col-lg-12">
-                <div class="row" th:object="${dayGiay}">
+                <div class="row" th:object="${thuongHieu}">
                     <div class="col-sm-4 mt-2">
-                        <label>Tên dây giày:</label>
-                        <input type="text" class="form-control" th:field="*{TenDayGiay}" placeholder="Tên dây giày"
+                        <label>Tên thương hiệu:</label>
+                        <input type="text" class="form-control" th:field="*{TenThuongHieu}" placeholder="Tên sản phẩm"
                             readonly>
                     </div>
                     <div class="col-sm-4 mt-2">
-                        <label>Tên người tạo:</label>
+                        <label >Tên người tạo:</label>
                         <input type="text" class="form-control" th:field="*{NguoiTao}" placeholder="Tên sản phẩm"
                             readonly>
                     </div>
                     <div class="col-sm-4 mt-2">
-                        <label>Ngày tạo:</label>
+                        <label >Ngày tạo:</label>
                         <input type="text" class="form-control" th:field="*{NgayTao}" placeholder="Tên sản phẩm"
                             readonly>
                     </div>
                     <div class="col-sm-4 mt-2">
-                        <label>Tên người sửa cuối:</label>
+                        <label >Tên người sửa cuối:</label>
                         <input type="text" class="form-control" th:field="*{NguoiCapNhat}" placeholder="Tên sản phẩm"
                             readonly>
                     </div>
                     <div class="col-sm-4 mt-2">
-                        <label>Ngày sửa cuối :</label>
+                        <label >Ngày sửa cuối :</label>
                         <input type="text" class="form-control" th:field="*{NgayCapNhat}" placeholder="Tên sản phẩm"
                             readonly>
                     </div>

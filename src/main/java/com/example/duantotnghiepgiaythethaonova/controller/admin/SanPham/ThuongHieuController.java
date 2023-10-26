@@ -29,134 +29,124 @@ public class ThuongHieuController {
     @Autowired
     private ThuongHieuService thuongHieuService;
 
-    @Autowired
-    private SanPhamService sanPhamService;
-//
-//    @GetMapping("")
-//    public String chatLieu(Model model, HttpServletRequest request, @RequestParam("page") Optional<Integer> page,
-//                           @RequestParam("size") Optional<Integer> size, @RequestParam("messageSuccess") Optional<String> messageSuccess,
-//                           @RequestParam("messageDanger") Optional<String> messageDanger) {
-//        String[] tenChatLieuSearchs = request.getParameterValues("tenChatLieuSearch");
-//        int currentPage = page.orElse(1);
-//        int pageSize = size.orElse(10);
-//        Pageable pageable = PageRequest.of(currentPage - 1, pageSize);
-//        Page<ThuongHieu> resultPage = null;
-//        if (tenChatLieuSearchs == null) {
-//            List<ThuongHieuDTO> dtos = new ArrayList<>();
-//            resultPage = thuongHieuService.selectAllThuongHieuExist(pageable);
-//            for (ThuongHieu thuongHieu : resultPage.getContent()) {
-//                ChatLieuDTO dto = new ChatLieuDTO();
-//                int soSanPhamCungChatLieu = sanPhamService.selectCountSanPhamByChatLieuId(thuongHieu.getIdThuongHieu());
-//                dto.setIdChatLieu(thuongHieu.getIdThuongHieu());
-//                dto.setTenChatLieu(thuongHieu.getTenChatLieu());
-//                dto.setSoSanPhamCungChatLieu(soSanPhamCungChatLieu);
-//                dtos.add(dto);
-//            }
-//            model.addAttribute("chatLieus", dtos);
-//        } else {
-//            if (!tenChatLieuSearchs[0].isEmpty()) {
-//                List<ChatLieuDTO> dtos = new ArrayList<>();
-//                resultPage = thuongHieuService.getChatLieuExistByName(tenChatLieuSearchs[0], pageable);
-//                for (ChatLieu chatLieu : resultPage.getContent()) {
-//                    ChatLieuDTO dto = new ChatLieuDTO();
-//                    int soSanPhamCungChatLieu = sanPhamService.selectCountSanPhamByChatLieuId(chatLieu.getIdChatLieu());
-//                    dto.setIdChatLieu(chatLieu.getIdChatLieu());
-//                    dto.setTenChatLieu(chatLieu.getTenChatLieu());
-//                    dto.setSoSanPhamCungChatLieu(soSanPhamCungChatLieu);
-//                    dtos.add(dto);
-//                }
-//                model.addAttribute("chatLieus", dtos);
-//            } else {
-//                List<ChatLieuDTO> dtos = new ArrayList<>();
-//                resultPage = thuongHieuService.selectAllChatLieuExist(pageable);
-//                for (ChatLieu chatLieu : resultPage.getContent()) {
-//                    ChatLieuDTO dto = new ChatLieuDTO();
-//                    int soSanPhamCungChatLieu = sanPhamService.selectCountSanPhamByChatLieuId(chatLieu.getIdChatLieu());
-//                    dto.setIdChatLieu(chatLieu.getIdChatLieu());
-//                    dto.setTenChatLieu(chatLieu.getTenChatLieu());
-//                    dto.setSoSanPhamCungChatLieu(soSanPhamCungChatLieu);
-//                    dtos.add(dto);
-//                }
-//                model.addAttribute("chatLieus", dtos);
-//            }
-//        }
-//        int totalPages = resultPage.getTotalPages();
-//        if (totalPages > 0) {
-//            int start = Math.max(1, currentPage - 2);
-//            int end = Math.min(currentPage + 2, totalPages);
-//            if (totalPages > 5) {
-//                if (end == totalPages) {
-//                    start = end - 5;
-//                } else if (start == 1) {
-//                    end = start + 5;
-//                }
-//            }
-//            List<Integer> pageNumbers = IntStream.rangeClosed(start, end).boxed().collect(Collectors.toList());
-//            model.addAttribute("pageNumbers", pageNumbers);
-//        }
-//        if (messageSuccess.isPresent()) {
-//            model.addAttribute("messageSuccess", messageSuccess.get());
-//        }
-//        if (messageSuccess.isPresent()) {
-//            model.addAttribute("messageDanger", messageDanger.get());
-//        }
-//        model.addAttribute("resultPage", resultPage);
-//        return "admin/chatLieu/chatLieuManage";
-//    }
-//
-//    @PostMapping("createOrUpdate")
-//    public String createOrUpdate(RedirectAttributes redirect,
-//                                 @RequestParam("tenChatLieuCreateOrUpdate") String tenChatLieu,
-//                                 @RequestParam("chatLieuIdCreateOrUpdate") String chatLieuId) {
-//        final String redirectUrl = "redirect:/admin/chat-lieu";
-//        if (tenChatLieu != null && chatLieuId != null) {
-//            if (tenChatLieu.isEmpty()) {
-//                redirect.addFlashAttribute("messageDanger", "Tên chất liệu không được để trống");
-//                return redirectUrl;
-//            }
-//            Optional<ChatLieu> opt = thuongHieuService.findById(Integer.parseInt(chatLieuId));
-//            if (opt.isPresent()) {
-//                opt.get().setTenChatLieu(tenChatLieu);
-//                redirect.addFlashAttribute("messageSuccess", "Cập nhật chất liệu thành công");
-//                thuongHieuService.save(opt.get());
-//                return redirectUrl;
-//            } else {
-//                ChatLieu cl = new ChatLieu();
-//                cl.setTenChatLieu(tenChatLieu);
-//                redirect.addFlashAttribute("messageSuccess", "Thêm mới chất liệu thành công");
-//                thuongHieuService.save(cl);
-//                return redirectUrl;
-//            }
-//        } else {
-//            redirect.addFlashAttribute("messageDanger", "Đã xảy ra lỗi khi cập nhật chất liệu");
-//            return redirectUrl;
-//        }
-//    }
-//
-//    @GetMapping("info/{id}")
-//    public String info(@PathVariable("id") Integer id, Model model, RedirectAttributes redirect) {
-//        Optional<ChatLieu> opt = thuongHieuService.findById(id);
-//        if (opt.isPresent()) {
-//            model.addAttribute("chatLieu", opt.get());
-//            return "admin/chatLieu/infoChatLieu";
-//        } else {
-//            redirect.addFlashAttribute("messageDanger", "Đã xảy ra lỗi khi tìm chi tiết chất liệu");
-//            return "redirect:/admin/chat-lieu";
-//        }
-//
-//    }
-//
-//
-//    @GetMapping("delete/{id}")
-//    public String delete(@PathVariable("id") Integer id, Model model, RedirectAttributes redirect) {
-//        Optional<ChatLieu> opt = thuongHieuService.findById(id);
-//        if (opt.isPresent()) {
-//            thuongHieuService.delete(opt.get());
-//            redirect.addFlashAttribute("messageSuccess", "Xóa chất liệu thành công");
-//            return "redirect:/admin/chat-lieu";
-//        } else {
-//            redirect.addFlashAttribute("messageDanger", "Đã xảy ra lỗi khi xóa chất liệu");
-//            return "redirect:/admin/chat-lieu";
-//        }
-//    }
+    @GetMapping("")
+    public String chatLieu(Model model, HttpServletRequest request, @RequestParam("page") Optional<Integer> page,
+                           @RequestParam("size") Optional<Integer> size, @RequestParam("messageSuccess") Optional<String> messageSuccess,
+                           @RequestParam("messageDanger") Optional<String> messageDanger) {
+        String[] tenThuongHieuSearchs = request.getParameterValues("tenThuongHieuSearch");
+        int currentPage = page.orElse(1);
+        int pageSize = size.orElse(10);
+        Pageable pageable = PageRequest.of(currentPage - 1, pageSize);
+        Page<ThuongHieu> resultPage = null;
+        if (tenThuongHieuSearchs == null) {
+            List<ThuongHieuDTO> dtos = new ArrayList<>();
+            resultPage = thuongHieuService.selectAllThuongHieuExist(pageable);
+            for (ThuongHieu thuongHieu : resultPage.getContent()) {
+                ThuongHieuDTO dto = new ThuongHieuDTO();
+                dto.setIdThuongHieu(thuongHieu.getIdThuongHieu());
+                dto.setTenThuongHieu(thuongHieu.getTenThuongHieu());
+                dtos.add(dto);
+            }
+            model.addAttribute("thuongHieus", dtos);
+        } else {
+            if(!tenThuongHieuSearchs[0].isEmpty()) {
+                List<ThuongHieuDTO> dtos = new ArrayList<>();
+                resultPage = thuongHieuService.getThuongHieuExistByName(tenThuongHieuSearchs[0], pageable);
+                for (ThuongHieu thuongHieu : resultPage.getContent()) {
+                    ThuongHieuDTO dto = new ThuongHieuDTO();
+                    dto.setIdThuongHieu(thuongHieu.getIdThuongHieu());
+                    dto.setTenThuongHieu(thuongHieu.getTenThuongHieu());
+                    dtos.add(dto);
+                }
+                model.addAttribute("thuongHieus", dtos);
+            }else {
+                List<ThuongHieuDTO> dtos = new ArrayList<>();
+                resultPage = thuongHieuService.selectAllThuongHieuExist(pageable);
+                for (ThuongHieu thuongHieu : resultPage.getContent()) {
+                    ThuongHieuDTO dto = new ThuongHieuDTO();
+                    dto.setIdThuongHieu(thuongHieu.getIdThuongHieu());
+                    dto.setTenThuongHieu(thuongHieu.getTenThuongHieu());
+                    dtos.add(dto);
+                }
+                model.addAttribute("thuongHieus", dtos);
+            }
+        }
+        int totalPages = resultPage.getTotalPages();
+        if (totalPages > 0) {
+            int start = Math.max(1, currentPage - 2);
+            int end = Math.min(currentPage + 2, totalPages);
+            if (totalPages > 5) {
+                if (end == totalPages) {
+                    start = end - 5;
+                } else if (start == 1) {
+                    end = start + 5;
+                }
+            }
+            List<Integer> pageNumbers = IntStream.rangeClosed(start, end).boxed().collect(Collectors.toList());
+            model.addAttribute("pageNumbers", pageNumbers);
+        }
+        if (messageSuccess.isPresent()) {
+            model.addAttribute("messageSuccess", messageSuccess.get());
+        }
+        if (messageSuccess.isPresent()) {
+            model.addAttribute("messageDanger", messageDanger.get());
+        }
+        model.addAttribute("resultPage", resultPage);
+        return "admin/thuongHieu/thuongHieuManage";
+    }
+
+    @PostMapping("createOrUpdate")
+    public String createOrUpdate(RedirectAttributes redirect,
+                                 @RequestParam("tenThuongHieuCreateOrUpdate") String tenThuongHieu,
+                                 @RequestParam("thuongHieuIdCreateOrUpdate") String thuongHieuId) {
+        final String redirectUrl = "redirect:/admin/thuong-hieu";
+        if(tenThuongHieu != null && thuongHieuId!= null) {
+            if(thuongHieuId.isEmpty()) {
+                redirect.addFlashAttribute("messageDanger","Tên thương hiệu không được để trống");
+                return redirectUrl;
+            }
+            Optional<ThuongHieu> opt = thuongHieuService.findById(Integer.parseInt(thuongHieuId));
+            if(opt.isPresent()) {
+                opt.get().setTenThuongHieu(tenThuongHieu);
+                redirect.addFlashAttribute("messageSuccess","Cập nhật  thương hiệu thành công");
+                thuongHieuService.save(opt.get());
+                return redirectUrl;
+            }else {
+                ThuongHieu cl = new ThuongHieu();
+                cl.setTenThuongHieu(tenThuongHieu);
+                redirect.addFlashAttribute("messageSuccess","Thêm mới  thương hiệu thành công");
+                thuongHieuService.save(cl);
+                return redirectUrl;
+            }
+        }else {
+            redirect.addFlashAttribute("messageDanger","Đã xảy ra lỗi khi cập nhật  thương hiệu");
+            return redirectUrl;
+        }
+    }
+
+    @GetMapping("info/{id}")
+    public String info(@PathVariable("id") Integer id, Model model,RedirectAttributes redirect) {
+        Optional<ThuongHieu> opt = thuongHieuService.findById(id);
+        if(opt.isPresent()) {
+            model.addAttribute("thuongHieu", opt.get());
+        }else {
+            redirect.addFlashAttribute("messageDanger","Đã xảy ra lỗi khi tìm chi tiết  thương hiệu");
+            return "redirect:/admin/thuong-hieu";
+        }
+        return "admin/thuongHieu/infoThuongHieu";
+    }
+
+
+    @GetMapping("delete/{id}")
+    public String delete(@PathVariable("id") Integer id, Model model,RedirectAttributes redirect) {
+        Optional<ThuongHieu> opt = thuongHieuService.findById(id);
+        if(opt.isPresent()) {
+            thuongHieuService.delete(opt.get());
+            redirect.addFlashAttribute("messageSuccess","Xóa  thương hiệu thành công");
+            return "redirect:/admin/thuong-hieu";
+        }else {
+            redirect.addFlashAttribute("messageDanger","Đã xảy ra lỗi khi xóa  thương hiệu");
+            return "redirect:/admin/thuong-hieu";
+        }
+    }
 }

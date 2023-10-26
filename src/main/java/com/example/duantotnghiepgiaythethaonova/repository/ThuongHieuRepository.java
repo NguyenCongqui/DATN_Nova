@@ -13,13 +13,12 @@ import java.util.List;
 
 @Repository
 public interface ThuongHieuRepository extends JpaRepository<ThuongHieu, Integer> {
-
-    @Query(value = "SELECT * FROM ThuongHieu c WHERE  c.daXoa = 0 ORDER BY c.idThuongHieu DESC ",nativeQuery = true)
-    Page<ThuongHieu> selectAllThuongHieuExist(Pageable pageable);
-
-    @Query(value = "SELECT * FROM ThuongHieu c WHERE  c.daXoa = 0 ORDER BY c.idThuongHieu DESC ",nativeQuery = true)
+    @Query(value = "SELECT * FROM ThuongHieu c WHERE c.DaXoa = 0 ORDER BY c.IdThuongHieu DESC", nativeQuery = true)
     List<ThuongHieu> selectAllThuongHieuExist();
 
-    @Query(value = "SELECT * FROM ThuongHieu c WHERE  c.daXoa = 0 AND c.tenThuongHieu like %:tenThuongHieu% ORDER BY c.idThuongHieu DESC ",nativeQuery = true)
-    Page<ThuongHieu> getThuongHieuExistByName(@Param("tenThuongHieu") String tenThuongHieu, Pageable pageable);
+    @Query(value = "SELECT * FROM ThuongHieu c WHERE c.DaXoa = 0 ORDER BY c.IdThuongHieu DESC", nativeQuery = true)
+    Page<ThuongHieu> selectAllThuongHieuExist(Pageable page);
+
+    @Query(value = "SELECT * FROM ThuongHieu c WHERE c.DaXoa = 0 AND c.TenThuongHieu like %:TenThuongHieu% ORDER BY c.IdThuongHieu DESC", nativeQuery = true)
+    Page<ThuongHieu> getThuongHieuExistByName(@Param("TenThuongHieu") String tenThuongHieu, Pageable page);
 }
