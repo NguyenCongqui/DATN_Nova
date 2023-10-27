@@ -1,6 +1,7 @@
 package com.example.duantotnghiepgiaythethaonova.service.impl;
 
 import com.example.duantotnghiepgiaythethaonova.config.BcryptedPasswordEncoderConfig;
+import com.example.duantotnghiepgiaythethaonova.entity.AuthenticationProvider;
 import com.example.duantotnghiepgiaythethaonova.entity.NguoiDung;
 import com.example.duantotnghiepgiaythethaonova.entity.NguoiDung_VaiTro;
 import com.example.duantotnghiepgiaythethaonova.entity.VaiTro;
@@ -14,10 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
-import java.util.Map;
-import java.util.Optional;
-import java.util.Random;
-import java.util.RandomAccess;
+import java.util.*;
 
 @Service
 public class NhanVienServiceImpl implements NhanVienService {
@@ -87,9 +85,13 @@ public class NhanVienServiceImpl implements NhanVienService {
         nguoiDung.setDiaChi(diaChi);
         nguoiDung.setSoDienThoai(soDienThoai);
         nguoiDung.setDaXoa(false);
+        nguoiDung.setTrangThai(0);
         nguoiDung.setAnhNhanVien(anhNhanVien);
         nguoiDung.setMatKhau(new String(password));
         nguoiDung.setMatKhau(passwordEncoder.encode(new String(password)));
+        nguoiDung.setAuthProvider(AuthenticationProvider.LOCAL);
+        nguoiDung.setNgayTao(new Date());
+        nguoiDung.setNguoiTao("Linh Create");
 //      nguoiDung.setMatKhau(passwordEncoder.encode(new String(password)));
 
 //        mailService.sendMail("linhnkph24164@fpt.edu.vn",
@@ -162,6 +164,9 @@ public class NhanVienServiceImpl implements NhanVienService {
         nguoiDung.setSoDienThoai(soDienThoai);
         nguoiDung.setTenNguoiDung(hoTen);
         nguoiDung.setAnhNhanVien(anhNhanVien);
+        nguoiDung.setTrangThai(0);
+        nguoiDung.setNgayCapNhat(new Date());
+        nguoiDung.setNguoiCapNhat("Linh Update");
 
         // Thay đổi mật khẩu nếu cần
         // nguoiDung.setMatKhau(passwordEncoder.encode("new_password"));

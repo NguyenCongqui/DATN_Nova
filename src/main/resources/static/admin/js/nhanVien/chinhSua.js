@@ -57,7 +57,7 @@ $(document).ready(function () {
             if (response.success) {
                 Swal.fire({
                     icon: "success",
-                    title: "Sửa thông tin nhân viên thành công",
+                    title: "Sửa thông tin nhân viên thành công!",
                     showConfirmButton: false,
                     timer: 2000,
                 }).then(() => {

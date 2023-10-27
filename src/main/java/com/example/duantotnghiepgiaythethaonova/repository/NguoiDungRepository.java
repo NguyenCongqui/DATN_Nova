@@ -16,7 +16,7 @@ import java.util.Optional;
 @Repository
 public interface NguoiDungRepository extends JpaRepository<NguoiDung, Integer> {
 
-    @Query(value = "select * from NguoiDung where daXoa = 0" , nativeQuery = true)
+    @Query(value = "select * from NguoiDung where daXoa = 0", nativeQuery = true)
     List<NguoiDung> GetAll();
 
 //    @Query(value = "select e from NguoiDung e where e.TrangThai = 0 and e.TenNguoiDung like :name")
@@ -26,16 +26,16 @@ public interface NguoiDungRepository extends JpaRepository<NguoiDung, Integer> {
     Integer getMaxId();
 
     @Modifying
-    @Query(value = "UPDATE NguoiDung SET daXoa = 1 where idNguoiDung= :id" ,nativeQuery = true)
+    @Query(value = "UPDATE NguoiDung SET daXoa = 1 where idNguoiDung= :id", nativeQuery = true)
     void xoaNguoiDung(@Param("id") Integer id);
 
-    @Query(value = "select * from NguoiDung  where trangThai= ?1",nativeQuery = true)
+    @Query(value = "select * from NguoiDung  where trangThai= ?1", nativeQuery = true)
     List<NguoiDung> findByTrangThai(Integer trangThai);
 
-    @Query(value = "select * from NguoiDung  where email= ?1 AND daXoa= 0" ,nativeQuery = true)
+    @Query(value = "select * from NguoiDung  where email= ?1 AND daXoa= 0", nativeQuery = true)
     NguoiDung findByEmail(String email);
 
-    @Query(value = "select * from NguoiDung  where email= ?1 AND daXoa= 0" ,nativeQuery = true)
+    @Query(value = "select * from NguoiDung  where email= ?1 AND daXoa= 0", nativeQuery = true)
     Optional<NguoiDung> findByEmail2(String email);
 
     @Query(value = "select * from NguoiDung where soDienThoai  = ?1 AND daXoa=0", nativeQuery = true)
@@ -52,23 +52,27 @@ public interface NguoiDungRepository extends JpaRepository<NguoiDung, Integer> {
     @Query(value = "select * from NguoiDung where trangThai = 0 AND daXoa=0 AND email =:email", nativeQuery = true)
     NguoiDung findByEmailAndTrangThaiAndDaXoa(@Param("email") String email);
 
-    @Query(value = "SELECT * FROM NguoiDung where daXoa = 0 ORDER BY ngayTao DESC" , nativeQuery = true)
+    @Query(value = "SELECT * FROM NguoiDung where daXoa = 0 ORDER BY ngayTao DESC", nativeQuery = true)
     Page<NguoiDung> findAllNguoiDung(Pageable pageable);
 
-    @Query(value = "SELECT * FROM NguoiDung where daXoa = 0 and trangThai = ?" , nativeQuery = true)
+    @Query(value = "SELECT * FROM NguoiDung where daXoa = 0 and trangThai = ?", nativeQuery = true)
     Page<NguoiDung> timKiemNguoiDungByTrangThai(Integer trangThai, Pageable pageable);
 
     @Query(value = "SELECT * FROM NguoiDung WHERE maNguoiDung = :maNguoiDung", nativeQuery = true)
     NguoiDung findNguoiDungByMaNguoiDung(@Param("maNguoiDung") String maNguoiDung);
 
-    @Query(value ="select * from NguoiDung where daXoa = 0 and trangThai = ?" , nativeQuery = true)
+    @Query(value = "select * from NguoiDung where daXoa = 0 and trangThai = ?", nativeQuery = true)
     Page<NguoiDung> timKiemNguoiDungByTrangThai(int trangThai, Pageable pageable);
 
-    @Query(value = "select * from NguoiDung where daXoa = 0 and DATE(ngayTao)", nativeQuery = true)
+//    @Query(value = "select * from NguoiDung where daXoa = 0 and DATE(ngayTao) = :ngayTao", nativeQuery = true)
+//    Page<NguoiDung> timKiemNguoiDungByNgayTao(@Param("ngayTao") LocalDate ngayTao, Pageable pageable);
+
+    @Query(value = "SELECT * FROM NguoiDung WHERE daXoa = 0 AND CONVERT(DATE, ngayTao) = CONVERT(DATE, :ngayTao)", nativeQuery = true)
     Page<NguoiDung> timKiemNguoiDungByNgayTao(@Param("ngayTao") LocalDate ngayTao, Pageable pageable);
 
     @Query(value = "select * from NguoiDung where daXoa = 0 and (maNguoiDung like %:input% or soDienThoai like %:input% or tenNguoiDung like %:input% or email like %:input%)", nativeQuery = true)
     Page<NguoiDung> timKiemNguoiDung(@Param("input") String input, Pageable pageable);
+
 
 
 }

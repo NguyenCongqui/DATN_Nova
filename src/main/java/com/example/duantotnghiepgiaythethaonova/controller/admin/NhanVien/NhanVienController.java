@@ -18,6 +18,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -35,6 +36,7 @@ public class NhanVienController {
 
     @Autowired
     private VaiTroRepository vaiTroRepository;
+
 
     private List<NguoiDungDTO> convertPageToList(Page<NguoiDung> page) {
         List<NguoiDungDTO> listNguoiDungDTO = new ArrayList<>();
@@ -67,6 +69,70 @@ public class NhanVienController {
         dto.setListNguoiDungDTO(listNguoiDungDTO);
         model.addAttribute("NguoiDungDTO", dto);
         model.addAttribute("totalPages", users.getTotalPages());
+        model.addAttribute("page", page);
+        model.addAttribute("size", size);
+        return "admin/NhanVien/danhSachNhanVien";
+    }
+
+
+    //Tìm kiếm all
+    @RequestMapping("admin/NhanVien/timKiem/{duLieuTimKiem}")
+    public String timKiemNguoiDung(Model model,
+                                   @RequestParam(defaultValue = "1") int page,
+                                   @RequestParam(defaultValue = "4") int size,
+                                   @PathVariable("duLieuTimKiem") String duLieuTimKiem) {
+
+        NguoiDungDTO dto = new NguoiDungDTO();
+        dto.setDuLieuTimKiem(duLieuTimKiem);
+        PageRequest pageRequest = PageRequest.of(page - 1, size, Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idNguoiDung"));
+        Page<NguoiDung> nguoiDung = nguoiDungRepository.timKiemNguoiDung(duLieuTimKiem, pageRequest);
+        List<NguoiDungDTO> listNguoiDungDTO = convertPageToList(nguoiDung);
+        dto.setListNguoiDungDTO(listNguoiDungDTO);
+        model.addAttribute("NguoiDungDTO", dto);
+        model.addAttribute("DuLieuTimKiem", duLieuTimKiem);
+        model.addAttribute("totalPages", nguoiDung.getTotalPages());
+        model.addAttribute("page", page);
+        model.addAttribute("size", size);
+        return "admin/NhanVien/danhSachNhanVien";
+    }
+
+    //Tìm kiếm nga tạo
+    @RequestMapping("admin/NhanVien/Ngay/{duLieuTimKiem}")
+    public String timKiemNguoiDungbyNgayTao(Model model,
+                                            @RequestParam(defaultValue = "1") int page,
+                                            @RequestParam(defaultValue = "4") int size,
+                                            @PathVariable("duLieuTimKiem") String duLieuTimKiemString) {
+
+        NguoiDungDTO dto = new NguoiDungDTO();
+        LocalDate duLieuTimKiem = LocalDate.parse(duLieuTimKiemString);
+        dto.setDuLieuTimKiem(duLieuTimKiemString);
+        PageRequest pageRequest = PageRequest.of(page - 1, size, Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idNguoiDung"));
+        Page<NguoiDung> nguoiDung = nguoiDungRepository.timKiemNguoiDungByNgayTao(duLieuTimKiem, pageRequest);
+        List<NguoiDungDTO> listNguoiDungDTO = convertPageToList(nguoiDung);
+        dto.setListNguoiDungDTO(listNguoiDungDTO);
+        model.addAttribute("DuLieuTimKiem", duLieuTimKiem);
+        model.addAttribute("NguoiDungDTO", dto);
+        model.addAttribute("totalPages", nguoiDung.getTotalPages());
+        model.addAttribute("page", page);
+        model.addAttribute("size", size);
+        return "admin/NhanVien/danhSachNhanVien";
+    }
+
+    @RequestMapping("admin/NhanVien/TrangThai/{duLieuTimKiem}")
+    public String timKiemNguoiDungbyTrangThai(Model model,
+                                              @RequestParam(defaultValue = "1") int page,
+                                              @RequestParam(defaultValue = "4") int size,
+                                              @PathVariable("duLieuTimKiem") int trangThai) {
+
+        NguoiDungDTO dto = new NguoiDungDTO();
+
+        PageRequest pageRequest = PageRequest.of(page - 1, size, Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idNguoiDung"));
+        Page<NguoiDung> nguoiDung = nguoiDungRepository.timKiemNguoiDungByTrangThai(trangThai, pageRequest);
+        List<NguoiDungDTO> listNguoiDungDTO = convertPageToList(nguoiDung);
+        dto.setListNguoiDungDTO(listNguoiDungDTO);
+        model.addAttribute("DuLieuTimKiem", trangThai);
+        model.addAttribute("NguoiDungDTO", dto);
+        model.addAttribute("totalPages", nguoiDung.getTotalPages());
         model.addAttribute("page", page);
         model.addAttribute("size", size);
         return "admin/NhanVien/danhSachNhanVien";

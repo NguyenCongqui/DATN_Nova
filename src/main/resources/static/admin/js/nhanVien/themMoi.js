@@ -49,7 +49,7 @@ $(document).ready(function () {
         if (!ho || !ten || !email || !diaChi || !soDienThoai || !vaiTro) {
             Swal.fire({
                 icon: "error",
-                title: "Vui lòng nhập đầy đủ thông tin và chọn chức vụ",
+                title: "Vui lòng nhập đầy đủ thông tin và chọn chức vụ!",
                 showConfirmButton: false,
                 timer: 2000,
             });
@@ -68,7 +68,7 @@ $(document).ready(function () {
             if (response.success) {
                 Swal.fire({
                     icon: "success",
-                    title: "Thêm nhân viên thành công",
+                    title: "Thêm nhân viên thành công!",
                     showConfirmButton: false,
                     timer: 2000,
                 }).then(() => {

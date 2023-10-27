@@ -43,7 +43,7 @@ $(document).ready(function () {
             window.location.href = "/admin/NhanVien/timKiem/" + input;
         }else {
             Swal.fire({
-                icon: 'warning', title: 'Vui lòng nhập vào ô tìm kiếm', showConfirmButton: false, timer: 2000
+                icon: 'warning', title: 'Vui lòng nhập vào ô tìm kiếm!', showConfirmButton: false, timer: 2000
             });
         }
     });
@@ -78,11 +78,11 @@ $(document).ready(function () {
         $.post("/updateStatus", {userId: userId, status: status}, function (data) {
             Swal.fire({
 
-                icon: 'success', title: 'Cập nhật thành công', showConfirmButton: false, timer: 1500
+                icon: 'success', title: 'Cập nhật thành công!', showConfirmButton: false, timer: 1500
             });
         }).fail(function (error) {
             Swal.fire({
-                icon: 'error', title: 'Có lỗi xảy ra', text: error.responseText
+                icon: 'error', title: 'Có lỗi xảy ra!', text: error.responseText
             });
         });
     });
