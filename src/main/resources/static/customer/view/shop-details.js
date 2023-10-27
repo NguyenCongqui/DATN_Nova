@@ -27,7 +27,7 @@ function chooseOptionLi(labelName, labelId, inputName, inputId) {
 }
 
 function flexUrlSubmit(url, method) {
-    $("#flexUrlTableFormShopDetails").attr("action", "/customer/" + url);
+    $("#flexUrlTableFormShopDetails").attr("action", "/khachhang/" + url);
     $("#flexUrlTableFormShopDetails").attr("method", method);
     document.getElementById("flexUrlTableFormShopDetails").submit();
 }
