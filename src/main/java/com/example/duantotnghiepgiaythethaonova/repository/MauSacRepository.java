@@ -1,6 +1,5 @@
 package com.example.duantotnghiepgiaythethaonova.repository;
 
-import com.example.duantotnghiepgiaythethaonova.entity.KichCo;
 import com.example.duantotnghiepgiaythethaonova.entity.MauSac;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;

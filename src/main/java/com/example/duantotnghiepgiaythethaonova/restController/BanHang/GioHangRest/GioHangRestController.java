@@ -37,12 +37,12 @@ public class GioHangRestController {
         return gioHangService.addToCart(sanPhamId, mauSacId, kichCoId, soLuong);
     }
 
-    @RequestMapping("/customer/gio-hang-chi-tiet/xoa-sach-gio-hang")
+    @RequestMapping("/khachhang/gio-hang-chi-tiet/xoa-sach-gio-hang")
     public @ResponseBody Map<String, Object> xoaSachGioHang(@RequestParam Integer id) {
         Map<String, Object> response = new HashMap<>();
         try {
             gioHangService.xoaSachGioHang(id);
-            // Gửi phản hồi thành công về cho AJAX
+            // Gửi phn hồi thành công về cho AJAX
             response.put("success", true);
         } catch (Exception e) {
             // Xử lý lỗi nếu có

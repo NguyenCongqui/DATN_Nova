@@ -1,5 +1,7 @@
 package com.example.duantotnghiepgiaythethaonova.controller.khachHang;
 
+import com.example.duantotnghiepgiaythethaonova.dto.KichCoDTO;
+import com.example.duantotnghiepgiaythethaonova.dto.MauSacDTO;
 import com.example.duantotnghiepgiaythethaonova.dto.composite.SanPhamTaiQuayDTO;
 import com.example.duantotnghiepgiaythethaonova.dto.composite.ShopDetailsDTO;
 import com.example.duantotnghiepgiaythethaonova.dto.composite.ShowSanPhamdto;
@@ -9,6 +11,7 @@ import com.example.duantotnghiepgiaythethaonova.entity.KichCo;
 import com.example.duantotnghiepgiaythethaonova.entity.MauSac;
 import com.example.duantotnghiepgiaythethaonova.entity.SanPham;
 import com.example.duantotnghiepgiaythethaonova.service.*;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.data.domain.Page;
@@ -57,6 +60,22 @@ public class HomeController {
         gia.add("500.000VNĐ - 1.000.000VNĐ");
         gia.add("1.000.000VNĐ+");
         return gia;
+    }
+    @ModelAttribute("lstMauSac")
+    public List<MauSacDTO> getLstMauSac() {
+        return mauSacService.selectAllMauSacExist().stream().map(item -> {
+            MauSacDTO dto = new MauSacDTO();
+            BeanUtils.copyProperties(item, dto);
+            return dto;
+        }).collect(Collectors.toList());
+    }
+    @ModelAttribute("lstKichCo")
+    public List<KichCoDTO> getLstKichCo() {
+        return kichCoService.selectAllKichCoExist().stream().map(item -> {
+            KichCoDTO dto = new KichCoDTO();
+            BeanUtils.copyProperties(item, dto);
+            return dto;
+        }).collect(Collectors.toList());
     }
 
     @GetMapping("/images/{filename:.+}")

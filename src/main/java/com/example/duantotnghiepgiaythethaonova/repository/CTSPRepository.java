@@ -39,15 +39,16 @@ public interface CTSPRepository extends JpaRepository<ChiTietSanPham, Integer> {
     @Query(value = "SELECT * FROM SanPhamCT s WHERE s.IdSanPham = :IdSanPham AND s.IdMauSac = :IdMauSac AND s.IdKichCo = :IdKichCo AND s.DaXoa = 0", nativeQuery = true)
     Optional<ChiTietSanPham> getSanPhamChiTietByMauSacSizeSanPhamId(@Param("IdSanPham") Integer sanPhamId, @Param("IdMauSac") Integer mauSacId, @Param("IdKichCo") Integer kichCoId);
 
-    @Query(value = "SELECT spt.SoLuong\n" +
-            "FROM SanPhamCT spt\n" +
-            "JOIN KichCo kc ON spt.IdKichCo = kc.IdKichCo\n" +
-            "JOIN MauSac ms ON spt.IdMauSac = ms.IdMauSac\n" +
-            "WHERE kc.TenKichCo = :TenKichCo AND ms.IdMauSac = :IdMauSac AND spt.IdSanPham = :IdSanPham AND spt.CoHienThi = 1 AND spt.DaXoa = 0\n",
-            nativeQuery = true)
-    Integer laySoLuongSanPhamChiTiet(@Param("TenKichCo") String tenKichCo,
-                                     @Param("IdMauSac") Integer mauSacId,
-                                     @Param("IdSanPham") Integer sanPhamId);
+    @Query(value = """
+SELECT spt.SoLuong FROM dbo.SanPhamCT spt JOIN dbo.KichCo kc ON kc.IdKichCo = spt.IdKichCo
+			JOIN dbo.MauSac ms ON ms.IdMauSac = spt.IdMauSac
+			WHERE kc.TenKichCo = :tenKichCo AND ms.IdMauSac = :mauSacId
+			AND spt.IdSanPham = :sanPhamId AND spt.CoHienThi = 1 AND spt.DaXoa = 0
+""",
+           nativeQuery = true)
+    Integer laySoLuongSanPhamChiTiet(@Param("tenKichCo") String tenKichCo,
+                                     @Param("mauSacId") Integer mauSacId,
+                                     @Param("sanPhamId") Integer sanPhamId);
 
     @Query(value = "SELECT spt.SoLuong\n" +
             "FROM SanPhamCT spt\n" +

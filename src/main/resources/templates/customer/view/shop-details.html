@@ -6,7 +6,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script th:src="@{/static/customer/view/shop-details.js}"></script>
+    <script src="/static/customer/view/shop-details.js" ></script>
     <script src="/static/admin/js/banHang/banHangOnline/addToCart.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
@@ -16,8 +16,9 @@
 </head>
 <body>
 
-<div layout:fragment="content">
+<div class="shop-details" layout:fragment="content">
     <div id="flexUrlTableFormShopDetails" th:object="${shopDetails}">
+        <input type="hidden" th:field="*{sanPhamId}">
         <div class="page-content-wraper">
             <!-- Bread Crumb -->
             <section class="breadcrumb">
@@ -105,66 +106,94 @@
                                             leap into electronic remaining essentially unchanged.
                                         </p>
                                         <div class="row product-filters product__details__option" th:data-id="${shopDetails.sanPhamId}">
-                                            <form class="col-md-12 filters-color">
+                                            <form class="col-md-12 filters-color product__details__option__color">
                                                 <label for="select-color">Màu Sắc</label>
-                                                <div class="color-selector ">
-                                                    <label class="chonMauSac"
-                                                           onclick="chooseOptionColorLabel(this.getAttribute('id'),this.getAttribute('name'), this.getAttribute('input-name'), this.getAttribute('input-id'))"
+                                                <div class="color-selector">
+                                                    <label class="chonMauSac "
+                                                           onclick="chooseOptionColorLabel(this.getAttribute('id'),this.getAttribute('name'),
+                                            this.getAttribute('input-name'), this.getAttribute('input-id'))"
                                                            th:for="'mauSacInpId'+${istat.index}"
                                                            th:id="labelMS+${istat.index}"
 
                                                            th:each="ms, istat : ${shopDetails.lstMauSac}"
                                                            th:name="labelMSName"
                                                            th:input-name="mauSacId"
-                                                           th:input-id="'mauSacInpId'+${istat.index}"
-                                                    >
+                                                           th:input-id="'mauSacInpId'+${istat.index}">
 
-                                                        <div class="entry" type="radio" th:style="'background:'+ ${ms.maMauSac}"
 
+                                                        <input type="radio" class="entry"
+                                                               th:style="'background:'+ ${ms.maMauSac}"
                                                              th:value="${ms.idMauSac}"
                                                              th:id="'mauSacInpId'+${istat.index}"
                                                              th:field="*{mauSacId}">
-                                                        </div>
 
                                                     </label>
                                                 </div>
                                             </form>
-                                            <form class="col-md-12 filters-size">
+                                            <form class="col-md-12 filters-size product__details__option__size">
                                                 <label for="select-size">Size</label>
-                                                <div class="size-selector ">
+                                                <div class="size-selector">
                                                     <label class="chonKichCo"
                                                             th:for="${tenKichCo}" name="kichCoIdsName"
                                                            th:id="'KichCoIdsRadio'+${istat.index}"
                                                            th:input-id="'tenKichCoRadioId'+${istat.index}"
                                                            input-name="kichCoId"
-                                                           onclick="chooseOptionLabel(this.getAttribute('name'),this.getAttribute('id'),this.getAttribute('input-name'),this.getAttribute('input-id'))"
+                                                           onclick="chooseOptionLabel(this.getAttribute('name'),this.getAttribute('id'),
+                                                           this.getAttribute('input-name'),this.getAttribute('input-id'))"
                                                            th:each="item, istat : ${shopDetails.lstKichCo}"
                                                     >
 
 
-                                                    <div class="entry" th:field="*{kichCoId}"
-                                                         th:value="${item.idKichCo}"
-                                                         th:id="'tenKichCoRadioId'+${istat.index}">[[${item.tenKichCo}]]
-                                                    </div>
+                                                    <input class="entry" type="radio" th:field="*{kichCoId}"
+                                                         th:value="${item.idKichCo}">[[${item.tenKichCo}]]
+
+                                                  </input>
                                                     </label>
                                                 </div>
                                             </form>
                                         </div>
+
+<!--                                        <div class="fdnfgng product__details__option" th:data-id="${shopDetails.sanPhamId}">-->
+<!--                                            <div class="product__details__option__size">-->
+<!--                                                <span>Kích cỡ:</span>-->
+<!--                                                <label th:for="${tenKichCo}" name="kichCoIdsName" class="gdgfh chonKichCo"-->
+<!--                                                       th:id="'KichCoIdsRadio'+${istat.index}"-->
+<!--                                                       th:input-id="'tenKichCoRadioId'+${istat.index}" input-name="kichCoId"-->
+<!--                                                       onclick="chooseOptionLabel(this.getAttribute('name'),this.getAttribute('id'),this.getAttribute('input-name'),this.getAttribute('input-id'))"-->
+<!--                                                       th:each="item, istat : ${shopDetails.lstKichCo}">-->
+<!--                                                    <input type="radio" th:field="*{kichCoId}" th:value="${item.idKichCo}"-->
+<!--                                                           th:id="'tenKichCoRadioId'+${istat.index}">-->
+<!--                                                </label>-->
+<!--                                            </div>-->
+<!--                                            <div class="product__details__option__color">-->
+<!--                                                <span>Màu sắc:</span>-->
+<!--                                                <label class="chonMauSac"-->
+<!--                                                       onclick="chooseOptionColorLabel(this.getAttribute('id'),this.getAttribute('name'), this.getAttribute('input-name'), this.getAttribute('input-id'))"-->
+<!--                                                       th:for="'mauSacInpId'+${istat.index}" th:id="labelMS+${istat.index}"-->
+
+<!--                                                       th:each="ms, istat : ${shopDetails.lstMauSac}" th:name="labelMSName"-->
+<!--                                                       th:input-name="mauSacId" th:input-id="'mauSacInpId'+${istat.index}">-->
+<!--                                                    <input type="radio" th:value="${ms.idMauSac}" th:id="'mauSacInpId'+${istat.index}"-->
+<!--                                                           th:field="*{mauSacId}" th:style="'background:'+ ${ms.maMauSac}">-->
+<!--                                                </label>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
                                         <p>Số lượng hiện có: <span class="soLuongHienCoCus"
                                                                    th:id="'soLuongHienCoCus' + ${shopDetails.sanPhamId}"></span>
                                         </p>
-                                        <form class="single-variation-wrap">
+                                        <form class="single-variation-wrap product__details__cart__option">
                                             <div class="product-quantity">
                                                 <span data-value="+" class="quantity-btn quantityPlus"></span>
                                                 <input class="quantity input-lg daucatmoi" step="1" min="1"
-                                                       name="quantity" value="1" title="Quantity" type="number"
+
                                                        th:field="*{soLuong}"/>
                                                 <span data-value="-" class="quantity-btn quantityMinus"></span>
                                             </div>
-                                            <button id="themVaoGioHang" th:data-id="${shopDetails.sanPhamId}"
-                                                    type="submit" class="btn btn-lg btn-black"><i
+                                            <a id="themVaoGioHang" th:data-id="${shopDetails.sanPhamId}"
+                                                   class="btn btn-lg btn-black"><i
                                                     class="fa fa-shopping-bag" aria-hidden="true"></i>Thêm Vào Giỏ
-                                            </button>
+                                            <a/>
+<!--                                            <input type="hidden" id="auth" th:value="${#authentication.name}">-->
                                         </form>
                                         <div class="single-add-to-wrap">
                                             <a class="single-add-to-wishlist"><i class="fa fa-heart left"

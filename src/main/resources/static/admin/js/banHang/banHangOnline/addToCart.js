@@ -126,53 +126,53 @@ $(document).ready(function () {
             return;
         }
 
-        if (auth != 'anonymousUser') {
-            themVaoGioHang(sanPhamID, mauSacId, kichCoId, soLuong);
-        } else {
-            Swal.fire({
-                icon: "danger",
-                title: "Cảnh báo",
-                text: "Vui lòng đăng nhập !",
-            }).then(function () {
-
-                // Tải lại trang
-                window.location.href = "/security/login/form";
-            });
-        }
+        // if (auth != 'anonymousUser') {
+        //     themVaoGioHang(sanPhamID, mauSacId, kichCoId, soLuong);
+        // } else {
+        //     Swal.fire({
+        //         icon: "danger",
+        //         title: "Cảnh báo",
+        //         text: "Vui lòng đăng nhập !",
+        //     }).then(function () {
+        //
+        //         // Tải lại trang
+        //         // window.location.href = "/security/login/form";
+        //     });
+        // }
     });
 });
 
-function themVaoGioHang(sanPhamID, mauSacId, kichCoId, soLuong) {
-    $.ajax({
-        type: "POST",
-        url: "http://localhost:8080/khachhang/addToCart",
-        data: {
-            sanPhamId: sanPhamID,
-            mauSacId: mauSacId,
-            kichCoId: kichCoId,
-            soLuong: soLuong
-        },
-        success: function (response) {
-            Swal.fire({
-                icon: "success",
-                title: "Thành công",
-                text: "Đã thêm sản phẩm vào giỏ hàng",
-            }).then(function () {
-                // Lưu trạng thái đã xác nhận vào sessionStorage
-                sessionStorage.setItem('isConfirmed', true);
-
-                // Tải lại trang
-                window.location.href = "/khachhang/shop-details/" + sanPhamID;
-            });
-        },
-        error: function (error) {
-            Swal.fire({
-                icon: "error",
-                title: "Lỗi",
-                text: "Thêm sản phẩm không thành công",
-            });
-            console.log(error.responseText);
-        },
-    });
-}
+// function themVaoGioHang(sanPhamID, mauSacId, kichCoId, soLuong) {
+//     $.ajax({
+//         type: "POST",
+//         url: "http://localhost:8080/khachhang/addToCart",
+//         data: {
+//             sanPhamId: sanPhamID,
+//             mauSacId: mauSacId,
+//             kichCoId: kichCoId,
+//             soLuong: soLuong
+//         },
+//         success: function (response) {
+//             Swal.fire({
+//                 icon: "success",
+//                 title: "Thành công",
+//                 text: "Đã thêm sản phẩm vào giỏ hàng",
+//             }).then(function () {
+//                 // Lưu trạng thái đã xác nhận vào sessionStorage
+//                 sessionStorage.setItem('isConfirmed', true);
+//
+//                 // Tải lại trang
+//                 window.location.href = "/khachhang/shop-details/" + sanPhamID;
+//             });
+//         },
+//         error: function (error) {
+//             Swal.fire({
+//                 icon: "error",
+//                 title: "Lỗi",
+//                 text: "Thêm sản phẩm không thành công",
+//             });
+//             console.log(error.responseText);
+//         },
+//     });
+// }
 
