@@ -45,14 +45,25 @@
                         <div class="col-md-6 col-lg-7 d-flex align-items-center">
                             <div class="card-body p-4 p-lg-5 text-black">
 
+                                <th:block th:if="${alert == 'danger'}">
+                                    <i class="pull-left text-danger" th:text="${message}"></i>
+                                </th:block>
+                                <th:block th:if="${alert == 'success'}">
+                                    <i class="pull-left text-success" th:text="${message}"></i>
+                                </th:block>
+                                <div th:if="${param.logout}">
+                                    <i class="pull-left text-success">Đăng xuất thành công !</i>
+                                </div>
 
-                                <form action="login" method="post" enctype="multipart/form-data">
+                                <form th:action="@{/security/login}" action="login" method="post" enctype="multipart/form-data">
 
                                     <div class="d-flex align-items-center mb-3 pb-1">
                                         <span class="h1 fw-bold mb-0"> <h1 class="giua">
                                                 <img class="anh" th:src="@{/static/admin/images/logo-Nova-remove.png}">
                                                 Đăng Nhập</h1></span>
                                     </div>
+
+
 
                                     <div class="form-outline mb-4 input">
                                         <label class="form-label" for="form2Example17"><i class="fa-solid fa-user"></i>
