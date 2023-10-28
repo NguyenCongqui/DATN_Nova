@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class HinhAnhDTO {
 	
-	private Long hinhAnhid;
+	private Integer hinhAnhid;
 	
 	private String tenAnh;
 	

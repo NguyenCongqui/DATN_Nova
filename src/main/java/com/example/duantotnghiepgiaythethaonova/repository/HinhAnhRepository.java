@@ -29,8 +29,8 @@ public interface HinhAnhRepository extends JpaRepository<HinhAnh, Integer> {
 
     @Query(value = """
             SELECT ha.*FROM dbo.HinhAnh ha JOIN dbo.SanPham sp
-            ON sp.IdSanPham = ha.IdSanPham WHERE ha.LaAnhChinh = true
-            AND ha.CoHienThi = true AND sp.DaXoa = false
+            ON sp.IdSanPham = ha.IdSanPham WHERE ha.LaAnhChinh = 1
+            AND ha.CoHienThi = 1 AND sp.DaXoa = 0
             """, nativeQuery = true)
     List<HinhAnh> getHinhAnhChinhExist();
 
@@ -38,12 +38,12 @@ public interface HinhAnhRepository extends JpaRepository<HinhAnh, Integer> {
     Optional<HinhAnh> getHinhAnhByName(@Param("tenAnh") String tenAnh);
 
     @Query(value = "SELECT ha.* FROM dbo.HinhAnh ha WHERE ha.IdSanPham = :sanPhamId \n" +
-            "AND ha.IdMauSac =:mauSacId AND ha.LaAnhChinh = true LIMIT 1 ", nativeQuery = true)
+            "AND ha.IdMauSac =:mauSacId AND ha.LaAnhChinh = 1 LIMIT 1 ", nativeQuery = true)
     Optional<HinhAnh> getHinhAnhChinhBySanPhamIdAndMauSacId(@Param("sanPhamId") Integer sanPhamId, @Param("mauSacId") Integer mauSacId);
 
     @Query(value = "SELECT count(*) FROM dbo.HinhAnh ha WHERE \n" +
             "ha.IdSanPham = :sanPhamId AND \n" +
-            "ha.IdMauSac =:mauSacId AND ha.LaAnhChinh = true", nativeQuery = true)
+            "ha.IdMauSac =:mauSacId AND ha.LaAnhChinh = 1", nativeQuery = true)
     int getCountHinhAnhChinhBySanPhamIdAndMauSacId(@Param("sanPhamId") Integer sanPhamId, @Param("mauSacId") Integer mauSacId);
 
     @Query(value = "SELECT ha.* FROM dbo.HinhAnh ha WHERE ha.\n" +
@@ -59,7 +59,7 @@ public interface HinhAnhRepository extends JpaRepository<HinhAnh, Integer> {
             """, nativeQuery = true)
     List<HinhAnh> getHinhAnhBySanPhamIdAndMauSacIds(@Param("sanPhamId") Integer sanPhamId, @Param("mauSacIds") List<Integer> mauSacIds);
 
-    @Query(value = "SELECT ha.* FROM dbo.HinhAnh ha WHERE ha.IdSanPham = :sanPhamId AND ha.LaAnhChinh = true", nativeQuery = true)
+    @Query(value = "SELECT ha.* FROM dbo.HinhAnh ha WHERE ha.IdSanPham = :sanPhamId AND ha.LaAnhChinh = 1", nativeQuery = true)
     List<HinhAnh> getHinhAnhChinhBySanPhamId(@Param("sanPhamId") Integer sanPhamId);
 
     @Query(value = "SELECT ha.* FROM dbo.HinhAnh ha WHERE ha.IdSanPham = :sanPhamId", nativeQuery = true)
@@ -70,7 +70,7 @@ public interface HinhAnhRepository extends JpaRepository<HinhAnh, Integer> {
     List<HinhAnh> getHinhAnhBySanPhamIdAndMauSacId(@Param("sanPhamId") Integer sanPhamId, @Param("mauSacId") Integer mauSacId);
 
     @Query(value = "SELECT ha.* FROM dbo.HinhAnh ha WHERE ha.IdMauSac = :mauSacId AND\n" +
-            "ha.IdSanPham = :sanPhamId AND ha.LaAnhChinh = true", nativeQuery = true)
+            "ha.IdSanPham = :sanPhamId AND ha.LaAnhChinh = 1", nativeQuery = true)
     HinhAnh findByHinhAnhByMauSacIdVaLaAnhChinh(@Param("mauSacId") Integer mauSacId, @Param("sanPhamId") Integer sanPhamId);
 
     @Query(value = "SELECT ten_anh FROM hinh_anh WHERE mau_sac_id = ?1 AND san_pham_id = ?2 AND la_anh_chinh = true", nativeQuery = true)

@@ -25,7 +25,8 @@ public class SanPhamChiTietDTO extends BaseDTO<BaseDTO> {
 //	private Integer deGiayId;
 //
 //	private Integer lotGiayId;
-	
+
+
 	@NotNull(message = "Số lượng không được để trống")
 	@Min(value = 0, message = "Số lượng không được nhỏ hơn 0")
 	private Integer soLuong;

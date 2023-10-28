@@ -26,12 +26,9 @@ public class SanPhamManageDTO {
 	@Min(value = 0, message = "Chất liệu sản phẩm không được để trống")
 	private Integer chatLieuId;
 	
-	@Min(value = 0, message = "Loại sản phẩm không được để trống")
-	private Integer loaiSanPhamId;
-	
-	@Min(value = 0, message = "Phong cách sản phẩm không được để trống")
-	private Integer phongCachId;
-	
+	@Min(value = 0, message = "Thương hiệu không được để trống")
+	private Integer thuongHieuId;
+
 	private Boolean daXoa;
 	
 	@NotEmpty(message = "Tên sản phẩm không được để trống")

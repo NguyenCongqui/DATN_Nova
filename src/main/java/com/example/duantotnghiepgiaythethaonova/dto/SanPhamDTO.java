@@ -19,9 +19,7 @@ public class SanPhamDTO {
 
     private Integer chatLieuId;
 
-    private Integer loaiHangId;
-
-    private Integer phongCachId;
+    private Integer thuongHieuId;
 
     private String tenSanPham;
 
@@ -35,11 +33,9 @@ public class SanPhamDTO {
 
     private String tenChatLieu;
 
-    private String TenKieuDang;
+    private String tenKieuDang;
 
-    private String tenPhongCach;
-
-    private String tenLoaiSanPham;
+    private String tenThuongHieu;
 
     private List<HinhAnh> hinhAnhs;
 

@@ -8,6 +8,7 @@ import org.springframework.stereotype.Component;
 public class SanPhamChiTietConvertor {
 
 	public SanPhamChiTietDTO toDTO(ChiTietSanPham entity) {
+
 		SanPhamChiTietDTO dto = new SanPhamChiTietDTO();
 		dto.setDaXoa(entity.getDaXoa());
 		dto.setId(entity.getIdCTSP());

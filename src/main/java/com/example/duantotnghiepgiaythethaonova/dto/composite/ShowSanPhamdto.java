@@ -19,7 +19,7 @@ public class ShowSanPhamdto {
 
     private BigDecimal gia;
 
-    private Integer loaiSanPhamId;
+    private Integer thuongHieuId;
 
     private List<String> anhChinhs;
 
