@@ -15,11 +15,11 @@ public class DuantotnghiepgiaythethaonovaApplication {
     public static void main(String[] args) {
         SpringApplication.run(DuantotnghiepgiaythethaonovaApplication.class, args);
     }
-//    @Bean
-//    CommandLineRunner init(StorageService storageService) {
-//        return (args ->{
-//            storageService.init();
-//        });
-//    }
+    @Bean
+    CommandLineRunner init(StorageService storageService) {
+        return (args ->{
+            storageService.init();
+        });
+    }
 
 }

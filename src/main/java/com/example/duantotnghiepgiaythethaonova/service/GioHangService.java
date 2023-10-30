@@ -2,7 +2,9 @@ package com.example.duantotnghiepgiaythethaonova.service;
 
 import com.example.duantotnghiepgiaythethaonova.dto.GioHangDTO;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
+@Service
 public interface GioHangService {
 
 	GioHangDTO findByKhachHangId(Integer i);

@@ -1,6 +1,7 @@
 package com.example.duantotnghiepgiaythethaonova.entity;
 
 import lombok.*;
+import org.springframework.data.annotation.CreatedDate;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -36,6 +37,12 @@ public class GioHang extends BaseEntity implements Serializable {
 //    @Column(name = "NguoiCapNhat")
 //    private String NguoiCapNhat;
 
+@Column(name = "NgayTao",columnDefinition = "nvarchar(256)  ")
+@CreatedDate
+private Date ngayTao;
+
+    @Column(name = "NgayCapNhat",columnDefinition = "nvarchar(256)  ")
+    private Date ngayCapNhat;
 
     @OneToOne
     @JoinColumn(name = "IdKhachHang")

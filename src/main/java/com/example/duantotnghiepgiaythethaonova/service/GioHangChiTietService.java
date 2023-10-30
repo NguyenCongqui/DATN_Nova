@@ -3,9 +3,10 @@ package com.example.duantotnghiepgiaythethaonova.service;
 
 
 import com.example.duantotnghiepgiaythethaonova.dto.GioHangChiTietDTO;
+import org.springframework.stereotype.Service;
 
 import java.util.List;
-
+@Service
 public interface GioHangChiTietService  {
 
 	List<GioHangChiTietDTO> findAllByGioHangId(Integer id);
