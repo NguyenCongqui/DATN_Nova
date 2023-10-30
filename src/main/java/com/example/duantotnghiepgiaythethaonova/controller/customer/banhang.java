@@ -1,4 +1,4 @@
-package com.example.duantotnghiepgiaythethaonova.controller.khachHang;
+package com.example.duantotnghiepgiaythethaonova.controller.customer;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;

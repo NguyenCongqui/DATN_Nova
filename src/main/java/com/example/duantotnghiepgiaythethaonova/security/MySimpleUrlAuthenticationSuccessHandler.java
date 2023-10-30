@@ -64,7 +64,7 @@ public class MySimpleUrlAuthenticationSuccessHandler implements AuthenticationSu
         }
         for (GrantedAuthority grantedAuthority3 : authorities) {
             if (grantedAuthority3.getAuthority().equals("ROLE_CUSTOMER")) {
-                return "/customer/home";
+                return "/khachhang/home";
             }
         }
         throw new IllegalStateException();

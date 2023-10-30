@@ -1,4 +1,4 @@
-package com.example.duantotnghiepgiaythethaonova.controller.khachHang;
+package com.example.duantotnghiepgiaythethaonova.controller.customer;
 
 import com.example.duantotnghiepgiaythethaonova.service.KhachHangService;
 import org.springframework.beans.factory.annotation.Autowired;
