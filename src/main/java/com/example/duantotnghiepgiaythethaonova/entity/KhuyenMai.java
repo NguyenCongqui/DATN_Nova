@@ -52,4 +52,16 @@ public class KhuyenMai extends BaseEntity implements Serializable {
     @Column(name = "Xoa")
     private Boolean xoa;
 
+    public String trangThai2(){
+        String trangThai2;
+        if(trangThai == false){
+            trangThai2 = "Còn hiệu lực";
+        }
+        else {
+            trangThai2 = "Hết hiệu lực";
+        }
+        return trangThai2;
+    }
 }
+
+
