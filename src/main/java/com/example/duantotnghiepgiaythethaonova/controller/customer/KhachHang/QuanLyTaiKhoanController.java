@@ -1,4 +1,4 @@
-package com.example.duantotnghiepgiaythethaonova.controller.customer;
+package com.example.duantotnghiepgiaythethaonova.controller.customer.KhachHang;
 
 
 import com.example.duantotnghiepgiaythethaonova.dto.DiaChiDTO;

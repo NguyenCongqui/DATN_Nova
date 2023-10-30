@@ -19,5 +19,10 @@ public class AdminController {
         return "/admin/home/index";
     }
 
+    @GetMapping("/403")
+    public String get403(){
+        return "/customer/4033";
+    }
+
 
 }
