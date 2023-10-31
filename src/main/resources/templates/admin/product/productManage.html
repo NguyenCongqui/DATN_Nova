@@ -507,22 +507,23 @@
                                             Trang cuối
                                         </button>
                                     </li>
-                                    <script th:inline="javascript">
-                                        $(document).ready(function () {
-                                            $('#firstPageProductManage').on("click", function () {
-                                                var num = 1;
-                                                $('#inputPageProductManage').attr("value", num);
-                                                $('#flexUrlTableFormProductManage').submit();
-                                            })
-                                            $('#lastPageProductManage').on("click", function () {
-                                                var num = parseInt("[[${sanPhamPage.totalPages}]]");
-                                                $('#inputPageProductManage').attr("value", num);
-                                                $('#flexUrlTableFormProductManage').submit();
-                                            })
-                                        });
-                                    </script>
+
                                 </ul>
                             </nav>
+                            <script th:inline="javascript">
+                                $(document).ready(function () {
+                                    $('#firstPageProductManage').on("click", function () {
+                                        var num = 1;
+                                        $('#inputPageProductManage').attr("value", num);
+                                        $('#flexUrlTableFormProductManage').submit();
+                                    })
+                                    $('#lastPageProductManage').on("click", function () {
+                                        var num = parseInt("[[${sanPhamPage.totalPages}]]");
+                                        $('#inputPageProductManage').attr("value", num);
+                                        $('#flexUrlTableFormProductManage').submit();
+                                    })
+                                });
+                            </script>
                         </div>
                     </div>
                 </div>

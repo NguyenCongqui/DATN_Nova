@@ -34,11 +34,16 @@ public interface HinhAnhRepository extends JpaRepository<HinhAnh, Integer> {
             """, nativeQuery = true)
     List<HinhAnh> getHinhAnhChinhExist();
 
-    @Query(value = "SELECT ha.* FROM dbo.HinhAnh ha WHERE ha.TenAnh = tenAnh LIMIT 1", nativeQuery = true)
+    @Query(value = "SELECT TOP 1 ha.* FROM dbo.HinhAnh ha WHERE ha.TenAnh = tenAnh", nativeQuery = true)
+
     Optional<HinhAnh> getHinhAnhByName(@Param("tenAnh") String tenAnh);
 
-    @Query(value = "SELECT ha.* FROM dbo.HinhAnh ha WHERE ha.IdSanPham = :sanPhamId \n" +
-            "AND ha.IdMauSac =:mauSacId AND ha.LaAnhChinh = 1 LIMIT 1 ", nativeQuery = true)
+    @Query(value = """
+SELECT TOP 1 ha.*
+    FROM dbo.HinhAnh ha
+    WHERE ha.IdSanPham = :sanPhamId  AND ha.IdMauSac = :mauSacId AND ha.LaAnhChinh = 1
+""", nativeQuery = true)
+
     Optional<HinhAnh> getHinhAnhChinhBySanPhamIdAndMauSacId(@Param("sanPhamId") Integer sanPhamId, @Param("mauSacId") Integer mauSacId);
 
     @Query(value = "SELECT count(*) FROM dbo.HinhAnh ha WHERE \n" +
@@ -73,13 +78,20 @@ public interface HinhAnhRepository extends JpaRepository<HinhAnh, Integer> {
             "ha.IdSanPham = :sanPhamId AND ha.LaAnhChinh = 1", nativeQuery = true)
     HinhAnh findByHinhAnhByMauSacIdVaLaAnhChinh(@Param("mauSacId") Integer mauSacId, @Param("sanPhamId") Integer sanPhamId);
 
-    @Query(value = "SELECT ten_anh FROM hinh_anh WHERE mau_sac_id = ?1 AND san_pham_id = ?2 AND la_anh_chinh = true", nativeQuery = true)
+    @Query(value = "SELECT ten_anh FROM HinhAnh WHERE IdMauSac = ?1 AND IdSanPham = ?2 AND LaAnhChinh = 1", nativeQuery = true)
     String findTenAnhChinhByMauSacIdAndSanPhamId(Integer mauSacId, Integer sanPhamId);
 
-    @Query(value = "SELECT count(*) from hinh_anh  WHERE san_pham_id = :sanPhamId", nativeQuery = true)
+    @Query(value = "SELECT count(*) from HinhAnh  WHERE IdSanPham = :sanPhamId", nativeQuery = true)
     int getCountHinhAnhBySanPhamId(@Param("sanPhamId") Integer sanPhamId);
 
-    @Query(value = "SELECT sum(9 + (SELECT count(distinct(mau_sac_id)) from san_pham_chi_tiet WHERE san_pham_id = :sanPhamId AND da_xoa = false)) as 'countHinhAnhToiDaDuocThem'", nativeQuery = true)
+//    @Query(value = "SELECT sum(9 + (SELECT count(distinct(IdMauSac)) from ChiTietSanPham WHERE IdSanPham = :sanPhamId AND DaXoa = 0)) as 'countHinhAnhToiDaDuocThem'", nativeQuery = true)
+//    int getCountHinhAnhChoPhepThemBySanPhamId(@Param("sanPhamId") Integer sanPhamId);
+
+    @Query(value = """
+	SELECT sum(9 + subquery.countMauSac) as countHinhAnhToiDaDuocThem
+	FROM (SELECT count(distinct IdMauSac) as countMauSac
+    FROM SanPhamCT WHERE IdSanPham = :sanPhamId AND DaXoa = 0) subquery
+""", nativeQuery = true)
     int getCountHinhAnhChoPhepThemBySanPhamId(@Param("sanPhamId") Integer sanPhamId);
 
 }
