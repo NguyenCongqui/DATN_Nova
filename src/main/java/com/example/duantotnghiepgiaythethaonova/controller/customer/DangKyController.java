@@ -28,7 +28,7 @@ public class DangKyController {
     @RequestMapping("/security/register/create")
     public String registerForm(Model model) {
         model.addAttribute("khachHangDTO", new KhachHangDTO());
-        return "/customer/auth/dang-ky";
+        return "/customer/auth/register";
     }
 
     @SuppressWarnings("unlikely-arg-type")
@@ -36,15 +36,15 @@ public class DangKyController {
     public String register(@Validated @ModelAttribute("khachHangDTO") KhachHangDTO khachHangDTO, BindingResult result,
                            Model md) {
         if (result.hasErrors()) {
-            return "/customer/auth/dang-ky";
+            return "/customer/auth/register";
         } else {
             if (khachHangService.findByEmail(khachHangDTO.getEmail()) != null) {
                 if (khachHangService.findByEmailAndTrangThai(khachHangDTO.getEmail(), 0) != null) {
-                    md.addAttribute("messageError", "Tài khoản đã bị vô hiệu hóa vui lòng liên hệ 0965221785 !");
-                    return "/customer/auth/dang-ky";
+                    md.addAttribute("messageError", "Tài khoản đã bị vô hiệu hóa vui lòng liên hệ 0368028006 !");
+                    return "/customer/auth/register";
                 } else if (khachHangService.findByEmailAndTrangThai(khachHangDTO.getEmail(), 1) != null) {
                     md.addAttribute("messageError", "Email đã được đăng ký !");
-                    return "/customer/auth/dang-ky";
+                    return "/customer/auth/register";
                 }
             } else {
                 if (!khachHangDTO.getEmail().equals(khachHangService.findByEmail(khachHangDTO.getEmail()))) {
@@ -54,7 +54,7 @@ public class DangKyController {
                     md.addAttribute("message", "Đăng ký thành công !");
                 }
             }
-            return "/customer/auth/dang-ky";
+            return "/customer/auth/register";
         }
     }
 

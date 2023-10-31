@@ -42,7 +42,7 @@
                     <div class="input-group">
                         <div class="custom-file">
                             <input type="text" class="form-control" id="search-input-allHD-name"
-                                   aria-describedby="inputGroupFileAddon04" placeholder="Tìm kiếm">
+                                   aria-describedby="inputGroupFileAddon04" placeholder="Tìm kiếm...">
                         </div>
                         <div class="input-group-append">
                             <button class="btn btn-primary button-timKiemNhanVien" type="button"
@@ -243,7 +243,7 @@
 
             <div class="alert alert-warning container mt-3 text-center" th:if="*{listNguoiDungDTO.isEmpty()}"
                  style="background-color: transparent; border: none;">
-                <img src="/admin/img/noData2.png" alt="Không có sản phẩm" style="width: 300px; height: 300px;">
+                <img th:src="@{/static/admin/img/noData2.png}" alt="Không có sản phẩm" style="width: 300px; height: 300px;">
                 <p class="empty-message" style="margin-top: 20px; font-size: 1.8em;">KHÔNG CÓ DỮ LIỆU</p>
             </div>
         </div>
