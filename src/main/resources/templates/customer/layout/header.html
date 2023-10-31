@@ -19,33 +19,37 @@
 
             <!--Thanh trên cùng bên phải-->
             <div class="topbar-right">
-                <ul class="list-none">
-                    <li>
-                        <a href="login-register.html"><i class="fa fa-lock left" aria-hidden="true"></i><span class="hidden-sm-down">Đăng Nhập</span></a>
-                    </li>
-                    <li class="dropdown-nav">
-                        <a href="login-register.html"><i class="fa fa-user left" aria-hidden="true"></i><span class="hidden-sm-down">Tai Khoan</span><i class="fa fa-angle-down right" aria-hidden="true"></i></a>
-                        <!--Thả xuống-->
-                        <div class="dropdown-menu">
-                            <ul>
-                                <li><a href="login-register.html">Thông Tin Tài Khoản</a></li>
-                                <li><a href="#">Đơn Hàng</a></li>
-                                <li><a href="#">Đổi Mật Khẩu</a></li>
-                                <li><a href="#">My Wishlist</a></li>
-                                <li><a href="checkout.html">Đăng Xuất</a></li>
-                            </ul>
-                            <span class="divider"></span>
-                            <ul>
-                                <li><a href="login-register.html"><i class="fa fa-lock left" aria-hidden="true"></i>Đăng Nhập</a></li>
-                                <li><a href="login-register.html"><i class="fa fa-user left" aria-hidden="true"></i>Đăng Ký</a></li>
-                            </ul>
-                        </div>
-                        <!--Kết thúc thả xuống-->
-                    </li>
-                    <li>
-                        <a href="contact.html">Liên Hệ</a>
-                    </li>
-                </ul>
+                <th:block th:if="${#request.remoteUser}">
+                    <ul class="list-none">
+<!--                        <li>-->
+<!--                            <a href="login-register.html"><i class="fa fa-lock left" aria-hidden="true"></i><span class="hidden-sm-down">Đăng Nhập</span></a>-->
+<!--                        </li>-->
+                        <li class="dropdown-nav">
+                            <a href="login-register.html"><i class="fa fa-user left" aria-hidden="true"></i><span class="hidden-sm-down"> Hi <strong></strong></span><i class="fa fa-angle-down right" aria-hidden="true"></i></a>
+                            <!--Thả xuống-->
+                            <div class="dropdown-menu">
+                                <ul>
+                                    <li><a th:href="@{/khachhang/tai-khoan}">Thông Tin Tài Khoản</a></li>
+                                    <li><a  th:href="@{/khachhang/DonHang/ChoXacNhan}">Đơn Hàng</a></li>
+                                    <li><a href="#">Đổi Mật Khẩu</a></li>
+                                    <li><a href="#">My Wishlist</a></li>
+                                    <li><a  th:href="@{/security/logoff}">Đăng Xuất</a></li>
+                                </ul>
+
+                            </div>
+                            <!--Kết thúc thả xuống-->
+                        </li>
+
+                    </ul>
+
+                </th:block>
+
+                <th:block th:unless="${#request.remoteUser}">
+                <a th:href="@{/security/login/form}"><i class="fa fa-user left" aria-hidden="true"></i><span class="hidden-sm-down">Đăng Nhập</span></a>
+
+                        <a href="contact.html" ><span class="hidden-sm-down">Liên Hệ</span></a>
+
+                </th:block>
             </div>
             <!-- Kết thúc thanh trên cùng bên phải -->
         </div>
@@ -98,14 +102,16 @@
             <!-- Navigation Menu -->
             <nav class="navigation-menu">
                 <ul>
-                    <li>
-                        <a href="index.html">Home</a>
+                    <li th:class="${#request.requestURI} == @{/khachhang/home}? 'active': '' ">
+                        <a th:href="@{/khachhang/home}">Home</a>
                     </li>
-                    <li>
+                    <li  th:class="${#request.requestURI} == @{/customer/shop}? 'active': '' ">
                         <a href="shop_grid.html">Sán Phẩm</a>
+                    </li>
+                </ul>
                         <!-- thả xuống Menu ------->
-<!--
--->
+
+
             </nav>
             <!-- End Navigation Menu -->
 

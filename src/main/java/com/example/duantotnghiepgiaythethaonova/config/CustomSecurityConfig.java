@@ -55,7 +55,7 @@ public class CustomSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers(
-                        "/customer/css/**", "/customer/fonts/**", "/customer/js/**", "/customer/images/**", "/customer/login/**",
+                        "/customer/css/**", "/customer/fonts/**", "/customer/js/**", "/khachhang/images/**","/customer/img/**", "/customer/view/**",
                         "/khachhang/home/**", "/khachhang/shop/**", "/khachhang/shop-details/**", "/khachhang/SoLuongSanPhamChiTiet",
                         "/MuaNgaySanPham/checkout/**",
 
@@ -66,8 +66,8 @@ public class CustomSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/oauth2/**"
                 )
                 .permitAll()
-                .antMatchers("/admin/NguoiDung/danhSach").hasAnyRole("ADMIN")
-                .antMatchers("/admin/**").hasAnyRole("ADMIN", "STAFF")
+//                .antMatchers("/admin/NguoiDung/danhSach").hasAnyRole("ADMIN")
+//                .antMatchers("/admin/**").hasAnyRole("ADMIN", "STAFF")
                 .antMatchers("/khachhang/**").hasAnyRole("ADMIN", "STAFF", "CUSTOMER")
                 .and().formLogin().
                 loginPage("/security/login/form")
