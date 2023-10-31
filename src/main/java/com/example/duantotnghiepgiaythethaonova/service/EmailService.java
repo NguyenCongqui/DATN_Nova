@@ -37,7 +37,7 @@ public class EmailService {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-        helper.setFrom("datn.ud15@gmail.com");
+        helper.setFrom("datn.novashoes@gmail.com");
         helper.setTo(recipientEmail);
         helper.setSubject("Đơn hàng của bạn đã được đặt thành công");
 
@@ -77,7 +77,7 @@ public class EmailService {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-        helper.setFrom("datn.ud15@gmail.com");
+        helper.setFrom("datn.novashoes@gmail.com");
         helper.setTo(recipientEmail);
         helper.setSubject("Đơn hàng của bạn đã được đặt thành công");
 
@@ -117,7 +117,7 @@ public class EmailService {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-        helper.setFrom("datn.ud15@gmail.com");
+        helper.setFrom("datn.novashoes@gmail.com");
         helper.setTo(recipientEmail);
         helper.setSubject("Đơn hàng của bạn đã được đặt thành công");
 
@@ -157,7 +157,7 @@ public class EmailService {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-        helper.setFrom("datn.ud15@gmail.com");
+        helper.setFrom("datn.novashoes@gmail.com");
         helper.setTo(recipientEmail);
         helper.setSubject("Đơn hàng của bạn đã được đặt thành công");
 
@@ -197,7 +197,7 @@ public class EmailService {
         MimeMessage message = mailSender.createMimeMessage();
         MimeMessageHelper helper = new MimeMessageHelper(message, true);
 
-        helper.setFrom("datn.ud15@gmail.com");
+        helper.setFrom("datn.novashoes@gmail.com");
         helper.setTo(recipientEmail);
         helper.setSubject("Đơn hàng của bạn đã được đặt thành công");
 

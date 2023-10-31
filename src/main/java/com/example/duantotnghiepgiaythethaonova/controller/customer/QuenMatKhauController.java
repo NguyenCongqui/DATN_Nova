@@ -22,7 +22,7 @@ public class QuenMatKhauController {
 	@RequestMapping("/security/forgot-password")
 	public String formForgotPassword1( Model model) {
 		model.addAttribute("khachHangDTO",new KhachHangDTO());
-		return "/customer/auth/quen-mat-khau" ;
+		return "/customer/auth/forget" ;
 	}
 	@RequestMapping("/security/forgot-password-2")
 	public String formForgotPassword2( Model model) {
