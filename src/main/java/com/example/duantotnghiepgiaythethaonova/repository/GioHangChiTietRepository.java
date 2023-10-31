@@ -35,9 +35,9 @@ public interface GioHangChiTietRepository extends JpaRepository<GioHangChiTiet,I
 	@Query(value = "UPDATE dbo.GioHangCT SET DaXoa = true WHERE IdSanPhamCT = :id", nativeQuery = true)
 	void xoaGioHangChiTiet(@Param("id") Integer id);
 
-	@Query(value = "SELECT * FROM dbo.GioHangCT WHERE IdSanPhamCT = ? AND IdGioHang = ? AND DaXoa = false", nativeQuery = true)
+	@Query(value = "SELECT * FROM dbo.GioHangCT WHERE IdSanPhamCT = ? AND IdGioHang = ? AND DaXoa = 0", nativeQuery = true)
 	Optional<GioHangChiTiet> findBySanPhamChiTietAndGioHang(Integer sanPhamCTId, Integer gioHangId);
 
-	@Query(value = "SELECT * FROM dbo.GioHangCT WHERE IdGioHang = ? AND DaXoa = false", nativeQuery = true)
+	@Query(value = "SELECT * FROM dbo.GioHangCT WHERE IdGioHang = ? AND DaXoa = 0", nativeQuery = true)
 	List<GioHangChiTiet> findbyGiohangIdAndDaXoa(Integer id);
 }
