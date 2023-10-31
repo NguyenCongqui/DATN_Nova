@@ -17,6 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "GioHang")
 @Builder
+@EqualsAndHashCode(callSuper=false)
 public class GioHang extends BaseEntity implements Serializable {
 
     @Id
@@ -57,5 +58,18 @@ private Date ngayTao;
     @OneToMany(mappedBy = "gioHang")
     private List<GioHangChiTiet> gioHangChiTiets = new ArrayList<GioHangChiTiet>();
 
+
+
+    @Override
+    public String toString() {
+        return "GioHang{" +
+                "ngayTao=" + ngayTao +
+                ", ngayCapNhat=" + ngayCapNhat +
+                ", khachHang=" + khachHang.getIdKhachHang() +
+                ", trangThai=" + trangThai +
+                ", tongTien=" + tongTien +
+                ", gioHangChiTiets=" + gioHangChiTiets.size() +
+                '}';
+    }
 
 }

@@ -2,6 +2,7 @@ package com.example.duantotnghiepgiaythethaonova.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -19,6 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "SanPham")
 @Builder
+@EntityListeners(AuditingEntityListener.class)
 public class SanPham extends BaseEntity implements Serializable {
 
     @Id

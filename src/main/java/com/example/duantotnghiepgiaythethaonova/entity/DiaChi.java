@@ -11,12 +11,11 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Setter
-@Getter
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "DiaChi")
 @Builder
+@Data
 public class DiaChi extends BaseEntity implements Serializable {
 
     @Id
@@ -49,6 +48,15 @@ public class DiaChi extends BaseEntity implements Serializable {
     private KhachHang khachHang;
 
 
-
+    @Override
+    public String toString() {
+        return "DiaChi{" +
+                "diaChi='" + diaChi + '\'' +
+                ", hoTen='" + hoTen + '\'' +
+                ", soDienThoai='" + soDienThoai + '\'' +
+                ", khachHang=" + khachHang.getIdKhachHang() +
+                ", laDiaChiMacDinh=" + laDiaChiMacDinh +
+                '}';
+    }
 
 }

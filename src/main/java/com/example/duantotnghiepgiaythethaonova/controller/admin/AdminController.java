@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 @Controller
-@RequestMapping("/admin/home")
+
 public class AdminController {
 
 //    @GetMapping()
@@ -14,14 +14,14 @@ public class AdminController {
 //        return "/admin/pages/landing_page";
 //
 //    }
-    @GetMapping()
+    @RequestMapping("/admin/home")
     public String loginSubmit(){
-        return "/admin/home/index";
+        return "admin/home/index";
     }
 
-    @GetMapping("/403")
+    @RequestMapping("/403")
     public String get403(){
-        return "/customer/4033";
+        return "/customer/403";
     }
 
 

@@ -66,8 +66,8 @@ public class CustomSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/oauth2/**"
                 )
                 .permitAll()
-//                .antMatchers("/admin/NguoiDung/danhSach").hasAnyRole("ADMIN")
-//                .antMatchers("/admin/**").hasAnyRole("ADMIN", "STAFF")
+                .antMatchers("/admin/NguoiDung/danhSach").hasAnyRole("ADMIN")
+                .antMatchers("/admin/**").hasAnyRole("ADMIN", "STAFF")
                 .antMatchers("/khachhang/**").hasAnyRole("ADMIN", "STAFF", "CUSTOMER")
                 .and().formLogin().
                 loginPage("/security/login/form")

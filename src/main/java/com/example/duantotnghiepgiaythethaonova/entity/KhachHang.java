@@ -2,6 +2,7 @@ package com.example.duantotnghiepgiaythethaonova.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -14,12 +15,11 @@ import java.util.List;
 
 
 @Entity
-@Setter
-@Getter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "KhachHang")
-@Builder
+@EqualsAndHashCode(callSuper=false)
 public class KhachHang extends BaseEntity implements Serializable {
 
     @Id
@@ -60,4 +60,18 @@ public class KhachHang extends BaseEntity implements Serializable {
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "IdDiaChi")
     private DiaChi diaChi;
+
+    @Override
+    public String toString() {
+        return "KhachHang{" +
+                "email='" + email + '\'' +
+                ", matKhau='" + matKhau + '\'' +
+                ", hoTen='" + hoTen + '\'' +
+                ", soLanMua=" + soLanMua +
+                ", soDienThoai='" + soDienThoai + '\'' +
+                ", trangThai=" + trangThai +
+                ", listDiaChi=" + listDiaChi +
+                ", diaChi=" + diaChi.getIdDiaChi() +
+                '}';
+    }
 }

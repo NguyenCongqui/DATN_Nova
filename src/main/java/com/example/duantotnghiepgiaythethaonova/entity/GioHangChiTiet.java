@@ -11,12 +11,12 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Setter
-@Getter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "GioHangCT")
 @Builder
+@EqualsAndHashCode(callSuper=false)
 public class GioHangChiTiet extends BaseEntity implements Serializable {
 
     @Id
@@ -54,5 +54,17 @@ public class GioHangChiTiet extends BaseEntity implements Serializable {
     @JoinColumn(name = "IdCTSP")
     private ChiTietSanPham chiTietSanPham;
 
+    @Override
+    public String toString() {
+        return "GioHangChiTiet{" +
+                "sanPhamChiTiet=" + chiTietSanPham.getIdCTSP() +
+                ", gioHang=" + gioHang.getIdGioHang() +
+                ", soLuong=" + soLuong +
+                ", donGia=" + donGia +
+                ", thanhTien=" + thanhTien +
+                ", trangThai=" + trangThai +
+                ", daXoa=" + daXoa +
+                '}';
+    }
 
 }

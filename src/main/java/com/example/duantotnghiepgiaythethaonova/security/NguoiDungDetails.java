@@ -22,7 +22,6 @@ public class NguoiDungDetails implements UserDetails {
         this.nguoiDung = nguoiDung;
     }
 
-
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
         List<NguoiDung_VaiTro> nguoiDungVaiTros = this.nguoiDung.getListNguoiDungVaiTro();
@@ -63,11 +62,11 @@ public class NguoiDungDetails implements UserDetails {
         return true;
     }
 
-    public String getFullName() {
+    public String getFullname() {
         return nguoiDung.getTenNguoiDung();
     }
 
-    public String NumberPhone() {
+    public String getNumberPhone() {
         return nguoiDung.getSoDienThoai();
     }
 
@@ -75,7 +74,7 @@ public class NguoiDungDetails implements UserDetails {
         return nguoiDung.getMaNguoiDung();
     }
 
-    public Integer getByIđ() {
+    public long getId() {
         return nguoiDung.getIdNguoiDung();
     }
 
@@ -86,6 +85,4 @@ public class NguoiDungDetails implements UserDetails {
             return null;
         }
     }
-
-
 }

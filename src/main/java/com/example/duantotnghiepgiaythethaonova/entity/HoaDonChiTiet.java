@@ -56,4 +56,17 @@ public class HoaDonChiTiet extends BaseEntity implements Serializable {
     private ChiTietSanPham chiTietSanPham;
 
 
+    @Override
+    public String toString() {
+        return "HoaDonChiTiet{" +
+                "hoaDon=" + hoaDon.getIdHoaDon() +
+                ", sanPhamChiTiet=" + chiTietSanPham.getIdCTSP() +
+                ", donGia=" + donGia +
+                ", soLuong=" + soLuong +
+                ", tongTien=" + tongTien +
+                ", daXoa='" + daXoa + '\'' +
+                '}';
+    }
+
+
 }

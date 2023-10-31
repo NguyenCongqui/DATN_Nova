@@ -2,6 +2,7 @@ package com.example.duantotnghiepgiaythethaonova.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -59,6 +60,16 @@ public class NguoiDung extends BaseEntity implements Serializable {
     @Column(name = "TrangThai")
     private Integer trangThai;
 
+    public String TrangThai2() {
+        String TrangThai2;
+        if (trangThai == 0) {
+            TrangThai2 = "Đang Hoạt Động";
+        } else {
+            TrangThai2 = "Không Hoạt Động";
+        }
+        return TrangThai2;
+    }
+
     @JsonIgnore
     @OneToMany(mappedBy = "nguoiDung", fetch = FetchType.EAGER)
     private List<NguoiDung_VaiTro> listNguoiDungVaiTro;
@@ -66,5 +77,17 @@ public class NguoiDung extends BaseEntity implements Serializable {
     @JsonIgnore
     @OneToMany(mappedBy = "nguoiDung")
     private List<GiaoDich> giaoDichs = new ArrayList<GiaoDich>();
+
+    @Override
+    public String toString() {
+        return "NguoiDung{" +
+                ", email='" + email + '\'' +
+                ", tenNguoiDung='" + tenNguoiDung + '\'' +
+                ", soDienThoai='" + soDienThoai + '\'' +
+                ", trangThai=" + trangThai +
+                ", daXoa=" + daXoa +
+                ", giaoDichs=" + giaoDichs.size() +
+                '}';
+    }
 
 }

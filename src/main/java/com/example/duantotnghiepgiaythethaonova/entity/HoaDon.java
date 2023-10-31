@@ -2,6 +2,7 @@ package com.example.duantotnghiepgiaythethaonova.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -18,8 +19,10 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "HoaDon")
 @Builder
+@EntityListeners(AuditingEntityListener.class)
 public class HoaDon extends BaseEntity implements Serializable {
 
+    private static final long serialVersionUID = -6627502088104297623L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -51,7 +54,7 @@ public class HoaDon extends BaseEntity implements Serializable {
     private BigDecimal tongTienDonHang;
     @Column(name = "TongTienHoaDon")
     private BigDecimal tongTienHoaDon;
-//    @Column(name = "NgayTao")
+    //    @Column(name = "NgayTao")
 //    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
 //    @Temporal(TemporalType.TIMESTAMP)
 //    private Date NgayTao;
@@ -86,15 +89,30 @@ public class HoaDon extends BaseEntity implements Serializable {
     @OneToMany(mappedBy = "hoaDon")
     private List<HoaDonChiTiet> hoaDonChiTiets;
 
-//    public String LoaiHoaDon2() {
-//        String LoaiHoaDon2;
-//        if (LoaiHoaDon == 0) {
-//            LoaiHoaDon2 = "Đơn đặt hàng";
-//        } else {
-//            LoaiHoaDon2 = "Đơn tại quầy";
-//        }
-//        return LoaiHoaDon2;
-//    }
+    public String loaiHoaDon2() {
+        String loaiHoaDon2;
+        if (loaiHoaDon == 0) {
+            loaiHoaDon2 = "Đơn đặt hàng";
+        } else {
+            loaiHoaDon2 = "Đơn tại quầy";
+        }
+        return loaiHoaDon2;
+    }
 
+
+    @Override
+    public String toString() {
+        return "HoaDon{nguoiNhan='" + nguoiNhan + '\'' +
+                ", sdtNguoiNhan='" + soDienThoaiNguoiNhan + '\'' +
+                ", diaChiGiaoHang='" + diaChiGiaoHang + '\'' +
+                ", thoiGianGiaoHang='" + thoiGianGiaoHang + '\'' +
+                ", ghiChu='" + ghiChu + '\'' +
+                ", tongTienHoaDon=" + tongTienHoaDon +
+                ", tienShip=" + tienShip +
+                ", tongTienDonHang=" + tongTienDonHang +
+                ", loaiDonHang='" + loaiHoaDon + '\'' +
+                ", hoaDonChiTiets=" + hoaDonChiTiets.size() +
+                '}';
+    }
 
 }

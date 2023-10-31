@@ -2,6 +2,7 @@ package com.example.duantotnghiepgiaythethaonova.entity;
 
 
 import lombok.*;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
@@ -11,12 +12,12 @@ import java.util.Date;
 import java.util.List;
 
 @Entity
-@Setter
-@Getter
+@Data
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "SanPhamCT")
 @Builder
+@EntityListeners(AuditingEntityListener.class)
 public class ChiTietSanPham extends BaseEntity implements Serializable {
 
     @Id
@@ -73,5 +74,16 @@ public class ChiTietSanPham extends BaseEntity implements Serializable {
 
     @OneToMany(mappedBy = "chiTietSanPham")
     private List<GioHangChiTiet> gioHangChiTiets = new ArrayList<GioHangChiTiet>();
+
+    @Override
+    public String toString() {
+        return "SanPhamChiTiet{" +
+                "maSanPhamChiTiet='" + maCTSP + '\'' +
+                ", sanPham=" + sanPham +
+                ", soLuong=" + soLuong +
+                ", hoaDonChiTiets=" + hoaDonChiTiets.size() +
+                ", daXoa=" + daXoa +
+                '}';
+    }
 
 }

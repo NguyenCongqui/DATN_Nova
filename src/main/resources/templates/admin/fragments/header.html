@@ -4,6 +4,39 @@
     <meta charset="UTF-8">
     <meta name="color-scheme" content="light">
     <title>Header</title>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" th:href="@{/static/admin/css/perfect-scrollbar.css}">
+    <link rel="stylesheet" th:href="@{/static/admin/css/app.css}">
+    <link rel="shortcut icon" th:href="@{/static/admin/images/favicon.svg}" type="image/x-icon">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" crossorigin="anonymous">
+    <script src="https://kit.fontawesome.com/999051c9de.js"
+            crossorigin="anonymous"></script>
+    <script>
+        function dangXuat() {
+            Swal.fire({
+                title: 'Bạn chắc chắn muốn đăng xuất?',
+                showCancelButton: true,
+                confirmButtonText: 'Đăng xuất',
+            }).then((result) => {
+                /* Read more about isConfirmed, isDenied below */
+                if (result.isConfirmed) {
+                    Swal.fire('Đăng xuất thành công !', '', 'success');
+                    setTimeout(() => {
+                        location.href = "/security/logoff";
+                    }, 2000);
+
+
+                } else if (result.isDenied) {
+
+                }
+            })
+        }
+    </script>
+
 </head>
 <body>
 <nav class="navbar navbar-header navbar-expand navbar-light bg-white" th:fragment="header"><!--header-->
@@ -15,63 +48,74 @@
     </button>
     <div class="collapse navbar-collapse bg-white" id="navbarSupportedContent">
         <ul class="navbar-nav d-flex align-items-center navbar-light ms-auto">
-            <li class="dropdown nav-icon">
-                <a href="#" data-bs-toggle="dropdown"
-                   class="nav-link  dropdown-toggle nav-link-lg nav-link-user">
-                    <div class="d-lg-inline-block">
-                        <i data-feather="bell"></i>
-                    </div>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end dropdown-menu-large">
-                    <h6 class='py-2 px-4'>Message</h6>
-                    <ul class="list-group rounded-none">
-                        <li class="list-group-item border-0 align-items-start">
-                            <div class="avatar bg-success me-3">
-                                <span class="avatar-content"><i data-feather="shopping-cart"></i></span>
-                            </div>
-                            <div>
-                                <h6 class='text-bold'>Message</h6>
-                                <p class='text-xs'>
-                                   haha
-                                </p>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </li>
-            <li class="dropdown nav-icon me-2">
-                <a href="#" data-bs-toggle="dropdown"
-                   class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                    <div class="d-lg-inline-block">
-                        <i data-feather="mail"></i>
-                    </div>
-                </a>
-                <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item" href="#"><i data-feather="user"></i> Account</a>
-                    <a class="dropdown-item active" href="#"><i data-feather="mail"></i> Messages</a>
-                    <a class="dropdown-item" href="#"><i data-feather="settings"></i> Settings</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#"><i data-feather="log-out"></i> Logout</a>
-                </div>
-            </li>
+<!--            <li class="dropdown nav-icon">-->
+<!--                <a href="#" data-bs-toggle="dropdown"-->
+<!--                   class="nav-link  dropdown-toggle nav-link-lg nav-link-user">-->
+<!--                    <div class="d-lg-inline-block">-->
+<!--                        <i data-feather="bell"></i>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--                <div class="dropdown-menu dropdown-menu-end dropdown-menu-large">-->
+<!--                    <h6 class='py-2 px-4'>Message</h6>-->
+<!--                    <ul class="list-group rounded-none">-->
+<!--                        <li class="list-group-item border-0 align-items-start">-->
+<!--                            <div class="avatar bg-success me-3">-->
+<!--                                <span class="avatar-content"><i data-feather="shopping-cart"></i></span>-->
+<!--                            </div>-->
+<!--                            <div>-->
+<!--                                <h6 class='text-bold'>Message</h6>-->
+<!--                                <p class='text-xs'>-->
+<!--                                   haha-->
+<!--                                </p>-->
+<!--                            </div>-->
+<!--                        </li>-->
+<!--                    </ul>-->
+<!--                </div>-->
+<!--            </li>-->
+<!--            <li class="dropdown nav-icon me-2">-->
+<!--                <a href="#" data-bs-toggle="dropdown"-->
+<!--                   class="nav-link dropdown-toggle nav-link-lg nav-link-user">-->
+<!--                    <div class="d-lg-inline-block">-->
+<!--                        <i data-feather="mail"></i>-->
+<!--                    </div>-->
+<!--                </a>-->
+<!--                <div class="dropdown-menu dropdown-menu-end">-->
+<!--                    <a class="dropdown-item" href="#"><i data-feather="user"></i> Account</a>-->
+<!--                    <a class="dropdown-item active" href="#"><i data-feather="mail"></i> Messages</a>-->
+<!--                    <a class="dropdown-item" href="#"><i data-feather="settings"></i> Settings</a>-->
+<!--                    <div class="dropdown-divider"></div>-->
+<!--                    <a class="dropdown-item" href="#"><i data-feather="log-out"></i> Logout</a>-->
+<!--                </div>-->
+<!--            </li>-->
             <li class="dropdown">
                 <a href="#" data-bs-toggle="dropdown"
-                   class="nav-link dropdown-toggle nav-link-lg nav-link-user show" aria-expanded="true">
+                   class="nav-link dropdown-toggle nav-link-lg nav-link-user " >
                     <div class="avatar me-1">
-                        <img src="../../../static/admin/images/actor.png" alt="" srcset="">
+                        <img th:src="@{/static/admin/images/actor.png}" alt="" srcset="">
                     </div>
-                    <div class="d-none d-md-block d-lg-inline-block">Hi, Linh</div>
+                    <div class="d-none d-md-block d-lg-inline-block">Hi, [[${#request.userPrincipal.principal.fullname}]]</div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item" href="#"><i data-feather="user"></i> Account</a>
-                    <a class="dropdown-item active" href="#"><i data-feather="mail"></i> Messages</a>
-                    <a class="dropdown-item" href="#"><i data-feather="settings"></i> Settings</a>
+                    <a class="dropdown-item" href="#" id="nguoiDangDangNhap"><i data-feather="user"></i> Thông tin</a>
                     <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="#"><i data-feather="log-out"></i> Logout</a>
+                    <a class="dropdown-item" th:href="@{/security/logoff}" onclick="dangXuat()"><i data-feather="log-out"></i> Logout</a>
                 </div>
             </li>
         </ul>
     </div>
 </nav>
+
+<script th:src="@{/static/admin/js/feather.min.js}"></script>
+<script th:src="@{/static/admin/js/perfect-scrollbar.min.js}"></script>
+<script th:src="@{/static/admin/js/app.js}"></script>
+
+<script th:src="@{/static/admin/js/Chart.min.js}"></script>
+<script th:src="@{/static/admin/js/apexcharts.min.js}"></script>
+<script th:src="@{/static/admin/js/dashboard.js}"></script>
+
+<script th:src="@{/static/admin/js/main.js}"></script>
+<script th:src="@{/static/admin/js/call-api-address.js}"></script>
+<script th:src="@{/static/admin/js/sweet-alert.min.js}"></script>
 </body>
+
 </html>
