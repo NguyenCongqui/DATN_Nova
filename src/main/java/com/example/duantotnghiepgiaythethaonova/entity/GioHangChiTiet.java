@@ -51,7 +51,7 @@ public class GioHangChiTiet extends BaseEntity implements Serializable {
     private GioHang gioHang;
 
     @ManyToOne
-    @JoinColumn(name = "IdCTSP")
+    @JoinColumn(name = "IdSanPhamCT")
     private ChiTietSanPham chiTietSanPham;
 
     @Override

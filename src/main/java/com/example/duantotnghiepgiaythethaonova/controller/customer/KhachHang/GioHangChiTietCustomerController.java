@@ -29,10 +29,10 @@ import java.util.Optional;
 @Controller
 public class GioHangChiTietCustomerController {
 
-    @Autowired(required = false)
+    @Autowired
     private GioHangService gioHangService;
 
-    @Autowired(required = false)
+    @Autowired
     private GioHangChiTietService gioHangChiTietService;
 
     @Autowired
@@ -56,7 +56,7 @@ public class GioHangChiTietCustomerController {
     @Autowired
     SanPhamChiTietRepository sanPhamChiTietRepository;
 
-    @GetMapping("/customer/gio-hang-chi-tiet")
+    @GetMapping("/khachhang/gio-hang-chi-tiet")
     public String layGioHangChiTiet(Model model, RedirectAttributes redirectAttributes) {
         GioHangDTO gioHangDTO = null;
         String auth = SecurityContextHolder.getContext().getAuthentication().getName();
@@ -85,7 +85,7 @@ public class GioHangChiTietCustomerController {
         }
     }
 
-    @GetMapping("/customer/gio-hang-chi-tiet/xoa-gio-hang")
+    @GetMapping("/khachhang/gio-hang-chi-tiet/xoa-gio-hang")
     public String xoaGioHang(@RequestParam("id") Integer id, Model model, RedirectAttributes redirectAttributes) {
         if (id != null) {
             Optional<GioHangChiTiet> optionalGioHangChiTiet = gioHangChiTietRepository.findById(id);
@@ -105,12 +105,12 @@ public class GioHangChiTietCustomerController {
             gioHangChiTietService.capNhatGioHangThanhDaXoaById(id);
             layGioHangChiTiet(model, redirectAttributes);
         }
-        return "redirect:/customer/gio-hang-chi-tiet";
+        return "redirect:/khachhang/gio-hang-chi-tiet";
     }
 
 
     //Cập nhật giỏ hàng
-    @PostMapping("/customer/gio-hang-chi-tiet")
+    @PostMapping("/khachhang/gio-hang-chi-tiet")
     public String capNhatGioHang(@RequestParam("ids") Integer[] ids,
                                  @RequestParam("soLuongs") Integer[] soLuongs,
                                  @RequestParam("donGias") Integer[] donGias,
@@ -145,7 +145,7 @@ public class GioHangChiTietCustomerController {
             gioHangChiTietService.capNhatSoLuongGioHangChiTiet(ids, soLuongs, donGias);
             //Mốt là thay bằng spring security
             gioHangService.capNhatTongTien(khachHangDT0.getId());
-            return "redirect:/customer/gio-hang-chi-tiet";
+            return "redirect:/khachhang/gio-hang-chi-tiet";
         } else {
             model.addAttribute("message", "Giỏ hàng không có sản phẩm");
             return "/customer/khach-hang/gio-hang-chi-tiet";
@@ -161,7 +161,7 @@ public class GioHangChiTietCustomerController {
         return list;
     }
 
-    @PostMapping("/customer/gio-hang-chi-tiet/ap-dung-ma-giam-gia")
+    @PostMapping("/khachhang/gio-hang-chi-tiet/ap-dung-ma-giam-gia")
     public String apMaGiamGia(@ModelAttribute("gioHangDTO") GioHangDTO result, Model model) {
         //Thay bằng mã khách hàng
         String auth = SecurityContextHolder.getContext().getAuthentication().getName();

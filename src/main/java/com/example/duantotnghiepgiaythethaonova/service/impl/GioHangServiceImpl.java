@@ -152,6 +152,7 @@ public class GioHangServiceImpl implements GioHangService{
                 gioHangChiTiet.setDonGia(donGia.intValue());
                 gioHangChiTiet.setThanhTien(thanhTien);
                 gioHangChiTiet.setDaXoa(false);
+                gioHangChiTiet.setTrangThai(0);
             }
             gioHangChiTietRepository.save(gioHangChiTiet);
 

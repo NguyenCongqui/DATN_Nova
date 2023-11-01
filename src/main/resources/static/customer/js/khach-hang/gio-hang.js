@@ -36,7 +36,7 @@ function tinhTienGioHang() {
     console.log(gioHangChiTietIds)
 
     $.ajax({
-        url: 'http://localhost:8080/customer/api/gio-hang/tinh-tien',
+        url: 'http://localhost:8080/khachhang/api/gio-hang/tinh-tien',
         type: 'DELETE',
         contentType: 'application/json',
         data: JSON.stringify(gioHangChiTietIds),
@@ -53,7 +53,7 @@ function tinhTienGioHang() {
 function xoaSachGiohang() {
     let id = $("#idGioHang").val();
     $.ajax({
-        url: "/customer/gio-hang-chi-tiet/xoa-sach-gio-hang",
+        url: "/khachhang/gio-hang-chi-tiet/xoa-sach-gio-hang",
         type: "GET",
         data: {
             id: id

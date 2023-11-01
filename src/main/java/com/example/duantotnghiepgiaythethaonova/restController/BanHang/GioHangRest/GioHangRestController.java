@@ -14,7 +14,7 @@ public class GioHangRestController {
     @Autowired
     CTSPRepository sanPhamChiTietRepository;
 
-    @Autowired(required = false)
+    @Autowired
     GioHangService gioHangService;
 
     @RequestMapping("/khachhang/SoLuongSanPhamChiTiet")
