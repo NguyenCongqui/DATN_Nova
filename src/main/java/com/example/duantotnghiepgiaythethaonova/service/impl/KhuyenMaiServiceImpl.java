@@ -151,11 +151,18 @@ public class KhuyenMaiServiceImpl implements KhuyenMaiService {
 
     @Override
     public KhuyenMaiDTO timKhuyenMaiTheoTenKhuyenMai(String maGiamGia) {
-        return null;
+        KhuyenMaiDTO khuyenMaiDTO = new KhuyenMaiDTO();
+        KhuyenMai khuyenMai = khuyenMaiRepository.findByTenKhuyenMai(maGiamGia);
+        if(khuyenMai != null) {
+            khuyenMaiDTO = khuyenMaiConvertor.toDTO(khuyenMai);
+        }else {
+            return null ;
+        }
+        return khuyenMaiDTO;
     }
 
     @Override
     public boolean checkExistVoucher(KhuyenMaiDTO khuyenMaiDTO) {
-        return false;
+        return khuyenMaiRepository.existsByTenKhuyenMai(khuyenMaiDTO.getTenKhuyenMai());
     }
 }
