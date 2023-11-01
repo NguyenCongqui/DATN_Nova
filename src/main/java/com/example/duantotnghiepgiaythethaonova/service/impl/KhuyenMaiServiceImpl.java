@@ -60,6 +60,7 @@ public class KhuyenMaiServiceImpl implements KhuyenMaiService {
         }
     }
 
+
     private KhuyenMaiDTO toDto(KhuyenMai e) {
         if (e == null) return null;
         return KhuyenMaiDTO.builder()
@@ -77,15 +78,43 @@ public class KhuyenMaiServiceImpl implements KhuyenMaiService {
                 .build();
     }
 
-    @Override
-    public KhuyenMaiDTO createVoucher(KhuyenMaiDTO khuyenMaiDTO) {
-        return null;
+    private KhuyenMai toEntity(KhuyenMaiDTO e) {
+        if (e == null) return null;
+        return KhuyenMai.builder()
+                .tenKhuyenMai(e.getTenKhuyenMai())
+                .giaTriToiThieu(e.getGiaTriToiThieu())
+                .phanTramGiam(e.getPhanTramGiam())
+                .ngayBatDau(e.getNgayBatDau())
+                .ngayKetThuc(e.getNgayKetThuc())
+                .xoa(false)
+                .trangThai(true)
+                .build();
+    }
+
+    private void mapDto(KhuyenMai entity, KhuyenMaiDTO dto){
+        if (dto == null) return;
+        entity.setTenKhuyenMai(dto.getTenKhuyenMai());
+        entity.setGiaTriToiThieu(dto.getGiaTriToiThieu());
+        entity.setPhanTramGiam(dto.getPhanTramGiam());
+        entity.setNgayBatDau(dto.getNgayBatDau());
+        entity.setNgayKetThuc(dto.getNgayKetThuc());
+        entity.setTrangThai(dto.isTrangThai());
     }
 
     @Override
-    public KhuyenMaiDTO editVoucher(Long id, KhuyenMaiDTO khuyenMaiDTO) {
-        return null;
+    public KhuyenMaiDTO createVoucher(KhuyenMaiDTO khuyenMaiDTO) {
+        KhuyenMai entity = toEntity(khuyenMaiDTO);
+        return toDto(khuyenMaiRepository.save(entity));
     }
+
+    @Override
+    public KhuyenMaiDTO editVoucher(Integer id, KhuyenMaiDTO khuyenMaiDTO) {
+        KhuyenMai khuyenMai = khuyenMaiRepository.findById(id).orElseThrow(() -> new RuntimeException("NOTFOUND"));
+        mapDto(khuyenMai, khuyenMaiDTO);
+        khuyenMaiRepository.save(khuyenMai);
+        return toDto(khuyenMai);
+    }
+
 
     @Override
     public KhuyenMaiDTO getVoucher(Long id) {

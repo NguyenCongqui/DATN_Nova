@@ -13,7 +13,7 @@ public interface KhuyenMaiService {
                                         String dateFrom,
                                         String dateTo);
     KhuyenMaiDTO createVoucher(KhuyenMaiDTO khuyenMaiDTO);
-    KhuyenMaiDTO editVoucher(Long id, KhuyenMaiDTO khuyenMaiDTO);
+    KhuyenMaiDTO editVoucher(Integer id, KhuyenMaiDTO khuyenMaiDTO);
     KhuyenMaiDTO getVoucher(Long id);
     boolean deleteVoucher(Long id);
     boolean toggleDisableVoucher(Long id);
