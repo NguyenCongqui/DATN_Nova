@@ -22,6 +22,8 @@ public class KhachHangDTO extends BaseDTO<KhachHangDTO> {
 		@NotBlank(message="Email không được để trống !")
 	    private String email;
 
+		@NotBlank(message = "Mật khẩu không được bỏ trống !")
+		@Size(min=6 , max = 12 , message="Mật khẩu phải lớn hơn 6 và nhỏ hơn 12 ký tự !")
 	    private String matKhau;
 
 	    

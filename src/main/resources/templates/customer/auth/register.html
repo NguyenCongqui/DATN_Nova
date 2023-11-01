@@ -65,7 +65,7 @@
                                     <div class="form-outline mb-4">
                                         <label class="form-label" for="form2Example17"><i class="fa-solid fa-user"></i>
                                             Họ tên</label>
-                                        <input class="form-control" type="text" name="hoTen" placeholder="Họ tên ?"
+                                        <input class="form-control" type="text" name="hoTen" placeholder="Họ tên "
                                                th:field="*{hoTen}" required="">
                                         <small th:if="${#fields.hasErrors('hoTen')}" th:errors="*{hoTen}"
                                                class="text-danger"></small>
@@ -75,11 +75,19 @@
                                         <label class="form-label" for="form2Example27"><i
                                                 class="fa-solid fa-envelope"></i>
                                             Email</label>
-                                        <input class="form-control" type="email" name="email" placeholder="Email ?"
+                                        <input class="form-control" type="email" name="email" placeholder="Email "
                                                th:field="*{email}" required="">
                                         <small th:if="${#fields.hasErrors('email')}" th:errors="*{email}"
                                                class="text-danger"></small>
+                                    </div>
 
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form2Example27"><i class="fa-solid fa-key"></i>
+                                            Mật khẩu</label>
+                                        <input class="form-control" type="password" name="password" placeholder="Mật khẩu"
+                                               th:field="*{matKhau}" required="">
+                                        <small th:if="${#fields.hasErrors('matKhau')}" th:errors="*{matKhau}"
+                                               class="text-danger"></small>
                                     </div>
                                     <div class="form-outline mb-4">
                                         <label class="form-label" for="form2Example27"><i class="fa-solid fa-phone"></i>

@@ -17,7 +17,7 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "GioHang")
 @Builder
-@EqualsAndHashCode(callSuper=false)
+@EqualsAndHashCode(callSuper = false)
 public class GioHang extends BaseEntity implements Serializable {
 
     @Id
@@ -38,11 +38,11 @@ public class GioHang extends BaseEntity implements Serializable {
 //    @Column(name = "NguoiCapNhat")
 //    private String NguoiCapNhat;
 
-@Column(name = "NgayTao",columnDefinition = "nvarchar(256)  ")
-@CreatedDate
-private Date ngayTao;
+    @Column(name = "NgayTao")
+    @CreatedDate
+    private Date ngayTao;
 
-    @Column(name = "NgayCapNhat",columnDefinition = "nvarchar(256)  ")
+    @Column(name = "NgayCapNhat")
     private Date ngayCapNhat;
 
     @OneToOne
@@ -57,7 +57,6 @@ private Date ngayTao;
 
     @OneToMany(mappedBy = "gioHang")
     private List<GioHangChiTiet> gioHangChiTiets = new ArrayList<GioHangChiTiet>();
-
 
 
     @Override

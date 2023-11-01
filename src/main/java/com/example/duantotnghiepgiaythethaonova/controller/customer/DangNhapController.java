@@ -60,11 +60,11 @@ public class DangNhapController {
 	
 	@SuppressWarnings("deprecation")
 	@RequestMapping("/security/forgot-password/code")
-	public String getEmail(@RequestParam("email") String email , Model model ,RedirectAttributes redirectAtrributes) {
+	public String getEmail(@RequestParam("email") String email , Model model ,RedirectAttributes redirect) {
 		session.putValue("email",email);
 		if(khachHangService.findByEmail(email) == null ) {
 			model.addAttribute("messageError","Email chưa được đăng ký");
-			return "/customer/auth/quen-mat-khau";
+			return "/customer/auth/register";
 		}else {
 			String code = khachHangService.sendCode(email);
 			session.putValue("code",code);

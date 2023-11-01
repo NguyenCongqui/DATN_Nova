@@ -15,27 +15,7 @@
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css" crossorigin="anonymous">
     <script src="https://kit.fontawesome.com/999051c9de.js"
             crossorigin="anonymous"></script>
-    <script>
-        function dangXuat() {
-            Swal.fire({
-                title: 'Bạn chắc chắn muốn đăng xuất?',
-                showCancelButton: true,
-                confirmButtonText: 'Đăng xuất',
-            }).then((result) => {
-                /* Read more about isConfirmed, isDenied below */
-                if (result.isConfirmed) {
-                    Swal.fire('Đăng xuất thành công !', '', 'success');
-                    setTimeout(() => {
-                        location.href = "/security/logoff";
-                    }, 2000);
 
-
-                } else if (result.isDenied) {
-
-                }
-            })
-        }
-    </script>
 
 </head>
 <body>
@@ -104,7 +84,27 @@
         </ul>
     </div>
 </nav>
+<script>
+    function dangXuat() {
+        Swal.fire({
+            title: 'Bạn chắc chắn muốn đăng xuất?',
+            showCancelButton: true,
+            confirmButtonText: 'Đăng xuất',
+        }).then((result) => {
+            /* Read more about isConfirmed, isDenied below */
+            if (result.isConfirmed) {
+                Swal.fire('Đăng xuất thành công !', '', 'success');
+                setTimeout(() => {
+                    location.href = "/security/logoff/success";
+                }, 2000);
 
+
+            } else if (result.isDenied) {
+
+            }
+        })
+    }
+</script>
 <script th:src="@{/static/admin/js/feather.min.js}"></script>
 <script th:src="@{/static/admin/js/perfect-scrollbar.min.js}"></script>
 <script th:src="@{/static/admin/js/app.js}"></script>

@@ -74,16 +74,21 @@
                                                name="username" placeholder="Nhập email..." required/>
 
                                     </div>
-
-                                    <div class="form-outline mb-4 input">
-                                        <label class="form-label" for="form2Example27"><i class="fa-solid fa-lock"></i>
-                                            Mật Khẩu</label>
-                                        <input type="password" id="password" class="form-control form-control-lg"
-                                               name="password" placeholder="Nhập mật khẩu..."/>
-                                        <span toggle="#password-field"></span>
-
-
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="password"><i class="fa-solid fa-lock"></i> Mật
+                                            Khẩu</label>
+                                        <div class="password-toggle">
+                                            <input type="password" id="password" class="form-control form-control-lg"
+                                                   name="password" placeholder="Nhập mật khẩu..." onclick="showPass()" required=""/>
+                                            <i class="fa-solid fa-eye password-toggle-icon" id="togglePassword"
+                                               style="display: none;"></i>
+                                            <span toggle="#password-field"></span>
+<!--                                            <i class="fas fa-check" id="validIcon" style="display: none; color: green;"></i>-->
+<!--                                            <i class="fas fa-times" id="invalidIcon" style="display: none; color: red;"></i>-->
+                                        </div>
                                     </div>
+
+
                                     <div class="form-outline mb-4">
                                         <input type="checkbox" checked> Remember me ?
                                         <a class="small text-muted i" th:href="@{/security/forgot-password}">Quên mật
@@ -146,5 +151,96 @@
 <br>
 <br>
 <br>
+<script>
+    // function showPass() {
+    //     const passwordField = document.getElementById('password');
+    //     const togglePassword = document.getElementById('togglePassword');
+    //
+    //     function togglePasswordIcon() {
+    //         if (passwordField.value === '') {
+    //             togglePassword.style.display = 'none';
+    //         } else {
+    //             togglePassword.style.display = 'block';
+    //         }
+    //     }
+    //
+    //     // Check password validity and display icons
+    //     function checkPasswordValidity() {
+    //         const validIcon = document.getElementById('validIcon');
+    //         const invalidIcon = document.getElementById('invalidIcon');
+    //         const password = passwordField.value;
+    //         const minLength = 6; // Độ dài tối thiểu của mật khẩu
+    //         const maxLenght = 12;
+    //
+    //         if (password.length <= minLength || password.length >= maxLenght) {
+    //             validIcon.style.display = 'inline'; // Hiển thị icon xanh khi mật khẩu hợp lệ
+    //             invalidIcon.style.display = 'none'; // Ẩn icon đỏ
+    //         } else {
+    //             validIcon.style.display = 'none'; // Ẩn icon xanh
+    //             invalidIcon.style.display = 'inline'; // Hiển thị icon đỏ khi mật khẩu không hợp lệ
+    //         }
+    //     }
+    //
+    //     // Nếu không nhập gì, không hiển thị icon
+    //     togglePasswordIcon();
+    //
+    //     togglePassword.addEventListener('click', function () {
+    //         const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+    //         passwordField.setAttribute('type', type);
+    //
+    //         // Thay đổi icon
+    //         if (type === 'password') {
+    //             togglePassword.classList.add('fa-eye');
+    //             togglePassword.classList.remove('fa-eye-slash');
+    //         } else {
+    //             togglePassword.classList.remove('fa-eye');
+    //             togglePassword.classList.add('fa-eye-slash');
+    //         }
+    //     });
+    //
+    //     // Kiểm tra giá trị khi người dùng nhập mật khẩu
+    //     passwordField.addEventListener('input', function () {
+    //         togglePasswordIcon();
+    //         checkPasswordValidity();
+    //     });
+    // }
+    // ``
+
+    function showPass(){
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordField = document.getElementById('password');
+
+        // Call hiện/ẩn hiển thị mật khẩu
+        function togglePasswordIcon() {
+            if (passwordField.value === '') {
+                togglePassword.style.display = 'none';
+            } else {
+                togglePassword.style.display = 'block';
+            }
+        }
+
+        // Call nếu nhập vào text thi hiển thị icon
+        togglePasswordIcon();
+
+        togglePassword.addEventListener('click', function() {
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+
+            // Change icon
+            if (type === 'password') {
+                togglePassword.classList.add('fa-eye');
+                togglePassword.classList.remove('fa-eye-slash');
+            } else {
+                togglePassword.classList.remove('fa-eye');
+                togglePassword.classList.add('fa-eye-slash');
+            }
+        });
+
+        // Kiểm tra input value khi nhập
+        passwordField.addEventListener('input', togglePasswordIcon);
+
+    }
+
+</script>
 </body>
 </html>

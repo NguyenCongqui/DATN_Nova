@@ -12,6 +12,9 @@ import java.util.List;
 public interface KhachHangService {
 
 
+    List<KhachHangDTO> findAllByTrangThaiCoPhanTrang(Integer trangThai,Pageable pageable);
+
+
     void capNhatTrangThaiThanhDangHoatDongTheoMa(Integer[] ids);
 
     void capNhatTrangThaiThanhKhongHoatDongTheoMa(Integer[] ids);
@@ -24,9 +27,9 @@ public interface KhachHangService {
 
     List<KhachHangDTO> findAll();
 
-    List<KhachHangDTO> findAllByInputCoPhanTrang(String soDienThoai, Pageable pageable);
+    List<KhachHangDTO> findAllByInputCoPhanTrang(String soDienThoai,Pageable pageable);
 
-    List<KhachHangDTO> findAllByInputVaTrangThaiCoPhanTrang(String soDienThoai, Integer trangThai, Pageable pageable);
+    List<KhachHangDTO> findAllByInputVaTrangThaiCoPhanTrang(String soDienThoai,Integer trangThai,Pageable pageable);
 
     int countAll();
 
@@ -55,12 +58,13 @@ public interface KhachHangService {
     String sendCode(String email);
 
 
-    void updatePassword(String email, KhachHangDTO khachHangDTO);
+    void updatePassword(String email,KhachHangDTO khachHangDTO);
 
 
     void capNhatMatKhau(TaiKhoanDTO taiKhoanDTO);
 
-    public void taoMoiKhachHang(String email, String fullname, AuthenticationProvider provider);
+    public void taoMoiKhachHang(String email, String fullname ,AuthenticationProvider provider);
 
-    public void capNhatKhachHang(String email, String fullname, AuthenticationProvider provider);
+    public void capNhatKhachHang(String email, String fullname,AuthenticationProvider provider);
+
 }
