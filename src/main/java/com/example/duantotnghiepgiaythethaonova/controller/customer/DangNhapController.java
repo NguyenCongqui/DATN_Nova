@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -16,15 +15,14 @@ import javax.servlet.http.HttpSession;
 @Controller
 public class DangNhapController {
 	@Autowired
-	private KhachHangService khachHangService ;
+	private KhachHangService khachHangService;
 	
 	@Autowired
 	private HttpServletRequest request ;
-	
+
 	@Autowired
 	private HttpSession session ;
-	
-	
+
     @RequestMapping("/security/login/form")
 	public String loginForm(Model model) {
     	model.addAttribute("alert",request.getParameter("alert"));
@@ -46,9 +44,9 @@ public class DangNhapController {
 	}
 	@RequestMapping("/security/unauthoried")
 	public String unauthoried(Model model) {
-		model.addAttribute("alert",request.getParameter("alert"));
-		model.addAttribute("message","Bạn không có quyền truy xuất !");
-		return "/customer/auth/login";
+//		model.addAttribute("alert",request.getParameter("alert"));
+//		model.addAttribute("message","Bạn không có quyền truy xuất !");
+		return "/customer/403";
 	}
 	
 	@RequestMapping("/security/logoff/success")

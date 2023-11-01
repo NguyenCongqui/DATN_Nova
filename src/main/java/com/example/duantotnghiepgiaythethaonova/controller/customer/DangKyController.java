@@ -14,6 +14,8 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import javax.servlet.http.HttpServletRequest;
+
 @CrossOrigin("*")
 @Controller
 public class DangKyController {
@@ -24,6 +26,9 @@ public class DangKyController {
 
     @Autowired
     private DiaChiService diaChiService;
+
+    @Autowired
+    private HttpServletRequest req;
 
     @RequestMapping("/security/register/create")
     public String registerForm(Model model) {
@@ -37,7 +42,13 @@ public class DangKyController {
                            Model md) {
         if (result.hasErrors()) {
             return "/customer/auth/register";
-        } else {
+        }
+        if (req.getParameter("trangThai") == null) {
+            req.setAttribute("message", "Vui lòng đồng ý với điều khoản trước khi đăng ký !");
+            req.setAttribute("type", "error");
+            return "/customer/auth/register";
+        }
+        else {
             if (khachHangService.findByEmail(khachHangDTO.getEmail()) != null) {
                 if (khachHangService.findByEmailAndTrangThai(khachHangDTO.getEmail(), 0) != null) {
                     md.addAttribute("messageError", "Tài khoản đã bị vô hiệu hóa vui lòng liên hệ 0368028006 !");
