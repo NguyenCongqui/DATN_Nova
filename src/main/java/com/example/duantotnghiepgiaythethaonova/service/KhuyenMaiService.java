@@ -14,9 +14,9 @@ public interface KhuyenMaiService {
                                         String dateTo);
     KhuyenMaiDTO createVoucher(KhuyenMaiDTO khuyenMaiDTO);
     KhuyenMaiDTO editVoucher(Integer id, KhuyenMaiDTO khuyenMaiDTO);
-    KhuyenMaiDTO getVoucher(Long id);
-    boolean deleteVoucher(Long id);
-    boolean toggleDisableVoucher(Long id);
+    KhuyenMaiDTO getVoucher(Integer id);
+    boolean deleteVoucher(Integer id);
+    boolean toggleDisableVoucher(Integer id);
     KhuyenMaiDTO timKhuyenMaiTheoTenKhuyenMai(String maGiamGia);
     boolean checkExistVoucher(KhuyenMaiDTO khuyenMaiDTO);
 }

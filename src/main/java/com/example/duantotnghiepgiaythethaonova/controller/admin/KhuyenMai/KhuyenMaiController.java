@@ -10,6 +10,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import javax.validation.Valid;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -20,7 +21,7 @@ import java.util.stream.IntStream;
 @RequestMapping("/admin")
 public class KhuyenMaiController {
     public static final String MSG_DANGER = "msgDanger";
-    private static final String REDIRECT_GET_VOUCHER = "redirect:/admin/khuyenMai";
+    private static final String REDIRECT_GET_VOUCHER = "redirect:/admin/voucher";
     private static final String ADMIN_VOUCHER_INDEX = "admin/khuyenMai/danhSach";
     private static final String ADMIN_VOUCHER_EDIT = "admin/khuyenMai/edit";
     public static final String MSG_SUCCESS = "msgSuccess";
@@ -81,15 +82,57 @@ public class KhuyenMaiController {
         return REDIRECT_GET_VOUCHER;
     }
 
+    @GetMapping("/voucher/edit/{id}")
+    public String editVoucher(Model model, @PathVariable Integer id) {
+        if (!model.containsAttribute("voucher")) {
+            model.addAttribute("voucher", khuyenMaiService.getVoucher(id));
+        }
+
+        return ADMIN_VOUCHER_EDIT;
+    }
+
+    @PostMapping("/voucher/edit/{id}")
+    public String handleEdit(@PathVariable Integer id,
+                             @ModelAttribute("voucher") @Valid KhuyenMaiDTO dto,
+                             BindingResult result,
+                             RedirectAttributes ra,
+                             Model model) {
+        KhuyenMaiDTO entity = khuyenMaiService.getVoucher(id);
+        if (!entity.getTenKhuyenMai().equals(dto.getTenKhuyenMai()) && (khuyenMaiService.checkExistVoucher(dto))) {
+            result.rejectValue("tenKhuyenMai", "Exist", "Đã tồn tại mã khuyến mãi này!");
+        }
+
+        if (result.hasErrors()) {
+            ra.addFlashAttribute("org.springframework.validation.BindingResult.voucher", result);
+            ra.addFlashAttribute("voucher", dto);
+            return "redirect:/admin/voucher/edit/" + id;
+        }
+
+        khuyenMaiService.editVoucher(id, dto);
+        ra.addFlashAttribute(MSG_SUCCESS, "Sửa voucher thành công");
+        return REDIRECT_GET_VOUCHER;
+    }
+
     @GetMapping("/voucher/toggle/{id}")
 
-    public String disableVoucher(@PathVariable Long id,
+    public String disableVoucher(@PathVariable Integer id,
                                  RedirectAttributes ra
     ) {
         if (khuyenMaiService.toggleDisableVoucher(id))
             ra.addFlashAttribute(MSG_SUCCESS, "Sửa trạng thái voucher thành công");
         else
             ra.addFlashAttribute(MSG_DANGER, "Sửa trạng thái voucher thất bại");
+        return REDIRECT_GET_VOUCHER;
+    }
+
+    @GetMapping("/voucher/delete/{id}")
+    public String deleteVoucher(@PathVariable Integer id,
+                                RedirectAttributes ra) {
+        if (khuyenMaiService.deleteVoucher(id))
+            ra.addFlashAttribute(MSG_SUCCESS, "Xoá voucher thành công");
+        else
+            ra.addFlashAttribute(MSG_DANGER, "Xoá voucher thất bại");
+
         return REDIRECT_GET_VOUCHER;
     }
 }

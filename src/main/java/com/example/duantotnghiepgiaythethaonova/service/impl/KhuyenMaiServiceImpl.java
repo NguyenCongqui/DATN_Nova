@@ -13,6 +13,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -117,18 +118,35 @@ public class KhuyenMaiServiceImpl implements KhuyenMaiService {
 
 
     @Override
-    public KhuyenMaiDTO getVoucher(Long id) {
-        return null;
+    public KhuyenMaiDTO getVoucher(Integer id) {
+        KhuyenMai khuyenMai = khuyenMaiRepository.findById(id).orElseThrow(() -> new RuntimeException("NOTFOUND"));
+        return toDto(khuyenMai);
     }
 
     @Override
-    public boolean deleteVoucher(Long id) {
-        return false;
+    public boolean deleteVoucher(Integer id) {
+        try{
+            KhuyenMai khuyenMai = khuyenMaiRepository.findById(id).orElseThrow(() -> new RuntimeException("NOTFOUND"));
+            khuyenMai.setXoa(true);
+            khuyenMaiRepository.save(khuyenMai);
+            return true;
+        } catch (Exception e){
+            log.error(e.getMessage());
+            return false;
+        }
     }
 
     @Override
-    public boolean toggleDisableVoucher(Long id) {
-        return false;
+    public boolean toggleDisableVoucher(Integer id) {
+        try{
+            KhuyenMai khuyenMai = khuyenMaiRepository.findById(id).orElseThrow(() -> new RuntimeException("NOTFOUND"));
+            khuyenMai.setTrangThai(!khuyenMai.getTrangThai());
+            khuyenMaiRepository.save(khuyenMai);
+            return true;
+        } catch (Exception e){
+            log.error(e.getMessage());
+            return false;
+        }
     }
 
     @Override
