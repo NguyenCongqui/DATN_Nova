@@ -30,7 +30,7 @@ function formatNumber(nStr, decSeperate, groupSeperate) {
 
 function tinhTienGioHang() {
     //Lấy id của giỏ hàng thì cứ gõ lại cái lệnh var này là được
-    var gioHangChiTietIds = $('tbody input[type=checkbox]:checked').map(function name() {
+    var gioHangChiTietIds = $('tbody input[type=checkbox]:checkbox').map(function name(){
         return $(this).val();
     }).get();
     console.log(gioHangChiTietIds)

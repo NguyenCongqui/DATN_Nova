@@ -21,7 +21,7 @@ public interface HoaDonRepository extends JpaRepository<HoaDon, Integer> {
     @Query(value = "select * from hoa_don where trang_thai_id = ?1", nativeQuery = true)
     List<HoaDon> findByTrangThaiHoaDonListTrangThai(int trangThai);
 
-    @Query(value = "select Max(id) from hoa_don", nativeQuery = true)
+    @Query(value = "select Max(IdHoaDon) from HoaDon",nativeQuery = true)
     Integer getMaxId();
 
     List<HoaDon> findByNgayTao(Date ngayTao);

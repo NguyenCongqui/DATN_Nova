@@ -213,7 +213,7 @@ public class BanHangServiceIpml implements BanHangService {
 
         hoaDon.setMaHoaDon(ma);
         hoaDon.setNgayTao(new Date());
-        hoaDon.setNguoiTao("hduong");
+        hoaDon.setNguoiTao("quinc");
         hoaDon.setKhachHang(optionalCartItemDetail.get().getGioHang().getKhachHang());
         hoaDon.setLoaiHoaDon(2);
         hoaDon.setDaXoa(false);

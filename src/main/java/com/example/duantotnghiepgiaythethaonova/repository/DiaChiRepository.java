@@ -21,6 +21,6 @@ public interface DiaChiRepository extends JpaRepository<DiaChi,Integer> {
 	@Query(value = "SELECT * FROM DiaChi  WHERE idKhachHang=:idKhachHang", nativeQuery = true)
 	Page<DiaChi> findAllByMaKhachHang(@Param("idKhachHang") Integer idKhachHang, Pageable pageale);
 
-	@Query(value = "select * from DiaChi where idKhachHang = ? and laDiaChiMacDinh = true ", nativeQuery = true)
+	@Query(value = "select * from DiaChi where idKhachHang = ? and laDiaChiMacDinh = 1 ", nativeQuery = true)
 	DiaChi findDiaChiByKhachHang(Integer id);
 }

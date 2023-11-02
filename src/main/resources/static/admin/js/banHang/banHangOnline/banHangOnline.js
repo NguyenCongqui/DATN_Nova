@@ -237,7 +237,7 @@ $(document).ready(function () {
 });
 
 function banHangOnlQuayLai() {
-    window.location.href = "/customer/gio-hang-chi-tiet";
+    window.location.href = "/khachhang/gio-hang-chi-tiet";
 }
 
 $(document).ready(function () {
@@ -364,7 +364,7 @@ $(document).ready(function () {
                                 timer: 2000,
                             }).then(function () {
                                 sessionStorage.setItem("isConfirmed", true);
-                                window.location.href = "/customer/DonHang/ChoXacNhan";
+                                window.location.href = "/khachhang/DonHang/ChoXacNhan";
                             });
                         } else {
                             // Xử lý khi lưu hóa đơn không thành công

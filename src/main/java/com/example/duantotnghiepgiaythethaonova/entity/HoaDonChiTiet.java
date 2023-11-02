@@ -52,7 +52,7 @@ public class HoaDonChiTiet extends BaseEntity implements Serializable {
     private HoaDon hoaDon;
 
     @ManyToOne
-    @JoinColumn(name = "IdCTSP")
+    @JoinColumn(name = "IdSanPhamCT")
     private ChiTietSanPham chiTietSanPham;
 
 

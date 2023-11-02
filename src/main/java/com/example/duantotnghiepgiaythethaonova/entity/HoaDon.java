@@ -28,7 +28,7 @@ public class HoaDon extends BaseEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdHoaDon")
     private Integer idHoaDon;
-    @Column(name = "MaHoaDon")
+    @Column(name = "MaDon")
     private String maHoaDon;
     @Column(name = "DiaChiGiaoHang")
     private String diaChiGiaoHang;

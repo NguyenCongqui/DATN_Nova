@@ -32,7 +32,7 @@ public class GioHangDTO extends BaseDTO<GioHangDTO> {
         List<Integer> selectedCartItemIds = new ArrayList<>();
         for (GioHangChiTietDTO gioHangChiTietDTO : listGioHangChiTiets) {
             if (gioHangChiTietDTO.isChecked()) {
-                selectedCartItemIds.add(gioHangChiTietDTO.getId());
+                selectedCartItemIds.add(gioHangChiTietDTO.getGioHangId());
             }
         }
         return selectedCartItemIds;

@@ -63,9 +63,11 @@ public class GioHangChiTietCustomerController {
         KhachHangDTO khachHangDT0 = khachHangService.findByEmail(auth);
         if (khachHangDT0 != null) {
             gioHangDTO = gioHangService.findByKhachHangId(khachHangDT0.getId());
+            System.out.println(gioHangService.findByKhachHangId(khachHangDT0.getId()));
             if (gioHangDTO != null) {
                 if (gioHangDTO.getSoTienGiamGia() == null) {
                     gioHangDTO.setSoTienGiamGia(0);
+                    System.out.println(gioHangDTO.getId());
                     if (gioHangChiTietService.getTongTienByKhachHangID(gioHangDTO.getId()) != null) {
                         gioHangDTO.setTongTien(gioHangChiTietService.getTongTienByKhachHangID(gioHangDTO.getId()));
                     } else {
@@ -78,7 +80,7 @@ public class GioHangChiTietCustomerController {
                 gioHangDTO.setListGioHangChiTiets(null);
             }
             model.addAttribute("gioHangDTO", gioHangDTO);
-            return "/customer/khach-hang/gio-hang-chi-tiet";
+            return "customer/khach-hang/gio-hang-chi-tiet";
         } else {
             redirectAttributes.addFlashAttribute("message", "Phiên đăng nhập đã hết hạn !");
             return "redirect:/security/login/form";

@@ -11,7 +11,7 @@ public interface GioHangService {
 
 	void capNhatTongTien(Integer i);
 
-	int tinhTienGioHangTheoMaGioHangChiTiet(Integer[] idGioHangChiTiet);
+	int tinhTienGioHangTheoMaGioHangChiTiet(int[] idGioHangChiTiet);
 
 	ResponseEntity<String> addToCart(Integer sanPhamId, Integer mauSacId, Integer kichCoId, Integer soLuong);
 

@@ -219,8 +219,8 @@ public class KhachHangServiceImpl implements KhachHangService {
                 nguoiDungVaiTro.setVaiTro(vaiTroRepository.findByTenVaiTro("CUSTOMER"));
                 nguoiDungVaiTroRepository.save(nguoiDungVaiTro);
                 // LỖI NÊN COMMENT
-//                GioHang gioHang = new GioHang(null, null, khachHangEntity, 1, 0, null);
-//                gioHangRepository.save(gioHang);
+                GioHang gioHang = new GioHang(null,null, null, khachHangEntity, 1, 0, null);
+                gioHangRepository.save(gioHang);
 
             }
             khachHangEntity = khachHangRepository.save(khachHangEntity);

@@ -40,4 +40,6 @@ public interface GioHangChiTietRepository extends JpaRepository<GioHangChiTiet,I
 
 	@Query(value = "SELECT * FROM dbo.GioHangCT WHERE IdGioHang = ? AND DaXoa = 0", nativeQuery = true)
 	List<GioHangChiTiet> findbyGiohangIdAndDaXoa(Integer id);
+
+
 }

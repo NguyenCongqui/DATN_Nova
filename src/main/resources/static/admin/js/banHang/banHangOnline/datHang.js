@@ -29,7 +29,7 @@ function taoHoaDon() {
         }
     });
 
-    fetch('/customer/gio-hang-chi-tiet/tao-hoa-don', {
+    fetch('/khachhang/gio-hang-chi-tiet/tao-hoa-don', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

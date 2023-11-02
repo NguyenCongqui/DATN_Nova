@@ -106,12 +106,12 @@ public class GioHangServiceImpl implements GioHangService{
     }
 
     @Override
-    public int tinhTienGioHangTheoMaGioHangChiTiet(Integer[] idGioHangChiTiet) {
+    public int tinhTienGioHangTheoMaGioHangChiTiet(int[] idGioHangChiTiet) {
         int thanhTien = 0;
         for (int i = 0; i < idGioHangChiTiet.length; i++) {
             Integer id = (Integer) Array.get(idGioHangChiTiet, i);
             GioHangChiTiet gioHangChiTiet = gioHangChiTietRepo.findById(id).get();
-            thanhTien += Integer.parseInt(gioHangChiTiet.getThanhTien().toString());
+            thanhTien += Double.parseDouble(gioHangChiTiet.getThanhTien().toString());
         }
         return thanhTien;
     }

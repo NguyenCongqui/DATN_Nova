@@ -1,10 +1,12 @@
 <!DOCTYPE html>
-<html lang="en"xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{customer/layouts/index}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{customer/layout/index}">
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <script th:src="@{/admin/js/banHang/banHangOnline/datHang.js}"></script>
+    <script src="../../../static/admin/js/banHang/banHangOnline/datHang.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
 </head>
 <body>
 <!-- Page Content Wraper -->
@@ -37,60 +39,106 @@
                             <div class="cart-product-table-wrap responsive-table">
                                 <table>
                                     <th:block th:if="*{!listGioHangChiTiets.isEmpty()}">
-                                    <thead>
-                                    <tr>
-                                        <th class="product-remove"></th>
-                                        <th class="product-thumbnail"></th>
-                                        <th class="product-name">Sản Phẩm</th>
-                                        <th class="product-price">Kích Thước</th>
-                                        <th class="product-price">Màu Sắc</th>
-                                        <th class="product-price">Đơn Giá</th>
-                                        <th class="product-quantity">Số Lượng</th>
-                                        <th class="product-subtotal">Tổng</th>
-                                        <th class="product-remove">Xóa</th>
-                                    </tr>
-                                    </thead>
-                                    <tbody>
-                                    <tr>
-                                        <td>
-                                            <input type="checkbox" class="form-checkbox" th:value="${item.id}"/>
-                                        </td>
+                                        <thead>
+                                        <tr>
+                                            <th class="product-remove">
+                                                <input type="checkbox" value="" th:id="checkAll" name="checkAll"/>
+                                            </th>
+                                            <th class="product-thumbnail"></th>
+                                            <th class="product-name">Sản Phẩm</th>
+                                            <th class="product-price">Kích Thước</th>
+                                            <th class="product-price">Màu Sắc</th>
+                                            <th class="product-price">Đơn Giá</th>
+                                            <th class="product-quantity">Số Lượng</th>
+                                            <th class="product-subtotal">Tổng</th>
+                                            <th class="product-remove">Xóa</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr th:each="item : *{listGioHangChiTiets}">
+                                            <td>
+                                                <input type="checkbox" class="form-checkbox" th:value="${item.id}"/>
+                                            </td>
 
-                                        <td class="product-thumbnail">
-                                            <a>
-                                                <img  th:src="@{|/uploads/images/${item.sanPhamChiTietDTO.sanPhamDTO.tenHinhAnh}|}" alt="" /></a>
-                                        </td>
-                                        <td class="product-name">
-                                            <a>[[${item.sanPhamChiTietDTO.sanPhamDTO.tenSanPham}]]</a>
-                                        </td>
-                                        <td class="product-price">
-                                            <a href="">[[${item.sanPhamChiTietDTO.tenKichCo}]]</a>
-                                        </td>
-                                        <td class="product-price">
-                                            <a href="">[[${item.sanPhamChiTietDTO.tenMauSac}]]</a>
-                                        </td>
-                                        <td class="product-price">
+                                            <td class="product-thumbnail">
+                                                <a>
+                                                    <img th:src="@{|/uploads/images/${item.sanPhamChiTietDTO.sanPhamDTO.tenHinhAnh}|}"
+                                                         alt=""/></a>
+                                            </td>
+                                            <td class="product-name">
+                                                <a>[[${item.sanPhamChiTietDTO.sanPhamDTO.tenSanPham}]]</a>
+                                            </td>
+                                            <td class="product-price">
+                                                <a href="">[[${item.sanPhamChiTietDTO.tenKichCo}]]</a>
+                                            </td>
+                                            <td class="product-price">
+                                                <a href="">[[${item.sanPhamChiTietDTO.tenMauSac}]]</a>
+                                            </td>
+                                            <td class="product-price">
                                             <span class="product-price-amount amount">[[${#numbers.formatDecimal(item.sanPhamChiTietDTO.sanPhamDTO.gia, 0,
                                                 'COMMA', 0, 'POINT')}]] VNĐ</span>
-                                        </td>
-                                        <td>
-                                            <div class="product-quantity">
-                                                <span data-value="+" class="quantity-btn quantityPlus"></span>
-                                                <input class="quantity input-lg" step="1" min="1" name="quantity" value="1" title="Quantity" type="hidden" />
-                                                <span data-value="-" class="quantity-btn quantityMinus"></span>
-                                            </div>
-                                        </td>
-                                        <td class="product-subtotal">
-                                            <span class="product-price-sub_totle amount">[[${#numbers.formatDecimal(item.thanhTien, 0, 'COMMA', 0,
-                                        'POINT')}]] VNĐ</span>
-                                        </td>
-                                        <td class="product-remove">
-                                            <a href="javascript:void(0)"><i class="fa fa-times-circle" aria-hidden="true"></i></a>
-                                        </td>
-                                    </tr>
-                                    </tbody>
+                                            </td>
+                                            <td>
+                                                <div class="product-quantity">
+                                                    <input type="hidden" id="cartId" th:name="ids" th:value="${item.id}">
+                                                    <input type="hidden" id="donGia" th:name="donGias"
+                                                           th:value="${item.sanPhamChiTietDTO.sanPhamDTO.gia}">
+                                                    <input type="hidden" id="thanhTien" th:value="${item.thanhTien}">
+                                                    <span data-value="+" class="quantity-btn quantityPlus"></span>
+                                                    <input class="quantity input-lg" step="1" min="1" name="quantity"
+                                                           value="1" title="Quantity" type="number" th:name="soLuongs" th:value="${item.soLuong}"/>
+                                                    <span data-value="-" class="quantity-btn quantityMinus"></span>
+                                                </div>
+                                            </td>
+                                            <td class="product-subtotal">
+                                            <span class="product-price-sub_totle amount">
+                                           [[${#numbers.formatDecimal(item.thanhTien, 0, 'COMMA', 0,
+                                        'POINT')}]] VNĐ
+                                            </span>
+                                            </td>
+                                            <td class="product-remove">
+                                                <button href="javascript:void(0)" type="button" data-toggle="modal"
+                                                   th:attr="data-target='#xoaGioHang'+${item.id}"><i class="fa fa-times-circle"
+                                                                                aria-hidden="true"></i></button>
+
+                                                <div class="modal fade bd-example-modal-sm" th:attr="id='xoaGioHang'+${item.id}"
+                                                     tabindex="-1" role="dialog" aria-labelledby="exampleModalLabell"
+                                                     aria-hidden="true">
+                                                    <div class="modal-dialog" role="document">
+                                                        <div class="modal-content">
+                                                            <div class="modal-header">
+                                                                <h5 class="modal-title" id="exampleModalLabell">Xóa giỏ
+                                                                    hàng</h5>
+                                                                <button type="button" class="close" data-dismiss="modal"
+                                                                        aria-label="Close">
+                                                                    <span aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <span>Bạn có muốn xóa sản phẩm [[${item.sanPhamChiTietDTO.sanPhamDTO.tenSanPham}]] khỏi giỏ hàng ?</span>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <a type="button"
+                                                                   th:href="@{|/khachhang/gio-hang-chi-tiet/xoa-gio-hang?id=${item.id}|}"
+                                                                   class="btn btn-danger">Xóa</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                        </tbody>
                                     </th:block>
                                 </table>
+                                <div class="alert alert-warning container mt-3 text-center"
+                                     th:if="*{listGioHangChiTiets.isEmpty()}"
+                                     style="background-color: transparent; border: none;">
+                                    <img src="/admin/img/gioHangTrong.png" alt="Không có sản phẩm"
+                                         style="width: 350px; height: 200px;">
+                                    <br>
+                                    <p class="empty-message" style="margin-top: 20px; font-size: 1.8em;">Bạn chưa có sản phẩm
+                                        nào trong giỏ hàng!</p>
+                                </div>
                             </div>
                             <div class="row cart-actions">
                                 <div class="col-md-6">
@@ -100,7 +148,8 @@
                                     </div>
                                 </div>
                                 <div class="col-md-6 text-right">
-                                    <input class="btn btn-md btn-gray" name="update_cart" value="Update cart" disabled="" type="submit">
+                                    <input class="btn btn-md btn-gray" name="update_cart" value="Update cart"
+                                           disabled="" type="submit">
                                 </div>
                             </div>
                         </form>
@@ -110,43 +159,61 @@
                                 <div class="responsive-table">
                                     <table>
                                         <tbody>
-                                        <tr class="cart-subtotal">
-                                            <th>Subtotal</th>
-                                            <td><span class="product-price-amount amount"><span class="currency-sign">$</span>997.00</span></td>
-                                        </tr>
-                                        <tr class="shipping">
-                                            <th>Shipping</th>
-                                            <td>
-                                                <ul id="shipping_method">
-                                                    <li>
-                                                        <input name="shipping_method[0]" data-index="0" id="shipping_method_0_legacy_flat_rate" value="legacy_flat_rate" class="shipping_method" checked="checked" type="radio">
-                                                        <label for="shipping_method_0_legacy_flat_rate">Flat Rate: <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>12.00</span></label>
-                                                    </li>
-                                                    <li>
-                                                        <input name="shipping_method[0]" data-index="0" id="shipping_method_0_legacy_free_shipping" value="legacy_free_shipping" class="shipping_method" type="radio">
-                                                        <label for="shipping_method_0_legacy_free_shipping">Free Shipping</label>
-                                                    </li>
-                                                    <li>
-                                                        <input name="shipping_method[0]" data-index="0" id="shipping_method_0_legacy_local_delivery" value="legacy_local_delivery" class="shipping_method" type="radio">
-                                                        <label for="shipping_method_0_legacy_local_delivery">Local Delivery</label>
-                                                    </li>
-                                                </ul>
-                                                <form>
-                                                    <p>
-                                                        <a href="#">Calculate shipping</a>
-                                                    </p>
-                                                </form>
-                                            </td>
-                                        </tr>
+<!--                                        <tr class="cart-subtotal">-->
+<!--                                            <th>Subtotal</th>-->
+<!--                                            <td><span class="product-price-amount amount"><span-->
+<!--                                                    class="currency-sign">$</span>997.00</span></td>-->
+<!--                                        </tr>-->
+<!--                                        <tr class="shipping">-->
+<!--                                            <th>Shipping</th>-->
+<!--                                            <td>-->
+<!--                                                <ul id="shipping_method">-->
+<!--                                                    <li>-->
+<!--                                                        <input name="shipping_method[0]" data-index="0"-->
+<!--                                                               id="shipping_method_0_legacy_flat_rate"-->
+<!--                                                               value="legacy_flat_rate" class="shipping_method"-->
+<!--                                                               checked="checked" type="radio">-->
+<!--                                                        <label for="shipping_method_0_legacy_flat_rate">Flat Rate: <span-->
+<!--                                                                class="woocommerce-Price-amount amount"><span-->
+<!--                                                                class="woocommerce-Price-currencySymbol">$</span>12.00</span></label>-->
+<!--                                                    </li>-->
+<!--                                                    <li>-->
+<!--                                                        <input name="shipping_method[0]" data-index="0"-->
+<!--                                                               id="shipping_method_0_legacy_free_shipping"-->
+<!--                                                               value="legacy_free_shipping" class="shipping_method"-->
+<!--                                                               type="radio">-->
+<!--                                                        <label for="shipping_method_0_legacy_free_shipping">Free-->
+<!--                                                            Shipping</label>-->
+<!--                                                    </li>-->
+<!--                                                    <li>-->
+<!--                                                        <input name="shipping_method[0]" data-index="0"-->
+<!--                                                               id="shipping_method_0_legacy_local_delivery"-->
+<!--                                                               value="legacy_local_delivery" class="shipping_method"-->
+<!--                                                               type="radio">-->
+<!--                                                        <label for="shipping_method_0_legacy_local_delivery">Local-->
+<!--                                                            Delivery</label>-->
+<!--                                                    </li>-->
+<!--                                                </ul>-->
+<!--                                                <form>-->
+<!--                                                    <p>-->
+<!--                                                        <a href="#">Calculate shipping</a>-->
+<!--                                                    </p>-->
+<!--                                                </form>-->
+<!--                                            </td>-->
+<!--                                        </tr>-->
                                         <tr class="order-total">
-                                            <th>Total</th>
-                                            <td><span class="product-price-amount amount"><span class="currency-sign">$</span>1009.00</span></td>
+                                            <th>Tổng Tiền</th>
+                                            <td><span class="product-price-amount amount" id="tongTienGioHang">
+
+                                                </span>
+                                                <span class="currency-sign">VND
+                                                  </span></td>
                                         </tr>
                                         </tbody>
                                     </table>
                                 </div>
                                 <div class="product-proceed-to-checkout">
-                                    <a class="btn btn-lg btn-color form-full-width" href="checkout.html">Proceed to checkout</a>
+                                    <a class="btn btn-lg btn-color form-full-width" type="button"  onclick="taoHoaDon()">Đặt Hàng</a>
                                 </div>
                             </div>
                         </div>
@@ -157,7 +224,7 @@
 
     </section>
     <!-- End Page Content -->
-    <script th:src="@{/customer/js/khach-hang/gio-hang.js}"></script>
+    <script src="/static/customer/js/khach-hang/gio-hang.js"></script>
     <script th:inline="javascript">
 
     </script>
