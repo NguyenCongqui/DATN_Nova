@@ -76,7 +76,6 @@ SELECT spt.SoLuong FROM SanPhamCT spt
 	int getCountChiTietSanPhamExistBySanPhamId(@Param("sanPhamId") Integer sanPhamId);
 
 	@Query("""
-
 select new com.example.duantotnghiepgiaythethaonova.dto.BestSellerDTO(sp.idCTSP, sum(hd.soLuong))
 			from ChiTietSanPham sp
 			join HoaDonChiTiet hd on sp = hd.chiTietSanPham

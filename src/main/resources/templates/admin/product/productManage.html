@@ -87,6 +87,8 @@
         <!-- Begin Page Content -->
         <div>
             <!-- Page Heading -->
+            <h5 th:text="${messageSuccess}" data-delay="3000"></h5>
+            <h5 th:text="${messageDanger}" data-delay="3000"></h5>
             <h1 class="h3 mb-2 text-gray-800">Quản lý sản phẩm</h1>
             <hr>
             <form th:action="@{/admin/product}" id="flexUrlTableFormProductManage" enctype="multipart/form-data"
@@ -273,6 +275,7 @@
                                 </script>
                             </div>
                             <div class="col-sm-3">
+
                                 <label>Số lượng sản phẩm chi tiết:</label>
                                 <div class="row">
                                     <div class="col-sm-6">

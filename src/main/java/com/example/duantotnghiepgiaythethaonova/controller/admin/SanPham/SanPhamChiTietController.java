@@ -1385,10 +1385,10 @@ public class SanPhamChiTietController {
 			return "admin/product/editProductDetail";
 		}
 	}
-	
+
 	@GetMapping("exportExcelProduct")
 	public String exportExcelProduct(@ModelAttribute("SPAndSPCTSearchDto") SPAndSPCTSearchDto dataSearch,
-			Optional<Integer> page, Optional<Integer> size, final RedirectAttributes redirect){
+									 Optional<Integer> page, Optional<Integer> size, final RedirectAttributes redirect){
 		int currentPage = page.orElse(1);
 		int pageSize = size.orElse(10);
 		redirect.addFlashAttribute("SPAndSPCTSearchDto", dataSearch);
@@ -1433,7 +1433,8 @@ public class SanPhamChiTietController {
 		}
 		return "redirect:/admin/product";
 	}
-	
+
+
 	public void showViewBeforeSearch(ModelMap model, SPAndSPCTSearchDto dataSearch, Optional<Integer> page,
 			Optional<Integer> size) {
 		int currentPage = page.orElse(1);

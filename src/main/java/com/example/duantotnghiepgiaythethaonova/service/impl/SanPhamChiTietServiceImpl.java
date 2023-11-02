@@ -122,10 +122,10 @@ public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
             XSSFSheet sheet = (XSSFSheet) workbook.createSheet("Sản phẩm");
 
             sheet.setColumnWidth(0, 4000);
-            sheet.setColumnWidth(1, 4000);
-            sheet.setColumnWidth(2, 4000);
+            sheet.setColumnWidth(1, 5000);
+            sheet.setColumnWidth(2, 6000);
             sheet.setColumnWidth(3, 4000);
-            sheet.setColumnWidth(4, 4000);
+            sheet.setColumnWidth(4, 8000);
 
             sheet.setDefaultRowHeightInPoints(sheet.getColumnWidthInPixels(1));
 
@@ -133,7 +133,7 @@ public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
             Row header = sheet.createRow(0);
 
             CellStyle headerStyle = workbook.createCellStyle();
-            headerStyle.setFillForegroundColor(IndexedColors.LIGHT_BLUE.getIndex());
+            headerStyle.setFillForegroundColor(IndexedColors.LIGHT_GREEN.index);
             headerStyle.setFillPattern(FillPatternType.SOLID_FOREGROUND);
             headerStyle.setBorderBottom(BorderStyle.MEDIUM);
             headerStyle.setBorderTop(BorderStyle.MEDIUM);
@@ -223,7 +223,7 @@ public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
                 indexItemOfSheet++;
             }
             // finaly
-            File currDir = new File("D:\\DATN\\ImportExcel/QLSP.xlsx");
+            File currDir = new File("D:\\datn\\NOVA\\ImportExcel/Product.xlsx");
 
             FileOutputStream outputStream = new FileOutputStream(currDir);
             workbook.write(outputStream);
