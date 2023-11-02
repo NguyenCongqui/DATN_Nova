@@ -129,8 +129,8 @@ public class BanHangServiceIpml implements BanHangService {
             gd.setHoaDon(hoaDon);
             gd.setNgayCapNhat(new Date());
             gd.setNgayTao(new Date());
-            gd.setNguoiCapNhat("ABC");
-            gd.setNguoiTao("ABC");
+            gd.setNguoiCapNhat("Linh Update");
+            gd.setNguoiTao("Linh Create");
             gd.setTrangThai(tt);
             giaoDichRepository.save(gd);
 
@@ -335,7 +335,7 @@ public class BanHangServiceIpml implements BanHangService {
 
         hoaDon.setMaHoaDon(ma);
         hoaDon.setNgayTao(new Date());
-        hoaDon.setNguoiTao("hduong");
+        hoaDon.setNguoiTao("Linh create");
         hoaDon.setLoaiHoaDon(2);
         hoaDon.setDaXoa(false);
         hoaDonRepository.save(hoaDon);
@@ -469,10 +469,10 @@ public class BanHangServiceIpml implements BanHangService {
             sanPhamChiTiet.setSoLuong(soLuongcapNhat);
             sanPhamChiTietRepository.save(sanPhamChiTiet);
 
-            String message = "Xác nhận thành công";
+            String message = "Xác nhận thành công!";
             return ResponseEntity.ok(message);
         } else {
-            String errorMessage = "Không tìm thấy hóa đơn";
+            String errorMessage = "Không tìm thấy hóa đơn!";
             return ResponseEntity.notFound().build();
         }
     }
@@ -507,10 +507,10 @@ public class BanHangServiceIpml implements BanHangService {
             hoaDon.setTienShip(BigDecimal.valueOf(1));
             hoaDonRepository.save(hoaDon);
 
-            String message = "Lưu thành công";
+            String message = "Lưu thành công!";
             return ResponseEntity.ok(message);
         } else {
-            String errorMessage = "Không tìm thấy hóa đơn chi tiết";
+            String errorMessage = "Không tìm thấy hóa đơn chi tiết!";
             return ResponseEntity.notFound().build();
         }
     }
@@ -564,10 +564,10 @@ public class BanHangServiceIpml implements BanHangService {
                 hoaDonRepository.save(hoaDon);
             }
 
-            String mss = "Hủy thành công";
+            String mss = "Hủy thành công!";
             return ResponseEntity.ok(mss);
         } else {
-            String erro = "Không tìm thấy hóa đơn";
+            String erro = "Không tìm thấy hóa đơn!";
             return ResponseEntity.notFound().build();
         }
     }
