@@ -78,7 +78,7 @@ SELECT TOP 1 ha.*
             "ha.IdSanPham = :sanPhamId AND ha.LaAnhChinh = 1", nativeQuery = true)
     HinhAnh findByHinhAnhByMauSacIdVaLaAnhChinh(@Param("mauSacId") Integer mauSacId, @Param("sanPhamId") Integer sanPhamId);
 
-    @Query(value = "SELECT ten_anh FROM HinhAnh WHERE IdMauSac = ?1 AND IdSanPham = ?2 AND LaAnhChinh = 1", nativeQuery = true)
+    @Query(value = "SELECT tenanh FROM HinhAnh WHERE IdMauSac = ?1 AND IdSanPham = ?2 AND LaAnhChinh = 1", nativeQuery = true)
     String findTenAnhChinhByMauSacIdAndSanPhamId(Integer mauSacId, Integer sanPhamId);
 
     @Query(value = "SELECT count(*) from HinhAnh  WHERE IdSanPham = :sanPhamId", nativeQuery = true)
