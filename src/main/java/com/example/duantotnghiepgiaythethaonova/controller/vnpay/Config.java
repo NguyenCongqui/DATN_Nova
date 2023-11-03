@@ -32,7 +32,7 @@ public class Config {
                                 String sdtNguoiNhan,
                                 BigDecimal tienShipHD,
                                 String hoaDonId,
-                                long idNguoiDung
+                                Integer idNguoiDung
                                 ) {
         vnp_Returnurl = vnp_Returnurl
                 + "emailNguoiNhann=" + emailNguoiNhann + "&tienGiamGia=" + tienGiamGia + "&nameGiamGia="

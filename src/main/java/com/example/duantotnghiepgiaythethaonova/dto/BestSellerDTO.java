@@ -17,6 +17,7 @@ public class BestSellerDTO {
     private String anhChinhs;
     private Double giaBan;
     private Long doanhSo;
+    private String thuongHieu;
     private String kieuDang;
     private String chatLieu;
     private String kichCo;
