@@ -85,7 +85,7 @@ public interface SanPhamChiTietRepository extends JpaRepository<ChiTietSanPham, 
             """)
     List<BestSellerDTO> layIdChiTietSanPhamBanChay(List<Integer> listHoaDon, Pageable pageable);
 
-    @Query("select sp from SanPhamChiTiet sp where sp.id in (:ids) order by field(sp.id, :ids)")
+    @Query("select sp from ChiTietSanPham sp where sp.id in (:ids) order by field(sp.id, :ids)")
     List<ChiTietSanPham> layChiTietSanPhamBanChay(List<Integer> ids);
 
 //    @Query(value = "SELECT sp.* FROM SanPhamChiTiet sp " +
