@@ -22,7 +22,7 @@ public interface HoaDonRepoditory2 extends PagingAndSortingRepository<HoaDon, In
     @Query(value = "SELECT * FROM HoaDon WHERE loaiHoaDon = :loai and daXoa = 0 ORDER BY ngayTao DESC", nativeQuery = true)
     Page<HoaDon> finHDByLoaiHD(@Param("loai") Integer loai, PageRequest pageable);
 
-    @Query(value = "SELECT * FROM HoaDon WHERE idTrangThai = ?1 and loaiHoaDon = 0 and daXoa = 0 ORDER BY ngayTao DESC", countQuery = "SELECT COUNT(*) FROM hoa_don WHERE trang_thai_id = ?1", nativeQuery = true)
+    @Query(value = "SELECT * FROM HoaDon WHERE idTrangThai = ?1 and loaiHoaDon = 0 and daXoa = 0 ORDER BY ngayTao DESC", countQuery = "SELECT COUNT(*) FROM hoadon WHERE idtrangthai = ?1", nativeQuery = true)
     Page<HoaDon> findByTrangThaiHoaDonListTrangThai(int trangThai, Pageable pageable);
 
     @Query(value = "SELECT * FROM HoaDon WHERE idTrangThai = ? and idKhachHang = ?", nativeQuery = true)

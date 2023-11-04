@@ -32,7 +32,7 @@ public interface GioHangChiTietRepository extends JpaRepository<GioHangChiTiet,I
 
 	@Transactional
 	@Modifying
-	@Query(value = "UPDATE dbo.GioHangCT SET DaXoa = true WHERE IdSanPhamCT = :id", nativeQuery = true)
+	@Query(value = "UPDATE dbo.GioHangCT SET DaXoa = 1 WHERE IdSanPhamCT = :id", nativeQuery = true)
 	void xoaGioHangChiTiet(@Param("id") Integer id);
 
 	@Query(value = "SELECT * FROM dbo.GioHangCT WHERE IdSanPhamCT = ? AND IdGioHang = ? AND DaXoa = 0", nativeQuery = true)

@@ -11,5 +11,5 @@ import java.util.List;
 public interface GiaoDichRepository extends JpaRepository<GiaoDich , Integer> {
 
     @Query(value = "select * from GiaoDich where trang_thai_id = ? and hoa_don_id = ? ORDER BY id DESC LIMIT 1", nativeQuery = true)
-    List<GiaoDich> findByTrangThaiIdAndHoaDonId(int trangThai, Long hoaDonId);
+    List<GiaoDich> findByTrangThaiIdAndHoaDonId(int trangThai, Integer hoaDonId);
 }

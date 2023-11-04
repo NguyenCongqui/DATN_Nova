@@ -168,7 +168,7 @@
                                             <label for="billing_address" class="left">
                                                 Địa Chỉ
                                                 <abbr class="form-required" title="required">*</abbr></label>
-                                            <input class="input-md form-full-width mb-20" id="addressInput"
+                                            <input class="input-md form-full-width mb-20 addressInput" id="addressInput"
                                                    th:value="${diaChi != null ? diaChi.getDiaChi() : ''}"
                                                    name="addressInput" title="Address" value="" placeholder="Địa Chỉ" type="text" required="" aria-required="true">
                                         </div>
@@ -176,7 +176,7 @@
                                             <label for="billing_town_city" class="left">
                                                 Ghi Chú
                                                 <abbr class="form-required" title="required">*</abbr></label>
-                                            <textarea name="note" title="Ghi Chú" id="note" value="" style="width: 540px; height: 120px;" placeholder="" type="text" required="" aria-required="true">
+                                            <textarea name="note" title="Ghi Chú" id="note" th:text="${hoaDon.ghiChu}" value="" style="width: 540px; height: 120px;" placeholder="Nhập ghi chú đơn hàng" type="text" required="" aria-required="true">
                                                     </textarea>
                                         </div>
                                     </div>

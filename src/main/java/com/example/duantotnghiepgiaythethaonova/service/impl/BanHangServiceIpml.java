@@ -154,11 +154,11 @@ public class BanHangServiceIpml implements BanHangService {
                 giaoDichRepository.save(gd);
             }
 
-            try {
-                emailService.sendOrderConfirmationEmail(emailNguoiNhan, hoaDon);
-            } catch (MessagingException e) {
-                e.printStackTrace();
-            }
+//            try {
+////                emailService.sendOrderConfirmationEmail(emailNguoiNhan, hoaDon);
+//            } catch (MessagingException e) {
+//                e.printStackTrace();
+//            }
         }
     }
 
@@ -230,6 +230,7 @@ public class BanHangServiceIpml implements BanHangService {
             hoaDonChiTiet.setDonGia(gioHangChiTiet.getChiTietSanPham().getSanPham().getGia());
             hoaDonChiTiet.setTongTien(gioHangChiTiet.getThanhTien());
             hoaDonChiTiet.setHoaDon(hoaDon);
+//            hoaDonChiTiet.setDaXoa(false);
             hoaDonChiTietList.add(hoaDonChiTiet);
             hoaDonChiTietRepository2.save(hoaDonChiTiet);
 

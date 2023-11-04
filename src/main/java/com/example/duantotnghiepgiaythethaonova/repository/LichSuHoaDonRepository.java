@@ -10,5 +10,5 @@ import java.util.List;
 @Repository
 public interface LichSuHoaDonRepository extends JpaRepository<LichSuHoaDon,Integer> {
     @Query(value = "select * from LichSuHoaDon where idLichSuHoaDon = ?",nativeQuery = true)
-    List<LichSuHoaDon> findLichSuByHDID(Long hoaDonId);
+    List<LichSuHoaDon> findLichSuByHDID(Integer hoaDonId);
 }
