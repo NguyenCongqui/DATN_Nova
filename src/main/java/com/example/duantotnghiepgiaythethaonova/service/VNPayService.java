@@ -416,7 +416,7 @@ public class VNPayService {
             LichSuHoaDon ls = new LichSuHoaDon();
             ls.setNguoiThaoTac(hoaDon.getNguoiNhan());
             ls.setHoaDon(hoaDon);
-            ls.setThaoTac("Đã thanh toán qua vnPay");
+            ls.setThaoTac("Đã thanh toán qua VNPay");
             lichSuHoaDonRepository.save(ls);
 
             List<HoaDonChiTiet> hoaDonChiTiets = optHoaDon.get().getHoaDonChiTiets();

@@ -13,7 +13,7 @@ public interface DonHangTaiQuayService {
 
     void timKiemHoaDonDaThanhToanTheoNgayTao(Model model, int page, int size, String duLieuTimKiemString);
 
-    void ChiTietHoaDonTaiQuayDaThanhToan(Long id, Model model);
+    void ChiTietHoaDonTaiQuayDaThanhToan(Integer id, Model model);
 
     //Đã hủy đơn
     void daHuyTaiQuay(Model model, int page, int size);

@@ -1,15 +1,16 @@
-package com.fpoly.service.impl;
+package com.example.duantotnghiepgiaythethaonova.service.impl;
 
-import com.fpoly.dto.HoaDonDTO;
-import com.fpoly.entity.GiaoDich;
-import com.fpoly.entity.HoaDon;
-import com.fpoly.entity.HoaDonChiTiet;
-import com.fpoly.entity.MauSac;
-import com.fpoly.repository.HinhAnhRepository;
-import com.fpoly.repository.HoaDonChiTietRepository2;
-import com.fpoly.repository.HoaDonRepoditory2;
-import com.fpoly.repository.HoaDonRepository;
-import com.fpoly.service.DonHangTaiQuayService;
+
+import com.example.duantotnghiepgiaythethaonova.dto.HoaDonDTO;
+import com.example.duantotnghiepgiaythethaonova.entity.GiaoDich;
+import com.example.duantotnghiepgiaythethaonova.entity.HoaDon;
+import com.example.duantotnghiepgiaythethaonova.entity.HoaDonChiTiet;
+import com.example.duantotnghiepgiaythethaonova.entity.MauSac;
+import com.example.duantotnghiepgiaythethaonova.repository.HinhAnhRepository;
+import com.example.duantotnghiepgiaythethaonova.repository.HoaDonChiTietRepository2;
+import com.example.duantotnghiepgiaythethaonova.repository.HoaDonRepoditory2;
+import com.example.duantotnghiepgiaythethaonova.repository.HoaDonRepository;
+import com.example.duantotnghiepgiaythethaonova.service.DonHangTaiQuayService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -40,20 +41,20 @@ public class DonHangTaiQuayServiceImpl implements DonHangTaiQuayService {
         GiaoDich gd = new GiaoDich();
         for (HoaDon hoaDon : page.getContent()) {
             HoaDonDTO hoaDonDTO = new HoaDonDTO();
-            hoaDonDTO.setMaDon(hoaDon.getMaDon());
+            hoaDonDTO.setMaDon(hoaDon.getMaHoaDon());
             hoaDonDTO.setNguoiNhan(hoaDon.getNguoiNhan());
-            hoaDonDTO.setSdtNguoiNhan(hoaDon.getSdtNguoiNhan());
+            hoaDonDTO.setSdtNguoiNhan(hoaDon.getSoDienThoaiNguoiNhan());
             hoaDonDTO.setGhiChu(hoaDon.getGhiChu());
             hoaDonDTO.setTongTienHoaDon(hoaDon.getTongTienHoaDon());
             hoaDonDTO.setTienShip(hoaDon.getTienShip());
             hoaDonDTO.setTongTienDonHang(hoaDon.getTongTienDonHang());
             hoaDonDTO.setLoaiDonHang(hoaDon.getLoaiHoaDon());
-            hoaDonDTO.setMaDonHang(hoaDon.getMaDon());
+            hoaDonDTO.setMaDonHang(hoaDon.getMaHoaDon());
             hoaDonDTO.setPage(page.getNumber() + 1);
             hoaDonDTO.setTotalPages(page.getTotalPages());
-            hoaDonDTO.setTrangThaiId(hoaDon.getTrangThai().getId());
+            hoaDonDTO.setTrangThaiId(hoaDon.getTrangThai().getIdTrangThai());
             hoaDonDTO.setNgayTao(hoaDon.getNgayTao());
-            hoaDonDTO.setId(hoaDon.getId());
+            hoaDonDTO.setId(hoaDon.getIdHoaDon());
 
             listHoaDonDTO.add(hoaDonDTO);
         }
@@ -117,16 +118,16 @@ public class DonHangTaiQuayServiceImpl implements DonHangTaiQuayService {
     }
 
     @Override
-    public void ChiTietHoaDonTaiQuayDaThanhToan(Long id, Model model) {
+    public void ChiTietHoaDonTaiQuayDaThanhToan(Integer id, Model model) {
         HoaDon hoaDon = hoaDonRepository.findById(id).get();
         // Lấy danh sách ảnh chính của tất cả sản phẩm và lưu vào List
         List<HoaDonChiTiet> hoaDonChiTiet = hoaDonChiTietRepository2.findHDCT(id);
         List<String> tenAnhChinhList = new ArrayList<>();
         for (HoaDonChiTiet hoadonCT : hoaDonChiTiet) {
-            MauSac mauSac = hoadonCT.getSanPhamChiTiet().getMauSac();
-            Long sanPhamId = hoadonCT.getSanPhamChiTiet().getSanPham().getId();
+            MauSac mauSac = hoadonCT.getChiTietSanPham().getMauSac();
+            Integer sanPhamId = hoadonCT.getChiTietSanPham().getSanPham().getIdSanPham();
 
-            String tenAnhChinh = hinhAnhRepository.findTenAnhChinhByMauSacIdAndSanPhamId(mauSac.getId(), sanPhamId);
+            String tenAnhChinh = hinhAnhRepository.findTenAnhChinhByMauSacIdAndSanPhamId(mauSac.getIdMauSac(), sanPhamId);
             tenAnhChinhList.add(tenAnhChinh);
         }
         model.addAttribute("tenAnhChinhList", tenAnhChinhList);
@@ -187,17 +188,17 @@ public class DonHangTaiQuayServiceImpl implements DonHangTaiQuayService {
     }
 
     @Override
-    public void ChiTietHoaDonTaiQuayDaHuy(Long id, Model model) {
+    public void ChiTietHoaDonTaiQuayDaHuy(Integer id, Model model) {
         HoaDon hoaDon = hoaDonRepository.findById(id).get();
 
         // Lấy danh sách ảnh chính của tất cả sản phẩm và lưu vào List
         List<HoaDonChiTiet> hoaDonChiTiet = hoaDonChiTietRepository2.findHDCT2(id);
         List<String> tenAnhChinhList = new ArrayList<>();
         for (HoaDonChiTiet hoadonCT : hoaDonChiTiet) {
-            MauSac mauSac = hoadonCT.getSanPhamChiTiet().getMauSac();
-            Long sanPhamId = hoadonCT.getSanPhamChiTiet().getSanPham().getId();
+            MauSac mauSac = hoadonCT.getChiTietSanPham().getMauSac();
+            Integer sanPhamId = hoadonCT.getChiTietSanPham().getSanPham().getIdSanPham();
 
-            String tenAnhChinh = hinhAnhRepository.findTenAnhChinhByMauSacIdAndSanPhamId(mauSac.getId(), sanPhamId);
+            String tenAnhChinh = hinhAnhRepository.findTenAnhChinhByMauSacIdAndSanPhamId(mauSac.getIdMauSac(), sanPhamId);
             tenAnhChinhList.add(tenAnhChinh);
         }
         model.addAttribute("tenAnhChinhList", tenAnhChinhList);

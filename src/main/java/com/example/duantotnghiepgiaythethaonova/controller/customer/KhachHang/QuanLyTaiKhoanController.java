@@ -42,7 +42,7 @@ public class QuanLyTaiKhoanController {
             redirectAttributes.addFlashAttribute("message", "Phiên đăng nhập đã hết hạn !");
             return "redirect:/security/login/form";
         } else {
-            Pageable pageable = PageRequest.of(page - 1, 5, Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+            Pageable pageable = PageRequest.of(page - 1, 5, Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idKhachHang"));
             KhachHangDTO khachHangDTO = khachHangService.findByEmailAndTrangThai(email, 1);
             if (khachHangDTO != null) {
                 khachHangDTO.setEmail(email);
