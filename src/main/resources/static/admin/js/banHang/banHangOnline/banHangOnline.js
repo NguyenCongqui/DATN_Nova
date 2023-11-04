@@ -6,7 +6,7 @@ $(document).ready(function () {
         dataType: "json",
         headers: {
             "Content-Type": "application/json",
-            Token: "ab5e296c-25a3-11ee-b394-8ac29577e80e",
+            token: "ab5e296c-25a3-11ee-b394-8ac29577e80e",
         },
         success: function (response) {
             const provinces = response.data;
@@ -46,7 +46,7 @@ $(document).ready(function () {
                 dataType: "json",
                 headers: {
                     "Content-Type": "application/json",
-                    Token: "ab5e296c-25a3-11ee-b394-8ac29577e80e",
+                    token: "ab5e296c-25a3-11ee-b394-8ac29577e80e",
                 },
                 data: {
                     province_id: selectedProvinceId,
@@ -89,7 +89,7 @@ $(document).ready(function () {
                 dataType: "json",
                 headers: {
                     "Content-Type": "application/json",
-                    Token: "ab5e296c-25a3-11ee-b394-8ac29577e80e",
+                    token: "ab5e296c-25a3-11ee-b394-8ac29577e80e",
                 },
                 data: {
                     district_id: selectedDistrictId,

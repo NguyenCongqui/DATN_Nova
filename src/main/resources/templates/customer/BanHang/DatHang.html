@@ -1,24 +1,57 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{customer/layout/index}">
+      >
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" th:href="@{/admin/css/banHang/banHangOnline.css}">
+<!--    <link rel="stylesheet" th:href="@{/admin/css/banHang/banHangOnline.css}">-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="/static/admin/js/banHang/banHangOnline/banHangOnline.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-<!--    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
-<!--    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">-->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+<!--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>-->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" />
+    <link href="../../../static/customer/css/plugins/bootstrap.css" rel="stylesheet" type="text/css" />
+    <!-- bootstrap css -->
+    <link href="../../../static/customer/css/plugins/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <!-- fontawesome css -->
+    <link href="../../../static/customer/css/plugins/animate.css" rel="stylesheet" type="text/css" />
+    <!-- animate css -->
+    <link href="../../../static/customer/css/style.css" rel="stylesheet" type="text/css" />
+    <!-- template css -->
+    <link href="../../../static/customer/plugins/rev_slider/css/settings-ver.5.3.1.css" rel="stylesheet" type="text/css" />
+
+
+<style>
+    .ThongTinSP {
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        font-size: 0.8em;
+    }
+    .content-page1 {
+        padding-bottom: 0px;
+        padding-top: 0px;
+    }
+    #buttonDatHang,
+    #buttonThanhToan {
+        display: none;
+    }
+</style>
 </head>
 <body>
 <!-- Page Content Wraper -->
-<div class="page-content-wraper" layout:fragment="content"  th:each="hoaDonOnline: ${hoaDon}">
+<span th:replace="customer/layout/header :: header"></span>
+<div class="page-content-wraper "
+
+     th:each="hoaDonOnline: ${hoaDon}">
     <!-- Bread Crumb -->
     <section class="breadcrumb">
         <div class="container">
@@ -35,7 +68,7 @@
     <!-- Bread Crumb -->
 
     <!-- Page Content -->
-    <section class="content-page">
+    <section class="content-page1">
         <div class="container mb-80">
             <div class="row">
                 <div class="col-sm-12">
@@ -67,32 +100,70 @@
                                                    th:value="${hoaDon.getKhachHang() != null ? hoaDon.getKhachHang().email : ''}"
                                                    title="Enter Email" value="" placeholder="Email" type="email" required="" aria-required="true">
                                         </div>
-                                        <div class="chon-dia-chi"   >
-                                        <div class="form-field-wrapper form-center col-sm-4">
-                                            <label for="billing_country" class="left">
+
+                                        <div class="form-center col-sm-4">
+                                            <label class="left">
                                                 Thành Phố
                                                 <abbr class="form-required" title="required">*</abbr></label>
-                                            <select name="billing_country" id="billing_country province" class="input-md form-full-width tinhThanhPho" autocomplete="country" tabindex="-1" aria-hidden="true" required="" aria-required="true">
+                                            <select name="billing_country" id="province" class="input-md form-full-width tinhThanhPho" autocomplete="country" tabindex="-1" aria-hidden="true" required="" aria-required="true">
                                                 <option value="">Chọn Thành Phố</option>
                                             </select>
                                         </div>
-                                        <div class="form-field-wrapper form-center col-sm-4">
-                                            <label for="billing_country" class="left">
+                                        <div class="form-center col-sm-4">
+                                            <label class="left">
                                                 Quận/Huyện
                                                 <abbr class="form-required" title="required">*</abbr></label>
-                                            <select name="billing_country" id="billing_country district" disabled class="input-md form-full-width chonQuanHuyen" autocomplete="country" tabindex="-1" aria-hidden="true" required="" aria-required="true">
+                                            <select name="billing_country" id="district" disabled class="input-md form-full-width chonQuanHuyen" autocomplete="country" tabindex="-1" aria-hidden="true" required="" aria-required="true">
                                                 <option value="">Chọn Quận/Huyện</option>
                                             </select>
                                         </div>
-                                        <div class="form-field-wrapper form-center col-sm-4">
-                                            <label for="billing_country" class="left">
+                                        <div class="form-center col-sm-4">
+                                            <label class="left">
                                                 Phường/Xã
                                                 <abbr class="form-required" title="required">*</abbr></label>
-                                            <select name="billing_country" id="billing_country ward" disabled class="input-md form-full-width chonPhuongXa" autocomplete="country" tabindex="-1" aria-hidden="true" required="" aria-required="true">
+                                            <select name="billing_country" id="ward" disabled class="input-md form-full-width chonPhuongXa" autocomplete="country" tabindex="-1" aria-hidden="true" required="" aria-required="true">
                                                 <option value="">Chọn Phường/Xã</option>
                                             </select>
                                         </div>
-                                        </div>
+
+<!--                                        <div>-->
+
+<!--                                            <label >-->
+<!--                                                Thành Phố-->
+<!--                                                <abbr class="form-required" title="required">*</abbr></label>-->
+<!--                                            <select>-->
+<!--                                                <option value="">Chọn Thành Phố</option>-->
+<!--                                                <option value="ZW">Zimbabwe</option>-->
+<!--                                                <option value="ZW">Zimbabwe</option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
+
+
+<!--                                        <div>-->
+<!--                                            <select>-->
+<!--                                                <option value="">Chọn Tỉnh/Thành phố</option>-->
+<!--                                                <option value="">Chọn Tỉnh/Thành phố</option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
+<!--                                        <div class="form-field-wrapper form-center col-sm-4">-->
+<!--                                            <label for="billing_country" class="left">-->
+<!--                                                Quận/Huyện-->
+<!--                                                <abbr class="form-required" title="required">*</abbr></label>-->
+<!--                                            <select name="billing_country" id="billing_country" class="input-md form-full-width" autocomplete="country" tabindex="-1" aria-hidden="true" required="" aria-required="true">-->
+<!--                                                <option value="">Chọn Quận/Huyện</option>-->
+<!--                                                <option value="ZW">Zimbabwe</option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
+<!--                                        <div class="form-field-wrapper form-center col-sm-4">-->
+<!--                                            <label for="billing_country" class="left">-->
+<!--                                                Phường/Xã-->
+<!--                                                <abbr class="form-required" title="required">*</abbr></label>-->
+<!--                                            <select name="billing_country" id="billing_country" class="input-md form-full-width" autocomplete="country" tabindex="-1" aria-hidden="true" required="" aria-required="true">-->
+<!--                                                <option value="">Chọn Phường/Xã</option>-->
+<!--                                                <option value="ZW">Zimbabwe</option>-->
+<!--                                            </select>-->
+<!--                                        </div>-->
+
                                         <div class="form-field-wrapper form-center col-sm-12">
                                             <label for="billing_address" class="left">
                                                 Địa Chỉ
@@ -159,8 +230,8 @@
                                                 <hr>
                                                 <br>
                                                 <div class="coupon div-maGiamGia">
-                                                    <input class="input-md" id="coupon_code maGiamGia" name="coupon_code maGiamGia" title="Coupon Code" value="" placeholder="Enter Coupon Code" type="text">
-                                                    <button class="btn btn-md btn-black themMaGiamGiaOnline"  type="submit" >Sử Dụng</button>
+                                                    <input class="input-md" id="maGiamGia" name="maGiamGia" title="Coupon Code" value="" placeholder="Mã Giảm Giá" type="text">
+                                                    <button class="btn btn-md btn-black themMaGiamGiaOnline"  type="submit" th:attr="data-id=${hoaDon.idHoaDon}">Sử Dụng</button>
                                                 </div>
                                                 <table>
 
@@ -177,42 +248,176 @@
                                                         </td>
                                                     </tr>
                                                     <tr class="shipping">
-                                                        <th>Shipping</th>
+                                                        <th>Phí Vận Chuyển</th>
                                                         <td>
                                                             <ul id="shipping_method">
                                                                 <li>
-                                                                    <label for="shipping_method_0_legacy_flat_rate">Flat Rate: <span class="woocommerce-Price-amount amount"><span class="woocommerce-Price-currencySymbol">$</span>12.00</span></label>
+                                                                    <label for="shipping_method"  type="text" id="shippingFee" readonly>
+                                                                        <span class="woocommerce-Price-amount amount" >
+                                                                        <span class="woocommerce-Price-currencySymbol">
+                                                                            </span>
+                                                                        </span>
+                                                                    </label>
                                                                 </li>
                                                             </ul>
                                                         </td>
                                                     </tr>
-                                                    <tr class="order-total">
-                                                        <th>Tổng Cộng</th>
-                                                        <td>
-                                                            <span class="product-price-amount amount"><span class="currency-sign">$</span>1009.00</span>
-                                                        </td>
-                                                    </tr>
+<!--                                                    <tr class="shipping">-->
+<!--                                                        <th>Giảm Giá Đã áp dụng</th>-->
+<!--                                                        <td>-->
+<!--                                                            <ul id="shipping_method">-->
+<!--                                                                <li>-->
+<!--                                                                    <label for="shipping_method" id="tenGiamGia" >-->
+<!--                                                                        <span class="woocommerce-Price-amount amount" >-->
+<!--                                                                        <span class="woocommerce-Price-currencySymbol">-->
+<!--                                                                            </span>-->
+<!--                                                                        </span>-->
+<!--                                                                    </label>-->
+<!--                                                                </li>-->
+<!--                                                            </ul>-->
+<!--                                                        </td>-->
+<!--                                                    </tr>-->
+<!--                                                    <tr class="shipping">-->
+<!--                                                        <th>Giảm Giá</th>-->
+<!--                                                        <td>-->
+<!--                                                            <ul id="shipping_method">-->
+<!--                                                                <li>-->
+<!--                                                                    <label for="shipping_method" id="discount">-->
+<!--                                                                        <span class="woocommerce-Price-amount amount" >-->
+<!--                                                                        <span class="woocommerce-Price-currencySymbol">-->
+<!--                                                                            </span>-->
+<!--                                                                        </span>-->
+<!--                                                                    </label>-->
+<!--                                                                </li>-->
+<!--                                                            </ul>-->
+<!--                                                        </td>-->
+<!--                                                    </tr>-->
+
+
+                                                    <p class="cart__discount">Giảm giá đã áp dụng: <span id="tenGiamGia"></span></p>
+                                                    <p class="cart__discount">Giảm giá: <span id="discount">0 đ</span></p>
+<!--                                                    <tr class="order-total">-->
+<!--                                                        <th>Tổng Cộng</th>-->
+<!--                                                        <td class="tongCongTien">-->
+<!--                                                            <span class="product-price-amount amount" id="total">-->
+<!--                                                                <span class="currency-sign">-->
+
+<!--                                                                </span>0 VND</span>-->
+<!--                                                        </td>-->
+<!--                                                    </tr>-->
+
+                                                    <p class="tongCongTien">Tổng cộng: <span id="total">0 đ</span></p><hr>
                                                     </tfoot>
                                                 </table>
                                             </div>
 
 
 
-                                            <div class="product-checkout-payment">
+                                            <div class="product-checkout-payment thanhToan">
+                                                <di class="radioThanhToan">
                                                 <ul>
                                                     <li>
-                                                        <input id="payment_method_cheque" name="payment_method" value="cheque" type="radio" />
-                                                        <label for="payment_method_cheque">Thanh Toán khi Nhận Hàng</label>
+                                                        <input id="shipCOD" name="paymentMethod" value="method1" type="radio" />
+                                                        <label for="shipCOD" class="payment-label" id="thanhToanKhiNhanHang">Thanh Toán khi Nhận Hàng</label>
                                                     </li>
                                                     <li>
-                                                        <input id="payment_method_cod" name="payment_method" value="cod" type="radio" />
-                                                        <label for="payment_method_cod">Chuyên Khoản Ngân Hàng</label>
+                                                        <input id="VNPAY" name="paymentMethod" value="method2" type="radio" />
+                                                        <label for="VNPAY" class="payment-label" id="chuyenKhoanNganHang">Chuyên Khoản Ngân Hàng</label>
                                                     </li>
                                                 </ul>
-                                                <div class="place-order">
-                                                    <a class="btn btn-lg btn-color form-full-width" href="#">Thanh Toán</a>
-                                                </div>
+                                                </di>
                                             </div>
+
+
+                                                <div class="button-container">
+                                                    <div class="button-group">
+                                                        <form th:action="@{/payment/create}" method="post" id="paymentForm">
+                                                            <input type="hidden" name="orderCode" th:value="${hoaDon.idHoaDon}"/>
+
+                                                            <input type="hidden" id="amountInput" name="amount" value=""/>
+
+                                                            <input type="hidden" name="diaChiGiaoHang" id="diaChiGiaoHang" value="">
+
+                                                            <input type="hidden" name="tienShipHD" id="tienShipHD" value="">
+
+                                                            <input type="hidden" name="tienGiamGia" id="tienGiamGia" value="">
+
+                                                            <input type="hidden" name="nameGiamGia" id="nameGiamGia" value="">
+
+                                                            <input type="hidden" name="nguoiNhan" id="nguoiNhan" value="">
+
+                                                            <input type="hidden" name="sdtNguoiNhan" id="sdtNguoiNhan" value="">
+
+                                                            <input type="hidden" name="ghiChu" id="ghiChu" value="">
+
+                                                            <input type="hidden" name="emailNguoiNhann" id="emailNguoiNhann" value="">
+
+                                                        </form>
+
+                                                        <!--Đặt hàng-->
+                                                        <div class="place-order">
+                                                            <button type="submit" id="buttonThanhToan" class="button-thanhToan btn btn-lg btn-color form-full-width" th:attr="data-id=${hoaDon.idHoaDon}" >Thanh Toán</button>
+                                                        </div>
+
+                                                        <div class="modal fade thanhToanVNPAY" tabindex="-1"
+                                                             aria-labelledby="thanhToanVNPAYModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="thanhToanVNPAYModalLabel"> Đặt hàng
+                                                                        </h5>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                                aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        Bạn muốn đặt hàng?
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-primary btn-dong-y">Đồng ý</button>
+                                                                        <button type="button" class="btn btn-secondary btn-khong"
+                                                                                data-bs-dismiss="modal">Không
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+
+                                                            <button id="buttonDatHang" class="button-datHang btn btn-lg btn-color form-full-width" th:data-id="${hoaDon.idHoaDon}" >Đặt hàng</button>
+
+
+<!--                                                        <button id="buttonDatHang" class="button-datHang" th:data-id="${hoaDon.idHoaDon}">Đặt hàng</button>-->
+
+                                                        <div class="modal fade DatHangShipCod" tabindex="-1"
+                                                             aria-labelledby="DatHangShipCodModalLabel" aria-hidden="true">
+                                                            <div class="modal-dialog modal-dialog-centered">
+                                                                <div class="modal-content">
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="DatHangShipCodModalLabel"> Đặt hàng
+                                                                        </h5>
+                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                                                aria-label="Close"></button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        Bạn muốn đặt hàng?
+                                                                    </div>
+                                                                    <div class="modal-footer">
+                                                                        <button type="button" class="btn btn-primary btn-dong-y">Đồng ý</button>
+                                                                        <button type="button" class="btn btn-secondary btn-khong"
+                                                                                data-bs-dismiss="modal">Không
+                                                                        </button>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+
+<!--                                                <div class="place-order">-->
+<!--                                                    <a class="btn btn-lg btn-color form-full-width" href="#">Thanh Toán</a>-->
+<!--                                                </div>-->
+<!--                                           -->
 
                                         </div>
                                     </div>
@@ -228,6 +433,7 @@
     <!-- End Page Content -->
 
 </div>
+
 
 </body>
 </html>
