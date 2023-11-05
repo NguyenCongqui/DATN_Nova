@@ -10,6 +10,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 import javax.validation.constraints.Size;
+import java.util.Date;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -21,9 +22,9 @@ public class KhachHangDTO extends BaseDTO<KhachHangDTO> {
 		@Email(message="Email không đúng định dạng !")
 		@NotBlank(message="Email không được để trống !")
 	    private String email;
-
-		@NotBlank(message = "Mật khẩu không được bỏ trống !")
-		@Size(min=6 , max = 12 , message="Mật khẩu phải lớn hơn 6 và nhỏ hơn 12 ký tự !")
+//
+//		@NotBlank(message = "Mật khẩu không được bỏ trống !")
+//		@Size(min=6 , max = 12 , message="Mật khẩu phải lớn hơn 6 và nhỏ hơn 12 ký tự !")
 	    private String matKhau;
 
 	    
@@ -32,6 +33,8 @@ public class KhachHangDTO extends BaseDTO<KhachHangDTO> {
 	    private String hoTen;
 
 	    private Integer soLanMua;
+
+	    private Date ngayTao;
 	    
 	    
 	    @NotBlank(message="Số điện thoại không được để trống !")

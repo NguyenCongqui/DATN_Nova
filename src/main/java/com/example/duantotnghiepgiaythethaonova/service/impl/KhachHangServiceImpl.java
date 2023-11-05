@@ -17,7 +17,10 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -53,6 +56,7 @@ public class KhachHangServiceImpl implements KhachHangService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
+    char[] password = RanDomUtil.rammDomNumber();
 
     @Override
     public List<KhachHangDTO> findAllByTrangThaiCoPhanTrang(Integer trangThai, Pageable pageable) {
@@ -89,7 +93,7 @@ public class KhachHangServiceImpl implements KhachHangService {
         if (trangThai != null) {
             if (trangThai != 2) {
                 listKhachHang = khachHangRepository
-                        .findAllByTrangThaiVaSoDienThoaiCoPhanTrang( trangThai, input, pageable).getContent();
+                        .findAllByTrangThaiVaSoDienThoaiCoPhanTrang(trangThai, input, pageable).getContent();
                 for (KhachHang khachHang : listKhachHang) {
                     dto = new KhachHangDTO();
                     dto = khachHangConvertor.toDTO(khachHang);
@@ -205,13 +209,22 @@ public class KhachHangServiceImpl implements KhachHangService {
                 }
                 dto.setSoLanMua(0);
                 dto.setMatKhau(new String(password));
+                dto.setNgayTao(new Date());
+                DateTimeFormatter f = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
+                ZonedDateTime now = ZonedDateTime.now();
+                String time = f.format(now);
                 khachHangEntity = khachHangConvertor.toEntity(dto);
                 mailService.sendMail("datn.novashoes@gmail.com",
                         dto.getEmail(),
-                        "Bạn đã đăng ký tài khoản thành công !",
+                        "Bạn đã đăng ký tài khoản thành công lúc " + time + " !",
                         "Họ tên  : " + dto.getHoTen() + "\n" +
-                                "Số điện thoại  :" + dto.getSoDienThoai()
-                                + "Mật khẩu : " + new String(password));
+                                "Số điện thoại : " + dto.getSoDienThoai() + "\n" +
+                                "Mật khẩu : " + new String(password) + "\n" +
+                                "Nếu bạn có bất kì câu hỏi nào, vui lòng liên hệ với chúng tôi: datn.novashoes@gmail.com" + "\n" +
+                                "Hoặc địa chỉ : 48 Ngõ 99 Cầu Diễn, Từ Liêm, Hà Nội."
+                );
+
+
                 nguoiDungEntity = nguoiDungConvertor.toEntityByKhachHangDTO(dto);
                 nguoiDungEntity = nguoiDungRepository.save(nguoiDungEntity);
                 NguoiDung_VaiTro nguoiDungVaiTro = new NguoiDung_VaiTro();
@@ -219,7 +232,7 @@ public class KhachHangServiceImpl implements KhachHangService {
                 nguoiDungVaiTro.setVaiTro(vaiTroRepository.findByTenVaiTro("CUSTOMER"));
                 nguoiDungVaiTroRepository.save(nguoiDungVaiTro);
                 // LỖI NÊN COMMENT
-                GioHang gioHang = new GioHang(null,null, null, khachHangEntity, 1, 0, null);
+                GioHang gioHang = new GioHang(null, null, null, khachHangEntity, 1, 0, null);
                 gioHangRepository.save(gioHang);
 
             }
@@ -239,7 +252,7 @@ public class KhachHangServiceImpl implements KhachHangService {
         KhachHangDTO dto = null;
         DiaChiDTO diaChiDTO = null;
 
-        listKhachHang = khachHangRepository.findAll( pageable).getContent();
+        listKhachHang = khachHangRepository.findAll(pageable).getContent();
         for (KhachHang khachHang : listKhachHang) {
             dto = new KhachHangDTO();
             dto = khachHangConvertor.toDTO(khachHang);
@@ -286,7 +299,7 @@ public class KhachHangServiceImpl implements KhachHangService {
         KhachHangDTO dto = null;
         DiaChiDTO diaChiDTO = null;
         if (soDienThoai != null) {
-            listKhachHang = khachHangRepository.findAllBySoDienThoaiCoPhanTrang(soDienThoai,  pageable).getContent();
+            listKhachHang = khachHangRepository.findAllBySoDienThoaiCoPhanTrang(soDienThoai, pageable).getContent();
             for (KhachHang khachHang : listKhachHang) {
                 dto = new KhachHangDTO();
                 dto = khachHangConvertor.toDTO(khachHang);
@@ -393,18 +406,26 @@ public class KhachHangServiceImpl implements KhachHangService {
     @Override
     @Transactional
     public KhachHangDTO register(KhachHangDTO khachHangDTO) {
-        char[] password = RanDomUtil.ranDomFull();
+        char[] password = RanDomUtil.rammDomNumber();
         KhachHang khachHang = new KhachHang();
         khachHangDTO.setSoLanMua(0);
         khachHangDTO.setTrangThai(1);
+        khachHangDTO.setNgayTao(new Date());
         khachHangDTO.setMatKhau(new String(password));
         khachHang = khachHangConvertor.toEntity(khachHangDTO);
+        DateTimeFormatter f = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
+        ZonedDateTime now = ZonedDateTime.now();
+        String time = f.format(now);
         mailService.sendMail("datn.novashoes@gmail.com",
                 khachHangDTO.getEmail(),
-                "Bạn đã đăng ký tài khoản thành công !",
+                "Bạn đã đăng ký tài khoản thành công lúc " + time + "!",
                 "Họ tên  : " + khachHangDTO.getHoTen() + "\n" +
-                        "Số điện thoại  :" + khachHangDTO.getSoDienThoai()
-                        + "Mật khẩu : " + new String(password));
+                        "Số điện thoại : " + khachHangDTO.getSoDienThoai() + "\n" +
+                        "Mật khẩu : " + new String(password) + "\n" +
+                        "Nếu bạn có bất kì câu hỏi nào, vui lòng liên hệ với chúng tôi: datn.novashoes@gmail.com" + "\n" +
+                        "Hoặc địa chỉ : 48 Ngõ 99 Cầu Diễn, Từ Liêm, Hà Nội."
+        );
+
         NguoiDung nguoiDung = nguoiDungConvertor.toEntityByKhachHangDTO(khachHangDTO);
         NguoiDung_VaiTro nguoiDungVaiTro = new NguoiDung_VaiTro();
         nguoiDungVaiTro.setNguoiDung(nguoiDung);
@@ -459,7 +480,7 @@ public class KhachHangServiceImpl implements KhachHangService {
     }
 
     @Override
-    public void taoMoiKhachHang(String email, String fullname ,AuthenticationProvider provider) {
+    public void taoMoiKhachHang(String email, String fullname, AuthenticationProvider provider) {
         KhachHang entity = new KhachHang();
         entity.setEmail(email);
         entity.setHoTen(fullname);
@@ -476,7 +497,7 @@ public class KhachHangServiceImpl implements KhachHangService {
     }
 
     @Override
-    public void capNhatKhachHang(String email, String fullname,AuthenticationProvider provider) {
+    public void capNhatKhachHang(String email, String fullname, AuthenticationProvider provider) {
         KhachHang entity = khachHangRepository.findByEmail(email);
         entity.setEmail(email);
         entity.setHoTen(fullname);

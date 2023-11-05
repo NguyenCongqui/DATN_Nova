@@ -45,12 +45,6 @@
                         </div>
 
                         <div class="col-md-6 col-lg-7 d-flex align-items-center">
-                            <th:block id="message" th:if="${message != null}">
-                                <i class="pull-left text-success fw-bold" th:text="${message}"></i>
-                            </th:block>
-                            <th:block id="messageError" th:if="${messageError != null}">
-                                <i class="pull-left text-danger fw-bold" th:text="${messageError}"></i>
-                            </th:block>
                             <div class="card-body p-4 p-lg-5 text-black">
 
                                 <form th:action="@{/security/register/create}" class="signin-form" method="post"
@@ -60,7 +54,14 @@
                                     <div class="d-flex align-items-center mb-3 pb-1">
                                         <span class="h1 fw-bold mb-0"> <h1 class="giua"><i
                                                 class="fa-solid fa-square-plus"></i> Đăng ký </h1></span>
+
                                     </div>
+                                    <th:block id="message" th:if="${message != null}">
+                                        <i class="pull-left text-success fw-bold" th:text="${message}"></i>
+                                    </th:block>
+                                    <th:block id="messageError" th:if="${messageError != null}">
+                                        <i class="pull-left text-danger fw-bold" th:text="${messageError}"></i>
+                                    </th:block>
 
                                     <div class="form-outline mb-4">
                                         <label class="form-label" for="form2Example17"><i class="fa-solid fa-user"></i>
@@ -81,14 +82,6 @@
                                                class="text-danger"></small>
                                     </div>
 
-                                    <div class="form-outline mb-4">
-                                        <label class="form-label" for="form2Example27"><i class="fa-solid fa-key"></i>
-                                            Mật khẩu</label>
-                                        <input class="form-control" type="password" name="password" placeholder="Mật khẩu"
-                                               th:field="*{matKhau}" required="">
-                                        <small th:if="${#fields.hasErrors('matKhau')}" th:errors="*{matKhau}"
-                                               class="text-danger"></small>
-                                    </div>
                                     <div class="form-outline mb-4">
                                         <label class="form-label" for="form2Example27"><i class="fa-solid fa-phone"></i>
                                             Số điện thoại</label>
