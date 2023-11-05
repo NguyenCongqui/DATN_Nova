@@ -3,58 +3,43 @@
       layout:decorate="~{admin/layouts/dashboard}">
 <head>
     <script type="text/javascript" th:src="@{/static/admin/js/dayGiay/dayGiay.js}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" th:href="@{/static/admin/css/sb-admin-2.min.css}">
+    <script th:src="@{/static/admin/js/bootstrap.bundle.min.js}"></script>
 </head>
 
 <body>
 <section layout:fragment="content" class="container-fluid">
     <div id="toastsCustomCss">
-        <!--        <div id="messageSuccess" th:if="${messageSuccess}" class="toast" role="alert" aria-live="assertive"-->
-        <!--             aria-atomic="true" data-delay="3000">-->
-        <!--            <div class="toast-header">-->
-        <!--                <svg class="bd-placeholder-img rounded mr-2" width="20" height="20"-->
-        <!--                     xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"-->
-        <!--                     role="img">-->
-        <!--                    <rect width="100%" height="100%" fill="#007aff"></rect>-->
-        <!--                </svg>-->
-        <!--                &lt;!&ndash; <img src="..." class="rounded mr-2" alt="..."> &ndash;&gt;-->
-        <!--                <strong class="pr-3 mr-auto">Thông báo</strong>-->
-        <!--                <small>Now</small>-->
-        <!--                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">-->
-        <!--                    <span aria-hidden="true">&times;</span>-->
-        <!--                </button>-->
-        <!--            </div>-->
-        <!--            <div class="toast-body" th:text="${messageSuccess}"></div>-->
-        <!--        </div>-->
+        <div id="messageSuccess" th:if="${messageSuccess}" class="toast" role="alert" aria-live="assertive"
+             aria-atomic="true" data-delay="3000">
+            <div class="toast-header">
+                <svg class="bd-placeholder-img rounded mr-2" width="20" height="20"
+                     xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
+                     role="img">
+                    <rect width="100%" height="100%" fill="#007aff"></rect>
+                </svg>
+                <strong class="me-auto">Thông báo</strong>
+                <small>Now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" th:text="${messageSuccess}"></div>
+        </div>
 
-<!--        <div id="messageSuccess" th:if="${messageSuccess}" class="toast" role="alert" aria-live="assertive"-->
-<!--             aria-atomic="true" data-delay="3000">-->
-<!--            <div class="toast-header">-->
-<!--                &lt;!&ndash;                <img src="..." class="rounded me-2" alt="...">&ndash;&gt;-->
-<!--                <strong class="me-auto">Thông báo</strong>-->
-<!--                <small>Now</small>-->
-<!--                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>-->
-<!--            </div>-->
-<!--            <div class="toast-body" th:text="${messageSuccess}"></div>-->
-<!--        </div>-->
-
-<!--        <div id="messageDanger" th:if="${messageDanger}" class="toast" role="alert" aria-live="assertive"-->
-<!--             aria-atomic="true" data-delay="3000">-->
-<!--            <div class="toast-header">-->
-<!--                <svg class="bd-placeholder-img rounded mr-2" width="20" height="20"-->
-<!--                     xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"-->
-<!--                     role="img">-->
-<!--                    <rect width="100%" height="100%" fill="red"></rect>-->
-<!--                </svg>-->
-<!--                &lt;!&ndash; <img src="..." class="rounded mr-2" alt="..."> &ndash;&gt;-->
-<!--                <strong class="me-auto">Thông báo</strong>-->
-<!--                <small>Now</small>-->
-<!--                <button type="button"  class="btn-close" data-bs-dismiss="toast" aria-label="Close">-->
-<!--                    <span aria-hidden="true">&times;</span>-->
-<!--                </button>-->
-<!--            </div>-->
-<!--            <div class="toast-body" th:text="${messageDanger}"></div>-->
-<!--        </div>-->
+        <div id="messageDanger" th:if="${messageDanger}" class="toast" role="alert" aria-live="assertive"
+             aria-atomic="true" data-delay="3000">
+            <div class="toast-header">
+                <svg class="bd-placeholder-img rounded mr-2" width="20" height="20"
+                     xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
+                     role="img">
+                    <rect width="100%" height="100%" fill="red"></rect>
+                </svg>
+                <strong class="me-auto">Thông báo</strong>
+                <small>Now</small>
+                <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+            </div>
+            <div class="toast-body" th:text="${messageDanger}"></div>
+        </div>
     </div>
 
 
@@ -62,10 +47,6 @@
     <div>
         <!-- Page Heading -->
         <h1 class="h3 mb-2 text-gray-800">Quản lý dây giày</h1>
-        <h5 th:text="${messageSuccess}" data-delay="3000"></h5>
-        <h5 th:text="${messageDanger}" data-delay="3000"></h5>
-        <!--        <h3>haha</h3>-->
-
         <hr>
         <form th:action="@{/admin/day-giay}" id="flexUrlTableFormDayGiay" enctype="multipart/form-data" method="get">
             <input type="number" name="page" id="inputPageDayGiay" hidden>
@@ -298,7 +279,7 @@
         });
     </script>
     <script th:inline="javascript">
-        window.onload = function () {
+        $(document).ready(function () {
             var messageSuccess = '[[${messageSuccess}]]';
             var messageDanger = '[[${messageDanger}]]';
             $('#toastsCustomCss').attr("style", "position: absolute; top: 70px; right: 0;z-index: 10000;");
@@ -308,7 +289,7 @@
             if (messageDanger.length !== 0) {
                 $("#messageDanger").toast("show");
             }
-        }
+        });
     </script>
 </section>
 </body>
