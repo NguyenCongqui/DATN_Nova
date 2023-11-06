@@ -4,8 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <title>Chờ giao hàng</title>
-    <link rel="stylesheet" th:href="@{/customer/css/HoaDon/ChiTietCustomer/danhSach.css}">
-    <script th:src="@{/customer/js/HoaDon/jsChungHDCtomer.js}"></script>
+    <link rel="stylesheet" href="/static/customer/css/HoaDon/ChiTietCustomer/danhSach.css">
+    <script src="/static/customer/js/HoaDon/jsChungHDCtomer.js"></script>
 </head>
 <body>
 <div class="container-fluid" layout:fragment="content">
@@ -35,14 +35,14 @@
                     <tbody>
                     <tr th:each="customerGH, stt: ${customerChoGiaoHang}">
                         <th scope="row" th:text="${stt.count}"></th>
-                        <td th:text="${customerGH.maDon}"></td>
+                        <td th:text="${customerGH.maHoaDon}"></td>
                         <td th:text="${customerGH.nguoiNhan}"></td>
-                        <td th:text="${customerGH.sdtNguoiNhan}"></td>
+                        <td th:text="${customerGH.soDienThoaiNguoiNhan}"></td>
                         <td th:text="${#numbers.formatDecimal(customerGH.tongTienHoaDon, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></td>
                         <td th:text="${customerGH.trangThai.name}"></td>
                         <td>
                             <div class="button-group">
-                                <input type="hidden" id="idCustomerGH" th:value="${customerGH.id}">
+                                <input type="hidden" id="idCustomerGH" th:value="${customerGH.idHoaDon}">
 
                                 <button class="action-button chiTietHoaDonCus" type="submit" id="chiTietHoaDonCusGH">
                                     <i class="fa fa-info" aria-hidden="true"></i>
@@ -52,7 +52,7 @@
                                     $(document).ready(function () {
                                         $("#chiTietHoaDonCusGH").click(function () {
                                             const id = $("#idCustomerGH").val();
-                                            window.location.href = "/customer/DonHang/ChiTietHoaDon/ChoGiaoHang/hoa-don-id=" + id;
+                                            window.location.href = "/khachhang/DonHang/ChiTietHoaDon/ChoGiaoHang/hoa-don-id=" + id;
                                         });
                                     });
                                 </script>

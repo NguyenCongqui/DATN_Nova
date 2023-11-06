@@ -95,39 +95,34 @@
 
 
                                         <div class="product-price">
-                                            <del>1.000.000 VND</del>
+
                                             <span><span class="product-price-sign"></span>
                         <span class="product-price-text"
                               th:text="${#numbers.formatDecimal(shopDetails.gia, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></span></span>
                                         </div>
-                                        <p class="product-description">
-                                            When an unknown printer took a galley of type and scrambled it to make a
-                                            type specimen book. It has survived not only five centuries, but also the
-                                            leap into electronic remaining essentially unchanged.
-                                        </p>
+<!--                                        <p class="product-description">-->
+<!--                                            When an unknown printer took a galley of type and scrambled it to make a-->
+<!--                                            type specimen book. It has survived not only five centuries, but also the-->
+<!--                                            leap into electronic remaining essentially unchanged.-->
+<!--                                        </p>-->
                                         <div class="row product-filters product__details__option" th:data-id="${shopDetails.sanPhamId}">
                                             <form class="col-md-12 filters-color product__details__option__color">
                                                 <label for="select-color">Màu Sắc</label>
-                                                <div class="color-selector">
-                                                    <label class="chonMauSac "
-                                                           onclick="chooseOptionColorLabel(this.getAttribute('id'),this.getAttribute('name'),
+                                                <div class="color-selector chonMauSac"
+                                                     onclick="chooseOptionColorLabel(this.getAttribute('id'),this.getAttribute('name'),
                                             this.getAttribute('input-name'), this.getAttribute('input-id'))"
-                                                           th:for="'mauSacInpId'+${istat.index}"
-                                                           th:id="labelMS+${istat.index}"
+                                                >
+                                                    <input type="radio" class="entry"
+                                                               th:for="'mauSacInpId'+${istat.index}"
+                                                               th:each="ms, istat : ${shopDetails.lstMauSac}"
+                                                               th:name="labelMSName"
+                                                               th:input-name="mauSacId"
+                                                               th:input-id="'mauSacInpId'+${istat.index}"
 
-                                                           th:each="ms, istat : ${shopDetails.lstMauSac}"
-                                                           th:name="labelMSName"
-                                                           th:input-name="mauSacId"
-                                                           th:input-id="'mauSacInpId'+${istat.index}">
-
-
-                                                        <input type="radio" class="entry"
                                                                th:style="'background:'+ ${ms.maMauSac}"
                                                              th:value="${ms.idMauSac}"
                                                              th:id="'mauSacInpId'+${istat.index}"
-                                                             th:field="*{mauSacId}">
-
-                                                    </label>
+                                                             th:field="*{mauSacId}"/>
                                                 </div>
                                             </form>
                                             <form class="col-md-12 filters-size product__details__option__size">

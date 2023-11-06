@@ -15,9 +15,14 @@ public interface SanPhamRepository extends JpaRepository<SanPham, Integer>, SanP
     @Query(value = "SELECT * FROM dbo.SanPham sp WHERE sp.DaXoa = false ORDER BY sp.IdSanPham", nativeQuery = true)
     Page<SanPham> getSanPhamExist(Pageable pageable);
 
-    @Query(value = "SELECT sp.* FROM dbo.SanPham sp JOIN dbo.SanPhamCT spct ON\n" +
-            "                       spct.IdSanPham = sp.IdSanPham WHERE sp.DaXoa = 0 AND spct.CoHienThi = 1 ORDER BY sp.IdSanPham DESC" +
-            "", nativeQuery = true)
+    @Query(value = """
+SELECT sp.*
+FROM dbo.SanPham sp
+JOIN dbo.SanPhamCT spct ON spct.IdSanPham = sp.IdSanPham
+WHERE sp.DaXoa = 0 AND spct.CoHienThi = 1\s
+GROUP BY sp.IdSanPham, sp.TenSanPham, sp.NgayCapNhat, sp.NgayTao, sp.NguoiCapNhat, sp.NguoiTao, sp.DaXoa, sp.Gia, sp.MoTa, sp.IdChatLieu, sp.IdKieuDang, sp.IdThuongHieu
+ORDER BY sp.IdSanPham DESC;
+""", nativeQuery = true)
     Page<SanPham> showSanPhamExistHomePage(Pageable pageable);
 
     @Query(value = """

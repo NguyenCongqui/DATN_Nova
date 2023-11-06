@@ -21,10 +21,10 @@
          >
         <div class="tab-content" >
             <!-- Tab1 - Latest Product -->
-            <div id="latest" role="tabpanel" class="tab-pane fade in active">
-                <div id="new-product" class="product-item-4 owl-carousel owl-theme nf-carousel-theme1">
+            <div id="latest" role="tabpanel" class="tab-pane fade in active" >
+                <div id="new-product" class="product-item-4 owl-carousel owl-theme nf-carousel-theme1" >
                     <!-- item.1 -->
-                    <div class="product-item" th:each="item, istat : ${resultSP.lstShowSanPhamTaiQua}" th:object="${resultSP}">
+                    <div class="product-item" th:each="item, istat : ${resultSP.lstShowSanPhamTaiQua}" th:object="${resultSP}" >
                         <div class="product-item-inner">
                             <div abbr="" class="product-img-wrap">
                                 <div class="carousel-item" th:name="'divImgIsActive'+${istat.index}"
@@ -43,7 +43,7 @@
                         </div>
                         <div class="product-detail">
                             <a class="tag" href="#">Men Fashion</a>
-                            <p class="product-title"><a href="product_detail.html" th:text="${item.tenSanPham}"></a></p>
+                            <p class="product-title"><a th:href="${'/khachhang/shop-details/'+item.sanPhamId}"  th:text="${item.tenSanPham}"></a></p>
                             <div class="product-rating">
                                 <div class="star-rating" itemprop="reviewRating" itemscope="" itemtype="http://schema.org/Rating" title="Rated 4 out of 5">
                                     <span style="width: 60%"></span>

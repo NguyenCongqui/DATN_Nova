@@ -10,6 +10,7 @@ import java.util.List;
 @Repository
 public interface GiaoDichRepository extends JpaRepository<GiaoDich , Integer> {
 
-    @Query(value = "select * from GiaoDich where trang_thai_id = ? and hoa_don_id = ? ORDER BY id DESC LIMIT 1", nativeQuery = true)
+    @Query(value = "select TOP 1 * from GiaoDich where idtrangthai = ? and idhoadon = ? ORDER BY idgiaodich" +
+            " DESC", nativeQuery = true)
     List<GiaoDich> findByTrangThaiIdAndHoaDonId(int trangThai, Integer hoaDonId);
 }

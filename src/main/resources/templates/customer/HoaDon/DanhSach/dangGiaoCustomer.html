@@ -1,12 +1,14 @@
 <!DOCTYPE html>
 <html lang="zxx" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{customer/layouts/index}">
+      layout:decorate="~{customer/layout/index}">
 <head>
     <meta charset="UTF-8">
     <title>Đang giao hàng</title>
-    <link rel="stylesheet" th:href="@{/customer/css/HoaDon/ChiTietCustomer/danhSach.css}">
-    <script th:src="@{/customer/js/HoaDon/DangGiaoCustomer.js}"></script>
-    <script th:src="@{/customer/js/HoaDon/jsChungHDCtomer.js}"></script>
+    <link rel="stylesheet" href="/static/customer/css/HoaDon/ChiTietCustomer/danhSach.css">
+    <script src="/static/customer/js/HoaDon/jsChungHDCtomer.js"></script>
+    <script src="/static/customer/js/HoaDon/DangGiaoCustomer.js"></script>
+
+
 </head>
 <body>
 <section class="Customer_ChoGiaoHang" layout:fragment="content">
@@ -62,14 +64,14 @@
                         <tbody>
                         <tr th:each="customerDG, stt: ${dangtGiaoCustomer}">
                             <th scope="row" th:text="${stt.count}"></th>
-                            <td th:text="${customerDG.maDon}"></td>
+                            <td th:text="${customerDG.maHoaDon}"></td>
                             <td th:text="${customerDG.nguoiNhan}"></td>
-                            <td th:text="${customerDG.sdtNguoiNhan}"></td>
+                            <td th:text="${customerDG.soDienThoaiNguoiNhan}"></td>
                             <td th:text="${#numbers.formatDecimal(customerDG.tongTienHoaDon, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></td>
                             <td th:text="${customerDG.trangThai.name}"></td>
                             <td>
                                 <div class="button-group">
-                                    <input type="hidden" id="idCustomerDG" th:value="${customerDG.id}">
+                                    <input type="hidden" id="idCustomerDG" th:value="${customerDG.idHoaDon}">
 
                                     <button class="action-button chiTietHoaDonCus" type="submit" id="chiTietHoaDonCusDG">
                                         <i class="fa fa-info" aria-hidden="true"></i>
@@ -79,16 +81,16 @@
                                         $(document).ready(function () {
                                             $("#chiTietHoaDonCusDG").click(function () {
                                                 const id = $("#idCustomerDG").val();
-                                                window.location.href = "/customer/DonHang/ChiTietHoaDon/DangGiaoHang/hoa-don-id=" + id;
+                                                window.location.href = "/khachhang/DonHang/ChiTietHoaDon/DangGiaoHang/hoa-don-id=" + id;
                                             });
                                         });
                                     </script>
 
-                                    <button class="action-button DangGiaoCus" th:attr="data-id=${customerDG.id}">
+                                    <button class="action-button DangGiaoCus" th:attr="data-id=${customerDG.idHoaDon}">
                                         <i class="fas fa-check"></i>
                                     </button>
                                     <br>
-                                    <div class="modal fade dangGiaoModalCustomer" th:attr="data-id=${customerDG.id}"
+                                    <div class="modal fade dangGiaoModalCustomer" th:attr="data-id=${customerDG.idHoaDon}"
                                          tabindex="-1" aria-labelledby="dangGiaoModalLabel"
                                          aria-hidden="true">
                                         <div class="modal-dialog modal-dialog-centered">

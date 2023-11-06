@@ -1,9 +1,43 @@
 <!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{customer/layout/index}">
+<html lang="en" xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{customer/layout/index}"
+>
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Giỏ Hàng</title>
+    <style>
+        .shopping__cart__table {
+            max-height: 450px;
+            overflow-y: auto;
+        }
+
+        .create-invoice-button {
+            background-color: black;
+            color: white;
+            font-size: 1.1em;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .create-invoice-button:hover {
+            background-color: #333;
+        }
+
+        .centered {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        .breadcrumb__text{
+            margin-bottom: 50px;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        }
+    </style>
+
     <script src="../../../static/admin/js/banHang/banHangOnline/datHang.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
@@ -35,14 +69,14 @@
             <div class="row">
                 <div class="col-sm-12">
                     <article class="post-8">
-                        <form class="cart-form" action="#" method="post" th:action="@{/khachhang/gio-hang-chi-tiet}">
-                            <div class="cart-product-table-wrap responsive-table">
+                        <form class="cart-form" action="#" method="POST" th:action="@{/khachhang/gio-hang-chi-tiet}">
+                            <div class="cart-product-table-wrap responsive-table shopping__cart__table">
                                 <table>
                                     <th:block th:if="*{!listGioHangChiTiets.isEmpty()}">
                                         <thead>
                                         <tr>
-                                            <th class="product-remove">
-                                                <input type="checkbox" value="" th:id="checkAll" name="checkAll"/>
+                                            <th>
+                                                <input type="checkbox"  value="" th:id="checkAll" name="checkAll"/>
                                             </th>
                                             <th class="product-thumbnail"></th>
                                             <th class="product-name">Sản Phẩm</th>
@@ -57,7 +91,7 @@
                                         <tbody>
                                         <tr th:each="item : *{listGioHangChiTiets}">
                                             <td>
-                                                <input type="checkbox" class="form-checkbox" th:value="${item.id}"/>
+                                                <input type="checkbox"  class="form-checkbox" th:value="${item.id}"/>
                                             </td>
 
                                             <td class="product-thumbnail">
@@ -140,94 +174,132 @@
                                         nào trong giỏ hàng!</p>
                                 </div>
                             </div>
+                            <th:block th:if="*{!listGioHangChiTiets.isEmpty()}">
                             <div class="row cart-actions">
                                 <div class="col-md-6">
                                     <div class="coupon">
-                                        <!-- <input class="input-md" id="coupon_code" name="coupon_code" title="Coupon Code" value="" placeholder="Enter Coupon Code" type="text">
-                                        <input class="btn btn-md btn-black" name="coupon_code" value="Apply Coupon" type="submit" /> -->
+<!--                                    <input class="input-md" id="coupon_code" name="coupon_code" title="Coupon Code" value="" placeholder="Enter Coupon Code" type="text">-->
+                                        <a class="btn btn-md btn-black"  data-target="#xoaSachGioHang" data-toggle="modal" name="coupon_code" value="Xóa Sạch" type="submit">
+                                            <i class="fa fa-trash-o" aria-hidden="true"> </i>
+                                            Xóa Sạch</a>
                                     </div>
                                 </div>
                                 <div class="col-md-6 text-right">
-                                    <input class="btn btn-md btn-gray" name="update_cart" value="Update cart"
+                                    <input class="btn btn-md btn-black" name="update_cart" value="Update cart"
                                            disabled="" type="submit">
                                 </div>
                             </div>
+                            </th:block>
                         </form>
-                        <div class="cart-collateral">
-                            <div class="cart_totals">
-                                <h3>Tổng Giỏ Hàng</h3>
-                                <div class="responsive-table">
-                                    <table>
-                                        <tbody>
-<!--                                        <tr class="cart-subtotal">-->
-<!--                                            <th>Subtotal</th>-->
-<!--                                            <td><span class="product-price-amount amount"><span-->
-<!--                                                    class="currency-sign">$</span>997.00</span></td>-->
-<!--                                        </tr>-->
-<!--                                        <tr class="shipping">-->
-<!--                                            <th>Shipping</th>-->
-<!--                                            <td>-->
-<!--                                                <ul id="shipping_method">-->
-<!--                                                    <li>-->
-<!--                                                        <input name="shipping_method[0]" data-index="0"-->
-<!--                                                               id="shipping_method_0_legacy_flat_rate"-->
-<!--                                                               value="legacy_flat_rate" class="shipping_method"-->
-<!--                                                               checked="checked" type="radio">-->
-<!--                                                        <label for="shipping_method_0_legacy_flat_rate">Flat Rate: <span-->
-<!--                                                                class="woocommerce-Price-amount amount"><span-->
-<!--                                                                class="woocommerce-Price-currencySymbol">$</span>12.00</span></label>-->
-<!--                                                    </li>-->
-<!--                                                    <li>-->
-<!--                                                        <input name="shipping_method[0]" data-index="0"-->
-<!--                                                               id="shipping_method_0_legacy_free_shipping"-->
-<!--                                                               value="legacy_free_shipping" class="shipping_method"-->
-<!--                                                               type="radio">-->
-<!--                                                        <label for="shipping_method_0_legacy_free_shipping">Free-->
-<!--                                                            Shipping</label>-->
-<!--                                                    </li>-->
-<!--                                                    <li>-->
-<!--                                                        <input name="shipping_method[0]" data-index="0"-->
-<!--                                                               id="shipping_method_0_legacy_local_delivery"-->
-<!--                                                               value="legacy_local_delivery" class="shipping_method"-->
-<!--                                                               type="radio">-->
-<!--                                                        <label for="shipping_method_0_legacy_local_delivery">Local-->
-<!--                                                            Delivery</label>-->
-<!--                                                    </li>-->
-<!--                                                </ul>-->
-<!--                                                <form>-->
-<!--                                                    <p>-->
-<!--                                                        <a href="#">Calculate shipping</a>-->
-<!--                                                    </p>-->
-<!--                                                </form>-->
-<!--                                            </td>-->
-<!--                                        </tr>-->
-                                        <tr class="order-total">
-                                            <th>Tổng Tiền</th>
-                                            <td><span class="product-price-amount amount" id="tongTienGioHang">
+<!--                        <div class="cart-collateral">-->
+<!--                            <div class="cart_totals">-->
+<!--                                <h3>Tổng Giỏ Hàng</h3>-->
+<!--                                <div class="responsive-table">-->
+<!--                                    <table>-->
+<!--                                        <tbody>-->
+<!--&lt;!&ndash;                                        <tr class="cart-subtotal">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <th>Subtotal</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td><span class="product-price-amount amount"><span&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    class="currency-sign">$</span>997.00</span></td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </tr>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        <tr class="shipping">&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <th>Shipping</th>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            <td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <ul id="shipping_method">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    <li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        <input name="shipping_method[0]" data-index="0"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                               id="shipping_method_0_legacy_flat_rate"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                               value="legacy_flat_rate" class="shipping_method"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                               checked="checked" type="radio">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        <label for="shipping_method_0_legacy_flat_rate">Flat Rate: <span&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                class="woocommerce-Price-amount amount"><span&ndash;&gt;-->
+<!--&lt;!&ndash;                                                                class="woocommerce-Price-currencySymbol">$</span>12.00</span></label>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    <li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        <input name="shipping_method[0]" data-index="0"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                               id="shipping_method_0_legacy_free_shipping"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                               value="legacy_free_shipping" class="shipping_method"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                               type="radio">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        <label for="shipping_method_0_legacy_free_shipping">Free&ndash;&gt;-->
+<!--&lt;!&ndash;                                                            Shipping</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    <li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        <input name="shipping_method[0]" data-index="0"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                               id="shipping_method_0_legacy_local_delivery"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                               value="legacy_local_delivery" class="shipping_method"&ndash;&gt;-->
+<!--&lt;!&ndash;                                                               type="radio">&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        <label for="shipping_method_0_legacy_local_delivery">Local&ndash;&gt;-->
+<!--&lt;!&ndash;                                                            Delivery</label>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    </li>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                </ul>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                <form>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    <p>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                        <a href="#">Calculate shipping</a>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                    </p>&ndash;&gt;-->
+<!--&lt;!&ndash;                                                </form>&ndash;&gt;-->
+<!--&lt;!&ndash;                                            </td>&ndash;&gt;-->
+<!--&lt;!&ndash;                                        </tr>&ndash;&gt;-->
+<!--                                        <tr class="order-total">-->
+<!--                                            <th>Tổng Tiền</th>-->
+<!--                                            <td><span class="product-price-amount amount" id="tongTienGioHang">-->
 
-                                                </span>
-                                                <span class="currency-sign">VND
-                                                  </span></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="product-proceed-to-checkout">
-                                    <a class="btn btn-lg btn-color form-full-width" type="button"  onclick="taoHoaDon()">Đặt Hàng</a>
-                                </div>
+<!--                                                </span>-->
+<!--                                                <span class="currency-sign">VND-->
+<!--                                                  </span></td>-->
+<!--                                        </tr>-->
+<!--                                        </tbody>-->
+<!--                                    </table>-->
+<!--                                </div>-->
+<!--                                <div class="product-proceed-to-checkout">-->
+<!--                                    <a class="btn btn-lg btn-color form-full-width" type="button"  onclick="taoHoaDon()">Đặt Hàng</a>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+                        <div class="col-lg-4">
+                            <div class="cart__total">
+                                <ul>
+                                    <li>Tổng tiền <span>  VNĐ </span> <span id="tongTienGioHang"></span>
+                                    </li>
+                                </ul>
+                                <form id="form-tao-moi">
+                                    <button type="button" class="create-invoice-button" onclick="taoHoaDon()">
+                                        <i class="fas fa-plus"></i> Đặt hàng
+                                    </button>
+                                </form>
                             </div>
                         </div>
                     </article>
                 </div>
             </div>
         </div>
+        <div class="modal fade bd-example-modal-sm" id="xoaSachGioHang" tabindex="-1" role="dialog"
+             aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modalXoaSachGioHang" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">Làm sạch giỏ hàng</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <span>Bạn có muốn xóa tất cả sản phẩm khỏi giỏ hàng ?</span>
+                    </div>
+                    <div class="modal-footer">
+                        <button id="xoaSachGioHang-button" type="button" onclick="xoaSachGiohang()" class="btn btn-danger">Xóa</button>
+                        <input id="idGioHang" type="hidden" th:value="${gioHangDTO.id}">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <script src="/static/customer/js/khach-hang/gio-hang.js"></script>
+        <script th:inline="javascript">
+
+        </script>
 
     </section>
     <!-- End Page Content -->
-    <script src="/static/customer/js/khach-hang/gio-hang.js"></script>
-    <script th:inline="javascript">
 
-    </script>
 
 </div>
 </body>
