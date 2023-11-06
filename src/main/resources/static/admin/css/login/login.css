@@ -193,4 +193,17 @@ placeholder{
     cursor: pointer;
 
 }
+.input-with-icon {
+    position: relative;
+}
+
+.input-with-icon .icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 10px; /* Thay đổi giá trị right tùy theo vị trí mong muốn */
+}
+.g{
+
+}
 

@@ -48,25 +48,48 @@
                         <div class="col-md-6 col-lg-7 d-flex align-items-center">
                             <div class="card-body p-4 p-lg-5 text-black">
 
-                                <form th:action="@{/security/forgot-password/code}" method="POST">
-
+                                <form th:action="@{/security/forgot-password/enter-code}" method="post" th:object="${khachHangDTO}" class="signin-form">
                                     <div class="d-flex align-items-center mb-3 pb-1">
                                             <span class="h1 fw-bold mb-0"> <h1 class="giua"><i
                                                     class="fa-solid fa-paper-plane"></i> Quên Mật Khẩu</h1></span>
                                     </div>
+                                    <th:block th:if="${message != null}">
+                                        <h3>
+                                            <i class="pull-left text-success" th:text="${message}"></i>
+                                        </h3>
+                                    </th:block>
+                                    <th:block th:if="${messageError != null}">
+                                        <h3>
+                                            <i class="pull-left text-danger" th:text="${messageError}"></i>
+                                        </h3>
+                                    </th:block>
                                     <div class="form-outline mb-4">
                                         <label class="form-label" for="form2Example17"><i
-                                                class="fa-solid fa-envelope"></i> Email</label>
-                                        <input class="form-control form-control-lg" id="typeEmail" th:name="email"
-                                               required/>
+                                                class="fa-solid fa-lock"></i> Mã xác nhận</label>
+                                        <input type="text" class="form-control " th:field="*{codeSend}" placeholder="Nhập mã xác nhận" />
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form2Example17"><i
+                                                class="fa-solid fa-lock"></i> Mật khẩu</label>
+                                        <input class="form-control " placeholder="Nhập mật khẩu" th:field="*{matKhau}" id="password" type="password" />
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <label class="form-label" for="form2Example17"><i
+                                                class="fa-solid fa-lock"></i> Xác nhận mật khẩu</label>
+                                        <input class="form-control" placeholder="Xác nhận mật khẩu" th:field="*{matKhauXacNhan}" type="password" id="confirm_password" />
+                                    </div>
+                                    <div class="form-outline mb-4">
+                                        <span class="fw-bold" id='message'></span>
+                                        <a class="small text-muted g" th:href="@{/security/forgot-password/sendCode}">Gửi lại mã!
+                                            khẩu?</a>
+
                                     </div>
                                     <div class="pt-1 mb-4 btn">
-                                        <button class="btn btn-dark btn-lg btn-block" type="submit"><i class="fa-solid fa-arrow-rotate-left" ></i> Gửi mã
+                                        <button class="btn btn-dark btn-lg btn-block" type="submit"><i class="fa-solid fa-arrow-rotate-left" ></i> Lấy lại mật khẩu
                                         </button>
                                     </div>
                                     <div class="l"><a class="small text-muted " th:href="@{/security/login/form}">>Back
                                         Login<</a></div>
-
 
                                 </form>
                             </div>
@@ -76,10 +99,29 @@
             </div>
         </div>
     </div>
+
+<!--    <script type="text/javascript">-->
+<!--        $('#password, #confirm_password').on('keyup', function() {-->
+<!--            if ($('#password').val() == $('#confirm_password').val()) {-->
+<!--                $('#message').html('Hợp lệ ').css('color', 'green');-->
+<!--            } else-->
+<!--                $('#message').html('Chưa khớp').css('color', 'red');-->
+<!--        });-->
+<!--    </script>-->
+
 </section>
 <br>
 <br>
 <br>
 <br>
+<script type="text/javascript">
+    $('#password, #confirm_password').on('keyup', function() {
+        if ($('#password').val() == $('#confirm_password').val()) {
+            $('#message').html('Hợp lệ ').css('color', 'green');
+        } else
+            $('#message').html('Chưa khớp').css('color', 'red');
+    });
+</script>
+<script th:src="@{/static/customer/js/jquery-3.3.1.min.js}"></script>
 </body>
 </html>

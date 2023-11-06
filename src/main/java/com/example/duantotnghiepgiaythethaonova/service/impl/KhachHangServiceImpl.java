@@ -446,11 +446,16 @@ public class KhachHangServiceImpl implements KhachHangService {
         String code = "";
         KhachHang entity = khachHangRepository.findByEmail(email);
         code = new String(RanDomUtil.rammDomNumber());
+        DateTimeFormatter f = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
+        ZonedDateTime now = ZonedDateTime.now();
+        String time = f.format(now);
         if (entity.getEmail() != null) {
             mailService.sendMail("datn.novashoes@gmail.com",
                     entity.getEmail(),
-                    "Your code reset password",
-                    "Code : " + code);
+                    "Your code reset password" + time + " !",
+                    "Code : " + code + "\n" +
+                    "Nếu bạn có bất kì câu hỏi nào, vui lòng liên hệ với chúng tôi: datn.novashoes@gmail.com" + "\n" +
+                            "Hoặc địa chỉ : 48 Ngõ 99 Cầu Diễn, Từ Liêm, Hà Nội.");
         }
         return code;
     }

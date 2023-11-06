@@ -27,7 +27,7 @@ public class QuenMatKhauController {
 	@RequestMapping("/security/forgot-password-2")
 	public String formForgotPassword2( Model model) {
 		model.addAttribute("khachHangDTO",new KhachHangDTO());
-		return "/customer/auth/quen-mat-khau-2" ;
+		return "/customer/auth/forget2" ;
 	}
 	
 	
@@ -55,9 +55,9 @@ public class QuenMatKhauController {
 			
 		}else if(!code.equals(khachHangDTO.getCodeSend())) {
 			model.addAttribute("messageError","Không đúng mã !");
-			return "/customer/auth/quen-mat-khau-2";
+			return "/customer/auth/forget2";
 		}
-		return "/customer/auth/quen-mat-khau-2" ;
+		return "/customer/auth/forget2" ;
 	}
 	
 	@SuppressWarnings({"deprecation" })
