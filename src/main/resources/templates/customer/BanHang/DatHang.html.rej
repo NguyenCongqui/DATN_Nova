@@ -1,0 +1,9 @@
+diff a/src/main/resources/templates/customer/BanHang/DatHang.html b/src/main/resources/templates/customer/BanHang/DatHang.html	(rejected hunks)
+@@ -178,7 +178,6 @@
+                                             <label for="billing_town_city" class="left">
+                                                 Ghi Chú
+                                                 <abbr class="form-required" title="required">*</abbr></label>
+-                                            <textarea name="note" title="Ghi Chú" id="note" th:text="${hoaDon.ghiChu}" value="" style="width: 540px; height: 120px;" placeholder="Nhập ghi chú đơn hàng" type="text" required="" aria-required="true">
+                                             <textarea name="note" title="Ghi Chú" id="note" th:text="${hoaDon.ghiChu}" value="" style="width: 540px; height: 120px;" placeholder="Nhập ghi chú đơn hàng" type="text" aria-required="true">
+                                                     </textarea>
+                                         </div>

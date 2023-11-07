@@ -366,7 +366,7 @@
                                                  th:id="'imgActive'+${istat.index}+${istatAC.index}"
                                                  th:classappend="${#numbers.formatInteger(istat.index+''+istatAC.index,5) == #numbers.formatInteger(istat.index+''+0,5)? 'active':''}"
                                                  th:each="img, istatAC : ${item.anhChinhs}">
-                                                <img th:src="${'/customer/images/'+img}"
+                                                <img th:src="${'/khachhang/images/'+img}"
                                                      class="d-block img-responsive" alt="...">
                                             </div>
                                         </div>
@@ -382,14 +382,14 @@
                                             </a>
                                         </li> -->
                                         <li><a
-                                                th:href="${'/customer/shop?loaiSanPhamIds=' + item.loaiSanPhamId}"><img
+                                                th:href="${'/khachhang/shop?loaiSanPhamIds=' + item.loaiSanPhamId}"><img
                                                 th:src="@{images/icon/search.png}" alt="">
                                             <span>Tương tự</span>
                                         </a>
                                         </li>
 
                                         <li>
-                                            <a th:href="${'/customer/shop-details/'+item.sanPhamId}">
+                                            <a th:href="${'/khachhang/shop-details/'+item.sanPhamId}">
                                                 <img th:src="@{images/icon/cart.png}" alt="">
                                                 <span class="add-to-cart-text">Thêm vào giỏ</span>
                                             </a>
