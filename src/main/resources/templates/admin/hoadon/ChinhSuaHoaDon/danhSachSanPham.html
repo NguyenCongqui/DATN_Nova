@@ -110,7 +110,7 @@
                             <label for="kieuDangId">Tên kiểu dáng:</label>
                             <select class="selectpicker" name="kieuDangId" id="kieuDangId" th:field="*{kieuDangIds}"
                                     multiple>
-                                <option th:each="item : ${lstKieuDang}" th:value="${item.id}"
+                                <option th:each="item : ${lstKieuDang}" th:value="${item.idKieuDang}"
                                         th:text="${item.tenKieuDang}">
                                 </option>
                             </select>
@@ -119,36 +119,26 @@
                             <label for="chatLieuIds">Tên chất liệu:</label>
                             <select class="selectpicker" name="chatLieuIds" id="chatLieuIds"
                                     th:field="*{chatLieuIds}" multiple>
-                                <option th:each="item : ${lstChatLieu}" th:value="${item.id}"
+                                <option th:each="item : ${lstChatLieu}" th:value="${item.idChatLieu}"
                                         th:text="${item.tenChatLieu} "></option>
                             </select>
                         </div>
-                        <div class="col-sm-3">
-                            <label for="loaiSanPhamIds">Tên loại sản phẩm:</label>
-                            <select class="selectpicker" name="loaiSanPhamIds" id="loaiSanPhamIds"
-                                    th:field="*{loaiSanPhamIds}" multiple>
-                                <option th:each="item : ${lstLoaiSanPham}" th:value="${item.id}"
-                                        th:text="${item.tenLoaiSanPham}">
-                                </option>
-                            </select>
-                        </div>
+                    <div class="col-sm-3">
+                        <label for="thuongHieuIds">Tên thương hiệu:</label>
+                        <select class="selectpicker" name="thuongHieuIds" id="thuongHieuIds"
+                                th:field="*{thuongHieuIds}" multiple>
+                            <option th:each="item : ${lstThuongHieu}" th:value="${item.idThuongHieu}"
+                                    th:text="${item.tenThuongHieu}">
+                            </option>
+                        </select>
                     </div>
+                </div>
                     <!-- --- -->
-                    <div class="row mt-3">
-                        <div class="col-sm-3">
-                            <label for="phongCachIds">Tên phong cách:</label>
-                            <select class="selectpicker" name="phongCachIds" id="phongCachIds"
-                                    th:field="*{phongCachIds}" multiple>
-                                <option th:each="item : ${lstPhongCach}" th:value="${item.id}"
-                                        th:text="${item.tenPhongCach}">
-                                </option>
-                            </select>
-                        </div>
                         <div class="col-sm-3">
                             <label for="kichCoIds">Tên kích cỡ:</label>
                             <select class="selectpicker" name="kichCoIds" id="kichCoIds" th:field="*{kichCoIds}"
                                     multiple>
-                                <option th:each="item : ${lstKichCo}" th:value="${item.id}"
+                                <option th:each="item : ${lstKichCo}" th:value="${item.idKichCo}"
                                         th:text="${item.tenKichCo}">
                                 </option>
                             </select>
@@ -157,7 +147,7 @@
                             <label for="mauSacIds">Tên màu sắc:</label>
                             <select class="selectpicker" name="mauSacIds" id="mauSacIds" th:field="*{mauSacIds}"
                                     multiple>
-                                <option th:each="item, istat : ${lstMauSac}" th:value="${item.id}"
+                                <option th:each="item, istat : ${lstMauSac}" th:value="${item.idMauSac}"
                                         th:text="${item.tenMauSac}">
                                 </option>
                             </select>

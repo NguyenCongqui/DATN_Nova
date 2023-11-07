@@ -204,6 +204,9 @@ placeholder{
     right: 10px; /* Thay đổi giá trị right tùy theo vị trí mong muốn */
 }
 .g{
-
+    padding-left: 170px;
+    text-decoration: none;
+    right: 50px;
 }
+
 

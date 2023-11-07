@@ -326,15 +326,15 @@ public class HoaDonServiceImpl implements HoaDonService {
             tt.setIdTrangThai(3);
             hoaDon.setTrangThai(tt);
             hoaDon.setNgayCapNhat(new Date());
-            hoaDon.setNguoiCapNhat("hduong");
+            hoaDon.setNguoiCapNhat("linh");
             hoaDonRepository.save(hoaDon);
 
             GiaoDich gd = new GiaoDich();
             gd.setHoaDon(hoaDon);
             gd.setNgayCapNhat(new Date());
             gd.setNgayTao(new Date());
-            gd.setNguoiCapNhat("ABC");
-            gd.setNguoiTao("ABC");
+            gd.setNguoiCapNhat("linh");
+            gd.setNguoiTao("linh");
             gd.setTrangThai(tt);
             giaoDichRepository.save(gd);
 
@@ -369,14 +369,14 @@ public class HoaDonServiceImpl implements HoaDonService {
                 tt.setIdTrangThai(3);
                 hoaDon.setTrangThai(tt);
                 hoaDon.setNgayCapNhat(new Date());
-                hoaDon.setNguoiCapNhat("hduong");
+                hoaDon.setNguoiCapNhat("linh");
                 hoaDonRepository.save(hoaDon);
                 GiaoDich gd = new GiaoDich();
                 gd.setHoaDon(hoaDon);
                 gd.setNgayCapNhat(new Date());
                 gd.setNgayTao(new Date());
-                gd.setNguoiCapNhat("ABC");
-                gd.setNguoiTao("ABC");
+                gd.setNguoiCapNhat("linh");
+                gd.setNguoiTao("linh");
                 gd.setTrangThai(tt);
                 giaoDichRepository.save(gd);
 
@@ -412,15 +412,15 @@ public class HoaDonServiceImpl implements HoaDonService {
             tt.setIdTrangThai(2);
             hoaDon.setTrangThai(tt);
             hoaDon.setNgayCapNhat(new Date());
-            hoaDon.setNguoiCapNhat("hduong");
+            hoaDon.setNguoiCapNhat("linh");
             hoaDonRepository.save(hoaDon);
             String message = "Xác nhận thành công";
             GiaoDich gd = new GiaoDich();
             gd.setHoaDon(hoaDon);
             gd.setNgayCapNhat(new Date());
             gd.setNgayTao(new Date());
-            gd.setNguoiCapNhat("ABC");
-            gd.setNguoiTao("ABC");
+            gd.setNguoiCapNhat("linh");
+            gd.setNguoiTao("linh");
             gd.setTrangThai(tt);
             giaoDichRepository.save(gd);
 
@@ -453,14 +453,14 @@ public class HoaDonServiceImpl implements HoaDonService {
             tt.setIdTrangThai(5);
             hoaDon.setTrangThai(tt);
             hoaDon.setNgayCapNhat(new Date());
-            hoaDon.setNguoiCapNhat("hduong");
+            hoaDon.setNguoiCapNhat("linh");
             hoaDonRepository.save(hoaDon);
             GiaoDich gd = new GiaoDich();
             gd.setHoaDon(hoaDon);
             gd.setNgayCapNhat(new Date());
             gd.setNgayTao(new Date());
-            gd.setNguoiCapNhat("ABC");
-            gd.setNguoiTao("ABC");
+            gd.setNguoiCapNhat("linh");
+            gd.setNguoiTao("linh");
             gd.setTrangThai(tt);
             giaoDichRepository.save(gd);
 
@@ -496,14 +496,14 @@ public class HoaDonServiceImpl implements HoaDonService {
                 tt.setIdTrangThai(2);
                 hoaDon.setTrangThai(tt);
                 hoaDon.setNgayCapNhat(new Date());
-                hoaDon.setNguoiCapNhat("hduong");
+                hoaDon.setNguoiCapNhat("linh");
                 hoaDonRepository.save(hoaDon);
                 GiaoDich gd = new GiaoDich();
                 gd.setHoaDon(hoaDon);
                 gd.setNgayCapNhat(new Date());
                 gd.setNgayTao(new Date());
-                gd.setNguoiCapNhat("ABC");
-                gd.setNguoiTao("ABC");
+                gd.setNguoiCapNhat("linh");
+                gd.setNguoiTao("linh");
                 gd.setTrangThai(tt);
                 giaoDichRepository.save(gd);
 
@@ -539,14 +539,14 @@ public class HoaDonServiceImpl implements HoaDonService {
                 tt.setIdTrangThai(5);
                 hoaDon.setTrangThai(tt);
                 hoaDon.setNgayCapNhat(new Date());
-                hoaDon.setNguoiCapNhat("hduong");
+                hoaDon.setNguoiCapNhat("linh");
                 hoaDonRepository.save(hoaDon);
                 GiaoDich gd = new GiaoDich();
                 gd.setHoaDon(hoaDon);
                 gd.setNgayCapNhat(new Date());
                 gd.setNgayTao(new Date());
-                gd.setNguoiCapNhat("ABC");
-                gd.setNguoiTao("ABC");
+                gd.setNguoiCapNhat("linh");
+                gd.setNguoiTao("linh");
                 gd.setTrangThai(tt);
                 giaoDichRepository.save(gd);
 
@@ -582,14 +582,14 @@ public class HoaDonServiceImpl implements HoaDonService {
             tt.setIdTrangThai(4);
             hoaDon.setTrangThai(tt);
             hoaDon.setNgayCapNhat(new Date());
-            hoaDon.setNguoiCapNhat("hduong");
+            hoaDon.setNguoiCapNhat("linh");
             hoaDonRepository.save(hoaDon);
             GiaoDich gd = new GiaoDich();
             gd.setHoaDon(hoaDon);
             gd.setNgayCapNhat(new Date());
             gd.setNgayTao(new Date());
-            gd.setNguoiCapNhat("ABC");
-            gd.setNguoiTao("ABC");
+            gd.setNguoiCapNhat("linh");
+            gd.setNguoiTao("linh");
             gd.setTrangThai(tt);
             giaoDichRepository.save(gd);
 
@@ -624,14 +624,14 @@ public class HoaDonServiceImpl implements HoaDonService {
                 tt.setIdTrangThai(4);
                 hoaDon.setTrangThai(tt);
                 hoaDon.setNgayCapNhat(new Date());
-                hoaDon.setNguoiCapNhat("hduong");
+                hoaDon.setNguoiCapNhat("linh");
                 hoaDonRepository.save(hoaDon);
                 GiaoDich gd = new GiaoDich();
                 gd.setHoaDon(hoaDon);
                 gd.setNgayCapNhat(new Date());
                 gd.setNgayTao(new Date());
-                gd.setNguoiCapNhat("ABC");
-                gd.setNguoiTao("ABC");
+                gd.setNguoiCapNhat("linh");
+                gd.setNguoiTao("linh");
                 gd.setTrangThai(tt);
                 giaoDichRepository.save(gd);
 

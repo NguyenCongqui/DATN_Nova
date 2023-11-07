@@ -13,6 +13,8 @@ import java.util.List;
 @NoArgsConstructor
 public class HoaDonDTO extends BaseDTO<HoaDonDTO> {
 
+    private Integer idHoaDon;
+
     private Integer khuyenMaiId;
 
     private Integer nguoiDungId;

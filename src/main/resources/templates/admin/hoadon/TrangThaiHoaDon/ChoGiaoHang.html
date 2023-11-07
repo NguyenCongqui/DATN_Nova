@@ -97,12 +97,12 @@
             <td>
                 <!--UPDATE TRẠNG THÁI HÓA ĐƠN-->
                 <div class="button-group">
-                    <button class="action-button GiaoHang" th:attr="data-id=${hoaDon.id}"
-                            th:data-target="'#modalGiaoHang-' + ${hoaDon.id}">
+                    <button class="action-button GiaoHang" th:attr="data-id=${hoaDon.idHoaDon}"
+                            th:data-target="'#modalGiaoHang-' + ${hoaDon.idHoaDon}">
                         <i class="fas fa-truck"></i>
                     </button>
                     <br>
-                    <div class="modal fade giaoHangModal" th:id="'modalGiaoHang-' + ${hoaDon.id}" tabindex="-1"
+                    <div class="modal fade giaoHangModal" th:id="'modalGiaoHang-' + ${hoaDon.idHoaDon}" tabindex="-1"
                          aria-labelledby="giaoHangModalLabel"
                          aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
@@ -127,7 +127,7 @@
 
                     <!--XEM CHI TIẾT HÓA ĐƠN-->
                     <div class="btn-group">
-                        <a th:href="@{'/ChiTietHoaDon/ChoGiaoHang/hoa-don-id=' + ${hoaDon.id}}"
+                        <a th:href="@{'/ChiTietHoaDon/ChoGiaoHang/hoa-don-id=' + ${hoaDon.idHoaDon}}"
                            class="btn btn-warning btn-sm"
                            type="submit">
                             <i class="fas fa-info-circle"></i>
@@ -168,7 +168,7 @@
     </div>
     <div class="alert alert-warning container mt-3 text-center" th:if="*{listHoaDonDTO.isEmpty()}"
          style="background-color: transparent; border: none;">
-        <img src="/admin/img/noData2.png" alt="Không có sản phẩm" style="width: 300px; height: 300px;">
+        <img th:src="@{/static/admin/img/noData2.png}" alt="Không có sản phẩm" style="width: 300px; height: 300px;">
         <p class="empty-message" style="margin-top: 20px; font-size: 1.8em;">KHÔNG CÓ DỮ LIỆU</p>
     </div>
 </div>

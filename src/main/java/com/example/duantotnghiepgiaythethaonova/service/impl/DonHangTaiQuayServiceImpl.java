@@ -41,7 +41,7 @@ public class DonHangTaiQuayServiceImpl implements DonHangTaiQuayService {
         GiaoDich gd = new GiaoDich();
         for (HoaDon hoaDon : page.getContent()) {
             HoaDonDTO hoaDonDTO = new HoaDonDTO();
-            hoaDonDTO.setMaDon(hoaDon.getMaHoaDon());
+            hoaDonDTO.setMaDon(hoaDon.getMaDon());
             hoaDonDTO.setNguoiNhan(hoaDon.getNguoiNhan());
             hoaDonDTO.setSdtNguoiNhan(hoaDon.getSoDienThoaiNguoiNhan());
             hoaDonDTO.setGhiChu(hoaDon.getGhiChu());
@@ -49,7 +49,7 @@ public class DonHangTaiQuayServiceImpl implements DonHangTaiQuayService {
             hoaDonDTO.setTienShip(hoaDon.getTienShip());
             hoaDonDTO.setTongTienDonHang(hoaDon.getTongTienDonHang());
             hoaDonDTO.setLoaiDonHang(hoaDon.getLoaiHoaDon());
-            hoaDonDTO.setMaDonHang(hoaDon.getMaHoaDon());
+            hoaDonDTO.setMaDonHang(hoaDon.getMaDon());
             hoaDonDTO.setPage(page.getNumber() + 1);
             hoaDonDTO.setTotalPages(page.getTotalPages());
             hoaDonDTO.setTrangThaiId(hoaDon.getTrangThai().getIdTrangThai());
@@ -68,7 +68,7 @@ public class DonHangTaiQuayServiceImpl implements DonHangTaiQuayService {
         HoaDonDTO dto = new HoaDonDTO();
         dto.setLimit(size);
 
-        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idHoaDon"));
         Page<HoaDon> daThanhToan = hoaDonRepoditory2.findHoaDonDaThanhToan(pageRequest);
 
         List<HoaDonDTO> listHoaDonDTO = convertPageToList(daThanhToan);
@@ -85,7 +85,7 @@ public class DonHangTaiQuayServiceImpl implements DonHangTaiQuayService {
         HoaDonDTO dto = new HoaDonDTO();
         dto.setLimit(size);
         dto.setDuLieuTimKiem(duLieuTimKiem);
-        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idHoaDon"));
         Page<HoaDon> daThanhToan = hoaDonRepoditory2.findAllHoaDonDaThanhToanCoPhanTrang(duLieuTimKiem, pageRequest);
 
         List<HoaDonDTO> listHoaDonDTO = convertPageToList(daThanhToan);
@@ -105,7 +105,7 @@ public class DonHangTaiQuayServiceImpl implements DonHangTaiQuayService {
         LocalDate duLieuTimKiem = LocalDate.parse(duLieuTimKiemString);
         dto.setDuLieuTimKiem(duLieuTimKiemString);
 
-        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idHoaDon"));
         Page<HoaDon> daThanhToan = hoaDonRepoditory2.findHoaDoDaThanhToanByNgayTao(duLieuTimKiem, pageRequest);
 
         List<HoaDonDTO> listHoaDonDTO = convertPageToList(daThanhToan);
@@ -141,7 +141,7 @@ public class DonHangTaiQuayServiceImpl implements DonHangTaiQuayService {
         HoaDonDTO dto = new HoaDonDTO();
         dto.setLimit(size);
 
-        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idHoaDon"));
         Page<HoaDon> daHuy = hoaDonRepoditory2.findHoaDonDaHuy(pageRequest);
         List<HoaDonDTO> listHoaDonDTO = convertPageToList(daHuy);
         dto.setListHoaDonDTO(listHoaDonDTO);
@@ -156,7 +156,7 @@ public class DonHangTaiQuayServiceImpl implements DonHangTaiQuayService {
         HoaDonDTO dto = new HoaDonDTO();
         dto.setLimit(size);
         dto.setDuLieuTimKiem(duLieuTimKiem);
-        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idHoaDon"));
         Page<HoaDon> daHuy = hoaDonRepoditory2.findAllHoaDonDaHuyCoPhanTrang(duLieuTimKiem, pageRequest);
         List<HoaDonDTO> listHoaDonDTO = convertPageToList(daHuy);
         dto.setListHoaDonDTO(listHoaDonDTO);
@@ -175,7 +175,7 @@ public class DonHangTaiQuayServiceImpl implements DonHangTaiQuayService {
         LocalDate duLieuTimKiem = LocalDate.parse(duLieuTimKiemString);
         dto.setDuLieuTimKiem(duLieuTimKiemString);
 
-        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idHoaDon"));
         Page<HoaDon> daHuy = hoaDonRepoditory2.findHoaDoDaHuyByNgayTao(duLieuTimKiem, pageRequest);
 
         List<HoaDonDTO> listHoaDonDTO = convertPageToList(daHuy);

@@ -26,7 +26,7 @@ public class TrangThaiHoaDonServiceImpl implements TrangThaiHoaDonService {
         GiaoDich gd = new GiaoDich();
         for (HoaDon hoaDon : page.getContent()) {
             HoaDonDTO hoaDonDTO = new HoaDonDTO();
-            hoaDonDTO.setMaDon(hoaDon.getMaHoaDon());
+            hoaDonDTO.setMaDon(hoaDon.getMaDon());
             hoaDonDTO.setNguoiNhan(hoaDon.getNguoiNhan());
             hoaDonDTO.setSdtNguoiNhan(hoaDon.getSoDienThoaiNguoiNhan());
             hoaDonDTO.setGhiChu(hoaDon.getGhiChu());
@@ -34,7 +34,7 @@ public class TrangThaiHoaDonServiceImpl implements TrangThaiHoaDonService {
             hoaDonDTO.setTienShip(hoaDon.getTienShip());
             hoaDonDTO.setTongTienDonHang(hoaDon.getTongTienDonHang());
             hoaDonDTO.setLoaiDonHang(hoaDon.getLoaiHoaDon());
-            hoaDonDTO.setMaDonHang(hoaDon.getMaHoaDon());
+            hoaDonDTO.setMaDonHang(hoaDon.getMaDon());
             hoaDonDTO.setPage(page.getNumber() + 1);
             hoaDonDTO.setTotalPages(page.getTotalPages());
             hoaDonDTO.setTrangThaiId(hoaDon.getTrangThai().getIdTrangThai());

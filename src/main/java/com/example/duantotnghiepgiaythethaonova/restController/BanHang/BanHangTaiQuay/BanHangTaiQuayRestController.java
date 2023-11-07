@@ -1,36 +1,32 @@
 package com.example.duantotnghiepgiaythethaonova.restController.BanHang.BanHangTaiQuay;
 
 import com.example.duantotnghiepgiaythethaonova.entity.HoaDon;
-import com.example.duantotnghiepgiaythethaonova.repository.CTSPRepository;
-import com.example.duantotnghiepgiaythethaonova.repository.HoaDonChiTietRepository2;
+import com.example.duantotnghiepgiaythethaonova.repository.HoaDonRepoditory2;
+import com.example.duantotnghiepgiaythethaonova.repository.SanPhamChiTietRepository;
 import com.example.duantotnghiepgiaythethaonova.service.BanHangService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.*;
 
-@CrossOrigin("*")
 @RestController
 public class BanHangTaiQuayRestController {
-
     @Autowired
-    CTSPRepository sanPhamChiTietRepository;
+    SanPhamChiTietRepository sanPhamChiTietRepository;
 
     @Autowired
     BanHangService banHangService;
 
     @Autowired
-    HoaDonChiTietRepository2 hoaDonRepoditory2;
-
+    HoaDonRepoditory2 hoaDonRepoditory2;
 
     @RequestMapping("/banHang/laySoLuongSanPhamChiTiet")
     public Map<String, Object> laySoLuongSanPhamChiTiet(@RequestParam("tenKichCo") String tenKichCo, @RequestParam("mauSacId") Integer mauSacId, @RequestParam("sanPhamId") Integer sanPhamId) {
         Map<String, Object> response = new HashMap<>();
 
-        Integer soLuongSanPhamChiTiet = sanPhamChiTietRepository.laySoLuongSanPhamChiTiet(tenKichCo, mauSacId, sanPhamId);
+        Integer soLuongSanPhamChiTiet = sanPhamChiTietRepository.laySoLuongChiTietSanPham(tenKichCo, mauSacId, sanPhamId);
         response.put("soLuongSanPhamChiTiet", soLuongSanPhamChiTiet);
         return response;
     }
@@ -71,11 +67,11 @@ public class BanHangTaiQuayRestController {
     }
 
     //Kiểm tra số lượng hóa đơn chờ hiện có
-//    @RequestMapping("/KiemTraSoLuongHoaDonChoHienCo")
-//    public ResponseEntity<Boolean> checkHoaDonCho() {
-//        boolean vuotQuaNguong = hoaDonRepoditory2.soLuongHoaDonCho() >= 8;
-//        return ResponseEntity.ok(vuotQuaNguong);
-//    }
+    @RequestMapping("/KiemTraSoLuongHoaDonChoHienCo")
+    public ResponseEntity<Boolean> checkHoaDonCho() {
+        boolean vuotQuaNguong = hoaDonRepoditory2.soLuongHoaDonCho() >= 8;
+        return ResponseEntity.ok(vuotQuaNguong);
+    }
 
     //Tạo hóa đơn
     @PostMapping("/TaoHoaDon")

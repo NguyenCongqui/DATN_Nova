@@ -15,6 +15,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import java.time.ZonedDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.*;
 
 @Service
@@ -31,8 +33,6 @@ public class NhanVienServiceImpl implements NhanVienService {
 
     @Autowired
     MailService mailService;
-//    @Autowired
-//    private BcryptedPasswordEncoderConfig passwordEncoder;
 
     @Autowired
     private BcryptedPasswordEncoderConfig passwordEncoder;
@@ -87,19 +87,22 @@ public class NhanVienServiceImpl implements NhanVienService {
         nguoiDung.setDaXoa(false);
         nguoiDung.setTrangThai(0);
         nguoiDung.setAnhNhanVien(anhNhanVien);
-        nguoiDung.setMatKhau(new String(password));
         nguoiDung.setMatKhau(passwordEncoder.encode(new String(password)));
-        nguoiDung.setAuthProvider(AuthenticationProvider.LOCAL);
         nguoiDung.setNgayTao(new Date());
         nguoiDung.setNguoiTao("Linh Create");
 //      nguoiDung.setMatKhau(passwordEncoder.encode(new String(password)));
-
+        DateTimeFormatter f = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
+        ZonedDateTime now = ZonedDateTime.now();
+        String time = f.format(now);
         mailService.sendMail("datn.novashoes@gmail.com",
                 nguoiDung.getEmail(),
-                "Bạn đã đăng ký thành công !",
+                "Bạn đã đăng ký thành công lúc " + time + " !",
                 "Họ tên  : " + nguoiDung.getTenNguoiDung() + "\n" +
                         "Số điện thoại  :" + nguoiDung.getSoDienThoai()
-                        + "Mật khẩu : " + new String(password));
+                        + "Mật khẩu : " + new String(password) + "\n" +
+                        "Nếu bạn có bất kì câu hỏi nào, vui lòng liên hệ với chúng tôi: datn.novashoes@gmail.com" + "\n" +
+                        "Hoặc địa chỉ : 48 Ngõ 99 Cầu Diễn, Từ Liêm, Hà Nội."
+        );
 
         // Kiểm tra xem đã lưu thành công vào cơ sở dữ liệu hay chưa
         NguoiDung savedNguoiDung = nguoiDungRepository.save(nguoiDung);

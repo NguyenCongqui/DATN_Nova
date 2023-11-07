@@ -46,8 +46,8 @@ public class BanHangServiceIpml implements BanHangService {
     @Autowired
     CTSPRepository sanPhamChiTietRepository;
 
-//    @Autowired
-//    TrangThaiService trangThaiService;
+    @Autowired
+    TrangThaiService trangThaiService;
 
     @Autowired
     CTSPService sanPhamChiTietService;
@@ -154,11 +154,11 @@ public class BanHangServiceIpml implements BanHangService {
                 giaoDichRepository.save(gd);
             }
 
-//            try {
-////                emailService.sendOrderConfirmationEmail(emailNguoiNhan, hoaDon);
-//            } catch (MessagingException e) {
-//                e.printStackTrace();
-//            }
+            try {
+                emailService.sendOrderConfirmationEmail(emailNguoiNhan, hoaDon);
+            } catch (MessagingException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -211,7 +211,7 @@ public class BanHangServiceIpml implements BanHangService {
         String formattedId = df.format(idMax);
         ma = "HD" + formattedId;
 
-        hoaDon.setMaHoaDon(ma);
+        hoaDon.setMaDon(ma);
         hoaDon.setNgayTao(new Date());
         hoaDon.setNguoiTao("quinc");
         hoaDon.setKhachHang(optionalCartItemDetail.get().getGioHang().getKhachHang());
@@ -230,7 +230,7 @@ public class BanHangServiceIpml implements BanHangService {
             hoaDonChiTiet.setDonGia(gioHangChiTiet.getChiTietSanPham().getSanPham().getGia());
             hoaDonChiTiet.setTongTien(gioHangChiTiet.getThanhTien());
             hoaDonChiTiet.setHoaDon(hoaDon);
-//            hoaDonChiTiet.setDaXoa(false);
+            hoaDonChiTiet.setDaXoa(false);
             hoaDonChiTietList.add(hoaDonChiTiet);
             hoaDonChiTietRepository2.save(hoaDonChiTiet);
 
@@ -334,7 +334,7 @@ public class BanHangServiceIpml implements BanHangService {
         String formattedId = df.format(idMax);
         ma = "HD" + formattedId;
 
-        hoaDon.setMaHoaDon(ma);
+        hoaDon.setMaDon(ma);
         hoaDon.setNgayTao(new Date());
         hoaDon.setNguoiTao("Linh create");
         hoaDon.setLoaiHoaDon(2);
@@ -557,7 +557,7 @@ public class BanHangServiceIpml implements BanHangService {
                 LichSuHoaDon ls = new LichSuHoaDon();
                 ls.setNguoiThaoTac(nguoiDung.getTenNguoiDung());
                 ls.setHoaDon(hoaDon);
-                ls.setThaoTac("Đã hủy đơn" + hoaDon.getMaHoaDon());
+                ls.setThaoTac("Đã hủy đơn" + hoaDon.getMaDon());
                 lichSuHoaDonRepository.save(ls);
 
                 //Lưu nhân viên bán hàng vào hóa đơn
@@ -612,7 +612,7 @@ public class BanHangServiceIpml implements BanHangService {
                 LichSuHoaDon ls = new LichSuHoaDon();
                 ls.setNguoiThaoTac(nguoiDung.getTenNguoiDung());
                 ls.setHoaDon(hoaDon);
-                ls.setThaoTac("Thanh toán hóa đơn" + hoaDon.getMaHoaDon());
+                ls.setThaoTac("Thanh toán hóa đơn" + hoaDon.getMaDon());
                 lichSuHoaDonRepository.save(ls);
 
                 //Lưu nhân viên bán hàng vào hóa đơn
@@ -658,17 +658,17 @@ public class BanHangServiceIpml implements BanHangService {
 
         ma = "HD" + formattedId;
 
-//        TrangThai trangThai = trangThaiService.getTrangThaiById(6L);
-//        hoaDon.setMaDon(ma);
-//        hoaDon.setNgayTao(new Date());
-//        hoaDon.setNguoiTao("hduong");
-//        hoaDon.setLoaiHoaDon(1);
-//        hoaDon.setTrangThai(trangThai);
-//        hoaDon.setTongTienHoaDon(BigDecimal.valueOf(0));
-//        hoaDon.setTongTienDonHang(BigDecimal.valueOf(0));
-//        hoaDon.setDaXoa(false);
-//        hoaDon.setTien_giam(BigDecimal.ZERO);
-//        hoaDonRepository.save(hoaDon);
+        TrangThai trangThai = trangThaiService.getTrangThaiById(6);
+        hoaDon.setMaDon(ma);
+        hoaDon.setNgayTao(new Date());
+        hoaDon.setNguoiTao("Linh create");
+        hoaDon.setLoaiHoaDon(1);
+        hoaDon.setTrangThai(trangThai);
+        hoaDon.setTongTienHoaDon(BigDecimal.valueOf(0));
+        hoaDon.setTongTienDonHang(BigDecimal.valueOf(0));
+        hoaDon.setDaXoa(false);
+        hoaDon.setTienGiam(BigDecimal.ZERO);
+        hoaDonRepository.save(hoaDon);
 
         int idHoaDon = hoaDon.getIdHoaDon();
         Map<String, Integer> response = new HashMap<>();

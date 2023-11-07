@@ -1,5 +1,6 @@
 package com.example.duantotnghiepgiaythethaonova.service;
 
+
 import com.example.duantotnghiepgiaythethaonova.config.BcryptedPasswordEncoderConfig;
 import com.example.duantotnghiepgiaythethaonova.convertor.NguoiDungConvertor;
 import com.example.duantotnghiepgiaythethaonova.convertor.NguoiDungVaiTroConvertor;
@@ -9,15 +10,15 @@ import com.example.duantotnghiepgiaythethaonova.dto.TaiKhoanDTO;
 import com.example.duantotnghiepgiaythethaonova.entity.AuthenticationProvider;
 import com.example.duantotnghiepgiaythethaonova.entity.NguoiDung;
 import com.example.duantotnghiepgiaythethaonova.entity.NguoiDung_VaiTro;
-import com.example.duantotnghiepgiaythethaonova.repository.INguoiDungPaginRepository;
+import com.example.duantotnghiepgiaythethaonova.repository.INguoiDungPaginRespository;
 import com.example.duantotnghiepgiaythethaonova.repository.NguoiDungRepository;
 import com.example.duantotnghiepgiaythethaonova.repository.NguoiDung_VaiTroRepository;
 import com.example.duantotnghiepgiaythethaonova.repository.VaiTroRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
-import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -26,10 +27,9 @@ import java.util.Optional;
 
 @Service
 public class NguoiDungService {
-
     private static NguoiDungRepository nguoiDungRepository;
     private static Map<Integer, NguoiDung> nguoiDungMap;
-    private final INguoiDungPaginRepository iNguoiDungPaginRepository;
+    private final INguoiDungPaginRespository iNguoiDungPaginRespository;
 
     @Autowired
     private NguoiDungConvertor nguoiDungConvertor;
@@ -44,15 +44,15 @@ public class NguoiDungService {
     private VaiTroRepository vaiTroRepository;
 
     @Autowired
-    private NguoiDung_VaiTroRepository nguoiDung_vaiTroRepository;
+    private NguoiDung_VaiTroRepository nguoiDungVaiTroRepository;
 
     @Autowired
-    public NguoiDungService(NguoiDungRepository nguoiDungRepository, INguoiDungPaginRepository iNguoiDungPaginRepository) {
-        this.iNguoiDungPaginRepository = iNguoiDungPaginRepository;
+    public NguoiDungService(NguoiDungRepository nguoiDungRepository, INguoiDungPaginRespository iNguoiDungPaginRespository) {
         this.nguoiDungRepository = nguoiDungRepository;
+        this.iNguoiDungPaginRespository = iNguoiDungPaginRespository;
     }
 
-    public List<NguoiDung> getAllUser() {
+    public List<NguoiDung> getAllUsers() {
         return nguoiDungRepository.findAll();
     }
 
@@ -70,13 +70,13 @@ public class NguoiDungService {
 
     public Page<NguoiDung> getUsers(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
-        return nguoiDungRepository.findAllNguoiDung(pageable);
-
+        return iNguoiDungPaginRespository.findAll(pageable);
     }
+
 
     public Page<NguoiDung> getAll(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
-        return iNguoiDungPaginRepository.GetAll(pageable);
+        return iNguoiDungPaginRespository.GetAll(pageable);
     }
 
     public void saveNguoiDung(NguoiDung nguoiDung) {
@@ -93,8 +93,8 @@ public class NguoiDungService {
         return null;
     }
 
-    public void updateUserStatus(Integer id, Integer trangThai) {
-        NguoiDung user = nguoiDungRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Người dùng không tồn tại !"));
+    public void updateUserStatus(Integer id, int trangThai) {
+        NguoiDung user = nguoiDungRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Người dùng không tồn tại"));
         user.setTrangThai(trangThai);
         nguoiDungRepository.save(user);
     }
@@ -102,17 +102,17 @@ public class NguoiDungService {
     public NguoiDungDTO findByEmailAndTrangThaiAndDaXoa(String email) {
         NguoiDungDTO nguoiDungDTO = null;
         try {
-            List<NguoiDung_VaiTroDTO> listNguoiDung_VaiTroDTO = new ArrayList<NguoiDung_VaiTroDTO>();
+            List<NguoiDung_VaiTroDTO> listNguoiDungVaiTroDTO = new ArrayList<NguoiDung_VaiTroDTO>();
             if (email != null) {
                 nguoiDungDTO = new NguoiDungDTO();
                 NguoiDung nguoiDung = nguoiDungRepository.findByEmailAndTrangThaiAndDaXoa(email);
-                for (NguoiDung_VaiTro nguoiDung_vaiTro : nguoiDung.getListNguoiDungVaiTro()) {
-                    NguoiDung_VaiTroDTO nguoiDung_vaiTroDTO = new NguoiDung_VaiTroDTO();
-                    nguoiDung_vaiTroDTO = nguoiDungVaiTroConvertor.toDTO(nguoiDung_vaiTro);
-                    listNguoiDung_VaiTroDTO.add(nguoiDung_vaiTroDTO);
+                for (NguoiDung_VaiTro nguoiDungVaiTro : nguoiDung.getListNguoiDungVaiTro()) {
+                    NguoiDung_VaiTroDTO nguoiDungVaiTroDTO = new NguoiDung_VaiTroDTO();
+                    nguoiDungVaiTroDTO = nguoiDungVaiTroConvertor.toDTO(nguoiDungVaiTro);
+                    listNguoiDungVaiTroDTO.add(nguoiDungVaiTroDTO);
                 }
                 nguoiDungDTO = nguoiDungConvertor.toDTO(nguoiDung);
-                nguoiDungDTO.setListNguoiDungVaiTroDTO(listNguoiDung_VaiTroDTO);
+                nguoiDungDTO.setListNguoiDungVaiTroDTO(listNguoiDungVaiTroDTO);
                 return nguoiDungDTO;
             }
         } catch (Exception e) {
@@ -127,7 +127,6 @@ public class NguoiDungService {
             nguoiDung.setMatKhau(passwordEncoder.encode(taiKhoanDTO.getPassword()));
         }
         nguoiDungRepository.save(nguoiDung);
-
     }
 
     public NguoiDung findByEmail(String email) {
@@ -138,32 +137,31 @@ public class NguoiDungService {
         }
     }
 
-
-    public void taoNguoiDungSauKhiDangNhapMangXaHoiThanhCong(String email, String fullname,
-                                                             AuthenticationProvider google) {
-        NguoiDung nguoiDung = new NguoiDung();
-        nguoiDung.setTenNguoiDung(fullname);
-        nguoiDung.setEmail(email);
-        nguoiDung.setAuthProvider(google);
-        nguoiDung.setDaXoa(false);
-        nguoiDung.setTrangThai(0);
-        nguoiDung = nguoiDungRepository.save(nguoiDung);
-        NguoiDung_VaiTro nguoiDung_vaiTro = new NguoiDung_VaiTro();
-        nguoiDung_vaiTro.setNguoiDung(nguoiDung);
-        nguoiDung_vaiTro.setVaiTro(vaiTroRepository.findByTenVaiTro("CUSTOMER"));
-        nguoiDung_vaiTroRepository.save(nguoiDung_vaiTro);
+    public void taoNguoiDungSauKhiDangNhapVoiMangXaHoiThanhCong(String email, String fullname,
+                                                                AuthenticationProvider google) {
+        NguoiDung entity = new NguoiDung();
+        entity.setEmail(email);
+        entity.setTenNguoiDung(fullname);
+        entity.setAuthProvider(google);
+        entity.setDaXoa(false);
+        entity.setTrangThai(0);
+        entity = nguoiDungRepository.save(entity);
+        NguoiDung_VaiTro nguoiDungVaiTro = new NguoiDung_VaiTro();
+        nguoiDungVaiTro.setNguoiDung(entity);
+        nguoiDungVaiTro.setVaiTro(vaiTroRepository.findByTenVaiTro("CUSTOMER"));
+        nguoiDungVaiTroRepository.save(nguoiDungVaiTro);
     }
-
 
     public void capNhatNguoiDungSauKhiDangNhapVoiMangXaHoiThanhCong(String email, String fullname,
                                                                     AuthenticationProvider google) {
-        NguoiDung nguoiDung = nguoiDungRepository.findByEmail(email);
-        nguoiDung.setTenNguoiDung(fullname);
-        nguoiDung.setEmail(email);
-        nguoiDung.setAuthProvider(google);
-        nguoiDung.setDaXoa(false);
-        nguoiDung.setTrangThai(0);
-        nguoiDung = nguoiDungRepository.save(nguoiDung);
+        NguoiDung entity = findByEmail(email);
+        entity.setEmail(email);
+        entity.setTenNguoiDung(fullname);
+        entity.setAuthProvider(google);
+        entity.setDaXoa(false);
+        entity.setTrangThai(0);
+        entity = nguoiDungRepository.save(entity);
     }
+
 
 }

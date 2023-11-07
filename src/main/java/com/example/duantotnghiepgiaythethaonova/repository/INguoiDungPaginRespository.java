@@ -9,7 +9,7 @@ import org.springframework.data.repository.PagingAndSortingRepository;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public interface INguoiDungPaginRepository extends PagingAndSortingRepository<NguoiDung , Integer> {
+public interface INguoiDungPaginRespository extends PagingAndSortingRepository<NguoiDung , Integer> {
 
     Page<NguoiDung> findAll(Pageable pageable);
 

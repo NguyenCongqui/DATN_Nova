@@ -135,7 +135,7 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             htmlContentBuilder.append("<body>");
 
             //Các nội dung của html
-            htmlContentBuilder.append("<h1>").append("LEOPARD STUDIO").append("</h1>");
+            htmlContentBuilder.append("<h1>").append("NOVA SHOES").append("</h1>");
 
             NumberFormat numberFormat = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
             // Thêm thông tin đơn hàng
@@ -164,7 +164,7 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             String formattedNgayTao = dateFormat.format(ngayTao);
 
             htmlContentBuilder.append("<h3>").append("Thông tin đơn hàng").append("</h1>");
-            htmlContentBuilder.append("<p>Mã đơn hàng: ").append(hoaDon.getMaHoaDon()).append("</p>");
+            htmlContentBuilder.append("<p>Mã đơn hàng: ").append(hoaDon.getMaDon()).append("</p>");
             htmlContentBuilder.append("<p>Ngày mua: ").append(formattedNgayTao).append("</p>");
             htmlContentBuilder.append("<p>Khách hàng: ").append(hoaDon.getNguoiNhan()).append("</p>");
             htmlContentBuilder.append("<p>Số điện thoại khách hàng: ").append(hoaDon.getSoDienThoaiNguoiNhan()).append("</p>");
@@ -198,14 +198,14 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             htmlContentBuilder.append("<p>Tiền giảm: ").append(formattedTienGiam).append("</p>");
             htmlContentBuilder.append("<p>Tổng tiền thanh toán: ").append(formattedTongTienHoaDon).append("</p>");
 
-            htmlContentBuilder.append("<h3>Xin chân thành cảm ơn sự ủng hộ của bạn dành cho LEOPARD STUDIO!</h3>");
+            htmlContentBuilder.append("<h3>Xin chân thành cảm ơn sự ủng hộ của bạn dành cho NOVASHOES!</h3>");
             htmlContentBuilder.append("</body></html>");
 
             // Gọi phương thức tạo file PDF từ nội dung HTML, sử dụng thư viện iText
             byte[] pdfBytes = createPdfFromHtml(htmlContentBuilder);
 
             // Lưu file PDF vào thư mục dự án
-            String filePath = "D:\\DATN\\Clothes_ud15\\hoaDonDaIn\\hoa_don_" + hoaDonId + ".pdf";
+            String filePath = "D:\\DATN_NOVAShoes\\hoaDonDaIn\\hoa_don_" + hoaDonId + ".pdf";
             try (FileOutputStream fileOutputStream = new FileOutputStream(filePath)) {
                 fileOutputStream.write(pdfBytes);
             } catch (IOException e) {
@@ -330,7 +330,7 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             htmlContentBuilder.append("<body>");
 
             //Các nội dung của html
-            htmlContentBuilder.append("<h1>").append("LEOPARD STUDIO").append("</h1>");
+            htmlContentBuilder.append("<h1>").append("NOVA SHOES").append("</h1>");
 
             NumberFormat numberFormat = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
             // Thêm thông tin đơn hàng
@@ -359,7 +359,7 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             String formattedNgayTao = dateFormat.format(ngayTao);
 
             htmlContentBuilder.append("<h3>").append("Thông tin đơn hàng").append("</h1>");
-            htmlContentBuilder.append("<p>Mã đơn hàng: ").append(hoaDon.getMaHoaDon()).append("</p>");
+            htmlContentBuilder.append("<p>Mã đơn hàng: ").append(hoaDon.getMaDon()).append("</p>");
             htmlContentBuilder.append("<p>Ngày mua: ").append(formattedNgayTao).append("</p>");
             htmlContentBuilder.append("<p>Khách hàng: ").append(hoaDon.getNguoiNhan()).append("</p>");
             htmlContentBuilder.append("<p>Số điện thoại khách hàng: ").append(hoaDon.getSoDienThoaiNguoiNhan()).append("</p>");
@@ -393,14 +393,14 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             htmlContentBuilder.append("<p>Tiền giảm: ").append(formattedTienGiam).append("</p>");
             htmlContentBuilder.append("<p>Tổng tiền thanh toán: ").append(formattedTongTienHoaDon).append("</p>");
 
-            htmlContentBuilder.append("<h3>Xin chân thành cảm ơn sự ủng hộ của bạn dành cho LEOPARD STUDIO!</h3>");
+            htmlContentBuilder.append("<h3>Xin chân thành cảm ơn sự ủng hộ của bạn dành cho NOVASHOES!</h3>");
             htmlContentBuilder.append("</body></html>");
 
             // Gọi phương thức tạo file PDF từ nội dung HTML, sử dụng thư viện iText
             byte[] pdfBytes = createPdfFromHtml(htmlContentBuilder);
 
             // Lưu file PDF vào thư mục dự án
-            String filePath = "D:\\DATN\\Clothes_ud15\\hoaDonDaIn\\hoa_don_" + hoaDonId + ".pdf";
+            String filePath = "D:\\DATN_NOVAShoes\\hoaDonDaIn\\hoa_don_" + hoaDonId + ".pdf";
             try (FileOutputStream fileOutputStream = new FileOutputStream(filePath)) {
                 fileOutputStream.write(pdfBytes);
             } catch (IOException e) {
@@ -525,7 +525,7 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             htmlContentBuilder.append("<body>");
 
             //Các nội dung của html
-            htmlContentBuilder.append("<h1>").append("LEOPARD STUDIO").append("</h1>");
+            htmlContentBuilder.append("<h1>").append("NOVA SHOES").append("</h1>");
 
             NumberFormat numberFormat = NumberFormat.getCurrencyInstance(new Locale("vi", "VN"));
             // Thêm thông tin đơn hàng
@@ -554,7 +554,7 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             String formattedNgayTao = dateFormat.format(ngayTao);
 
             htmlContentBuilder.append("<h3>").append("Thông tin đơn hàng").append("</h1>");
-            htmlContentBuilder.append("<p>Mã đơn hàng: ").append(hoaDon.getMaHoaDon()).append("</p>");
+            htmlContentBuilder.append("<p>Mã đơn hàng: ").append(hoaDon.getMaDon()).append("</p>");
             htmlContentBuilder.append("<p>Ngày mua: ").append(formattedNgayTao).append("</p>");
             htmlContentBuilder.append("<p>Khách hàng: ").append(hoaDon.getNguoiNhan()).append("</p>");
             htmlContentBuilder.append("<p>Số điện thoại khách hàng: ").append(hoaDon.getSoDienThoaiNguoiNhan()).append("</p>");
@@ -586,21 +586,20 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             htmlContentBuilder.append("<p>Tiền giảm: ").append(formattedTienGiam).append("</p>");
             htmlContentBuilder.append("<p>Tổng tiền thanh toán: ").append(formattedTongTienHoaDon).append("</p>");
 
-            htmlContentBuilder.append("<h3>Xin chân thành cảm ơn sự ủng hộ của bạn dành cho LEOPARD STUDIO!</h3>");
+            htmlContentBuilder.append("<h3>Xin chân thành cảm ơn sự ủng hộ của bạn dành cho NOVASHOES!</h3>");
             htmlContentBuilder.append("</body></html>");
 
             // Gọi phương thức tạo file PDF từ nội dung HTML, sử dụng thư viện iText
             byte[] pdfBytes = createPdfFromHtml(htmlContentBuilder);
 
             // Lưu file PDF vào thư mục dự án
-            String filePath = "D:\\DATN\\Clothes_ud15\\hoaDonDaIn\\hoa_don_" + hoaDonId + ".pdf";
+            String filePath = "D:\\DATN_NOVAShoes\\hoaDonDaIn\\hoa_don_" + hoaDonId + ".pdf";
             try (FileOutputStream fileOutputStream = new FileOutputStream(filePath)) {
                 fileOutputStream.write(pdfBytes);
             } catch (IOException e) {
                 e.printStackTrace();
                 // Xử lý lỗi nếu cần thiết
             }
-
             // Thiết lập thông tin phản hồi
             HttpHeaders headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_PDF);

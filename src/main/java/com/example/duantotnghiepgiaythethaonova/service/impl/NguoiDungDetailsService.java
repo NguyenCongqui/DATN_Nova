@@ -20,7 +20,7 @@ public class NguoiDungDetailsService implements UserDetailsService {
     public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
         NguoiDung nguoiDung = nguoiDungRepository.findByEmailAndTrangThaiAndDaXoa(email);
         if (nguoiDung == null){
-            throw new UsernameNotFoundException("Không tìm thấy người đùng với email nay !");
+            throw new UsernameNotFoundException("Không tìm thấy người đùng với email này !");
         }
         return new NguoiDungDetails(nguoiDung);
     }

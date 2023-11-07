@@ -47,7 +47,7 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
         KhachHang khachHang = khachHangRepository.findByEmail(email);
 
         if (nguoiDung == null){
-        nguoiDungService.taoNguoiDungSauKhiDangNhapMangXaHoiThanhCong(email,fullname, AuthenticationProvider.GOOGLE);
+        nguoiDungService.taoNguoiDungSauKhiDangNhapVoiMangXaHoiThanhCong(email,fullname, AuthenticationProvider.GOOGLE);
         khachHangService.taoMoiKhachHang(email , fullname, AuthenticationProvider.GOOGLE);
         }
         else{

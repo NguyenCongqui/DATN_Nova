@@ -1,9 +1,6 @@
 package com.example.duantotnghiepgiaythethaonova.controller.admin.BanHang.BanHangTaiQuay;
 
-import com.example.duantotnghiepgiaythethaonova.dto.ChatLieuDTO;
-import com.example.duantotnghiepgiaythethaonova.dto.KichCoDTO;
-import com.example.duantotnghiepgiaythethaonova.dto.KieuDangDTO;
-import com.example.duantotnghiepgiaythethaonova.dto.MauSacDTO;
+import com.example.duantotnghiepgiaythethaonova.dto.*;
 import com.example.duantotnghiepgiaythethaonova.dto.search.SPAndSPCTSearchDto;
 import com.example.duantotnghiepgiaythethaonova.entity.KhachHang;
 import com.example.duantotnghiepgiaythethaonova.entity.KhuyenMai;
@@ -60,8 +57,8 @@ public class BanHangController {
 //    @Autowired
 //    private LoaiSanPhamService  loaiSanPhamService;
 
-//    @Autowired
-//    private PhongCachService phongCachService;
+    @Autowired
+    private ThuongHieuService thuongHieuService;
 
     @Autowired
     private KieuDangService kieuDangService;
@@ -137,14 +134,14 @@ public class BanHangController {
 //        }).collect(Collectors.toList());
 //    }
 
-//    @ModelAttribute("lstPhongCach")
-//    public List<PhongCachDTO> getLstPhongCach() {
-//        return phongCachService.selectAllPhongCachExist().stream().map(item -> {
-//            PhongCachDTO dto = new PhongCachDTO();
-//            BeanUtils.copyProperties(item, dto);
-//            return dto;
-//        }).collect(Collectors.toList());
-//    }
+    @ModelAttribute("lstThuongHieu")
+    public List<ThuongHieuDTO> getLstThuongHieu() {
+        return thuongHieuService.selectAllLoaiHangExist().stream().map(item -> {
+            ThuongHieuDTO dto = new ThuongHieuDTO();
+            BeanUtils.copyProperties(item, dto);
+            return dto;
+        }).collect(Collectors.toList());
+    }
 
     @RequestMapping("banHang/{id}")
     public String banHangBanHangTaiQuay(@PathVariable("id") Integer id,

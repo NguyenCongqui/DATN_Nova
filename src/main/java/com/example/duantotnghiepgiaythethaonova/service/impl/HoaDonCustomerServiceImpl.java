@@ -117,7 +117,7 @@ public class HoaDonCustomerServiceImpl implements HoaDonCustomerService {
             tt.setIdTrangThai(5);
             hoaDon.setTrangThai(tt);
             hoaDon.setNgayCapNhat(new Date());
-            hoaDon.setNguoiCapNhat("hduong");
+            hoaDon.setNguoiCapNhat("linh");
             hoaDonRepository.save(hoaDon);
             GiaoDich gd = new GiaoDich();
             gd.setHoaDon(hoaDon);
@@ -263,14 +263,14 @@ public class HoaDonCustomerServiceImpl implements HoaDonCustomerService {
             tt.setIdTrangThai(4);
             hoaDon.setTrangThai(tt);
             hoaDon.setNgayCapNhat(new Date());
-            hoaDon.setNguoiCapNhat("hduong");
+            hoaDon.setNguoiCapNhat("linh");
             hoaDonRepository.save(hoaDon);
             GiaoDich gd = new GiaoDich();
             gd.setHoaDon(hoaDon);
             gd.setNgayCapNhat(new Date());
             gd.setNgayTao(new Date());
-            gd.setNguoiCapNhat("ABC");
-            gd.setNguoiTao("ABC");
+            gd.setNguoiCapNhat("linh");
+            gd.setNguoiTao("linh");
             gd.setTrangThai(tt);
             giaoDichRepository.save(gd);
 
@@ -306,14 +306,14 @@ public class HoaDonCustomerServiceImpl implements HoaDonCustomerService {
                 tt.setIdTrangThai(4);
                 hoaDon.setTrangThai(tt);
                 hoaDon.setNgayCapNhat(new Date());
-                hoaDon.setNguoiCapNhat("hduong");
+                hoaDon.setNguoiCapNhat("linh");
                 hoaDonRepository.save(hoaDon);
                 GiaoDich gd = new GiaoDich();
                 gd.setHoaDon(hoaDon);
                 gd.setNgayCapNhat(new Date());
                 gd.setNgayTao(new Date());
-                gd.setNguoiCapNhat("ABC");
-                gd.setNguoiTao("ABC");
+                gd.setNguoiCapNhat("linh");
+                gd.setNguoiTao("linh");
                 gd.setTrangThai(tt);
                 giaoDichRepository.save(gd);
 

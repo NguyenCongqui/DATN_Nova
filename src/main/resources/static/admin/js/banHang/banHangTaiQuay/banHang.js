@@ -22,7 +22,7 @@ $(document).ready(function () {
             $.get('/update-XoaSP/' + hoaDonCTId, function (response) {
                 // Hiển thị thông báo xóa sản phẩm thành công với SweetAlert2
                 Swal.fire({
-                    icon: 'success', title: 'Đã xóa sản phẩm thành công', showConfirmButton: false, timer: 2000
+                    icon: 'success', title: 'Đã xóa sản phẩm thành công!', showConfirmButton: false, timer: 2000
                 }).then(function () {
                     // Lưu trạng thái đã xác nhận vào sessionStorage
                     sessionStorage.setItem('isConfirmed', true);
@@ -53,7 +53,7 @@ $(document).ready(function () {
         $('.HuyDonTaiQuay .btn-dong-y').click(function () {
             $.get('/HuyDon/' + hoaDonId, function (response) {
                 Swal.fire({
-                    icon: 'success', title: 'Đã hủy hóa đơn thành công', showConfirmButton: false, timer: 2000
+                    icon: 'success', title: 'Đã hủy hóa đơn thành công!', showConfirmButton: false, timer: 2000
                 }).then(function () {
                     sessionStorage.setItem('isConfirmed', true);
 
@@ -86,7 +86,7 @@ $(document).ready(function () {
             if (hoTenKhachHang === "Không có" && SDTKhachHang === "Không có") {
                 Swal.fire({
                     icon: "warning",
-                    title: "Vui lòng điền thông tin khách hàng",
+                    title: "Vui lòng điền thông tin khách hàng!",
                     showConfirmButton: false,
                     timer: 2000,
                 });
@@ -108,7 +108,7 @@ $(document).ready(function () {
                             if (response.success) {
                                 Swal.fire({
                                     icon: "success",
-                                    title: "Thanh toán thành công",
+                                    title: "Thanh toán thành công!",
                                     showConfirmButton: false,
                                     timer: 2000,
                                 }).then(function () {
@@ -130,7 +130,7 @@ $(document).ready(function () {
         } else {
             Swal.fire({
                 icon: "warning",
-                title: "Tiền khách đưa không đủ",
+                title: "Tiền khách đưa không đủ!",
                 showConfirmButton: false,
                 timer: 2000,
             })
@@ -238,7 +238,7 @@ $(document).ready(function () {
             success: function (response) {
                 // Xử lý thành công
                 Swal.fire({
-                    icon: 'success', title: 'Cập nhật số lượng thành công', showConfirmButton: false, timer: 2000
+                    icon: 'success', title: 'Cập nhật số lượng thành công!', showConfirmButton: false, timer: 2000
                 }).then(function () {
                     sessionStorage.setItem('isConfirmed', true);
                     location.reload();
@@ -347,7 +347,7 @@ $(document).ready(function () {
             Swal.fire({
                 icon: "warning",
                 title: "Lỗi",
-                text: "Hóa đơn chưa có sản phẩm, không thể thêm mã giảm giá",
+                text: "Hóa đơn chưa có sản phẩm, không thể thêm mã giảm giá!",
             });
             return;
         } else {
@@ -358,7 +358,7 @@ $(document).ready(function () {
                 function (response) {
                     Swal.fire({
                         icon: "success",
-                        title: "Thành công",
+                        title: "Thành công!",
                         text: "Đã thêm mã giảm giá " + couponCode,
                     });
                     // Hiển thị giá trị giảm giá dưới dạng số + %
@@ -370,7 +370,7 @@ $(document).ready(function () {
                 Swal.fire({
                     icon: "error",
                     title: "Lỗi",
-                    text: "Sai mã giảm giá, hãy kiểm tra và thử lại",
+                    text: "Sai mã giảm giá, hãy kiểm tra và thử lại!",
                 });
             });
         }
@@ -483,7 +483,7 @@ $(document).ready(function () {
                     Swal.fire({
                         icon: "success",
                         title: "Thành công",
-                        text: "Thêm thông tin khách hàng thành công",
+                        text: "Thêm thông tin khách hàng thành công!",
                     }).then(function () {
                         sessionStorage.setItem('isConfirmed', true);
                         location.reload();

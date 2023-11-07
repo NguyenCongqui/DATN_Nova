@@ -18,7 +18,7 @@ public class RanDomUtil {
         return randomCode;
     }
 
-    public static char[] rammDomNumber() {
+    public static char[] ranDomNumber() {
         char[] ramdomCode = new char[6];
         String num = "0123456789";
         String combination = num;

@@ -65,12 +65,12 @@
         <p>Tổng giá trị sản phẩm: <span
                 th:text="${#numbers.formatDecimal(hoaDon.tongTienDonHang, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></span></p>
         <p>Giảm giá:
-            <span th:if="${hoaDon.khuyenMai == null or hoaDon.khuyenMai.id == null}">0 VNĐ</span>
-            <span th:if="${hoaDon.tien_giam != null and hoaDon.khuyenMai != null and hoaDon.khuyenMai.id != null}">
-            <span th:if="${hoaDon.tien_giam >= hoaDon.khuyenMai.giaTriToiThieu}"
-              th:utext="${#numbers.formatDecimal(hoaDon.tien_giam, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></span>
-            <span th:if="${hoaDon.tien_giam < hoaDon.khuyenMai.giaTriToiThieu}"
-              th:text="${hoaDon.tien_giam} + '%'"></span>
+            <span th:if="${hoaDon.khuyenMai == null or hoaDon.khuyenMai.idKhuyenMai == null}">0 VNĐ</span>
+            <span th:if="${hoaDon.tienGiam != null and hoaDon.khuyenMai != null and hoaDon.khuyenMai.idKhuyenMai != null}">
+            <span th:if="${hoaDon.tienGiam >= hoaDon.khuyenMai.giaTriToiThieu}"
+              th:utext="${#numbers.formatDecimal(hoaDon.tienGiam, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></span>
+            <span th:if="${hoaDon.tienGiam < hoaDon.khuyenMai.giaTriToiThieu}"
+              th:text="${hoaDon.tienGiam} + '%'"></span>
             </span>
         </p>
 
@@ -82,7 +82,7 @@
     <button class="action-button inHoaDonChiTiet">In hóa đơn
         <i class="fas fa-receipt"></i>
     </button>
-    <input type="hidden" id="idChiTietHoaDon" th:value="${hoaDon.id}">
+    <input type="hidden" id="idChiTietHoaDon" th:value="${hoaDon.idHoaDon}">
     <div class="modal fade inHoaDonModal" tabindex="-1" aria-labelledby="inHoaDonModalLabel"
          aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">

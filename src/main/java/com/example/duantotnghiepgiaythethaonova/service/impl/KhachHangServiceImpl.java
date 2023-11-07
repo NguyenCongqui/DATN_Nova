@@ -56,8 +56,6 @@ public class KhachHangServiceImpl implements KhachHangService {
     @Autowired
     private BCryptPasswordEncoder passwordEncoder;
 
-    char[] password = RanDomUtil.rammDomNumber();
-
     @Override
     public List<KhachHangDTO> findAllByTrangThaiCoPhanTrang(Integer trangThai, Pageable pageable) {
         List<KhachHangDTO> listKhachHangDTO = new ArrayList<KhachHangDTO>();
@@ -217,7 +215,7 @@ public class KhachHangServiceImpl implements KhachHangService {
                 mailService.sendMail("datn.novashoes@gmail.com",
                         dto.getEmail(),
                         "Bạn đã đăng ký tài khoản thành công lúc " + time + " !",
-                        "Họ tên  : " + dto.getHoTen() + "\n" +
+                        "Họ tên : " + dto.getHoTen() + "\n" +
                                 "Số điện thoại : " + dto.getSoDienThoai() + "\n" +
                                 "Mật khẩu : " + new String(password) + "\n" +
                                 "Nếu bạn có bất kì câu hỏi nào, vui lòng liên hệ với chúng tôi: datn.novashoes@gmail.com" + "\n" +
@@ -406,7 +404,7 @@ public class KhachHangServiceImpl implements KhachHangService {
     @Override
     @Transactional
     public KhachHangDTO register(KhachHangDTO khachHangDTO) {
-        char[] password = RanDomUtil.rammDomNumber();
+        char[] password = RanDomUtil.ranDomFull();
         KhachHang khachHang = new KhachHang();
         khachHangDTO.setSoLanMua(0);
         khachHangDTO.setTrangThai(1);
@@ -419,7 +417,7 @@ public class KhachHangServiceImpl implements KhachHangService {
         mailService.sendMail("datn.novashoes@gmail.com",
                 khachHangDTO.getEmail(),
                 "Bạn đã đăng ký tài khoản thành công lúc " + time + "!",
-                "Họ tên  : " + khachHangDTO.getHoTen() + "\n" +
+                "Họ tên : " + khachHangDTO.getHoTen() + "\n" +
                         "Số điện thoại : " + khachHangDTO.getSoDienThoai() + "\n" +
                         "Mật khẩu : " + new String(password) + "\n" +
                         "Nếu bạn có bất kì câu hỏi nào, vui lòng liên hệ với chúng tôi: datn.novashoes@gmail.com" + "\n" +
@@ -445,16 +443,16 @@ public class KhachHangServiceImpl implements KhachHangService {
     public String sendCode(String email) {
         String code = "";
         KhachHang entity = khachHangRepository.findByEmail(email);
-        code = new String(RanDomUtil.rammDomNumber());
+        code = new String(RanDomUtil.ranDomNumber());
         DateTimeFormatter f = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
         ZonedDateTime now = ZonedDateTime.now();
         String time = f.format(now);
         if (entity.getEmail() != null) {
             mailService.sendMail("datn.novashoes@gmail.com",
                     entity.getEmail(),
-                    "Your code reset password" + time + " !",
+                    "Your code reset password " + time + " !",
                     "Code : " + code + "\n" +
-                    "Nếu bạn có bất kì câu hỏi nào, vui lòng liên hệ với chúng tôi: datn.novashoes@gmail.com" + "\n" +
+                            "Nếu bạn có bất kì câu hỏi nào, vui lòng liên hệ với chúng tôi: datn.novashoes@gmail.com" + "\n" +
                             "Hoặc địa chỉ : 48 Ngõ 99 Cầu Diễn, Từ Liêm, Hà Nội.");
         }
         return code;

@@ -62,7 +62,7 @@
             <td>
                 <!--XEM CHI TIẾT HÓA ĐƠN-->
                 <div class="btn-group">
-                    <a th:href="@{'/DonTaiQuay/ChiTietHoaDon/DonDaHuy/hoa-don-id=' + ${hoaDon.id}}"
+                    <a th:href="@{'/DonTaiQuay/ChiTietHoaDon/DonDaHuy/hoa-don-id=' + ${hoaDon.idHoaDon}}"
                        class="btn btn-warning btn-sm"
                        type="submit">
                         <i class="fas fa-info-circle"></i>
@@ -103,7 +103,7 @@
     </div>
     <div class="alert alert-warning container mt-3 text-center" th:if="*{listHoaDonDTO.isEmpty()}"
          style="background-color: transparent; border: none;">
-        <img src="/admin/img/noData2.png" alt="Không có sản phẩm" style="width: 300px; height: 300px;">
+        <img th:src="@{/static/admin/img/noData2.png}" alt="Không có sản phẩm" style="width: 300px; height: 300px;">
         <p class="empty-message" style="margin-top: 20px; font-size: 1.8em;">KHÔNG CÓ DỮ LIỆU</p>
     </div>
 </div>

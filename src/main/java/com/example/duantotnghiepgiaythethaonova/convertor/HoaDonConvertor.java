@@ -9,7 +9,7 @@ public class HoaDonConvertor {
 	public HoaDonDTO toDTO(HoaDon entity) {
 		HoaDonDTO dto = new HoaDonDTO();
 		dto.setId(entity.getIdHoaDon());
-		dto.setMaDonHang(entity.getMaHoaDon());
+		dto.setMaDonHang(entity.getMaDon());
 		dto.setNguoiNhan(entity.getNguoiNhan());
 		dto.setSdtNguoiNhan(entity.getSoDienThoaiNguoiNhan());
 		if(entity.getKhuyenMai() != null) {

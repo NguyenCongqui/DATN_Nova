@@ -29,7 +29,7 @@ public class HoaDon extends BaseEntity implements Serializable {
     @Column(name = "IdHoaDon")
     private Integer idHoaDon;
     @Column(name = "MaDon")
-    private String maHoaDon;
+    private String maDon;
     @Column(name = "DiaChiGiaoHang")
     private String diaChiGiaoHang;
     @Column(name = "EmailNguoiNhan")
