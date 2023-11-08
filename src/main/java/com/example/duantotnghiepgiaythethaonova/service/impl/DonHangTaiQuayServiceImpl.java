@@ -43,7 +43,7 @@ public class DonHangTaiQuayServiceImpl implements DonHangTaiQuayService {
             HoaDonDTO hoaDonDTO = new HoaDonDTO();
             hoaDonDTO.setMaDon(hoaDon.getMaDon());
             hoaDonDTO.setNguoiNhan(hoaDon.getNguoiNhan());
-            hoaDonDTO.setSdtNguoiNhan(hoaDon.getSoDienThoaiNguoiNhan());
+            hoaDonDTO.setSdtNguoiNhan(hoaDon.getSdtNguoiNhan());
             hoaDonDTO.setGhiChu(hoaDon.getGhiChu());
             hoaDonDTO.setTongTienHoaDon(hoaDon.getTongTienHoaDon());
             hoaDonDTO.setTienShip(hoaDon.getTienShip());

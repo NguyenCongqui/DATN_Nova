@@ -362,7 +362,7 @@
                                                                        th:input-name="'inputKCName' + ${istat.index}"
                                                                        th:input-id="'inputKCId' + ${istat.index} + ${istatKC.index}">
                                                                     [[${kc.tenKichCo}]]
-                                                                    <input type="radio" th:value="${kc.id}"
+                                                                    <input type="radio" th:value="${kc.idKichCo}"
                                                                            th:name="'inputKCName' + ${istat.index}"
                                                                            th:id="'inputKCId' + ${istat.index} + ${istatKC.index}"
                                                                            th:field="*{kichCoId}" hidden>
@@ -386,7 +386,7 @@
                                                                        th:sp-id="sanPhamId+${istat.index}"
                                                                        th:img-box-name="'divImgIsActive'+${istat.index}"
                                                                        th:img-box-id="'imgActive'+${istat.index}+${istatMS.index}">
-                                                                    <input type="radio" th:value="${ms.id}"
+                                                                    <input type="radio" th:value="${ms.idMauSac}"
                                                                            th:name="inputMSName+${istat.index}"
                                                                            th:id="${ms.tenMauSac}+${istat.index}+${istatMS.index}"
                                                                            th:field="*{mauSacId}" hidden>

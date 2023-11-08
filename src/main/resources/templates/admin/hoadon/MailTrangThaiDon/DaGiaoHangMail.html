@@ -130,7 +130,7 @@
     <p>Mã đơn hàng: <span th:text="${hoaDon.maDon}"></span></p>
     <p>Ngày đặt: <span th:text="${#dates.format(hoaDon.ngayTao, 'dd/MM/yyyy')}"></span></p>
     <p>Tên khách hàng: <span th:text="${hoaDon.nguoiNhan}"></span></p>
-    <p>Số điện thoại: <span th:text="${hoaDon.soDienThoaiNguoiNhan}"></span></p>
+    <p>Số điện thoại: <span th:text="${hoaDon.sdtNguoiNhan}"></span></p>
     <p>Email: <span th:text="${hoaDon.emailNguoiNhan}"></span></p>
     <p>Trạng thái đơn: Đã giao hàng thành công</p>
   </div>
@@ -152,13 +152,13 @@
               <h6>
                 <strong>
                                     <span style="text-transform: uppercase" class="TenSP"
-                                          th:text="${hoaDonCT.sanPhamChiTiet.sanPham.tenSanPham}"></span>
+                                          th:text="${hoaDonCT.chiTietSanPham.sanPham.tenSanPham}"></span>
                 </strong>
               </h6>
               <div class="ThongTinSP">
-                <span th:text="${hoaDonCT.sanPhamChiTiet.mauSac.tenMauSac}"></span>
+                <span th:text="${hoaDonCT.chiTietSanPham.mauSac.tenMauSac}"></span>
                 <span>/</span>
-                <span th:text="${hoaDonCT.sanPhamChiTiet.kichCo.tenKichCo}"></span>
+                <span th:text="${hoaDonCT.chiTietSanPham.kichCo.tenKichCo}"></span>
               </div>
             </div>
           </div>
@@ -186,7 +186,7 @@
   </div>
 
   <div class="email-footer">
-    <p>Xin chân thành cảm ơn sự quan tâm của bạn dành cho NOVA SHOES!</p>
+    <p>Xin chân thành cảm ơn sự quan tâm của bạn dành cho NOVASHOES !</p>
     <p>Chúng tôi còn rất nhiều những sản phẩm sẽ khiến bạn hài lòng, xin hãy ghé qua <a th:href="@{/khachhang/home}">NOVASHOES</a> để tham
       khảo thêm những sản phẩm khác</p>
   </div>

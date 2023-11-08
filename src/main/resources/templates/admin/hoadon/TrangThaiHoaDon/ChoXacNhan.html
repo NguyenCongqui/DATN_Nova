@@ -117,12 +117,12 @@
             <td>
                 <div class="button-group">
                     <!--XÁC NHẬN ĐƠN HÀNG-->
-                    <button class="action-button XacNhanDon" th:attr="data-id=${hoaDon.id}"
-                            th:data-target="'#modalXacNhanDon-' + ${hoaDon.id}">
+                    <button class="action-button XacNhanDon" th:attr="data-id=${hoaDon.idHoaDon}"
+                            th:data-target="'#modalXacNhanDon-' + ${hoaDon.idHoaDon}">
                         <i class="fas fa-check"></i>
                     </button>
                     <br>
-                    <div class="modal fade xacNhanModal" th:id="'modalXacNhanDon-' + ${hoaDon.id}" tabindex="-1"
+                    <div class="modal fade xacNhanModal" th:id="'modalXacNhanDon-' + ${hoaDon.idHoaDon}" tabindex="-1"
                          aria-labelledby="xacNhanModalLabel"
                          aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
@@ -145,12 +145,12 @@
                         </div>
                     </div>
                     <!--HỦY ĐƠN HÀNG-->
-                    <button class="action-button HuyDon" th:attr="data-id=${hoaDon.id}"
-                            th:data-target="'#modalHuyDon-' + ${hoaDon.id}">
+                    <button class="action-button HuyDon" th:attr="data-id=${hoaDon.idHoaDon}"
+                            th:data-target="'#modalHuyDon-' + ${hoaDon.idHoaDon}">
                         <i class="fas fa-times"></i>
                     </button>
                     <br>
-                    <div class="modal fade huyModal" th:id="'modalHuyDon-' + ${hoaDon.id}" tabindex="-1"
+                    <div class="modal fade huyModal" th:id="'modalHuyDon-' + ${hoaDon.idHoaDon}" tabindex="-1"
                          aria-labelledby="huyDonModalLabel"
                          aria-hidden="true">
                         <div class="modal-dialog modal-dialog-centered">
@@ -175,7 +175,7 @@
 
                     <!--XEM CHI TIẾT HÓA ĐƠN-->
                     <div class="btn-group">
-                        <a th:href="@{'/ChiTietHoaDon/ChoXacNhan/hoa-don-id=' + ${hoaDon.id}}"
+                        <a th:href="@{'/ChiTietHoaDon/ChoXacNhan/hoa-don-id=' + ${hoaDon.idHoaDon}}"
                            class="btn btn-warning btn-sm" type="submit">
                             <i class="fas fa-info-circle"></i>
                         </a>

@@ -28,7 +28,7 @@ public class TrangThaiHoaDonServiceImpl implements TrangThaiHoaDonService {
             HoaDonDTO hoaDonDTO = new HoaDonDTO();
             hoaDonDTO.setMaDon(hoaDon.getMaDon());
             hoaDonDTO.setNguoiNhan(hoaDon.getNguoiNhan());
-            hoaDonDTO.setSdtNguoiNhan(hoaDon.getSoDienThoaiNguoiNhan());
+            hoaDonDTO.setSdtNguoiNhan(hoaDon.getSdtNguoiNhan());
             hoaDonDTO.setGhiChu(hoaDon.getGhiChu());
             hoaDonDTO.setTongTienHoaDon(hoaDon.getTongTienHoaDon());
             hoaDonDTO.setTienShip(hoaDon.getTienShip());
@@ -39,7 +39,7 @@ public class TrangThaiHoaDonServiceImpl implements TrangThaiHoaDonService {
             hoaDonDTO.setTotalPages(page.getTotalPages());
             hoaDonDTO.setTrangThaiId(hoaDon.getTrangThai().getIdTrangThai());
             hoaDonDTO.setNgayTao(hoaDon.getNgayTao());
-            hoaDonDTO.setId(hoaDon.getIdHoaDon());
+            hoaDonDTO.setIdHoaDon(hoaDon.getIdHoaDon());
 
             listHoaDonDTO.add(hoaDonDTO);
         }
@@ -51,7 +51,7 @@ public class TrangThaiHoaDonServiceImpl implements TrangThaiHoaDonService {
     public void getHoaDonChoLayHang(Model model, int page, int size) {
         HoaDonDTO dto = new HoaDonDTO();
         dto.setLimit(size);
-        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idHoaDon"));
         Page<HoaDon> ChoGiaoHang = hoaDonRepoditory2.findByTrangThaiHoaDonListTrangThai(2, pageRequest);
         List<HoaDonDTO> listHoaDonDTO = convertPageToList(ChoGiaoHang);
         dto.setListHoaDonDTO(listHoaDonDTO);
@@ -66,7 +66,7 @@ public class TrangThaiHoaDonServiceImpl implements TrangThaiHoaDonService {
         HoaDonDTO dto = new HoaDonDTO();
         dto.setLimit(size);
         dto.setDuLieuTimKiem(duLieuTimKiem);
-        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idHoaDon"));
         Page<HoaDon> ChoGiaoHang = hoaDonRepoditory2.timKiemHoaDonDatHang(2, duLieuTimKiem, pageRequest);
         List<HoaDonDTO> listHoaDonDTO = convertPageToList(ChoGiaoHang);
         dto.setListHoaDonDTO(listHoaDonDTO);
@@ -83,7 +83,7 @@ public class TrangThaiHoaDonServiceImpl implements TrangThaiHoaDonService {
         dto.setLimit(size);
         LocalDate duLieuTimKiem = LocalDate.parse(duLieuTimKiemString);
         dto.setDuLieuTimKiem(duLieuTimKiemString);
-        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idHoaDon"));
         Page<HoaDon> ChoGiaoHang = hoaDonRepoditory2.timKiemHoaDonTheoNgay(2, duLieuTimKiem, pageRequest);
         List<HoaDonDTO> listHoaDonDTO = convertPageToList(ChoGiaoHang);
         dto.setListHoaDonDTO(listHoaDonDTO);
@@ -99,7 +99,7 @@ public class TrangThaiHoaDonServiceImpl implements TrangThaiHoaDonService {
     public void getHoaDonChoXacNhan(Model model, int page, int size) {
         HoaDonDTO dto = new HoaDonDTO();
         dto.setLimit(size);
-        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idHoaDon"));
         Page<HoaDon> choXacNhan = hoaDonRepoditory2.findByTrangThaiHoaDonListTrangThai(1, pageRequest);
         List<HoaDonDTO> listHoaDonDTO = convertPageToList(choXacNhan);
         dto.setListHoaDonDTO(listHoaDonDTO);
@@ -114,7 +114,7 @@ public class TrangThaiHoaDonServiceImpl implements TrangThaiHoaDonService {
         HoaDonDTO dto = new HoaDonDTO();
         dto.setLimit(size);
         dto.setDuLieuTimKiem(duLieuTimKiem);
-        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idHoaDon"));
         Page<HoaDon> ChoGiaoHang = hoaDonRepoditory2.timKiemHoaDonDatHang(1, duLieuTimKiem, pageRequest);
         List<HoaDonDTO> listHoaDonDTO = convertPageToList(ChoGiaoHang);
         dto.setListHoaDonDTO(listHoaDonDTO);
@@ -131,7 +131,7 @@ public class TrangThaiHoaDonServiceImpl implements TrangThaiHoaDonService {
         dto.setLimit(size);
         LocalDate duLieuTimKiem = LocalDate.parse(duLieuTimKiemString);
         dto.setDuLieuTimKiem(duLieuTimKiemString);
-        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idHoaDon"));
         Page<HoaDon> ChoGiaoHang = hoaDonRepoditory2.timKiemHoaDonTheoNgay(1, duLieuTimKiem, pageRequest);
         List<HoaDonDTO> listHoaDonDTO = convertPageToList(ChoGiaoHang);
         dto.setListHoaDonDTO(listHoaDonDTO);
@@ -147,7 +147,7 @@ public class TrangThaiHoaDonServiceImpl implements TrangThaiHoaDonService {
     public void getHoaDonDaGiao(Model model, int page, int size) {
         HoaDonDTO dto = new HoaDonDTO();
         dto.setLimit(size);
-        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idHoaDon"));
         Page<HoaDon> DaGiao = hoaDonRepoditory2.findByTrangThaiHoaDonListTrangThai(4, pageRequest);
         List<HoaDonDTO> listHoaDonDTO = convertPageToList(DaGiao);
         dto.setListHoaDonDTO(listHoaDonDTO);
@@ -162,7 +162,7 @@ public class TrangThaiHoaDonServiceImpl implements TrangThaiHoaDonService {
         HoaDonDTO dto = new HoaDonDTO();
         dto.setLimit(size);
         dto.setDuLieuTimKiem(duLieuTimKiem);
-        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idHoaDon"));
         Page<HoaDon> daGiao = hoaDonRepoditory2.timKiemHoaDonDatHang(4, duLieuTimKiem, pageRequest);
         List<HoaDonDTO> listHoaDonDTO = convertPageToList(daGiao);
         dto.setListHoaDonDTO(listHoaDonDTO);
@@ -179,7 +179,7 @@ public class TrangThaiHoaDonServiceImpl implements TrangThaiHoaDonService {
         dto.setLimit(size);
         LocalDate duLieuTimKiem = LocalDate.parse(duLieuTimKiemString);
         dto.setDuLieuTimKiem(duLieuTimKiemString);
-        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idHoaDon"));
         Page<HoaDon> daGiao = hoaDonRepoditory2.timKiemHoaDonTheoNgay(4, duLieuTimKiem, pageRequest);
         List<HoaDonDTO> listHoaDonDTO = convertPageToList(daGiao);
         dto.setListHoaDonDTO(listHoaDonDTO);
@@ -195,7 +195,7 @@ public class TrangThaiHoaDonServiceImpl implements TrangThaiHoaDonService {
     public void getHoaDonDaHuy(Model model, int page, int size) {
         HoaDonDTO dto = new HoaDonDTO();
         dto.setLimit(size);
-        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idHoaDon"));
         Page<HoaDon> DaHuy = hoaDonRepoditory2.findByTrangThaiHoaDonListTrangThai(5, pageRequest);
         List<HoaDonDTO> listHoaDonDTO = convertPageToList(DaHuy);
         dto.setListHoaDonDTO(listHoaDonDTO);
@@ -210,7 +210,7 @@ public class TrangThaiHoaDonServiceImpl implements TrangThaiHoaDonService {
         HoaDonDTO dto = new HoaDonDTO();
         dto.setLimit(size);
         dto.setDuLieuTimKiem(duLieuTimKiem);
-        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idHoaDon"));
         Page<HoaDon> DaHuy = hoaDonRepoditory2.timKiemHoaDonDatHang(5, duLieuTimKiem, pageRequest);
         List<HoaDonDTO> listHoaDonDTO = convertPageToList(DaHuy);
         dto.setListHoaDonDTO(listHoaDonDTO);
@@ -227,7 +227,7 @@ public class TrangThaiHoaDonServiceImpl implements TrangThaiHoaDonService {
         dto.setLimit(size);
         LocalDate duLieuTimKiem = LocalDate.parse(duLieuTimKiemString);
         dto.setDuLieuTimKiem(duLieuTimKiemString);
-        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idHoaDon"));
         Page<HoaDon> DaHuy = hoaDonRepoditory2.timKiemHoaDonTheoNgay(5, duLieuTimKiem, pageRequest);
         List<HoaDonDTO> listHoaDonDTO = convertPageToList(DaHuy);
         dto.setListHoaDonDTO(listHoaDonDTO);
@@ -243,7 +243,7 @@ public class TrangThaiHoaDonServiceImpl implements TrangThaiHoaDonService {
     public void getHoaDonDangGiao(Model model, int page, int size) {
         HoaDonDTO dto = new HoaDonDTO();
         dto.setLimit(size);
-        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idHoaDon"));
         Page<HoaDon> dangtGiao = hoaDonRepoditory2.findByTrangThaiHoaDonListTrangThai(3, pageRequest);
         List<HoaDonDTO> listHoaDonDTO = convertPageToList(dangtGiao);
         dto.setListHoaDonDTO(listHoaDonDTO);
@@ -259,7 +259,7 @@ public class TrangThaiHoaDonServiceImpl implements TrangThaiHoaDonService {
         HoaDonDTO dto = new HoaDonDTO();
         dto.setLimit(size);
         dto.setDuLieuTimKiem(duLieuTimKiem);
-        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idHoaDon"));
         Page<HoaDon> ChoGiaoHang = hoaDonRepoditory2.timKiemHoaDonDatHang(3, duLieuTimKiem, pageRequest);
         List<HoaDonDTO> listHoaDonDTO = convertPageToList(ChoGiaoHang);
         dto.setListHoaDonDTO(listHoaDonDTO);
@@ -276,7 +276,7 @@ public class TrangThaiHoaDonServiceImpl implements TrangThaiHoaDonService {
         dto.setLimit(size);
         LocalDate duLieuTimKiem = LocalDate.parse(duLieuTimKiemString);
         dto.setDuLieuTimKiem(duLieuTimKiemString);
-        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        PageRequest pageRequest = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idHoaDon"));
         Page<HoaDon> ChoGiaoHang = hoaDonRepoditory2.timKiemHoaDonTheoNgay(3, duLieuTimKiem, pageRequest);
         List<HoaDonDTO> listHoaDonDTO = convertPageToList(ChoGiaoHang);
         dto.setListHoaDonDTO(listHoaDonDTO);

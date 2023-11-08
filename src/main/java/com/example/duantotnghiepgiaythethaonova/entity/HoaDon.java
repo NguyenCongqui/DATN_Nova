@@ -41,7 +41,7 @@ public class HoaDon extends BaseEntity implements Serializable {
     @Column(name = "NguoiNhan")
     private String nguoiNhan;
     @Column(name = "SoDienThoaiNguoiNhan")
-    private String soDienThoaiNguoiNhan;
+    private String sdtNguoiNhan;
     @Column(name = "ThoiGianGiaoHang")
     @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
     @Temporal(TemporalType.TIMESTAMP)
@@ -99,11 +99,10 @@ public class HoaDon extends BaseEntity implements Serializable {
         return loaiHoaDon2;
     }
 
-
     @Override
     public String toString() {
         return "HoaDon{nguoiNhan='" + nguoiNhan + '\'' +
-                ", sdtNguoiNhan='" + soDienThoaiNguoiNhan + '\'' +
+                ", sdtNguoiNhan='" + sdtNguoiNhan + '\'' +
                 ", diaChiGiaoHang='" + diaChiGiaoHang + '\'' +
                 ", thoiGianGiaoHang='" + thoiGianGiaoHang + '\'' +
                 ", ghiChu='" + ghiChu + '\'' +

@@ -208,7 +208,7 @@ public class VNPayService {
             hoaDon.setTrangThai(tt);
 
             BigDecimal tongTienHoaDon = BigDecimal.valueOf(amount).divide(BigDecimal.valueOf(100));
-            hoaDon.setSoDienThoaiNguoiNhan(sdtNguoiNhan);
+            hoaDon.setSdtNguoiNhan(sdtNguoiNhan);
             hoaDon.setLoaiHoaDon(0);
             hoaDon.setTongTienHoaDon(tongTienHoaDon);
             hoaDon.setTienShip(tienShipHD);
@@ -394,7 +394,7 @@ public class VNPayService {
             hoaDon.setTrangThai(tt);
 
             BigDecimal tongTienHoaDon = BigDecimal.valueOf(amount).divide(BigDecimal.valueOf(100));
-            hoaDon.setSoDienThoaiNguoiNhan(sdtNguoiNhan);
+            hoaDon.setSdtNguoiNhan(sdtNguoiNhan);
             hoaDon.setLoaiHoaDon(0);
             hoaDon.setTongTienHoaDon(tongTienHoaDon);
             hoaDon.setTienShip(tienShipHD);

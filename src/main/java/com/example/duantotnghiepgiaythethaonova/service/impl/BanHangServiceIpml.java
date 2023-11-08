@@ -106,7 +106,7 @@ public class BanHangServiceIpml implements BanHangService {
             tt.setIdTrangThai(1);
             hoaDon.setTrangThai(tt);
             hoaDon.setNguoiNhan(nguoiNhan);
-            hoaDon.setSoDienThoaiNguoiNhan(sdtNguoiNhan);
+            hoaDon.setSdtNguoiNhan(sdtNguoiNhan);
             hoaDon.setGhiChu(ghiChu);
             hoaDon.setDiaChiGiaoHang(diaChiGiaoHang);
             hoaDon.setLoaiHoaDon(0);
@@ -401,7 +401,7 @@ public class BanHangServiceIpml implements BanHangService {
             tt.setIdTrangThai(1);
             hoaDon.setTrangThai(tt);
             hoaDon.setNguoiNhan(nguoiNhan);
-            hoaDon.setSoDienThoaiNguoiNhan(sdtNguoiNhan);
+            hoaDon.setSdtNguoiNhan(sdtNguoiNhan);
             hoaDon.setGhiChu(ghiChu);
             hoaDon.setDiaChiGiaoHang(diaChiGiaoHang);
             hoaDon.setLoaiHoaDon(0);
@@ -751,12 +751,12 @@ public class BanHangServiceIpml implements BanHangService {
                 KhachHang khachHang = khachHangRepository.findKhachHangByID(IDKhachHang);
                 hoaDon.setKhachHang(khachHang);
                 hoaDon.setNguoiNhan(khachHang.getHoTen());
-                hoaDon.setSoDienThoaiNguoiNhan(khachHang.getSoDienThoai());
+                hoaDon.setSdtNguoiNhan(khachHang.getSoDienThoai());
                 hoaDonRepository.save(hoaDon);
             } else {
                 hoaDon.setKhachHang(null);
                 hoaDon.setNguoiNhan(TenKhachHang);
-                hoaDon.setSoDienThoaiNguoiNhan(SDTKhachHang);
+                hoaDon.setSdtNguoiNhan(SDTKhachHang);
                 hoaDonRepository.save(hoaDon);
 
                 KhachHang kh = new KhachHang();

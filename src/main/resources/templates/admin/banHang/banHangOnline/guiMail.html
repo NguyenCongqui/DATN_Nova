@@ -118,10 +118,10 @@
 <body>
 <div class="email-container">
     <div class="loiChao">
-        <h1>LEOPARD STUDIO</h1>
+        <h1>NOVA SHOES</h1>
     </div>
     <div class="moDau">
-        <h2>Xin chào <span th:text="${hoaDon.nguoiNhan}"></span>,</h2>
+        <h2>Xin chào, <span th:text="${hoaDon.nguoiNhan}"></span>!</h2>
         <p>Chúng tôi đã nhận được thông tin đơn hàng của bạn và sẽ gửi đến bạn trong thời gian sớm nhất</p>
         <p>Để xem thông tin của đơn hàng bạn hãy <a href="http://localhost:8080/customer/DonHang/ChoXacNhan">nhấn vào đây</a></p>
     </div>
@@ -131,7 +131,7 @@
         <p>Mã đơn hàng: <span th:text="${hoaDon.maDon}"></span></p>
         <p>Ngày đặt: <span th:text="${#dates.format(hoaDon.ngayTao, 'dd/MM/yyyy')}"></span></p>
         <p>Tên khách hàng: <span th:text="${hoaDon.nguoiNhan}"></span></p>
-        <p>Số điện thoại: <span th:text="${hoaDon.soDienThoaiNguoiNhan}"></span></p>
+        <p>Số điện thoại: <span th:text="${hoaDon.sdtNguoiNhan}"></span></p>
         <p>Email: <span th:text="${hoaDon.emailNguoiNhan}"></span></p>
         <p>Trạng thái đơn: Đang chờ xác nhận</p>
     </div>
@@ -187,9 +187,9 @@
     </div>
 
     <div class="email-footer">
-        <p>Xin chân thành cảm ơn sự quan tâm của bạn dành cho NOVA!</p>
-        <p>Chúng tôi còn rất nhiều những sản phẩm sẽ khiến bạn bài lòng, xin hãy ghé qua <a href="#">LEOPARD</a> để tham
-            khảo thêm những sản phẩm khác</p>
+        <p>Xin chân thành cảm ơn sự quan tâm của bạn dành cho NOVASHOES !</p>
+        <p>Chúng tôi còn rất nhiều những sản phẩm sẽ khiến bạn hài lòng, xin hãy ghé qua <a th:href="@{/khachhang/home}">NOVASHOES</a> để tham
+            khảo thêm những sản phẩm khác nhé !</p>
     </div>
 </div>
 </body>

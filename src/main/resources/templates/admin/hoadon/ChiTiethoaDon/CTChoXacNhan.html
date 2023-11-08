@@ -52,13 +52,13 @@
                                 <h6>
                                     <strong>
                                             <span style="text-transform: uppercase" class="TenSP"
-                                                  th:text="${hdct.sanPhamChiTiet.sanPham.tenSanPham}"></span>
+                                                  th:text="${hdct.chiTietSanPham.sanPham.tenSanPham}"></span>
                                     </strong>
                                 </h6>
                                 <div class="ThongTinSP">
-                                    <span th:text="${hdct.sanPhamChiTiet.mauSac.tenMauSac}"></span>
+                                    <span th:text="${hdct.chiTietSanPham.mauSac.tenMauSac}"></span>
                                     <span>/</span>
-                                    <span th:text="${hdct.sanPhamChiTiet.kichCo.tenKichCo}"></span>
+                                    <span th:text="${hdct.chiTietSanPham.kichCo.tenKichCo}"></span>
                                 </div>
                             </div>
                         </div>
@@ -68,7 +68,7 @@
                     <td>
                         <div>
                             <input class="quantity-input" type="number" min="1" th:value="${hdct.soLuong}"
-                                   th:attr="data-so-luong-hien-co=${hdct.sanPhamChiTiet.soLuong}">
+                                   th:attr="data-so-luong-hien-co=${hdct.chiTietSanPham.soLuong}">
 
                             <button class="save-btn" th:data-id="${hdct.id}" style="display: none;">Lưu
                             </button>
@@ -76,7 +76,7 @@
 
                             <p class="soLuongSPCT" style="display: none;">Số lượng hiện có sản phẩm: <span
                                     class="soLuongHienCoTable"
-                                    th:text="${hdct.sanPhamChiTiet.soLuong}"></span></p>
+                                    th:text="${hdct.chiTietSanPham.soLuong}"></span></p>
                         </div>
                     </td>
 

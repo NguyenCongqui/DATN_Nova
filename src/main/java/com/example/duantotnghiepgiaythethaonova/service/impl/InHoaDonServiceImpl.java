@@ -167,7 +167,7 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             htmlContentBuilder.append("<p>Mã đơn hàng: ").append(hoaDon.getMaDon()).append("</p>");
             htmlContentBuilder.append("<p>Ngày mua: ").append(formattedNgayTao).append("</p>");
             htmlContentBuilder.append("<p>Khách hàng: ").append(hoaDon.getNguoiNhan()).append("</p>");
-            htmlContentBuilder.append("<p>Số điện thoại khách hàng: ").append(hoaDon.getSoDienThoaiNguoiNhan()).append("</p>");
+            htmlContentBuilder.append("<p>Số điện thoại khách hàng: ").append(hoaDon.getSdtNguoiNhan()).append("</p>");
             htmlContentBuilder.append("<p>Trạng thái đơn: Đã thanh toán</p>");
             htmlContentBuilder.append("<p>Nhân viên bán hàng: ").append(hoaDon.getNguoiDung().getTenNguoiDung()).append("</p>");
 
@@ -362,7 +362,7 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             htmlContentBuilder.append("<p>Mã đơn hàng: ").append(hoaDon.getMaDon()).append("</p>");
             htmlContentBuilder.append("<p>Ngày mua: ").append(formattedNgayTao).append("</p>");
             htmlContentBuilder.append("<p>Khách hàng: ").append(hoaDon.getNguoiNhan()).append("</p>");
-            htmlContentBuilder.append("<p>Số điện thoại khách hàng: ").append(hoaDon.getSoDienThoaiNguoiNhan()).append("</p>");
+            htmlContentBuilder.append("<p>Số điện thoại khách hàng: ").append(hoaDon.getSdtNguoiNhan()).append("</p>");
             htmlContentBuilder.append("<p>Trạng thái đơn: Đã thanh toán</p>");
             htmlContentBuilder.append("<p>Nhân viên bán hàng: ").append(hoaDon.getNguoiDung().getTenNguoiDung()).append("</p>");
 
@@ -557,7 +557,7 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             htmlContentBuilder.append("<p>Mã đơn hàng: ").append(hoaDon.getMaDon()).append("</p>");
             htmlContentBuilder.append("<p>Ngày mua: ").append(formattedNgayTao).append("</p>");
             htmlContentBuilder.append("<p>Khách hàng: ").append(hoaDon.getNguoiNhan()).append("</p>");
-            htmlContentBuilder.append("<p>Số điện thoại khách hàng: ").append(hoaDon.getSoDienThoaiNguoiNhan()).append("</p>");
+            htmlContentBuilder.append("<p>Số điện thoại khách hàng: ").append(hoaDon.getSdtNguoiNhan()).append("</p>");
             htmlContentBuilder.append("<p>Trạng thái đơn: Đã thanh toán</p>");
 
             String formattedTongTienDonHang = numberFormat.format(hoaDon.getTongTienDonHang());

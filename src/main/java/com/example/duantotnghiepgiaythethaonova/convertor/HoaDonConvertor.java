@@ -11,7 +11,7 @@ public class HoaDonConvertor {
 		dto.setId(entity.getIdHoaDon());
 		dto.setMaDonHang(entity.getMaDon());
 		dto.setNguoiNhan(entity.getNguoiNhan());
-		dto.setSdtNguoiNhan(entity.getSoDienThoaiNguoiNhan());
+		dto.setSdtNguoiNhan(entity.getSdtNguoiNhan());
 		if(entity.getKhuyenMai() != null) {
 			dto.setTenKhuyenMai(entity.getKhuyenMai().getTenKhuyenMai());
 		}

@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <title>Đặt hàng</title>
-    <link rel="stylesheet" th:href="@{/admin/css/banHang/banHangOnline.css}">
+    <link rel="stylesheet" th:href="@{/static/admin/css/banHang/banHangOnline.css}">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script th:src="@{/admin/js/banHang/banHangOnline/banHangOnline.js}"></script>
+    <script th:src="@{/static/admin/js/banHang/banHangOnline/banHangOnline.js}"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.js"></script>
@@ -22,7 +22,7 @@
             <div class="container">
                 <div class="sub-panel diaChi">
                     <h1 class="text-thuongHieu">LEOPARD STUDIO</h1>
-                    <a th:href="@{/customer/gio-hang-chi-tiet}" class="cart-link">Giỏ hàng</a>
+                    <a th:href="@{/khachhang/gio-hang-chi-tiet}" class="cart-link">Giỏ hàng</a>
                     <span class="icon-separator">›</span>
                     <span class="info-text">Thông tin thanh toán</span>
 
@@ -99,22 +99,22 @@
                     <tr class="product-row" th:each="hoaDonCT, iter: ${hoaDonChiTiet}">
                         <td>
                             <div style="display: flex; align-items: center;">
-                                <img th:src="${'/customer/images/' + tenAnhChinhList[iter.index]}" alt=""
+                                <img th:src="${'/khachhang/images/' + tenAnhChinhList[iter.index]}" alt=""
                                      style="margin-right: 10px;" width="100px" height="100px">
 
                                 <div>
                                     <h6>
                                         <strong>
                                             <span style="text-transform: uppercase" class="TenSP"
-                                                  th:text="${hoaDonCT.sanPhamChiTiet.sanPham.tenSanPham}"></span>
+                                                  th:text="${hoaDonCT.chiTietSanPham.sanPham.tenSanPham}"></span>
                                         </strong>
                                     </h6>
                                     <div class="ThongTinSP">
-                                        <span th:text="${hoaDonCT.sanPhamChiTiet.mauSac.tenMauSac}"></span>
+                                        <span th:text="${hoaDonCT.chiTietSanPham.mauSac.tenMauSac}"></span>
                                         <span>/</span>
-                                        <span th:text="${hoaDonCT.sanPhamChiTiet.kichCo.tenKichCo}"></span>
+                                        <span th:text="${hoaDonCT.chiTietSanPham.kichCo.tenKichCo}"></span>
                                         <br>
-                                        <span th:text="${#numbers.formatDecimal(hoaDonCT.sanPhamChiTiet.sanPham.gia, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></span>
+                                        <span th:text="${#numbers.formatDecimal(hoaDonCT.chiTietSanPham.sanPham.gia, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></span>
                                     </div>
                                 </div>
                             </div>
@@ -132,7 +132,7 @@
             <div>
                 <div class="div-maGiamGia">
                     <input type="text" id="maGiamGia" class="maGiamGia" name="maGiamGia" placeholder="Thêm mã giảm giá">
-                    <button class="btn-apply themMaGiamGiaOnline" type="submit" th:attr="data-id=${hoaDon.id}">SỬ DỤNG
+                    <button class="btn-apply themMaGiamGiaOnline" type="submit" th:attr="data-id=${hoaDon.idHoaDon}">SỬ DỤNG
                     </button>
                 </div>
                 <br>
@@ -155,12 +155,12 @@
                 <p class="tongCongTien">Tổng cộng: <span id="total">0 đ</span></p>
             </div>
 
-            <a th:href="@{/customer/gio-hang-chi-tiet}" class="cart-link2">Giỏ hàng</a>
+            <a th:href="@{/khachhang/gio-hang-chi-tiet}" class="cart-link2">Giỏ hàng</a>
 
             <div class="button-container">
                 <div class="button-group">
                     <form th:action="@{/payment/create}" method="post" id="paymentForm">
-                        <input type="hidden" name="orderCode" th:value="${hoaDon.id}"/>
+                        <input type="hidden" name="orderCode" th:value="${hoaDon.idHoaDon}"/>
 
                         <input type="hidden" id="amountInput" name="amount" value=""/>
 
@@ -183,7 +183,7 @@
                     </form>
 
                     <!--Đặt hàng-->
-                    <button type="submit" id="buttonThanhToan" class="button-thanhToan" th:attr="data-id=${hoaDon.id}">
+                    <button type="submit" id="buttonThanhToan" class="button-thanhToan" th:attr="data-id=${hoaDon.idHoaDon}">
                         Thanh toán
                     </button>
                     <div class="modal fade thanhToanVNPAY" tabindex="-1"
@@ -209,7 +209,7 @@
                         </div>
                     </div>
 
-                    <button id="buttonDatHang" class="button-datHang" th:data-id="${hoaDon.id}">Đặt hàng</button>
+                    <button id="buttonDatHang" class="button-datHang" th:data-id="${hoaDon.idHoaDon}">Đặt hàng</button>
 
                     <div class="modal fade DatHangShipCod" tabindex="-1"
                          aria-labelledby="DatHangShipCodModalLabel" aria-hidden="true">
