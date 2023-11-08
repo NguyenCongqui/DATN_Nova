@@ -54,7 +54,7 @@ function clearChooseOptionLi(labelName, labelId, inputName, inputId) {
 }
 
 function flexUrlSubmit(url, method) {
-  $("#flexUrlTableFormShop").attr("action", "/customer" + url);
+  $("#flexUrlTableFormShop").attr("action", "/khachhang" + url);
   $("#flexUrlTableFormShop").attr("method", method);
   document.getElementById("flexUrlTableFormShop").submit();
 }

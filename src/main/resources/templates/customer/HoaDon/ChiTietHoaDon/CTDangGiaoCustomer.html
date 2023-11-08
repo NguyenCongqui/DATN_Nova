@@ -40,20 +40,20 @@
                     <td></td>
                     <td>
                         <div style="display: flex; align-items: center;">
-                            <img th:src="${'/customer/images/' + tenAnhChinhList[stt.index]}" alt=""
+                            <img th:src="${'/khachhang/images/' + tenAnhChinhList[stt.index]}" alt=""
                                  style="margin-right: 10px;" width="100px" height="100px">
 
                             <div>
                                 <h6>
                                     <strong>
                                             <span style="text-transform: uppercase" class="TenSP"
-                                                  th:text="${hdct.sanPhamChiTiet.sanPham.tenSanPham}"></span>
+                                                  th:text="${hdct.chiTietSanPham.sanPham.tenSanPham}"></span>
                                     </strong>
                                 </h6>
                                 <div class="ThongTinSP">
-                                    <span th:text="${hdct.sanPhamChiTiet.mauSac.tenMauSac}"></span>
+                                    <span th:text="${hdct.chiTietSanPham.mauSac.tenMauSac}"></span>
                                     <span>/</span>
-                                    <span th:text="${hdct.sanPhamChiTiet.kichCo.tenKichCo}"></span>
+                                    <span th:text="${hdct.chiTietSanPham.kichCo.tenKichCo}"></span>
                                 </div>
                             </div>
                         </div>
@@ -71,12 +71,12 @@
         <p>Phí vận chuyển: <span
                 th:text="${#numbers.formatDecimal(hoaDon.tienShip, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></span></p>
         <p>Giảm giá:
-            <span th:if="${hoaDon.khuyenMai == null or hoaDon.khuyenMai.id == null}">0 VNĐ</span>
-            <span th:if="${hoaDon.tien_giam != null and hoaDon.khuyenMai != null and hoaDon.khuyenMai.id != null}">
-            <span th:if="${hoaDon.tien_giam >= hoaDon.khuyenMai.giaTriToiThieu}"
-                  th:utext="${#numbers.formatDecimal(hoaDon.tien_giam, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></span>
-            <span th:if="${hoaDon.tien_giam < hoaDon.khuyenMai.giaTriToiThieu}"
-                  th:text="${hoaDon.tien_giam} + '%'"></span>
+            <span th:if="${hoaDon.khuyenMai == null or hoaDon.khuyenMai.idKhuyenMai == null}">0 VNĐ</span>
+            <span th:if="${hoaDon.tienGiam != null and hoaDon.khuyenMai != null and hoaDon.khuyenMai.idKhuyenMai != null}">
+            <span th:if="${hoaDon.tienGiam >= hoaDon.khuyenMai.giaTriToiThieu}"
+                  th:utext="${#numbers.formatDecimal(hoaDon.tienGiam, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></span>
+            <span th:if="${hoaDon.tienGiam < hoaDon.khuyenMai.giaTriToiThieu}"
+                  th:text="${hoaDon.tienGiam} + '%'"></span>
             </span>
         </p>
         <p>Tổng tiền thanh toán: <span

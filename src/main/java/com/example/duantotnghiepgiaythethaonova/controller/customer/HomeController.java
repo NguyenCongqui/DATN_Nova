@@ -2,6 +2,7 @@ package com.example.duantotnghiepgiaythethaonova.controller.customer;
 
 import com.example.duantotnghiepgiaythethaonova.dto.KichCoDTO;
 import com.example.duantotnghiepgiaythethaonova.dto.MauSacDTO;
+import com.example.duantotnghiepgiaythethaonova.dto.ThuongHieuDTO;
 import com.example.duantotnghiepgiaythethaonova.dto.composite.SanPhamTaiQuayDTO;
 import com.example.duantotnghiepgiaythethaonova.dto.composite.ShopDetailsDTO;
 import com.example.duantotnghiepgiaythethaonova.dto.composite.ShowSanPhamdto;
@@ -39,6 +40,9 @@ public class HomeController {
     private SanPhamService sanPhamService;
 
     @Autowired
+    private ThuongHieuService thuongHieuService;
+
+    @Autowired
     private CTSPService chiTietSanPhamService;
 
     @Autowired
@@ -61,6 +65,18 @@ public class HomeController {
         gia.add("1.000.000VNĐ+");
         return gia;
     }
+
+//    @ModelAttribute("lstThuongHieu")
+//    public List<ThuongHieuDTO> getLstLoaiHang() {
+//        return loaiSanPhamService.selectAllLoaiHangExist().stream().map(item -> {
+//            int soSanPhamCungLoai = sanPhamService.selectCountSanPhamByLoaiSanPhamId(item.getId());
+//            ThuongHieuDTO dto = new ThuongHieuDTO();
+//            BeanUtils.copyProperties(item, dto);
+//            dto.setSoSanPhamCungLoai(soSanPhamCungLoai);
+//            return dto;
+//        }).collect(Collectors.toList());
+//    }
+
     @ModelAttribute("lstMauSac")
     public List<MauSacDTO> getLstMauSac() {
         return mauSacService.selectAllMauSacExist().stream().map(item -> {
@@ -77,6 +93,8 @@ public class HomeController {
             return dto;
         }).collect(Collectors.toList());
     }
+
+
 
     @GetMapping("/images/{filename:.+}")
     @ResponseBody
