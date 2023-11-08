@@ -20,7 +20,7 @@
         </div>
     </div>
     <div th:object="${hoaDon}">
-        <p>Mã đơn: <span th:text="${hoaDon.maHoaDon}"></span></p>
+        <p>Mã đơn: <span th:text="${hoaDon.maDon}"></span></p>
         <p>Ngày tạo: <span th:text="${#dates.format(hoaDon.ngayTao, 'dd/MM/yyyy')}"></span></p>
         <p>Tên khách hàng: <span th:text="${hoaDon.nguoiNhan}"></span></p>
         <div class="table-wrapper">

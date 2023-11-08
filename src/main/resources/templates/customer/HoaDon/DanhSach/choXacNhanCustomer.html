@@ -38,7 +38,7 @@
                         <tbody>
                         <tr th:each="customerXN, stt: ${choXacNhanCustomer}">
                             <th scope="row" th:text="${stt.count}"></th>
-                            <td th:text="${customerXN.maHoaDon}"></td>
+                            <td th:text="${customerXN.maDon}"></td>
                             <td th:text="${customerXN.nguoiNhan}"></td>
                             <td th:text="${customerXN.soDienThoaiNguoiNhan}"></td>
                             <td th:text="${#numbers.formatDecimal(customerXN.tongTienHoaDon, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></td>
