@@ -90,7 +90,6 @@ public class NhanVienServiceImpl implements NhanVienService {
         nguoiDung.setMatKhau(passwordEncoder.encode(new String(password)));
         nguoiDung.setNgayTao(new Date());
         nguoiDung.setNguoiTao("Linh Create");
-//      nguoiDung.setMatKhau(passwordEncoder.encode(new String(password)));
         DateTimeFormatter f = DateTimeFormatter.ofPattern("HH:mm dd/MM/yyyy");
         ZonedDateTime now = ZonedDateTime.now();
         String time = f.format(now);
@@ -185,7 +184,7 @@ public class NhanVienServiceImpl implements NhanVienService {
         }
 
         response.put("success", true);
-        response.put("message", "Chỉnh sửa thông tin nhân viên thành công");
+        response.put("message", "Chỉnh sửa thông tin nhân viên thành công !");
 
         return response;
     }

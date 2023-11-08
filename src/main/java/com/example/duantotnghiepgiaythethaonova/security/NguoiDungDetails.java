@@ -1,17 +1,16 @@
 package com.example.duantotnghiepgiaythethaonova.security;
 
-import com.example.duantotnghiepgiaythethaonova.entity.NguoiDung;
-import com.example.duantotnghiepgiaythethaonova.entity.NguoiDung_VaiTro;
-import com.example.duantotnghiepgiaythethaonova.repository.NguoiDungRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.authority.SimpleGrantedAuthority;
-import org.springframework.security.core.userdetails.UserDetails;
-import org.springframework.security.core.userdetails.UserDetailsService;
-
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import com.example.duantotnghiepgiaythethaonova.entity.NguoiDung;
+import com.example.duantotnghiepgiaythethaonova.entity.NguoiDung_VaiTro;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
+import org.springframework.security.core.userdetails.UserDetails;
+
+import org.springframework.security.oauth2.core.user.OAuth2User;
 
 @SuppressWarnings("serial")
 public class NguoiDungDetails implements UserDetails {
@@ -74,15 +73,15 @@ public class NguoiDungDetails implements UserDetails {
         return nguoiDung.getMaNguoiDung();
     }
 
-    public long getId() {
+    public Integer getId() {
         return nguoiDung.getIdNguoiDung();
     }
 
     public String getAnhNguoiDung() {
-        if (nguoiDung.getAnhNhanVien() != null) {
+        if(nguoiDung.getAnhNhanVien() != null) {
             return nguoiDung.getAnhNhanVien();
-        } else {
-            return null;
+        }else {
+            return null ;
         }
     }
 }

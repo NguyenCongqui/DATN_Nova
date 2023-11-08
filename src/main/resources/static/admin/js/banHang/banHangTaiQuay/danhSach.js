@@ -8,7 +8,7 @@ $(document).ready(function () {
         $(modalId + ' .btn-dong-y').click(function () {
             $.get('/HuyDon/' + hoaDonId, function (response) {
                 Swal.fire({
-                    icon: 'success', title: 'Đã hủy hóa đơn thành công', showConfirmButton: false, timer: 2000
+                    icon: 'success', title: 'Đã hủy hóa đơn thành công!', showConfirmButton: false, timer: 2000
                 }).then(function () {
                     sessionStorage.setItem('isConfirmed', true);
                     window.location.href = "/admin/BanHangTaiQuay";
@@ -44,7 +44,7 @@ $(document).ready(function () {
                     Swal.fire({
                         icon: 'error',
                         title: 'Lỗi',
-                        text: 'Số lượng hóa đơn chờ đã đạt giới hạn',
+                        text: 'Số lượng hóa đơn chờ đã đạt giới hạn!',
                         timer: 2000
                     });
                 } else {
@@ -56,7 +56,7 @@ $(document).ready(function () {
                             Swal.fire({
                                 icon: "success",
                                 title: "Thành công",
-                                text: "Tạo hóa đơn thành công",
+                                text: "Tạo hóa đơn thành công !",
                                 timer: 2000
                             }).then(function () {
                                 // Nếu thanh toán thành công, thực hiện in hóa đơn

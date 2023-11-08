@@ -118,7 +118,7 @@ public class DataSeeder implements ApplicationListener<ContextRefreshedEvent> {
             NguoiDung admin = new NguoiDung();
             admin.setEmail("admin@gmail.com");
             admin.setMatKhau(passwordEncorder().encode("123456"));
-            admin.setTenNguoiDung("Nguyễn Linh");
+            admin.setTenNguoiDung("Admin");
             admin.setSoDienThoai("0368028006");
             admin.setTrangThai(0);
             admin.setDaXoa(false);
@@ -139,7 +139,7 @@ public class DataSeeder implements ApplicationListener<ContextRefreshedEvent> {
             admin.setEmail("admin@gmail.com");
             admin.setMatKhau(passwordEncorder().encode("123456"));
             admin.setHoTen("Nguyễn Linh");
-            admin.setSoDienThoai("0368028006");
+            admin.setSoDienThoai("0368028003");
             admin.setTrangThai(1);
             admin.setSoLanMua(0);
             admin.setAuthProvider(AuthenticationProvider.LOCAL);

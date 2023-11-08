@@ -32,14 +32,6 @@ public class ThongTinNhanVienController {
         return "admin/NhanVien/ThongTinNhanVien/thongTinNhanVien";
     }
 
-//    @RequestMapping("admin/thongTinNhanVien/MaNhanVien={maNhanVien}")
-//    public String thongTinNhanVien(@PathVariable("maNhanVien") String maNhanVien, Model model) {
-//        NguoiDung nguoiDung = nguoiDungRepository.findNguoiDungByMaNguoiDung(maNhanVien);
-//        NguoiDung_VaiTro phanQuyen = nguoiDung_vaiTroRepository.findByNguoiDungId(nguoiDung.getIdNguoiDung());
-//        model.addAttribute("nguoiDung", nguoiDung);
-//        model.addAttribute("phanQuyen", phanQuyen);
-//        return "admin/NhanVien/ThongTinNhanVien/thongTinNhanVien";
-//    }
     @RequestMapping("admin/thongTinNhanVien/MaNhanVien={maNhanVien}")
     public String thongTinNhanVien(@PathVariable("maNhanVien") String maNhanVien, Model model) {
         NguoiDung nguoiDung = nguoiDungRepository.findNguoiDungByMaNguoiDung(maNhanVien);
