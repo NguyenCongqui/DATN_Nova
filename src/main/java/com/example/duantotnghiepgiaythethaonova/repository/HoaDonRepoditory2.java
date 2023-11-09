@@ -43,19 +43,19 @@ public interface HoaDonRepoditory2 extends PagingAndSortingRepository<HoaDon, In
     @Query(value = "select * from HoaDon where idTrangThai = 8 and loaiHoaDon = 1 and daXoa = 0 order by ngayTao desc", nativeQuery = true)
     Page<HoaDon> findHoaDonDaHuy(Pageable pageable);
 
-    @Query(value = "SELECT * FROM HoaDon WHERE idTrangThai = 7 and loaiHoaDon = 1 and daXoa = 0 and (maDonHang LIKE %:input% OR tongTienHoaDon LIKE %:input% OR ghiChu LIKE %:input%)", nativeQuery = true)
+    @Query(value = "SELECT * FROM HoaDon WHERE idTrangThai = 7 and loaiHoaDon = 1 and daXoa = 0 and (maDon LIKE %:input% OR tongTienHoaDon LIKE %:input% OR ghiChu LIKE %:input%)", nativeQuery = true)
     Page<HoaDon> findAllHoaDonDaThanhToanCoPhanTrang(@Param("input") String input, Pageable pageable);
 
     @Query(value = "SELECT * FROM HoaDon WHERE idTrangThai = 7 and loaiHoaDon = 1 and daXoa = 0 and CONVERT(DATE, ngayTao) = CONVERT(DATE, :ngayTao)", nativeQuery = true)
     Page<HoaDon> findHoaDoDaThanhToanByNgayTao(@Param("ngayTao") LocalDate ngayTao, Pageable pageable);
 
-    @Query(value = "SELECT * FROM HoaDon WHERE idTrangThai = 8 and loaiHoaDon = 1 and daXoa = 0 and (maDonHang LIKE %:input% OR tongTienHoaDon LIKE %:input% OR ghiChu LIKE %:input%)", nativeQuery = true)
+    @Query(value = "SELECT * FROM HoaDon WHERE idTrangThai = 8 and loaiHoaDon = 1 and daXoa = 0 and (maDon LIKE %:input% OR tongTienHoaDon LIKE %:input% OR ghiChu LIKE %:input%)", nativeQuery = true)
     Page<HoaDon> findAllHoaDonDaHuyCoPhanTrang(@Param("input") String input, Pageable pageable);
 
     @Query(value = "SELECT * FROM HoaDon WHERE idTrangThai = 8 and loaiHoaDon = 1 and daXoa = 0 and CONVERT(DATE, ngayTao) = CONVERT(DATE, :ngayTao)", nativeQuery = true)
     Page<HoaDon> findHoaDoDaHuyByNgayTao(@Param("ngayTao") LocalDate ngayTao, Pageable pageable);
 
-    @Query(value = "SELECT * FROM HoaDon WHERE idTrangThai = ?1 AND loaiHoaDon = 0 AND daXoa = 0 AND (maDonHang LIKE %?2% OR tongTienHoaDon LIKE %?2% OR ghiChu LIKE %?2% OR nguoiNhan LIKE %?2% OR soDienThoaiNguoiNhan LIKE %?2%)", nativeQuery = true)
+    @Query(value = "SELECT * FROM HoaDon WHERE idTrangThai = ?1 AND loaiHoaDon = 0 AND daXoa = 0 AND (maDon LIKE %?2% OR tongTienHoaDon LIKE %?2% OR ghiChu LIKE %?2% OR nguoiNhan LIKE %?2% OR soDienThoaiNguoiNhan LIKE %?2%)", nativeQuery = true)
     Page<HoaDon> timKiemHoaDonDatHang(int trangThai, String input, Pageable pageable);
 
     @Query(value = "SELECT * FROM HoaDon WHERE idTrangThai = ?1 AND loaiHoaDon = 0 AND daXoa = 0 AND DATE(ngayTao) = ?2", nativeQuery = true)

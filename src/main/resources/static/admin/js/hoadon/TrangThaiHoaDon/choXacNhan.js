@@ -42,7 +42,8 @@ $(document).ready(function () {
                     sessionStorage.setItem('isConfirmed', true);
 
                     // Tải lại trang
-                    location.reload();
+                    // location.reload();
+                    window.location.href = "/admin/DonHang/ChoGiaoHang/danhSach";
                 });
             });
 
@@ -98,7 +99,8 @@ $(document).ready(function () {
                     sessionStorage.setItem('isConfirmed', true);
 
                     // Tải lại trang
-                    location.reload();
+                    // location.reload();
+                    window.location.href = "/admin/DonHang/ChoXacNhanDonHang/danhSach";
                 });
             });
 

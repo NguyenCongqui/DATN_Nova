@@ -15,7 +15,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
     <link th:href="@{/static/admin/css/sb-admin-2.min.css}" rel="stylesheet">
-    <script th:src="@{/static/admin/js/sb-admin-2.min.js}"></script>
+<!--    <script th:src="@{/static/admin/js/sb-admin-2.min.js}"></script>-->
 
 <!--    <script th:inline="javascript">-->
 <!--        document.addEventListener('DOMContentLoaded', function () {-->
@@ -169,11 +169,11 @@
                                 <img th:src="${'/khachhang/images/' + tenAnhChinhList[stt.index]}" alt=""
                                      width="70" class="img-fluid rounded shadow-sm">
                                 <div class="ml-3 d-inline-block align-middle">
-                                    <h5 class="mb-0" th:text="${hoaDonCT.sanPhamChiTiet.sanPham.tenSanPham}"></h5>
+                                    <h5 class="mb-0" th:text="${hoaDonCT.chiTietSanPham.sanPham.tenSanPham}"></h5>
                                     <div class="ThongTinSP">
-                                        <span th:text="${hoaDonCT.sanPhamChiTiet.mauSac.tenMauSac}"></span>
+                                        <span th:text="${hoaDonCT.chiTietSanPham.mauSac.tenMauSac}"></span>
                                         <span>/</span>
-                                        <span th:text="${hoaDonCT.sanPhamChiTiet.kichCo.tenKichCo}"></span>
+                                        <span th:text="${hoaDonCT.chiTietSanPham.kichCo.tenKichCo}"></span>
                                     </div>
                                 </div>
                             </div>
@@ -186,7 +186,7 @@
                                 <div>
                                     <input class="quantity-input" type="number" min="1"
                                            th:value="${hoaDonCT.soLuong}"
-                                           th:attr="data-so-luong-hien-co=${hoaDonCT.sanPhamChiTiet.soLuong}">
+                                           th:attr="data-so-luong-hien-co=${hoaDonCT.chiTietSanPham.soLuong}">
 
                                     <button class="btn btn-dark px-4 rounded-pill save-btn" th:data-id="${hoaDonCT.idHoaDonCT}"
                                             style="display: none;">Lưu
@@ -197,7 +197,7 @@
 
                                     <p class="soLuongSPCT" style="display: none;">Số lượng hiện có:
                                         <span class="soLuongHienCoTable"
-                                              th:text="${hoaDonCT.sanPhamChiTiet.soLuong}"></span>
+                                              th:text="${hoaDonCT.chiTietSanPham.soLuong}"></span>
                                     </p>
                                 </div>
                             </strong>
@@ -208,7 +208,7 @@
                         <td class="border-0 align-middle">
                             <div class="button-group">
                                 <button class="text-dark xoaHDCT" th:attr="data-id=${hoaDonCT.idHoaDonCT}"
-                                        th:data-target="'#modalXoaHDCT-' + ${hoaDonCT.ididHoaDonCT}">
+                                        th:data-target="'#modalXoaHDCT-' + ${hoaDonCT.idHoaDonCT}">
                                     <i class="fa fa-trash" aria-hidden="true"></i>
                                 </button>
                                 <br>
@@ -245,7 +245,7 @@
                 <div th:if="${hoaDonChiTiet.isEmpty()}" class="full-width-row">
                     <td colspan="12" class="text-center">
                         <div class="empty-content">
-                            <img th:src="@{/static/admin/img/gioHangTrong.jpg}" alt="Không có sản phẩm">
+                            <img height="250px" th:src="@{/static/admin/img/gioHangTrong.jpg}" alt="Không có sản phẩm">
                         </div>
                     </td>
                 </div>
@@ -440,7 +440,7 @@
 
                         <button type="submit" class="btn btn-dark px-4 rounded-pill" id="thanhToanHoaDonTaiQuay"
                                 th:attr="data-id=${hoaDon.idHoaDon}">
-                            <i class="bi bi-currency-dollar"></i> Thanh toán
+                            <i class="fa-solid fa-money-check"></i> Thanh toán
                         </button>
                         <!--Modal thanh toán-->
                         <div class="modal fade thanhToanTaiQuay" tabindex="-1"

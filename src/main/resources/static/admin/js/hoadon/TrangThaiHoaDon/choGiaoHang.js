@@ -18,7 +18,7 @@ function redirectToDahuy() {
     window.location.href = "/admin/DonHang/DaHuyHang/danhSach";
 }
 
-<!-- JS CHỜ GIOA HÀNG -> ĐANG GIAO HÀNG -->
+<!-- JS CHỜ GIAO HÀNG -> ĐANG GIAO HÀNG -->
 $(document).ready(function () {
     $('.GiaoHang').click(function () {
         let hoaDonId = $(this).data('id');
@@ -70,7 +70,7 @@ $(document).ready(function () {
             Swal.fire({
                 icon: 'error',
                 title: 'Lỗi',
-                text: 'Không có dữ liệu',
+                text: 'Không có dữ liệu !',
                 showConfirmButton: false,
                 timer: 2000
             });
@@ -89,7 +89,7 @@ $(document).ready(function () {
                 // Hiển thị thông báo thành công
                 Swal.fire({
                     icon: 'success',
-                    title: 'Xác nhận chuyển tất cả đơn cho đơn vị vận chuyển',
+                    title: 'Xác nhận chuyển tất cả đơn cho đơn vị vận chuyển !',
                     showConfirmButton: false,
                     timer: 2000
                 }).then(function () {
@@ -97,7 +97,8 @@ $(document).ready(function () {
                     sessionStorage.setItem('isConfirmed', true);
 
                     // Tải lại trang
-                    location.reload();
+                    // location.reload();
+                    window.location.href = "/admin/DonHang/ChoGiaoHang/danhSach";
                 });
             });
 

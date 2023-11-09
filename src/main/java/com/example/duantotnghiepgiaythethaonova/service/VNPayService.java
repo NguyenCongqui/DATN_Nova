@@ -58,7 +58,7 @@ public class VNPayService {
         String vnp_Version = "2.1.0";
         String vnp_Command = "pay";
         String vnp_TxnRef = Config.getRandomNumber(8);
-        String vnp_IpAddr = "127.0.0.1";
+        String vnp_IpAddr = "http://127.0.0.1:8080";
         String vnp_TmnCode = Config.vnp_TmnCode;
         String orderType = "order-type";
 
@@ -120,7 +120,7 @@ public class VNPayService {
         queryUrl += "&vnp_SecureHash=" + vnp_SecureHash;
         String paymentUrl = Config.vnp_PayUrl + "?" + queryUrl;
 
-        Optional<HoaDon> optHoaDon = hoaDonRepository.findById(Integer.valueOf(hoaDonId));
+        Optional<HoaDon> optHoaDon = hoaDonRepository.findById(Integer.parseInt(hoaDonId));
         if (optHoaDon.isPresent()) {
             HoaDon hoaDon = optHoaDon.get();
             hoaDon.setNguoiNhan(nguoiNhan);
@@ -274,7 +274,7 @@ public class VNPayService {
         String vnp_Version = "2.1.0";
         String vnp_Command = "pay";
         String vnp_TxnRef = Config.getRandomNumber(8);
-        String vnp_IpAddr = "127.0.0.1";
+        String vnp_IpAddr = "http://127.0.0.1:8080";
         String vnp_TmnCode = Config.vnp_TmnCode;
         String orderType = "order-type";
 

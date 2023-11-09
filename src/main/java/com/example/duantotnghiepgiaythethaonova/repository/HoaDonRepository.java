@@ -33,7 +33,7 @@ public interface HoaDonRepository extends JpaRepository<HoaDon, Integer> {
     @Query(value = "SELECT count(*) FROM HoaDon WHERE loaiHoaDon = :loaiHoaDon", nativeQuery = true)
     Integer countByLoaiHoaDon(@Param("loaiHoaDon") Integer loaiHoaDon);
 
-    @Query(value = "SELECT * FROM HoaDon WHERE maDonHang = :maDonHang", nativeQuery = true)
+    @Query(value = "SELECT * FROM HoaDon WHERE maDon = :maDonHang", nativeQuery = true)
     HoaDon findByMaDonHang(@Param("maDonHang") String maDonHang);
 
     @Modifying

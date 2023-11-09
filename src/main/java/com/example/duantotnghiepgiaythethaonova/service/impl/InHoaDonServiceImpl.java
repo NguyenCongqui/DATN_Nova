@@ -163,7 +163,7 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             String formattedNgayTao = dateFormat.format(ngayTao);
 
-            htmlContentBuilder.append("<h3>").append("Thông tin đơn hàng").append("</h1>");
+            htmlContentBuilder.append("<h3>").append("Thông tin đơn hàng").append("</h3>");
             htmlContentBuilder.append("<p>Mã đơn hàng: ").append(hoaDon.getMaDon()).append("</p>");
             htmlContentBuilder.append("<p>Ngày mua: ").append(formattedNgayTao).append("</p>");
             htmlContentBuilder.append("<p>Khách hàng: ").append(hoaDon.getNguoiNhan()).append("</p>");
@@ -175,7 +175,7 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             String formattedTongTienDonHang = numberFormat.format(hoaDon.getTongTienDonHang());
             String formattedTongTienHoaDon = numberFormat.format(hoaDon.getTongTienHoaDon());
             // Thêm chi tiết đơn hàng
-            htmlContentBuilder.append("<h3>").append("Chi tiết đơn hàng").append("</h1>");
+            htmlContentBuilder.append("<h3>").append("Chi tiết đơn hàng").append("</h3>");
             htmlContentBuilder.append("<table>");
             htmlContentBuilder.append("<tr><th>Sản phẩm</th><th>Số lượng</th><th>Thành tiền</th></tr>");
             for (HoaDonChiTiet hoaDonChiTiet : hoaDon.getHoaDonChiTiets()) {
@@ -198,7 +198,7 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             htmlContentBuilder.append("<p>Tiền giảm: ").append(formattedTienGiam).append("</p>");
             htmlContentBuilder.append("<p>Tổng tiền thanh toán: ").append(formattedTongTienHoaDon).append("</p>");
 
-            htmlContentBuilder.append("<h3>Xin chân thành cảm ơn sự ủng hộ của bạn dành cho NOVASHOES!</h3>");
+            htmlContentBuilder.append("<h3>Xin chân thành cảm ơn sự ủng hộ của bạn dành cho NOVASHOES !</h3>");
             htmlContentBuilder.append("</body></html>");
 
             // Gọi phương thức tạo file PDF từ nội dung HTML, sử dụng thư viện iText
@@ -358,7 +358,7 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             String formattedNgayTao = dateFormat.format(ngayTao);
 
-            htmlContentBuilder.append("<h3>").append("Thông tin đơn hàng").append("</h1>");
+            htmlContentBuilder.append("<h3>").append("Thông tin đơn hàng").append("</h3>");
             htmlContentBuilder.append("<p>Mã đơn hàng: ").append(hoaDon.getMaDon()).append("</p>");
             htmlContentBuilder.append("<p>Ngày mua: ").append(formattedNgayTao).append("</p>");
             htmlContentBuilder.append("<p>Khách hàng: ").append(hoaDon.getNguoiNhan()).append("</p>");
@@ -370,7 +370,7 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             String formattedTongTienDonHang = numberFormat.format(hoaDon.getTongTienDonHang());
             String formattedTongTienHoaDon = numberFormat.format(hoaDon.getTongTienHoaDon());
             // Thêm chi tiết đơn hàng
-            htmlContentBuilder.append("<h3>").append("Chi tiết đơn hàng").append("</h1>");
+            htmlContentBuilder.append("<h3>").append("Chi tiết đơn hàng").append("</h3>");
             htmlContentBuilder.append("<table>");
             htmlContentBuilder.append("<tr><th>Sản phẩm</th><th>Số lượng</th><th>Thành tiền</th></tr>");
             for (HoaDonChiTiet hoaDonChiTiet : hoaDon.getHoaDonChiTiets()) {
@@ -393,7 +393,7 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             htmlContentBuilder.append("<p>Tiền giảm: ").append(formattedTienGiam).append("</p>");
             htmlContentBuilder.append("<p>Tổng tiền thanh toán: ").append(formattedTongTienHoaDon).append("</p>");
 
-            htmlContentBuilder.append("<h3>Xin chân thành cảm ơn sự ủng hộ của bạn dành cho NOVASHOES!</h3>");
+            htmlContentBuilder.append("<h3>Xin chân thành cảm ơn sự ủng hộ của bạn dành cho NOVASHOES !</h3>");
             htmlContentBuilder.append("</body></html>");
 
             // Gọi phương thức tạo file PDF từ nội dung HTML, sử dụng thư viện iText
@@ -553,7 +553,7 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             String formattedNgayTao = dateFormat.format(ngayTao);
 
-            htmlContentBuilder.append("<h3>").append("Thông tin đơn hàng").append("</h1>");
+            htmlContentBuilder.append("<h3>").append("Thông tin đơn hàng").append("</h3>");
             htmlContentBuilder.append("<p>Mã đơn hàng: ").append(hoaDon.getMaDon()).append("</p>");
             htmlContentBuilder.append("<p>Ngày mua: ").append(formattedNgayTao).append("</p>");
             htmlContentBuilder.append("<p>Khách hàng: ").append(hoaDon.getNguoiNhan()).append("</p>");
@@ -563,7 +563,7 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             String formattedTongTienDonHang = numberFormat.format(hoaDon.getTongTienDonHang());
             String formattedTongTienHoaDon = numberFormat.format(hoaDon.getTongTienHoaDon());
             // Thêm chi tiết đơn hàng
-            htmlContentBuilder.append("<h3>").append("Chi tiết đơn hàng").append("</h1>");
+            htmlContentBuilder.append("<h3>").append("Chi tiết đơn hàng").append("</h3>");
             htmlContentBuilder.append("<table>");
             htmlContentBuilder.append("<tr><th>Sản phẩm</th><th>Số lượng</th><th>Thành tiền</th></tr>");
             for (HoaDonChiTiet hoaDonChiTiet : hoaDon.getHoaDonChiTiets()) {
@@ -586,7 +586,7 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             htmlContentBuilder.append("<p>Tiền giảm: ").append(formattedTienGiam).append("</p>");
             htmlContentBuilder.append("<p>Tổng tiền thanh toán: ").append(formattedTongTienHoaDon).append("</p>");
 
-            htmlContentBuilder.append("<h3>Xin chân thành cảm ơn sự ủng hộ của bạn dành cho NOVASHOES!</h3>");
+            htmlContentBuilder.append("<h3>Xin chân thành cảm ơn sự ủng hộ của bạn dành cho NOVASHOES !</h3>");
             htmlContentBuilder.append("</body></html>");
 
             // Gọi phương thức tạo file PDF từ nội dung HTML, sử dụng thư viện iText
