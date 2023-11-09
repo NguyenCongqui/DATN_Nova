@@ -2,6 +2,7 @@ package com.example.duantotnghiepgiaythethaonova.repository;
 
 import com.example.duantotnghiepgiaythethaonova.dto.BestSellerDTO;
 import com.example.duantotnghiepgiaythethaonova.entity.ChiTietSanPham;
+import com.example.duantotnghiepgiaythethaonova.service.SanPhamChiTietSearchRepository;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
@@ -84,20 +85,20 @@ public interface SanPhamChiTietRepository extends JpaRepository<ChiTietSanPham, 
             			order by sum(hd.soLuong) desc
             """)
     List<BestSellerDTO> layIdChiTietSanPhamBanChay(List<Integer> listHoaDon, Pageable pageable);
-
-    @Query("select sp from ChiTietSanPham sp where sp.id in (:ids) order by field(sp.id, :ids)")
+//
+    @Query("select sp from ChiTietSanPham sp where sp.idCTSP in (:ids) order by field(sp.idCTSP, :ids)")
     List<ChiTietSanPham> layChiTietSanPhamBanChay(List<Integer> ids);
 
-//    @Query(value = "SELECT sp.* FROM SanPhamChiTiet sp " +
-//            "WHERE sp.id IN (:ids) " +
-//            "ORDER BY " +
-//            "CASE sp.id " +
-//            "WHEN :ids[0] THEN 0 " +
-//            "WHEN :ids[1] THEN 1 " +
-//            "WHEN :ids[2] THEN 2 " +
-//            "ELSE 3 " +
-//            "END", nativeQuery = true)
-//    List<ChiTietSanPham> layChiTietSanPhamBanChay(@Param("ids") List<Integer> ids);
+//    @Query("SELECT sp \n" +
+//            "FROM ChiTietSanPham sp \n" +
+//            "WHERE sp.idCTSP IN (:ids) \n" +
+//            "ORDER BY \n" +
+//            "    CASE sp.idCTSP\n" +
+//            "        WHEN :id1 THEN 1\n" +
+//            "        WHEN :id2 THEN 2\n" +
+//            "        ELSE NULL\n" +
+//            "    END\n")
+//    List<ChiTietSanPham> layChiTietSanPhamBanChay(List<Integer> ids);
 
 
     @Query(value = "SELECT COALESCE(sum(spct.SoLuong),0) FROM SanPhamCT spct WHERE spct.IdSanPham = :sanPhamId AND spct.Daxoa = 0", nativeQuery = true)

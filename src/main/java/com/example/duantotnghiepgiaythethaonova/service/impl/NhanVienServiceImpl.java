@@ -32,7 +32,7 @@ public class NhanVienServiceImpl implements NhanVienService {
     NguoiDung_VaiTroRepository nguoiDung_vaiTroRepository;
 
     @Autowired
-    MailService mailService;
+    private MailService mailService;
 
     @Autowired
     private BcryptedPasswordEncoderConfig passwordEncoder;
@@ -40,7 +40,7 @@ public class NhanVienServiceImpl implements NhanVienService {
 
     @Override
     public Map<String, Object> themMoiNhanVien(String email, String diaChi, String soDienThoai, String ho, String ten, String anhNhanVien, Integer ChucVu, Map<String, Object> response) {
-        char[] password = RanDomUtil.ranDomFull();
+        char[] password = RanDomUtil.ranDomNumber();
 
         //check rỗng
         if (email.isEmpty() || diaChi.isEmpty() || soDienThoai.isEmpty() || ho.isEmpty() || ten.isEmpty()) {
@@ -96,8 +96,8 @@ public class NhanVienServiceImpl implements NhanVienService {
         mailService.sendMail("datn.novashoes@gmail.com",
                 nguoiDung.getEmail(),
                 "Bạn đã đăng ký thành công lúc " + time + " !",
-                "Họ tên  : " + nguoiDung.getTenNguoiDung() + "\n" +
-                        "Số điện thoại  :" + nguoiDung.getSoDienThoai()
+                "Họ tên : " + nguoiDung.getTenNguoiDung() + "\n" +
+                        "Số điện thoại  : " + nguoiDung.getSoDienThoai() + "\n"
                         + "Mật khẩu : " + new String(password) + "\n" +
                         "Nếu bạn có bất kì câu hỏi nào, vui lòng liên hệ với chúng tôi: datn.novashoes@gmail.com" + "\n" +
                         "Hoặc địa chỉ : 48 Ngõ 99 Cầu Diễn, Từ Liêm, Hà Nội."
