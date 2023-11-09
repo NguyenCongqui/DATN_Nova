@@ -1,11 +1,31 @@
 <!DOCTYPE html>
 <html lang="en"
-      xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
       layout:decorate="~{customer/layout/index}"
 >
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+
+    <!-- Google Font -->
+    <link th:href="@{/static/customer/css/fonts-googleapis.css}" rel="stylesheet">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+
+    <!-- Css Styles -->
+<!--    <link rel="stylesheet" th:href="@{/static/customer/css/bootstrap.min.css}" type="text/css">-->
+<!--    <link rel="stylesheet" th:href="@{/static/customer/css/font-awesome.min.css}" type="text/css">-->
+<!--    <link rel="stylesheet" th:href="@{/static/customer/css/elegant-icons.css}" type="text/css">-->
+<!--    <link rel="stylesheet" th:href="@{/static/customer/css/magnific-popup.css}" type="text/css">-->
+<!--    <link rel="stylesheet" th:href="@{/static/customer/css/nice-select.css}" type="text/css">-->
+<!--    <link rel="stylesheet" th:href="@{/static/customer/css/owl.carousel.min.css}" type="text/css">-->
+<!--    <link rel="stylesheet" th:href="@{/static/customer/css/slicknav.min.css}" type="text/css">-->
+    <link rel="stylesheet" th:href="@{/static/customer/css/danhsachsanpham.css}" type="text/css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+
+
+
 
     <script th:src="@{/static/customer/view/shop.js}"></script>
     <style>
@@ -27,7 +47,7 @@
 
 </head>
 <body>
-<section layout:fragment="content">
+<section layout:fragment="content" >
 <section class="breadcrumb">
     <div class="container">
         <div class="row">
@@ -132,7 +152,7 @@
                                                            input-name="phongCachIds"
                                                            onclick="chooseOptionLi(this.getAttribute('name'),this.getAttribute('id'),this.getAttribute('input-name'),this.getAttribute('input-id'))">
                                                             [[${item.TenKieuDang}]]
-                                                            ([[${item.soSanPhamCungChatLieu}]])</a>
+                                                            ([[${item.soSanPhamCungKieuDang}]])</a>
                                                         <input type="radio" th:field="*{kieuDangIds}"
                                                                th:value="${item.idKieuDang}"
                                                                th:id="'tenPhongCachRadioId'+${istat.index}" hidden>
@@ -372,12 +392,57 @@
                     </div>
 
 <!--                    san pham-->
-<!--                    <div class="row">-->
-<!--                        <div class="col-lg-12 text-center" th:if="${!sanPhamPage.hasContent()}">-->
-<!--                            <img th:src="@{/customer/images/images/img-3.png}" class="img-responsive img-fluid"-->
-<!--                                 width="60%" alt="">-->
-<!--                            <h2 style="color: #FFCA47;">Không tìm thấy sản phẩm bạn mong muốn</h2>-->
-<!--                        </div>-->
+                    <div class="row">
+                        <div class="col-lg-12 text-center" th:if="${!sanPhamPage.hasContent()}">
+                            <img th:src="@{/customer/images/images/img-3.png}" class="img-responsive img-fluid"
+                                 width="60%" alt="">
+                            <h2 style="color: #FFCA47;">Không tìm thấy sản phẩm bạn mong muốn</h2>
+                        </div>
+
+                        <div class="container"
+                        >
+                            <div class="tab-content" >
+                                <!-- Tab1 - Latest Product -->
+                                <div id="latest" role="tabpanel" class="tab-pane fade in active" >
+                                    <div id="new-product" class="product-item-4 owl-carousel owl-theme nf-carousel-theme1" >
+                                        <!-- item.1 -->
+                                        <div class="product-item" th:each="item, istat : ${resultSP.lstShowSanPhamTaiQua}" th:object="${resultSP}" >
+                                            <div class="product-item-inner">
+                                                <div abbr="" class="product-img-wrap">
+                                                    <div class="carousel-item" th:name="'divImgIsActive'+${istat.index}"
+                                                         th:id="'imgActive'+${istat.index}+${istatAC.index}"
+                                                         th:classappend="${#numbers.formatInteger(istat.index+''+istatAC.index,5) == #numbers.formatInteger(istat.index+''+0,5)? 'active':''}"
+                                                         th:each="img, istatAC : ${item.anhChinhs}">
+                                                        <img th:src="${'/khachhang/images/'+img}" class="d-block img-responsive"
+                                                             alt="...">
+                                                    </div>
+                                                </div>
+                                                <div class="product-button">
+                                                    <a th:href="${'/khachhang/shop-details/'+item.sanPhamId}" href="#" class="js_tooltip" data-mode="top" data-tip="Thêm Vào Giỏ"><i class="fa fa-shopping-bag"></i></a>
+                                                    <a href="#" class="js_tooltip" data-mode="top" data-tip="Add To Whishlist"><i class="fa fa-heart"></i></a>
+                                                    <a href="#" class="js_tooltip" data-mode="top" data-tip="Quick&nbsp;View"><i class="fa fa-eye"></i></a>
+                                                </div>
+                                            </div>
+                                            <div class="product-detail">
+                                                <a class="tag" href="#">Men Fashion</a>
+                                                <p class="product-title"><a th:href="${'/khachhang/shop-details/'+item.sanPhamId}"  th:text="${item.tenSanPham}"></a></p>
+                                                <div class="product-rating">
+                                                    <div class="star-rating" itemprop="reviewRating" itemscope="" itemtype="http://schema.org/Rating" title="Rated 4 out of 5">
+                                                        <span style="width: 60%"></span>
+                                                    </div>
+
+                                                </div>
+                                                <h5 class="item-price" th:text="${#numbers.formatDecimal(item.gia, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></h5>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+
+
+
 <!--                        <div class="col-lg-4 col-md-6 col-sm-6 mix"-->
 <!--                             th:each="item, istat : ${resultSP.lstShowSanPhamTaiQuayDTO}"-->
 <!--                             th:object="${resultSP}">-->
@@ -454,7 +519,10 @@
 <!--                                </div>-->
 <!--                            </div>-->
 <!--                        </div>-->
-<!--                    </div>-->
+                    </div>
+
+
+
 
 
 
@@ -506,5 +574,19 @@
     </form>
 </section>
 </section>
+
+<script th:src="@{/static/customer/js/jquery-3.3.1.min.js}"></script>
+<script th:src="@{/static/customer/js/cloudflare-ajax-axios.js}"></script>
+<script th:src="@{/static/customer/js/jquery.validation.min.js}"></script>
+<script th:src="@{/static/customer/js/poper.js}"></script>
+<script th:src="@{/static/customer/js/bootstrap.min.js}"></script>
+<script th:src="@{/static/customer/js/jquery.nice-select.min.js}"></script>
+<script th:src="@{/static/customer/js/jquery.nicescroll.min.js}"></script>
+<script th:src="@{/static/customer/js/jquery.magnific-popup.min.js}"></script>
+<script th:src="@{/static/customer/js/jquery.countdown.min.js}"></script>
+<script th:src="@{/static/customer/js/jquery.slicknav.js}"></script>
+<script th:src="@{/static/customer/js/mixitup.min.js}"></script>
+<script th:src="@{/static/customer/js/owl.carousel.min.js}"></script>
+<script th:src="@{/static/customer/js/main.js}"></script>
 </body>
 </html>

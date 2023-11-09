@@ -9,6 +9,9 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 public class LotGiayDTO extends BaseDTO<BaseDTO> {
     private Integer IdLotGiay;
+
+    private int soSanPhamChiTietCungLotGiay;
+
     private String TenLotGiay;
     private Boolean DaXoa;
 }

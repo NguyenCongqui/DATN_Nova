@@ -53,6 +53,9 @@ public class HomeController {
     private LotGiayService lotGiayService;
 
     @Autowired
+    private DayGiayService dayGiayService;
+
+    @Autowired
     private CTSPService chiTietSanPhamService;
 
     @Autowired
@@ -79,10 +82,10 @@ public class HomeController {
     @ModelAttribute("lstThuongHieu")
     public List<ThuongHieuDTO> getLstThuongHieu() {
         return thuongHieuService.selectAllLoaiHangExist().stream().map(item -> {
-            int soSanPhamCungLoai = sanPhamService.selectCountSanPhamByThuongHieuId(item.getIdThuongHieu());
+            int soSanPhamCungThuongHieu = sanPhamService.selectCountSanPhamByThuongHieuId(item.getIdThuongHieu());
             ThuongHieuDTO dto = new ThuongHieuDTO();
             BeanUtils.copyProperties(item, dto);
-            dto.setSoSanPhamCungThuongHieu(soSanPhamCungLoai);
+            dto.setSoSanPhamCungThuongHieu(soSanPhamCungThuongHieu);
             return dto;
         }).collect(Collectors.toList());
     }
@@ -101,35 +104,46 @@ public class HomeController {
     @ModelAttribute("lstKieuDang")
     public List<KieuDangDTO> getlstKieuDang() {
         return kieuDangService.selectAllKieuDangExist().stream().map(item -> {
-            int soSanPhamCungPC = sanPhamService.selectCountSanPhamByKieuDangId(item.getIdKieuDang());
+            int soSanPhamCungKieuDang = sanPhamService.selectCountSanPhamByKieuDangId(item.getIdKieuDang());
             KieuDangDTO dto = new KieuDangDTO();
             BeanUtils.copyProperties(item, dto);
-            dto.setSoSanPhamCungKieuDang(soSanPhamCungPC);
+            dto.setSoSanPhamCungKieuDang(soSanPhamCungKieuDang);
             return dto;
         }).collect(Collectors.toList());
     }
 
-//    @ModelAttribute("lstDeGiay")
-//    public List<DeGiayDTO> getlstDeGiay() {
-//        return deGiayService.selectAllKichCoExist().stream().map(item -> {
-//            int soSanPhamCungDeGiay = chiTietSanPhamService.selectCountSanPhamChiTietByDeGiayId(item.getIdDeGiay());
-//            DeGiayDTO dto = new DeGiayDTO();
-//            BeanUtils.copyProperties(item, dto);
-//            dto.setSoSanPhamCungChatLieu(soSanPhamCungDeGiay);
-//            return dto;
-//        }).collect(Collectors.toList());
-//    }
-//
-//    @ModelAttribute("lstLotGiay")
-//    public List<LotGiayDTO> getlstDeGiay() {
-//        return deGiayService.selectAllKichCoExist().stream().map(item -> {
-//            int soSanPhamCungDeGiay = chiTietSanPhamService.selectCountSanPhamChiTietByDeGiayId(item.getIdDeGiay());
-//            LotGiayDTO dto = new LotGiayDTO();
-//            BeanUtils.copyProperties(item, dto);
-//            dto.setSoSanPhamCungChatLieu(soSanPhamCungDeGiay);
-//            return dto;
-//        }).collect(Collectors.toList());
-//    }
+    @ModelAttribute("lstDeGiay")
+    public List<DeGiayDTO> getlstDeGiay() {
+        return deGiayService.selectAllKichCoExist().stream().map(item -> {
+            int soSanPhamCungDeGiay = chiTietSanPhamService.selectCountSanPhamChiTietByDeGiayId(item.getIdDeGiay());
+            DeGiayDTO dto = new DeGiayDTO();
+            BeanUtils.copyProperties(item, dto);
+            dto.setSoSanPhamChiTietCungDeGiay(soSanPhamCungDeGiay);
+            return dto;
+        }).collect(Collectors.toList());
+    }
+
+    @ModelAttribute("lstLotGiay")
+    public List<LotGiayDTO> getlstLotGiay() {
+        return lotGiayService.selectAllKichCoExist().stream().map(item -> {
+            int soSanPhamCungLotDay = chiTietSanPhamService.selectCountSanPhamChiTietByDeGiayId(item.getIdLotGiay());
+            LotGiayDTO dto = new LotGiayDTO();
+            BeanUtils.copyProperties(item, dto);
+            dto.setSoSanPhamChiTietCungLotGiay(soSanPhamCungLotDay);
+            return dto;
+        }).collect(Collectors.toList());
+    }
+
+    @ModelAttribute("lstDayGiay")
+    public List<DayGiayDTO> getlstDayGiay() {
+        return dayGiayService.selectAllKichCoExist().stream().map(item -> {
+            int soSanPhamCungDayGiay = chiTietSanPhamService.selectCountSanPhamChiTietByDeGiayId(item.getIdDayGiay());
+            DayGiayDTO dto = new DayGiayDTO();
+            BeanUtils.copyProperties(item, dto);
+            dto.setSoSanPhamChiTietCungDayGiay(soSanPhamCungDayGiay);
+            return dto;
+        }).collect(Collectors.toList());
+    }
 
     @ModelAttribute("lstMauSac")
     public List<MauSacDTO> getLstMauSac() {
