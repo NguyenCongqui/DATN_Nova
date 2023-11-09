@@ -195,18 +195,17 @@
         </div>
     </div>
     <script th:inline="javascript">
-        var msgSuccess = '[[${msgSuccess}]]';
-        var msgDanger = '[[${msgDanger}]]';
-        console.log(msgSuccess);
-        console.log(msgDanger)
-        $('#toastsCustomCss').attr("style", "position: absolute; top: 70px; right: 0;z-index: 10000;");
-        if (msgSuccess.length !== 0) {
-            $("#msgSuccess").toast("show");
-        }
-        if (msgDanger.length !== 0) {
-            $("#msgDanger").toast("show");
-        }
-
+        $(document).ready(function () {
+            var msgSuccess = '[[${msgSuccess}]]';
+            var msgDanger = '[[${msgDanger}]]';
+            $('#toastsCustomCss').attr("style", "position: absolute; top: 70px; right: 0;z-index: 10000;");
+            if (msgSuccess.length !== 0) {
+                $("#msgSuccess").toast("show");
+            }
+            if (messageDanger.length !== 0) {
+                $("#msgDanger").toast("show");
+            }
+        });
     </script>
     <div class="modal fade" id="deleteModalIdVoucher" tabindex="-1" role="dialog" aria-labelledby="modelTitleId"
          aria-hidden="true">
@@ -229,7 +228,7 @@
             </div>
         </div>
     </div>
-    <script type="text/javascript" th:src="@{/admin/js/khuyenmai/khuyenmai.js}"></script>
+    <script type="text/javascript" th:src="@{/static/admin/js/khuyenmai/khuyenmai.js}"></script>
 </section>
 </body>
 </html>
