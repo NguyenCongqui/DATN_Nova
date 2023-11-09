@@ -87,4 +87,22 @@ SELECT spt.SoLuong FROM dbo.SanPhamCT spt JOIN dbo.KichCo kc ON kc.IdKichCo = sp
 
     @Query(value="SELECT COALESCE(sum(spct.SoLuong),0) FROM SanPhamCT spct WHERE spct.IdSanPham = :IdSanPham AND spct.DaXoa = 0", nativeQuery = true)
     int getSumSoLuongBySanPhamId(@Param("IdSanPham") Integer id);
+
+    @Query(value = """
+           SELECT COUNT(*) FROM dbo.SanPhamCT cpct LEFT JOIN dbo.DayGiay dg ON dg.IdDayGiay = cpct.IdDayGiay
+           WHERE cpct.IdLotGiay = :deGiayId AND dg.DaXoa= 0 AND cpct.DaXoa = 0
+            """, nativeQuery = true)
+    int selectCountSanPhamCTByDeGiayId(@Param("deGiayId") Integer deGiayId);
+
+    @Query(value = """
+           SELECT COUNT(*) FROM dbo.SanPhamCT cpct LEFT JOIN dbo.LotGiay lg ON lg.IdLotGiay = cpct.IdLotGiay
+           WHERE cpct.IdLotGiay = :lotGiayId AND lg.DaXoa= 0 AND cpct.DaXoa = 0
+            """, nativeQuery = true)
+    int selectCountSanPhamCTByLotGiayId(@Param("lotGiayId") Integer lotGiayId);
+
+    @Query(value = """
+          SELECT COUNT(*) FROM dbo.SanPhamCT cpct LEFT JOIN dbo.DayGiay dg ON dg.IdDayGiay = cpct.IdDayGiay
+          WHERE cpct.IdDayGiay = :dayGiayId AND dg.DaXoa= 0 AND cpct.DaXoa = 0
+            """, nativeQuery = true)
+    int selectCountSanPhamCTByDayiayId(@Param("dayGiayId") Integer dayGiayId);
 }

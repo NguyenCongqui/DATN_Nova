@@ -20,9 +20,9 @@ public interface SanPhamService {
 
     Page<SanPham> showSanPhamExistHomePage(Pageable pageable);
 
-    int selectCountSanPhamByLoaiSanPhamId(Integer loaiSanPhamId);
+    int selectCountSanPhamByThuongHieuId(Integer ThuongHieuId);
 
-    int selectCountSanPhamByPhongCachId(Integer phongCachId);
+    int selectCountSanPhamByKieuDangId(Integer kieuDangId);
 //
     int selectCountSanPhamByChatLieuId(Integer chatLieuId);
 

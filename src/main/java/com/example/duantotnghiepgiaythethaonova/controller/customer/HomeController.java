@@ -1,8 +1,6 @@
 package com.example.duantotnghiepgiaythethaonova.controller.customer;
 
-import com.example.duantotnghiepgiaythethaonova.dto.KichCoDTO;
-import com.example.duantotnghiepgiaythethaonova.dto.MauSacDTO;
-import com.example.duantotnghiepgiaythethaonova.dto.ThuongHieuDTO;
+import com.example.duantotnghiepgiaythethaonova.dto.*;
 import com.example.duantotnghiepgiaythethaonova.dto.composite.SanPhamTaiQuayDTO;
 import com.example.duantotnghiepgiaythethaonova.dto.composite.ShopDetailsDTO;
 import com.example.duantotnghiepgiaythethaonova.dto.composite.ShowSanPhamdto;
@@ -43,6 +41,18 @@ public class HomeController {
     private ThuongHieuService thuongHieuService;
 
     @Autowired
+    private ChatLieuService chatLieuService;
+
+    @Autowired
+    private KieuDangService kieuDangService;
+
+    @Autowired
+    private DeGiayService deGiayService;
+
+    @Autowired
+    private LotGiayService lotGiayService;
+
+    @Autowired
     private CTSPService chiTietSanPhamService;
 
     @Autowired
@@ -54,7 +64,7 @@ public class HomeController {
     @Autowired
     private StorageService storageService;
 
-    @ModelAttribute("listGia")
+    @ModelAttribute("lstGia")
     public List<String> getListGia() {
         List<String> gia = new ArrayList<>();
         gia.add("0VNĐ - 100.000VNĐ");
@@ -66,13 +76,57 @@ public class HomeController {
         return gia;
     }
 
-//    @ModelAttribute("lstThuongHieu")
-//    public List<ThuongHieuDTO> getLstLoaiHang() {
-//        return loaiSanPhamService.selectAllLoaiHangExist().stream().map(item -> {
-//            int soSanPhamCungLoai = sanPhamService.selectCountSanPhamByLoaiSanPhamId(item.getId());
-//            ThuongHieuDTO dto = new ThuongHieuDTO();
+    @ModelAttribute("lstThuongHieu")
+    public List<ThuongHieuDTO> getLstThuongHieu() {
+        return thuongHieuService.selectAllLoaiHangExist().stream().map(item -> {
+            int soSanPhamCungLoai = sanPhamService.selectCountSanPhamByThuongHieuId(item.getIdThuongHieu());
+            ThuongHieuDTO dto = new ThuongHieuDTO();
+            BeanUtils.copyProperties(item, dto);
+            dto.setSoSanPhamCungThuongHieu(soSanPhamCungLoai);
+            return dto;
+        }).collect(Collectors.toList());
+    }
+
+    @ModelAttribute("lstChatLieu")
+    public List<ChatLieuDTO> getLstChatLieu() {
+        return chatLieuService.selectAllChatLieuExist().stream().map(item -> {
+            int soSanPhamCungCL = sanPhamService.selectCountSanPhamByChatLieuId(item.getIdChatLieu());
+            ChatLieuDTO dto = new ChatLieuDTO();
+            BeanUtils.copyProperties(item, dto);
+            dto.setSoSanPhamCungChatLieu(soSanPhamCungCL);
+            return dto;
+        }).collect(Collectors.toList());
+    }
+
+    @ModelAttribute("lstKieuDang")
+    public List<KieuDangDTO> getlstKieuDang() {
+        return kieuDangService.selectAllKieuDangExist().stream().map(item -> {
+            int soSanPhamCungPC = sanPhamService.selectCountSanPhamByKieuDangId(item.getIdKieuDang());
+            KieuDangDTO dto = new KieuDangDTO();
+            BeanUtils.copyProperties(item, dto);
+            dto.setSoSanPhamCungKieuDang(soSanPhamCungPC);
+            return dto;
+        }).collect(Collectors.toList());
+    }
+
+//    @ModelAttribute("lstDeGiay")
+//    public List<DeGiayDTO> getlstDeGiay() {
+//        return deGiayService.selectAllKichCoExist().stream().map(item -> {
+//            int soSanPhamCungDeGiay = chiTietSanPhamService.selectCountSanPhamChiTietByDeGiayId(item.getIdDeGiay());
+//            DeGiayDTO dto = new DeGiayDTO();
 //            BeanUtils.copyProperties(item, dto);
-//            dto.setSoSanPhamCungLoai(soSanPhamCungLoai);
+//            dto.setSoSanPhamCungChatLieu(soSanPhamCungDeGiay);
+//            return dto;
+//        }).collect(Collectors.toList());
+//    }
+//
+//    @ModelAttribute("lstLotGiay")
+//    public List<LotGiayDTO> getlstDeGiay() {
+//        return deGiayService.selectAllKichCoExist().stream().map(item -> {
+//            int soSanPhamCungDeGiay = chiTietSanPhamService.selectCountSanPhamChiTietByDeGiayId(item.getIdDeGiay());
+//            LotGiayDTO dto = new LotGiayDTO();
+//            BeanUtils.copyProperties(item, dto);
+//            dto.setSoSanPhamCungChatLieu(soSanPhamCungDeGiay);
 //            return dto;
 //        }).collect(Collectors.toList());
 //    }

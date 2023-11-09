@@ -26,17 +26,16 @@ ORDER BY sp.IdSanPham DESC;
     Page<SanPham> showSanPhamExistHomePage(Pageable pageable);
 
     @Query(value = """
-            SELECT sp.* FROM dbo.SanPham sp LEFT JOIN dbo.DanhMuc DM ON DM.IdDanhMuc = sp.IdDanhMuc
-            WHERE sp.IdDanhMuc = :loaiSanPhamId AND dm.DaXoa = false AND sp.DaXoa = false
+            SELECT count(*) FROM dbo.SanPham sp LEFT JOIN dbo.ThuongHieu th ON th.IdThuongHieu = sp.IdThuongHieu
+            WHERE sp.IdThuongHieu = :thuongHieuId AND th.DaXoa = 0 AND sp.DaXoa=0
             """, nativeQuery = true)
-    int selectCountSanPhamByLoaiSanPhamId(@Param("loaiSanPhamId") Integer loaiSanPhamId);
+    int selectCountSanPhamByThuongHieuId(@Param("thuongHieuId") Integer thuongHieuId);
 
     @Query(value = """
-            SELECT sp.* FROM dbo.SanPham sp LEFT JOIN dbo.ThuongHieu th
-            ON th.IdThuongHieu = sp.IdThuongHieu WHERE sp.IdSanPham = :phongCachId
-            AND th.DaXoa = false AND sp.DaXoa = false
+            SELECT COUNT(*) FROM dbo.SanPham sp LEFT JOIN dbo.KieuDang kd ON kd.IdKieuDang = sp.IdKieuDang
+            WHERE sp.IdKieuDang = :kieuDangId AND kd.DaXoa = 0 AND sp.DaXoa = 0
             """, nativeQuery = true)
-    int selectCountSanPhamByPhongCachId(@Param("phongCachId") Integer phongCachId);
+    int selectCountSanPhamByKieuDangId(@Param("kieuDangId") Integer kieuDangId);
 
     @Query(value = """
             select count(*) from SanPham s left join ChatLieu p 

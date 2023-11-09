@@ -40,4 +40,11 @@ public interface CTSPService {
     Optional<ChiTietSanPham> selectSanPhamChiTietDuplicate(Integer mauSacId, Integer kichCoId, Integer sanPhamId);
 
    void WritingToExcelProduct(List<SanPhamProductManageDTO> lstDto) throws IOException;
+
+
+    int selectCountSanPhamChiTietByDeGiayId(Integer deGiayId);
+
+    int selectCountSanPhamChiTietByLotGiayId(Integer lotGiayId);
+
+    int selectCountSanPhamChiTietByDayGiayId(Integer dayGiayId);
 }

@@ -229,4 +229,19 @@ public class CTSPServiceImpl implements CTSPService {
             workbook.close();
         }
     }
+
+    @Override
+    public int selectCountSanPhamChiTietByDeGiayId(Integer deGiayId) {
+        return sanPhamChiTietRepository.selectCountSanPhamCTByDeGiayId(deGiayId);
+    }
+
+    @Override
+    public int selectCountSanPhamChiTietByLotGiayId(Integer lotGiayId) {
+        return sanPhamChiTietRepository.selectCountSanPhamCTByLotGiayId(lotGiayId);
+    }
+
+    @Override
+    public int selectCountSanPhamChiTietByDayGiayId(Integer dayGiayId) {
+        return sanPhamChiTietRepository.selectCountSanPhamCTByDayiayId(dayGiayId);
+    }
 }
