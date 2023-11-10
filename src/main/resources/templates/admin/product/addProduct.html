@@ -80,44 +80,32 @@
         </script>
         <div id="toastsCustomCss" style="position: fixed; top: 10px; right: 0;z-index: 1;">
             <div id="messageSuccess" th:if="${messageSuccess}" class="toast" role="alert" aria-live="assertive"
-                aria-atomic="true" data-delay="4000">
+                 aria-atomic="true" data-delay="3000">
                 <div class="toast-header">
                     <svg class="bd-placeholder-img rounded mr-2" width="20" height="20"
-                        xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
-                        role="img">
+                         xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
+                         role="img">
                         <rect width="100%" height="100%" fill="#007aff"></rect>
                     </svg>
-                    <!-- <img src="..." class="rounded mr-2" alt="..."> -->
-                    <strong class="pr-3 mr-auto">Thông báo</strong>
+                    <strong class="me-auto">Thông báo</strong>
                     <small>Now</small>
-                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
-                <div class="toast-body">
-                    <span id="messageSuccessBodyId" th:text="${messageSuccess}"></span>
-                </div>
+                <div class="toast-body" th:text="${messageSuccess}"></div>
             </div>
             <div id="messageDanger" th:if="${messageDanger}" class="toast" role="alert" aria-live="assertive"
-                aria-atomic="true" data-delay="4000">
+                 aria-atomic="true" data-delay="3000">
                 <div class="toast-header">
                     <svg class="bd-placeholder-img rounded mr-2" width="20" height="20"
-                        xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
-                        role="img">
+                         xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false"
+                         role="img">
                         <rect width="100%" height="100%" fill="red"></rect>
                     </svg>
-                    <!-- <img src="..." class="rounded mr-2" alt="..."> -->
-                    <strong class="pr-3 mr-auto">Thông báo</strong>
+                    <strong class="me-auto">Thông báo</strong>
                     <small>Now</small>
-                    <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
-                        <span aria-hidden="true">&times;</span>
-                    </button>
+                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                 </div>
-                <div class="toast-body">
-                    <span id="messageDangerBodyId" th:text="${messageDanger}"></span>
-                </div>
-            </div>
-            <div id="toastAjax" class="toast" role="alert" aria-live="assertive" aria-atomic="true" data-delay="2000">
+                <div class="toast-body" th:text="${messageDanger}"></div>
             </div>
         </div>
         <form enctype="multipart/form-data" id="flexUrlTableFormAddProduct" th:object="${sanPhamManageDTO}">
@@ -527,10 +515,7 @@
                                                     th:text="${item.tenMauSacAddImg}"></span></h6>
                                             <div class="file-input">
                                                 <div class="file-preview">
-                                                    <button type="button" class="close fileinput-remove"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                                                     <div class="file-drop-zone clearfix"
                                                         th:id="'preview-img-'+ ${istat.index}">
 
@@ -579,10 +564,7 @@
                                             </h6>
                                             <div class="file-input" th:if="*{isCreatedValueImg == true}">
                                                 <div class="file-preview">
-                                                    <button type="button" class="close fileinput-remove"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">×</span>
-                                                    </button>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                                                     <div class=" file-drop-zone clearfix">
                                                         <div class="file-preview-thumbnails clearfix">
                                                             <div class="file-preview-frame krajee-default  kv-preview-thumb rotatable"
@@ -720,9 +702,7 @@
                     <div class="modal-content">
                         <div class="modal-header text-center">
                             <h5 class="modal-title">Thêm giá trị thuộc tính cho sản phẩm</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="col-sm-12">
@@ -737,8 +717,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <a type="button" id="notChangeIsShow" class="btn btn-outline-dark"
-                                data-dismiss="modal">Đóng</a>
+                            <a type="button" id="notChangeIsShow" class="btn btn-primary" data-bs-dismiss="modal">Close</a>
                             <a id="yesOptionChangeIsShow" type="button" class="btn btn-primary text-light"
                                 onclick="flexUrlSubmit('saveOptionValue', 'post', 'AddProduct')">Lưu</a>
                         </div>
@@ -751,9 +730,7 @@
                     <div class="modal-content">
                         <div class="modal-header">
                             <h5 class="modal-title">Thêm sản phẩm chi tiết</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
+                            <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
                             <div class="col-sm-12 row">
@@ -796,7 +773,7 @@
                             </div>
                         </div>
                         <div class="modal-footer">
-                            <a type="button" class="btn btn-outline-dark" data-dismiss="modal">Đóng</a>
+                            <a type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</a>
                             <a class="btn btn-primary text-light"
                                 onclick="flexUrlSubmit('genProductDetails', 'post', 'AddProduct')">
                                 <span>Tạo sản phẩm chi tiết <i class="bi bi-save"></i></span>
@@ -814,16 +791,13 @@
                     <div class="modal-header">
                         <h5 class="modal-title">Xác nhận xóa sản
                             phẩm</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">Bạn có muốn xóa sản
                         phẩm
                         này?</div>
                     <div class="modal-footer">
-                        <a type="button" class="btn
-                                            btn-outline-dark" data-dismiss="modal">Đóng</a>
+                        <a type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</a>
                         <a id="yesOptionDeleteModalId" type="button" onclick="submitDeleteProductDetail()" class="btn
                                             btn-danger text-light">Xóa</a>
                     </div>
@@ -838,16 +812,13 @@
                     <div class="modal-header">
                         <h5 class="modal-title">Xác nhận xóa hình ảnh sản
                             phẩm</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">Bạn có muốn xóa hình ảnh sản
                         phẩm
                         này?</div>
                     <div class="modal-footer">
-                        <a type="button" class="btn
-                                            btn-outline-dark" data-dismiss="modal">Đóng</a>
+                        <a type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</a>
                         <a id="yesOptionDeleteImageModalId" onclick="confirmRemoveHinhAnh()" type="button" class="btn
                                             btn-danger text-light">Xóa</a>
                     </div>
@@ -862,14 +833,13 @@
                     <div class="modal-header">
                         <h5 class="modal-title">Thêm ảnh sản
                             phẩm</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+
                     </div>
                     <div class="modal-body">
                     </div>
                     <div class="modal-footer">
-                        <a type="button" id="notChangeIsShow" class="btn btn-outline-dark" data-dismiss="modal">Đóng</a>
+                        <a type="button" id="notChangeIsShow" class="btn btn-primary" data-bs-dismiss="modal">Close</a>
                         <a id="yesOptionChangeIsShow" type="button" class="btn
                                             btn-primary text-light">Đồng ý</a>
                     </div>
@@ -883,9 +853,8 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Những lưu ý khi thêm sản phẩm</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+
                     </div>
                     <div class="modal-body">
                         <h5>*Hiện tại, người bán có thể đăng tải tối đa <span style="color: red;">9</span> hình ảnh sản
@@ -944,7 +913,7 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a type="button" id="notChangeIsShow" class="btn btn-outline-dark" data-dismiss="modal">Đóng</a>
+                        <a type="button" id="notChangeIsShow"  class="btn btn-primary" data-bs-dismiss="modal">Close</a>
                     </div>
                 </div>
             </div>
@@ -956,15 +925,14 @@
                 <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title">Xác nhận xóa hết sản phẩm</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
+
                     </div>
                     <div class="modal-body">
                         Bạn có muốn xóa hết sản phẩm đã chọn?
                     </div>
                     <div class="modal-footer">
-                        <a type="button" class="btn btn-outline-dark" data-dismiss="modal">Đóng</a>
+                        <a type="button" class="btn btn-primary" data-bs-dismiss="modal">Close</a>
                         <a onclick="flexUrlSubmit('deleteAllByIdsAddProduct', 'post', 'AddProduct')" type="button"
                             class="btn btn-danger text-light">Xóa</a>
                     </div>
