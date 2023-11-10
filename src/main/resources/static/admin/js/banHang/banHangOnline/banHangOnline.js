@@ -6,7 +6,7 @@ $(document).ready(function () {
         dataType: "json",
         headers: {
             "Content-Type": "application/json",
-            token: "ab5e296c-25a3-11ee-b394-8ac29577e80e",
+            token: "02df2078-7fd5-11ee-b394-8ac29577e80e",
         },
         success: function (response) {
             const provinces = response.data;
@@ -46,7 +46,7 @@ $(document).ready(function () {
                 dataType: "json",
                 headers: {
                     "Content-Type": "application/json",
-                    token: "ab5e296c-25a3-11ee-b394-8ac29577e80e",
+                    token: "02df2078-7fd5-11ee-b394-8ac29577e80e",
                 },
                 data: {
                     province_id: selectedProvinceId,
@@ -89,7 +89,7 @@ $(document).ready(function () {
                 dataType: "json",
                 headers: {
                     "Content-Type": "application/json",
-                    token: "ab5e296c-25a3-11ee-b394-8ac29577e80e",
+                    token: "02df2078-7fd5-11ee-b394-8ac29577e80e",
                 },
                 data: {
                     district_id: selectedDistrictId,
@@ -132,10 +132,10 @@ $(document).ready(function () {
                 dataType: "json",
                 headers: {
                     "Content-Type": "application/json",
-                    Token: "ab5e296c-25a3-11ee-b394-8ac29577e80e",
+                    Token: "02df2078-7fd5-11ee-b394-8ac29577e80e",
                 },
                 data: JSON.stringify({
-                    shop_id: 4365806,
+                    shop_id: 4689474,
                     from_district: 1454,
                     to_district: toDistrictId,
                 }),
@@ -150,8 +150,8 @@ $(document).ready(function () {
                             dataType: "json",
                             headers: {
                                 "Content-Type": "application/json",
-                                Token: "ab5e296c-25a3-11ee-b394-8ac29577e80e",
-                                ShopId: 4365806,
+                                Token: "02df2078-7fd5-11ee-b394-8ac29577e80e",
+                                ShopId: 4689474,
                             },
                             data: JSON.stringify({
                                 from_district_id: 1454,

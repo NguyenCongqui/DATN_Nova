@@ -27,7 +27,7 @@ $('#btnDoiMatKhauTaiKhoan').click(function (e) {
 
 function capNhatMatKhau(data) {
 	$.ajax({
-		url : 'http://localhost:8080/customer/api/tai-khoan/doi-mat-khau' ,
+		url : 'http://localhost:8080/khachhang/api/tai-khoan/doi-mat-khau' ,
 		type : 'PUT' ,
 		contentType : 'application/json' ,
 		data : JSON.stringify(data) ,
@@ -40,7 +40,7 @@ function capNhatMatKhau(data) {
         });
 			 console.log(result);
 //     		window.location.href = "http://localhost:8080/customer/quan-ly-tai-khoan?page=1&message=insert_success" ;
-     		setTimeout("location.href = ' http://localhost:8080/customer/quan-ly-tai-khoan?page=1'   ", 2000);
+     		setTimeout("location.href = ' http://localhost:8080/khachhang/quan-ly-tai-khoan?page=1'   ", 2000);
 		},
 		error : function (error) {
 			Swal.fire({
