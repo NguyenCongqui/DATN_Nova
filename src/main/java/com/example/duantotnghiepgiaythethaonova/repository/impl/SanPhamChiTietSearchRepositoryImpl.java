@@ -50,6 +50,9 @@ public class SanPhamChiTietSearchRepositoryImpl implements SanPhamChiTietSearchR
 		QMauSac qMauSac = QMauSac.mauSac;
 		QKichCo qKichCo = QKichCo.kichCo;
 		QThuongHieu qThuongHieu = QThuongHieu.thuongHieu;
+		QDayGiay qDayGiay = QDayGiay.dayGiay;
+		QDeGiay qDeGiay = QDeGiay.deGiay;
+		QLotGiay qLotGiay = QLotGiay.lotGiay;
 
 		where.and(qChiTietSanPham.daXoa.isFalse());
 		where.and(qSanPham.daXoa.isFalse());
@@ -60,6 +63,9 @@ public class SanPhamChiTietSearchRepositoryImpl implements SanPhamChiTietSearchR
 		List<Integer> lstThuongHieu = dataSearch.getThuongHieuIds();
 		List<Integer> lstKichCo = dataSearch.getKichCoIds();
 		List<Integer> lstMauSac = dataSearch.getMauSacIds();
+		List<Integer> lstDayGiay = dataSearch.getDayGiayIds();
+		List<Integer> lstDeGiay = dataSearch.getDeGiayIds();
+		List<Integer> lstLotGiay = dataSearch.getLotGiayIds();
 
 		where.and(qChiTietSanPham.coHienThi.isTrue());
 
@@ -78,7 +84,15 @@ public class SanPhamChiTietSearchRepositoryImpl implements SanPhamChiTietSearchR
 		if(!lstKichCo.isEmpty() && !lstKichCo.get(0).equals(-1)) {
 			where.and(qChiTietSanPham.kichCo.idKichCo.in(lstKichCo));
 		}
-
+		if(!lstDayGiay.isEmpty() && !lstDayGiay.get(0).equals(-1)) {
+			where.and(qChiTietSanPham.dayGiay.idDayGiay.in(lstDayGiay));
+		}
+		if(!lstDeGiay.isEmpty() && !lstDeGiay.get(0).equals(-1)) {
+			where.and(qChiTietSanPham.deGiay.idDeGiay.in(lstDeGiay));
+		}
+		if(!lstLotGiay.isEmpty() && !lstLotGiay.get(0).equals(-1)) {
+			where.and(qChiTietSanPham.lotGiay.idLotGiay.in(lstLotGiay));
+		}
 		if(!dataSearch.getTenSanPham().equalsIgnoreCase("-1")) {
 			if(StringUtils.isNotEmpty(dataSearch.getTenSanPham())) {
 				where.and(qSanPham.tenSanPham.containsIgnoreCase(dataSearch.getTenSanPham()));
@@ -179,6 +193,9 @@ public class SanPhamChiTietSearchRepositoryImpl implements SanPhamChiTietSearchR
 				.innerJoin(qKieuDang).on(qSanPham.kieuDang.idKieuDang.eq(qKieuDang.idKieuDang))
 				.innerJoin(qChatLieu).on(qSanPham.chatLieu.idChatLieu.eq(qChatLieu.idChatLieu))
 				.innerJoin(qThuongHieu).on(qSanPham.thuongHieu.idThuongHieu.eq(qThuongHieu.idThuongHieu))
+				.innerJoin(qDayGiay).on(qChiTietSanPham.dayGiay.idDayGiay.eq(qDayGiay.idDayGiay))
+				.innerJoin(qDeGiay).on(qChiTietSanPham.deGiay.idDeGiay.eq(qDeGiay.idDeGiay))
+				.innerJoin(qLotGiay).on(qChiTietSanPham.lotGiay.idLotGiay.eq(qLotGiay.idLotGiay))
 				.where(where)
 				.orderBy(qChiTietSanPham.sanPham.idSanPham.desc())
 				.fetch();
@@ -195,6 +212,9 @@ public class SanPhamChiTietSearchRepositoryImpl implements SanPhamChiTietSearchR
 		List<Integer> lstThuongHieuId = typeHelperService.convertObjectTypeListInteger(dataSearch.getThuongHieuIds());
 		List<Integer> lstKichCoId = typeHelperService.convertObjectTypeListInteger(dataSearch.getKichCoIds());
 		List<Integer> lstMauSacId = typeHelperService.convertObjectTypeListInteger(dataSearch.getMauSacIds());
+		List<Integer> lstDayGiayId = typeHelperService.convertObjectTypeListInteger(dataSearch.getDayGiayIds());
+		List<Integer> lstDeGiayId = typeHelperService.convertObjectTypeListInteger(dataSearch.getDeGiayIds());
+		List<Integer> lstLotGiayId = typeHelperService.convertObjectTypeListInteger(dataSearch.getLotGiayIds());
 		String tenSanPham = typeHelperService.convertObjectTypeString(dataSearch.getTenSanPham());
 		BigDecimal giaHienHanhMin = typeHelperService.convertObjectTypeBigDecimal(dataSearch.getGiaMin());
 		BigDecimal giaHienHanhMax = typeHelperService.convertObjectTypeBigDecimal(dataSearch.getGiaMax());
@@ -208,7 +228,7 @@ public class SanPhamChiTietSearchRepositoryImpl implements SanPhamChiTietSearchR
 		Date ngayCapNhatMin = typeHelperService.convertObjectTypeDate(dataSearch.getNgayCapNhatMin());
 		Date ngayCapNhatMax = typeHelperService.convertObjectTypeDate(dataSearch.getNgayCapNhatMax());
 		String tieuChiGia = typeHelperService.convertObjectTypeString(dataSearch.getTieuChiGia());
-		SPAndSPCTSearchDto result = new SPAndSPCTSearchDto(lstKieuDangId, lstChatLieuId, lstThuongHieuId, lstKichCoId, lstMauSacId, tenSanPham, giaHienHanhMin, giaHienHanhMax, soLuongMin, soLuongMax, coHienThi, nguoiTaoSPCT, nguoiCapNhatSPCT, ngayTaoMin, ngayTaoMax, ngayCapNhatMin, ngayCapNhatMax, tieuChiGia, null);
+		SPAndSPCTSearchDto result = new SPAndSPCTSearchDto(lstKieuDangId, lstChatLieuId, lstThuongHieuId, lstKichCoId, lstMauSacId,lstDayGiayId,lstDeGiayId,lstLotGiayId ,tenSanPham, giaHienHanhMin, giaHienHanhMax, soLuongMin, soLuongMax, coHienThi, nguoiTaoSPCT, nguoiCapNhatSPCT, ngayTaoMin, ngayTaoMax, ngayCapNhatMin, ngayCapNhatMax, tieuChiGia, null);
 		return result;
 	}
 }

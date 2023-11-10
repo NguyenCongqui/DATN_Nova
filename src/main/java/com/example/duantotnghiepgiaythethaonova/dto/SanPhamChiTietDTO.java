@@ -15,36 +15,36 @@ import javax.validation.constraints.NotNull;
 public class SanPhamChiTietDTO extends BaseDTO<BaseDTO> {
 
 	private Integer sanPhamId;
-	
+
 	private Integer kichCoId;
 
 	private Integer mauSacId;
 
-//	private Integer dayGiayId;
-//
-//	private Integer deGiayId;
-//
-//	private Integer lotGiayId;
+	private Integer dayGiayId;
+
+	private Integer deGiayId;
+
+	private Integer lotGiayId;
 
 
 	@NotNull(message = "Số lượng không được để trống")
 	@Min(value = 0, message = "Số lượng không được nhỏ hơn 0")
 	private Integer soLuong;
-	
+
 	private Boolean coHienThi;
-	
+
 	private Boolean daXoa;
-	
+
 	private String tenKichCo ;
-	
+
 	private String tenMauSac ;
 
-//	private String tenDayGiay ;
-//
-//	private String tenDeGiay ;
-//
-//	private String tenLotGiay ;
-	
+	private String tenDayGiay ;
+
+	private String tenDeGiay ;
+
+	private String tenLotGiay ;
+
 	private SanPhamDTO sanPhamDTO ;
 
 }

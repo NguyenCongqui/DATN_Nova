@@ -14,6 +14,9 @@ public class SanPhamChiTietConvertor {
 		dto.setId(entity.getIdCTSP());
 		dto.setTenKichCo(entity.getKichCo().getTenKichCo());
 		dto.setTenMauSac(entity.getMauSac().getTenMauSac());
+		dto.setTenDayGiay(entity.getDayGiay().getTenDayGiay());
+		dto.setTenDeGiay(entity.getDeGiay().getTenDeGiay());
+		dto.setTenLotGiay(entity.getLotGiay().getTenLotGiay());
 		dto.setSoLuong(entity.getSoLuong());
 		return dto ;
 	}

@@ -24,12 +24,12 @@ public class SPAndSPCTSearchDto {
     private List<Integer> kichCoIds;
 
     private List<Integer> mauSacIds;
-//
-//    private List<Integer> dayGiayIds;
-//
-//    private List<Integer> deGiayIds;
-//
-//    private List<Integer> lotGiayIds;
+
+    private List<Integer> dayGiayIds;
+
+    private List<Integer> deGiayIds;
+
+    private List<Integer> lotGiayIds;
 
     private String tenSanPham;
 
