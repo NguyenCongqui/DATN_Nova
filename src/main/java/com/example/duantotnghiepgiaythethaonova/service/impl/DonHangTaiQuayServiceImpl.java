@@ -54,7 +54,7 @@ public class DonHangTaiQuayServiceImpl implements DonHangTaiQuayService {
             hoaDonDTO.setTotalPages(page.getTotalPages());
             hoaDonDTO.setTrangThaiId(hoaDon.getTrangThai().getIdTrangThai());
             hoaDonDTO.setNgayTao(hoaDon.getNgayTao());
-            hoaDonDTO.setId(hoaDon.getIdHoaDon());
+            hoaDonDTO.setIdHoaDon(hoaDon.getIdHoaDon());
 
             listHoaDonDTO.add(hoaDonDTO);
         }

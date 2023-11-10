@@ -15,7 +15,7 @@ public class ChiTietDonDaThanhToan {
     @RequestMapping("DonTaiQuay/ChiTietHoaDon/hoa-don-id={id}")
     public String ChiTietHoaDonTaiQuayDaThanhToan(@PathVariable("id") Integer id, Model model) {
         donHangTaiQuayService.ChiTietHoaDonTaiQuayDaThanhToan(id, model);
-        return"admin/hoadon/DonTaiQuay/ChiTietDonTaiQuay";
+        return"admin/hoadon/DonTaiQuay/ChiTietHoaDonTaiQuay";
     }
 
 

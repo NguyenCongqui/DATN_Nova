@@ -9,7 +9,8 @@
     <script th:src="@{/static/admin/js/banHang/banHangTaiQuay/danhSachSanPham.js}"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link th:href="@{/static/admin/css/sb-admin-2.min.css}" rel="stylesheet">
-    <script th:src="@{/static/admin/js/sb-admin-2.min.js}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
 
     <style>
         .product__details__option__color label:after {
@@ -69,8 +70,7 @@
             </div>
         </div>
         <div class="col-lg-12">
-            <button class="btn btn-secondary action-button mb-2" onclick="quayLaiTrangBanHang()"><i class="fa-solid fa-arrow-left"></i>Quay lại
-                <i class="fas fa-arrow-left"></i>
+            <button class="btn btn-secondary action-button mb-2" onclick="quayLaiTrangBanHang()"><i class="fa-solid fa-arrow-left"></i> Quay lại
             </button>
             <form id="flexUrlTableFormBanHangTaiQuay" enctype="multipart/form-data">
                 <input type="number" name="page" id="inputPageProductManage" hidden>
@@ -180,7 +180,7 @@
                         <div class="col-sm-12 mt-3">
                             <div class="float-right">
                                 <a class="btn btn-primary" th:hd-id="${resultSP.hoaDonId}"
-                                    onclick="flexUrlSubmitBanHangTaiQuay('/admin/banHang/danhSachSanPham/'+this.getAttribute('hd-id'), 'get', 'BanHangTaiQuay')">Tìm
+                                    onclick="flexUrlSubmitBanHangTaiQuay('/admin/banHang/danhSachSanPham/'+this.getAttribute('hd-id'), 'get', 'BanHangTaiQuay')"><i class="fa-solid fa-magnifying-glass"></i> Tìm
                                     kiếm</a>
                             </div>
                         </div>
@@ -189,9 +189,9 @@
                 <!-- DataTales Example -->
                 <div class="card shadow mb-4 mt-4">
                     <div class="card-header py-3">
-                        <h6 class="m-0 font-weight-bold text-primary">
-                            Sản phẩm tại quầy
-                        </h6>
+                        <h5 style="text-align: center" class="m-0 font-weight-bold text-primary">
+                            <i class="fa-brands fa-shopify"></i> Sản phẩm tại quầy
+                        </h5>
                     </div>
                     <div class="card-body">
                         <div class="table table-hover">
