@@ -214,7 +214,7 @@
                                     <input type="hidden" th:field="*{hoaDonId}" id="hoaDonIdPri">
                                     <input type="hidden" th:field="*{soLuong}">
 
-                                    <tr th:each="item, istat : ${resultSP.lstShowSanPhamTaiQuayDTO}">
+                                    <tr th:each="item, istat : ${resultSP.lstShowSanPhamTaiQua}">
                                         <td th:text="${sanPhamPage.number * sanPhamPage.size + istat.index + 1}"
                                             style="vertical-align: middle;">
                                         </td>

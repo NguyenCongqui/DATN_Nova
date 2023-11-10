@@ -116,6 +116,8 @@ public class BanHangServiceIpml implements BanHangService {
             hoaDon.setDaXoa(false);
             hoaDonRepository.save(hoaDon);
 
+            System.out.println(hoaDonRepository.save(hoaDon));
+
             List<HoaDonChiTiet> hoaDonChiTiets = optHoaDon.get().getHoaDonChiTiets();
 
             // Lặp qua danh sách hoaDonChiTiets và xóa từng bản ghi trong bảng gio_hang_chi_tiet

@@ -11,8 +11,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-
-
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
@@ -161,8 +159,7 @@
                                             <label for="billing_address" class="left">
                                                 Địa Chỉ
                                                 <abbr class="form-required" title="required">*</abbr></label>
-                                            <input class="input-md form-full-width mb-20 addressInput" id="addressInput"
-                                                   th:value="${diaChi != null ? diaChi.getDiaChi() : ''}"
+                                            <input class="input-md form-full-width mb-20" id="addressInput"
                                                    name="addressInput" title="Address" value="" placeholder="Địa Chỉ" type="text" required="" aria-required="true">
                                         </div>
                                         <div class="form-field-wrapper form-center col-sm-12">
