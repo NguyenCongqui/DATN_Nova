@@ -222,7 +222,8 @@ public class CTSPServiceImpl implements CTSPService {
                 indexItemOfSheet++;
             }
             // finaly
-            File currDir = new File("D:\\DATN\\ImportExcel/qlsp.xlsx");
+//            File currDir = new File("D:\\DATN\\ImportExcel/qlsp.xlsx");
+            File currDir = new File("D:\\Excel\\ImportExcel/Product.xlsx");
 
             FileOutputStream outputStream = new FileOutputStream(currDir);
             workbook.write(outputStream);
