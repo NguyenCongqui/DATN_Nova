@@ -263,6 +263,8 @@ public class SanPhamChiTietController {
 		return "admin/product/addProduct";
 	}
 
+//	********************************************************
+
 	@PostMapping("generateProductDetails")
 	public String generateProductDetails(ModelMap model,
 										 @Valid @ModelAttribute("sanPhamManageDTO") SanPhamManageDTO data, BindingResult result) {
@@ -354,6 +356,7 @@ public class SanPhamChiTietController {
 			return "/admin/product/addProduct";
 		}
 	}
+//***************************************************
 
 	@GetMapping("changeIsShowFormAddProduct/{id}")
 	@ResponseBody
@@ -368,6 +371,7 @@ public class SanPhamChiTietController {
 		}
 
 	}
+//**********************************************************8
 
 	@GetMapping("edit/{id}")
 	public String edit(ModelMap model, @PathVariable("id") Integer id,
@@ -465,6 +469,7 @@ public class SanPhamChiTietController {
 		}
 		return "admin/product/addProduct";
 	}
+//*******************************************************
 
 	@PostMapping("deleteAllByIdsProductManage")
 	public String deleteAllByIdProductManage(ModelMap model,
@@ -515,6 +520,7 @@ public class SanPhamChiTietController {
 			return "redirect:/admin/product";
 		}
 	}
+//****************************************************
 
 	@PostMapping("updateQuantityProductDetail")
 	public String updateQuantityProductDetail(ModelMap model, @ModelAttribute("sanPhamManageDTO") SanPhamManageDTO data,
@@ -695,6 +701,7 @@ public class SanPhamChiTietController {
 		model.addAttribute("dataGen", dataGen);
 		return "admin/product/addProduct";
 	}
+//***********************************************
 
 	@GetMapping("/productDetail/edit/{id}/{pageName}")
 	public String editProductDetail(ModelMap model, @PathVariable("id") Integer id,
