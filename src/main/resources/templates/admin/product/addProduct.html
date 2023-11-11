@@ -179,17 +179,17 @@
                                         })
                                     </script>
                                 </div>
-                                <div class="col-sm-3 mt-3">
+                                <div class="col-sm-4 mt-3">
                                     <div class="row">
                                         <div class="col-lg-12"><label for="thuongHieuId">Thương hiệu:</label></div>
                                         <div class="col-lg-9" style="padding-right: 3px;">
                                             <select class="form-control" name="thuongHieuId" id="thuongHieuId"
-                                                th:classappend="${#fields.hasErrors('thuongHieuId')}?
+                                                    th:classappend="${#fields.hasErrors('thuongHieuId')}?
                                                 is-invalid : ''" th:field="*{thuongHieuId}">
                                                 <option value="-1" selected>Chưa chọn</option>
                                                 <option th:each="item :
                                                     ${lstThuongHieu}" th:value="${item.idThuongHieu}"
-                                                    th:text="${item.tenThuongHieu}" th:selected="${item.idThuongHieu ==
+                                                        th:text="${item.tenThuongHieu}" th:selected="${item.idThuongHieu ==
                                                     sanPhamManageDTO.thuongHieuId}"></option>
                                             </select>
                                             <small id="thuongHieuId" th:if="${#fields.hasErrors('thuongHieuId')}"
@@ -203,14 +203,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-3 mt-3">
+                                <div class="col-sm-4 mt-3">
                                     <div class="row">
                                         <div class="col-12">
                                             <label for="kieuDangId">Tên kiểu dáng:</label>
                                         </div>
                                         <div class="col-9" style="padding-right: 3px;">
                                             <select class="form-control" name="kieuDangId" id="kieuDangId"
-                                                th:classappend="${#fields.hasErrors('kieuDangId')}?
+                                                    th:classappend="${#fields.hasErrors('kieuDangId')}?
                                                 is-invalid : ''" th:field="*{kieuDangId}">
                                                 <option value="-1" selected>Chưa chọn</option>
                                                 <option th:each="item : ${lstKieuDang}" th:value="${item.idKieuDang}"
@@ -228,16 +228,16 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-3 mt-3">
+                                <div class="col-sm-4 mt-3">
                                     <div class="row">
                                         <div class="col-lg-12"><label for="chatLieuId">Tên chất liệu:</label></div>
                                         <div class="col-lg-9" style="padding-right: 3px;">
                                             <select class="form-control" name="chatLieuId" id="chatLieuId"
-                                                th:classappend="${#fields.hasErrors('chatLieuId')}?
+                                                    th:classappend="${#fields.hasErrors('chatLieuId')}?
                                             is-invalid : ''" th:field="*{chatLieuId}">
                                                 <option value="-1" selected>Chưa chọn</option>
                                                 <option th:each="item : ${lstChatLieu}" th:value="${item.idChatLieu}"
-                                                    th:text="${item.tenChatLieu}" th:selected="${item.idChatLieu
+                                                        th:text="${item.tenChatLieu}" th:selected="${item.idChatLieu
                                                         == sanPhamManageDTO.chatLieuId}"></option>
                                             </select>
                                             <small id="chatLieuId" th:if="${#fields.hasErrors('chatLieuId')}" th:class="${#fields.hasErrors('chatLieuId')}?
@@ -245,20 +245,95 @@
                                         </div>
                                         <div class="col-lg-3" style="padding-right: 0;">
                                             <a class="btn btn-outline-info col-sm-12 row"
-                                                onclick="openPopupIsShowSpeedAddProduct('Tên chất liệu', 'chatLieu')">
+                                               onclick="openPopupIsShowSpeedAddProduct('Tên chất liệu', 'chatLieu')">
                                                 <img th:src="@{/static/admin/img/icons/plus.svg}"></a>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="col-sm-12 mt-3">
                                     <label for="moTa">Mô tả sản phẩm:</label>
                                     <textarea form="flexUrlTableFormAddProduct" class="form-control" name="moTa"
-                                        id="moTa" th:field="*{moTa}" placeholder="Mô tả chi tiết sản phẩm..."
-                                        th:classappend="${#fields.hasErrors('moTa')}?
+                                              id="moTa" th:field="*{moTa}" placeholder="Mô tả chi tiết sản phẩm..."
+                                              th:classappend="${#fields.hasErrors('moTa')}?
                                             is-invalid : ''" aria-describedby="moTaHId"></textarea>
                                     <small id="moTa" th:if="${#fields.hasErrors('moTa')}" th:class="${#fields.hasErrors('moTa')}?
                                             invalid-feedback : ''" th:errors="*{moTa}"></small>
                                 </div>
+</br>
+                                <hr>
+                                <h5>SPCT:</h5>
+                                <div class="col-sm-4 mt-3">
+                                    <div class="row">
+                                        <div class="col-lg-12"><label for="deGiayId">Đế giày:</label></div>
+                                        <div class="col-lg-9" style="padding-right: 3px;">
+                                            <select class="form-control" name="deGiayId" id="deGiayId"
+                                                    th:classappend="${#fields.hasErrors('deGiayId')}?
+                                                is-invalid : ''" th:field="*{deGiayId}">
+                                                <option value="-1" selected>Chưa chọn</option>
+                                                <option th:each="item : ${lstDeGiay}" th:value="${item.idDeGiay}"
+                                                        th:text="${item.tenDeGiay}" th:selected="${item.idDeGiay ==
+                                                    sanPhamManageDTO.deGiayId}"></option>
+                                            </select>
+                                            <small id="deGiayId" th:if="${#fields.hasErrors('deGiayId')}"
+                                                   th:class="${#fields.hasErrors('deGiayId')}?
+                                                invalid-feedback : ''" th:errors="*{deGiayId}"></small>
+                                        </div>
+                                        <div class="col-lg-3" style="padding-right: 0;">
+                                            <a class="btn btn-outline-info col-sm-12 row"
+                                               onclick="openPopupIsShowSpeedAddProduct('Đế giày', 'deGiay')">
+                                                <img th:src="@{/static/admin/img/icons/plus.svg}"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 mt-3">
+                                    <div class="row">
+                                        <div class="col-lg-12"><label for="lotGiayId">Lót giày:</label></div>
+                                        <div class="col-lg-9" style="padding-right: 3px;">
+                                            <select class="form-control" name="lotGiayId" id="lotGiayId"
+                                                    th:classappend="${#fields.hasErrors('lotGiayId')}?
+                                                is-invalid : ''" th:field="*{lotGiayId}">
+                                                <option value="-1" selected>Chưa chọn</option>
+                                                <option th:each="item : ${lstLotGiay}" th:value="${item.idLotGiay}"
+                                                        th:text="${item.tenLotGiay}" th:selected="${item.idLotGiay ==
+                                                    sanPhamManageDTO.lotGiayId}"></option>
+                                            </select>
+                                            <small id="lotGiayId" th:if="${#fields.hasErrors('lotGiayId')}"
+                                                   th:class="${#fields.hasErrors('lotGiayId')}?
+                                                invalid-feedback : ''" th:errors="*{lotGiayId}"></small>
+                                        </div>
+                                        <div class="col-lg-3" style="padding-right: 0;">
+                                            <a class="btn btn-outline-info col-sm-12 row"
+                                               onclick="openPopupIsShowSpeedAddProduct('Lót giày', 'lotGiay')">
+                                                <img th:src="@{/static/admin/img/icons/plus.svg}"></a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-4 mt-3">
+                                    <div class="row">
+                                        <div class="col-lg-12"><label for="dayGiayId">Dây giày:</label></div>
+                                        <div class="col-lg-9" style="padding-right: 3px;">
+                                            <select class="form-control" name="dayGiayId" id="dayGiayId"
+                                                    th:classappend="${#fields.hasErrors('dayGiayId')}?
+                                                is-invalid : ''" th:field="*{dayGiayId}">
+                                                <option value="-1" selected>Chưa chọn</option>
+                                                <option th:each="item : ${lstDayGiay}" th:value="${item.idDayGiay}"
+                                                        th:text="${item.tenDayGiay}" th:selected="${item.idDayGiay ==
+                                                    sanPhamManageDTO.deGiayId}"></option>
+                                            </select>
+                                            <small id="dayGiayId" th:if="${#fields.hasErrors('dayGiayId')}"
+                                                   th:class="${#fields.hasErrors('dayGiayId')}?
+                                                invalid-feedback : ''" th:errors="*{dayGiayId}"></small>
+                                        </div>
+                                        <div class="col-lg-3" style="padding-right: 0;">
+                                            <a class="btn btn-outline-info col-sm-12 row"
+                                               onclick="openPopupIsShowSpeedAddProduct('Dây giày', 'dayGiay')">
+                                                <img th:src="@{/static/admin/img/icons/plus.svg}"></a>
+                                        </div>
+                                    </div>
+                                </div>
+
+
                             </div>
                         </div>
                     </div>

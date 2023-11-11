@@ -54,6 +54,15 @@ public class SanPhamChiTietController {
 	private KichCoService kichCoService;
 
 	@Autowired
+	private DayGiayService dayGiayService;
+
+	@Autowired
+	private DeGiayService deGiayService;
+
+	@Autowired
+	private LotGiayService lotGiayService;
+
+	@Autowired
 	private ThuongHieuService thuongHieuService;
 
 	@Autowired
@@ -108,6 +117,33 @@ public class SanPhamChiTietController {
 	public List<KichCoDTO> getLstKichCo() {
 		return kichCoService.selectAllKichCoExist().stream().map(item -> {
 			KichCoDTO dto = new KichCoDTO();
+			BeanUtils.copyProperties(item, dto);
+			return dto;
+		}).collect(Collectors.toList());
+	}
+
+	@ModelAttribute("lstDayGiay")
+	public List<DayGiayDTO> getLstDayGiay() {
+		return dayGiayService.selectAllKichCoExist().stream().map(item -> {
+			DayGiayDTO dto = new DayGiayDTO();
+			BeanUtils.copyProperties(item, dto);
+			return dto;
+		}).collect(Collectors.toList());
+	}
+
+	@ModelAttribute("lstDeGiay")
+	public List<DeGiayDTO> getLstDeGiay() {
+		return deGiayService.selectAllKichCoExist().stream().map(item -> {
+			DeGiayDTO dto = new DeGiayDTO();
+			BeanUtils.copyProperties(item, dto);
+			return dto;
+		}).collect(Collectors.toList());
+	}
+
+	@ModelAttribute("lstLotGiay")
+	public List<LotGiayDTO> getLstLotGiay() {
+		return lotGiayService.selectAllKichCoExist().stream().map(item -> {
+			LotGiayDTO dto = new LotGiayDTO();
 			BeanUtils.copyProperties(item, dto);
 			return dto;
 		}).collect(Collectors.toList());
@@ -206,7 +242,7 @@ public class SanPhamChiTietController {
 
 	@GetMapping("add")
 	public String addProductDetail(ModelMap model,
-			@ModelAttribute("sanPhamManageDTO") Optional<SanPhamManageDTO> sanPhamManageDTO) {
+								   @ModelAttribute("sanPhamManageDTO") Optional<SanPhamManageDTO> sanPhamManageDTO) {
 		SanPhamManageDTO sanPhamManageDTONew = new SanPhamManageDTO();
 		if (sanPhamManageDTO.isPresent()) {
 			sanPhamManageDTONew.setChatLieuId(sanPhamManageDTO.get().getChatLieuId());
@@ -215,6 +251,9 @@ public class SanPhamChiTietController {
 			sanPhamManageDTONew.setKieuDangId(sanPhamManageDTO.get().getKieuDangId());
 			sanPhamManageDTONew.setThuongHieuId(sanPhamManageDTO.get().getThuongHieuId());
 			sanPhamManageDTONew.setMauSacIds(sanPhamManageDTO.get().getMauSacIds());
+			sanPhamManageDTONew.setDayGiayId(sanPhamManageDTO.get().getDayGiayId());
+			sanPhamManageDTONew.setDeGiayId(sanPhamManageDTO.get().getDeGiayId());
+			sanPhamManageDTONew.setLotGiayId(sanPhamManageDTO.get().getLotGiayId());
 			sanPhamManageDTONew.setMoTa(sanPhamManageDTO.get().getMoTa());
 			sanPhamManageDTONew.setSanPhamId(sanPhamManageDTO.get().getSanPhamId());
 			sanPhamManageDTONew.setSoLuong(sanPhamManageDTO.get().getSoLuong());
@@ -226,7 +265,7 @@ public class SanPhamChiTietController {
 
 	@PostMapping("generateProductDetails")
 	public String generateProductDetails(ModelMap model,
-			@Valid @ModelAttribute("sanPhamManageDTO") SanPhamManageDTO data, BindingResult result) {
+										 @Valid @ModelAttribute("sanPhamManageDTO") SanPhamManageDTO data, BindingResult result) {
 		if (result.hasErrors()) {
 			model.addAttribute("sanPhamManageDTO", data);
 			return "admin/product/addProduct";
@@ -269,6 +308,19 @@ public class SanPhamChiTietController {
 					mauSac.setIdMauSac(mauSacId);
 					spct.setMauSac(mauSac);
 
+					DayGiay dayGiay = new DayGiay();
+					dayGiay.setIdDayGiay(data.getDayGiayId());
+					spct.setDayGiay(dayGiay);
+
+					DeGiay deGiay = new DeGiay();
+					deGiay.setIdDeGiay(data.getDeGiayId());
+					spct.setDeGiay(deGiay);
+
+					LotGiay lotGiay = new LotGiay();
+					lotGiay.setIdLotGiay(data.getLotGiayId());
+					spct.setLotGiay(lotGiay);
+
+
 					sanPhamChiTietService.save(spct);
 				}
 			}
@@ -276,8 +328,15 @@ public class SanPhamChiTietController {
 			dataGen.forEach(i -> {
 				Optional<MauSac> optMS = mauSacService.findById(i.getMauSac().getIdMauSac());
 				Optional<KichCo> optKC = kichCoService.findById(i.getKichCo().getIdKichCo());
+				Optional<DayGiay> optDG = dayGiayService.findById(i.getDayGiay().getIdDayGiay());
+				Optional<DeGiay> optEG = deGiayService.findById(i.getDeGiay().getIdDeGiay());
+				Optional<LotGiay> optLG = lotGiayService.findById(i.getLotGiay().getIdLotGiay());
+
 				i.setMauSac(optMS.get());
 				i.setKichCo(optKC.get());
+				i.setDayGiay(optDG.get());
+				i.setDeGiay(optEG.get());
+				i.setLotGiay(optLG.get());
 			});
 			List<MauSac> lstMauSacAddImg = mauSacService.getAllMauSacExistBySPId(sanPham.getIdSanPham());
 			//button - mau sac add img
@@ -286,7 +345,7 @@ public class SanPhamChiTietController {
 				lstMauSacAddImgHM.put(mauSac.getIdMauSac(), mauSac.getTenMauSac());
 			}
 			data.setLstMauSacAddImg(lstMauSacAddImgHM);
-			
+
 			data.setSanPhamId(sanPham.getIdSanPham());
 			data.setIsGenaratedData(true);
 			model.addAttribute("dataGen", dataGen);
@@ -409,9 +468,9 @@ public class SanPhamChiTietController {
 
 	@PostMapping("deleteAllByIdsProductManage")
 	public String deleteAllByIdProductManage(ModelMap model,
-			@ModelAttribute("dataSearch") SPAndSPCTSearchDto dataSearch, HttpServletRequest request,
-			@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
-			final RedirectAttributes redirectAttributes) throws IOException {
+											 @ModelAttribute("dataSearch") SPAndSPCTSearchDto dataSearch, HttpServletRequest request,
+											 @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
+											 final RedirectAttributes redirectAttributes) throws IOException {
 		String[] ids = request.getParameterValues("productIds");
 		boolean isSuccess = false;
 		if (ids != null) {
@@ -1027,7 +1086,7 @@ public class SanPhamChiTietController {
 
 	@PostMapping("saveOptionValue")
 	public String saveOptionValue(ModelMap model, RedirectAttributes redirect, @ModelAttribute("sanPhamManageDTO") SanPhamManageDTO sanPhamManageDTO,
-			HttpServletRequest request, HttpServletResponse response) throws IOException {
+								  HttpServletRequest request, HttpServletResponse response) throws IOException {
 		String[] value = request.getParameterValues("thuocTinhInput");
 		String[] option = request.getParameterValues("fieldthuocTinhInput");
 		List<ChiTietSanPham> dataGen = sanPhamChiTietService
@@ -1057,7 +1116,7 @@ public class SanPhamChiTietController {
 					thuongHieuService.save(entity);
 					List<ThuongHieu> loadData = thuongHieuService.selectAllLoaiHangExist();
 					model.addAttribute("lstThuongHieu", loadData);
-					model.addAttribute("messageSuccess", "Thêm mới loại sản phẩm thành công");
+					model.addAttribute("messageSuccess", "Thêm mới thương hiệu thành công");
 					redirect.addFlashAttribute("messageSuccess", "Thêm mới loại sản phẩm thành công");
 				} else if (option[0].equalsIgnoreCase(OptionContants.kichCo)) {
 					KichCo entity = new KichCo();
@@ -1090,6 +1149,30 @@ public class SanPhamChiTietController {
 						model.addAttribute("messageDanger", "Mã màu sắc không được để trống");
 						return "admin/product/addProduct";
 					}
+				} else if (option[0].equalsIgnoreCase(OptionContants.dayGiay)) {
+					DayGiay entity = new DayGiay();
+					entity.setTenDayGiay(value[0].toString());
+					dayGiayService.save(entity);
+					List<DayGiay> loadData = dayGiayService.selectAllKichCoExist();
+					model.addAttribute("lstDayGiay", loadData);
+					model.addAttribute("messageSuccess", "Thêm mới dây giày thành công");
+					redirect.addFlashAttribute("messageSuccess", "Thêm mới dây giày thành công");
+				} else if (option[0].equalsIgnoreCase(OptionContants.deGiay)) {
+					DeGiay entity = new DeGiay();
+					entity.setTenDeGiay(value[0].toString());
+					deGiayService.save(entity);
+					List<DeGiay> loadData = deGiayService.selectAllKichCoExist();
+					model.addAttribute("lstDeGiay", loadData);
+					model.addAttribute("messageSuccess", "Thêm mới đế giày thành công");
+					redirect.addFlashAttribute("messageSuccess", "Thêm mới đế giày thành công");
+				} else if (option[0].equalsIgnoreCase(OptionContants.lotGiay)) {
+					LotGiay entity = new LotGiay();
+					entity.setTenLotGiay(value[0].toString());
+					lotGiayService.save(entity);
+					List<LotGiay> loadData = lotGiayService.selectAllKichCoExist();
+					model.addAttribute("lstLotGiay", loadData);
+					model.addAttribute("messageSuccess", "Thêm mới lót giày thành công");
+					redirect.addFlashAttribute("messageSuccess", "Thêm mới lót giày thành công");
 				}
 			} else {
 				model.addAttribute("messageDanger", "Tên giá trị thuộc tính không được để trống");
@@ -1098,7 +1181,7 @@ public class SanPhamChiTietController {
 			model.addAttribute("messageDanger", "Lưu giá trị thuộc tính sản phẩm thất bại");
 		}
 		if(sanPhamManageDTO.getSanPhamId() == null) {
-			 return "admin/product/addProduct";
+			return "admin/product/addProduct";
 		}else return "redirect:/admin/product/edit/"+sanPhamManageDTO.getSanPhamId();
 	}
 
@@ -1185,7 +1268,7 @@ public class SanPhamChiTietController {
 
 	@PostMapping("genProductDetails")
 	public String genProductDetails(ModelMap model, @ModelAttribute("sanPhamManageDTO") SanPhamManageDTO data,
-			HttpServletRequest request, RedirectAttributes redirect) {
+									HttpServletRequest request, RedirectAttributes redirect) {
 		String[] kichCoIdsInProductDetail = request.getParameterValues("kichCoIdsInProductDetail");
 		String[] mauSacIdsInProductDetail = request.getParameterValues("mauSacIdsInProductDetail");
 		String[] soLuongInProductDetail = request.getParameterValues("soLuongInProductDetail");
@@ -1222,6 +1305,21 @@ public class SanPhamChiTietController {
 									MauSac mauSac = new MauSac();
 									mauSac.setIdMauSac(Integer.parseInt(mauSacId));
 									spct.setMauSac(mauSac);
+
+
+									DayGiay dayGiay = new DayGiay();
+									dayGiay.setIdDayGiay(data.getDayGiayId());
+									spct.setDayGiay(dayGiay);
+
+									DeGiay deGiay = new DeGiay();
+									deGiay.setIdDeGiay(data.getDeGiayId());
+									spct.setDeGiay(deGiay);
+
+									LotGiay lotGiay = new LotGiay();
+									lotGiay.setIdLotGiay(data.getLotGiayId());
+									spct.setLotGiay(lotGiay);
+
+
 									sanPhamChiTietService.save(spct);
 									countNotDuplicate++;
 								}else {
