@@ -58,7 +58,7 @@ public class KhachHangController {
 
         dto.setTrangThai(trangThai);
         dto.setInput(input);
-        Pageable pageable = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        Pageable pageable = PageRequest.of(page - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idKhachHang"));
         dto.setListKhachHangDTO(khachHangService.findAll(pageable));
         dto.setTotalItems((int) khachHangService.countAll());
         dto.setTotalPages((int) Math.ceil((double) dto.getTotalItems() / dto.getLimit()));
@@ -82,7 +82,7 @@ public class KhachHangController {
         dto.setPage(1);
         dto.setLimit(limit);
         dto.setTrangThai(trangThai);
-        Pageable pageable = PageRequest.of(1 - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        Pageable pageable = PageRequest.of(1 - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idKhachHang"));
         if (trangThai == 2) {
             return "redirect:/admin/khach-hang/danh-sach/1?trangThai=" + trangThai + "&limit=" + dto.getLimit();
         } else {
@@ -104,7 +104,7 @@ public class KhachHangController {
         dto.setLimit(limit);
         dto.setPage(currentPage);
         dto.setTrangThai(trangThai);
-        Pageable pageable = PageRequest.of(currentPage - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        Pageable pageable = PageRequest.of(currentPage - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idKhachHang"));
         if (trangThai == 2) {
             return "redirect:/admin/khach-hang/danh-sach/1?trangThai=" + trangThai + "&limit=" + dto.getLimit();
         } else {
@@ -128,7 +128,7 @@ public class KhachHangController {
         dto.setTrangThai(trangThai);
         dto.setInput(input);
         dto.setLimit(limit);
-        Pageable pageable = PageRequest.of(currentPage - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        Pageable pageable = PageRequest.of(currentPage - 1, dto.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idKhachHang"));
         if (trangThai == null && input != null) {
             dto.setListKhachHangDTO(khachHangService.findAllByInputCoPhanTrang(input, pageable));
             dto.setTotalItems((int) khachHangService.countByInput(input));
@@ -164,7 +164,7 @@ public class KhachHangController {
             diaChiDTO.setPage(page);
             diaChiDTO.setKhachHangId(id);
             diaChiDTO.setLimit(5);
-            Pageable pageable = PageRequest.of(page - 1, diaChiDTO.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+            Pageable pageable = PageRequest.of(page - 1, diaChiDTO.getLimit(), Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idKhachHang"));
             khachHangDTO = khachHangService.findById(id);
             diaChiDTO.setListDiaChiDTO(diaChiService.findAllDiaChiByMaKhachHang(khachHangDTO.getId(), pageable));
             diaChiDTO.setTotalItems((int) diaChiService.countByMaKhachHang(khachHangDTO.getId()));
