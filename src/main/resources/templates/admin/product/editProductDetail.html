@@ -8,6 +8,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" th:href="@{/static/admin/css/sb-admin-2.min.css}">
+    <script th:src="@{/static/admin/js/bootstrap.bundle.min.js}"></script>
 
 
     <link rel="stylesheet" th:href="@{/static/admin/css/myCSS.css}">
@@ -27,24 +28,24 @@
     <script th:src="@{/static/admin/imgLibr/js/locales/es.js}" type="text/javascript"></script>
     <script th:src="@{/static/admin/imgLibr/themes/fa5/theme.js}" type="text/javascript"></script>
     <script th:src="@{/static/admin/imgLibr/themes/explorer-fa5/theme.js}" type="text/javascript"></script>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
     <section layout:fragment="content" class="container">
         <script th:inline="javascript">
-            window.onload = function () {
+            $(document).ready(function () {
                 var messageSuccess = '[[${messageSuccess}]]';
                 var messageDanger = '[[${messageDanger}]]';
+                $('#toastsCustomCss').attr("style", "position: absolute; top: 70px; right: 0;z-index: 10000;");
                 if (messageSuccess.length !== 0) {
                     $("#messageSuccess").toast("show");
                 }
                 if (messageDanger.length !== 0) {
                     $("#messageDanger").toast("show");
                 }
-            }
+            });
         </script>
-        <div id="toastsCustomCss" style="position: fixed; top: 10px; right: 0;z-index: 1;">
+        <div id="toastsCustomCss">
             <div id="messageSuccess" th:if="${messageSuccess}" class="toast" role="alert" aria-live="assertive"
                 aria-atomic="true" data-delay="3000">
                 <div class="toast-header">
@@ -102,11 +103,12 @@
                                     <small id="kichCoId" th:if="${#fields.hasErrors('kichCoId')}" th:class="${#fields.hasErrors('kichCoId')}?
                                         invalid-feedback : ''" th:errors="*{kichCoId}"></small>
                                 </div>
-                                <div class="col-2" style="padding-left: 0;">
-                                    <a class="btn btn-outline-info"
-                                        onclick="openPopupIsShowSpeedAddProduct('Tên Kích cỡ', 'kichCo')">
-                                        <img th:src="@{/static/admin/img/icons/plus.svg}"></a>
-                                </div>
+<!--                                <div class="col-2" style="padding-left: 0;">-->
+<!--                                    <a class="btn btn-outline-info"-->
+<!--                                        onclick="openPopupIsShowSpeedAddProduct('Tên Kích cỡ', 'kichCo')">-->
+<!--                                        <img th:src="@{/static/admin/img/icons/plus.svg}">-->
+<!--                                    </a>-->
+<!--                                </div>-->
                             </div>
                         </div>
                         <div class="col-sm-4 mt-3 mb-3">
@@ -122,11 +124,12 @@
                                     <small id="mauSacId" th:if="${#fields.hasErrors('mauSacId')}" th:class="${#fields.hasErrors('mauSacId')}?
                                         invalid-feedback : ''" th:errors="*{mauSacId}"></small>
                                 </div>
-                                <div class="col-2" style="padding-left: 0;">
-                                    <a class="btn btn-outline-info"
-                                        onclick="openPopupIsShowSpeedAddProduct('Tên màu sắc', 'mauSac')">
-                                        <img th:src="@{/static/admin/img/icons/plus.svg}"></a>
-                                </div>
+<!--                                <div class="col-2" style="padding-left: 0;">-->
+<!--                                    <a class="btn btn-outline-info"-->
+<!--                                        onclick="openPopupIsShowSpeedAddProduct('Tên màu sắc', 'mauSac')">-->
+<!--&lt;!&ndash;                                        <img th:src="@{/static/admin/img/icons/plus.svg}">&ndash;&gt;-->
+<!--                                    </a>-->
+<!--                                </div>-->
                             </div>
                         </div>
                         <div class="col-sm-2 mt-3 mb-3">
@@ -282,19 +285,6 @@
             $(document).ready(function () {
                 $('[data-toggle="popover"]').popover();
             });
-        </script>
-        <script th:inline="javascript">
-            window.onload = function () {
-                var messageSuccess = '[[${messageSuccess}]]';
-                var messageDanger = '[[${messageDanger}]]';
-                $('#toastsCustomCss').attr("style", "position: absolute; top: 70px; right: 0;z-index: 10000;");
-                if (messageSuccess.length !== 0) {
-                    $("#messageSuccess").toast("show");
-                }
-                if (messageDanger.length !== 0) {
-                    $("#messageDanger").toast("show");
-                }
-            }
         </script>
         <script type="text/javascript" th:src="@{/static/admin/js/product/product.js}"></script>
     </section>

@@ -160,9 +160,9 @@ public class SanPhamChiTietController {
 
 	@GetMapping("")
 	public String search(ModelMap model, @ModelAttribute(name = "dataSearch") SPAndSPCTSearchDto dataSearch,
-			@RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
-			@RequestParam("messageSuccess") Optional<String> messageSuccess,
-			@RequestParam("messageDanger") Optional<String> messageDanger) {
+						 @RequestParam("page") Optional<Integer> page, @RequestParam("size") Optional<Integer> size,
+						 @RequestParam("messageSuccess") Optional<String> messageSuccess,
+						 @RequestParam("messageDanger") Optional<String> messageDanger) {
 
 		int currentPage = page.orElse(1);
 		int pageSize = size.orElse(10);
@@ -263,8 +263,6 @@ public class SanPhamChiTietController {
 		return "admin/product/addProduct";
 	}
 
-//	********************************************************
-
 	@PostMapping("generateProductDetails")
 	public String generateProductDetails(ModelMap model,
 										 @Valid @ModelAttribute("sanPhamManageDTO") SanPhamManageDTO data, BindingResult result) {
@@ -356,7 +354,6 @@ public class SanPhamChiTietController {
 			return "/admin/product/addProduct";
 		}
 	}
-//***************************************************
 
 	@GetMapping("changeIsShowFormAddProduct/{id}")
 	@ResponseBody
@@ -371,16 +368,14 @@ public class SanPhamChiTietController {
 		}
 
 	}
-//**********************************************************8
 
 	@GetMapping("edit/{id}")
 	public String edit(ModelMap model, @PathVariable("id") Integer id,
-			@RequestParam("messageDanger") Optional<String> messageDanger,
-			@RequestParam("messageSuccess") Optional<String> messageSuccess) {
+					   @RequestParam("messageDanger") Optional<String> messageDanger,
+					   @RequestParam("messageSuccess") Optional<String> messageSuccess) {
 		Optional<SanPham> optSP = sanPhamService.findById(id);
 		if (optSP.isPresent()) {
 			List<ChiTietSanPham> dataGen = sanPhamChiTietService.getLstChiTietSanPhamBySanPhamId(optSP.get().getIdSanPham());
-			
 			SanPhamManageDTO dto = new SanPhamManageDTO();
 			//button - mau sac add img
 			List<MauSac> lstMauSacAddImg = mauSacService.getAllMauSacExistBySPId(id);
@@ -389,7 +384,7 @@ public class SanPhamChiTietController {
 				lstMauSacAddImgHM.put(mauSac.getIdMauSac(), mauSac.getTenMauSac());
 			}
 			dto.setLstMauSacAddImg(lstMauSacAddImgHM);
-			
+
 			BeanUtils.copyProperties(optSP.get(), dto);
 			dto.setSanPhamId(optSP.get().getIdSanPham());
 			dto.setIsEdit(true);
@@ -400,6 +395,18 @@ public class SanPhamChiTietController {
 			List<Integer> lstMS = dataGen.stream().map(i -> i.getMauSac().getIdMauSac()).collect(Collectors.toList());
 			dto.setKichCoIds(lstKC);
 			dto.setMauSacIds(lstMS);
+
+//======================================
+//			Integer lstEG = dataGen.stream().map(i -> i.getDeGiay().getIdDeGiay())
+//					.findFirst()  // Lấy giá trị đầu tiên từ danh sách
+//					.orElse(null);  // Hoặc giá trị mặc định nếu danh sách rỗng hoặc không có giá trị
+//			Integer lstLG = dataGen.stream().map(i -> i.getLotGiay().getIdLotGiay()).findFirst().orElse(null);
+//			Integer lstDG = dataGen.stream().map(i -> i.getDayGiay().getIdDayGiay()).findFirst().orElse(null);
+//			dto.setDeGiayId(lstEG);
+//			dto.setLotGiayId(lstLG);
+//			dto.setDayGiayId(lstDG);
+//=======================================
+
 
 			List<HinhAnh> lstHinhAnh = hinhAnhService.getLstHinhAnhMauSacBySanPhamId(id);
 			List<List<HinhAnhDTO>> lstHinhAnhDTOs = new ArrayList<>();
@@ -469,7 +476,6 @@ public class SanPhamChiTietController {
 		}
 		return "admin/product/addProduct";
 	}
-//*******************************************************
 
 	@PostMapping("deleteAllByIdsProductManage")
 	public String deleteAllByIdProductManage(ModelMap model,
@@ -520,12 +526,11 @@ public class SanPhamChiTietController {
 			return "redirect:/admin/product";
 		}
 	}
-//****************************************************
 
 	@PostMapping("updateQuantityProductDetail")
 	public String updateQuantityProductDetail(ModelMap model, @ModelAttribute("sanPhamManageDTO") SanPhamManageDTO data,
-			HttpServletRequest request, HttpServletResponse response,
-			RedirectAttributes redirect) throws IOException {		
+											  HttpServletRequest request, HttpServletResponse response,
+											  RedirectAttributes redirect) throws IOException {
 		if(data.getGia() == null) {
 			model.addAttribute("messageDanger", "bạn không được để giá sản phẩm trống");
 			List<ChiTietSanPham> dataGen = sanPhamChiTietService.getLstChiTietSanPhamBySanPhamId(data.getSanPhamId());
@@ -644,6 +649,15 @@ public class SanPhamChiTietController {
 		data.setKichCoIds(lstKC);
 		data.setMauSacIds(lstMS);
 
+//		====================================
+		Integer lstDG = dataGen.stream().map(i -> i.getDayGiay().getIdDayGiay()).findFirst().orElse(null);
+		Integer lstEG = dataGen.stream().map(i -> i.getDeGiay().getIdDeGiay()).findFirst().orElse(null);
+		Integer lstLG = dataGen.stream().map(i -> i.getLotGiay().getIdLotGiay()).findFirst().orElse(null);
+		data.setDayGiayId(lstDG);
+		data.setDeGiayId(lstEG);
+		data.setLotGiayId(lstLG);
+//		======================================
+
 		List<HinhAnh> lstHinhAnh = hinhAnhService.getLstHinhAnhMauSacBySanPhamId(data.getSanPhamId());
 		List<List<HinhAnhDTO>> lstHinhAnhDTOs = new ArrayList<>();
 		int i = 0;
@@ -701,17 +715,19 @@ public class SanPhamChiTietController {
 		model.addAttribute("dataGen", dataGen);
 		return "admin/product/addProduct";
 	}
-//***********************************************
 
 	@GetMapping("/productDetail/edit/{id}/{pageName}")
 	public String editProductDetail(ModelMap model, @PathVariable("id") Integer id,
-			@PathVariable("pageName") String returnUrlPage) {
+									@PathVariable("pageName") String returnUrlPage) {
 		Optional<ChiTietSanPham> opt = sanPhamChiTietService.findById(id);
 		if (opt.isPresent()) {
 			SanPhamChiTietDTO dto = new SanPhamChiTietDTO();
 			BeanUtils.copyProperties(opt.get(), dto);
 			dto.setKichCoId(opt.get().getKichCo().getIdKichCo());
 			dto.setMauSacId(opt.get().getMauSac().getIdMauSac());
+//			dto.setDayGiayId(opt.get().getDayGiay().getIdDayGiay());
+//			dto.setLotGiayId(opt.get().getLotGiay().getIdLotGiay());
+//			dto.setDeGiayId(opt.get().getDeGiay().getIdDeGiay());
 			dto.setSanPhamId(opt.get().getSanPham().getIdSanPham());
 			if (returnUrlPage.equalsIgnoreCase(pageContants.addProduct)) {
 				returnUrlPage = "/admin/product/edit/" + opt.get().getSanPham().getIdSanPham();
@@ -726,8 +742,8 @@ public class SanPhamChiTietController {
 
 	@GetMapping("addImageProductDetail/{mauSacIdInput}")
 	public String addImageProductDetail(Model model, @ModelAttribute("sanPhamManageDTO") SanPhamManageDTO data,
-			HttpServletRequest request, final RedirectAttributes redirect,
-			@PathVariable("mauSacIdInput") Integer mauSacIdInput) throws IOException {
+										HttpServletRequest request, final RedirectAttributes redirect,
+										@PathVariable("mauSacIdInput") Integer mauSacIdInput) throws IOException {
 		String[] spctIds = request.getParameterValues("mauSacProductIds");
 		long idSanPham = 0;
 		if (spctIds != null) {
@@ -742,7 +758,7 @@ public class SanPhamChiTietController {
 		if(count > 0) {
 			data.setIsHaveImg(true);
 		}else data.setIsHaveImg(false);
-		
+
 		int countHinhAnhToiDaDuocThem = hinhAnhService.getCountHinhAnhChoPhepThemBySanPhamId((int) idSanPham);
 		int soLuongHinhAnhHienCo = hinhAnhService.getCountHinhAnhBySanPhamId((int) idSanPham);
 		if(countHinhAnhToiDaDuocThem-soLuongHinhAnhHienCo>0) {
@@ -810,8 +826,8 @@ public class SanPhamChiTietController {
 
 	@PostMapping("saveImageProductDetail")
 	public String saveImageProductDetail(ModelMap model,
-			@ModelAttribute("sanPhamManageDTO") SanPhamManageDTO sanPhamManageDTO,
-			RedirectAttributes redirect) {
+										 @ModelAttribute("sanPhamManageDTO") SanPhamManageDTO sanPhamManageDTO,
+										 RedirectAttributes redirect) {
 		for (HinhAnhMauSacDTO item : sanPhamManageDTO.getLstHinhAnhMauSacDTO()) {
 			for (MultipartFile imgFile : item.getImgFiles()) {
 				if (imgFile.isEmpty()) {
@@ -1011,7 +1027,7 @@ public class SanPhamChiTietController {
 
 	@PostMapping("saveValueImageProduct")
 	public ModelAndView saveProduct(ModelMap model,
-			@ModelAttribute("sanPhamManageDTO") SanPhamManageDTO sanPhamManageDTO, HttpServletRequest request) {
+									@ModelAttribute("sanPhamManageDTO") SanPhamManageDTO sanPhamManageDTO, HttpServletRequest request) {
 		if (!sanPhamManageDTO.getLstHinhAnhMauSacDTO().isEmpty()) {
 			sanPhamManageDTO.getLstHinhAnhMauSacDTO().stream().forEach(i1 -> {
 				if (!i1.getHinhAnhDTOs().isEmpty()) {
@@ -1194,9 +1210,9 @@ public class SanPhamChiTietController {
 
 	@GetMapping("delete/{id}")
 	public String deleteProduct(@PathVariable("id") Integer sanPhamId, ModelMap model,
-			@ModelAttribute("sanPhamManageDTO") Optional<SanPhamManageDTO> sanPhamManageDTO,
-			@ModelAttribute("dataSearch") SPAndSPCTSearchDto dataSearch, @RequestParam("page") Optional<Integer> page,
-			@RequestParam("size") Optional<Integer> size, final RedirectAttributes redirectAttributes)
+								@ModelAttribute("sanPhamManageDTO") Optional<SanPhamManageDTO> sanPhamManageDTO,
+								@ModelAttribute("dataSearch") SPAndSPCTSearchDto dataSearch, @RequestParam("page") Optional<Integer> page,
+								@RequestParam("size") Optional<Integer> size, final RedirectAttributes redirectAttributes)
 			throws IOException {
 		Optional<SanPham> opt = sanPhamService.findById(sanPhamId);
 		if (opt.isPresent()) {
@@ -1228,7 +1244,7 @@ public class SanPhamChiTietController {
 
 	@PostMapping("deleteAllByIdsAddProduct")
 	public String deleteAllByIdsAddProduct(final RedirectAttributes redirect,
-			@ModelAttribute("sanPhamManageDTO") SanPhamManageDTO sanPhamManageDTO, HttpServletRequest request)
+										   @ModelAttribute("sanPhamManageDTO") SanPhamManageDTO sanPhamManageDTO, HttpServletRequest request)
 			throws IOException {
 		String[] ids = request.getParameterValues("productDetailIds");
 		if (ids != null) {
@@ -1358,7 +1374,7 @@ public class SanPhamChiTietController {
 
 	@GetMapping("deleteProductDetail/{id}")
 	public String deleteProductDetail(@PathVariable("id") Integer sanPhamChiTietId, ModelMap model,
-			final RedirectAttributes redirect, @ModelAttribute("sanPhamManageDTO") SanPhamManageDTO sanPhamManageDTO)
+									  final RedirectAttributes redirect, @ModelAttribute("sanPhamManageDTO") SanPhamManageDTO sanPhamManageDTO)
 			throws IOException {
 		Optional<ChiTietSanPham> opt = sanPhamChiTietService.findById(sanPhamChiTietId);
 		boolean idSuccess = false;
@@ -1391,7 +1407,7 @@ public class SanPhamChiTietController {
 				Optional<SanPham> optSP = sanPhamService.findById(sanPhamManageDTO.getSanPhamId());
 				sanPhamService.delete(optSP.get());
 			}
-		} 
+		}
 		redirect.addFlashAttribute("sanPhamManageDTO", sanPhamManageDTO);
 		if(idSuccess == true) {
 			redirect.addFlashAttribute("messageSuccess", "Xóa sản phẩm chi tiết thành công");
@@ -1404,14 +1420,14 @@ public class SanPhamChiTietController {
 
 	@PostMapping("updateOrCreateProductDetail")
 	public String updateProductDetail(@Valid @ModelAttribute("sanPhamChiTietDTO") SanPhamChiTietDTO sanPhamChiTietDTO,
-			BindingResult result, Model model) {
+									  BindingResult result, Model model) {
 		Optional<ChiTietSanPham> optSPCTOld = sanPhamChiTietService.findById(sanPhamChiTietDTO.getSanPhamId());
 		final String messageSuccess = "Cập nhật sản phẩm chi tiết thành công";
 		final String messageDanger ="Cập nhật sản phẩm chi tiết thất bại";
 		if(optSPCTOld.isPresent()) {
 			if(optSPCTOld.get().getKichCo().getIdKichCo().equals(sanPhamChiTietDTO.getKichCoId()) &&
-				optSPCTOld.get().getMauSac().getIdMauSac().equals(sanPhamChiTietDTO.getMauSacId()) &&
-				optSPCTOld.get().getSanPham().getIdSanPham().equals(sanPhamChiTietDTO.getSanPhamId()) ) {
+					optSPCTOld.get().getMauSac().getIdMauSac().equals(sanPhamChiTietDTO.getMauSacId()) &&
+					optSPCTOld.get().getSanPham().getIdSanPham().equals(sanPhamChiTietDTO.getSanPhamId()) ) {
 				optSPCTOld.get().setCoHienThi(sanPhamChiTietDTO.getCoHienThi());
 				optSPCTOld.get().setSoLuong(sanPhamChiTietDTO.getSoLuong());
 				sanPhamChiTietService.save(optSPCTOld.get());
@@ -1476,9 +1492,9 @@ public class SanPhamChiTietController {
 						model.addAttribute("sanPhamChiTietDTO", sanPhamChiTietDTO);
 						return "admin/product/editProductDetail";
 					}
-					
+
 					sanPhamChiTietService.save(optSPCTOld.get());
-					
+
 					model.addAttribute("messageSuccess", "Cập nhật sản phẩm chi tiết thành công");
 					model.addAttribute("sanPhamChiTietDTO", sanPhamChiTietDTO);
 					return "admin/product/editProductDetail";
@@ -1541,7 +1557,7 @@ public class SanPhamChiTietController {
 
 
 	public void showViewBeforeSearch(ModelMap model, SPAndSPCTSearchDto dataSearch, Optional<Integer> page,
-			Optional<Integer> size) {
+									 Optional<Integer> size) {
 		int currentPage = page.orElse(1);
 		int pageSize = size.orElse(10);
 
@@ -1569,7 +1585,7 @@ public class SanPhamChiTietController {
 		}
 		model.addAttribute("sanPhamPage", resultPage);
 	}
-	
+
 	public static boolean isNumeric(String str) {
 		return str.matches("-?\\d+(\\.\\d+)?");
 	}
