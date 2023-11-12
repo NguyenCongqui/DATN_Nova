@@ -125,24 +125,24 @@ public class ThongKeServiceImp implements ThongKeService {
         Pageable top5 = PageRequest.of(0, 5); // Page 0, Size 5
         List<BestSellerDTO> result = sanPhamChiTietRepository.layIdChiTietSanPhamBanChay(listHoaDonId, top5);
         List<Integer> sanPhamId = result.stream().map(BestSellerDTO::getIdSanPham).collect(Collectors.toList());
-//        List<ChiTietSanPham> sanPhams = sanPhamChiTietRepository.layChiTietSanPhamBanChay(sanPhamId);
+        List<ChiTietSanPham> sanPhams = sanPhamChiTietRepository.layChiTietSanPhamBanChay(sanPhamId);
         for (BestSellerDTO dto : result) {
-//            for (ChiTietSanPham sp : sanPhams) {
-//                if (Objects.equals(sp.getIdCTSP(), dto.getIdSanPham())) {
-//                    SanPham sanPham = sp.getSanPham();
-//                    dto.setTenSanPham(sanPham.getTenSanPham());
-//                    dto.setGiaBan(sanPham.getGia().doubleValue());
-//                    dto.setChatLieu(sanPham.getChatLieu().getTenChatLieu());
-//                    dto.setThuongHieu(sanPham.getThuongHieu().getTenThuongHieu());
-//                    dto.setKieuDang(sanPham.getKieuDang().getTenKieuDang());
-//                    dto.setMauSac(sp.getMauSac().getTenMauSac());
-//                    dto.setKichCo(sp.getKichCo().getTenKichCo());
-//                    List<HinhAnh> lstAnhChinh = hinhAnhService.getHinhAnhChinhBySanPhamId(sanPham.getIdSanPham());
-//                    String anhChinhs = lstAnhChinh.stream().filter(HinhAnh::getLaAnhChinh).findFirst().map(HinhAnh::getTenAnh).orElse("");
-//                    dto.setAnhChinhs(anhChinhs);
-//
-//                }
-//            }
+            for (ChiTietSanPham sp : sanPhams) {
+                if (Objects.equals(sp.getIdCTSP(), dto.getIdSanPham())) {
+                    SanPham sanPham = sp.getSanPham();
+                    dto.setTenSanPham(sanPham.getTenSanPham());
+                    dto.setGiaBan(sanPham.getGia().doubleValue());
+                    dto.setChatLieu(sanPham.getChatLieu().getTenChatLieu());
+                    dto.setThuongHieu(sanPham.getThuongHieu().getTenThuongHieu());
+                    dto.setKieuDang(sanPham.getKieuDang().getTenKieuDang());
+                    dto.setMauSac(sp.getMauSac().getTenMauSac());
+                    dto.setKichCo(sp.getKichCo().getTenKichCo());
+                    List<HinhAnh> lstAnhChinh = hinhAnhService.getHinhAnhChinhBySanPhamId(sanPham.getIdSanPham());
+                    String anhChinhs = lstAnhChinh.stream().filter(HinhAnh::getLaAnhChinh).findFirst().map(HinhAnh::getTenAnh).orElse("");
+                    dto.setAnhChinhs(anhChinhs);
+
+                }
+            }
         }
 
         return result;
