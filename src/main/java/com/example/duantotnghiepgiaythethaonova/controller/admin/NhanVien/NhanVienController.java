@@ -26,16 +26,16 @@ import java.util.List;
 public class NhanVienController {
 
     @Autowired
-    private NguoiDungService nguoiDungService;
+    NguoiDungService nguoiDungService;
 
     @Autowired
-    private NguoiDungRepository nguoiDungRepository;
+    NguoiDungRepository nguoiDungRepository;
 
     @Autowired
-    private NguoiDung_VaiTroRepository nguoiDung_vaiTroRepository;
+    NguoiDung_VaiTroRepository nguoiDungVaiTroRepository;
 
     @Autowired
-    private VaiTroRepository vaiTroRepository;
+    VaiTroRepository vaiTroRepository;
 
 
     private List<NguoiDungDTO> convertPageToList(Page<NguoiDung> page) {

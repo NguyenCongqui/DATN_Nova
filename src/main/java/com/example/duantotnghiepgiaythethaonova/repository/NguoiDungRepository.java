@@ -32,7 +32,7 @@ public interface NguoiDungRepository extends JpaRepository<NguoiDung, Integer> {
     @Query(value = "select * from NguoiDung  where trangThai= ?1", nativeQuery = true)
     List<NguoiDung> findByTrangThai(Integer trangThai);
 
-    @Query(value = "select * from NguoiDung  where email= ?1 AND daXoa= 0", nativeQuery = true)
+    @Query(value = "select * from NguoiDung  where Email= ?1 AND DaXoa= 0", nativeQuery = true)
     NguoiDung findByEmail(String email);
 
     @Query(value = "select * from NguoiDung  where email= ?1 AND daXoa= 0", nativeQuery = true)
@@ -67,7 +67,7 @@ public interface NguoiDungRepository extends JpaRepository<NguoiDung, Integer> {
 //    @Query(value = "select * from NguoiDung where daXoa = 0 and DATE(ngayTao) = :ngayTao", nativeQuery = true)
 //    Page<NguoiDung> timKiemNguoiDungByNgayTao(@Param("ngayTao") LocalDate ngayTao, Pageable pageable);
 
-    @Query(value = "SELECT * FROM NguoiDung WHERE daXoa = 0 AND CONVERT(DATE, ngayTao) = CONVERT(DATE, :ngayTao)", nativeQuery = true)
+    @Query(value = "SELECT * FROM NguoiDung WHERE daXoa = 0 AND CONVERT(DATE, ngayTao) = :ngayTao", nativeQuery = true)
     Page<NguoiDung> timKiemNguoiDungByNgayTao(@Param("ngayTao") LocalDate ngayTao, Pageable pageable);
 
     @Query(value = "select * from NguoiDung where daXoa = 0 and (maNguoiDung like %:input% or soDienThoai like %:input% or tenNguoiDung like %:input% or email like %:input%)", nativeQuery = true)

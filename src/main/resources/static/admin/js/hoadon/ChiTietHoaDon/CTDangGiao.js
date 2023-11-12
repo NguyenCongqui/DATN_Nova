@@ -17,7 +17,7 @@ $(document).ready(function () {
                 // Lưu trạng thái đã xác nhận vào sessionStorage
                 Swal.fire({
                     icon: 'success',
-                    title: 'Xác nhận đơn hàng đã giao thành công',
+                    title: 'Xác nhận đơn hàng đã giao thành công !',
                     showConfirmButton: false,
                     timer: 2000
                 }).then(function () {

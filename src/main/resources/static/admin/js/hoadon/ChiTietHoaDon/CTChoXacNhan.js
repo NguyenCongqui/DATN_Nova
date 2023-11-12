@@ -9,7 +9,7 @@ $(document).ready(function () {
             $.get('/updateXacNhan/' + hoaDonId, function (response) {
                 Swal.fire({
                     icon: 'success',
-                    title: 'Đã xác nhận thành công',
+                    title: 'Đã xác nhận thành công !',
                     showConfirmButton: false,
                     timer: 1500
                 }).then(function () {
@@ -38,7 +38,7 @@ $(document).ready(function () {
         $('.huyModal .btn-dong-y').click(function () {
             $.get('/updateHuyDon/' + hoaDonId, function (response) {
                 Swal.fire({
-                    icon: 'error', title: 'Đã hủy thành công', showConfirmButton: false, timer: 2000
+                    icon: 'error', title: 'Đã hủy thành công !', showConfirmButton: false, timer: 2000
                 }).then(function () {
                     sessionStorage.setItem('isConfirmed', true);
 
@@ -123,7 +123,7 @@ $(document).ready(function () {
                 // Hiển thị thông báo xóa thành công với SweetAlert2
                 Swal.fire({
                     icon: 'error',
-                    title: 'Xóa sản phẩm thành công',
+                    title: 'Xóa sản phẩm thành công !',
                     showConfirmButton: false,
                     timer: 2000
                 }).then(function () {
@@ -232,7 +232,7 @@ $(document).ready(function () {
             success: function (response) {
                 // Xử lý thành công
                 Swal.fire({
-                    icon: 'success', title: 'Cập nhật số lượng thành công', showConfirmButton: false, timer: 2000
+                    icon: 'success', title: 'Cập nhật số lượng thành công !', showConfirmButton: false, timer: 2000
                 }).then(function () {
                     sessionStorage.setItem('isConfirmed', true);
                     location.reload();

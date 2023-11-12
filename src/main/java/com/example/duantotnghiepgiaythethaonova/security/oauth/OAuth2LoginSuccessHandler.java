@@ -46,13 +46,12 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
         NguoiDung nguoiDung = nguoiDungService.findByEmail(email);
         KhachHang khachHang = khachHangRepository.findByEmail(email);
 
-        if (nguoiDung == null){
-        nguoiDungService.taoNguoiDungSauKhiDangNhapVoiMangXaHoiThanhCong(email,fullname, AuthenticationProvider.GOOGLE);
-        khachHangService.taoMoiKhachHang(email , fullname, AuthenticationProvider.GOOGLE);
-        }
-        else{
-        nguoiDungService.capNhatNguoiDungSauKhiDangNhapVoiMangXaHoiThanhCong(email , fullname , AuthenticationProvider.GOOGLE);
-        khachHangService.capNhatKhachHang(email , fullname,AuthenticationProvider.GOOGLE);
+        if (nguoiDung == null) {
+            nguoiDungService.taoNguoiDungSauKhiDangNhapVoiMangXaHoiThanhCong(email, fullname, AuthenticationProvider.GOOGLE);
+            khachHangService.taoMoiKhachHang(email, fullname, AuthenticationProvider.GOOGLE);
+        } else {
+            nguoiDungService.capNhatNguoiDungSauKhiDangNhapVoiMangXaHoiThanhCong(email, fullname, AuthenticationProvider.GOOGLE);
+            khachHangService.capNhatKhachHang(email, fullname, AuthenticationProvider.GOOGLE);
         }
 
         redirectStrategy.sendRedirect(request, response, "/khachhang/home");

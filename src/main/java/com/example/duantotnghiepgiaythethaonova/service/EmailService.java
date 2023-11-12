@@ -39,7 +39,7 @@ public class EmailService {
 
         helper.setFrom("datn.novashoes@gmail.com");
         helper.setTo(recipientEmail);
-        helper.setSubject("Đơn hàng của bạn đã được đặt thành công");
+        helper.setSubject("Đơn hàng của bạn đã được đặt thành công !");
 
         Integer idHoaDon = hoaDon.getIdHoaDon();
 
@@ -79,7 +79,7 @@ public class EmailService {
 
         helper.setFrom("datn.novashoes@gmail.com");
         helper.setTo(recipientEmail);
-        helper.setSubject("Đơn hàng của bạn đã được đặt thành công");
+        helper.setSubject("Đơn hàng của bạn đã được đặt thành công !");
 
         int idHoaDon = hoaDon.getIdHoaDon();
 
@@ -119,7 +119,7 @@ public class EmailService {
 
         helper.setFrom("datn.novashoes@gmail.com");
         helper.setTo(recipientEmail);
-        helper.setSubject("Đơn hàng của bạn đã được đặt thành công");
+        helper.setSubject("Đơn hàng của bạn đã được đặt thành công !");
 
         int idHoaDon = hoaDon.getIdHoaDon();
 
@@ -159,7 +159,7 @@ public class EmailService {
 
         helper.setFrom("datn.novashoes@gmail.com");
         helper.setTo(recipientEmail);
-        helper.setSubject("Đơn hàng của bạn đã được đặt thành công");
+        helper.setSubject("Đơn hàng của bạn đã được đặt thành công !");
 
         int idHoaDon = hoaDon.getIdHoaDon();
 
@@ -199,7 +199,7 @@ public class EmailService {
 
         helper.setFrom("datn.novashoes@gmail.com");
         helper.setTo(recipientEmail);
-        helper.setSubject("Đơn hàng của bạn đã được đặt thành công");
+        helper.setSubject("Đơn hàng của bạn đã được đặt thành công !");
 
         int idHoaDon = hoaDon.getIdHoaDon();
 

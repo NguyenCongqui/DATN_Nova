@@ -34,7 +34,7 @@ $(document).ready(function () {
                 // Hiển thị thông báo xác nhận thành công với SweetAlert2
                 Swal.fire({
                     icon: 'success',
-                    title: 'Xác nhận đơn hàng đã giao thành công',
+                    title: 'Xác nhận đơn hàng đã giao thành công !',
                     showConfirmButton: false,
                     timer: 2000
                 }).then(function () {

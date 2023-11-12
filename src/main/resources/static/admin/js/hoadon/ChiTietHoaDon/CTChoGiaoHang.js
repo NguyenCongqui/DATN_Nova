@@ -13,7 +13,7 @@ $(document).ready(function () {
                 // Lưu trạng thái đã xác nhận vào sessionStorage
                 Swal.fire({
                     icon: 'success',
-                    title: 'Đã chuyển hàng cho đơn vị vận chuyển thành công',
+                    title: 'Đã chuyển hàng cho đơn vị vận chuyển thành công !',
                     showConfirmButton: false,
                     timer: 2000
                 }).then(function () {

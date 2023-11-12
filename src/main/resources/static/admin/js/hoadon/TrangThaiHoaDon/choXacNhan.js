@@ -34,7 +34,7 @@ $(document).ready(function () {
                 // Hiển thị thông báo xác nhận thành công với SweetAlert2
                 Swal.fire({
                     icon: 'success',
-                    title: 'Đã xác nhận thành công',
+                    title: 'Đã xác nhận thành công !',
                     showConfirmButton: false,
                     timer: 1500
                 }).then(function () {
@@ -43,7 +43,7 @@ $(document).ready(function () {
 
                     // Tải lại trang
                     // location.reload();
-                    window.location.href = "/admin/DonHang/ChoGiaoHang/danhSach";
+                    window.location.href = "/admin/DonHang/ChoXacNhanDonHang/danhSach";
                 });
             });
 

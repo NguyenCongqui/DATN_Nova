@@ -34,7 +34,7 @@ $(document).ready(function () {
                 // Hiển thị thông báo giao hàng thành công với SweetAlert2
                 Swal.fire({
                     icon: 'success',
-                    title: 'Đã chuyển hàng cho đơn vị vận chuyển thành công',
+                    title: 'Đã chuyển hàng cho đơn vị vận chuyển thành công !',
                     showConfirmButton: false,
                     timer: 2000
                 }).then(function () {
@@ -42,7 +42,8 @@ $(document).ready(function () {
                     sessionStorage.setItem('isConfirmed', true);
 
                     // Tải lại trang
-                    location.reload();
+                    // location.reload();
+                    window.location.href = "/admin/DonHang/ChoGiaoHang/danhSach";
                 });
             });
 
