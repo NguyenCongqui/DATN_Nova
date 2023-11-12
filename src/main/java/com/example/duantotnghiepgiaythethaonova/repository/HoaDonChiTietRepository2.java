@@ -15,9 +15,9 @@ public interface HoaDonChiTietRepository2 extends JpaRepository<HoaDonChiTiet , 
     @Query(value = "select * from HoaDonCT where idHoaDon = ? and daXoa = 0", nativeQuery = true)
     Page<HoaDonChiTiet> findHDCTByHoaDonId(Integer hoaDonId, Pageable pageable);
 
-    @Query(value = "select * from HoaDonCT where idHoaDonCT = ?", nativeQuery = true)
+    @Query(value = "select * from HoaDonCT where idHoaDon = ?", nativeQuery = true)
     List<HoaDonChiTiet> findHDCT(Integer hoaDonId);
 
-    @Query(value = "select * from HoaDonCT where idHoaDonCT = ? and daXoa = 0", nativeQuery = true)
+    @Query(value = "select * from HoaDonCT where idHoaDon = ? and daXoa = 0", nativeQuery = true)
     List<HoaDonChiTiet> findHDCT2(Integer hoaDonId);
 }
