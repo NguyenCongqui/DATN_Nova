@@ -418,8 +418,9 @@
                                                 </div>
                                                 <div class="product-button">
                                                     <a th:href="${'/khachhang/shop-details/'+item.sanPhamId}" href="#" class="js_tooltip" data-mode="top" data-tip="Thêm Vào Giỏ"><i class="fa fa-shopping-bag"></i></a>
-                                                    <a href="#" class="js_tooltip" data-mode="top" data-tip="Add To Whishlist"><i class="fa fa-heart"></i></a>
-                                                    <a href="#" class="js_tooltip" data-mode="top" data-tip="Quick&nbsp;View"><i class="fa fa-eye"></i></a>
+                                                        <a class="single-add-to-wishlist" th:href="${'/MuaNgay/shop-details/'+item.sanPhamId}"><i class="fa fa-heart left"
+                                                                                                                                                  aria-hidden="true"></i><span>Mua Ngay</span></a>
+
                                                 </div>
                                             </div>
                                             <div class="product-detail">

@@ -194,7 +194,7 @@
                                                         </thead>
                                                         <tbody>
                                                         <tr class="product-row" th:each="hoaDonCT, iter: ${hoaDonChiTiet}">
-                                                            <td>
+                                                            <td >
                                                                 <div style="display: flex; align-items: center;">
                                                                     <img th:src="${'/khachhang/images/' + tenAnhChinhList[iter.index]}" alt=""
                                                                          style="margin-right: 10px;" width="100px" height="100px">
@@ -216,8 +216,8 @@
                                                                     </div>
                                                                 </div>
                                                             </td>
-                                                            <td th:text="${hoaDonCT.soLuong}">1</td>
-                                                            <td th:text="${#numbers.formatDecimal(hoaDonCT.tongTien, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'">100,000 </td>
+                                                            <td th:text="${hoaDonCT.soLuong}"></td>
+                                                            <td th:text="${#numbers.formatDecimal(hoaDonCT.tongTien, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></td>
                                                         </tr>
 
                                                         </tbody>

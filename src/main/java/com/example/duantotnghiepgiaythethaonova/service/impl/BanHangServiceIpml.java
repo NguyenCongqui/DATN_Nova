@@ -301,6 +301,9 @@ public class BanHangServiceIpml implements BanHangService {
         PageRequest pageableHDCT = PageRequest.of(pageHDCT - 1, sizeHDCT);
         Page<HoaDonChiTiet> hoaDonChiTiet = hoaDonChiTietRepository2.findHDCTByHoaDonId(id, pageableHDCT);
         model.addAttribute("hoaDonChiTiet", hoaDonChiTiet.getContent());
+        System.out.println("id hoa don ct"+hoaDonChiTiet.getContent());
+        System.out.println("id hoa don"+ hoaDonRepository.findById(id));
+        System.out.println(hoaDonChiTiet);
         model.addAttribute("pageHoaDonChiTiet", hoaDonChiTiet.getTotalPages());
         model.addAttribute("pageHDCT", pageHDCT);
         model.addAttribute("sizeHDCT", sizeHDCT);
@@ -663,7 +666,7 @@ public class BanHangServiceIpml implements BanHangService {
         TrangThai trangThai = trangThaiService.getTrangThaiById(6);
         hoaDon.setMaDon(ma);
         hoaDon.setNgayTao(new Date());
-        hoaDon.setNguoiTao("Linh create");
+        hoaDon.setNguoiTao("quinc");
         hoaDon.setLoaiHoaDon(1);
         hoaDon.setTrangThai(trangThai);
         hoaDon.setTongTienHoaDon(BigDecimal.valueOf(0));
