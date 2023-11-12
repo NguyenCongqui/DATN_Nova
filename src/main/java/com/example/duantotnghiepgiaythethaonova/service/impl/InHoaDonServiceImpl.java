@@ -205,7 +205,7 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             byte[] pdfBytes = createPdfFromHtml(htmlContentBuilder);
 
             // Lưu file PDF vào thư mục dự án
-            String filePath = "D:\\DATN_NOVAShoes\\hoaDonDaIn\\hoa_don_" + hoaDonId + ".pdf";
+            String filePath = "D:\\hoaDonDaIn\\hoa_don_" + hoaDonId + ".pdf";
             try (FileOutputStream fileOutputStream = new FileOutputStream(filePath)) {
                 fileOutputStream.write(pdfBytes);
             } catch (IOException e) {
@@ -400,7 +400,7 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             byte[] pdfBytes = createPdfFromHtml(htmlContentBuilder);
 
             // Lưu file PDF vào thư mục dự án
-            String filePath = "D:\\DATN_NOVAShoes\\hoaDonDaIn\\hoa_don_" + hoaDonId + ".pdf";
+            String filePath = "D:\\hoaDonDaIn\\hoa_don_" + hoaDonId + ".pdf";
             try (FileOutputStream fileOutputStream = new FileOutputStream(filePath)) {
                 fileOutputStream.write(pdfBytes);
             } catch (IOException e) {
@@ -593,7 +593,7 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             byte[] pdfBytes = createPdfFromHtml(htmlContentBuilder);
 
             // Lưu file PDF vào thư mục dự án
-            String filePath = "D:\\DATN_NOVAShoes\\hoaDonDaIn\\hoa_don_" + hoaDonId + ".pdf";
+            String filePath = "D:\\hoaDonDaIn\\hoa_don_" + hoaDonId + ".pdf";
             try (FileOutputStream fileOutputStream = new FileOutputStream(filePath)) {
                 fileOutputStream.write(pdfBytes);
             } catch (IOException e) {

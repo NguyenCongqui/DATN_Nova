@@ -56,8 +56,8 @@ public class TaiKhoanAPI {
 	private DiaChiRepository diaChiRepository ;
 	
 	@PostMapping("/khachhang/api/update-dia-chi-mac-dinh")
-    public @ResponseBody Map<String, Object> updateDiaChiMacDinh(@RequestParam("DiaChiID") int DiaChiID,
-                                                                 @RequestParam("KhachHangID") int KhachHangID) {
+    public @ResponseBody Map<String, Object> updateDiaChiMacDinh(@RequestParam("DiaChiID") Integer DiaChiID,
+                                                                 @RequestParam("KhachHangID") Integer KhachHangID) {
         Map<String, Object> response = new HashMap<>();
         Optional<DiaChi> optionalDiaChi = diaChiRepository.findById(DiaChiID);
         Optional<KhachHang> optionalKhachHang = khachHangRepository.findById(KhachHangID);

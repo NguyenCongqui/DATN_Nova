@@ -30,12 +30,12 @@ public class QuanLyTaiKhoanController {
     private DiaChiService diaChiService;
 
 
-    @RequestMapping("customer/tai-khoan")
+    @RequestMapping("khachhang/tai-khoan")
     public String redirect() {
-        return "redirect:/customer/quan-ly-tai-khoan?page=1";
+        return "redirect:/khachhang/quan-ly-tai-khoan?page=1";
     }
 
-    @RequestMapping("customer/quan-ly-tai-khoan")
+    @RequestMapping("khachhang/quan-ly-tai-khoan")
     public String thongTinKhachHang(@RequestParam(name = "page", defaultValue = "1") Integer page, Model model, RedirectAttributes redirectAttributes) {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         if (email == null) {
@@ -63,13 +63,13 @@ public class QuanLyTaiKhoanController {
         return "/customer/khach-hang/quan-ly-tai-khoan";
     }
 
-    @PostMapping("customer/quan-ly-tai-khoan/cap-nhat")
+    @PostMapping("khachhang/quan-ly-tai-khoan/cap-nhat")
     public String chinhSuaThongTin(
             @Valid @ModelAttribute("khachHangDTO") KhachHangDTO khachHangDTO, BindingResult result,
             @RequestParam(name = "page", defaultValue = "1") Integer page
             , Model model, RedirectAttributes redirectAttributes) {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        Pageable pageable = PageRequest.of(page - 1, 5, Sort.by(Sort.DEFAULT_DIRECTION.DESC, "id"));
+        Pageable pageable = PageRequest.of(page - 1, 5, Sort.by(Sort.DEFAULT_DIRECTION.DESC, "idKhachHang"));
         khachHangDTO.setLimit(5);
         khachHangDTO.setPage(page);
         khachHangDTO.setTotalItems(diaChiService.countByMaKhachHang(khachHangDTO.getId()));
@@ -85,12 +85,12 @@ public class QuanLyTaiKhoanController {
             khachHangService.save(khachHangDTO);
             redirectAttributes.addFlashAttribute("message", "Cập nhật thành công !");
             model.addAttribute("khachHangDTO", khachHangDTO);
-            return "redirect:/customer/quan-ly-tai-khoan?page=" + khachHangDTO.getPage();
+            return "redirect:/khachhang/quan-ly-tai-khoan?page=" + khachHangDTO.getPage();
         }
 
     }
 
-    @PostMapping("customer/quan-ly-tai-khoan/cap-nhat-dia-chi")
+    @PostMapping("khachhang/quan-ly-tai-khoan/cap-nhat-dia-chi")
     public String capNhatDiaChi(@RequestParam("diaChi") String diaChi,
                                 @RequestParam("hoTen") String hoTen,
                                 @RequestParam("soDienThoai") String soDienThoai,
@@ -106,6 +106,6 @@ public class QuanLyTaiKhoanController {
         diaChiDTO.setKhachHangId(idKhachHang);
         diaChiService.update(diaChiDTO);
         redirectAttributes.addFlashAttribute("message", "Cập nhật địa chỉ thành công !");
-        return "redirect:/customer/quan-ly-tai-khoan?page=1";
+        return "redirect:/khachhang/quan-ly-tai-khoan?page=1";
     }
 }
