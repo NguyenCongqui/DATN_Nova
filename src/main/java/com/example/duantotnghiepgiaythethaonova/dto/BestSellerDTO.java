@@ -22,6 +22,9 @@ public class BestSellerDTO {
     private String chatLieu;
     private String kichCo;
     private String mauSac;
+    private String dayGiay;
+    private String deGiay;
+    private String lotGiay;
 
     public BestSellerDTO(Integer id, Long doanhSo){
         this.idSanPham = id;

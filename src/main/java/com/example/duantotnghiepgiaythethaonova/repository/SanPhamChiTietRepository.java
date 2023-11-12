@@ -41,12 +41,12 @@ public interface SanPhamChiTietRepository extends JpaRepository<ChiTietSanPham, 
     @Query(value = "SELECT * FROM SanPhamCT s WHERE s.IdSanPham = :sanPhamId AND s.IdMauSac = :mauSacId AND s.IdKichCo = :kichCoId AND s.Daxoa = 0", nativeQuery = true)
     Optional<ChiTietSanPham> getChiTietSanPhamByMauSacSizeSanPhamId(@Param("sanPhamId") Integer sanPhamId, @Param("mauSacId") Integer mauSacId, @Param("kichCoId") Integer kichCoId);
 
-    @Query(value = """
-            SELECT spt.SoLuong FROM SanPhamCT spt
-            			JOIN KichCo kc ON spt.IdKichCo = kc.IdKichCo
-            			JOIN MauSac ms ON spt.IdMauSac = ms.IdMauSac
-            			WHERE kc.TenKichCo = :tenKichCo AND ms.IdMauSac = :mauSacId AND spt.IdSanPham = :sanPhamId AND spt.CoHienThi = 1 AND spt.Daxoa = 0
-            """,
+    @Query(value = " SELECT spt.SoLuong\n" +
+            "FROM SanPhamCT spt\n" +
+            			"JOIN KichCo kc ON spt.IdKichCo = kc.IdKichCo\n" +
+            			"JOIN MauSac ms ON spt.IdMauSac = ms.IdMauSac\n" +
+            			"WHERE kc.TenKichCo = :tenKichCo AND ms.IdMauSac = :mauSacId AND spt.IdSanPham = :sanPhamId AND spt.CoHienThi = 1 AND spt.Daxoa = 0\n",
+
             nativeQuery = true)
     Integer laySoLuongChiTietSanPham(@Param("tenKichCo") String tenKichCo,
                                      @Param("mauSacId") Integer mauSacId,
