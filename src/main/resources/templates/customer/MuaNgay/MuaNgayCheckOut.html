@@ -52,8 +52,8 @@
             <div class="row">
                 <div class="col-12">
                     <nav class="breadcrumb-link">
-                        <a href="#">Home</a>
-                        <span>Checkout</span>
+                        <a th:href="@{/khachhang/home}">Trang chủ</a>
+                        <span>Chi tiết sản phẩm</span>
                     </nav>
                 </div>
             </div>
@@ -321,7 +321,7 @@
 
                                             <div class="button-container">
                                                 <div class="button-group">
-                                                    <form th:action="@{/payment/create}" method="post" id="paymentForm">
+                                                    <form th:action="@{/MuaNgay/payment/create}" method="post" id="paymentForm">
                                                         <input type="hidden" name="orderCode" th:value="${hoaDon.idHoaDon}"/>
 
                                                         <input type="hidden" id="amountInput" name="amount" value=""/>
