@@ -14,18 +14,18 @@ import java.util.Optional;
 @Repository
 public interface HoaDonChiTietRepository extends JpaRepository<HoaDonChiTiet, Integer> {
 
-    @Query(value = "SELECT count(*) FROM HoaDonCT WHERE idHoaDonCT = :id AND daXoa=0", nativeQuery = true)
+    @Query(value = "SELECT count(*) FROM HoaDonCT WHERE idHoaDon = :id AND daXoa=0", nativeQuery = true)
     Integer countByHoaDonId(@Param("id") Integer id);
 
-    @Query(value = "SELECT * FROM HoaDonCT WHERE idHoaDonCT = :id AND daXoa=0", nativeQuery = true)
+    @Query(value = "SELECT * FROM HoaDonCT WHERE idHoaDon = :id AND daXoa=0", nativeQuery = true)
     Page<HoaDonChiTiet> findAllByHoaDonId(@Param("id") Integer id, Pageable pageable);
 
-    @Query(value = "update HoaDonCT set daXoa = 1 where id = ? and idHoaDonCT = ?", nativeQuery = true)
+    @Query(value = "update HoaDonCT set daXoa = 1 where idHoaDon = ? and idHoaDonCT = ?", nativeQuery = true)
     void xoaHoaDonCT(int HoaDonChiTietID, int hoaDonId);
 
-    @Query(value = "select * from HoaDonCT where idSanPhamCT = ? and idHoaDonCT = ? and daXoa = 0", nativeQuery = true)
+    @Query(value = "select * from HoaDonCT where idSanPhamCT = ? and idHoaDon = ? and daXoa = 0", nativeQuery = true)
     Optional<HoaDonChiTiet> findBySanPhamChiTietAndHoaDon(int sanPhamCTId, int hoaDonId);
 
-    @Query(value = "select * from HoaDonCT where idHoaDonCT = ? and daXoa = 0", nativeQuery = true)
+    @Query(value = "select * from HoaDonCT where idHoaDon = ? and daXoa = 0", nativeQuery = true)
     List<HoaDonChiTiet> findByHoaDonIdAndDaXoa(int id);
 }

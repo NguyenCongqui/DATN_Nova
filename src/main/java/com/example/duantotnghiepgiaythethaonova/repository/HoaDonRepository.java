@@ -40,7 +40,7 @@ public interface HoaDonRepository extends JpaRepository<HoaDon, Integer> {
     @Query(value = "UPDATE  HoaDon SET idTrangThai=5 WHERE idHoaDon = :id", nativeQuery = true)
     void capNhatTrangThaiThanhHuyDon(@Param("id") Integer id);
 
-    @Query(value = "select * from GiaoDich where idTrangThai = ? and idHoaDon = ? ORDER BY id DESC LIMIT 1", nativeQuery = true)
+    @Query(value = "select * from GiaoDich where idTrangThai = ? and idHoaDon = ? ORDER BY idGiaoDich DESC LIMIT 1", nativeQuery = true)
     List<GiaoDich> timeLine(int trangThai, Integer hoaDonId);
 
     @Query("select hd from HoaDon hd where hd.ngayTao <= :endDate and hd.ngayTao >= :startDate")
