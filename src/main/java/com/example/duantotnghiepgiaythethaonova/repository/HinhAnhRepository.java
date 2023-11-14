@@ -34,8 +34,8 @@ public interface HinhAnhRepository extends JpaRepository<HinhAnh, Integer> {
             """, nativeQuery = true)
     List<HinhAnh> getHinhAnhChinhExist();
 
-    @Query(value = "SELECT TOP 1 ha.* FROM dbo.HinhAnh ha WHERE ha.TenAnh = tenAnh", nativeQuery = true)
-
+    @Query(value = "SELECT TOP 1 ha.* FROM dbo.HinhAnh ha WHERE ha.TenAnh = :tenAnh", nativeQuery = true)
+//SELECT h.* FROM hinh_anh h WHERE h.ten_anh= :tenAnh  LIMIT 1
     Optional<HinhAnh> getHinhAnhByName(@Param("tenAnh") String tenAnh);
 
     @Query(value = """
