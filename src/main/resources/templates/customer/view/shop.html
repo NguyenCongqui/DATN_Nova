@@ -392,10 +392,10 @@
 
 <!--                    san pham-->
                     <div class="row">
-                        <div class="col-lg-12 text-center" th:if="${!sanPhamPage.hasContent()}">
-                            <img th:src="@{/customer/images/images/img-3.png}" class="img-responsive img-fluid"
-                                 width="60%" alt="">
-                            <h2 style="color: #FFCA47;">Không tìm thấy sản phẩm bạn mong muốn</h2>
+                        <div style="margin-top: 150px" class="col-lg-12 text-center" th:if="${!sanPhamPage.hasContent()}">
+                            <img th:src="@{/static/admin/img/khong-co-sp.png}" class="img-responsive img-fluid"
+                                 width="70%" alt="Không tìm thấy sản phẩm bạn mong muốn !">
+                            <h3 style="color: #000000;">Không tìm thấy sản phẩm bạn mong muốn !</h3>
                         </div>
 
                         <div class="container"

@@ -32,7 +32,7 @@ public interface NguoiDungRepository extends JpaRepository<NguoiDung, Integer> {
     @Query(value = "select * from NguoiDung  where trangThai= ?1", nativeQuery = true)
     List<NguoiDung> findByTrangThai(Integer trangThai);
 
-    @Query(value = "select * from NguoiDung  where Email= ?1 AND DaXoa= 0", nativeQuery = true)
+    @Query(value = "SELECT * FROM NguoiDung  where Email= ?1 AND DaXoa= 0", nativeQuery = true)
     NguoiDung findByEmail(String email);
 
     @Query(value = "select * from NguoiDung  where email= ?1 AND daXoa= 0", nativeQuery = true)

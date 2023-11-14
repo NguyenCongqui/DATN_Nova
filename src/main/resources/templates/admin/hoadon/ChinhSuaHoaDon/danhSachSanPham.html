@@ -152,6 +152,33 @@
                                 </option>
                             </select>
                         </div>
+                    <div class="col-sm-3">
+                        <label for="dayGiayIds">Tên dây giày:</label>
+                        <select class="selectpicker" name="dayGiayIds" id="dayGiayIds" th:field="*{dayGiayIds}"
+                                multiple>
+                            <option th:each="item, istat : ${lstDayGiay}" th:value="${item.idDayGiay}"
+                                    th:text="${item.tenDayGiay}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="deGiayIds">Tên đế giày:</label>
+                        <select class="selectpicker" name="deGiayIds" id="deGiayIds" th:field="*{deGiayIds}"
+                                multiple>
+                            <option th:each="item, istat : ${lstDeGiay}" th:value="${item.idDeGiay}"
+                                    th:text="${item.tenDeGiay}">
+                            </option>
+                        </select>
+                    </div>
+                    <div class="col-sm-3">
+                        <label for="lotGiayIds">Tên lót giày:</label>
+                        <select class="selectpicker" name="lotGiayIds" id="lotGiayIds" th:field="*{lotGiayIds}"
+                                multiple>
+                            <option th:each="item, istat : ${lstLotGiay}" th:value="${item.idLotGiay}"
+                                    th:text="${item.tenLotGiay}">
+                            </option>
+                        </select>
+                    </div>
                         <div class="col-sm-3">
                             <label for="hienThi">Loại hiển thị:</label>
                             <select class="selectpicker" name="hienThi" id="hienThi" th:field="*{coHienThi}"
