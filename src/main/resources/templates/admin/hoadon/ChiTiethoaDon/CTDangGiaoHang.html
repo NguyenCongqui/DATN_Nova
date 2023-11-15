@@ -166,8 +166,8 @@
 
         <!--UPDATE GIAO HÀNG THÀNH CÔNG-->
         <div class="button-group">
-            <button class="action-button DaGiao" th:attr="data-id=${hoaDon.idHoaDon}"> Xác nhận đơn hàng đã giao
-                <i class="fas fa-check-circle"></i>
+            <button class="action-button DaGiao" th:attr="data-id=${hoaDon.idHoaDon}"><i class="fas fa-check-circle"
+             aria-hidden="true"></i> Xác nhận đơn hàng đã giao
             </button>
             <br>
             <div class="modal fade giaoHangTCModal" tabindex="-1" aria-labelledby="giaoHangTCModalLabel"
@@ -192,8 +192,8 @@
                 </div>
             </div>
 
-            <button class="action-button inHoaDonChiTiet">In hóa đơn
-                <i class="fas fa-receipt"></i>
+            <button class="action-button inHoaDonChiTiet"><i class="fas fa-receipt"></i> In hóa đơn
+
             </button>
             <input type="hidden" id="idChiTietHoaDon" th:value="${hoaDon.idHoaDon}">
             <div class="modal fade inHoaDonModal" tabindex="-1" aria-labelledby="inHoaDonModalLabel"
@@ -218,8 +218,8 @@
                 </div>
             </div>
 
-            <button class="action-button" onclick="quayLai()">Quay lại
-                <i class="fas fa-arrow-left"></i>
+            <button class="action-button" onclick="quayLai()"><i
+                    class="fas fa-arrow-left"></i> Quay lại
             </button>
         </div>
     </div>

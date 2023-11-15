@@ -82,8 +82,8 @@
                 th:text="${#numbers.formatDecimal(hoaDon.tongTienHoaDon, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></span></p>
     </div>
 
-    <button class="action-button inHoaDonChiTiet">In hóa đơn
-        <i class="fas fa-receipt"></i>
+    <button class="action-button inHoaDonChiTiet"><i
+            class="fas fa-receipt"></i> In hóa đơn
     </button>
     <input type="hidden" id="idChiTietHoaDon" th:value="${hoaDon.idHoaDon}">
     <div class="modal fade inHoaDonModal" tabindex="-1" aria-labelledby="inHoaDonModalLabel"
@@ -108,8 +108,8 @@
         </div>
     </div>
 
-    <button class="action-button" onclick="quayLaiTrangTruoc()">Quay lại
-        <i class="fas fa-arrow-left"></i>
+    <button class="action-button" onclick="quayLaiTrangTruoc()"><i
+            class="fas fa-arrow-left"></i> Quay lại
     </button>
 </div>
 </body>
