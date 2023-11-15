@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <title>Header</title>
     <script th:src="@{/static/admin/js/banHang/addToCart.js}"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" integrity="sha384-GLhlTQ8iQ8275RNTl1/SJZJfRTt4C5jx1G5ipNPw9rqlZxfl5VrDDU5tr5Szkbe5" crossorigin="anonymous">
 
 </head>
 <body>
@@ -32,11 +33,11 @@
                             <!--Thả xuống-->
                             <div class="dropdown-menu">
                                 <ul>
-                                    <li><a th:href="@{/khachhang/tai-khoan}">Thông Tin Tài Khoản</a></li>
-                                    <li><a th:href="@{/khachhang/DonHang/ChoXacNhan}">Đơn Hàng Của Tôi</a></li>
-                                    <li><a href="#">Đổi Mật Khẩu</a></li>
+                                    <li><a th:href="@{/khachhang/tai-khoan}"><i class="fas fa-user"></i> Thông Tin Tài Khoản</a></li>
+                                    <li><a th:href="@{/khachhang/DonHang/ChoXacNhan}"><i class="fas fa-file-signature"></i> Đơn Hàng Của Tôi</a></li>
+                                    <li><a th:href="@{/khachhang/tai-khoan}"><i class="fas fa-sync-alt"></i> Đổi Mật Khẩu</a></li>
                                     <li><a href="#">My Wishlist</a></li>
-                                    <li><a th:href="@{/security/logoff}">Đăng Xuất</a></li>
+                                    <li><a th:href="@{/security/logoff}"><i class="fas fa-power-off"></i> Đăng Xuất</a></li>
                                 </ul>
 
                             </div>
@@ -94,9 +95,9 @@
 
                             <div class="cart-title" th:href="@{/khachhang/gio-hang-chi-tiet}">
                             <span class="cart-count" th:if="${soLuongSanPhamChiTiet gt 0}">
-                           <sup th:text="${soLuongSanPhamChiTiet}"></sup>
+                           <sup th:text="${getsoLuongSanPhamChiTiet}"></sup>
                             </span>
-                                <span th:unless="${soLuongSanPhamChiTiet gt 0}" class="cart-count">
+                                <span th:unless="${getsoLuongSanPhamChiTiet gt 0}" class="cart-count">
                             <sup>0</sup>
                                 </span>
                                 /
