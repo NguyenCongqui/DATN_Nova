@@ -156,8 +156,7 @@
                                                 <span data-value="-" class="quantity-btn quantityMinus"></span>
                                             </div>
                                             <a id="themVaoGioHang" th:data-id="${shopDetails.sanPhamId}"
-                                               class="btn btn-lg btn-black"><i
-                                                    class="fa fa-shopping-bag" aria-hidden="true"></i>Thêm Vào Giỏ
+                                               class="btn btn-lg btn-black"><i class="fas fa-cart-plus"></i>Thêm Vào Giỏ
                                                 <input type="hidden" id="auth" th:value="${#authentication.name}">
                                                 <a/>
                                         </form>
@@ -182,92 +181,93 @@
                 </div>
         </div>
 
-                <!-- End Product -->
 
-                <!-- Product Content Tab -->
-                <div class="product-tabs-wrapper container">
-                    <ul class="product-content-tabs nav nav-tabs" role="tablist">
+        <!-- End Product -->
 
-                        <li class="nav-item">
-                            <a class="active" href="#tab_description" role="tab" data-toggle="tab">Mô tả Sản Phẩm</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="" href="#tab_additional_information" role="tab" data-toggle="tab">Thông Tin Sản
-                                Phẩm</a>
-                        </li>
-                    </ul>
-                    <div class="product-content-Tabs_wraper tab-content container">
-                        <div id="tab_description" role="tabpanel" class="tab-pane fade in active">
-                            <!-- Accordian Title -->
-                            <h6 class="product-collapse-title" data-toggle="collapse"
-                                data-target="#tab_description-coll">Description</h6>
-                            <!-- End Accordian Title -->
-                            <!-- Mô tả sản phẩm -->
-                            <div id="tab_description-coll" class="shop_description product-collapse collapse container">
-                                <div class="row">
-                                    <div class=" col-md-12">
-                                        <p th:text="${shopDetails.moTa}">
+        <!-- Product Content Tab -->
+        <div class="product-tabs-wrapper container">
+            <ul class="product-content-tabs nav nav-tabs" role="tablist">
 
-                                        </p>
-                                    </div>
-                                </div>
+                <li class="nav-item">
+                    <a class="active" href="#tab_description" role="tab" data-toggle="tab">Mô tả Sản Phẩm</a>
+                </li>
+                <li class="nav-item">
+                    <a class="" href="#tab_additional_information" role="tab" data-toggle="tab">Thông Tin Sản
+                        Phẩm</a>
+                </li>
+            </ul>
+            <div class="product-content-Tabs_wraper tab-content container">
+                <div id="tab_description" role="tabpanel" class="tab-pane fade in active">
+                    <!-- Accordian Title -->
+                    <h6 class="product-collapse-title" data-toggle="collapse"
+                        data-target="#tab_description-coll">Description</h6>
+                    <!-- End Accordian Title -->
+                    <!-- Mô tả sản phẩm -->
+                    <div id="tab_description-coll" class="shop_description product-collapse collapse container">
+                        <div class="row">
+                            <div class=" col-md-12">
+                                <p th:text="${shopDetails.moTa}">
+
+                                </p>
                             </div>
-                            <!-- Kết thúc mô tả sản phẩm -->
                         </div>
+                    </div>
+                    <!-- Kết thúc mô tả sản phẩm -->
+                </div>
 
-                        <div id="tab_additional_information" role="tabpanel" class="tab-pane fade">
-                            <!-- Accordian Title -->
-                            <h6 class="product-collapse-title" data-toggle="collapse"
-                                data-target="#tab_additional_information-coll">Additional Information</h6>
-                            <!-- End Accordian Title -->
-                            <!-- Thông tin sản phẩm -->
-                            <div id="tab_additional_information-coll" class="container product-collapse collapse">
+                <div id="tab_additional_information" role="tabpanel" class="tab-pane fade">
+                    <!-- Accordian Title -->
+                    <h6 class="product-collapse-title" data-toggle="collapse"
+                        data-target="#tab_additional_information-coll">Additional Information</h6>
+                    <!-- End Accordian Title -->
+                    <!-- Thông tin sản phẩm -->
+                    <div id="tab_additional_information-coll" class="container product-collapse collapse">
 
-                                <table class="shop_attributes">
-                                    <tbody>
-                                    <tr>
-                                        <th>Màu Sắc</th>
-                                        <td><a class="entry" th:each="mauSac1: ${tenMauSacList} "
-                                               th:text="${mauSac1}"    ></a></td>
-                                    </tr>
-                                    <tr>
-                                        <th>Kich Cỡ</th>
-                                        <td><a th:each="kichCo: ${kichCoList}" th:text="${kichCo}"></a></td>
-                                    </tr>
-<!--                                    <tr>-->
-<!--                                        <th>Dimensions</th>-->
-<!--                                        <td>60 x 40 x 60 cm</td>-->
-<!--                                    </tr>-->
-<!--                                    <tr>-->
-<!--                                        <th>Washcare</th>-->
-<!--                                        <td>Dry Clean</td>-->
-<!--                                    </tr>-->
-<!--                                    <tr>-->
-<!--                                        <th>Composition</th>-->
-<!--                                        <td>100% Polyester</td>-->
-<!--                                    </tr>-->
-<!--                                    <tr>-->
-<!--                                        <th>Lining composition</th>-->
-<!--                                        <td>100% Polyester</td>-->
-<!--                                    </tr>-->
-<!--                                    <tr>-->
-<!--                                        <th>Other info</th>-->
-<!--                                        <td>Ullamcorper nisl mus integer mollis vestibulu</td>-->
-<!--                                    </tr>-->
-                                    </tbody>
-                                </table>
-
-                            </div>
-                            <!-- kết thúc thông tin sản phẩm-->
-                        </div>
-
+                        <table class="shop_attributes">
+                            <tbody>
+                            <tr>
+                                <th>Màu Sắc</th>
+                                <td><a class="entry" th:each="mauSac1: ${tenMauSacList} "
+                                       th:text="${mauSac1}"></a></td>
+                            </tr>
+                            <tr>
+                                <th>Kich Cỡ</th>
+                                <td><a th:each="kichCo: ${kichCoList}" th:text="${kichCo}"></a></td>
+                            </tr>
+                            <!--                                    <tr>-->
+                            <!--                                        <th>Dimensions</th>-->
+                            <!--                                        <td>60 x 40 x 60 cm</td>-->
+                            <!--                                    </tr>-->
+                            <!--                                    <tr>-->
+                            <!--                                        <th>Washcare</th>-->
+                            <!--                                        <td>Dry Clean</td>-->
+                            <!--                                    </tr>-->
+                            <!--                                    <tr>-->
+                            <!--                                        <th>Composition</th>-->
+                            <!--                                        <td>100% Polyester</td>-->
+                            <!--                                    </tr>-->
+                            <!--                                    <tr>-->
+                            <!--                                        <th>Lining composition</th>-->
+                            <!--                                        <td>100% Polyester</td>-->
+                            <!--                                    </tr>-->
+                            <!--                                    <tr>-->
+                            <!--                                        <th>Other info</th>-->
+                            <!--                                        <td>Ullamcorper nisl mus integer mollis vestibulu</td>-->
+                            <!--                                    </tr>-->
+                            </tbody>
+                        </table>
 
                     </div>
+                    <!-- kết thúc thông tin sản phẩm-->
                 </div>
-                <!-- End Product Content Tab -->
 
+
+            </div>
         </div>
+        <!-- End Product Content Tab -->
+
     </div>
+</div>
 </div>
 </body>
 </html>

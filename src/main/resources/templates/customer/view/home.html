@@ -13,213 +13,223 @@
 
 <div layout:fragment="content">
     <span th:replace="customer/layout/banner :: banner"></span>
-<section class="section-padding-b" >
-    <div class="container">
-        <h2 class="page-title">Sản Phẩm Mới</h2>
-    </div>
-    <div class="container"
-         >
-        <div class="tab-content" >
-            <!-- Tab1 - Latest Product -->
-            <div id="latest" role="tabpanel" class="tab-pane fade in active" >
-                <div id="new-product" class="product-item-4 owl-carousel owl-theme nf-carousel-theme1" >
-                    <!-- item.1 -->
-                    <div class="product-item" th:each="item, istat : ${resultSP.lstShowSanPhamTaiQua}" th:object="${resultSP}" >
-                        <div class="product-item-inner">
-                            <div abbr="" class="product-img-wrap">
-                                <div class="carousel-item" th:name="'divImgIsActive'+${istat.index}"
-                                     th:id="'imgActive'+${istat.index}+${istatAC.index}"
-                                     th:classappend="${#numbers.formatInteger(istat.index+''+istatAC.index,5) == #numbers.formatInteger(istat.index+''+0,5)? 'active':''}"
-                                     th:each="img, istatAC : ${item.anhChinhs}">
-                                    <img th:src="${'/khachhang/images/'+img}" class="d-block img-responsive"
-                                         alt="...">
-                                </div>
-                            </div>
-                            <div class="product-button">
-                                <a th:href="${'/khachhang/shop-details/'+item.sanPhamId}" class="js_tooltip" data-mode="top" data-tip="Thêm Vào Giỏ"><i class="fa fa-shopping-bag"></i></a>
-<!--                                <a href="#" class="js_tooltip" data-mode="top" data-tip="Add To Whishlist"><i class="fa fa-heart"></i></a>-->
-<!--                                <a href="#" class="js_tooltip" data-mode="top" data-tip="Quick&nbsp;View"><i class="fa fa-eye"></i></a>-->
-                            </div>
-                        </div>
-                        <div class="product-detail">
-                            <a class="tag" href="#">Men Fashion</a>
-                            <p class="product-title"><a th:href="${'/khachhang/shop-details/'+item.sanPhamId}"  th:text="${item.tenSanPham}"></a></p>
-                            <div class="product-rating">
-                                <div class="star-rating" itemprop="reviewRating" itemscope="" itemtype="http://schema.org/Rating" title="Rated 4 out of 5">
-                                    <span style="width: 60%"></span>
-                                </div>
-
-                            </div>
-                            <h5 class="item-price" th:text="${#numbers.formatDecimal(item.gia, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></h5>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- Kết thức sản phẩm mới (Tab with Slider) -->
-
-<!-- Categories -->
-<section class="">
-    <div class="section-padding container-fluid bg-image text-center overlay-light90" data-background-img="img/bg/bg_5.jpg" data-bg-position-x="center center">
+    <section class="section-padding-b">
         <div class="container">
-            <h2 class="page-title">MUA SẮM THEO DANH MỤC</h2>
+            <h2 class="page-title">Sản Phẩm Mới</h2>
         </div>
-    </div>
-    <div class="container container-margin-minus-t">
-        <div class="row">
-            <div class="col-md-4">
-                <div class="categories-box">
-                    <div class="categories-image-wrap">
-                        <img src="../../../static/customer/img/categories/Categories_cupple.jpg" alt="" />
-                    </div>
-                    <div class="categories-content">
-                        <a href="#">
-                            <div class="categories-caption">
-                                <h6 class="normal">bộ sưu tập</h6>
+        <div class="container"
+        >
+            <div class="tab-content">
+                <!-- Tab1 - Latest Product -->
+                <div id="latest" role="tabpanel" class="tab-pane fade in active">
+                    <div id="new-product" class="product-item-4 owl-carousel owl-theme nf-carousel-theme1">
+                        <!-- item.1 -->
+                        <div class="product-item" th:each="item, istat : ${resultSP.lstShowSanPhamTaiQua}"
+                             th:object="${resultSP}">
+                            <div class="product-item-inner">
+                                <div abbr="" class="product-img-wrap">
+                                    <div class="carousel-item" th:name="'divImgIsActive'+${istat.index}"
+                                         th:id="'imgActive'+${istat.index}+${istatAC.index}"
+                                         th:classappend="${#numbers.formatInteger(istat.index+''+istatAC.index,5) == #numbers.formatInteger(istat.index+''+0,5)? 'active':''}"
+                                         th:each="img, istatAC : ${item.anhChinhs}">
+                                        <img th:src="${'/khachhang/images/'+img}" class="d-block img-responsive"
+                                             alt="...">
+                                    </div>
+                                </div>
+                                <div class="product-button">
+                                    <a th:href="${'/khachhang/shop-details/'+item.sanPhamId}" class="js_tooltip"
+                                       data-mode="top" data-tip="Thêm Vào Giỏ"><i class="fas fa-cart-plus"></i></a>
+                                    <!--                                <a href="#" class="js_tooltip" data-mode="top" data-tip="Add To Whishlist"><i class="fa fa-heart"></i></a>-->
+                                    <!--                                <a href="#" class="js_tooltip" data-mode="top" data-tip="Quick&nbsp;View"><i class="fa fa-eye"></i></a>-->
+                                </div>
                             </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="categories-box">
-                    <div class="categories-image-wrap">
-                        <img src="../../../static/customer/img/categories/Categories_women.jpg" alt="" />
-                    </div>
-                    <div class="categories-content">
-                        <a href="#">
-                            <div class="categories-caption">
-                                <h6 class="normal">GIAY NỮ</h6>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="categories-box">
-                    <div class="categories-image-wrap">
-                        <img src="../../../static/customer/img/categories/Categories_man.jpg" alt="" />
-                    </div>
-                    <div class="categories-content">
-                        <a href="#">
-                            <div class="categories-caption">
-                                <h6 class="normal">GIÀY NAM</h6>
-                            </div>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-<!-- End Categories -->
+                            <div class="product-detail">
+                                <a class="tag" href="#">Men Fashion</a>
+                                <p class="product-title"><a th:href="${'/khachhang/shop-details/'+item.sanPhamId}"
+                                                            th:text="${item.tenSanPham}"></a></p>
+                                <div class="product-rating">
+                                    <div class="star-rating" itemprop="reviewRating" itemscope=""
+                                         itemtype="http://schema.org/Rating" title="Rated 4 out of 5">
+                                        <span style="width: 60%"></span>
+                                    </div>
 
-<!-- Sản phẩm mới -->
-<section class="section-padding">
-    <div class="container">
-        <h2 class="page-title">SẢN PHẨM MỚI</h2>
-    </div>
-    <div class="container">
-        <div id="new-tranding" class="product-item-4 owl-carousel owl-theme nf-carousel-theme1">
-            <!-- item.1 -->
-            <div class="product-item">
-                <div class="product-item-inner">
-                    <div class="product-img-wrap">
-                        <img src="../../../static/customer/img/product-img/big/product_125470001.jpg" alt="">
+                                </div>
+                                <h5 class="item-price"
+                                    th:text="${#numbers.formatDecimal(item.gia, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></h5>
+                            </div>
+                        </div>
                     </div>
-                    <div class="product-button">
-                        <a href="#" class="js_tooltip" data-mode="top" data-tip="Add To Cart"><i class="fa fa-shopping-bag"></i></a>
-                        <a href="#" class="js_tooltip" data-mode="top" data-tip="Add To Whishlist"><i class="fa fa-heart"></i></a>
-                        <a href="#" class="js_tooltip" data-mode="top" data-tip="Quick&nbsp;View"><i class="fa fa-eye"></i></a>
-                    </div>
-                </div>
-                <div class="product-detail">
-                    <a class="tag" href="#">Men Fashion</a>
-                    <p class="product-title"><a href="product_detail.html">Giày Tăng Cường</a></p>
-                    <h5 class="item-price">100.000 VND</h5>
                 </div>
             </div>
         </div>
-    </div>
-</section>
-<!-- Kết thúc sản phẩm mới -->
+    </section>
+    <!-- Kết thức sản phẩm mới (Tab with Slider) -->
 
-<!-- Like & Share Banner -->
-<section id="like-share" class="like-share">
-    <div class="container">
-        <div class="like-share-inner overlay-black40">
-            <h3>Like And Share Our Page for one time   </h3>
-            <ul class="social-icon">
-                <li><a href="http://facebook.com/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
-                <li><a href="https://plus.google.com/" target="_blank"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
-                <li><a href="https://www.twitter.com/" target="_blank"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
-                <li><a href="https://pinterest.com/" target="_blank"><i class="fa fa-pinterest-p" aria-hidden="true"></i></a></li>
+    <!-- Categories -->
+    <section class="">
+        <div class="section-padding container-fluid bg-image text-center overlay-light90"
+             data-background-img="img/bg/bg_5.jpg" data-bg-position-x="center center">
+            <div class="container">
+                <h2 class="page-title">MUA SẮM THEO DANH MỤC</h2>
+            </div>
+        </div>
+        <div class="container container-margin-minus-t">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="categories-box">
+                        <div class="categories-image-wrap">
+                            <img src="../../../static/customer/img/categories/Categories_cupple.jpg" alt=""/>
+                        </div>
+                        <div class="categories-content">
+                            <a href="#">
+                                <div class="categories-caption">
+                                    <h6 class="normal">bộ sưu tập</h6>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="categories-box">
+                        <div class="categories-image-wrap">
+                            <img src="../../../static/customer/img/categories/Categories_women.jpg" alt=""/>
+                        </div>
+                        <div class="categories-content">
+                            <a href="#">
+                                <div class="categories-caption">
+                                    <h6 class="normal">GIAY NỮ</h6>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="categories-box">
+                        <div class="categories-image-wrap">
+                            <img src="../../../static/customer/img/categories/Categories_man.jpg" alt=""/>
+                        </div>
+                        <div class="categories-content">
+                            <a href="#">
+                                <div class="categories-caption">
+                                    <h6 class="normal">GIÀY NAM</h6>
+                                </div>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Categories -->
+
+    <!-- Sản phẩm mới -->
+    <section class="section-padding">
+        <div class="container">
+            <h2 class="page-title">SẢN PHẨM MỚI</h2>
+        </div>
+        <div class="container">
+            <div id="new-tranding" class="product-item-4 owl-carousel owl-theme nf-carousel-theme1">
+                <!-- item.1 -->
+                <div class="product-item">
+                    <div class="product-item-inner">
+                        <div class="product-img-wrap">
+                            <img src="../../../static/customer/img/product-img/big/product_125470001.jpg" alt="">
+                        </div>
+                        <div class="product-button">
+                            <a href="#" class="js_tooltip" data-mode="top" data-tip="Add To Cart"><i
+                                    class="fa fa-shopping-bag"></i></a>
+                            <a href="#" class="js_tooltip" data-mode="top" data-tip="Add To Whishlist"><i
+                                    class="fa fa-heart"></i></a>
+                            <a href="#" class="js_tooltip" data-mode="top" data-tip="Quick&nbsp;View"><i
+                                    class="fa fa-eye"></i></a>
+                        </div>
+                    </div>
+                    <div class="product-detail">
+                        <a class="tag" href="#">Men Fashion</a>
+                        <p class="product-title"><a href="product_detail.html">Giày Tăng Cường</a></p>
+                        <h5 class="item-price">100.000 VND</h5>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Kết thúc sản phẩm mới -->
+
+    <!-- Like & Share Banner -->
+    <section id="like-share" class="like-share">
+        <div class="container">
+            <div class="like-share-inner overlay-black40">
+                <h3>Like And Share Our Page for one time </h3>
+                <ul class="social-icon">
+                    <li><a href="http://facebook.com/" target="_blank"><i class="fa fa-facebook" aria-hidden="true"></i></a>
+                    </li>
+                    <li><a href="https://plus.google.com/" target="_blank"><i class="fa fa-google-plus"
+                                                                              aria-hidden="true"></i></a></li>
+                    <li><a href="https://www.twitter.com/" target="_blank"><i class="fa fa-twitter"
+                                                                              aria-hidden="true"></i></a></li>
+                    <li><a href="https://pinterest.com/" target="_blank"><i class="fa fa-pinterest-p"
+                                                                            aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <!-- End Like & Share Banner -->
+
+
+    <!-- Logo thương hiệu-->
+    <section id="brand-logo" class="section-padding brand-logo">
+        <div class="container">
+            <ul class="list-none-ib brand-logo-carousel owl-carousel owl-theme">
+                <li class="brand-item"><a href="#">
+                    <img src="img/logo/01.png" alt="nileforest"/>
+                </a>
+                </li>
+                <li class="brand-item">
+                    <a href="#">
+                        <img src="img/logo/02.png" alt="niletheme"/>
+                    </a>
+                </li>
+                <li class="brand-item">
+                    <a href="#">
+                        <img src="img/logo/03.png" alt="nile"/>
+                    </a>
+                </li>
+                <li class="brand-item">
+                    <a href="#">
+                        <img src="img/logo/04.png" alt="forest"/>
+                    </a>
+                </li>
+                <li class="brand-item">
+                    <a href="#">
+                        <img src="img/logo/05.png" alt="themeforest"/>
+                    </a>
+                </li>
+                <li class="brand-item">
+                    <a href="#">
+                        <img src="img/logo/06.png" alt="woocommerce"/>
+                    </a>
+                </li>
+                <li class="brand-item">
+                    <a href="#">
+                        <img src="img/logo/07.png" alt="ecommerce"/>
+                    </a>
+                </li>
+                <li class="brand-item">
+                    <a href="#">
+                        <img src="img/logo/08.png" alt="html"/>
+                    </a>
+                </li>
+                <li class="brand-item">
+                    <a href="#">
+                        <img src="img/logo/09.png" alt="multiprapose"/>
+                    </a>
+                </li>
+
             </ul>
+
         </div>
-    </div>
-</section>
-<!-- End Like & Share Banner -->
-
-
-
-
-
-<!-- Logo thương hiệu-->
-<section id="brand-logo" class="section-padding brand-logo">
-    <div class="container">
-        <ul class="list-none-ib brand-logo-carousel owl-carousel owl-theme">
-            <li class="brand-item"><a href="#">
-                <img src="img/logo/01.png" alt="nileforest" />
-            </a>
-            </li>
-            <li class="brand-item">
-                <a href="#">
-                    <img src="img/logo/02.png" alt="niletheme" />
-                </a>
-            </li>
-            <li class="brand-item">
-                <a href="#">
-                    <img src="img/logo/03.png" alt="nile" />
-                </a>
-            </li>
-            <li class="brand-item">
-                <a href="#">
-                    <img src="img/logo/04.png" alt="forest" />
-                </a>
-            </li>
-            <li class="brand-item">
-                <a href="#">
-                    <img src="img/logo/05.png" alt="themeforest" />
-                </a>
-            </li>
-            <li class="brand-item">
-                <a href="#">
-                    <img src="img/logo/06.png" alt="woocommerce" />
-                </a>
-            </li>
-            <li class="brand-item">
-                <a href="#">
-                    <img src="img/logo/07.png" alt="ecommerce" />
-                </a>
-            </li>
-            <li class="brand-item">
-                <a href="#">
-                    <img src="img/logo/08.png" alt="html" />
-                </a>
-            </li>
-            <li class="brand-item">
-                <a href="#">
-                    <img src="img/logo/09.png" alt="multiprapose" />
-                </a>
-            </li>
-
-        </ul>
-
-    </div>
-</section>
-<!-- kết thúc logo thương hiệu -->
+    </section>
+    <!-- kết thúc logo thương hiệu -->
 </div>
 <!-- End Page Content Wraper -->
 </body>
