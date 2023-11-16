@@ -1,6 +1,10 @@
 package com.example.duantotnghiepgiaythethaonova.restController.BanHang.GioHangRest;
 
+import com.example.duantotnghiepgiaythethaonova.entity.KichCo;
+import com.example.duantotnghiepgiaythethaonova.entity.MauSac;
 import com.example.duantotnghiepgiaythethaonova.repository.CTSPRepository;
+import com.example.duantotnghiepgiaythethaonova.repository.KichCoRepository;
+import com.example.duantotnghiepgiaythethaonova.repository.MauSacRepository;
 import com.example.duantotnghiepgiaythethaonova.service.GioHangService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -8,6 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Optional;
 
 @RestController
 public class GioHangRestController {
@@ -17,24 +22,41 @@ public class GioHangRestController {
     @Autowired
     GioHangService gioHangService;
 
+    @Autowired
+    MauSacRepository mauSacRepository;
+
+    @Autowired
+    KichCoRepository kichCoRepository;
+
     @RequestMapping("/khachhang/SoLuongSanPhamChiTiet")
     public Map<String, Object> laySoLuongSanPhamChiTiet(@RequestParam("tenKichCo") String tenKichCo,
-                                                        @RequestParam("mauSacId") Integer mauSacId,
+                                                        @RequestParam("mauSacId") String mauSacId,
                                                         @RequestParam("sanPhamId") Integer sanPhamId) {
         Map<String, Object> response = new HashMap<>();
 
-        Integer soLuongSanPhamChiTiet = sanPhamChiTietRepository.laySoLuongSanPhamChiTiet(tenKichCo, mauSacId, sanPhamId);
-        response.put("soLuongSanPhamChiTiet", soLuongSanPhamChiTiet);
-        return response;
+        Optional<MauSac> optMauSac = mauSacRepository.finMauSacByMa(mauSacId);
+        Optional<KichCo> optKichCO = kichCoRepository.findByTenKichCo(tenKichCo);
+        if(optKichCO.isPresent() && optMauSac.isPresent()){
+            MauSac mauSac = optMauSac.get();
+            KichCo kichCo = optKichCO.get();
+            Integer soLuongSanPhamChiTiet = sanPhamChiTietRepository.laySoLuongSanPhamChiTiet(tenKichCo, mauSac.getIdMauSac(), sanPhamId);
+            response.put("soLuongSanPhamChiTiet", soLuongSanPhamChiTiet);
+            return response;
+        }
+        return null;
     }
 
     @PostMapping("/khachhang/addToCart")
     public ResponseEntity<String> addToCart(@RequestParam("sanPhamId") Integer sanPhamId,
-                                            @RequestParam("mauSacId") Integer mauSacId,
-                                            @RequestParam("kichCoId") Integer kichCoId,
+                                            @RequestParam("mauSacId") String mauSacId,
+                                            @RequestParam("kichCoId") String kichCoId,
                                             @RequestParam("soLuong") Integer soLuong) {
 
-        return gioHangService.addToCart(sanPhamId, mauSacId, kichCoId, soLuong);
+        Optional<MauSac> optMauSac = mauSacRepository.finMauSacByMa(mauSacId);
+        Optional<KichCo> optKichCO = kichCoRepository.findByTenKichCo(kichCoId);
+        Integer id_kichCo = optKichCO.get().getIdKichCo();
+        Integer id_Ms = optMauSac.get().getIdMauSac();
+        return gioHangService.addToCart(sanPhamId, id_Ms, id_kichCo, soLuong);
     }
 
     @RequestMapping("/khachhang/gio-hang-chi-tiet/xoa-sach-gio-hang")

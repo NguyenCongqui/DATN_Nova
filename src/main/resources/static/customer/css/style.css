@@ -671,14 +671,13 @@ select {
   font-size: 12px;
 }
 
-input,
+
 input[type="text"],
 input[type="email"],
 input[type="tel"],
 input[type="number"],
 input[type="password"],
-input[type="radio"],
-input[type="checkbox"],
+
 textarea,
 select {
   appearance: none;

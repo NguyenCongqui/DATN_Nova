@@ -5,7 +5,12 @@ import com.example.duantotnghiepgiaythethaonova.dto.composite.SanPhamTaiQuayDTO;
 import com.example.duantotnghiepgiaythethaonova.dto.composite.ShopDetailsDTO;
 import com.example.duantotnghiepgiaythethaonova.dto.composite.ShowSanPhamdto;
 import com.example.duantotnghiepgiaythethaonova.dto.search.SPAndSPCTSearchDto;
-import com.example.duantotnghiepgiaythethaonova.entity.*;
+import com.example.duantotnghiepgiaythethaonova.entity.HinhAnh;
+import com.example.duantotnghiepgiaythethaonova.entity.KichCo;
+import com.example.duantotnghiepgiaythethaonova.entity.MauSac;
+import com.example.duantotnghiepgiaythethaonova.entity.SanPham;
+import com.example.duantotnghiepgiaythethaonova.repository.KichCoRepository;
+import com.example.duantotnghiepgiaythethaonova.repository.MauSacRepository;
 import com.example.duantotnghiepgiaythethaonova.service.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,6 +24,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.persistence.criteria.CriteriaBuilder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -63,6 +69,13 @@ public class HomeController {
 
     @Autowired
     private StorageService storageService;
+    @Autowired
+    private MauSacRepository mauSacRepository;
+
+    @Autowired
+    private KichCoRepository kichCoRepository;
+
+    Integer sanPhamIdMauSac;
 
     @ModelAttribute("lstGia")
     public List<String> getListGia() {
@@ -150,6 +163,7 @@ public class HomeController {
             return dto;
         }).collect(Collectors.toList());
     }
+
     @ModelAttribute("lstKichCo")
     public List<KichCoDTO> getLstKichCo() {
         return kichCoService.selectAllKichCoExist().stream().map(item -> {
@@ -158,7 +172,6 @@ public class HomeController {
             return dto;
         }).collect(Collectors.toList());
     }
-
 
 
     @GetMapping("/images/{filename:.+}")
@@ -224,6 +237,7 @@ public class HomeController {
         model.addAttribute("sanPhamPage", resultPage);
         return "customer/view/home";
     }
+
     @GetMapping("shop")
     public String shop(Model model, @RequestParam("page") Optional<Integer> page,
                        @ModelAttribute(name = "dataSearch") SPAndSPCTSearchDto dataSearch) {
@@ -299,15 +313,12 @@ public class HomeController {
                     lstHinhAnhStr.add("default.png");
                 }
             }
-            if(lstHinhAnhStr.size()%2==0)
-            {
-                dto.setAnhChinhs1(lstHinhAnhStr.subList(0, lstHinhAnhStr.size()/2));
-                dto.setAnhChinhs2(lstHinhAnhStr.subList(lstHinhAnhStr.size()/2, lstHinhAnhStr.size()));
-            }
-            else
-            {
-                dto.setAnhChinhs1(lstHinhAnhStr.subList(0, lstHinhAnhStr.size()/2+1));
-                dto.setAnhChinhs2(lstHinhAnhStr.subList(lstHinhAnhStr.size()/2+1, lstHinhAnhStr.size()));
+            if (lstHinhAnhStr.size() % 2 == 0) {
+                dto.setAnhChinhs1(lstHinhAnhStr.subList(0, lstHinhAnhStr.size() / 2));
+                dto.setAnhChinhs2(lstHinhAnhStr.subList(lstHinhAnhStr.size() / 2, lstHinhAnhStr.size()));
+            } else {
+                dto.setAnhChinhs1(lstHinhAnhStr.subList(0, lstHinhAnhStr.size() / 2 + 1));
+                dto.setAnhChinhs2(lstHinhAnhStr.subList(lstHinhAnhStr.size() / 2 + 1, lstHinhAnhStr.size()));
             }
             dto.setAnhChinhs(lstHinhAnhStr);
             dto.setSanPhamId(sanPhamId);
@@ -321,7 +332,14 @@ public class HomeController {
             dto.setLstMauSac(lstMauSac);
             model.addAttribute("shopDetails", dto);
         }
+        List<String> mauSacList = mauSacRepository.getMauSauBySanPhamId(sanPhamId);
+        model.addAttribute("mauSacList", mauSacList);
+
+        List<Integer> kichCoList = kichCoRepository.getKichCoBySanPhamId(sanPhamId);
+        model.addAttribute("kichCoList", kichCoList);
+        System.out.println(kichCoList);
 
         return "customer/view/shop-details";
     }
+
 }

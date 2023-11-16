@@ -104,4 +104,6 @@ public interface SanPhamChiTietRepository extends JpaRepository<ChiTietSanPham, 
     @Query(value = "SELECT COALESCE(sum(spct.SoLuong),0) FROM SanPhamCT spct WHERE spct.IdSanPham = :sanPhamId AND spct.Daxoa = 0", nativeQuery = true)
     int getSumSoLuongBySanPhamId(@Param("sanPhamId") Integer id);
 
+    @Query(value = "select SoLuong from  SanPhamCT where IdMauSac = ?1 and IdKichCo = ?2 and IdSanPham = ?3", nativeQuery = true)
+    Integer getSoLuong(Integer IdMauSac, Integer IdKichCo, Integer IdSanPham);
 }	

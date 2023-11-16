@@ -47,18 +47,35 @@
                                 <div class="button-group">
                                     <input type="hidden" id="idCustomerXN" th:value="${customerXN.idHoaDon}">
 
-                                    <button class="action-button chiTietHoaDonCus" type="submit" id="chiTietHoaDonCusXN">
+<!--                                    <button class="action-button chiTietHoaDonCus" type="submit" id="chiTietHoaDonCusXN">-->
+<!--                                        <i class="fa fa-info" aria-hidden="true"></i>-->
+<!--                                    </button>-->
+
+<!--                                    <script th:inline="javascript">-->
+<!--                                        $(document).ready(function () {-->
+<!--                                            $("#chiTietHoaDonCusXN").click(function () {-->
+<!--                                                const id = $("#idCustomerXN").val();-->
+<!--                                                window.location.href = "/khachhang/DonHang/ChiTietHoaDon/ChoXacNhan/hoa-don-id=" + id;-->
+<!--                                            });-->
+<!--                                        });-->
+<!--                                    </script>-->
+
+                                    <button class="action-button chiTietHoaDonCus" type="submit" id="chiTietHoaDonCusXN" th:attr="data-id=${customerXN.idHoaDon}">
                                         <i class="fa fa-info" aria-hidden="true"></i>
                                     </button>
 
                                     <script th:inline="javascript">
                                         $(document).ready(function () {
-                                            $("#chiTietHoaDonCusXN").click(function () {
-                                                const id = $("#idCustomerXN").val();
+                                            $(".chiTietHoaDonCus").click(function () {
+                                                // Get the data-id attribute value of the clicked button
+                                                const id = $(this).attr("data-id");
+
+                                                // Use the id in the window location
                                                 window.location.href = "/khachhang/DonHang/ChiTietHoaDon/ChoXacNhan/hoa-don-id=" + id;
                                             });
                                         });
                                     </script>
+
 
                                     <button class="action-button HuyDonCus" th:attr="data-id=${customerXN.idHoaDon}">
                                         <i class="fas fa-times"></i>

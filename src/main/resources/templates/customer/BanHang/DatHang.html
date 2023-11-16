@@ -12,8 +12,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <link href="../../../static/customer/css/plugins/bootstrap.css" rel="stylesheet" type="text/css" />
@@ -75,13 +73,13 @@
                                     <h3 id="thongTinGiaohang">Chi Tiết Thanh Toán</h3>
                                     <div class="row">
                                         <div class="form-field-wrapper form-center col-sm-12">
-                                            <label for="billing_company" class="left">Họ Và Tên</label>
+                                            <label  class="left">Họ Và Tên</label>
                                             <input class="input-md form-full-width" id="hoTen" name="hoTen" title="Company Name" value=""
                                                    th:value="${hoaDon.getKhachHang() != null ? hoaDon.getKhachHang().hoTen : ''}"
                                                    placeholder="Họ Và Tên" type="text">
                                         </div>
                                         <div class="form-field-wrapper form-center col-sm-6">
-                                            <label for="billing_phone" class="left">
+                                            <label class="left">
                                                 Số Điện Thoại
                                                 <abbr class="form-required" title="required">*</abbr></label>
                                             <input class="input-md form-full-width" id="sdt" name="sdt" title="phone"
@@ -89,7 +87,7 @@
                                                    value="" placeholder="(+84)" type="tel" required="" aria-required="true">
                                         </div>
                                         <div class="form-field-wrapper form-center col-sm-6">
-                                            <label for="billing_email" class="left">
+                                            <label class="left">
                                                 Email
                                                 <abbr class="form-required" title="required">*</abbr></label>
                                             <input class="input-md form-full-width" id="nhapEmail" name="nhapEmail"
@@ -161,7 +159,7 @@
 <!--                                        </div>-->
 
                                         <div class="form-field-wrapper form-center col-sm-12">
-                                            <label for="billing_address" class="left">
+                                            <label class="left">
                                                 Địa Chỉ
                                                 <abbr class="form-required" title="required">*</abbr></label>
                                             <input class="input-md form-full-width mb-20 addressInput" id="addressInput"
@@ -169,7 +167,7 @@
                                                    name="addressInput" title="Address" value="" placeholder="Địa Chỉ" type="text" required="" aria-required="true">
                                         </div>
                                         <div class="form-field-wrapper form-center col-sm-12">
-                                            <label for="billing_town_city" class="left">
+                                            <label class="left">
                                                 Ghi Chú
                                               </label>
                                             <textarea name="note" id="note" th:text="${hoaDon.ghiChu}" value="" style="width: 540px; height: 120px;" placeholder="Nhập ghi chú đơn hàng" type="text" required="" aria-required="true">
@@ -258,51 +256,48 @@
                                                             </ul>
                                                         </td>
                                                     </tr>
-<!--                                                    <tr class="shipping">-->
-<!--                                                        <th>Giảm Giá Đã áp dụng</th>-->
-<!--                                                        <td>-->
-<!--                                                            <ul id="shipping_method">-->
-<!--                                                                <li>-->
-<!--                                                                    <label for="shipping_method" id="tenGiamGia" >-->
-<!--                                                                        <span class="woocommerce-Price-amount amount" >-->
-<!--                                                                        <span class="woocommerce-Price-currencySymbol">-->
-<!--                                                                            </span>-->
-<!--                                                                        </span>-->
-<!--                                                                    </label>-->
-<!--                                                                </li>-->
-<!--                                                            </ul>-->
-<!--                                                        </td>-->
-<!--                                                    </tr>-->
-<!--                                                    <tr class="shipping">-->
-<!--                                                        <th>Giảm Giá</th>-->
-<!--                                                        <td>-->
-<!--                                                            <ul id="shipping_method">-->
-<!--                                                                <li>-->
-<!--                                                                    <label for="shipping_method" id="discount">-->
-<!--                                                                        <span class="woocommerce-Price-amount amount" >-->
-<!--                                                                        <span class="woocommerce-Price-currencySymbol">-->
-<!--                                                                            </span>-->
-<!--                                                                        </span>-->
-<!--                                                                    </label>-->
-<!--                                                                </li>-->
-<!--                                                            </ul>-->
-<!--                                                        </td>-->
-<!--                                                    </tr>-->
+                                                    <tr class="shipping">
+                                                        <th>Giảm Giá Đã áp dụng</th>
+                                                        <td>
+                                                            <ul id="shipping_method">
+                                                                <li>
+                                                                    <label for="shipping_method" id="tenGiamGia" >
+                                                                        <span class="woocommerce-Price-amount amount" >
+                                                                       <span id="tenGiamGia"></span>
+                                                                        </span>
+                                                                    </label>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="shipping">
+                                                        <th>Giảm Giá</th>
+                                                        <td>
+                                                            <ul id="shipping_method">
+                                                                <li>
+                                                                    <label for="shipping_method" id="discount">
+                                                                        <span class="woocommerce-Price-amount amount" >
+                                                                       <span id="discount">0 đ</span>
+                                                                        </span>
+                                                                    </label>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
 
 
-                                                    <p class="cart__discount">Giảm giá đã áp dụng: <span id="tenGiamGia"></span></p>
-                                                    <p class="cart__discount">Giảm giá: <span id="discount">0 đ</span></p>
-<!--                                                    <tr class="order-total">-->
-<!--                                                        <th>Tổng Cộng</th>-->
-<!--                                                        <td class="tongCongTien">-->
-<!--                                                            <span class="product-price-amount amount" id="total">-->
-<!--                                                                <span class="currency-sign">-->
+<!--                                                    <p class="cart__discount">Giảm giá đã áp dụng: <span id="tenGiamGia"></span></p>-->
+<!--                                                    <p class="cart__discount">Giảm giá: <span id="discount">0 đ</span></p>-->
+                                                    <tr class="order-total">
+                                                        <th>Tổng Cộng</th>
+                                                        <td class="tongCongTien">
+                                                            <span class="product-price-amount amount">
+                                                                <span class="currency-sign" id="total">
 
-<!--                                                                </span>0 VND</span>-->
-<!--                                                        </td>-->
-<!--                                                    </tr>-->
+                                                        </td>
+                                                    </tr>
 
-                                                    <p class="tongCongTien">Tổng cộng: <span id="total">0 đ</span></p><hr>
+<!--                                                    <p class="tongCongTien">Tổng cộng: <span id="total">0 đ</span></p><hr>-->
                                                     </tfoot>
                                                 </table>
                                             </div>
@@ -350,7 +345,7 @@
 
                                                         </form>
 
-                                                        <!--Đặt hàng-->
+                                                        <!--Thanh Toan-->
                                                         <div class="place-order">
                                                             <button type="submit" id="buttonThanhToan" class="button-thanhToan btn btn-lg btn-color form-full-width" th:attr="data-id=${hoaDon.idHoaDon}" >Thanh Toán</button>
                                                         </div>

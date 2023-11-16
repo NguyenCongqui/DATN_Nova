@@ -9,6 +9,8 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
+
 @Repository
 public interface MauSacRepository extends JpaRepository<MauSac,Integer> {
 
@@ -23,5 +25,13 @@ public interface MauSacRepository extends JpaRepository<MauSac,Integer> {
 
     @Query(value = "SELECT DISTINCT m.* FROM MauSac m LEFT JOIN SanPhamCT s ON m.IdMauSac = s.IdMauSac WHERE s.IdSanPham = :spId AND s.DaXoa = 0 ORDER BY m.IdMauSac DESC", nativeQuery = true)
     List<MauSac> getAllMauSacExistBySPId(@Param("spId") Integer spId);
+
+    @Query(value = "SELECT pc.MaMauSac AS color_name FROM SanPhamCT pd " +
+            "JOIN MauSac pc ON pd.IdMauSac = pc.IdMauSac WHERE pd.IdSanPham = :IdSanPham" +
+            " GROUP BY pc.MaMauSac, pd.IdMauSac",nativeQuery = true)
+    List<String> getMauSauBySanPhamId(@Param("IdSanPham") Integer idSanPham);
+
+    @Query(value = "select * from MauSac where MaMauSac = ?", nativeQuery = true)
+    Optional<MauSac> finMauSacByMa(String MaMauSac);
 
 }
