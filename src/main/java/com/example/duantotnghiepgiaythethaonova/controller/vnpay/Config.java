@@ -23,6 +23,7 @@ public class Config {
     public static String vnp_HashSecret = "MYMUQSXXETLEHGTZQOBFSEVWQWYXOAEX";
     public static String vnp_apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
     public static String vnp_apiUrl1 = "https://sandbox.vnpayment.vn/merchantv2/Transaction/PaymentSearch.htm";
+    public static String vnp_apiUrl2 = "https://sandbox.vnpayment.vn/merchantv2/";
 
 
     public static String getUrl(
@@ -32,7 +33,7 @@ public class Config {
                                 String sdtNguoiNhan,
                                 BigDecimal tienShipHD,
                                 String hoaDonId,
-                                Integer idNguoiDung
+                                int idNguoiDung
                                 ) {
         vnp_Returnurl = vnp_Returnurl
                 + "emailNguoiNhann=" + emailNguoiNhann + "&tienGiamGia=" + tienGiamGia + "&nameGiamGia="

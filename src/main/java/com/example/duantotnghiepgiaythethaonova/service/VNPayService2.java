@@ -6,7 +6,6 @@ import com.example.duantotnghiepgiaythethaonova.entity.*;
 import com.example.duantotnghiepgiaythethaonova.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
@@ -20,7 +19,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
-public class VNPayService {
+public class VNPayService2 {
     @Autowired
     HoaDonRepository hoaDonRepository;
 
@@ -42,22 +41,10 @@ public class VNPayService {
     @Autowired
     EmailService emailService;
 
-
-    public String createOrder(long total,
-                              String orderInfor,
-                              String emailNguoiNhann,
-                              BigDecimal tienGiamGia,
-                              String nameGiamGia,
-                              String sdtNguoiNhan,
-                              BigDecimal tienShipHD,
-                              String hoaDonId,
-                              String nguoiNhan,
-                              String diaChiGiaoHang,
-                              String ghiChu) {
-        String email = SecurityContextHolder.getContext().getAuthentication().getName();
-        NguoiDung nguoiDung = nguoiDungRepository.findByEmail(email);
-        int idNguoiDung = nguoiDung.getIdNguoiDung();
-
+    public ResponseEntity<?> createOrder(PaymentDTO paymentDTO) {
+//        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+//        NguoiDung nguoiDung = nguoiDungRepository.findByEmail(email);
+//        Integer idNguoiDung = nguoiDung.getIdNguoiDung();
 
         String vnp_Version = "2.1.0";
         String vnp_Command = "pay";
@@ -70,17 +57,17 @@ public class VNPayService {
         vnp_Params.put("vnp_Version", vnp_Version);
         vnp_Params.put("vnp_Command", vnp_Command);
         vnp_Params.put("vnp_TmnCode", vnp_TmnCode);
-        vnp_Params.put("vnp_Amount", String.valueOf(total * 100));
+        vnp_Params.put("vnp_Amount", String.valueOf(paymentDTO.getAmount() * 100));
         vnp_Params.put("vnp_CurrCode", "VND");
 
         vnp_Params.put("vnp_TxnRef", vnp_TxnRef);
-        vnp_Params.put("vnp_OrderInfo", orderInfor);
+        vnp_Params.put("vnp_OrderInfo", paymentDTO.getOrderCode());
         vnp_Params.put("vnp_OrderType", orderType);
 
         String locate = "vn";
         vnp_Params.put("vnp_Locale", locate);
 
-        vnp_Params.put("vnp_ReturnUrl", Config.getUrl(emailNguoiNhann, tienGiamGia, nameGiamGia, sdtNguoiNhan, tienShipHD, hoaDonId, idNguoiDung));
+        vnp_Params.put("vnp_ReturnUrl", Config.getUrl(paymentDTO.getEmailNguoiNhann(), paymentDTO.getTienGiamGia(), paymentDTO.getNameGiamGia(), paymentDTO.getNguoiNhan(), paymentDTO.getTienShipHD(), paymentDTO.getOrderCode(), 1));
         vnp_Params.put("vnp_IpAddr", vnp_IpAddr);
 
         Calendar cld = Calendar.getInstance(TimeZone.getTimeZone("Etc/GMT+7"));
@@ -125,15 +112,15 @@ public class VNPayService {
         String paymentUrl = Config.vnp_PayUrl + "?" + queryUrl;
         System.out.println(paymentUrl);
 
-        Optional<HoaDon> optHoaDon = hoaDonRepository.findById(Integer.valueOf(hoaDonId));
+        Optional<HoaDon> optHoaDon = hoaDonRepository.findById(Integer.parseInt(paymentDTO.getOrderCode()));
         if (optHoaDon.isPresent()) {
             HoaDon hoaDon = optHoaDon.get();
-            hoaDon.setNguoiNhan(nguoiNhan);
-            hoaDon.setDiaChiGiaoHang(diaChiGiaoHang);
-            hoaDon.setGhiChu(ghiChu);
+            hoaDon.setNguoiNhan(paymentDTO.getNguoiNhan());
+            hoaDon.setDiaChiGiaoHang(paymentDTO.getDiaChiGiaoHang());
+            hoaDon.setGhiChu(paymentDTO.getGhiChu());
             hoaDonRepository.save(hoaDon);
         }
-        return paymentUrl;
+        return ResponseEntity.ok(paymentUrl);
     }
 
     public int orderReturn(HttpServletRequest request) {
@@ -167,7 +154,7 @@ public class VNPayService {
 
     }
 
-    public void saveOrderReturn(HttpServletRequest request, Model model, int nguoiDungId) {
+    public void saveOrderReturn(HttpServletRequest request, Model model, Integer nguoiDungId) {
         String orderInfo = request.getParameter("vnp_OrderInfo");
         String paymentTime = request.getParameter("vnp_PayDate");
         String transactionId = request.getParameter("vnp_TransactionNo");
