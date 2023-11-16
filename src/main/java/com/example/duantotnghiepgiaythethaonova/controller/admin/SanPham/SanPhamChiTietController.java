@@ -397,14 +397,14 @@ public class SanPhamChiTietController {
 			dto.setMauSacIds(lstMS);
 
 //======================================
-//			Integer lstEG = dataGen.stream().map(i -> i.getDeGiay().getIdDeGiay())
-//					.findFirst()  // Lấy giá trị đầu tiên từ danh sách
-//					.orElse(null);  // Hoặc giá trị mặc định nếu danh sách rỗng hoặc không có giá trị
-//			Integer lstLG = dataGen.stream().map(i -> i.getLotGiay().getIdLotGiay()).findFirst().orElse(null);
-//			Integer lstDG = dataGen.stream().map(i -> i.getDayGiay().getIdDayGiay()).findFirst().orElse(null);
-//			dto.setDeGiayId(lstEG);
-//			dto.setLotGiayId(lstLG);
-//			dto.setDayGiayId(lstDG);
+			Integer lstEG = dataGen.stream().map(i -> i.getDeGiay().getIdDeGiay())
+					.findFirst()  // Lấy giá trị đầu tiên từ danh sách
+					.orElse(null);  // Hoặc giá trị mặc định nếu danh sách rỗng hoặc không có giá trị
+			Integer lstLG = dataGen.stream().map(i -> i.getLotGiay().getIdLotGiay()).findFirst().orElse(null);
+			Integer lstDG = dataGen.stream().map(i -> i.getDayGiay().getIdDayGiay()).findFirst().orElse(null);
+			dto.setDeGiayId(lstEG);
+			dto.setLotGiayId(lstLG);
+			dto.setDayGiayId(lstDG);
 //=======================================
 
 
