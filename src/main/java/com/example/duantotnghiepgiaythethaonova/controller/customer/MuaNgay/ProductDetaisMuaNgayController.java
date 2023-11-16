@@ -5,6 +5,8 @@ import com.example.duantotnghiepgiaythethaonova.entity.HinhAnh;
 import com.example.duantotnghiepgiaythethaonova.entity.KichCo;
 import com.example.duantotnghiepgiaythethaonova.entity.MauSac;
 import com.example.duantotnghiepgiaythethaonova.entity.SanPham;
+import com.example.duantotnghiepgiaythethaonova.repository.KichCoRepository;
+import com.example.duantotnghiepgiaythethaonova.repository.MauSacRepository;
 import com.example.duantotnghiepgiaythethaonova.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -32,6 +34,12 @@ public class ProductDetaisMuaNgayController {
 
     @Autowired
     MauSacService mauSacService;
+
+    @Autowired
+    private MauSacRepository mauSacRepository;
+
+    @Autowired
+    private KichCoRepository kichCoRepository;
 
     @RequestMapping("MuaNgay/shop-details/{id}")
     public String shopDetails(Model model, @PathVariable("id") Integer sanPhamId) {
@@ -72,6 +80,16 @@ public class ProductDetaisMuaNgayController {
             dto.setLstMauSac(lstMauSac);
             model.addAttribute("shopDetails", dto);
         }
+        List<String> mauSacList = mauSacRepository.getMauSauBySanPhamId(sanPhamId);
+        model.addAttribute("mauSacList", mauSacList);
+
+        List<Integer> kichCoList = kichCoRepository.getKichCoBySanPhamId(sanPhamId);
+        model.addAttribute("kichCoList", kichCoList);
+
+        List<String> tenMauSacList = mauSacRepository.getTenMauSauBySanPhamId(sanPhamId);
+        model.addAttribute("tenMauSacList", tenMauSacList);
+        System.out.println(kichCoList);
+
 
         return "customer/MuaNgay/MuaNgayProductsDetails";
     }

@@ -99,82 +99,51 @@
                         <span class="product-price-text"
                               th:text="${#numbers.formatDecimal(shopDetails.gia, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></span></span>
                                         </div>
-                                        <!--                                        <p class="product-description">-->
-                                        <!--                                            When an unknown printer took a galley of type and scrambled it to make a-->
-                                        <!--                                            type specimen book. It has survived not only five centuries, but also the-->
-                                        <!--                                            leap into electronic remaining essentially unchanged.-->
-                                        <!--                                        </p>-->
-                                                                                <div class="row product-filters product__details__option">
-                                                                                    <form class="col-md-12 filters-color product__details__option__color">
-                                                                                        <label for="select-color">Màu Sắc</label>
-                                                                                        <div class="color-selector ">
-                                                                                            <a id="qqq" class="entry chonMauSaca"
-                                                                                                    th:each="mauSac: ${mauSacList} "
-                                                                                                    th:style="'background:'+ ${mauSac}" th:attr="data-id=${mauSac}">
+                                        <div class="row product-filters product__details__option">
+                                            <form class="col-md-12 filters-color product__details__option__color">
+                                                <label for="select-color">Màu Sắc</label>
+                                                <div class="color-selector ">
+                                                    <a id="qqq" class="entry chonMauSaca"
+                                                       th:each="mauSac: ${mauSacList} "
+                                                       th:style="'background:'+ ${mauSac}" th:attr="data-id=${mauSac}">
+                                                    </a>
+                                                    <input type="hidden" id="mauSacDaChon">
+                                                </div>
+                                            </form>
+                                            <form class="col-md-12 filters-size product__details__option__size">
+                                                <label for="select-size">Size</label>
+                                                <div class="size-selector">
+                                                    <a class="entry chonKichCoa" type="radio"
+                                                       th:each="kichCo: ${kichCoList}" th:text="${kichCo}"
+                                                       th:attr="data-id=${kichCo}">
+                                                    </a>
+                                                    <input type="hidden" id="kichCoDaChon-customer">
+                                                </div>
+                                            </form>
+                                            <input type="hidden" id="id_san_pham" th:data-id="${shopDetails.sanPhamId}">
 
-                                                                                            </a>
-                                                                                            <input type="hidden" id="mauSacDaChon">
-                                                                                        </div>
-                                                                                    </form>
-                                                                                    <form class="col-md-12 filters-size product__details__option__size">
-                                                                                        <label for="select-size">Size</label>
-                                                                                        <div class="size-selector">
-                                                                                            <a class="entry chonKichCoa" type="radio"
-                                                                                                    th:each="kichCo: ${kichCoList}" th:text="${kichCo}"
-                                                                                                    th:attr="data-id=${kichCo}">
-                                                                                          </a>
-                                                                                            <input type="hidden" id="kichCoDaChon-customer">
-                                                                                        </div>
-                                                                                    </form>
-                                                                                    <input type="hidden" id="id_san_pham" th:data-id="${shopDetails.sanPhamId}">
+                                        </div>
 
-                                                                                </div>
-
-<!--                                        <div class="mt-2"><span class="fw-bold">Màu sắc</span>-->
-<!--                                            <div class="colors">-->
-<!--                                                <ul id="marker" th:each="mauSac: ${mauSacList}">-->
-<!--                                                    <button class="chonMauSaca"-->
-<!--                                                            th:style="'background:'+ ${mauSac}" th:attr="data-id=${mauSac}"></button>-->
-<!--                                                    <input type="hidden" id="mauSacDaChon">-->
-<!--                                                </ul>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-
-<!--                                        <div class="mt-3"><span class="fw-bold">Kích cỡ</span>-->
-<!--                                            <div class="colors" id="div-kichCoCustomer">-->
-<!--                                                <ul id="marker" >-->
-<!--                                                    <button  th:each="kichCo: ${kichCoList}" th:text="${kichCo}"  th:attr="data-id=${kichCo}" class="chonKichCoa"></button>-->
-<!--                                                    <input type="hidden" id="kichCoDaChon-customer">-->
-<!--                                                </ul>-->
-<!--                                            </div>-->
-<!--                                        </div>-->
-<!--                                        <input type="hidden" id="id_san_pham" th:data-id="${shopDetails.sanPhamId}">-->
-
-                                        <!--                                        <div class="fdnfgng product__details__option" th:data-id="${shopDetails.sanPhamId}">-->
-                                        <!--                                            <div class="product__details__option__size">-->
-                                        <!--                                                <span>Kích cỡ:</span>-->
-                                        <!--                                                <label th:for="${tenKichCo}" name="kichCoIdsName" class="gdgfh chonKichCo"-->
-                                        <!--                                                       th:id="'KichCoIdsRadio'+${istat.index}"-->
-                                        <!--                                                       th:input-id="'tenKichCoRadioId'+${istat.index}" input-name="kichCoId"-->
-                                        <!--                                                       onclick="chooseOptionLabel(this.getAttribute('name'),this.getAttribute('id'),this.getAttribute('input-name'),this.getAttribute('input-id'))"-->
-                                        <!--                                                       th:each="item, istat : ${shopDetails.lstKichCo}">-->
-                                        <!--                                                    <input type="radio" th:field="*{kichCoId}" th:value="${item.idKichCo}"-->
-                                        <!--                                                           th:id="'tenKichCoRadioId'+${istat.index}">-->
-                                        <!--                                                </label>-->
-                                        <!--                                            </div>-->
-                                        <!--                                            <div class="product__details__option__color">-->
-                                        <!--                                                <span>Màu sắc:</span>-->
-                                        <!--                                                <label class="chonMauSac"-->
-                                        <!--                                                       onclick="chooseOptionColorLabel(this.getAttribute('id'),this.getAttribute('name'), this.getAttribute('input-name'), this.getAttribute('input-id'))"-->
-                                        <!--                                                       th:for="'mauSacInpId'+${istat.index}" th:id="labelMS+${istat.index}"-->
-
-                                        <!--                                                       th:each="ms, istat : ${shopDetails.lstMauSac}" th:name="labelMSName"-->
-                                        <!--                                                       th:input-name="mauSacId" th:input-id="'mauSacInpId'+${istat.index}">-->
-                                        <!--                                                    <input type="radio" th:value="${ms.idMauSac}" th:id="'mauSacInpId'+${istat.index}"-->
-                                        <!--                                                           th:field="*{mauSacId}" th:style="'background:'+ ${ms.maMauSac}">-->
-                                        <!--                                                </label>-->
+                                        <!--                                        <div class="mt-2"><span class="fw-bold">Màu sắc</span>-->
+                                        <!--                                            <div class="colors">-->
+                                        <!--                                                <ul id="marker" th:each="mauSac: ${mauSacList}">-->
+                                        <!--                                                    <button class="chonMauSaca"-->
+                                        <!--                                                            th:style="'background:'+ ${mauSac}" th:attr="data-id=${mauSac}"></button>-->
+                                        <!--                                                    <input type="hidden" id="mauSacDaChon">-->
+                                        <!--                                                </ul>-->
                                         <!--                                            </div>-->
                                         <!--                                        </div>-->
+
+                                        <!--                                        <div class="mt-3"><span class="fw-bold">Kích cỡ</span>-->
+                                        <!--                                            <div class="colors" id="div-kichCoCustomer">-->
+                                        <!--                                                <ul id="marker" >-->
+                                        <!--                                                    <button  th:each="kichCo: ${kichCoList}" th:text="${kichCo}"  th:attr="data-id=${kichCo}" class="chonKichCoa"></button>-->
+                                        <!--                                                    <input type="hidden" id="kichCoDaChon-customer">-->
+                                        <!--                                                </ul>-->
+                                        <!--                                            </div>-->
+                                        <!--                                        </div>-->
+                                        <!--                                        <input type="hidden" id="id_san_pham" th:data-id="${shopDetails.sanPhamId}">-->
+
                                         <p>Số lượng hiện có: <span class="soLuongHienCoCus"
                                                                    th:id="'soLuongHienCoCus' + ${shopDetails.sanPhamId}"></span>
                                         </p>
@@ -191,31 +160,8 @@
                                                     class="fa fa-shopping-bag" aria-hidden="true"></i>Thêm Vào Giỏ
                                                 <input type="hidden" id="auth" th:value="${#authentication.name}">
                                                 <a/>
-                                                <!--                                            <input type="hidden" id="auth" th:value="${#authentication.name}">-->
                                         </form>
 
-                                        <div class="product-meta">
-                                            <span>SKU : <span class="sku" itemprop="sku">005687</span></span>
-                                            <span>Thể Loại : <span class="category"
-                                                                   itemprop="category">Giày</span></span>
-                                        </div>
-                                        <div class="product-share">
-                                            <span>Share :</span>
-                                            <ul>
-                                                <li>
-                                                    <a href="https://www.facebook.com/sharer/sharer.php?u=http://nileforest.com/"
-                                                       target="_blank"><i class="fa fa-facebook"></i></a></li>
-                                                <li><a href="http://twitter.com/share?url=http://nileforest.com/"
-                                                       target="_blank"><i class="fa fa-twitter"></i></a></li>
-                                                <li><a href="http://plus.google.com/share?url=http://nileforest.com/"
-                                                       target="_blank"><i class="fa fa-google-plus"></i></a></li>
-                                                <li><a href="mailto:?subject=Check this http://nileforest.com/"
-                                                       target="_blank"><i class="fa fa-envelope"></i></a></li>
-                                                <li>
-                                                    <a href="../../../pinterest.com/pin/create/button/index68d2.html?url=http://nileforest.com/exampleImage.jpg"
-                                                       target="_blank"><i class="fa fa-pinterest"></i></a></li>
-                                            </ul>
-                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -226,14 +172,15 @@
                                 <div class="icon"><i class="fa fa-truck" aria-hidden="true"></i></div>
                                 <div class="info">
                                     <a href="#">
-                                        <h6 class="normal">Free Shipping</h6>
+                                        <h6 class="normal">Ship Hàng Toàn Quốc</h6>
                                     </a>
-                                    <p>On Order Over $150</p>
+
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
+        </div>
 
                 <!-- End Product -->
 
@@ -258,36 +205,10 @@
                             <!-- Mô tả sản phẩm -->
                             <div id="tab_description-coll" class="shop_description product-collapse collapse container">
                                 <div class="row">
-                                    <div class=" col-md-6">
-                                        <p>
-                                            Etiam molestie sit amet arcu vel dictum. Integer mattis est nec porta
-                                            porttitor. Maecenas condimentum sapien eget urna condimentum, non sagittis
-                                            ante dapibus. Donec congue libero ut ex malesuada auctor. Vivamus at urna et
-                                            erat aliquam pharetra. Nulla facilisi. Morbi feugiat tortor finibus elit
-                                            aliquet tempor.
-                                            Generated 5 paragraphs, 453 words, 3065 bytes of Lorem Ipsum
+                                    <div class=" col-md-12">
+                                        <p th:text="${shopDetails.moTa}">
+
                                         </p>
-                                        <h4>Vivamus at urna</h4>
-                                        <ul>
-                                            <li>Etiam molestie sit amet arcu vel dictum</li>
-                                            <li>Integer mattis est nec porta porttitor</li>
-                                            <li>Maecenas condimentum sapien eget urna condimentum</li>
-                                            <li>Donec congue libero ut ex malesuada auctor</li>
-                                            <li>Generated 5 paragraphs, 453 words</li>
-                                        </ul>
-                                    </div>
-                                    <div class="col-md-6">
-                                        <p>
-                                            Etiam molestie sit amet arcu vel dictum. Integer mattis est nec porta
-                                            porttitor. Maecenas condimentum sapien eget urna condimentum, non sagittis
-                                            ante dapibus. Donec congue libero ut ex malesuada auctor. Vivamus at urna et
-                                            erat aliquam pharetra. Nulla facilisi. Morbi feugiat tortor finibus elit
-                                            aliquet tempor.
-                                            Generated 5 paragraphs, 453 words, 3065 bytes of Lorem Ipsum
-                                        </p>
-                                        <h4>hadding four</h4>
-                                        <h5>hadding five</h5>
-                                        <h6>hadding six</h6>
                                     </div>
                                 </div>
                             </div>
@@ -305,33 +226,34 @@
                                 <table class="shop_attributes">
                                     <tbody>
                                     <tr>
-                                        <th>Color</th>
-                                        <td>Đen, Xamh, Trắng</td>
+                                        <th>Màu Sắc</th>
+                                        <td><a class="entry" th:each="mauSac1: ${tenMauSacList} "
+                                               th:text="${mauSac1}"    ></a></td>
                                     </tr>
                                     <tr>
-                                        <th>Weight</th>
-                                        <td>5 kg</td>
+                                        <th>Kich Cỡ</th>
+                                        <td><a th:each="kichCo: ${kichCoList}" th:text="${kichCo}"></a></td>
                                     </tr>
-                                    <tr>
-                                        <th>Dimensions</th>
-                                        <td>60 x 40 x 60 cm</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Washcare</th>
-                                        <td>Dry Clean</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Composition</th>
-                                        <td>100% Polyester</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Lining composition</th>
-                                        <td>100% Polyester</td>
-                                    </tr>
-                                    <tr>
-                                        <th>Other info</th>
-                                        <td>Ullamcorper nisl mus integer mollis vestibulu</td>
-                                    </tr>
+<!--                                    <tr>-->
+<!--                                        <th>Dimensions</th>-->
+<!--                                        <td>60 x 40 x 60 cm</td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <th>Washcare</th>-->
+<!--                                        <td>Dry Clean</td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <th>Composition</th>-->
+<!--                                        <td>100% Polyester</td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <th>Lining composition</th>-->
+<!--                                        <td>100% Polyester</td>-->
+<!--                                    </tr>-->
+<!--                                    <tr>-->
+<!--                                        <th>Other info</th>-->
+<!--                                        <td>Ullamcorper nisl mus integer mollis vestibulu</td>-->
+<!--                                    </tr>-->
                                     </tbody>
                                 </table>
 

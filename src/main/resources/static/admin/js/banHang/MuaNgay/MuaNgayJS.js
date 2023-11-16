@@ -1,15 +1,16 @@
+let mauSacDaChon;
+let kichCoDaChon;
+
 $(document).ready(function () {
     let tenKichCo = "";
     let mauSacId = "";
     let soLuongInput = $(".daucatmoi").val();
 
-    $(".chonKichCo").click(function () {
-        tenKichCo = $(this).text().trim();
-
-        $(".chonKichCo").removeClass("active");
-        $(this).addClass("active");
-
-        const sanPhamId = $(".product__details__option").data("id");
+    $(".chonKichCoa").click(function () {
+        tenKichCo = $(this).attr("data-id");
+        console.log(tenKichCo)
+        kichCoDaChon = tenKichCo;
+        const sanPhamId = $("#id_san_pham").data("id");
 
         if (mauSacId != "") {
             getSoLuongSanPhamChiTiet(tenKichCo, mauSacId, sanPhamId);
@@ -20,9 +21,10 @@ $(document).ready(function () {
         }
     });
 
-    $(".chonMauSac").click(function () {
-        mauSacId = $(this).find("input[type=radio]").val();
-        const sanPhamId = $(".product__details__option").data("id");
+    $(".chonMauSaca").click(function () {
+        mauSacId = $(this).attr("data-id")
+        mauSacDaChon = mauSacId;
+        const sanPhamId = $("#id_san_pham").data("id");
 
         if (tenKichCo != "") {
             getSoLuongSanPhamChiTiet(tenKichCo, mauSacId, sanPhamId);
@@ -35,8 +37,8 @@ $(document).ready(function () {
     });
 
     $(".daucatmoi").on("input", function () {
-        let soLuongInput = parseInt($(this).val());
-        let sanPhamId = $(".product__details__option").data("id");
+        let soLuongInput = $(".daucatmoi").val();
+        let sanPhamId = $("#id_san_pham").data("id");
         let soLuongHienCo = parseInt($("#soLuongHienCoCus" + sanPhamId).text());
 
         if (soLuongInput > soLuongHienCo) {
@@ -86,9 +88,11 @@ function getSoLuongSanPhamChiTiet(tenKichCo, mauSacId, sanPhamId) {
 
 $(document).ready(function () {
     $("#muaNgaySanPham").click(function () {
-        const sanPhamID = $(this).data("id");
-        const mauSacId = $("input[name='mauSacId']:checked").val();
-        const kichCoId = $("input[name='kichCoId']:checked").val();
+        const auth = $('#auth').val();
+        console.log(mauSacDaChon)
+        const sanPhamID = $("#id_san_pham").data("id");
+        // const mauSacId = $("button[name='mauSacId']:checked").val();
+        // const kichCoId = $("input[name='kichCoId']:checked").val();
         const soLuong = $(".daucatmoi").val();
 
         if (soLuong <= 0) {
@@ -100,7 +104,8 @@ $(document).ready(function () {
             return;
         }
 
-        if (mauSacId == null) {
+
+        if (mauSacDaChon == null) {
             Swal.fire({
                 icon: "error",
                 title: "Lỗi",
@@ -108,7 +113,7 @@ $(document).ready(function () {
             });
             return;
         }
-        if (kichCoId == null) {
+        if (kichCoDaChon == null) {
             Swal.fire({
                 icon: "error",
                 title: "Lỗi",
@@ -125,18 +130,18 @@ $(document).ready(function () {
             return;
         }
 
-        DatHangNgay(sanPhamID, mauSacId, kichCoId, soLuong);
+        DatHangNgay(sanPhamID, soLuong);
     });
 });
 
-function DatHangNgay(sanPhamID, mauSacId, kichCoId, soLuong) {
+function DatHangNgay(sanPhamID,soLuong) {
     $.ajax({
         type: "POST",
         url: "http://localhost:8080/MuaNgay/checkout",
         data: {
             sanPhamId: sanPhamID,
-            mauSacId: mauSacId,
-            kichCoId: kichCoId,
+            mauSacId: mauSacDaChon,
+            kichCoId: kichCoDaChon,
             soLuong: soLuong
         },
         success: function (response) {

@@ -31,6 +31,14 @@ public interface MauSacRepository extends JpaRepository<MauSac,Integer> {
             " GROUP BY pc.MaMauSac, pd.IdMauSac",nativeQuery = true)
     List<String> getMauSauBySanPhamId(@Param("IdSanPham") Integer idSanPham);
 
+
+    @Query(value = """
+SELECT pc.TenMauSac AS tenMauSac FROM SanPhamCT pd
+            JOIN MauSac pc ON pd.IdMauSac = pc.IdMauSac WHERE pd.IdSanPham = :IdSanPham
+            GROUP BY pc.TenMauSac, pd.IdMauSac
+""",nativeQuery = true)
+    List<String> getTenMauSauBySanPhamId(@Param("IdSanPham") Integer idSanPham);
+
     @Query(value = "select * from MauSac where MaMauSac = ?", nativeQuery = true)
     Optional<MauSac> finMauSacByMa(String MaMauSac);
 

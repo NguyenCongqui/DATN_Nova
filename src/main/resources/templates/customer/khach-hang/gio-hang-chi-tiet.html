@@ -111,15 +111,14 @@
                                                 'COMMA', 0, 'POINT')}]] VNĐ</span>
                                             </td>
                                             <td>
-                                                <div class="product-quantity">
+                                                <div class="quantity">
                                                     <input type="hidden" id="cartId" th:name="ids" th:value="${item.id}">
                                                     <input type="hidden" id="donGia" th:name="donGias"
                                                            th:value="${item.sanPhamChiTietDTO.sanPhamDTO.gia}">
                                                     <input type="hidden" id="thanhTien" th:value="${item.thanhTien}">
-                                                    <span data-value="+" class="quantity-btn quantityPlus"></span>
-                                                    <input class="quantity input-lg" step="1" min="1" name="quantity"
-                                                           value="1" title="Quantity" type="number" th:name="soLuongs" th:value="${item.soLuong}"/>
-                                                    <span data-value="-" class="quantity-btn quantityMinus"></span>
+                                                    <div class="pro-qty-2">
+                                                        <input type="number" th:name="soLuongs" th:value="${item.soLuong}">
+                                                    </div>
                                                 </div>
                                             </td>
                                             <td class="product-subtotal">
@@ -182,9 +181,12 @@
                                             Xóa Sạch</a>
                                     </div>
                                 </div>
-                                <div class="col-md-6 text-right">
-                                    <input class="btn btn-md btn-black" name="update_cart" value="Update cart"
-                                           disabled="" type="submit">
+                                <div class="col-lg-4 col-md-4 col-sm-4">
+                                    <div class="continue__btn update__btn">
+                                        <button type="submit" class="btn btn-outline-primary">
+                                            <i class="fa fa-spinner "></i>Cập nhật giỏ hàng
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                             </th:block>

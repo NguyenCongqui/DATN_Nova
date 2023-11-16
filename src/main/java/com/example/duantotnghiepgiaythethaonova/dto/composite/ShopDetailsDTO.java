@@ -40,4 +40,8 @@ public class ShopDetailsDTO {
 	private String moTa;
 	
 	private Integer soLuong;
+
+	private String tenMauSac;
+
+	private String tenKichThuoc;
 }

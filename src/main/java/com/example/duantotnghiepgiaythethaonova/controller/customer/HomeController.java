@@ -330,6 +330,7 @@ public class HomeController {
             List<MauSac> lstMauSac = mauSacService.getAllMauSacExistBySPId(sanPhamId);
             dto.setLstKichCo(lstKichCo);
             dto.setLstMauSac(lstMauSac);
+
             model.addAttribute("shopDetails", dto);
         }
         List<String> mauSacList = mauSacRepository.getMauSauBySanPhamId(sanPhamId);
@@ -337,6 +338,9 @@ public class HomeController {
 
         List<Integer> kichCoList = kichCoRepository.getKichCoBySanPhamId(sanPhamId);
         model.addAttribute("kichCoList", kichCoList);
+
+        List<String> tenMauSacList = mauSacRepository.getTenMauSauBySanPhamId(sanPhamId);
+        model.addAttribute("tenMauSacList", tenMauSacList);
         System.out.println(kichCoList);
 
         return "customer/view/shop-details";
