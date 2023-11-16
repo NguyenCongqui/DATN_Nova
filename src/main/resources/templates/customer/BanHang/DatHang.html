@@ -99,10 +99,10 @@
 
                                         <div class="form-center col-sm-4">
                                             <label class="left">
-                                                Thành Phố
+                                                Tỉnh/Thành Phố
                                                 <abbr class="form-required" title="required">*</abbr></label>
                                             <select name="billing_country" id="province" class="input-md form-full-width tinhThanhPho" autocomplete="country" tabindex="-1" aria-hidden="true" required="" aria-required="true">
-                                                <option value="">Chọn Thành Phố</option>
+                                                <option value="">Chọn Tỉnh/Thành</option>
                                             </select>
                                         </div>
                                         <div class="form-center col-sm-4">
@@ -170,7 +170,7 @@
                                         </div>
                                         <div class="form-field-wrapper form-center col-sm-12">
                                             <label for="billing_town_city" class="left">
-                                                Ghi Chú
+                                                Ghi Chú (tùy chọn)
                                               </label>
                                             <textarea name="note" id="note" th:text="${hoaDon.ghiChu}" value="" style="width: 540px; height: 120px;" placeholder="Nhập ghi chú đơn hàng" type="text" required="" aria-required="true">
                                                     </textarea>
@@ -307,27 +307,45 @@
                                                 </table>
                                             </div>
 
-
-
-                                            <div class="product-checkout-payment thanhToan">
+                                            <hr>
+                                            <p class="cac-title">Phương thức thanh toán</p>
+                                            <div class="sub-panel thanhToan">
                                                 <di class="radioThanhToan">
-                                                <ul>
-                                                    <li>
-                                                        <input id="shipCOD" name="paymentMethod" value="method1" type="radio" />
-                                                        <label for="shipCOD" class="payment-label" id="thanhToanKhiNhanHang">Thanh Toán khi Nhận Hàng</label>
-                                                    </li>
-                                                    <li>
-                                                        <input id="VNPAY" name="paymentMethod" value="method2" type="radio" />
-                                                        <label for="VNPAY" class="payment-label" id="chuyenKhoanNganHang">Chuyên Khoản Ngân Hàng</label>
-                                                    </li>
-                                                </ul>
+                                                    <div>
+                                                        <input type="radio" id="shipCOD" name="paymentMethod" value="method1">
+                                                        <label for="shipCOD" class="payment-label" id="thanhToanKhiNhanHang">
+                                                            <i class="fas fa-truck"></i> <span>Thanh toán khi nhận hàng</span>
+                                                        </label>
+                                                    </div>
+                                                    <div>
+                                                        <input type="radio" id="VNPAY" name="paymentMethod" value="method2">
+                                                        <label for="VNPAY" class="payment-label" id="chuyenKhoanNganHang">
+                                                            <i class="fas fa-university"></i> <span>Chuyển khoản ngân hàng</span>
+                                                        </label>
+                                                    </div>
                                                 </di>
                                             </div>
 
 
+<!--                                            <div class="product-checkout-payment thanhToan">-->
+<!--                                                <div class="radioThanhToan">-->
+<!--                                                <ul>-->
+<!--                                                    <li>-->
+<!--                                                        <input id="shipCOD" name="paymentMethod" value="method1" type="radio" />-->
+<!--                                                        <label for="shipCOD" class="payment-label" id="thanhToanKhiNhanHang">Thanh Toán khi Nhận Hàng</label>-->
+<!--                                                    </li>-->
+<!--                                                    <li>-->
+<!--                                                        <input id="VNPAY" name="paymentMethod" value="method2" type="radio" />-->
+<!--                                                        <label for="VNPAY" class="payment-label" id="chuyenKhoanNganHang">Chuyển Khoản Ngân Hàng</label>-->
+<!--                                                    </li>-->
+<!--                                                </ul>-->
+<!--                                                </div>-->
+<!--                                            </div>-->
+
+
                                                 <div class="button-container">
                                                     <div class="button-group">
-                                                        <form th:action="@{/payment/create}" method="post" id="paymentForm">
+                                                        <form th:action="@{/payment/create}" method="POST" id="paymentForm">
                                                             <input type="hidden" name="orderCode" th:value="${hoaDon.idHoaDon}"/>
 
                                                             <input type="hidden" id="amountInput" name="amount" value=""/>
@@ -352,7 +370,8 @@
 
                                                         <!--Đặt hàng-->
                                                         <div class="place-order">
-                                                            <button type="submit" id="buttonThanhToan" class="button-thanhToan btn btn-lg btn-color form-full-width" th:attr="data-id=${hoaDon.idHoaDon}" >Thanh Toán</button>
+                                                            <button type="submit" id="buttonThanhToan" class="button-thanhToan btn btn-lg btn-color form-full-width"
+                                                                    th:attr="data-id=${hoaDon.idHoaDon}">Thanh Toán</button>
                                                         </div>
 
                                                         <div class="modal fade thanhToanVNPAY" tabindex="-1"
