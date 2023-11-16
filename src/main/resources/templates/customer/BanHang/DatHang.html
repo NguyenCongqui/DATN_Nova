@@ -26,10 +26,10 @@
 
 
 <style>
-    .ThongTinSP {
-        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        font-size: 0.8em;
-    }
+    /*.ThongTinSP {*/
+    /*    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+    /*    font-size: 0.8em;*/
+    /*}*/
     .content-page1 {
         padding-bottom: 0px;
         padding-top: 0px;
@@ -37,6 +37,12 @@
     #buttonDatHang,
     #buttonThanhToan {
         display: none;
+    }
+    @media (min-width: 1200px) {
+        .container {
+            width: 1440px;
+            max-width: 100%;
+        }
     }
 </style>
 </head>
@@ -63,13 +69,13 @@
 
     <!-- Page Content -->
     <section class="content-page1">
-        <div class="container mb-80">
+        <div class="container mb-8">
             <div class="row">
                 <div class="col-sm-12">
                     <article class="post-8">
                         <form class="product-checkout mt-45">
                             <div class="row">
-                                <div class="col-md-6">
+                                <div class="col-md-5">
                                     <h3 id="thongTinGiaohang">Chi Tiết Thanh Toán</h3>
                                     <div class="row">
                                         <div class="form-field-wrapper form-center col-sm-12">
@@ -176,7 +182,7 @@
                                     </div>
 
                                 </div>
-                                <div class="col-md-6">
+                                <div class="col-md-7">
                                     <div class="checkout-order-review">
                                         <h3>Đơn Hàng Của Tôi</h3>
                                         <div class="product-checkout-review-order">

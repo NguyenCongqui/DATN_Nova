@@ -6080,7 +6080,7 @@ ul#shipping_method {
 .product-checkout-review-order table tr td {
   border: medium none;
   max-width: 50%;
-  width: 50%;
+  /*width: 50%;*/
 }
 
 .product-checkout-review-order .product-total,

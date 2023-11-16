@@ -398,47 +398,84 @@
                             <h3 style="color: #000000;">Không tìm thấy sản phẩm bạn mong muốn !</h3>
                         </div>
 
-                        <div class="container"
-                        >
-                            <div class="tab-content" >
-                                <!-- Tab1 - Latest Product -->
-                                <div id="latest" role="tabpanel" class="tab-pane fade in active" >
-                                    <div id="new-product" class="product-item-4 owl-carousel owl-theme nf-carousel-theme1" >
-                                        <!-- item.1 -->
-                                        <div class="product-item" th:each="item, istat : ${resultSP.lstShowSanPhamTaiQua}" th:object="${resultSP}" >
-                                            <div class="product-item-inner">
-                                                <div abbr="" class="product-img-wrap">
-                                                    <div class="carousel-item" th:name="'divImgIsActive'+${istat.index}"
-                                                         th:id="'imgActive'+${istat.index}+${istatAC.index}"
-                                                         th:classappend="${#numbers.formatInteger(istat.index+''+istatAC.index,5) == #numbers.formatInteger(istat.index+''+0,5)? 'active':''}"
-                                                         th:each="img, istatAC : ${item.anhChinhs}">
-                                                        <img th:src="${'/khachhang/images/'+img}" class="d-block img-responsive"
-                                                             alt="...">
-                                                    </div>
-                                                </div>
-                                                <div class="product-button">
-                                                    <a th:href="${'/khachhang/shop-details/'+item.sanPhamId}" href="#" class="js_tooltip" data-mode="top" data-tip="Thêm Vào Giỏ"><i class="fa fa-shopping-bag"></i></a>
-                                                        <a class="single-add-to-wishlist" th:href="${'/MuaNgay/shop-details/'+item.sanPhamId}"><i class="fa fa-heart left"
-                                                                                                                                                  aria-hidden="true"></i><span>Mua Ngay</span></a>
+<!--                        <div class="container"-->
+<!--                        >-->
+<!--                            <div class="tab-content" >-->
+<!--                                &lt;!&ndash; Tab1 - Latest Product &ndash;&gt;-->
+<!--                                <div id="latest" role="tabpanel" class="tab-pane fade in active" >-->
+<!--                                    <div id="new-product" class="product-item-4 owl-carousel owl-theme nf-carousel-theme1" >-->
+<!--                                        &lt;!&ndash; item.1 &ndash;&gt;-->
+<!--                                        <div class="product-item" th:each="item, istat : ${resultSP.lstShowSanPhamTaiQua}" th:object="${resultSP}" >-->
+<!--                                            <div class="product-item-inner">-->
+<!--                                                <div abbr="" class="product-img-wrap">-->
+<!--                                                    <div class="carousel-item" th:name="'divImgIsActive'+${istat.index}"-->
+<!--                                                         th:id="'imgActive'+${istat.index}+${istatAC.index}"-->
+<!--                                                         th:classappend="${#numbers.formatInteger(istat.index+''+istatAC.index,5) == #numbers.formatInteger(istat.index+''+0,5)? 'active':''}"-->
+<!--                                                         th:each="img, istatAC : ${item.anhChinhs}">-->
+<!--                                                        <img th:src="${'/khachhang/images/'+img}" class="d-block img-responsive"-->
+<!--                                                             alt="...">-->
+<!--                                                    </div>-->
+<!--                                                </div>-->
+<!--                                                <div class="product-button">-->
+<!--                                                    <a th:href="${'/khachhang/shop-details/'+item.sanPhamId}" href="#" class="js_tooltip" data-mode="top" data-tip="Thêm Vào Giỏ"><i class="fa fa-shopping-bag"></i></a>-->
+<!--                                                        <a class="single-add-to-wishlist" th:href="${'/MuaNgay/shop-details/'+item.sanPhamId}"><i class="fa fa-heart left"-->
+<!--                                                                                                                                                  aria-hidden="true"></i><span>Mua Ngay</span></a>-->
 
-                                                </div>
-                                            </div>
-                                            <div class="product-detail">
-                                                <a class="tag" href="#">Men Fashion</a>
-                                                <p class="product-title"><a th:href="${'/khachhang/shop-details/'+item.sanPhamId}"  th:text="${item.tenSanPham}"></a></p>
-                                                <div class="product-rating">
-                                                    <div class="star-rating" itemprop="reviewRating" itemscope="" itemtype="http://schema.org/Rating" title="Rated 4 out of 5">
-                                                        <span style="width: 60%"></span>
-                                                    </div>
+<!--                                                </div>-->
+<!--                                            </div>-->
+<!--                                            <div class="product-detail">-->
+<!--                                                <a class="tag" href="#">Men Fashion</a>-->
+<!--                                                <p class="product-title"><a th:href="${'/khachhang/shop-details/'+item.sanPhamId}"  th:text="${item.tenSanPham}"></a></p>-->
+<!--                                                <div class="product-rating">-->
+<!--                                                    <div class="star-rating" itemprop="reviewRating" itemscope="" itemtype="http://schema.org/Rating" title="Rated 4 out of 5">-->
+<!--                                                        <span style="width: 60%"></span>-->
+<!--                                                    </div>-->
 
-                                                </div>
-                                                <h5 class="item-price" th:text="${#numbers.formatDecimal(item.gia, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></h5>
+<!--                                                </div>-->
+<!--                                                <h5 class="item-price" th:text="${#numbers.formatDecimal(item.gia, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></h5>-->
+<!--                                            </div>-->
+<!--                                        </div>-->
+<!--                                    </div>-->
+<!--                                </div>-->
+<!--                            </div>-->
+<!--                        </div>-->
+
+<!--                        san phẩm-->
+
+
+                        <div class="product-item-element col-sm-6 col-md-6 col-lg-4" th:each="item, istat : ${resultSP.lstShowSanPhamTaiQua}" th:object="${resultSP}">
+                            <!--Product Item-->
+                            <div class="product-item" >
+                                <div class="product-item-inner">
+                                    <div class="product-img-wrap">
+                                        <div abbr="" class="product-img-wrap">
+                                            <div class="carousel-item" th:name="'divImgIsActive'+${istat.index}"
+                                                 th:id="'imgActive'+${istat.index}+${istatAC.index}"
+                                                 th:classappend="${#numbers.formatInteger(istat.index+''+istatAC.index,5) == #numbers.formatInteger(istat.index+''+0,5)? 'active':''}"
+                                                 th:each="img, istatAC : ${item.anhChinhs}">
+                                                <img th:src="${'/khachhang/images/'+img}" class="d-block img-responsive"
+                                                     alt="...">
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="product-button">
+                                        <a th:href="${'/khachhang/shop-details/'+item.sanPhamId}" href="#" class="js_tooltip" data-mode="top" data-tip="Thêm Vào Giỏ"><i class="fa fa-shopping-bag"></i></a>
+                                        <a th:href="${'/MuaNgay/shop-details/'+item.sanPhamId}" class="js_tooltip" data-mode="top"  data-tip="Mua Ngay"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-minecart-loaded" viewBox="0 0 16 16">
+                                            <path d="M4 15a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm0 1a2 2 0 1 0 0-4 2 2 0 0 0 0 4zm8-1a1 1 0 1 1 0-2 1 1 0 0 1 0 2zm0 1a2 2 0 1 0 0-4 2 2 0 0 0 0 4zM.115 3.18A.5.5 0 0 1 .5 3h15a.5.5 0 0 1 .491.592l-1.5 8A.5.5 0 0 1 14 12H2a.5.5 0 0 1-.491-.408l-1.5-8a.5.5 0 0 1 .106-.411zm.987.82 1.313 7h11.17l1.313-7H1.102z"/>
+                                            <path fill-rule="evenodd" d="M6 1a2.498 2.498 0 0 1 4 0c.818 0 1.545.394 2 1 .67 0 1.552.57 2 1h-2c-.314 0-.611-.15-.8-.4-.274-.365-.71-.6-1.2-.6-.314 0-.611-.15-.8-.4a1.497 1.497 0 0 0-2.4 0c-.189.25-.486.4-.8.4-.507 0-.955.251-1.228.638-.09.13-.194.25-.308.362H3c.13-.147.401-.432.562-.545a1.63 1.63 0 0 0 .393-.393A2.498 2.498 0 0 1 6 1z"/>
+                                        </svg></a>
+
+                                    </div>
+                                </div>
+                                <div class="product-detail">
+                                    <a class="tag" href="#">Men Fashion</a>
+                                    <p class="product-title"><a th:text="${item.tenSanPham}"></a></p>
+                                    <h5 class="item-price" th:text="${#numbers.formatDecimal(item.gia, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></h5>
                                 </div>
                             </div>
+                            <!-- End Product Item-->
                         </div>
+
 
 
 
