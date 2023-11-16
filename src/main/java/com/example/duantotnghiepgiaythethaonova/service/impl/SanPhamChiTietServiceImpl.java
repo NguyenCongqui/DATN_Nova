@@ -223,7 +223,7 @@ public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
                 indexItemOfSheet++;
             }
             // finaly
-            File currDir = new File("D:\\datn\\NOVA\\ImportExcel/Product.xlsx");
+            File currDir = new File("D:\\Excel\\ImportExcel/qlsp.xlsx");
 
             FileOutputStream outputStream = new FileOutputStream(currDir);
             workbook.write(outputStream);
