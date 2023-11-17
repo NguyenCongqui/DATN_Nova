@@ -74,7 +74,7 @@
                         <img th:src="@{/static/admin/images/profile.svg}" alt="" srcset="">
                     </div>
 
-                    <div class="d-none d-md-block d-lg-inline-block">Hi,
+                    <div class="d-none d-md-block d-lg-inline-block">Xin chào,
                         [[${#request.userPrincipal.principal.fullname}]]
                     </div>
                 </a>
@@ -82,7 +82,7 @@
                     <a class="dropdown-item" href="#" id="nguoiDangDangNhap"><i data-feather="user"></i> Thông tin</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" th:href="@{/security/logoff}" onclick="dangXuat()"><i class="fa-solid
-                        fa-power-off"></i> Logout</a>
+                        fa-power-off"></i> Đăng xuất</a>
 
 
                     <script th:inline="javascript">

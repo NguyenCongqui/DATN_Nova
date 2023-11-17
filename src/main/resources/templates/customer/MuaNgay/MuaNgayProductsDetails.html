@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-    layout:decorate="~{customer/layout/index}">
+      layout:decorate="~{customer/layout/index}">
 
 <head>
     <meta charset="UTF-8">
     <title>NOVASHOES</title>
+    <link rel="shortcut icon" th:href="@{/static/customer/img/NOVA.png}" type="image/x-icon">
     <script th:src="@{/static/customer/view/shop-details.js}"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
@@ -228,15 +229,31 @@
 
                         <table class="shop_attributes">
                             <tbody>
+                            <!--                            <tr>-->
+                            <!--                                <th>Màu Sắc</th>-->
+                            <!--                                <td><a class="entry" th:each="mauSac1: ${tenMauSacList} "-->
+                            <!--                                       th:text="${mauSac1}"></a></td>-->
+                            <!--                            </tr>-->
                             <tr>
                                 <th>Màu Sắc</th>
-                                <td><a class="entry" th:each="mauSac1: ${tenMauSacList} "
-                                       th:text="${mauSac1}"    ></a></td>
+                                <td>
+                                <span th:each="mauSac1, iterStat : ${tenMauSacList}">
+                               <span th:text="${mauSac1}"></span>
+                               <span th:if="${!iterStat.last}">, </span>
+                               </span>
+                                </td>
                             </tr>
                             <tr>
-                                <th>Kich Cỡ</th>
-                                <td><a th:each="kichCo: ${kichCoList}" th:text="${kichCo}"></a></td>
+                                <th>Kích Cỡ</th>
+                                <td>
+                                <span th:each="kichCo, iterStat : ${kichCoList}">
+                                    <span th:text="${kichCo}"></span>
+                                    <span th:if="${!iterStat.last}">, </span>
+                                </span>
+                                </td>
                             </tr>
+
+
                             <!--                                    <tr>-->
                             <!--                                        <th>Dimensions</th>-->
                             <!--                                        <td>60 x 40 x 60 cm</td>-->
