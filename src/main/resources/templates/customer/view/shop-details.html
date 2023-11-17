@@ -225,15 +225,31 @@
 
                         <table class="shop_attributes">
                             <tbody>
+<!--                            <tr>-->
+<!--                                <th>Màu Sắc</th>-->
+<!--                                <td><a class="entry" th:each="mauSac1: ${tenMauSacList} "-->
+<!--                                       th:text="${mauSac1}"></a></td>-->
+<!--                            </tr>-->
                             <tr>
                                 <th>Màu Sắc</th>
-                                <td><a class="entry" th:each="mauSac1: ${tenMauSacList} "
-                                       th:text="${mauSac1}"></a></td>
+                                <td>
+                                <span th:each="mauSac1, iterStat : ${tenMauSacList}">
+                               <span th:text="${mauSac1}"></span>
+                               <span th:if="${!iterStat.last}">, </span>
+                               </span>
+                                </td>
                             </tr>
+
                             <tr>
-                                <th>Kich Cỡ</th>
-                                <td><a th:each="kichCo: ${kichCoList}" th:text="${kichCo}"></a></td>
+                                <th>Kích Cỡ</th>
+                                <td>
+                                <span th:each="kichCo, iterStat : ${kichCoList}">
+                                    <span th:text="${kichCo}"></span>
+                                    <span th:if="${!iterStat.last}">, </span>
+                                </span>
+                                </td>
                             </tr>
+
                             <!--                                    <tr>-->
                             <!--                                        <th>Dimensions</th>-->
                             <!--                                        <td>60 x 40 x 60 cm</td>-->
