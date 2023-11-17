@@ -242,6 +242,7 @@ select.selectpicker {
   padding-right: inherit;
 }
 .bootstrap-select .dropdown-toggle .filter-option-inner-inner {
+  color: #1d2124;
   overflow: hidden;
 }
 .bootstrap-select .dropdown-toggle .filter-expand {
