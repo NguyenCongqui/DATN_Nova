@@ -32,19 +32,31 @@
 
 <body>
     <section layout:fragment="content" class="container">
-        <script th:inline="javascript">
-            $(document).ready(function () {
-                var messageSuccess = '[[${messageSuccess}]]';
-                var messageDanger = '[[${messageDanger}]]';
-                $('#toastsCustomCss').attr("style", "position: absolute; top: 70px; right: 0;z-index: 10000;");
-                if (messageSuccess.length !== 0) {
-                    $("#messageSuccess").toast("show");
-                }
-                if (messageDanger.length !== 0) {
-                    $("#messageDanger").toast("show");
-                }
-            });
-        </script>
+<!--        <script th:inline="javascript">-->
+<!--            $(document).ready(function () {-->
+<!--                var messageSuccess = '[[${messageSuccess}]]';-->
+<!--                var messageDanger = '[[${messageDanger}]]';-->
+<!--                $('#toastsCustomCss').attr("style", "position: absolute; top: 70px; right: 0;z-index: 10000;");-->
+<!--                if (messageSuccess.length !== 0) {-->
+<!--                    $("#messageSuccess").toast("show");-->
+<!--                }-->
+<!--                if (messageDanger.length !== 0) {-->
+<!--                    $("#messageDanger").toast("show");-->
+<!--                }-->
+<!--            });-->
+<!--        </script>-->
+<!--        <script th:inline="javascript">-->
+<!--            window.onload = function () {-->
+<!--                var messageSuccess = '[[${messageSuccess}]]';-->
+<!--                var messageDanger = '[[${messageDanger}]]';-->
+<!--                if (messageSuccess.length !== 0) {-->
+<!--                    $("#messageSuccess").toast("show");-->
+<!--                }-->
+<!--                if (messageDanger.length !== 0) {-->
+<!--                    $("#messageDanger").toast("show");-->
+<!--                }-->
+<!--            }-->
+<!--        </script>-->
         <div id="toastsCustomCss">
             <div id="messageSuccess" th:if="${messageSuccess}" class="toast" role="alert" aria-live="assertive"
                 aria-atomic="true" data-delay="3000">
@@ -286,6 +298,19 @@
                 $('[data-toggle="popover"]').popover();
             });
         </script>
+<!--                <script th:inline="javascript">-->
+<!--                    $(document).ready(function () {-->
+<!--                        var messageSuccess = '[[${messageSuccess}]]';-->
+<!--                        var messageDanger = '[[${messageDanger}]]';-->
+<!--                        $('#toastsCustomCss').attr("style", "position: absolute; top: 70px; right: 0;z-index: 10000;");-->
+<!--                        if (messageSuccess.length !== 0) {-->
+<!--                            $("#messageSuccess").toast("show");-->
+<!--                        }-->
+<!--                        if (messageDanger.length !== 0) {-->
+<!--                            $("#messageDanger").toast("show");-->
+<!--                        }-->
+<!--                    });-->
+<!--                </script>-->
         <script type="text/javascript" th:src="@{/static/admin/js/product/product.js}"></script>
     </section>
 </body>

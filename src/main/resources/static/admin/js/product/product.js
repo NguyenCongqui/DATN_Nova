@@ -1,7 +1,17 @@
 // VirtualSelect.init({
 //   ele: "select",
 // });
-
+$(document).ready(function () {
+  var messageSuccess = '[[${messageSuccess}]]';
+  var messageDanger = '[[${messageDanger}]]';
+  $('#toastsCustomCss').attr("style", "position: absolute; top: 70px; right: 0;z-index: 10000;");
+  if (messageSuccess.length !== 0) {
+    $("#messageSuccess").toast("show");
+  }
+  if (messageDanger.length !== 0) {
+    $("#messageDanger").toast("show");
+  }
+});
 function showConfirmModalDeleteDialog(id, name) {
   $("#productName").text(name);
   // $("#yesOptionDeleteModalId").attr(
