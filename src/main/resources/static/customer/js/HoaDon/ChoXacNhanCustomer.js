@@ -8,7 +8,7 @@ $(document).ready(function () {
 
     $('.huyModalCustomer .btn-dong-y').click(function () {
         // Gửi yêu cầu xác nhận đơn hàng bằng Ajax
-        $.get('/khachhhang/updateHuyDon/' + currentHoaDonId, function (response) {
+        $.get('/updateHuyDon/' + currentHoaDonId, function (response) {
             Swal.fire({
                 icon: 'success', title: 'Đã hủy thành công', showConfirmButton: false, timer: 2000
             }).then(function () {

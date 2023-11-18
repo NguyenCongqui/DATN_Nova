@@ -73,7 +73,7 @@
                                 <div class="button-group">
                                     <input type="hidden" id="idCustomerDG" th:value="${customerDG.idHoaDon}">
 
-                                    <button class="action-button chiTietHoaDonCus" type="submit" id="chiTietHoaDonCusDG" th:attr="${customerDG.idHoaDon}">
+                                    <button class="action-button chiTietHoaDonCus" type="submit" id="chiTietHoaDonCusDG" th:attr="data-id=${customerDG.idHoaDon}">
                                         <i class="fa fa-info" aria-hidden="true"></i>
                                     </button>
 
