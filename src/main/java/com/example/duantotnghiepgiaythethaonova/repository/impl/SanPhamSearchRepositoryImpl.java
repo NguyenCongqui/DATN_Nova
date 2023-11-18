@@ -252,7 +252,7 @@ public class SanPhamSearchRepositoryImpl implements SanPhamSearchRepository {
     }
 
     //	convert type of value not null
-//	@author cuongdd3
+//	@author
     public SPAndSPCTSearchDto convertSearchNotNull(SPAndSPCTSearchDto dataSearch) {
         List<Integer> lstKieuDangId = typeHelperService.convertObjectTypeListInteger(dataSearch.getKieuDangIds());
         List<Integer> lstChatLieuId = typeHelperService.convertObjectTypeListInteger(dataSearch.getChatLieuIds());

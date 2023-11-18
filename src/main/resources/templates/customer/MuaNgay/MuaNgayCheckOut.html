@@ -12,8 +12,6 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <link href="../../../static/customer/css/plugins/bootstrap.css" rel="stylesheet" type="text/css" />
@@ -28,10 +26,10 @@
 
 
     <style>
-        .ThongTinSP {
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-            font-size: 0.8em;
-        }
+        /*.ThongTinSP {*/
+        /*    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+        /*    font-size: 0.8em;*/
+        /*}*/
         .content-page1 {
             padding-bottom: 0px;
             padding-top: 0px;
@@ -39,6 +37,12 @@
         #buttonDatHang,
         #buttonThanhToan {
             display: none;
+        }
+        @media (min-width: 1200px) {
+            .container {
+                width: 1440px;
+                max-width: 100%;
+            }
         }
     </style>
 </head>
@@ -68,25 +72,25 @@
             <div class="row">
                 <div class="col-sm-12">
                     <article class="post-8">
-                        <form class="product-checkout mt-45">
+<!--                        <form class="product-checkout mt-45">-->
                             <div class="row">
                                 <div class="col-md-6">
                                     <h3 id="thongTinGiaohang">Chi Tiết Thanh Toán</h3>
                                     <div class="row">
                                         <div class="form-field-wrapper form-center col-sm-12">
-                                            <label for="billing_company" class="left">Họ Và Tên</label>
+                                            <label class="left">Họ Và Tên</label>
                                             <input class="input-md form-full-width" id="hoTen" name="hoTen" title="Company Name" value=""
                                                    placeholder="Họ Và Tên" type="text">
                                         </div>
                                         <div class="form-field-wrapper form-center col-sm-6">
-                                            <label for="billing_phone" class="left">
+                                            <label  class="left">
                                                 Số Điện Thoại
                                                 <abbr class="form-required" title="required">*</abbr></label>
                                             <input class="input-md form-full-width" id="sdt" name="sdt" title="phone"
                                                    value="" placeholder="(+84)" type="tel" required="" aria-required="true">
                                         </div>
                                         <div class="form-field-wrapper form-center col-sm-6">
-                                            <label for="billing_email" class="left">
+                                            <label class="left">
                                                 Email
                                                 <abbr class="form-required" title="required">*</abbr></label>
                                             <input class="input-md form-full-width" id="nhapEmail" name="nhapEmail"
@@ -117,57 +121,20 @@
                                                 <option value="">Chọn Phường/Xã</option>
                                             </select>
                                         </div>
-
-                                        <!--                                        <div>-->
-
-                                        <!--                                            <label >-->
-                                        <!--                                                Thành Phố-->
-                                        <!--                                                <abbr class="form-required" title="required">*</abbr></label>-->
-                                        <!--                                            <select>-->
-                                        <!--                                                <option value="">Chọn Thành Phố</option>-->
-                                        <!--                                                <option value="ZW">Zimbabwe</option>-->
-                                        <!--                                                <option value="ZW">Zimbabwe</option>-->
-                                        <!--                                            </select>-->
-                                        <!--                                        </div>-->
-
-
-                                        <!--                                        <div>-->
-                                        <!--                                            <select>-->
-                                        <!--                                                <option value="">Chọn Tỉnh/Thành phố</option>-->
-                                        <!--                                                <option value="">Chọn Tỉnh/Thành phố</option>-->
-                                        <!--                                            </select>-->
-                                        <!--                                        </div>-->
-                                        <!--                                        <div class="form-field-wrapper form-center col-sm-4">-->
-                                        <!--                                            <label for="billing_country" class="left">-->
-                                        <!--                                                Quận/Huyện-->
-                                        <!--                                                <abbr class="form-required" title="required">*</abbr></label>-->
-                                        <!--                                            <select name="billing_country" id="billing_country" class="input-md form-full-width" autocomplete="country" tabindex="-1" aria-hidden="true" required="" aria-required="true">-->
-                                        <!--                                                <option value="">Chọn Quận/Huyện</option>-->
-                                        <!--                                                <option value="ZW">Zimbabwe</option>-->
-                                        <!--                                            </select>-->
-                                        <!--                                        </div>-->
-                                        <!--                                        <div class="form-field-wrapper form-center col-sm-4">-->
-                                        <!--                                            <label for="billing_country" class="left">-->
-                                        <!--                                                Phường/Xã-->
-                                        <!--                                                <abbr class="form-required" title="required">*</abbr></label>-->
-                                        <!--                                            <select name="billing_country" id="billing_country" class="input-md form-full-width" autocomplete="country" tabindex="-1" aria-hidden="true" required="" aria-required="true">-->
-                                        <!--                                                <option value="">Chọn Phường/Xã</option>-->
-                                        <!--                                                <option value="ZW">Zimbabwe</option>-->
-                                        <!--                                            </select>-->
-                                        <!--                                        </div>-->
-
                                         <div class="form-field-wrapper form-center col-sm-12">
-                                            <label for="billing_address" class="left">
+                                            <label class="left">
                                                 Địa Chỉ
                                                 <abbr class="form-required" title="required">*</abbr></label>
                                             <input class="input-md form-full-width mb-20" id="addressInput"
                                                    name="addressInput" title="Address" value="" placeholder="Địa Chỉ" type="text" required="" aria-required="true">
                                         </div>
                                         <div class="form-field-wrapper form-center col-sm-12">
-                                            <label for="billing_town_city" class="left">
+                                            <label class="left">
                                                 Ghi Chú
                                             </label>
-                                            <textarea name="note" id="note" value="" style="width: 540px; height: 120px;" placeholder="Nhập ghi chú đơn hàng" type="text" required="" aria-required="true">
+                                            <textarea name="note" id="note" value=""
+                                                      style="width: 540px; height: 120px;" placeholder="Nhập ghi chú đơn hàng"
+                                                      type="text" required="" aria-required="true">
                                                     </textarea>
                                         </div>
                                     </div>
@@ -253,51 +220,42 @@
                                                             </ul>
                                                         </td>
                                                     </tr>
-                                                    <!--                                                    <tr class="shipping">-->
-                                                    <!--                                                        <th>Giảm Giá Đã áp dụng</th>-->
-                                                    <!--                                                        <td>-->
-                                                    <!--                                                            <ul id="shipping_method">-->
-                                                    <!--                                                                <li>-->
-                                                    <!--                                                                    <label for="shipping_method" id="tenGiamGia" >-->
-                                                    <!--                                                                        <span class="woocommerce-Price-amount amount" >-->
-                                                    <!--                                                                        <span class="woocommerce-Price-currencySymbol">-->
-                                                    <!--                                                                            </span>-->
-                                                    <!--                                                                        </span>-->
-                                                    <!--                                                                    </label>-->
-                                                    <!--                                                                </li>-->
-                                                    <!--                                                            </ul>-->
-                                                    <!--                                                        </td>-->
-                                                    <!--                                                    </tr>-->
-                                                    <!--                                                    <tr class="shipping">-->
-                                                    <!--                                                        <th>Giảm Giá</th>-->
-                                                    <!--                                                        <td>-->
-                                                    <!--                                                            <ul id="shipping_method">-->
-                                                    <!--                                                                <li>-->
-                                                    <!--                                                                    <label for="shipping_method" id="discount">-->
-                                                    <!--                                                                        <span class="woocommerce-Price-amount amount" >-->
-                                                    <!--                                                                        <span class="woocommerce-Price-currencySymbol">-->
-                                                    <!--                                                                            </span>-->
-                                                    <!--                                                                        </span>-->
-                                                    <!--                                                                    </label>-->
-                                                    <!--                                                                </li>-->
-                                                    <!--                                                            </ul>-->
-                                                    <!--                                                        </td>-->
-                                                    <!--                                                    </tr>-->
+                                                    <tr class="shipping">
+                                                        <th>Giảm Giá Đã áp dụng</th>
+                                                        <td>
+                                                            <ul id="shipping_method">
+                                                                <li>
+                                                                    <label for="shipping_method" id="tenGiamGia">
+                                                                        <span class="woocommerce-Price-amount amount">
+                                                                       <span id="tenGiamGia"></span>
+                                                                        </span>
+                                                                    </label>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="shipping">
+                                                        <th>Giảm Giá</th>
+                                                        <td>
+                                                            <ul id="shipping_method">
+                                                                <li>
+                                                                    <label for="shipping_method" id="discount">
+                                                                        <span class="woocommerce-Price-amount amount">
+                                                                       <span id="discount">0 đ</span>
+                                                                        </span>
+                                                                    </label>
+                                                                </li>
+                                                            </ul>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="order-total">
+                                                        <th>Tổng Cộng</th>
+                                                        <td class="tongCongTien">
+                                                            <span class="product-price-amount amount">
+                                                                <span class="currency-sign" id="total">
 
-
-                                                    <p class="cart__discount">Giảm giá đã áp dụng: <span id="tenGiamGia"></span></p>
-                                                    <p class="cart__discount">Giảm giá: <span id="discount">0 đ</span></p>
-                                                    <!--                                                    <tr class="order-total">-->
-                                                    <!--                                                        <th>Tổng Cộng</th>-->
-                                                    <!--                                                        <td class="tongCongTien">-->
-                                                    <!--                                                            <span class="product-price-amount amount" id="total">-->
-                                                    <!--                                                                <span class="currency-sign">-->
-
-                                                    <!--                                                                </span>0 VND</span>-->
-                                                    <!--                                                        </td>-->
-                                                    <!--                                                    </tr>-->
-
-                                                    <p class="tongCongTien">Tổng cộng: <span id="total">0 đ</span></p><hr>
+                                                        </td>
+                                                    </tr>
                                                     </tfoot>
                                                 </table>
                                             </div>
@@ -414,7 +372,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
+<!--                        </form>-->
                     </article>
                 </div>
             </div>

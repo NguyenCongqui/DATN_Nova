@@ -31,6 +31,8 @@ public class VnpayPaymentController {
                                 @RequestParam("tienShipHD") BigDecimal tienShipHD, RedirectAttributes redirectAttributes) {
 
         String vnpayUrl = vnPayService.createOrder(amount, orderCode, emailNguoiNhan, tienGiamGia, nameGiamGia, sdtNguoiNhan, tienShipHD, orderCode, nguoiNhan, diaChiGiaoHang, ghiChu);
+        System.out.println(vnPayService.createOrder(amount, orderCode, emailNguoiNhan, tienGiamGia, nameGiamGia, sdtNguoiNhan, tienShipHD, orderCode, nguoiNhan, diaChiGiaoHang, ghiChu));
+        System.out.println("dbcdkbc");
         return "redirect:" + vnpayUrl;
     }
     @RequestMapping("payment/return")

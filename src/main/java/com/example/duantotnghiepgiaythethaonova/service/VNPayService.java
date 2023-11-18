@@ -58,11 +58,10 @@ public class VNPayService {
         NguoiDung nguoiDung = nguoiDungRepository.findByEmail(email);
         int idNguoiDung = nguoiDung.getIdNguoiDung();
 
-
         String vnp_Version = "2.1.0";
         String vnp_Command = "pay";
         String vnp_TxnRef = Config.getRandomNumber(8);
-        String vnp_IpAddr = "http://127.0.0.1";
+        String vnp_IpAddr = "127.0.0.1";
         String vnp_TmnCode = Config.vnp_TmnCode;
         String orderType = "order-type";
 
@@ -123,7 +122,6 @@ public class VNPayService {
         String vnp_SecureHash = Config.hmacSHA512(Config.vnp_HashSecret, hashData.toString());
         queryUrl += "&vnp_SecureHash=" + vnp_SecureHash;
         String paymentUrl = Config.vnp_PayUrl + "?" + queryUrl;
-        System.out.println(paymentUrl);
 
         Optional<HoaDon> optHoaDon = hoaDonRepository.findById(Integer.valueOf(hoaDonId));
         if (optHoaDon.isPresent()) {
@@ -226,8 +224,8 @@ public class VNPayService {
             gd.setHoaDon(hoaDon);
             gd.setNgayCapNhat(new Date());
             gd.setNgayTao(new Date());
-            gd.setNguoiCapNhat("Linh Update");
-            gd.setNguoiTao("Linh Create");
+            gd.setNguoiCapNhat("ABC");
+            gd.setNguoiTao("ABC");
             gd.setTrangThai(tt);
             giaoDichRepository.save(gd);
 
@@ -279,7 +277,7 @@ public class VNPayService {
         String vnp_Version = "2.1.0";
         String vnp_Command = "pay";
         String vnp_TxnRef = Config.getRandomNumber(8);
-        String vnp_IpAddr = "http://127.0.0.1";
+        String vnp_IpAddr = "127.0.0.1";
         String vnp_TmnCode = Config.vnp_TmnCode;
         String orderType = "order-type";
 
@@ -373,7 +371,7 @@ public class VNPayService {
         BigDecimal soTienHoaDon = soTien.divide(BigDecimal.valueOf(100));
         model.addAttribute("soTienHoaDon", soTienHoaDon);
 
-        long amount = Long.parseLong(totalPrice);
+        int amount = Integer.parseInt(totalPrice);
         Optional<HoaDon> optHoaDon = hoaDonRepository.findById(Integer.valueOf(hoaDonId));
         if (optHoaDon.isPresent()) {
             Optional<KhuyenMai> optionalKhuyenMai = khuyenMaiRepository.findKhuyenMaiByTenKhuyenMai(nameGiamGia);
@@ -412,8 +410,8 @@ public class VNPayService {
             gd.setHoaDon(hoaDon);
             gd.setNgayCapNhat(new Date());
             gd.setNgayTao(new Date());
-            gd.setNguoiCapNhat("Linh Update");
-            gd.setNguoiTao("Linh Create");
+            gd.setNguoiCapNhat("ABC");
+            gd.setNguoiTao("ABC");
             gd.setTrangThai(tt);
             giaoDichRepository.save(gd);
 
@@ -421,7 +419,7 @@ public class VNPayService {
             LichSuHoaDon ls = new LichSuHoaDon();
             ls.setNguoiThaoTac(hoaDon.getNguoiNhan());
             ls.setHoaDon(hoaDon);
-            ls.setThaoTac("Đã thanh toán qua VNPay");
+            ls.setThaoTac("Đã thanh toán qua vnPay");
             lichSuHoaDonRepository.save(ls);
 
             List<HoaDonChiTiet> hoaDonChiTiets = optHoaDon.get().getHoaDonChiTiets();

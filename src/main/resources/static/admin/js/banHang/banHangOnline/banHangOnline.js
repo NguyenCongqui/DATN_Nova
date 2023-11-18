@@ -265,9 +265,11 @@ $(document).ready(function () {
 
     $("#buttonThanhToan").click(function () {
         $(".thanhToanVNPAY").modal('show');
+        console.log("hihi")
 
         $(".thanhToanVNPAY .btn-dong-y").click(function () {
             // Lấy các giá trị từ các trường thông tin
+            console.log("haha")
             let diaChiGiaoHang = getFullAddress();
             let nguoiNhan = $("#hoTen").val();
             let sdtNguoiNhan = $("#sdt").val();
@@ -305,6 +307,7 @@ $(document).ready(function () {
                 });
             } else {
                 $("#paymentForm").submit();
+                console.log("hehe")
             }
         });
 

@@ -16,15 +16,12 @@ import java.util.*;
  */
 public class Config {
 
-    public static String vnp_PayUrl = " https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
+    public static String vnp_PayUrl = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
     public static String vnp_Returnurl = "http://127.0.0.1:8080/payment/return?";
     public static String vnp_ReturnurlMuaNgay = "http://127.0.0.1:8080/MuaNgay/payment/return?";
     public static String vnp_TmnCode = "DJ5CT9AY";
     public static String vnp_HashSecret = "MYMUQSXXETLEHGTZQOBFSEVWQWYXOAEX";
     public static String vnp_apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
-    public static String vnp_apiUrl1 = "https://sandbox.vnpayment.vn/merchantv2/Transaction/PaymentSearch.htm";
-    public static String vnp_apiUrl2 = "https://sandbox.vnpayment.vn/merchantv2/";
-
 
     public static String getUrl(
                                 String emailNguoiNhann,

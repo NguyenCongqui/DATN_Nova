@@ -1,10 +1,10 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org"
-      >
+>
 <head>
     <meta charset="UTF-8">
     <title>Đặt hàng</title>
-<!--    <link rel="stylesheet" th:href="@{/admin/css/banHang/banHangOnline.css}">-->
+    <!--    <link rel="stylesheet" th:href="@{/admin/css/banHang/banHangOnline.css}">-->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="/static/admin/js/banHang/banHangOnline/banHangOnline.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
@@ -14,37 +14,40 @@
 
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    <link href="../../../static/customer/css/plugins/bootstrap.css" rel="stylesheet" type="text/css" />
+    <link href="../../../static/customer/css/plugins/bootstrap.css" rel="stylesheet" type="text/css"/>
     <!-- bootstrap css -->
-    <link href="../../../static/customer/css/plugins/font-awesome.min.css" rel="stylesheet" type="text/css" />
+    <link href="../../../static/customer/css/plugins/font-awesome.min.css" rel="stylesheet" type="text/css"/>
     <!-- fontawesome css -->
-    <link href="../../../static/customer/css/plugins/animate.css" rel="stylesheet" type="text/css" />
+    <link href="../../../static/customer/css/plugins/animate.css" rel="stylesheet" type="text/css"/>
     <!-- animate css -->
-    <link href="../../../static/customer/css/style.css" rel="stylesheet" type="text/css" />
+    <link href="../../../static/customer/css/style.css" rel="stylesheet" type="text/css"/>
     <!-- template css -->
-    <link href="../../../static/customer/plugins/rev_slider/css/settings-ver.5.3.1.css" rel="stylesheet" type="text/css" />
+    <link href="../../../static/customer/plugins/rev_slider/css/settings-ver.5.3.1.css" rel="stylesheet"
+          type="text/css"/>
 
 
-<style>
-    /*.ThongTinSP {*/
-    /*    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
-    /*    font-size: 0.8em;*/
-    /*}*/
-    .content-page1 {
-        padding-bottom: 0px;
-        padding-top: 0px;
-    }
-    #buttonDatHang,
-    #buttonThanhToan {
-        display: none;
-    }
-    @media (min-width: 1200px) {
-        .container {
-            width: 1440px;
-            max-width: 100%;
+    <style>
+        /*.ThongTinSP {*/
+        /*    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;*/
+        /*    font-size: 0.8em;*/
+        /*}*/
+        .content-page1 {
+            padding-bottom: 0px;
+            padding-top: 0px;
         }
-    }
-</style>
+
+        #buttonDatHang,
+        #buttonThanhToan {
+            display: none;
+        }
+
+        @media (min-width: 1200px) {
+            .container {
+                width: 1440px;
+                max-width: 100%;
+            }
+        }
+    </style>
 </head>
 <body>
 <!-- Page Content Wraper -->
@@ -73,14 +76,15 @@
             <div class="row">
                 <div class="col-sm-12">
                     <article class="post-8">
-                        <form class="product-checkout mt-45">
+<!--                        <form class="product-checkout mt-45">-->
                             <div class="row">
                                 <div class="col-md-5">
                                     <h3 id="thongTinGiaohang">Chi Tiết Thanh Toán</h3>
                                     <div class="row">
                                         <div class="form-field-wrapper form-center col-sm-12">
-                                            <label  class="left">Họ Và Tên</label>
-                                            <input class="input-md form-full-width" id="hoTen" name="hoTen" title="Company Name" value=""
+                                            <label class="left">Họ Và Tên</label>
+                                            <input class="input-md form-full-width" id="hoTen" name="hoTen"
+                                                   title="Company Name" value=""
                                                    th:value="${hoaDon.getKhachHang() != null ? hoaDon.getKhachHang().hoTen : ''}"
                                                    placeholder="Họ Và Tên" type="text">
                                         </div>
@@ -90,7 +94,8 @@
                                                 <abbr class="form-required" title="required">*</abbr></label>
                                             <input class="input-md form-full-width" id="sdt" name="sdt" title="phone"
                                                    th:value="${hoaDon.getKhachHang() != null ? hoaDon.getKhachHang().soDienThoai : ''}"
-                                                   value="" placeholder="(+84)" type="tel" required="" aria-required="true">
+                                                   value="" placeholder="(+84)" type="tel" required=""
+                                                   aria-required="true">
                                         </div>
                                         <div class="form-field-wrapper form-center col-sm-6">
                                             <label class="left">
@@ -98,14 +103,17 @@
                                                 <abbr class="form-required" title="required">*</abbr></label>
                                             <input class="input-md form-full-width" id="nhapEmail" name="nhapEmail"
                                                    th:value="${hoaDon.getKhachHang() != null ? hoaDon.getKhachHang().email : ''}"
-                                                   title="Enter Email" value="" placeholder="Email" type="email" required="" aria-required="true">
+                                                   title="Enter Email" value="" placeholder="Email" type="email"
+                                                   required="" aria-required="true">
                                         </div>
 
                                         <div class="form-center col-sm-4">
                                             <label class="left">
                                                 Thành Phố
                                                 <abbr class="form-required" title="required">*</abbr></label>
-                                            <select name="billing_country" id="province" class="input-md form-full-width tinhThanhPho" autocomplete="country" tabindex="-1" aria-hidden="true" required="" aria-required="true">
+                                            <select name="billing_country" id="province"
+                                                    class="input-md form-full-width tinhThanhPho" autocomplete="country"
+                                                    tabindex="-1" aria-hidden="true" required="" aria-required="true">
                                                 <option value="">Chọn Thành Phố</option>
                                             </select>
                                         </div>
@@ -113,7 +121,10 @@
                                             <label class="left">
                                                 Quận/Huyện
                                                 <abbr class="form-required" title="required">*</abbr></label>
-                                            <select name="billing_country" id="district" disabled class="input-md form-full-width chonQuanHuyen" autocomplete="country" tabindex="-1" aria-hidden="true" required="" aria-required="true">
+                                            <select name="billing_country" id="district" disabled
+                                                    class="input-md form-full-width chonQuanHuyen"
+                                                    autocomplete="country" tabindex="-1" aria-hidden="true" required=""
+                                                    aria-required="true">
                                                 <option value="">Chọn Quận/Huyện</option>
                                             </select>
                                         </div>
@@ -121,48 +132,13 @@
                                             <label class="left">
                                                 Phường/Xã
                                                 <abbr class="form-required" title="required">*</abbr></label>
-                                            <select name="billing_country" id="ward" disabled class="input-md form-full-width chonPhuongXa" autocomplete="country" tabindex="-1" aria-hidden="true" required="" aria-required="true">
+                                            <select name="billing_country" id="ward" disabled
+                                                    class="input-md form-full-width chonPhuongXa" autocomplete="country"
+                                                    tabindex="-1" aria-hidden="true" required="" aria-required="true">
                                                 <option value="">Chọn Phường/Xã</option>
                                             </select>
                                         </div>
 
-<!--                                        <div>-->
-
-<!--                                            <label >-->
-<!--                                                Thành Phố-->
-<!--                                                <abbr class="form-required" title="required">*</abbr></label>-->
-<!--                                            <select>-->
-<!--                                                <option value="">Chọn Thành Phố</option>-->
-<!--                                                <option value="ZW">Zimbabwe</option>-->
-<!--                                                <option value="ZW">Zimbabwe</option>-->
-<!--                                            </select>-->
-<!--                                        </div>-->
-
-
-<!--                                        <div>-->
-<!--                                            <select>-->
-<!--                                                <option value="">Chọn Tỉnh/Thành phố</option>-->
-<!--                                                <option value="">Chọn Tỉnh/Thành phố</option>-->
-<!--                                            </select>-->
-<!--                                        </div>-->
-<!--                                        <div class="form-field-wrapper form-center col-sm-4">-->
-<!--                                            <label for="billing_country" class="left">-->
-<!--                                                Quận/Huyện-->
-<!--                                                <abbr class="form-required" title="required">*</abbr></label>-->
-<!--                                            <select name="billing_country" id="billing_country" class="input-md form-full-width" autocomplete="country" tabindex="-1" aria-hidden="true" required="" aria-required="true">-->
-<!--                                                <option value="">Chọn Quận/Huyện</option>-->
-<!--                                                <option value="ZW">Zimbabwe</option>-->
-<!--                                            </select>-->
-<!--                                        </div>-->
-<!--                                        <div class="form-field-wrapper form-center col-sm-4">-->
-<!--                                            <label for="billing_country" class="left">-->
-<!--                                                Phường/Xã-->
-<!--                                                <abbr class="form-required" title="required">*</abbr></label>-->
-<!--                                            <select name="billing_country" id="billing_country" class="input-md form-full-width" autocomplete="country" tabindex="-1" aria-hidden="true" required="" aria-required="true">-->
-<!--                                                <option value="">Chọn Phường/Xã</option>-->
-<!--                                                <option value="ZW">Zimbabwe</option>-->
-<!--                                            </select>-->
-<!--                                        </div>-->
 
                                         <div class="form-field-wrapper form-center col-sm-12">
                                             <label class="left">
@@ -170,13 +146,17 @@
                                                 <abbr class="form-required" title="required">*</abbr></label>
                                             <input class="input-md form-full-width mb-20 addressInput" id="addressInput"
                                                    th:value="${diaChi != null ? diaChi.getDiaChi() : ''}"
-                                                   name="addressInput" title="Address" value="" placeholder="Địa Chỉ" type="text" required="" aria-required="true">
+                                                   name="addressInput" title="Address" value="" placeholder="Địa Chỉ"
+                                                   type="text" required="" aria-required="true">
                                         </div>
                                         <div class="form-field-wrapper form-center col-sm-12">
                                             <label class="left">
                                                 Ghi Chú
-                                              </label>
-                                            <textarea name="note" id="note" th:text="${hoaDon.ghiChu}" value="" style="width: 540px; height: 120px;" placeholder="Nhập ghi chú đơn hàng" type="text" required="" aria-required="true">
+                                            </label>
+                                            <textarea name="note" id="note" th:text="${hoaDon.ghiChu}" value=""
+                                                      style="width: 540px; height: 120px;"
+                                                      placeholder="Nhập ghi chú đơn hàng" type="text" required=""
+                                                      aria-required="true">
                                                     </textarea>
                                         </div>
                                     </div>
@@ -197,17 +177,21 @@
                                                         </tr>
                                                         </thead>
                                                         <tbody>
-                                                        <tr class="product-row" th:each="hoaDonCT, iter: ${hoaDonChiTiet}">
-                                                            <td >
+                                                        <tr class="product-row"
+                                                            th:each="hoaDonCT, iter: ${hoaDonChiTiet}">
+                                                            <td>
                                                                 <div style="display: flex; align-items: center;">
-                                                                    <img th:src="${'/khachhang/images/' + tenAnhChinhList[iter.index]}" alt=""
-                                                                         style="margin-right: 10px;" width="100px" height="100px">
+                                                                    <img th:src="${'/khachhang/images/' + tenAnhChinhList[iter.index]}"
+                                                                         alt=""
+                                                                         style="margin-right: 10px;" width="100px"
+                                                                         height="100px">
 
                                                                     <div>
                                                                         <h6>
                                                                             <strong>
-                                                                                        <span style="text-transform: uppercase" class="TenSP"
-                                                                                              th:text="${hoaDonCT.chiTietSanPham.sanPham.tenSanPham}" ></span>
+                                                                                        <span style="text-transform: uppercase"
+                                                                                              class="TenSP"
+                                                                                              th:text="${hoaDonCT.chiTietSanPham.sanPham.tenSanPham}"></span>
                                                                             </strong>
                                                                         </h6>
                                                                         <div class="ThongTinSP">
@@ -230,8 +214,12 @@
                                                 <hr>
                                                 <br>
                                                 <div class="coupon div-maGiamGia">
-                                                    <input class="input-md" id="maGiamGia" name="maGiamGia" title="Coupon Code" value="" placeholder="Mã Giảm Giá" type="text">
-                                                    <button class="btn btn-md btn-black themMaGiamGiaOnline"  type="submit" th:attr="data-id=${hoaDon.idHoaDon}">Sử Dụng</button>
+                                                    <input class="input-md" id="maGiamGia" name="maGiamGia"
+                                                           title="Coupon Code" value="" placeholder="Mã Giảm Giá"
+                                                           type="text">
+                                                    <button class="btn btn-md btn-black themMaGiamGiaOnline"
+                                                            type="submit" th:attr="data-id=${hoaDon.idHoaDon}">Sử Dụng
+                                                    </button>
                                                 </div>
                                                 <table>
 
@@ -239,7 +227,8 @@
                                                     <tr class="cart-subtotal">
                                                         <th>Tạm Tính</th>
                                                         <td>
-                                                            <strong><span class="product-price-amount amount" id="subtotal"
+                                                            <strong><span class="product-price-amount amount"
+                                                                          id="subtotal"
                                                                           th:text="${#numbers.formatDecimal(hoaDon.tongTienDonHang, 0, 'COMMA', 0, 'POINT')} + ' đ'">
                                                                 <span class="currency-sign">
 
@@ -252,8 +241,9 @@
                                                         <td>
                                                             <ul id="shipping_method">
                                                                 <li>
-                                                                    <label for="shipping_method"  type="text" id="shippingFee" readonly>
-                                                                        <span class="woocommerce-Price-amount amount" >
+                                                                    <label for="shipping_method" type="text"
+                                                                           id="shippingFee" readonly>
+                                                                        <span class="woocommerce-Price-amount amount">
                                                                         <span class="woocommerce-Price-currencySymbol">
                                                                             </span>
                                                                         </span>
@@ -267,8 +257,8 @@
                                                         <td>
                                                             <ul id="shipping_method">
                                                                 <li>
-                                                                    <label for="shipping_method" id="tenGiamGia" >
-                                                                        <span class="woocommerce-Price-amount amount" >
+                                                                    <label for="shipping_method" id="tenGiamGia">
+                                                                        <span class="woocommerce-Price-amount amount">
                                                                        <span id="tenGiamGia"></span>
                                                                         </span>
                                                                     </label>
@@ -282,7 +272,7 @@
                                                             <ul id="shipping_method">
                                                                 <li>
                                                                     <label for="shipping_method" id="discount">
-                                                                        <span class="woocommerce-Price-amount amount" >
+                                                                        <span class="woocommerce-Price-amount amount">
                                                                        <span id="discount">0 đ</span>
                                                                         </span>
                                                                     </label>
@@ -290,10 +280,6 @@
                                                             </ul>
                                                         </td>
                                                     </tr>
-
-
-<!--                                                    <p class="cart__discount">Giảm giá đã áp dụng: <span id="tenGiamGia"></span></p>-->
-<!--                                                    <p class="cart__discount">Giảm giá: <span id="discount">0 đ</span></p>-->
                                                     <tr class="order-total">
                                                         <th>Tổng Cộng</th>
                                                         <td class="tongCongTien">
@@ -303,124 +289,150 @@
                                                         </td>
                                                     </tr>
 
-<!--                                                    <p class="tongCongTien">Tổng cộng: <span id="total">0 đ</span></p><hr>-->
                                                     </tfoot>
                                                 </table>
                                             </div>
 
 
-
                                             <div class="product-checkout-payment thanhToan">
                                                 <di class="radioThanhToan">
-                                                <ul>
-                                                    <li>
-                                                        <input id="shipCOD" name="paymentMethod" value="method1" type="radio" />
-                                                        <label for="shipCOD" class="payment-label" id="thanhToanKhiNhanHang">Thanh Toán khi Nhận Hàng</label>
-                                                    </li>
-                                                    <li>
-                                                        <input id="VNPAY" name="paymentMethod" value="method2" type="radio" />
-                                                        <label for="VNPAY" class="payment-label" id="chuyenKhoanNganHang">Chuyên Khoản Ngân Hàng</label>
-                                                    </li>
-                                                </ul>
+                                                    <ul>
+                                                        <li>
+                                                            <input id="shipCOD" name="paymentMethod" value="method1"
+                                                                   type="radio"/>
+                                                            <label for="shipCOD" class="payment-label"
+                                                                   id="thanhToanKhiNhanHang">Thanh Toán khi Nhận
+                                                                Hàng</label>
+                                                        </li>
+                                                        <li>
+                                                            <input id="VNPAY" name="paymentMethod" value="method2"
+                                                                   type="radio"/>
+                                                            <label for="VNPAY" class="payment-label"
+                                                                   id="chuyenKhoanNganHang">Chuyên Khoản Ngân
+                                                                Hàng</label>
+                                                        </li>
+                                                    </ul>
                                                 </di>
                                             </div>
 
 
-                                                <div class="button-container">
-                                                    <div class="button-group">
-                                                        <form th:action="@{/payment/create}" method="post" id="paymentForm">
-                                                            <input type="hidden" name="orderCode" th:value="${hoaDon.idHoaDon}"/>
+                                            <div class="button-container">
+                                                <div class="button-group">
+                                                    <form th:action="@{/payment/create}" method="post" id="paymentForm">
+                                                        <input type="hidden" name="orderCode"
+                                                               th:value="${hoaDon.idHoaDon}"/>
 
-                                                            <input type="hidden" id="amountInput" name="amount" value=""/>
+                                                        <input type="hidden" id="amountInput" name="amount" value=""/>
 
-                                                            <input type="hidden" name="diaChiGiaoHang" id="diaChiGiaoHang" value="">
+                                                        <input type="hidden" name="diaChiGiaoHang" id="diaChiGiaoHang"
+                                                               value="">
 
-                                                            <input type="hidden" name="tienShipHD" id="tienShipHD" value="">
+                                                        <input type="hidden" name="tienShipHD" id="tienShipHD" value="">
 
-                                                            <input type="hidden" name="tienGiamGia" id="tienGiamGia" value="">
+                                                        <input type="hidden" name="tienGiamGia" id="tienGiamGia"
+                                                               value="">
 
-                                                            <input type="hidden" name="nameGiamGia" id="nameGiamGia" value="">
+                                                        <input type="hidden" name="nameGiamGia" id="nameGiamGia"
+                                                               value="">
 
-                                                            <input type="hidden" name="nguoiNhan" id="nguoiNhan" value="">
+                                                        <input type="hidden" name="nguoiNhan" id="nguoiNhan" value="">
 
-                                                            <input type="hidden" name="sdtNguoiNhan" id="sdtNguoiNhan" value="">
+                                                        <input type="hidden" name="sdtNguoiNhan" id="sdtNguoiNhan"
+                                                               value="">
 
-                                                            <input type="hidden" name="ghiChu" id="ghiChu" value="">
+                                                        <input type="hidden" name="ghiChu" id="ghiChu" value="">
 
-                                                            <input type="hidden" name="emailNguoiNhann" id="emailNguoiNhann" value="">
+                                                        <input type="hidden" name="emailNguoiNhann" id="emailNguoiNhann"
+                                                               value="">
 
-                                                        </form>
+                                                    </form>
 
-                                                        <!--Thanh Toan-->
-                                                        <div class="place-order">
-                                                            <button type="submit" id="buttonThanhToan" class="button-thanhToan btn btn-lg btn-color form-full-width" th:attr="data-id=${hoaDon.idHoaDon}" >Thanh Toán</button>
-                                                        </div>
+                                                    <!--Thanh Toan-->
+                                                    <div class="place-order">
+                                                        <button type="submit" id="buttonThanhToan"
+                                                                class="button-thanhToan btn btn-lg btn-color form-full-width"
+                                                                th:attr="data-id=${hoaDon.idHoaDon}">Thanh Toán
+                                                        </button>
+                                                    </div>
 
-                                                        <div class="modal fade thanhToanVNPAY" tabindex="-1"
-                                                             aria-labelledby="thanhToanVNPAYModalLabel" aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog-centered">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="thanhToanVNPAYModalLabel"> Đặt hàng
-                                                                        </h5>
-                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                                aria-label="Close"></button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        Bạn muốn đặt hàng?
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-primary btn-dong-y">Đồng ý</button>
-                                                                        <button type="button" class="btn btn-secondary btn-khong"
-                                                                                data-bs-dismiss="modal">Không
-                                                                        </button>
-                                                                    </div>
+                                                    <div class="modal fade thanhToanVNPAY" tabindex="-1"
+                                                         aria-labelledby="thanhToanVNPAYModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title"
+                                                                        id="thanhToanVNPAYModalLabel"> Đặt hàng
+                                                                    </h5>
+                                                                    <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    Bạn muốn đặt hàng?
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button"
+                                                                            class="btn btn-primary btn-dong-y">Đồng ý
+                                                                    </button>
+                                                                    <button type="button"
+                                                                            class="btn btn-secondary btn-khong"
+                                                                            data-bs-dismiss="modal">Không
+                                                                    </button>
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                    </div>
 
 
-                                                            <button id="buttonDatHang" class="button-datHang btn btn-lg btn-color form-full-width" th:data-id="${hoaDon.idHoaDon}" >Đặt hàng</button>
+                                                    <button id="buttonDatHang"
+                                                            class="button-datHang btn btn-lg btn-color form-full-width"
+                                                            th:data-id="${hoaDon.idHoaDon}">Đặt hàng
+                                                    </button>
 
 
-<!--                                                        <button id="buttonDatHang" class="button-datHang" th:data-id="${hoaDon.idHoaDon}">Đặt hàng</button>-->
+                                                    <!--                                                        <button id="buttonDatHang" class="button-datHang" th:data-id="${hoaDon.idHoaDon}">Đặt hàng</button>-->
 
-                                                        <div class="modal fade DatHangShipCod" tabindex="-1"
-                                                             aria-labelledby="DatHangShipCodModalLabel" aria-hidden="true">
-                                                            <div class="modal-dialog modal-dialog-centered">
-                                                                <div class="modal-content">
-                                                                    <div class="modal-header">
-                                                                        <h5 class="modal-title" id="DatHangShipCodModalLabel"> Đặt hàng
-                                                                        </h5>
-                                                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                                                aria-label="Close"></button>
-                                                                    </div>
-                                                                    <div class="modal-body">
-                                                                        Bạn muốn đặt hàng?
-                                                                    </div>
-                                                                    <div class="modal-footer">
-                                                                        <button type="button" class="btn btn-primary btn-dong-y">Đồng ý</button>
-                                                                        <button type="button" class="btn btn-secondary btn-khong"
-                                                                                data-bs-dismiss="modal">Không
-                                                                        </button>
-                                                                    </div>
+                                                    <div class="modal fade DatHangShipCod" tabindex="-1"
+                                                         aria-labelledby="DatHangShipCodModalLabel" aria-hidden="true">
+                                                        <div class="modal-dialog modal-dialog-centered">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title"
+                                                                        id="DatHangShipCodModalLabel"> Đặt hàng
+                                                                    </h5>
+                                                                    <button type="button" class="btn-close"
+                                                                            data-bs-dismiss="modal"
+                                                                            aria-label="Close"></button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    Bạn muốn đặt hàng?
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <button type="button"
+                                                                            class="btn btn-primary btn-dong-y">Đồng ý
+                                                                    </button>
+                                                                    <button type="button"
+                                                                            class="btn btn-secondary btn-khong"
+                                                                            data-bs-dismiss="modal">Không
+                                                                    </button>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+                                            </div>
 
 
-<!--                                                <div class="place-order">-->
-<!--                                                    <a class="btn btn-lg btn-color form-full-width" href="#">Thanh Toán</a>-->
-<!--                                                </div>-->
-<!--                                           -->
+                                            <!--                                                <div class="place-order">-->
+                                            <!--                                                    <a class="btn btn-lg btn-color form-full-width" href="#">Thanh Toán</a>-->
+                                            <!--                                                </div>-->
+                                            <!--                                           -->
 
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </form>
+<!--                        </form>-->
                     </article>
                 </div>
             </div>
