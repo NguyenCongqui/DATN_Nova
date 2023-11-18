@@ -617,7 +617,7 @@ public class BanHangServiceIpml implements BanHangService {
                 LichSuHoaDon ls = new LichSuHoaDon();
                 ls.setNguoiThaoTac(nguoiDung.getTenNguoiDung());
                 ls.setHoaDon(hoaDon);
-                ls.setThaoTac("Thanh toán hóa đơn" + hoaDon.getMaDon());
+                ls.setThaoTac("Thanh toán hóa đơn " + hoaDon.getMaDon());
                 lichSuHoaDonRepository.save(ls);
 
                 //Lưu nhân viên bán hàng vào hóa đơn

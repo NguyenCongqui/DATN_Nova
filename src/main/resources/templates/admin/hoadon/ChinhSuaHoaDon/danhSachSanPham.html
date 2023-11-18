@@ -73,7 +73,7 @@
                 <!-- <img src="..." class="rounded mr-2" alt="..."> -->
                 <strong class="pr-3 mr-auto">Thông báo</strong>
                 <small>Now</small>
-                <button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close">
+                <button type="button" class="ml-2 mb-1 close " data-dismiss="toast" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
@@ -98,8 +98,7 @@
         </div>
     </div>
     <div class="col-lg-12">
-        <button class="btn btn-secondary action-button mb-2" onclick="quayLaiTrangCTHD()">Quay lại
-            <i class="fas fa-arrow-left"></i>
+        <button class="btn btn-secondary action-button mb-2" onclick="quayLaiTrangCTHD()"><i class="fas fa-arrow-left"></i> Quay lại
         </button>
         <form id="flexUrlTableFormBanHangTaiQuay" enctype="multipart/form-data">
             <input type="number" name="page" id="inputPageProductManage" hidden>
@@ -240,8 +239,7 @@
                     <div class="col-sm-12 mt-3">
                         <div class="float-right">
                             <a class="btn btn-primary" th:hd-id="${resultSP.hoaDonId}"
-                               onclick="flexUrlSubmitBanHangTaiQuay('/admin/banHang/danhSachSanPham/'+this.getAttribute('hd-id'), 'get', 'BanHangTaiQuay')"><i
-                                    class="fa-solid fa-magnifying-glass"></i> Tìm
+                               onclick="flexUrlSubmitBanHangTaiQuay('/admin/banHang/danhSachSanPham/'+this.getAttribute('hd-id'), 'get', 'BanHangTaiQuay')"><i class="fa-solid fa-magnifying-glass"></i> Tìm
                                 kiếm</a>
                         </div>
                     </div>
@@ -346,6 +344,7 @@
                                     </div>
                                 </td>
                                 <!-- Modal add productDetail -->
+<!--                                app.css row 752-->
                                 <div class="modal fade modalChiTietSP" data-backdrop="static"  id="myModal"
                                      th:id="'modalChiTietSanPham-'+${item.sanPhamId}" tabindex="-1" role="dialog"
                                      aria-labelledby="modelTitleId" aria-hidden="true">
@@ -354,8 +353,8 @@
                                             <div class="modal-header">
                                                 <h5 class="modal-title" th:data-id="${item.sanPhamId}"
                                                     th:id="'modalTitle' + ${istat.index}"><span
-                                                        th:text="${item.tenSanPham}"></span></h5>
-                                                <button type="button" class="close" data-dismiss="modal"
+                                                        th:text="${#strings.toUpperCase(item.tenSanPham)}" style="color: black"></span></h5>
+                                                <button type="button" class="close btn-dong" data-dismiss="modal"
                                                         aria-label="Close"
                                                         th:input-name1="inputMSName+${istat.index}"
                                                         th:input-name2="inputKCName+${istat.index}"
