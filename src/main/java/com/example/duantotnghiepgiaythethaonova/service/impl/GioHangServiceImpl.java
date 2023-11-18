@@ -149,7 +149,7 @@ public class GioHangServiceImpl implements GioHangService{
                 gioHangChiTiet.setChiTietSanPham(sanPhamChiTiet);
                 gioHangChiTiet.setSoLuong(soLuong);
                 gioHangChiTiet.setGioHang(gioHang);
-                gioHangChiTiet.setDonGia(donGia.intValue());
+                gioHangChiTiet.setDonGia(donGia);
                 gioHangChiTiet.setThanhTien(thanhTien);
                 gioHangChiTiet.setDaXoa(false);
                 gioHangChiTiet.setTrangThai(0);

@@ -53,13 +53,13 @@ public class GioHangChiTietServiceImpl implements GioHangChiTietService {
 	@SuppressWarnings("deprecation")
 	@Override
 	@Transactional
-	public void capNhatSoLuongGioHangChiTiet(Integer[] ids, Integer[] soLuongs, Integer[] donGias) {
+	public void capNhatSoLuongGioHangChiTiet(Integer[] ids, Integer[] soLuongs, BigDecimal[] donGias) {
 		List<Integer> listSoLuong = toListInterger(soLuongs);
-		List<Integer> listDonGia = toListInterger(donGias);
+		List<BigDecimal> listDonGia = toListBigDecimal(donGias);
 		for (int i = 0; i < ids.length; i++) {
 			Integer id =  (Integer) Array.get(ids, i);
 			Integer soLuong = listSoLuong.get((int) i);
-			Integer donGia = listDonGia.get((int) i);
+			BigDecimal donGia = listDonGia.get((int) i);
 			 if(soLuong > 0) {
 				 GioHangChiTiet gioHangChiTiet = gioHangChiTietRepo.getOne(id);
 				 if(soLuong > gioHangChiTiet.getSoLuong()) {
@@ -70,7 +70,7 @@ public class GioHangChiTietServiceImpl implements GioHangChiTietService {
 
 				 gioHangChiTiet.setSoLuong(soLuong);
 				 gioHangChiTiet.setDonGia(donGia);
-				 gioHangChiTiet.setThanhTien(BigDecimal.valueOf(Math.abs(gioHangChiTiet.getSoLuong()*gioHangChiTiet.getDonGia())));
+				 gioHangChiTiet.setThanhTien(BigDecimal.valueOf(Math.abs(gioHangChiTiet.getSoLuong()*gioHangChiTiet.getDonGia().doubleValue())));
 				 gioHangChiTietRepo.save(gioHangChiTiet);
 			 }
 		}
@@ -80,6 +80,15 @@ public class GioHangChiTietServiceImpl implements GioHangChiTietService {
 		for (int i = 0; i < integers.length; i++) {
 			Integer integer = integers[i];
 			list.add(integer);
+		}
+		return list ;
+	}
+
+	public List<BigDecimal> toListBigDecimal(BigDecimal[] bigDecimals) {
+		List<BigDecimal> list = new ArrayList<>() ;
+		for (int i = 0; i < bigDecimals.length; i++) {
+			BigDecimal bigDecimal = bigDecimals[i];
+			list.add(bigDecimal);
 		}
 		return list ;
 	}

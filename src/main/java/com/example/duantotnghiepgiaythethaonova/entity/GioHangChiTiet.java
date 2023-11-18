@@ -24,7 +24,7 @@ public class GioHangChiTiet extends BaseEntity implements Serializable {
     @Column(name = "IdGioHangCT")
     private Integer idGioHangCT;
     @Column(name = "DonGia")
-    private Integer donGia;
+    private BigDecimal donGia;
     @Column(name = "SoLuong")
     private Integer soLuong;
     @Column(name = "TongTien")

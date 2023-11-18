@@ -50,7 +50,8 @@ $(document).ready(function () {
             });
             $(this).val(soLuongHienCo);
             soLuongInput = soLuongHienCo;
-        } else if (soLuongInput < 1) {
+        }
+        else if (soLuongInput < 1) {
             Swal.fire({
                 icon: "error",
                 title: "Số lượng nhập vào không được nhỏ hơn 0",

@@ -18,7 +18,7 @@ public class GioHangChiTietDTO extends BaseDTO<GioHangChiTietDTO> {
 
     private int soLuong;
 
-    private int donGia;
+    private BigDecimal donGia;
 
     private BigDecimal thanhTien;
 

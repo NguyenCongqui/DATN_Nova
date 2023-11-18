@@ -22,6 +22,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.lang.reflect.Array;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -115,7 +116,7 @@ public class GioHangChiTietCustomerController {
     @PostMapping("/khachhang/gio-hang-chi-tiet")
     public String capNhatGioHang(@RequestParam("ids") Integer[] ids,
                                  @RequestParam("soLuongs") Integer[] soLuongs,
-                                 @RequestParam("donGias") Integer[] donGias,
+                                 @RequestParam("donGias") BigDecimal[] donGias,
                                  Model model, RedirectAttributes redirectAttributes) {
         layGioHangChiTiet(model, redirectAttributes);
         String auth = SecurityContextHolder.getContext().getAuthentication().getName();

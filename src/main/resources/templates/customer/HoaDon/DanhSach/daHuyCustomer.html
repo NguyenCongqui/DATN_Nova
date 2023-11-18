@@ -45,14 +45,26 @@
                                 <div class="button-group">
                                     <input type="hidden" id="idCustomerDH" th:value="${customerDH.idHoaDon}">
 
-                                    <button class="action-button chiTietHoaDonCus" type="submit" id="chiTietHoaDonCusDH">
+                                    <button class="action-button chiTietHoaDonCus" type="submit" id="chiTietHoaDonCusDH" th:attr="${customerDH.idHoaDon}">
                                         <i class="fa fa-info" aria-hidden="true"></i>
                                     </button>
 
+<!--                                    <script th:inline="javascript">-->
+<!--                                        $(document).ready(function () {-->
+<!--                                            $("#chiTietHoaDonCusDH").click(function () {-->
+<!--                                                const id = $("#idCustomerDH").val();-->
+<!--                                                window.location.href = "/khachhang/DonHang/ChiTietHoaDon/DaHuy/hoa-don-id=" + id;-->
+<!--                                            });-->
+<!--                                        });-->
+<!--                                    </script>-->
+
                                     <script th:inline="javascript">
                                         $(document).ready(function () {
-                                            $("#chiTietHoaDonCusDH").click(function () {
-                                                const id = $("#idCustomerDH").val();
+                                            $(".chiTietHoaDonCus").click(function () {
+                                                // Get the data-id attribute value of the clicked button
+                                                const id = $(this).attr("data-id");
+
+                                                // Use the id in the window location
                                                 window.location.href = "/khachhang/DonHang/ChiTietHoaDon/DaHuy/hoa-don-id=" + id;
                                             });
                                         });
