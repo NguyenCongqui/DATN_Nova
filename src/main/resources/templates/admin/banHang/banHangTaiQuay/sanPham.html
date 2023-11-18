@@ -330,6 +330,7 @@
                                             </div>
                                         </td>
                                         <!-- Modal add productDetail -->
+<!--                                        app.css row 752&ndash;&gt;-->
                                         <div class="modal fade modalChiTietSP" data-backdrop="static"
                                             th:id="'modalChiTietSanPham-'+${item.sanPhamId}" tabindex="-1" role="dialog"
                                             aria-labelledby="modelTitleId" aria-hidden="true">
@@ -338,8 +339,8 @@
                                                     <div class="modal-header">
                                                         <h5 class="modal-title" th:data-id="${item.sanPhamId}"
                                                             th:id="'modalTitle' + ${istat.index}"><span
-                                                                th:text="${item.tenSanPham}"></span></h5>
-                                                        <button type="button" class="close" data-dismiss="modal"
+                                                                th:text="${#strings.toUpperCase(item.tenSanPham)}" style="color: black"></span></h5>
+                                                        <button type="button" class="close btn-dong" data-dismiss="modal"
                                                             aria-label="Close"
                                                             th:input-name1="inputMSName+${istat.index}"
                                                             th:input-name2="inputKCName+${istat.index}"

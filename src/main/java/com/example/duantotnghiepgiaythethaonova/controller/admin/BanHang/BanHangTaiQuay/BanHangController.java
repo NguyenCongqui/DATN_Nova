@@ -54,9 +54,6 @@ public class BanHangController {
     @Autowired
     private KichCoService kichCoService;
 
-//    @Autowired
-//    private LoaiSanPhamService  loaiSanPhamService;
-
     @Autowired
     private ThuongHieuService thuongHieuService;
 
@@ -80,6 +77,15 @@ public class BanHangController {
 
     @Autowired
     KhachHangRepository khachHangRepository;
+
+    @Autowired
+    private DayGiayService dayGiayService;
+
+    @Autowired
+    private DeGiayService deGiayService;
+
+    @Autowired
+    private LotGiayService lotGiayService;
 
     @GetMapping("/images/{filename:.+}")
     @ResponseBody
@@ -125,19 +131,37 @@ public class BanHangController {
         }).collect(Collectors.toList());
     }
 
-//    @ModelAttribute("lstLoaiSanPham")
-//    public List<LoaiSanPhamDTO> getLstLoaiHang() {
-//        return loaiSanPhamService.selectAllLoaiHangExist().stream().map(item -> {
-//            LoaiSanPhamDTO dto = new LoaiSanPhamDTO();
-//            BeanUtils.copyProperties(item, dto);
-//            return dto;
-//        }).collect(Collectors.toList());
-//    }
-
     @ModelAttribute("lstThuongHieu")
     public List<ThuongHieuDTO> getLstThuongHieu() {
         return thuongHieuService.selectAllLoaiHangExist().stream().map(item -> {
             ThuongHieuDTO dto = new ThuongHieuDTO();
+            BeanUtils.copyProperties(item, dto);
+            return dto;
+        }).collect(Collectors.toList());
+    }
+
+    @ModelAttribute("lstDayGiay")
+    public List<DayGiayDTO> getLstDayGiay() {
+        return dayGiayService.selectAllKichCoExist().stream().map(item -> {
+            DayGiayDTO dto = new DayGiayDTO();
+            BeanUtils.copyProperties(item, dto);
+            return dto;
+        }).collect(Collectors.toList());
+    }
+
+    @ModelAttribute("lstDeGiay")
+    public List<DeGiayDTO> getLstDeGiay() {
+        return deGiayService.selectAllKichCoExist().stream().map(item -> {
+            DeGiayDTO dto = new DeGiayDTO();
+            BeanUtils.copyProperties(item, dto);
+            return dto;
+        }).collect(Collectors.toList());
+    }
+
+    @ModelAttribute("lstLotGiay")
+    public List<LotGiayDTO> getLstLotGiay() {
+        return lotGiayService.selectAllKichCoExist().stream().map(item -> {
+            LotGiayDTO dto = new LotGiayDTO();
             BeanUtils.copyProperties(item, dto);
             return dto;
         }).collect(Collectors.toList());

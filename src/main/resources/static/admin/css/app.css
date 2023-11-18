@@ -751,7 +751,19 @@ footer {
 
 .modal .modal-content {
     box-shadow: -8px 12px 18px 0 rgba(25, 42, 70, .13);
-    border: none
+    border: none;
+
+    /*Chỉnh sủa modal hóa đơn*/
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    pointer-events: auto;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid rgba(0,0,0,.2);
+    border-radius: 0.3rem;
+    outline: 0;
 }
 
 .modal .modal-full {

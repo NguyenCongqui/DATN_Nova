@@ -1,9 +1,6 @@
 package com.example.duantotnghiepgiaythethaonova.controller.admin.BanHang.BanHangTaiQuay;
 
-import com.example.duantotnghiepgiaythethaonova.dto.ChatLieuDTO;
-import com.example.duantotnghiepgiaythethaonova.dto.KichCoDTO;
-import com.example.duantotnghiepgiaythethaonova.dto.KieuDangDTO;
-import com.example.duantotnghiepgiaythethaonova.dto.MauSacDTO;
+import com.example.duantotnghiepgiaythethaonova.dto.*;
 import com.example.duantotnghiepgiaythethaonova.dto.composite.SanPhamTaiQuayDTO;
 import com.example.duantotnghiepgiaythethaonova.dto.composite.ShowSanPhamdto;
 import com.example.duantotnghiepgiaythethaonova.dto.search.SPAndSPCTSearchDto;
@@ -48,12 +45,6 @@ public class SanPhamController {
     @Autowired
     private KichCoService kichCoService;
 
-//    @Autowired
-//    private LoaiSanPhamService loaiSanPhamService;
-
-//    @Autowired
-//    private PhongCachService phongCachService;
-
     @Autowired
     private KieuDangService kieuDangService;
 
@@ -63,6 +54,17 @@ public class SanPhamController {
     @Autowired
     private HinhAnhService hinhAnhService;
 
+    @Autowired
+    private ThuongHieuService thuongHieuService;
+
+    @Autowired
+    private DayGiayService dayGiayService;
+
+    @Autowired
+    private DeGiayService deGiayService;
+
+    @Autowired
+    private LotGiayService lotGiayService;
 
     @GetMapping("danh-sach/images/{filename:.+}")
     @ResponseBody
@@ -105,6 +107,41 @@ public class SanPhamController {
     public List<KichCoDTO> getLstKichCo() {
         return kichCoService.selectAllKichCoExist().stream().map(item -> {
             KichCoDTO dto = new KichCoDTO();
+            BeanUtils.copyProperties(item, dto);
+            return dto;
+        }).collect(Collectors.toList());
+    }
+
+    @ModelAttribute("lstThuongHieu")
+    public List<ThuongHieuDTO> getLstThuongHieu() {
+        return thuongHieuService.selectAllLoaiHangExist().stream().map(item -> {
+            ThuongHieuDTO dto = new ThuongHieuDTO();
+            BeanUtils.copyProperties(item, dto);
+            return dto;
+        }).collect(Collectors.toList());
+    }
+    @ModelAttribute("lstDayGiay")
+    public List<DayGiayDTO> getLstDayGiay() {
+        return dayGiayService.selectAllKichCoExist().stream().map(item -> {
+            DayGiayDTO dto = new DayGiayDTO();
+            BeanUtils.copyProperties(item, dto);
+            return dto;
+        }).collect(Collectors.toList());
+    }
+
+    @ModelAttribute("lstDeGiay")
+    public List<DeGiayDTO> getLstDeGiay() {
+        return deGiayService.selectAllKichCoExist().stream().map(item -> {
+            DeGiayDTO dto = new DeGiayDTO();
+            BeanUtils.copyProperties(item, dto);
+            return dto;
+        }).collect(Collectors.toList());
+    }
+
+    @ModelAttribute("lstLotGiay")
+    public List<LotGiayDTO> getLstLotGiay() {
+        return lotGiayService.selectAllKichCoExist().stream().map(item -> {
+            LotGiayDTO dto = new LotGiayDTO();
             BeanUtils.copyProperties(item, dto);
             return dto;
         }).collect(Collectors.toList());
