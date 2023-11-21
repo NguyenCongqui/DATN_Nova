@@ -1,0 +1,32 @@
+@keyframes blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.product-item-inner {
+    position: relative; /* Đặt vị trí là tương đối để chứa phần tử con với vị trí tuyệt đối */
+}
+
+#newestLabel {
+    position: absolute; /* Đặt vị trí tuyệt đối để có thể đặt nó trong phần tử cha */
+    left: 0; /* Đặt ở bên trái */
+    top: 0; /* Đặt ở đỉnh */
+    background-color: rgb(63, 61, 61); /* Đặt một màu nền để chữ dễ đọc hơn */
+    padding: 5px; /* Thêm đệm để cách lề từ ảnh */
+    z-index: 1; /* Đặt z-index để đảm bảo nó hiển thị phía trên ảnh */
+    color: rgb(255, 255, 255);
+    font-size: 14px;
+    font-weight: bold;
+    animation: blink 5s infinite; /* Điều này làm cho chữ nhấp nháy trong 2 giây và lặp vô hạn */
+
+}
+
+
+

@@ -6,6 +6,9 @@
 <head>
     <meta charset="UTF-8">
     <title>NOVA SHOES</title>
+    <script th:src="@{/static/admin/js/moi-nhat/moiNhat.js}"></script>
+    <script src="https://kit.fontawesome.com/999051c9de.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" th:href="@{/static/admin/css/moiNhat.css}">
 </head>
 <body>
 <!-- Product (Tab with Slider) -->
@@ -15,7 +18,7 @@
     <span th:replace="customer/layout/banner :: banner"></span>
     <section class="section-padding-b">
         <div class="container">
-            <h2 class="page-title">Sản Phẩm Mới</h2>
+            <h2 class="page-title"><i class="fa fa-bolt"></i> Sản Phẩm Mới</h2>
         </div>
         <div class="container"
         >
@@ -27,6 +30,7 @@
                         <div class="product-item" th:each="item, istat : ${resultSP.lstShowSanPhamTaiQua}"
                              th:object="${resultSP}">
                             <div class="product-item-inner">
+                                <span class="newest-label" id="newestLabel">Mới nhất</span>
                                 <div abbr="" class="product-img-wrap">
                                     <div class="carousel-item" th:name="'divImgIsActive'+${istat.index}"
                                          th:id="'imgActive'+${istat.index}+${istatAC.index}"
@@ -42,7 +46,9 @@
                                     <!--                                <a href="#" class="js_tooltip" data-mode="top" data-tip="Add To Whishlist"><i class="fa fa-heart"></i></a>-->
                                     <!--                                <a href="#" class="js_tooltip" data-mode="top" data-tip="Quick&nbsp;View"><i class="fa fa-eye"></i></a>-->
                                 </div>
+
                             </div>
+
                             <div class="product-detail">
                                 <a class="tag" href="#">Men Fashion</a>
                                 <p class="product-title"><a th:href="${'/khachhang/shop-details/'+item.sanPhamId}"

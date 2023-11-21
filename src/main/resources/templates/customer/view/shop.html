@@ -477,7 +477,7 @@
 
                                     <span th:if="${sanPhamPage.number + 1 + 2 < sanPhamPage.totalPages}">...</span>
                                     <button
-                                            th:class="${ sanPhamPage.totalPages == sanPhamPage.number + 1}? 'active' : ''"
+                                            th:class="${sanPhamPage.totalPages == sanPhamPage.number + 1}? 'active' : ''"
                                             th:if="${sanPhamPage.number + 1 + 2 < sanPhamPage.totalPages}"
                                             th:text="${sanPhamPage.totalPages}" id="lastPageShop"></button>
 

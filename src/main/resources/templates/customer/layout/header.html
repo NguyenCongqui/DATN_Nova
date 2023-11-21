@@ -98,10 +98,10 @@
                             </div>
 
                             <div class="cart-title" th:href="@{/khachhang/gio-hang-chi-tiet}">
-                            <span class="cart-count" th:if="${soLuongSanPhamChiTiet gt 0}">
-                           <sup th:text="${getsoLuongSanPhamChiTiet}"></sup>
+                            <span class="cart-count daucatmoi" th:if="${soLuong gt 0}">
+                           <sup th:text="${soLuong}"></sup>
                             </span>
-                                <span th:unless="${getsoLuongSanPhamChiTiet gt 0}" class="cart-count">
+                                <span th:unless="${soLuong gt 0}" class="cart-count">
 <!--                            <sup>0</sup>-->
                                 </span>
                                     <!--                                </span>-->

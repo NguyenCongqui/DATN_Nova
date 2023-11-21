@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.util.Date;
 import java.util.List;
 
 
@@ -31,4 +32,6 @@ public class SanPhamTaiQuayDTO {
     @NotNull(message = "Số lượng không được để trống")
     @Min(value = 0, message = "Số lượng không được nhỏ hơn 0")
     private Integer SoLuong;
+
+    private Date ngayTao;
 }
