@@ -11,5 +11,10 @@ public class Controller403 {
         return "/customer/403";
     }
 
+    @GetMapping("/test")
+    public String test(){
+        return "/customer/view/test";
+    }
+
 
 }

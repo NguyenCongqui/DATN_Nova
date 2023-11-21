@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+</head>
+<body>
+<form class="col-md-12 filters-size product__details__option__size">
+    <!-- Trong phần body của trang web -->
+    <label for="select-size">Kích cỡ: <a href="javascript:" id="openModalLink">Hướng dẫn chọn size <img src=""></a></label>
+
+    <!-- Modal -->
+    <div class="modal" tabindex="-1" role="dialog" id="sizeGuideModal">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Hướng dẫn chọn size</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Nội dung hướng dẫn chọn size -->
+                    <img th:src="@{/static/customer/img/bangSize/bangSize.png}" alt="Size Guide">
+                </div>
+            </div>
+        </div>
+    </div>
+<!--    <div class="size-selector">-->
+<!--        <a class="entry chonKichCoa" type="radio" th:each="kichCo: ${kichCoList}" th:text="${kichCo}" th:attr="data-id=${kichCo}"></a>-->
+<!--        <input type="hidden" id="kichCoDaChon-customer">-->
+<!--    </div>-->
+</form>
+<script>
+    document.getElementById('openModalLink').addEventListener('click', function() {
+        var modal = new bootstrap.Modal(document.getElementById('sizeGuideModal'));
+        modal.show();
+    });
+
+</script>
+</body>
+</html>
