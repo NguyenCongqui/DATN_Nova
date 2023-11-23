@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <title>Đặt hàng</title>
     <!--    <link rel="stylesheet" th:href="@{/admin/css/banHang/banHangOnline.css}">-->
+    <link rel="shortcut icon" th:href="@{/static/customer/img/NOVA.png}" type="image/x-icon">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="/static/admin/js/banHang/banHangOnline/banHangOnline.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
@@ -51,7 +52,7 @@
 </head>
 <body>
 <!-- Page Content Wraper -->
-<span th:replace="customer/layout/header :: header"></span>
+<div th:replace="customer/layout/header :: header"></div>
 <div class="page-content-wraper "
 
      th:each="hoaDonOnline: ${hoaDon}">
@@ -62,7 +63,7 @@
                 <div class="col-12">
                     <nav class="breadcrumb-link">
                         <a th:href="@{/khachhang/home}">Trang chủ</a>
-                        <span>Checkout</span>
+                        <span>Thanh toán</span>
                     </nav>
                 </div>
             </div>
@@ -70,7 +71,8 @@
     </section>
     <!-- Bread Crumb -->
 
-    <!-- Page Content -->
+    <br>
+    <br> <!-- Page Content -->
     <section class="content-page1">
         <div class="container mb-8">
             <div class="row">
@@ -79,7 +81,7 @@
 <!--                        <form class="product-checkout mt-45">-->
                             <div class="row">
                                 <div class="col-md-5">
-                                    <h3 id="thongTinGiaohang">Chi Tiết Thanh Toán</h3>
+                                    <h3 style="text-align: center;" id="thongTinGiaohang"><i class="fa-solid fa-circle-info"></i> Chi Tiết Thanh Toán</h3>
                                     <div class="row">
                                         <div class="form-field-wrapper form-center col-sm-12">
                                             <label class="left">Họ Và Tên</label>
@@ -109,12 +111,12 @@
 
                                         <div class="form-center col-sm-4">
                                             <label class="left">
-                                                Thành Phố
+                                                Tỉnh/Thành Phố
                                                 <abbr class="form-required" title="required">*</abbr></label>
                                             <select name="billing_country" id="province"
                                                     class="input-md form-full-width tinhThanhPho" autocomplete="country"
                                                     tabindex="-1" aria-hidden="true" required="" aria-required="true">
-                                                <option value="">Chọn Thành Phố</option>
+                                                <option value="">Chọn Tỉnh/Thành Phố</option>
                                             </select>
                                         </div>
                                         <div class="form-center col-sm-4">
@@ -146,12 +148,12 @@
                                                 <abbr class="form-required" title="required">*</abbr></label>
                                             <input class="input-md form-full-width mb-20 addressInput" id="addressInput"
                                                    th:value="${diaChi != null ? diaChi.getDiaChi() : ''}"
-                                                   name="addressInput" title="Address" value="" placeholder="Địa Chỉ"
+                                                   name="addressInput" title="Address" value="" placeholder="Địa chỉ cụ thể"
                                                    type="text" required="" aria-required="true">
                                         </div>
                                         <div class="form-field-wrapper form-center col-sm-12">
                                             <label class="left">
-                                                Ghi Chú
+                                                Ghi Chú (tùy chọn)
                                             </label>
                                             <textarea name="note" id="note" th:text="${hoaDon.ghiChu}" value=""
                                                       style="width: 540px; height: 120px;"
@@ -159,12 +161,17 @@
                                                       aria-required="true">
                                                     </textarea>
                                         </div>
+                                       <div>
+                                          <button class="btn btn-md btn-black"><a th:href="@{/khachhang/gio-hang-chi-tiet}" class="cart-link2" style="color: #FFFFFF"><i class="fa-solid fa-arrow-left"></i> Quay Lại Giỏ hàng</a></button>
+                                       </div>
+
                                     </div>
 
                                 </div>
                                 <div class="col-md-7">
                                     <div class="checkout-order-review">
-                                        <h3>Đơn Hàng Của Tôi</h3>
+                                        <h3 style="text-align: center"><i
+                                                class="fas fa-file-signature"></i> Đơn Hàng Của Tôi</h3>
                                         <div class="product-checkout-review-order">
                                             <div class="responsive-table">
                                                 <div class="table-wrapper">
@@ -225,7 +232,7 @@
 
                                                     <tfoot>
                                                     <tr class="cart-subtotal">
-                                                        <th>Tạm Tính</th>
+                                                        <th>Tạm Tính: </th>
                                                         <td>
                                                             <strong><span class="product-price-amount amount"
                                                                           id="subtotal"
@@ -237,7 +244,7 @@
                                                         </td>
                                                     </tr>
                                                     <tr class="shipping">
-                                                        <th>Phí Vận Chuyển</th>
+                                                        <th>Phí Vận Chuyển: </th>
                                                         <td>
                                                             <ul id="shipping_method">
                                                                 <li>
@@ -253,7 +260,7 @@
                                                         </td>
                                                     </tr>
                                                     <tr class="shipping">
-                                                        <th>Giảm Giá Đã áp dụng</th>
+                                                        <th>Giảm Giá Đã áp dụng: </th>
                                                         <td>
                                                             <ul id="shipping_method">
                                                                 <li>
@@ -267,7 +274,7 @@
                                                         </td>
                                                     </tr>
                                                     <tr class="shipping">
-                                                        <th>Giảm Giá</th>
+                                                        <th>Giảm Giá: </th>
                                                         <td>
                                                             <ul id="shipping_method">
                                                                 <li>
@@ -281,11 +288,11 @@
                                                         </td>
                                                     </tr>
                                                     <tr class="order-total">
-                                                        <th>Tổng Cộng</th>
+                                                        <th>Tổng Cộng: </th>
                                                         <td class="tongCongTien">
                                                             <span class="product-price-amount amount">
-                                                                <span class="currency-sign" id="total">
-
+                                                                <span class="currency-sign" id="total"></span>
+                                                            </span>
                                                         </td>
                                                     </tr>
 
@@ -293,6 +300,7 @@
                                                 </table>
                                             </div>
 
+                                            <p class="cac-title"><h5><b><i class="fa-solid fa-scroll"></i> Phương thức thanh toán</b></h5></p>
 
                                             <div class="product-checkout-payment thanhToan">
                                                 <di class="radioThanhToan">
@@ -301,14 +309,14 @@
                                                             <input id="shipCOD" name="paymentMethod" value="method1"
                                                                    type="radio"/>
                                                             <label for="shipCOD" class="payment-label"
-                                                                   id="thanhToanKhiNhanHang">Thanh Toán khi Nhận
+                                                                   id="thanhToanKhiNhanHang"><i class="fas fa-truck"></i> Thanh Toán Khi Nhận
                                                                 Hàng</label>
                                                         </li>
                                                         <li>
                                                             <input id="VNPAY" name="paymentMethod" value="method2"
                                                                    type="radio"/>
                                                             <label for="VNPAY" class="payment-label"
-                                                                   id="chuyenKhoanNganHang">Chuyên Khoản Ngân
+                                                                   id="chuyenKhoanNganHang"><i class="fas fa-university"></i> Chuyển Khoản Ngân
                                                                 Hàng</label>
                                                         </li>
                                                     </ul>

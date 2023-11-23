@@ -11,7 +11,48 @@
     <script src="https://code.jquery.com/ui/1.13.1/jquery-ui.min.js"></script>
     <!-- CSS của jQuery UI (nếu cần) -->
     <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.1/themes/base/jquery-ui.css">
+
+    <!--    Zoom ảnh-->
+    <!-- jQuery -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Lightbox CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css"
+          integrity="sha512-5U1+mcXtVdRmm9Zdr3dAc5oVf9vde7C5UtYoebR/zmfDGrGxv/X7Y/OlKBpjTs8i6pRg/ztIOXE9qH7CvJOGdQ=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+
+    <!-- Lightbox JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"
+            integrity="sha512-QX1S5Rw4Q6ysMnh4sTwchZe6nDS6M3a1lvbuHdX+yA66JTIxIEqgPKs4sg9aA0dE7GvLv2Kgp5tf6cnvHGKNdQ=="
+            crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/css/lightbox.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.3/js/lightbox.min.js"></script>
     <style>
+        #sizeGuideModal .modal-body img {
+            width: 100% !important;
+            height: 120px !important;
+        }
+
+        .lightbox-close-right {
+            position: absolute;
+            top: 10px; /* Điều chỉnh vị trí theo yếu tố thiết kế của bạn */
+            right: 10px; /* Điều chỉnh vị trí theo yếu tố thiết kế của bạn */
+            font-size: 24px;
+            cursor: pointer;
+            color: #fff; /* Màu sắc của nút đóng */
+        }
+
+        #sizeGuideModal .modal-content {
+            max-width: 130px;
+            margin: auto;
+        }
+
+        .modal-content {
+            width: 400px;
+            height: 200px;
+        }
+
         label.msActive:after {
             border: 1px solid black;
         }
@@ -86,6 +127,26 @@
                                             <img th:src="${'/khachhang/images/'+img}" alt="image 1"/>
                                         </div>
 
+                                    </div>
+
+                                    <br>
+                                    <br>
+                                    <div class="modal-content" id="sizeGuideModal">
+                                        <div class="modal-header">
+                                            <h5 class="modal-title"><i class="fas fa-info-circle"></i> Bảng chọn size
+                                                tham khảo</h5>
+                                            <span class="lightbox-close" onclick="toggleSizeGuide()"></span>
+                                        </div>
+                                        <div class="modal-body">
+                                            <!-- Nội dung hướng dẫn chọn size -->
+                                            <a th:href="@{/static/customer/img/bangSize/bangSize2.jpg}"
+                                               data-lightbox="size-guide" title="Hướng dẫn chọn size">
+                                                <img th:src="@{/static/customer/img/bangSize/bangSize2.jpg}"
+                                                     title="Hướng dẫn chọn size">
+                                            </a>
+                                            <!-- Thêm thẻ div cho nút đóng bên phải ảnh -->
+                                            <!--                                            <div class="lightbox-close-right" onclick="toggleSizeGuide()">&times;</div>-->
+                                        </div>
                                     </div>
                                     <!-- End Slick Thumb Slider -->
                                 </div>
@@ -290,7 +351,29 @@
 </div>
 </div>
 
+<script>
+    // Thêm sự kiện click cho link mở modal
+    // document.getElementById('openModalLink').addEventListener('click', function() {
+    //     // Lấy modal
+    //     var modal = new bootstrap.Modal(document.getElementById('sizeGuideModal'));
+    //
+    //     // Hiển thị modal
+    //     modal.show();
+    // });
+    //zoom ảnh
+    function toggleSizeGuide() {
+        const modal = document.getElementById('sizeGuideModal');
+        modal.style.display = (modal.style.display === 'none' || modal.style.display === '') ? 'block' : 'none';
+    }
 
+    //zoom ảnh
+    let lightbox;
+    lightbox.option({
+        'resizeDuration': 200,
+        'wrapAround': true
+    });
+
+</script>
 </body>
 
 </html>

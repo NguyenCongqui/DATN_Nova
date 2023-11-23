@@ -38,7 +38,7 @@ $(document).ready(function () {
         $('.huyModal .btn-dong-y').click(function () {
             $.get('/updateHuyDon/' + hoaDonId, function (response) {
                 Swal.fire({
-                    icon: 'error', title: 'Đã hủy thành công !', showConfirmButton: false, timer: 2000
+                    icon: 'success', title: 'Đã hủy thành công !', showConfirmButton: false, timer: 2000
                 }).then(function () {
                     sessionStorage.setItem('isConfirmed', true);
 
