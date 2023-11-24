@@ -265,11 +265,9 @@ $(document).ready(function () {
 
     $("#buttonThanhToan").click(function () {
         $(".thanhToanVNPAY").modal('show');
-        console.log("hihi")
 
         $(".thanhToanVNPAY .btn-dong-y").click(function () {
             // Lấy các giá trị từ các trường thông tin
-            console.log("haha")
             let diaChiGiaoHang = getFullAddress();
             let nguoiNhan = $("#hoTen").val();
             let sdtNguoiNhan = $("#sdt").val();
@@ -295,19 +293,54 @@ $(document).ready(function () {
             $("#tienGiamGia").val(tienGiamIndex);
             $("#nameGiamGia").val(nameGiamGia);
             $("#emailNguoiNhann").val(emailNguoiNhan);
+           let amount =  $("#amountInput").val();
+           let id_hd = $("#id-hoa-don").val();
 
             let tienShipCheck = $("#shippingFee").text();
 
             if (nguoiNhan === "" || sdtNguoiNhan === "" || emailNguoiNhan === "" || tienShipCheck === "") {
                 Swal.fire({
                     icon: "error",
-                    title: "Vui lòng điền đầy đủ thông tin",
+                    title: "Vui lòng điền đầy đủ thông tin !",
                     showConfirmButton: false,
                     timer: 2000,
                 });
             } else {
-                $("#paymentForm").submit();
-                console.log("hehe")
+                let data ={
+                    orderCode: id_hd,
+                    amount: amount,
+                    diaChiGiaoHang: diaChiGiaoHang,
+                    nguoiNhan: nguoiNhan,
+                    emailNguoiNhann: emailNguoiNhan,
+                    tienGiamGia: tienGiamIndex,
+                    sdtNguoiNhan: sdtNguoiNhan,
+                    ghiChu: ghiChu,
+                    tienShipHD: shippingFeeIndex
+                }
+                console.log(data)
+                fetch('http://localhost:8080/payment/create', {
+                    // Cấu hình request
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                })
+                    .then(response => {
+
+                        // Phản hồi khi request thực hiện xong
+                        return response.json(); // Chuyển đổi response sang định dạng JSON
+
+                    })
+                    .then(data => {
+
+                        // data chứa dữ liệu trả về từ backend
+                        window.location.href = data.body
+
+                    });
+
+                // $("#paymentForm").submit();
+                // console.log("hehe")
             }
         });
 

@@ -43,7 +43,7 @@ public interface HoaDonRepoditory2 extends PagingAndSortingRepository<HoaDon, In
     @Query(value = "select * from HoaDon where idTrangThai = 8 and loaiHoaDon = 1 and daXoa = 0 order by ngayTao desc", nativeQuery = true)
     Page<HoaDon> findHoaDonDaHuy(Pageable pageable);
 
-    @Query(value = "SELECT * FROM HoaDon WHERE idTrangThai = 7 and loaiHoaDon = 1 and daXoa = 0 and (maDon LIKE %:input% OR tongTienHoaDon LIKE %:input% OR ghiChu LIKE %:input%)", nativeQuery = true)
+    @Query(value = "SELECT * FROM HoaDon WHERE idTrangThai = 7 and loaiHoaDon = 1 and daXoa = 0 and (maDon LIKE %:input% OR soDienThoaiNguoiNhan LIKE %:input% OR tongTienHoaDon LIKE %:input% OR ghiChu LIKE %:input%)", nativeQuery = true)
     Page<HoaDon> findAllHoaDonDaThanhToanCoPhanTrang(@Param("input") String input, Pageable pageable);
 
     @Query(value = "SELECT * FROM HoaDon WHERE idTrangThai = 7 and loaiHoaDon = 1 and daXoa = 0 and CONVERT(DATE, ngayTao)  =:ngayTao", nativeQuery = true)

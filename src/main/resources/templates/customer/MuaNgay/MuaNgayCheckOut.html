@@ -287,8 +287,9 @@
 
                                             <div class="button-container">
                                                 <div class="button-group">
-                                                    <form th:action="@{/MuaNgay/payment/create}" method="post" id="paymentForm">
-                                                        <input type="hidden" name="orderCode" th:value="${hoaDon.idHoaDon}"/>
+<!--                                                    <form th:action="@{/MuaNgay/payment/create}" method="post" id="paymentForm">-->
+                                                    <input type="hidden" name="orderCode" id="id-hoa-don"
+                                                           th:value="${hoaDon.idHoaDon}"/>
 
                                                         <input type="hidden" id="amountInput" name="amount" value=""/>
 
@@ -308,7 +309,7 @@
 
                                                         <input type="hidden" name="emailNguoiNhann" id="emailNguoiNhann" value="">
 
-                                                    </form>
+<!--                                                    </form>-->
 
                                                     <!--Đặt hàng-->
                                                     <div class="place-order">

@@ -44,5 +44,5 @@ public interface HoaDonRepository extends JpaRepository<HoaDon, Integer> {
     List<GiaoDich> timeLine(int trangThai, Integer hoaDonId);
 
     @Query("select hd from HoaDon hd where hd.ngayTao <= :endDate and hd.ngayTao >= :startDate")
-    List<HoaDon> getHoaDonInRangeDate(Date startDate, Date endDate);
+    List<HoaDon> getHoaDonInRangeDate(@Param("startDate") Date startDate,@Param("endDate") Date endDate);
 }

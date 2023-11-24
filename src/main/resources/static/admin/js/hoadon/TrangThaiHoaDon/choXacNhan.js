@@ -131,7 +131,7 @@ $(document).ready(function () {
             $.get('/updateHuyDon/' + hoaDonId, function (response) {
                 // Hiển thị thông báo hủy thành công với SweetAlert2
                 Swal.fire({
-                    icon: 'error',
+                    icon: 'success',
                     title: 'Đã hủy thành công',
                     showConfirmButton: false,
                     timer: 2000

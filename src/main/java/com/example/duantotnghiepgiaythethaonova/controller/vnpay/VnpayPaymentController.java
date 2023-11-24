@@ -2,6 +2,7 @@ package com.example.duantotnghiepgiaythethaonova.controller.vnpay;
 
 import com.example.duantotnghiepgiaythethaonova.dto.PaymentDTO;
 import com.example.duantotnghiepgiaythethaonova.service.VNPayService;
+import com.example.duantotnghiepgiaythethaonova.service.VNPayService2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -13,37 +14,30 @@ import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 
 
-@Controller
+@CrossOrigin("http://127.0.0.1:8080")
+@RestController
 public class VnpayPaymentController {
     @Autowired
     VNPayService vnPayService;
 
-    @PostMapping("payment/create")
-    public String createPayment(@RequestParam("orderCode") String orderCode,
-                                @RequestParam("amount") long amount,
-                                @RequestParam("diaChiGiaoHang") String diaChiGiaoHang,
-                                @RequestParam("nguoiNhan") String nguoiNhan,
-                                @RequestParam("emailNguoiNhann") String emailNguoiNhan,
-                                @RequestParam("tienGiamGia") BigDecimal tienGiamGia,
-                                @RequestParam("nameGiamGia") String nameGiamGia,
-                                @RequestParam("sdtNguoiNhan") String sdtNguoiNhan,
-                                @RequestParam("ghiChu") String ghiChu,
-                                @RequestParam("tienShipHD") BigDecimal tienShipHD, RedirectAttributes redirectAttributes) {
+    @Autowired
+    VNPayService2 vnPayService2;
 
-        String vnpayUrl = vnPayService.createOrder(amount, orderCode, emailNguoiNhan, tienGiamGia, nameGiamGia, sdtNguoiNhan, tienShipHD, orderCode, nguoiNhan, diaChiGiaoHang, ghiChu);
-        System.out.println(vnPayService.createOrder(amount, orderCode, emailNguoiNhan, tienGiamGia, nameGiamGia, sdtNguoiNhan, tienShipHD, orderCode, nguoiNhan, diaChiGiaoHang, ghiChu));
-        System.out.println("dbcdkbc");
-        return "redirect:" + vnpayUrl;
+    @PostMapping("/payment/create")
+    public ResponseEntity<?> createPayment(@RequestBody PaymentDTO paymentDTO) {
+        return ResponseEntity.ok().body(vnPayService2.createOrder(paymentDTO));
     }
-    @RequestMapping("payment/return")
-    public String handleReturn(@RequestParam Integer nguoiDungId, Model model, HttpServletRequest request) {
-        int paymentStatus = vnPayService.orderReturn(request);
+
+    @GetMapping("/payment/return")
+    public ResponseEntity<?> handleReturn(@RequestParam int nguoiDungId, Model model, HttpServletRequest request) {
+        int paymentStatus = vnPayService2.orderReturn(request);
 
         if (paymentStatus == 1) {
-            vnPayService.saveOrderReturn(request, model, nguoiDungId);
-            return "vnp/success";
+            vnPayService2.saveOrderReturn(request, model, nguoiDungId);
+            return ResponseEntity.ok().body("vnp/success");
         } else {
-            return "vnp/error";
+            return ResponseEntity.ok().body("vnp/error");
         }
     }
+
 }

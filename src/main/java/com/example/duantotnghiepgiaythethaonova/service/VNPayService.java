@@ -179,6 +179,8 @@ public class VNPayService {
         String vnp_SecureHash = request.getParameter("vnp_SecureHash");
         String vnp_TransactionStatus = request.getParameter("vnp_TransactionStatus");
 
+        System.out.println(sdtNguoiNhan);
+
         BigDecimal tienGiamGia = new BigDecimal(tienGiamGiaString);
         BigDecimal tienShipHD = new BigDecimal(tienShipHDString);
         BigDecimal soTien = new BigDecimal(totalPrice);

@@ -148,7 +148,7 @@ function DatHangNgay(sanPhamID,soLuong) {
             Swal.fire({
                 icon: "success",
                 title: "Thành công",
-                text: "Đang chuyển hướng đến trang đặt hàng",
+                text: "Đang chuyển hướng đến trang đặt hàng !",
                 showConfirmButton: false,
                 timer: 2000
             }).then(function () {

@@ -9,6 +9,6 @@ import java.util.List;
 
 @Repository
 public interface LichSuHoaDonRepository extends JpaRepository<LichSuHoaDon,Integer> {
-    @Query(value = "select * from LichSuHoaDon where idLichSuHoaDon = ?",nativeQuery = true)
+    @Query(value = "select * from LichSuHoaDon where idHoaDon = ?",nativeQuery = true)
     List<LichSuHoaDon> findLichSuByHDID(Integer hoaDonId);
 }

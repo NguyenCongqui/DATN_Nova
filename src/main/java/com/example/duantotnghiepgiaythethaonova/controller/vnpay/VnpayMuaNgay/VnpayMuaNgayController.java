@@ -1,46 +1,42 @@
 package com.example.duantotnghiepgiaythethaonova.controller.vnpay.VnpayMuaNgay;
 
+import com.example.duantotnghiepgiaythethaonova.dto.PaymentDTO;
 import com.example.duantotnghiepgiaythethaonova.service.VNPayService;
+import com.example.duantotnghiepgiaythethaonova.service.VNPayService2;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
 import java.math.BigDecimal;
 
-@Controller
+@RestController
 public class VnpayMuaNgayController {
     @Autowired
     VNPayService vnPayService;
 
-    @PostMapping("MuaNgay/payment/create")
-    public String createPayment(@RequestParam("orderCode") String orderCode,
-                                @RequestParam("amount") long amount,
-                                @RequestParam("diaChiGiaoHang") String diaChiGiaoHang,
-                                @RequestParam("nguoiNhan") String nguoiNhan,
-                                @RequestParam("emailNguoiNhann") String emailNguoiNhan,
-                                @RequestParam("tienGiamGia") BigDecimal tienGiamGia,
-                                @RequestParam("nameGiamGia") String nameGiamGia,
-                                @RequestParam("sdtNguoiNhan") String sdtNguoiNhan,
-                                @RequestParam("ghiChu") String ghiChu,
-                                @RequestParam("tienShipHD") BigDecimal tienShipHD) {
+    @Autowired
+    VNPayService2 vnPayService2;
 
-        String vnpayUrl = vnPayService.createOrderMuaNgay(amount, orderCode, emailNguoiNhan, tienGiamGia, nameGiamGia, sdtNguoiNhan, tienShipHD, orderCode, nguoiNhan, diaChiGiaoHang, ghiChu);
-        return "redirect:" + vnpayUrl;
+    @PostMapping("/MuaNgay/payment/create")
+    public ResponseEntity<?> createPayment(@RequestBody PaymentDTO paymentDTO) {
+
+//        String vnpayUrl = vnPayService.createOrderMuaNgay(amount, orderCode, emailNguoiNhan, tienGiamGia, nameGiamGia, sdtNguoiNhan, tienShipHD, orderCode, nguoiNhan, diaChiGiaoHang, ghiChu);
+        return ResponseEntity.ok().body(vnPayService2.createOrderMuaNgay(paymentDTO));
     }
 
-    @RequestMapping("MuaNgay/payment/return")
-    public String handleReturn(Model model, HttpServletRequest request) {
-        int paymentStatus = vnPayService.orderReturn(request);
+    @GetMapping("/MuaNgay/payment/return")
+    public ResponseEntity<?> handleReturn(Model model, HttpServletRequest request) {
+        int paymentStatus = vnPayService2.orderReturn(request);
 
         if (paymentStatus == 1) {
-            vnPayService.saveOrderReturnMuaNgay(request, model);
-            return "vnp/MuaNgay/SuccessMuaNgay";
+            vnPayService2.saveOrderReturnMuaNgay(request, model);
+//            return "vnp/MuaNgay/SuccessMuaNgay";
+            return ResponseEntity.ok("vnp/MuaNgay/SuccessMuaNgay");
         } else {
-            return "vnp/MuaNgay/errorMuaNgay";
+            return ResponseEntity.ok("vnp/MuaNgay/errorMuaNgay");
         }
     }
 }

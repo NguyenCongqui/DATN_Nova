@@ -326,8 +326,8 @@
 
                                             <div class="button-container">
                                                 <div class="button-group">
-                                                    <form th:action="@{/payment/create}" method="post" id="paymentForm">
-                                                        <input type="hidden" name="orderCode"
+<!--                                                    <form th:action="@{/payment/create}" method="post" id="paymentForm">-->
+                                                        <input type="hidden" name="orderCode" id ="id-hoa-don"
                                                                th:value="${hoaDon.idHoaDon}"/>
 
                                                         <input type="hidden" id="amountInput" name="amount" value=""/>
@@ -353,7 +353,7 @@
                                                         <input type="hidden" name="emailNguoiNhann" id="emailNguoiNhann"
                                                                value="">
 
-                                                    </form>
+<!--                                                    </form>-->
 
                                                     <!--Thanh Toan-->
                                                     <div class="place-order">
