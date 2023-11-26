@@ -5,17 +5,13 @@ import com.example.duantotnghiepgiaythethaonova.service.VNPayService;
 import com.example.duantotnghiepgiaythethaonova.service.VNPayService2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
-import java.math.BigDecimal;
 
 @RestController
 public class VnpayMuaNgayController {
-    @Autowired
-    VNPayService vnPayService;
 
     @Autowired
     VNPayService2 vnPayService2;
@@ -28,15 +24,17 @@ public class VnpayMuaNgayController {
     }
 
     @GetMapping("/MuaNgay/payment/return")
-    public ResponseEntity<?> handleReturn(Model model, HttpServletRequest request) {
+    public String handleReturn(Model model, HttpServletRequest request) {
         int paymentStatus = vnPayService2.orderReturn(request);
 
         if (paymentStatus == 1) {
             vnPayService2.saveOrderReturnMuaNgay(request, model);
-//            return "vnp/MuaNgay/SuccessMuaNgay";
-            return ResponseEntity.ok("vnp/MuaNgay/SuccessMuaNgay");
+            // Trả về tên trang HTML hoặc đường dẫn đến trang HTML thành công
+            return "/vnp/MuaNgay/SuccessMuaNgay";
         } else {
-            return ResponseEntity.ok("vnp/MuaNgay/errorMuaNgay");
+            // Trả về tên trang HTML hoặc đường dẫn đến trang HTML lỗi
+            return "/vnp/MuaNgay/errorMuaNgay";
         }
     }
+
 }

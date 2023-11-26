@@ -293,8 +293,8 @@ $(document).ready(function () {
             $("#tienGiamGia").val(tienGiamIndex);
             $("#nameGiamGia").val(nameGiamGia);
             $("#emailNguoiNhann").val(emailNguoiNhan);
-           let amount =  $("#amountInput").val();
-           let id_hd = $("#id-hoa-don").val();
+            let amount =  $("#amountInput").val();
+            let id_hd = $("#id-hoa-don").val();
 
             let tienShipCheck = $("#shippingFee").text();
 
@@ -336,12 +336,12 @@ $(document).ready(function () {
 
                         // data chứa dữ liệu trả về từ backend
                         window.location.href = data.body
-
                     });
 
                 // $("#paymentForm").submit();
                 // console.log("hehe")
-            }
+
+            };
         });
 
         $(".thanhToanVNPAY .btn-khong").click(function () {

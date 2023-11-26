@@ -17,8 +17,6 @@ import java.math.BigDecimal;
 @CrossOrigin("http://127.0.0.1:8080")
 @RestController
 public class VnpayPaymentController {
-    @Autowired
-    VNPayService vnPayService;
 
     @Autowired
     VNPayService2 vnPayService2;
@@ -28,15 +26,15 @@ public class VnpayPaymentController {
         return ResponseEntity.ok().body(vnPayService2.createOrder(paymentDTO));
     }
 
-    @GetMapping("/payment/return")
-    public ResponseEntity<?> handleReturn(@RequestParam int nguoiDungId, Model model, HttpServletRequest request) {
+    @RequestMapping("/payment/return")
+    public String handleReturn(@RequestParam int nguoiDungId, Model model, HttpServletRequest request) {
         int paymentStatus = vnPayService2.orderReturn(request);
 
         if (paymentStatus == 1) {
             vnPayService2.saveOrderReturn(request, model, nguoiDungId);
-            return ResponseEntity.ok().body("vnp/success");
+            return "vnp/success";
         } else {
-            return ResponseEntity.ok().body("vnp/error");
+            return "vnp/error";
         }
     }
 

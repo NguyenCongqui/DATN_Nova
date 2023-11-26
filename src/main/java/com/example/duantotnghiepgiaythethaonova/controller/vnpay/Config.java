@@ -22,6 +22,7 @@ public class Config {
     public static String vnp_TmnCode = "DJ5CT9AY";
     public static String vnp_HashSecret = "MYMUQSXXETLEHGTZQOBFSEVWQWYXOAEX";
     public static String vnp_apiUrl = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
+    public static  String vnp_admin = "https://sandbox.vnpayment.vn/merchantv2/";
 
     public static String getUrl(
                                 String emailNguoiNhann,

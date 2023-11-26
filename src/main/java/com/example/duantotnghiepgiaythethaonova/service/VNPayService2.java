@@ -327,6 +327,7 @@ public class VNPayService2 {
             hoaDon.setNguoiNhan(paymentDTO.getNguoiNhan());
             hoaDon.setDiaChiGiaoHang(paymentDTO.getDiaChiGiaoHang());
             hoaDon.setGhiChu(paymentDTO.getGhiChu());
+            hoaDon.setTienGiam(paymentDTO.getTienGiamGia());
             hoaDonRepository.save(hoaDon);
         }
         return ResponseEntity.ok(paymentUrl);
