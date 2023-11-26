@@ -15,13 +15,13 @@ import java.util.List;
 
 @Repository
 public interface HoaDonRepository extends JpaRepository<HoaDon, Integer> {
-    @Query(value = "SELECT * FROM HoaDon WHERE loaiHoaDon = 1 and daXoa = 0" , nativeQuery = true)
+    @Query(value = "SELECT * FROM HoaDon WHERE loaiHoaDon = 1 and daXoa = 0", nativeQuery = true)
     HoaDon findHoaDonBanHang();
 
     @Query(value = "select * from HoaDon where idTrangThai = ?1", nativeQuery = true)
     List<HoaDon> findByTrangThaiHoaDonListTrangThai(int trangThai);
 
-    @Query(value = "select Max(IdHoaDon) from HoaDon",nativeQuery = true)
+    @Query(value = "select Max(IdHoaDon) from HoaDon", nativeQuery = true)
     Integer getMaxId();
 
     List<HoaDon> findByNgayTao(Date ngayTao);
@@ -37,12 +37,12 @@ public interface HoaDonRepository extends JpaRepository<HoaDon, Integer> {
     HoaDon findByMaDonHang(@Param("maDonHang") String maDonHang);
 
     @Modifying
-    @Query(value = "UPDATE  HoaDon SET idTrangThai=5 WHERE idHoaDon = :id", nativeQuery = true)
+    @Query(value = "UPDATE HoaDon SET idTrangThai= 5 WHERE idHoaDon = :id", nativeQuery = true)
     void capNhatTrangThaiThanhHuyDon(@Param("id") Integer id);
 
-    @Query(value = "select * from GiaoDich where idTrangThai = ? and idHoaDon = ? ORDER BY idGiaoDich DESC LIMIT 1", nativeQuery = true)
+    @Query(value = "SELECT TOP 1 * FROM GiaoDich WHERE idTrangThai = ? AND idHoaDon = ? ORDER BY idGiaoDich DESC", nativeQuery = true)
     List<GiaoDich> timeLine(int trangThai, Integer hoaDonId);
 
     @Query("select hd from HoaDon hd where hd.ngayTao <= :endDate and hd.ngayTao >= :startDate")
-    List<HoaDon> getHoaDonInRangeDate(@Param("startDate") Date startDate,@Param("endDate") Date endDate);
+    List<HoaDon> getHoaDonInRangeDate(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
 }

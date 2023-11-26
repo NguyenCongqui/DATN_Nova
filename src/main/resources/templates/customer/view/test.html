@@ -7,6 +7,7 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.3/lottie.js"></script>
 
 </head>
 <body>
@@ -35,12 +36,43 @@
 <!--        <a class="entry chonKichCoa" type="radio" th:each="kichCo: ${kichCoList}" th:text="${kichCo}" th:attr="data-id=${kichCo}"></a>-->
 <!--        <input type="hidden" id="kichCoDaChon-customer">-->
 <!--    </div>-->
+    <div id="lottie-container" style="width: 200px; height: 200px;"></div>
+
 </form>
 <script>
     document.getElementById('openModalLink').addEventListener('click', function() {
         var modal = new bootstrap.Modal(document.getElementById('sizeGuideModal'));
         modal.show();
     });
+
+
+        // Địa chỉ file JSON của animation
+        const animationDataPath = "path/to/your/animation.json";
+
+        const animationContainer = document.getElementById("lottie-container");
+
+        // Tải animation từ đường dẫn và chạy nó
+        lottie.loadAnimation({
+        container: animationContainer,
+        renderer: "svg",
+        loop: true, // Chạy vòng lặp
+        autoplay: true,
+        path: animationDataPath,
+    });
+    // Gọi hàm này khi thanh toán thành công
+    function showSuccessAnimation() {
+        // Hiển thị container của animation
+        animationContainer.style.display = "block";
+
+        // Thay đổi nội dung thông báo hoặc ẩn nếu cần
+        document.getElementById("countdown").style.display = "none";
+        document.querySelector(".redirect-message").style.display = "none";
+
+        // Dừng đồng hồ đếm ngược
+        clearTimeout(countdownTimeout);
+    }
+
+
 
 </script>
 </body>

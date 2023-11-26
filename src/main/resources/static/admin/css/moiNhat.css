@@ -22,9 +22,9 @@
     padding: 5px; /* Thêm đệm để cách lề từ ảnh */
     z-index: 1; /* Đặt z-index để đảm bảo nó hiển thị phía trên ảnh */
     color: rgb(255, 255, 255);
-    font-size: 14px;
+    font-size: 12px;
     font-weight: bold;
-    animation: blink 5s infinite; /* Điều này làm cho chữ nhấp nháy trong 2 giây và lặp vô hạn */
+    animation: blink 10s infinite; /* Điều này làm cho chữ nhấp nháy trong 2 giây và lặp vô hạn */
 
 }
 

@@ -3,6 +3,8 @@
 <head>
     <title>Payment Result</title>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.js"></script>
+    <link rel="shortcut icon" th:href="@{/static/customer/img/NOVA.png}" type="image/x-icon">
+    <script src="https://kit.fontawesome.com/999051c9de.js" crossorigin="anonymous"></script>
     <meta charset="UTF-8">
     <style>
         /* payment_result.css */
@@ -95,13 +97,13 @@
 <body>
 <div class="container-fluid">
     <div class="header">
-        <h1>Thanh toán thất bại!</h1>
+        <h1>Thanh toán thất bại !</h1>
     </div>
     <div class="circle-loader"></div>
     <div class="redirect-message">
         <p>Bạn sẽ trở về trang của Nhà cung cấp sau <span id="countdown"></span> giây</p>
     </div>
-    <a class="back-button" href="http://localhost:8080/khachhang/home">Quay về</a>
+    <a class="back-button" href="http://localhost:8080/khachhang/home"><i class="fa-solid fa-house"></i> Quay về</a>
 </div>
 
 <script>

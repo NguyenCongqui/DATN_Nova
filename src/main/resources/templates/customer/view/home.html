@@ -30,6 +30,7 @@
                         <div class="product-item" th:each="item, istat : ${resultSP.lstShowSanPhamTaiQua}"
                              th:object="${resultSP}">
                             <div class="product-item-inner">
+
                                 <span class="newest-label" id="newestLabel">Mới nhất</span>
                                 <div abbr="" class="product-img-wrap">
                                     <div class="carousel-item" th:name="'divImgIsActive'+${istat.index}"
@@ -103,7 +104,7 @@
                         <div class="categories-content">
                             <a href="#">
                                 <div class="categories-caption">
-                                    <h6 class="normal">GIAY NỮ</h6>
+                                    <h6 class="normal">GIÀY NỮ</h6>
                                 </div>
                             </a>
                         </div>
