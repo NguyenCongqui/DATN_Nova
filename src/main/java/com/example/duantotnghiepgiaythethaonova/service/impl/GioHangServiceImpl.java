@@ -184,10 +184,10 @@ public class GioHangServiceImpl implements GioHangService{
                 gioHangChiTietRepository.save(gioHangChiTiet);
 
                 ChiTietSanPham sanPhamChiTiet = gioHangChiTiet.getChiTietSanPham();
-                Integer soLuongSPCTBanDau = sanPhamChiTiet.getSoLuong();
-                Integer soLuongNhapVao = gioHangChiTiet.getSoLuong();
-                Integer soLuongcapNhat = soLuongSPCTBanDau + soLuongNhapVao;
-                sanPhamChiTiet.setSoLuong(soLuongcapNhat);
+//                Integer soLuongSPCTBanDau = sanPhamChiTiet.getSoLuong();
+//                Integer soLuongNhapVao = gioHangChiTiet.getSoLuong();
+//                Integer soLuongcapNhat = soLuongSPCTBanDau + soLuongNhapVao;
+//                sanPhamChiTiet.setSoLuong(soLuongcapNhat);
                 sanPhamChiTietRepository.save(sanPhamChiTiet);
             }
         }

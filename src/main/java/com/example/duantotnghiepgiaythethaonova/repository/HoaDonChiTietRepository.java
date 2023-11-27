@@ -28,4 +28,6 @@ public interface HoaDonChiTietRepository extends JpaRepository<HoaDonChiTiet, In
 
     @Query(value = "select * from HoaDonCT where idHoaDon = ? and daXoa = 0", nativeQuery = true)
     List<HoaDonChiTiet> findByHoaDonIdAndDaXoa(Integer id);
+
+
 }

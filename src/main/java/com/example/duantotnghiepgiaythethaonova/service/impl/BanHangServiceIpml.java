@@ -70,6 +70,11 @@ public class BanHangServiceIpml implements BanHangService {
     @Autowired
     KhachHangRepository khachHangRepository;
 
+    @Autowired
+    SanPhamChiTietRepository sanPhamChiTietRepository1;
+
+
+
     public BanHangServiceIpml(BanHangRepository banHangRepository) {
         this.banHangRepository = banHangRepository;
     }
@@ -149,6 +154,18 @@ public class BanHangServiceIpml implements BanHangService {
                 ls.setHoaDon(hoaDon);
                 ls.setThaoTac("Đặt hàng thanh toán khi nhận hàng");
                 lichSuHoaDonRepository.save(ls);
+            }
+
+            List<HoaDonChiTiet> hoaDonChiTiets1 = hoaDonChiTietRepository.findByHoaDonIdAndDaXoa(id);
+
+            for (HoaDonChiTiet gioHangChiTiet : hoaDonChiTiets1) {
+
+                ChiTietSanPham sanPhamChiTiet = gioHangChiTiet.getChiTietSanPham();
+                Integer soLuongSPCTBanDau = sanPhamChiTiet.getSoLuong();
+                Integer soLuongNhapVao = gioHangChiTiet.getSoLuong();
+                Integer soLuongcapNhat = soLuongSPCTBanDau - soLuongNhapVao;
+                sanPhamChiTiet.setSoLuong(soLuongcapNhat);
+                sanPhamChiTietRepository.save(sanPhamChiTiet);
             }
 
             if (email == null) {
@@ -349,6 +366,7 @@ public class BanHangServiceIpml implements BanHangService {
         List<HoaDonChiTiet> hoaDonChiTietList = new ArrayList<>();
 
         BigDecimal tongTienDonhang = BigDecimal.ZERO;
+        Integer soLuongBanDau = sanPhamChiTietRepository1.laySoLuongChiTietSanPham2(kichCoId, mauSacId, sanPhamId);
 
         Optional<ChiTietSanPham> optionalSanPhamChiTiet = sanPhamChiTietService.getSanPhamChiTietByMauSacSizeSanPhamId(sanPhamId, mauSacId, kichCoId);
         if (optionalSanPhamChiTiet.isPresent()) {
@@ -364,11 +382,19 @@ public class BanHangServiceIpml implements BanHangService {
             hoaDonChiTiet.setHoaDon(hoaDon);
             hoaDonChiTietList.add(hoaDonChiTiet);
             hoaDonChiTietRepository2.save(hoaDonChiTiet);
+
+
+            Integer soLuongThemVao = soLuong;
+            Integer soLuongCapNhat = soLuongBanDau - soLuongThemVao;
+            sanPhamChiTiet.setSoLuong(soLuongCapNhat);
+            sanPhamChiTietRepository.save(sanPhamChiTiet);
         }
 
         hoaDon.setTongTienDonHang(tongTienDonhang);
         hoaDon.setHoaDonChiTiets(hoaDonChiTietList);
         hoaDonRepository.save(hoaDon);
+
+
 
 
         //Lưu lịch sử hóa đơn
