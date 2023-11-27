@@ -12,6 +12,21 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.3/jspdf.umd.min.js"></script>
 
+    <link th:href="@{/static/admin/imgLibr/css/fileinput.css}" media="all" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/static/admin/imgLibr/themes/explorer-fa5/theme.css}" media="all" rel="stylesheet"
+          type="text/css"/>
+    <link th:href="@{/static/admin/imgLibr/css/fileinput.css}" media="all" rel="stylesheet" type="text/css"/>
+    <link th:href="@{/static/admin/imgLibr/themes/explorer-fa5/theme.css}" media="all" rel="stylesheet"
+          type="text/css"/>
+    <script th:src="@{/static/admin/imgLibr/js/plugins/buffer.min.js}" type="text/javascript"></script>
+    <script th:src="@{/static/admin/imgLibr/js/plugins/filetype.min.js}" type="text/javascript"></script>
+    <script th:src="@{/static/admin/imgLibr/js/plugins/piexif.js}" type="text/javascript"></script>
+    <script th:src="@{/static/admin/imgLibr/js/plugins/sortable.js}" type="text/javascript"></script>
+    <script th:src="@{/static/admin/imgLibr/js/fileinput.js}" type="text/javascript"></script>
+    <script th:src="@{/static/admin/imgLibr/js/locales/fr.js}" type="text/javascript"></script>
+    <script th:src="@{/static/admin/imgLibr/js/locales/es.js}" type="text/javascript"></script>
+    <script th:src="@{/static/admin/imgLibr/themes/fa5/theme.js}" type="text/javascript"></script>
+    <script th:src="@{/static/admin/imgLibr/themes/explorer-fa5/theme.js}" type="text/javascript"></script>
 
     <style>
         .action-button {
@@ -278,7 +293,7 @@
                                     style="vertical-align: middle;">
                                 </td>
                                 <td>
-                                    <div class="row col-sm-6 offset-3" style="height: 160px; width: 160px;">
+                                    <div class="row col-sm-10 offset-2" style="height: 160px; width: 200px;">
                                         <div th:id="'carouselExampleIndicators'+${istat.index}"
                                              class="carousel slide" data-ride="carousel">
                                             <ol class="carousel-indicators">
@@ -287,7 +302,7 @@
                                                     th:class="${#numbers.formatInteger(istat.index+''+istatAC.index,5) == #numbers.formatInteger(istat.index+''+0,5)? 'active':''}"
                                                     th:each="img, istatAC : ${item.anhChinhs}">
                                                 </li>
-                                                <li th:data-target="'#carouselProductManageIndicators'+${istat.index}"
+                                                <li th:data-target="'#carouselExampleIndicators'+${istat.index}"
                                                     th:data-slide-to="${istat.index}" class="active"
                                                     th:if="${#lists.isEmpty(item.anhChinhs)}">
                                                 </li>
