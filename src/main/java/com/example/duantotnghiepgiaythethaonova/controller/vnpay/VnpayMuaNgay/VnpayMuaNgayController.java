@@ -7,34 +7,38 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
+import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 
 import javax.servlet.http.HttpServletRequest;
 
+@CrossOrigin("http://127.0.0.1:8080")
 @RestController
 public class VnpayMuaNgayController {
 
     @Autowired
     VNPayService2 vnPayService2;
 
+    @Autowired
+    private ThymeleafViewResolver viewResolver;
+
     @PostMapping("/MuaNgay/payment/create")
     public ResponseEntity<?> createPayment(@RequestBody PaymentDTO paymentDTO) {
-
-//        String vnpayUrl = vnPayService.createOrderMuaNgay(amount, orderCode, emailNguoiNhan, tienGiamGia, nameGiamGia, sdtNguoiNhan, tienShipHD, orderCode, nguoiNhan, diaChiGiaoHang, ghiChu);
         return ResponseEntity.ok().body(vnPayService2.createOrderMuaNgay(paymentDTO));
     }
 
     @GetMapping("/MuaNgay/payment/return")
-    public String handleReturn(Model model, HttpServletRequest request) {
+    public ModelAndView handleReturn(Model model, HttpServletRequest request) {
         int paymentStatus = vnPayService2.orderReturn(request);
-
+        ModelAndView mav = new ModelAndView();
         if (paymentStatus == 1) {
             vnPayService2.saveOrderReturnMuaNgay(request, model);
-            // Trả về tên trang HTML hoặc đường dẫn đến trang HTML thành công
-            return "/vnp/MuaNgay/SuccessMuaNgay";
+            mav.setViewName("/vnp/MuaNgay/SuccessMuaNgay");
         } else {
-            // Trả về tên trang HTML hoặc đường dẫn đến trang HTML lỗi
-            return "/vnp/MuaNgay/errorMuaNgay";
+            mav.setViewName("/vnp/MuaNgay/errorMuaNgay");
         }
+        return mav;
     }
+
 
 }

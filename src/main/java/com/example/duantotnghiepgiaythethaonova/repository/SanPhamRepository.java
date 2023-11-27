@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 @Primary
 public interface SanPhamRepository extends JpaRepository<SanPham, Integer>, SanPhamSearchRepository{
-    @Query(value = "SELECT * FROM dbo.SanPham sp WHERE sp.DaXoa = false ORDER BY sp.IdSanPham", nativeQuery = true)
+    @Query(value = "SELECT * FROM dbo.SanPham sp WHERE sp.DaXoa = 0 ORDER BY sp.IdSanPham", nativeQuery = true)
     Page<SanPham> getSanPhamExist(Pageable pageable);
 
     @Query(value = """
