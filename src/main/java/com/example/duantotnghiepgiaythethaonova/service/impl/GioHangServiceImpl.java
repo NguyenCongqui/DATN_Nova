@@ -158,10 +158,11 @@ public class GioHangServiceImpl implements GioHangService{
 
             gioHang.setTongTien(gioHang.getTongTien() + thanhTienInt);
             gioHangRepository.save(gioHang);
+            gioHangRepository.save(gioHang);
 
             Integer soLuongThemVao = soLuong;
-            Integer soLuongCapNhat = soLuongBanDau - soLuongThemVao;
-            sanPhamChiTiet.setSoLuong(soLuongCapNhat);
+//            Integer soLuongCapNhat = soLuongBanDau - soLuongThemVao;
+//            sanPhamChiTiet.setSoLuong(soLuongCapNhat);
             sanPhamChiTietRepository.save(sanPhamChiTiet);
 
             message = "Thêm mới thành công";

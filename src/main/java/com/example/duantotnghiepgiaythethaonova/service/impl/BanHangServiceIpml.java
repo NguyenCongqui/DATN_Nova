@@ -366,7 +366,7 @@ public class BanHangServiceIpml implements BanHangService {
         List<HoaDonChiTiet> hoaDonChiTietList = new ArrayList<>();
 
         BigDecimal tongTienDonhang = BigDecimal.ZERO;
-        Integer soLuongBanDau = sanPhamChiTietRepository1.laySoLuongChiTietSanPham2(kichCoId, mauSacId, sanPhamId);
+//        Integer soLuongBanDau = sanPhamChiTietRepository1.laySoLuongChiTietSanPham2(kichCoId, mauSacId, sanPhamId);
 
         Optional<ChiTietSanPham> optionalSanPhamChiTiet = sanPhamChiTietService.getSanPhamChiTietByMauSacSizeSanPhamId(sanPhamId, mauSacId, kichCoId);
         if (optionalSanPhamChiTiet.isPresent()) {
@@ -380,14 +380,15 @@ public class BanHangServiceIpml implements BanHangService {
             hoaDonChiTiet.setDonGia(sanPhamChiTiet.getSanPham().getGia());
             hoaDonChiTiet.setTongTien(tongTienDonhang);
             hoaDonChiTiet.setHoaDon(hoaDon);
+            hoaDonChiTiet.setDaXoa(false);
             hoaDonChiTietList.add(hoaDonChiTiet);
             hoaDonChiTietRepository2.save(hoaDonChiTiet);
 
 
-            Integer soLuongThemVao = soLuong;
-            Integer soLuongCapNhat = soLuongBanDau - soLuongThemVao;
-            sanPhamChiTiet.setSoLuong(soLuongCapNhat);
-            sanPhamChiTietRepository.save(sanPhamChiTiet);
+//            Integer soLuongThemVao = soLuong;
+//            Integer soLuongCapNhat = soLuongBanDau - soLuongThemVao;
+//            sanPhamChiTiet.setSoLuong(soLuongCapNhat);
+//            sanPhamChiTietRepository.save(sanPhamChiTiet);
         }
 
         hoaDon.setTongTienDonHang(tongTienDonhang);
@@ -448,6 +449,18 @@ public class BanHangServiceIpml implements BanHangService {
             for (HoaDonChiTiet hoaDonChiTiet : hoaDonChiTiets) {
                 Integer sanPhamChiTietId = hoaDonChiTiet.getChiTietSanPham().getIdCTSP();
                 gioHangChiTietRepository.xoaGioHangChiTiet(sanPhamChiTietId);
+            }
+
+            List<HoaDonChiTiet> hoaDonChiTiets1 = hoaDonChiTietRepository.findByHoaDonIdAndDaXoa(id);
+
+            for (HoaDonChiTiet hoaDonChiTiet : hoaDonChiTiets1) {
+
+                ChiTietSanPham sanPhamChiTiet = hoaDonChiTiet.getChiTietSanPham();
+                Integer soLuongSPCTBanDau = sanPhamChiTiet.getSoLuong();
+                Integer soLuongTrongHoaDon = hoaDonChiTiet.getSoLuong();
+                Integer soLuongcapNhat = soLuongSPCTBanDau - soLuongTrongHoaDon;
+                sanPhamChiTiet.setSoLuong(soLuongcapNhat);
+                sanPhamChiTietRepository.save(sanPhamChiTiet);
             }
 
             //LƯU TIMELINE

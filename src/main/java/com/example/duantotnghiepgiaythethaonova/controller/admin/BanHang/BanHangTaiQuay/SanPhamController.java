@@ -147,23 +147,6 @@ public class SanPhamController {
         }).collect(Collectors.toList());
     }
 
-//    @ModelAttribute("lstLoaiSanPham")
-//    public List<LoaiSanPhamDTO> getLstLoaiHang() {
-//        return loaiSanPhamService.selectAllLoaiHangExist().stream().map(item -> {
-//            LoaiSanPhamDTO dto = new LoaiSanPhamDTO();
-//            BeanUtils.copyProperties(item, dto);
-//            return dto;
-//        }).collect(Collectors.toList());
-//    }
-//
-//    @ModelAttribute("lstPhongCach")
-//    public List<PhongCachDTO> getLstPhongCach() {
-//        return phongCachService.selectAllPhongCachExist().stream().map(item -> {
-//            PhongCachDTO dto = new PhongCachDTO();
-//            BeanUtils.copyProperties(item, dto);
-//            return dto;
-//        }).collect(Collectors.toList());
-//    }
 
     @GetMapping("banHang/danhSachSanPham/{id}")
     public String danhSachSanPham(@PathVariable("id") Integer hoaDonId,

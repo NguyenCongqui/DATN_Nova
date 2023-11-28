@@ -97,13 +97,13 @@ public class GioHangChiTietCustomerController {
                 gioHangChiTiet.setDaXoa(true);
                 gioHangChiTietRepository.save(gioHangChiTiet);
 
-                ChiTietSanPham sanPhamChiTiet = gioHangChiTiet.getChiTietSanPham();
-                Integer soLuongSPCTBanDau = sanPhamChiTiet.getSoLuong();
-                Integer soLuongDangCo = gioHangChiTiet.getSoLuong();
-                Integer soLuongcapNhat = soLuongSPCTBanDau + soLuongDangCo;
+//                ChiTietSanPham sanPhamChiTiet = gioHangChiTiet.getChiTietSanPham();
+//                Integer soLuongSPCTBanDau = sanPhamChiTiet.getSoLuong();
+//                Integer soLuongDangCo = gioHangChiTiet.getSoLuong();
+//                Integer soLuongcapNhat = soLuongSPCTBanDau + soLuongDangCo;
 
-                sanPhamChiTiet.setSoLuong(soLuongcapNhat);
-                sanPhamChiTietRepository.save(sanPhamChiTiet);
+//                sanPhamChiTiet.setSoLuong(soLuongcapNhat);
+//                sanPhamChiTietRepository.save(sanPhamChiTiet);
             }
             gioHangChiTietService.capNhatGioHangThanhDaXoaById(id);
             layGioHangChiTiet(model, redirectAttributes);

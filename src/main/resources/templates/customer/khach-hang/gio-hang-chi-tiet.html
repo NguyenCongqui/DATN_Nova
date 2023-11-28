@@ -117,10 +117,10 @@
                                                            th:value="${item.sanPhamChiTietDTO.sanPhamDTO.gia}">
                                                     <input type="hidden" id="thanhTien" th:value="${item.thanhTien}">
                                                     <div>
-                                                    <span data-value="+" class="quantity-btn quantityPlus"></span>
+                                                    <button type="submit" data-value="+" class="quantity-btn quantityPlus"></button>
                                                     <input class="quantity input-lg" step="1" min="1" name="quantity"
                                                            value="1" title="Quantity" type="number" th:name="soLuongs" th:value="${item.soLuong}"/>
-                                                    <span data-value="-" class="quantity-btn quantityMinus"></span>
+                                                    <span type="submit" data-value="-" class="quantity-btn quantityMinus"></span>
                                                     </div>
                                                 </div>
                                             </td>
@@ -199,6 +199,7 @@
                             </div>
                             </th:block>
                         </form>
+                        <th:block th:if="*{!listGioHangChiTiets.isEmpty()}">
                         <div class="cart-collateral">
                             <div class="cart_totals">
 <!--                                <h3>Tổng Giỏ Hàng</h3>-->
@@ -221,6 +222,7 @@
                                 </div>
                             </div>
                         </div>
+                        </th:block>
                     </article>
                 </div>
             </div>

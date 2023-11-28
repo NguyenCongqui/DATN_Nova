@@ -62,11 +62,11 @@ public class GioHangChiTietServiceImpl implements GioHangChiTietService {
 			BigDecimal donGia = listDonGia.get((int) i);
 			 if(soLuong > 0) {
 				 GioHangChiTiet gioHangChiTiet = gioHangChiTietRepo.getOne(id);
-				 if(soLuong > gioHangChiTiet.getSoLuong()) {
-					 gioHangChiTiet.getChiTietSanPham().setSoLuong(gioHangChiTiet.getChiTietSanPham().getSoLuong()- (soLuong - gioHangChiTiet.getSoLuong()));
-				 }else {
-					 gioHangChiTiet.getChiTietSanPham().setSoLuong(gioHangChiTiet.getChiTietSanPham().getSoLuong() + (gioHangChiTiet.getSoLuong()) - soLuong  );
-				 }
+//				 if(soLuong > gioHangChiTiet.getSoLuong()) {
+//					 gioHangChiTiet.getChiTietSanPham().setSoLuong(gioHangChiTiet.getChiTietSanPham().getSoLuong()- (soLuong - gioHangChiTiet.getSoLuong()));
+//				 }else {
+//					 gioHangChiTiet.getChiTietSanPham().setSoLuong(gioHangChiTiet.getChiTietSanPham().getSoLuong() + (gioHangChiTiet.getSoLuong()) - soLuong  );
+//				 }
 
 				 gioHangChiTiet.setSoLuong(soLuong);
 				 gioHangChiTiet.setDonGia(donGia);
