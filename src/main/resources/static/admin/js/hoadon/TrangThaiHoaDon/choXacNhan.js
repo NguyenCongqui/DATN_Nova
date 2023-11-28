@@ -121,28 +121,45 @@ $(document).ready(function () {
     $('.HuyDon').click(function () {
         let hoaDonId = $(this).data('id');
         let modalId = $(this).data('target');
+        let ghiChu = $(this).val();
 
         // Hiển thị modal xác nhận
         $(modalId).modal('show');
 
         // Xử lý sự kiện khi bấm nút Đồng ý
         $(modalId + ' .btn-dong-y').click(function () {
-            // Gửi yêu cầu hủy đơn hàng bằng Ajax
-            $.get('/updateHuyDon/' + hoaDonId, function (response) {
-                // Hiển thị thông báo hủy thành công với SweetAlert2
-                Swal.fire({
-                    icon: 'success',
-                    title: 'Đã hủy thành công',
-                    showConfirmButton: false,
-                    timer: 2000
-                }).then(function () {
-                    // Lưu trạng thái đã xác nhận vào sessionStorage
-                    sessionStorage.setItem('isConfirmed', true);
+            Swal.fire({
+                // title: "Xác nhận hủy đơn hàng " +hoaDonId +" ?",
+                title: 'Xác nhận hủy #HD' + hoaDonId,
+                icon: 'question',
+                inputLabel: 'Ghi chú',
+                input: 'textarea',
+                showCancelButton: true,
+                confirmButtonText: "Xác nhận",
+            }).then((result) => {
+                if (result.isConfirmed){
+                    // Gửi yêu cầu hủy đơn hàng bằng Ajax
+                    $.get('/updateHuyDon/' + hoaDonId, function (response) {
+                        // Hiển thị thông báo hủy thành công với SweetAlert2
+                        }).then(function (resp) {
+                            // Lưu trạng thái đã xác nhận vào sessionStorage
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Hủy đơn hàng thành công !',
+                            showConfirmButton: false,
+                            timer: 2000
+                        }).then(function () {
+                            // Lưu trạng thái đã xác nhận vào sessionStorage
+                            sessionStorage.setItem('isConfirmed', true);
 
-                    // Tải lại trang
-                    location.reload();
-                });
-            });
+                            // Tải lại trang
+                            // location.reload();
+                            window.location.href = "/admin/DonHang/ChoXacNhanDonHang/danhSach";
+                        });
+                        });
+                }
+            })
+
 
             // Đóng modal
             $(modalId).modal('hide');

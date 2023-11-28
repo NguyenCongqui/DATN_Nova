@@ -214,11 +214,13 @@
             </div>
 
             <!--HỦY ĐƠN HÀNG-->
-            <button class="action-button HuyDon" th:attr="data-id=${hoaDon.idHoaDon}"><i
-                    class="fas fa-times"></i> Hủy đơn
+            <button class="action-button HuyDon" th:attr="data-id=${hoaDon.idHoaDon}"
+                    th:data-target="'#modalHuyDon-' + ${hoaDon.idHoaDon}">
+                <i class="fas fa-times"></i> Hủy đơn
             </button>
             <br>
-            <div class="modal fade huyModal" tabindex="-1" aria-labelledby="huyDonModalLabel"
+            <div class="modal fade huyModal" th:id="'modalHuyDon-' + ${hoaDon.idHoaDon}" tabindex="-1"
+                 aria-labelledby="huyDonModalLabel"
                  aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered">
                     <div class="modal-content">

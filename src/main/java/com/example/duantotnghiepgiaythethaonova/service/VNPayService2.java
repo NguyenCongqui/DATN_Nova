@@ -50,7 +50,7 @@ public class VNPayService2 {
         String vnp_Version = "2.1.0";
         String vnp_Command = "pay";
         String vnp_TxnRef = Config.getRandomNumber(8);
-        String vnp_IpAddr = "http://127.0.0.1";
+        String vnp_IpAddr = "http://127.0.0.1:8080";
         String vnp_TmnCode = Config.vnp_TmnCode;
         String orderType = "order-type";
 
@@ -259,7 +259,7 @@ public class VNPayService2 {
         String vnp_Version = "2.1.0";
         String vnp_Command = "pay";
         String vnp_TxnRef = Config.getRandomNumber(8);
-        String vnp_IpAddr = "http://127.0.0.1";
+        String vnp_IpAddr = "http://127.0.0.1:8080";
         String vnp_TmnCode = Config.vnp_TmnCode;
         String orderType = "order-type";
 

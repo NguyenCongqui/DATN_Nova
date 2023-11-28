@@ -395,7 +395,7 @@ public class HoaDonServiceImpl implements HoaDonService {
                 }
             }
 
-            String message = "Xác nhận tất cả thành công";
+            String message = "Xác nhận tất cả thành công !";
             return ResponseEntity.ok(message);
         } else {
             String errorMessage = "Không tìm thấy hóa đơn chưa xác nhận";
@@ -414,7 +414,7 @@ public class HoaDonServiceImpl implements HoaDonService {
             hoaDon.setNgayCapNhat(new Date());
             hoaDon.setNguoiCapNhat("linh");
             hoaDonRepository.save(hoaDon);
-            String message = "Xác nhận thành công";
+            String message = "Xác nhận thành công !";
             GiaoDich gd = new GiaoDich();
             gd.setHoaDon(hoaDon);
             gd.setNgayCapNhat(new Date());
@@ -446,12 +446,14 @@ public class HoaDonServiceImpl implements HoaDonService {
 
     @Override
     public ResponseEntity<String> updateHuyDonChoXacNhan(Integer hoaDonId) {
+        String lyDo = "";
         Optional<HoaDon> optionalHoaDon = hoaDonRepository.findById(hoaDonId);
         if (optionalHoaDon.isPresent()) {
             HoaDon hoaDon = optionalHoaDon.get();
             TrangThai tt = new TrangThai();
             tt.setIdTrangThai(5);
             hoaDon.setTrangThai(tt);
+            hoaDon.setGhiChu(lyDo);
             hoaDon.setNgayCapNhat(new Date());
             hoaDon.setNguoiCapNhat("linh");
             hoaDonRepository.save(hoaDon);
@@ -479,7 +481,7 @@ public class HoaDonServiceImpl implements HoaDonService {
                 e.printStackTrace();
             }
 
-            String message = "Hủy đơn thành công";
+            String message = "Hủy đơn thành công !S";
             return ResponseEntity.ok(message);
         } else {
             String errorMessage = "Không tìm thấy hóa đơn";
@@ -522,7 +524,7 @@ public class HoaDonServiceImpl implements HoaDonService {
                 }
             }
 
-            String message = "Xác nhận tất cả thành công";
+            String message = "Xác nhận tất cả thành công !";
             return ResponseEntity.ok(message);
         } else {
             String errorMessage = "Không tìm thấy hóa đơn chưa xác nhận";
@@ -565,7 +567,7 @@ public class HoaDonServiceImpl implements HoaDonService {
                 }
             }
 
-            String message = "Xác nhận tất cả thành công";
+            String message = "Xác nhận tất cả thành công !";
             return ResponseEntity.ok(message);
         } else {
             String errorMessage = "Không tìm thấy hóa đơn chưa xác nhận";
@@ -650,7 +652,7 @@ public class HoaDonServiceImpl implements HoaDonService {
                 }
             }
 
-            String message = "Xác nhận tất cả thành công";
+            String message = "Xác nhận tất cả thành công !";
             return ResponseEntity.ok(message);
         } else {
             String errorMessage = "Không tìm thấy hóa đơn chưa xác nhận";
