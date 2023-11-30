@@ -98,7 +98,7 @@ $(document).ready(function () {
                     sessionStorage.setItem('isConfirmed', true);
 
                     // Tải lại trang
-                    location.reload();
+                    window.location.href="/"
                 });
             });
 
@@ -134,6 +134,8 @@ $(document).ready(function () {
     });
 });
 
+
+
 $(document).ready(function () {
     $("#timKiemNgay-DangGiaoHang").click(function () {
         let selectedDate = $("#search-input-date-DangGiao").val();
@@ -167,5 +169,60 @@ $(document).ready(function () {
 $(document).ready(function () {
     $("#btn-tatCaHoaDonDangGiao").click(function () {
         window.location.href = "/admin/DonHang/DangGiaoHang/danhSach";
+    });
+});
+
+<!-- JS CHỜ Đang giao hàng-> ĐÃ HỦY -->
+$(document).ready(function () {
+    $('.HuyDon').click(function () {
+        let hoaDonId = $(this).data('id');
+        let modalId = $(this).data('target');
+        let ghiChu = $(this).val();
+
+        // Hiển thị modal xác nhận
+        $(modalId).modal('show');
+
+        // Xử lý sự kiện khi bấm nút Đồng ý
+        $(modalId + ' .btn-dong-y').click(function () {
+            Swal.fire({
+                title: 'Xác nhận hủy đơn hàng #HD' + hoaDonId,
+                inputLabel: 'Ghi chú',
+                icon: 'question',
+                input: 'textarea',
+                showCancelButton: true,
+                confirmButtonText: "Xác nhận",
+            }).then((result) => {
+                if (result.isConfirmed){
+                    // Gửi yêu cầu hủy đơn hàng bằng Ajax
+                    $.get('/updateHuyDon/' + hoaDonId, function (response) {
+                        // Hiển thị thông báo hủy thành công với SweetAlert2
+                    }).then(function (resp) {
+                        // Lưu trạng thái đã xác nhận vào sessionStorage
+                        Swal.fire({
+                            icon: 'success',
+                            title: 'Hủy đơn hàng thành công !',
+                            showConfirmButton: false,
+                            timer: 2000
+                        }).then(function () {
+                            // Lưu trạng thái đã xác nhận vào sessionStorage
+                            sessionStorage.setItem('isConfirmed', true);
+
+                            // Tải lại trang
+                            // location.reload();
+                            window.location.href = "/admin/DonHang/DangGiaoHang/danhSach";
+                        });
+                    });
+                }
+            });
+
+            // Đóng modal
+            $(modalId).modal('hide');
+        });
+
+        // Xử lý sự kiện khi bấm nút Không
+        $(modalId + ' .btn-khong').click(function () {
+            // Đóng modal
+            $(modalId).modal('hide');
+        });
     });
 });

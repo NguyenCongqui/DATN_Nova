@@ -169,6 +169,9 @@
                         <span class="date">
                             <span class="month"
                                   th:text="${#dates.format(choXacNhanTimeLine.ngayTao, 'dd/MM/yyyy')}"></span>
+                               <br>
+                               <b><span class="hour" th:text="${#dates.format(choXacNhanTimeLine.ngayTao, 'HH:mm:ss')}">
+                               </span></b>
                         </span>
                     </div>
                 </div>
@@ -190,6 +193,9 @@
                         <span class="date">
                             <span class="month"
                                   th:text="${#dates.format(choGiaoHangTimeLine.ngayTao, 'dd/MM/yyyy')}"></span>
+                                <br>
+                               <b><span class="hour" th:text="${#dates.format(choGiaoHangTimeLine.ngayTao, 'HH:mm:ss')}">
+                               </span></b>
                         </span>
                     </div>
                 </div>
@@ -209,6 +215,9 @@
                         <span class="date">
                             <span class="month"
                                   th:text="${#dates.format(dangGiaohangTimeLine.ngayTao, 'dd/MM/yyyy')}"></span>
+                               <br>
+                               <b><span class="hour" th:text="${#dates.format(dangGiaohangTimeLine.ngayTao, 'HH:mm:ss')}">
+                               </span></b>
                         </span>
                     </div>
                 </div>
@@ -228,6 +237,9 @@
                         <span class="date">
                             <span class="month"
                                   th:text="${#dates.format(daGiaohangTimeLine.ngayTao, 'dd/MM/yyyy')}"></span>
+                            <br>
+                               <b><span class="hour" th:text="${#dates.format(daGiaohangTimeLine.ngayTao, 'HH:mm:ss')}">
+                               </span></b>
                         </span>
                     </div>
                 </div>

@@ -201,6 +201,8 @@ public class HoaDonCustomerServiceImpl implements HoaDonCustomerService {
     public void chiTietDaHuyCustomer(Integer id, Model model) {
         HoaDon hoaDon = hoaDonRepository.findById(id).get();
         List<GiaoDich> timeLineChoXacNhan = giaoDichRepository.findByTrangThaiIdAndHoaDonId(1, id);
+        List<GiaoDich> timeLineChoGiaoHang = giaoDichRepository.findByTrangThaiIdAndHoaDonId(2, id);
+        List<GiaoDich> timeLineDangGiaoHang = giaoDichRepository.findByTrangThaiIdAndHoaDonId(3, id);
         List<GiaoDich> timeLineHuyDonHang = giaoDichRepository.findByTrangThaiIdAndHoaDonId(5, id);
         // Lấy danh sách ảnh chính của tất cả sản phẩm và lưu vào List
         List<HoaDonChiTiet> hoaDonChiTiet = hoaDonChiTietRepository2.findHDCT(id);
@@ -216,6 +218,8 @@ public class HoaDonCustomerServiceImpl implements HoaDonCustomerService {
         model.addAttribute("lichSuHD", lichSuHD);
         model.addAttribute("tenAnhChinhList", tenAnhChinhList);
         model.addAttribute("timeLineChoXacNhan", timeLineChoXacNhan);
+        model.addAttribute("timeLineChoGiaoHang", timeLineChoGiaoHang);
+        model.addAttribute("timeLineDangGiaoHang", timeLineDangGiaoHang);
         model.addAttribute("timeLineHuyDonHang", timeLineHuyDonHang);
         model.addAttribute("hoaDon", hoaDon);
     }

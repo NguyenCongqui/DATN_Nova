@@ -137,7 +137,9 @@
                         <span class="date">
                             <span class="month"
                                   th:text="${#dates.format(choXacNhanTimeLine.ngayTao, 'dd/MM/yyyy')}"></span>
-                            <span class="hour"></span>
+                            <br>
+                          <b> <span class="hour" th:text="${#dates.format(choXacNhanTimeLine.ngayTao, 'HH:mm:ss')}">
+                            </span></b>
                         </span>
                     </div>
                 </div>

@@ -1,5 +1,6 @@
 package com.example.duantotnghiepgiaythethaonova.repository;
 
+import com.example.duantotnghiepgiaythethaonova.entity.GioHangChiTiet;
 import com.example.duantotnghiepgiaythethaonova.entity.HoaDonChiTiet;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -28,6 +29,9 @@ public interface HoaDonChiTietRepository extends JpaRepository<HoaDonChiTiet, In
 
     @Query(value = "select * from HoaDonCT where idHoaDon = ? and daXoa = 0", nativeQuery = true)
     List<HoaDonChiTiet> findByHoaDonIdAndDaXoa(Integer id);
+
+    @Query(value = "SELECT * FROM dbo.HoaDonCT WHERE IdHoaDonCT = ? AND DaXoa = 0", nativeQuery = true)
+    List<HoaDonChiTiet> findbyHoaDonIdAndDaXoa(Integer id);
 
 
 }

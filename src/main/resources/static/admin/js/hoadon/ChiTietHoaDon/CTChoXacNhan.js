@@ -71,7 +71,7 @@ $(document).ready(function () {
         $(modalId + ' .btn-dong-y').click(function () {
             Swal.fire({
                 // title: "Xác nhận hủy đơn hàng " +hoaDonId +" ?",
-                title: 'Xác nhận hủy #HD' + hoaDonId,
+                title: 'Xác nhận hủy đơm hàng #HD' + hoaDonId,
                 icon: 'question',
                 inputLabel: 'Ghi chú',
                 input: 'textarea',
@@ -99,7 +99,7 @@ $(document).ready(function () {
                         });
                     });
                 }
-            })
+            });
 
 
             // Đóng modal

@@ -20,14 +20,17 @@
 		<div class="col-md-3 border-right">
 			<div class="d-flex flex-column align-items-center text-center p-3 py-5">
 				<span class="text-black-50"> Họ Tên : [[*{hoTen}]] </span> <span class="text-black-50"> Email :
-						[[*{email}]] </span> <span class="text-black-50"> Tổng đơn hàng : <th:block
+						[[*{email}]] </span>
+				<div hidden class="text-black-50"> Tổng đơn hàng : <th:block
 					th:if="*{soLanMua != null}">
 							[[*{soLanMua}]]
 						</th:block>
 						<th:block th:if="*{soLanMua == null}">
 							0
 						</th:block>
-					</span> <span class="text-black-50"> Ngày tạo tài khoản : [[*{ngayTao}]] </span>
+					</div> <span class="text-black-50"> Ngày tạo tài khoản : [[*{ngayTao}]] </span>
+				Ngày tạo tài khoản: <span th:text="${#dates.format(#strings.substring(user.ngayTao, 0, 10), 'dd/MM/yyyy')}"></span>
+
 			</div>
 		</div>
 		<div class="col-md-3 border-right">
@@ -240,55 +243,55 @@
 						</tbody>
 					</table>
 				</div>
-				<div class="row offset-3">
-					<div class="col-md-12">
-						<nav aria-label="Page navigation example">
-							<ul class="pagination">
-								<li th:class="*{page > 1 ? 'page-item' : 'page-item disabled'}"><a class="page-link"
-																								   th:href="@{|/khachhang/quan-ly-tai-khoan?page=1|}" aria-label="First"> <span
-										aria-hidden="true">Đầu tiên</span>
-								</a></li>
-								<li th:class="*{page > 1 ? 'page-item' : 'page-item disabled'}"><a class="page-link"
-																								   th:href="@{|/khachhang/quan-ly-tai-khoan?page=*{page - 1}|}"
-																								   aria-label="Previous"> <span aria-hidden="true">Quay lại</span>
-								</a></li>
-								<th:block th:if="*{totalPages <= 10}">
-									<li th:each="i :*{#numbers.sequence(1,totalPages)}"
-										th:class="${khachHangDTO.page != i    ? 'page-item' : 'page-item disabled'}">
-										<a class="page-link"
-										   th:href="@{|/khachhang/quan-ly-tai-khoan?page=${i}|}">[[${i}]]</a>
-									</li>
-								</th:block>
-								<th:block th:if="*{totalPages > 10}">
-									<th:block th:if="*{page <= 5 || page  > totalPages - 4}">
-										<li th:each="i :*{#numbers.sequence(1,5)}"
-											th:class="${khachHangDTO.page != i  ? 'page-item' : 'page-item disabled'}">
-											<a class="page-link"
-											   th:href="@{|/khachhang/quan-ly-tai-khoan?page=${i}|}">[[${i}]]</a>
-										</li>
-										<a class="page-link"
-										   th:href="@{|/khachhang/quan-ly-tai-khoan?page=6|}">....</a>
-										<li th:each="i :*{#numbers.sequence(totalPages - 4,totalPages)}"
-											th:class="${khachHangDTO.page != i  ? 'page-item' : 'page-item disabled'}">
-											<a class="page-link"
-											   th:href="@{|/khachhang/quan-ly-tai-khoan?page=${i}|}">[[${i}]]</a>
-										</li>
-									</th:block>
-								</th:block>
-								<li th:class="*{page < totalPages ? 'page-item' : 'page-item disabled'}"><a
-										class="page-link"
-										th:href="@{|/khachhang/quan-ly-tai-khoan?page=*{page + 1}|}"
-										aria-label="Next"> <span aria-hidden="true">Đi tiếp</span>
-								</a></li>
-								<li th:class="*{page < totalPages ? 'page-item' : 'page-item disabled'}"><a
-										class="page-link"
-										th:href="@{|/khachhang/quan-ly-tai-khoan?page=*{totalPages}|}"
-										aria-label="Next"> <span aria-hidden="true">Cuối cùng</span>
-								</a></li>
-							</ul>
-						</nav>
-					</div>
-				</div>
+<!--				<div class="row offset-3">-->
+<!--					<div class="col-md-12">-->
+<!--						<nav aria-label="Page navigation example">-->
+<!--							<ul class="pagination">-->
+<!--								<li th:class="*{page > 1 ? 'page-item' : 'page-item disabled'}"><a class="page-link"-->
+<!--																								   th:href="@{|/khachhang/quan-ly-tai-khoan?page=1|}" aria-label="First"> <span-->
+<!--										aria-hidden="true">Đầu tiên</span>-->
+<!--								</a></li>-->
+<!--								<li th:class="*{page > 1 ? 'page-item' : 'page-item disabled'}"><a class="page-link"-->
+<!--																								   th:href="@{|/khachhang/quan-ly-tai-khoan?page=*{page - 1}|}"-->
+<!--																								   aria-label="Previous"> <span aria-hidden="true">Quay lại</span>-->
+<!--								</a></li>-->
+<!--								<th:block th:if="*{totalPages <= 10}">-->
+<!--									<li th:each="i :*{#numbers.sequence(1,totalPages)}"-->
+<!--										th:class="${khachHangDTO.page != i    ? 'page-item' : 'page-item disabled'}">-->
+<!--										<a class="page-link"-->
+<!--										   th:href="@{|/khachhang/quan-ly-tai-khoan?page=${i}|}">[[${i}]]</a>-->
+<!--									</li>-->
+<!--								</th:block>-->
+<!--								<th:block th:if="*{totalPages > 10}">-->
+<!--									<th:block th:if="*{page <= 5 || page  > totalPages - 4}">-->
+<!--										<li th:each="i :*{#numbers.sequence(1,5)}"-->
+<!--											th:class="${khachHangDTO.page != i  ? 'page-item' : 'page-item disabled'}">-->
+<!--											<a class="page-link"-->
+<!--											   th:href="@{|/khachhang/quan-ly-tai-khoan?page=${i}|}">[[${i}]]</a>-->
+<!--										</li>-->
+<!--										<a class="page-link"-->
+<!--										   th:href="@{|/khachhang/quan-ly-tai-khoan?page=6|}">....</a>-->
+<!--										<li th:each="i :*{#numbers.sequence(totalPages - 4,totalPages)}"-->
+<!--											th:class="${khachHangDTO.page != i  ? 'page-item' : 'page-item disabled'}">-->
+<!--											<a class="page-link"-->
+<!--											   th:href="@{|/khachhang/quan-ly-tai-khoan?page=${i}|}">[[${i}]]</a>-->
+<!--										</li>-->
+<!--									</th:block>-->
+<!--								</th:block>-->
+<!--								<li th:class="*{page < totalPages ? 'page-item' : 'page-item disabled'}"><a-->
+<!--										class="page-link"-->
+<!--										th:href="@{|/khachhang/quan-ly-tai-khoan?page=*{page + 1}|}"-->
+<!--										aria-label="Next"> <span aria-hidden="true">Đi tiếp</span>-->
+<!--								</a></li>-->
+<!--								<li th:class="*{page < totalPages ? 'page-item' : 'page-item disabled'}"><a-->
+<!--										class="page-link"-->
+<!--										th:href="@{|/khachhang/quan-ly-tai-khoan?page=*{totalPages}|}"-->
+<!--										aria-label="Next"> <span aria-hidden="true">Cuối cùng</span>-->
+<!--								</a></li>-->
+<!--							</ul>-->
+<!--						</nav>-->
+<!--					</div>-->
+<!--				</div>-->
 			</th:block>
 			<th:block th:if="*{listDiaChiDTO.isEmpty}">
 				<tbody>

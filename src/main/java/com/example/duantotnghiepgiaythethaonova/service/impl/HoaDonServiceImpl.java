@@ -446,14 +446,14 @@ public class HoaDonServiceImpl implements HoaDonService {
 
     @Override
     public ResponseEntity<String> updateHuyDonChoXacNhan(Integer hoaDonId) {
-        String lyDo = "";
+        String lyDon = "";
         Optional<HoaDon> optionalHoaDon = hoaDonRepository.findById(hoaDonId);
         if (optionalHoaDon.isPresent()) {
             HoaDon hoaDon = optionalHoaDon.get();
             TrangThai tt = new TrangThai();
             tt.setIdTrangThai(5);
             hoaDon.setTrangThai(tt);
-            hoaDon.setGhiChu(lyDo);
+            hoaDon.setGhiChu(lyDon);
             hoaDon.setNgayCapNhat(new Date());
             hoaDon.setNguoiCapNhat("linh");
             hoaDonRepository.save(hoaDon);
@@ -474,6 +474,20 @@ public class HoaDonServiceImpl implements HoaDonService {
                 giaoDichRepository.save(gd);
             }
 
+            List<HoaDonChiTiet> hoaDonChiTiets = hoaDonChiTietRepository.findbyHoaDonIdAndDaXoa(hoaDonId);
+
+            for (HoaDonChiTiet hoaDonChiTiet : hoaDonChiTiets) {
+                hoaDonChiTiet.setDaXoa(true);
+                hoaDonChiTietRepository.save(hoaDonChiTiet);
+
+                ChiTietSanPham sanPhamChiTiet = hoaDonChiTiet.getChiTietSanPham();
+                Integer soLuongSPCTBanDau = sanPhamChiTiet.getSoLuong();
+                Integer soLuongNhapVao = hoaDonChiTiet.getSoLuong();
+                Integer soLuongcapNhat = soLuongSPCTBanDau + soLuongNhapVao;
+                sanPhamChiTiet.setSoLuong(soLuongcapNhat);
+                sanPhamChiTietRepository.save(sanPhamChiTiet);
+            }
+
             String emailNguoiNhan = hoaDon.getEmailNguoiNhan();
             try {
                 emailService.sendMailHuyDonHang(emailNguoiNhan, hoaDon);
@@ -481,13 +495,16 @@ public class HoaDonServiceImpl implements HoaDonService {
                 e.printStackTrace();
             }
 
-            String message = "Hủy đơn thành công !S";
+            String message = "Hủy đơn thành công !";
             return ResponseEntity.ok(message);
         } else {
             String errorMessage = "Không tìm thấy hóa đơn";
             return ResponseEntity.notFound().build();
         }
     }
+
+
+
 
     @Override
     public ResponseEntity<String> updateXacNhanAllChoXacNhan() {
@@ -659,4 +676,5 @@ public class HoaDonServiceImpl implements HoaDonService {
             return ResponseEntity.notFound().build();
         }
     }
+
 }

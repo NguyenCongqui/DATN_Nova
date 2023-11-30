@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{admin/layouts/dashboard}">
+      layout:decorate="~{admin/layouts/dashboard}" xmlns="http://www.w3.org/1999/html">
 
 <head>
     <meta charset="UTF-8">
@@ -167,8 +167,10 @@
                     <div class="date-outer">
                         <span class="date">
                             <span class="month"
-                                  th:text="${#dates.format(choXacNhanTimeLine.ngayTao, 'dd/MM/yyyy')}"></span>
-                            <span class="hour"></span>
+                                  th:text="${#dates.format(choXacNhanTimeLine.ngayTao, 'dd/MM/yyyy ')}"></span>
+                            <br>
+                           <b> <span class="hour"
+                                     th:text="${#dates.format(choXacNhanTimeLine.ngayTao, 'HH:mm:ss')}"></span></b>
                         </span>
                     </div>
                 </div>

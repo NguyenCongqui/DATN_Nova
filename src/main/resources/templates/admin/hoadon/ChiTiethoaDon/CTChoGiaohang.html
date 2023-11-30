@@ -111,6 +111,9 @@
                         <span class="date">
                             <span class="month"
                                   th:text="${#dates.format(choXacNhanTimeLine.ngayTao, 'dd/MM/yyyy')}"></span>
+                                <br>
+                           <b><span class="hour"
+                                    th:text="${#dates.format(choXacNhanTimeLine.ngayTao, 'HH:mm:ss')}"></span></b>
                         </span>
                     </div>
                 </div>
@@ -132,6 +135,10 @@
                         <span class="date">
                             <span class="month"
                                   th:text="${#dates.format(choGiaoHangTimeLine.ngayTao, 'dd/MM/yyyy')}"></span>
+                            <br>
+                           <b><span class="hour"
+                                    th:text="${#dates.format(choGiaoHangTimeLine.ngayTao, 'HH:mm:ss')}"></span></b>
+                        </span>
                         </span>
                     </div>
                 </div>
@@ -146,7 +153,8 @@
         </div>
 
         <div class="button-group">
-            <button class="action-button GiaoHang" th:attr="data-id=${hoaDon.idHoaDon}"><i class="fas fa-truck"></i> Giao hàng
+            <button class="action-button GiaoHang" th:attr="data-id=${hoaDon.idHoaDon}"><i class="fas fa-truck"></i>
+                Giao hàng
             </button>
             <br>
             <div class="modal fade giaoHangModal" tabindex="-1" aria-labelledby="giaoHangModalLabel"

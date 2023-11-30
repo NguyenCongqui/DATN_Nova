@@ -80,7 +80,7 @@
                     <div th:if="${!#lists.isEmpty(DaGiaoCustomer)}">
                         <ul class="pagination">
                             <li th:each="pageNumber : ${#numbers.sequence(1, pageDaGiao)}">
-                                <a th:href="@{/customer/DonHang/DaGiaoHang(page=${pageNumber})}" th:text="${pageNumber}"
+                                <a th:href="@{/khachhang/DonHang/DaGiaoHang(page=${pageNumber})}" th:text="${pageNumber}"
                                    th:class="${pageNumber == page ? 'active-page' : ''}"></a>
                             </li>
                         </ul>

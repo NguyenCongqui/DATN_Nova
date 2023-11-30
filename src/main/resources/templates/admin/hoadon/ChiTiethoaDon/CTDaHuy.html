@@ -111,6 +111,9 @@
                         <span class="date">
                             <span class="month"
                                   th:text="${#dates.format(choXacNhanTimeLine.ngayTao, 'dd/MM/yyyy')}"></span>
+                            <br>
+                           <b> <span class="hour"
+                                     th:text="${#dates.format(choXacNhanTimeLine.ngayTao, 'HH:mm:ss')}"></span></b>
                         </span>
                     </div>
                 </div>
@@ -125,6 +128,51 @@
                 </div>
             </div>
 
+            <div class="timeline" th:each="choGiaoHangTimeLine : ${timeLineChoGiaoHang}">
+                <div class="icon"></div>
+                <div class="date-content">
+                    <div class="date-outer">
+                        <span class="date">
+                            <span class="month"
+                                  th:text="${#dates.format(choGiaoHangTimeLine.ngayTao, 'dd/MM/yyyy')}"></span>
+                            <br>
+                           <b><span class="hour"
+                                    th:text="${#dates.format(choGiaoHangTimeLine.ngayTao, 'HH:mm:ss')}"></span></b>
+                        </span>
+                        </span>
+                    </div>
+                </div>
+                <div class="timeline-content">
+                    <h5 class="title">Chờ giao hàng</h5>
+                    <p class="description"><strong>Thao tác: </strong>Xác nhận đơn, đợi giao hàng cho đơn vị vận chuyển
+                    </p>
+                    <p><strong>Người thao tác: </strong><span
+                            th:text="${choGiaoHangTimeLine.nguoiDung.tenNguoiDung}"></span></p>
+                </div>
+            </div>
+
+            <div class="timeline" th:each="dangGiaohangTimeLine : ${timeLineDangGiaoHang}">
+                <div class="icon"></div>
+                <div class="date-content">
+                    <div class="date-outer">
+                        <span class="date">
+                            <span class="month"
+                                  th:text="${#dates.format(dangGiaohangTimeLine.ngayTao, 'dd/MM/yyyy')}"></span>
+                            <br>
+                           <b> <span class="hour"
+                                     th:text="${#dates.format(dangGiaohangTimeLine.ngayTao, 'HH:mm:ss')}"></span></b>
+                        </span>
+                    </div>
+                </div>
+                <div class="timeline-content">
+                    <h5 class="title">Đang giao hàng</h5>
+                    <p class="description"><strong>Thao tác: </strong>Đã bàn giao cho đơn vị vận chuyển, đang giao đến
+                        người nhận</p>
+                    <p><strong>Người thao tác: </strong><span
+                            th:text="${dangGiaohangTimeLine.nguoiDung.tenNguoiDung}"></span></p>
+                </div>
+            </div>
+
             <div class="timeline" th:each="daHuytimeLine : ${timeLineHuyDonHang}">
                 <div class="icon"></div>
                 <div class="date-content">
@@ -132,6 +180,10 @@
                         <span class="date">
                             <span class="month"
                                   th:text="${#dates.format(daHuytimeLine.ngayTao, 'dd/MM/yyyy')}"></span>
+                             <br>
+                           <b> <span class="hour"
+                                     th:text="${#dates.format(daHuytimeLine.ngayTao, 'HH:mm:ss')}"></span></b>
+                        </span>
                         </span>
                     </div>
                 </div>
