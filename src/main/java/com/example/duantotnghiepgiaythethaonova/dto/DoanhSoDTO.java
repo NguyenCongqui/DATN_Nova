@@ -11,9 +11,9 @@ import lombok.Setter;
 @NoArgsConstructor
 public class DoanhSoDTO {
 
-    private Long donHangThang;
+    private Integer donHangThang;
     private Double doanhSoThang;
-    private Long donHangNgay;
+    private Integer donHangNgay;
     private Double doanhSoNgay;
-    private Long hangBanDuocThang;
+    private Integer hangBanDuocThang;
 }

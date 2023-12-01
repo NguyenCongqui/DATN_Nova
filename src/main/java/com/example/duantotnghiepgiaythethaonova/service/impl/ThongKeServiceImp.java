@@ -28,9 +28,9 @@ public class ThongKeServiceImp implements ThongKeService {
     private final SanPhamChiTietRepository sanPhamChiTietRepository;
     private final HoaDonRepository hoaDonRepository;
     private final HinhAnhService hinhAnhService;
-    private static final Long TRANGTHAI_HOAN_THANH = 7L;
-    private static final Long TRANGTHAI_DA_GIAO = 4L;
-    private static final Long TRANGTHAI_DANG_GIAO = 3L;
+    private static final Integer TRANGTHAI_HOAN_THANH = 7;
+    private static final Integer TRANGTHAI_DA_GIAO = 4;
+    private static final Integer TRANGTHAI_DANG_GIAO = 3;
 
 
     @Override
@@ -88,9 +88,9 @@ public class ThongKeServiceImp implements ThongKeService {
 
         List<HoaDon> hoadon = getHoaDonInRange(start, end);
 
-        Long donHangThang = (long) hoadon.size();
-        Long donHangNgay = hoadon.stream().filter(hoaDon -> compareDate(hoaDon.getNgayTao(), current))
-                .count();
+        Integer donHangThang = (int) hoadon.size();
+        Integer donHangNgay = Math.toIntExact(hoadon.stream().filter(hoaDon -> compareDate(hoaDon.getNgayTao(), current))
+                .count());
         Double doanhSoThang = hoadon.stream()
                 .map(HoaDon::getTongTienHoaDon)
                 .reduce(BigDecimal.ZERO, BigDecimal::add).doubleValue();
@@ -98,7 +98,7 @@ public class ThongKeServiceImp implements ThongKeService {
                 .filter(hoaDon -> compareDate(hoaDon.getNgayTao(), current))
                 .map(HoaDon::getTongTienHoaDon)
                 .reduce(BigDecimal.ZERO, BigDecimal::add).doubleValue();
-        Long hangBanDuoc = hoadon.stream().flatMap(hd -> hd.getHoaDonChiTiets().stream()).mapToLong(HoaDonChiTiet::getSoLuong).sum();
+        Integer hangBanDuoc = Math.toIntExact(hoadon.stream().flatMap(hd -> hd.getHoaDonChiTiets().stream()).mapToLong(HoaDonChiTiet::getSoLuong).sum());
         return new DoanhSoDTO(donHangThang, doanhSoThang, donHangNgay, doanhSoNgay, hangBanDuoc);
     }
 
