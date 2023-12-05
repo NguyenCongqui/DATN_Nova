@@ -5,11 +5,12 @@
 >
 <head>
     <meta charset="UTF-8">
-    <title>NOVA SHOES</title>
+    <title>NOVASHOES</title>
     <script th:src="@{/static/admin/js/moi-nhat/moiNhat.js}"></script>
     <script src="https://kit.fontawesome.com/999051c9de.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" th:href="@{/static/admin/css/moiNhat.css}">
 </head>
+
 <body>
 <!-- Product (Tab with Slider) -->
 
@@ -43,9 +44,9 @@
                                 </div>
                                 <div class="product-button">
                                     <a th:href="${'/khachhang/shop-details/'+item.sanPhamId}" class="js_tooltip"
-                                       data-mode="top" data-tip="Thêm Vào Giỏ"><i class="fas fa-cart-plus"></i></a>
-                                    <!--                                <a href="#" class="js_tooltip" data-mode="top" data-tip="Add To Whishlist"><i class="fa fa-heart"></i></a>-->
-                                    <!--                                <a href="#" class="js_tooltip" data-mode="top" data-tip="Quick&nbsp;View"><i class="fa fa-eye"></i></a>-->
+                                       data-mode="top" data-tip="Thêm vào giỏ"><i class="fas fa-cart-plus"></i></a>
+                                    <!-- <a href="#" class="js_tooltip" data-mode="top" data-tip="Add To Whishlist"><i class="fa fa-heart"></i></a>-->
+                                     <a th:href="${'/khachhang/shop-details/'+item.sanPhamId}" class="js_tooltip" data-mode="top" data-tip="Xem chi&nbsp;tiết"><i class="fa fa-eye"></i></a>
                                 </div>
 
                             </div>

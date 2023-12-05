@@ -98,7 +98,7 @@ public class ThongKeServiceImp implements ThongKeService {
                 .filter(hoaDon -> compareDate(hoaDon.getNgayTao(), current))
                 .map(HoaDon::getTongTienHoaDon)
                 .reduce(BigDecimal.ZERO, BigDecimal::add).doubleValue();
-        Integer hangBanDuoc = Math.toIntExact(hoadon.stream().flatMap(hd -> hd.getHoaDonChiTiets().stream()).mapToLong(HoaDonChiTiet::getSoLuong).sum());
+        Integer hangBanDuoc = Math.toIntExact(hoadon.stream().flatMap(hd -> hd.getHoaDonChiTiets().stream()).mapToInt(HoaDonChiTiet::getSoLuong).sum());
         return new DoanhSoDTO(donHangThang, doanhSoThang, donHangNgay, doanhSoNgay, hangBanDuoc);
     }
 

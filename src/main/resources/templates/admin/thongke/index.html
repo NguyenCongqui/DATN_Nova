@@ -5,12 +5,16 @@
     <title>Thống kê doanh số</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-alpha1/dist/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css">
-    <script th:src="@{/static/admin/vendor/chart.js/Chart.min.js}"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<!--    <script th:src="@{/static/admin/vendor/chart.js/Chart.min.js}"></script>-->
+<!--    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>-->
 
-    <!-- Page level custom scripts -->
-    <script th:src="@{/static/admin/js/demo/chart-area-demo.js}"></script>
-    <script th:src="@{/static/admin/js/demo/chart-pie-demo.js}"></script>
+<!--    &lt;!&ndash; Page level custom scripts &ndash;&gt;-->
+<!--    <script th:src="@{/static/admin/js/demo/chart-area-demo.js}"></script>-->
+<!--    <script th:src="@{/static/admin/js/demo/chart-pie-demo.js}"></script>-->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/chartjs-plugin-zoom/2.0.1/chartjs-plugin-zoom.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-datalabels"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 </head>
 <body>
 <section class="container mt-5" layout:fragment="content">
@@ -32,7 +36,7 @@
                 <div class="card">
                     <div class="card-body" style="text-align: center;">
                         <h5 class="card-title">Doanh số</h5>
-                        <p class="card-text" id="doanhSo" style="color: red;">0</p>
+                        <p class="card-text" id="doanhSo" style="color: red;">0 đơn hàng / 0 ₫</p>
                     </div>
                 </div>
             </div>
@@ -40,7 +44,7 @@
                 <div class="card">
                     <div class="card-body" style="text-align: center;">
                         <h5 class="card-title">Doanh số hôm nay</h5>
-                        <p class="card-text" id="doanhSoNgay" style="color: red;">0</p>
+                        <p class="card-text" id="doanhSoNgay" style="color: red;">0 đơn hàng / 0 ₫</p>
                     </div>
                 </div>
             </div>
@@ -48,7 +52,7 @@
                 <div class="card">
                     <div class="card-body" style="text-align: center;">
                         <h5 class="card-title">Hàng bán được</h5>
-                        <p class="card-text" id="hangBanDuoc" style="color: red;">0</p>
+                        <p class="card-text" id="hangBanDuoc" style="color: red;">0 chiếc</p>
                     </div>
                 </div>
             </div>
@@ -86,8 +90,6 @@
                             <th scope="col">Tên sản phẩm</th>
                             <th scope="col">Giá bán</th>
                             <th scope="col">Số lượng</th>
-                            <th scope="col">Kiểu dáng</th>
-                            <th scope="col">Chất liệu</th>
                             <th scope="col">Kích cỡ</th>
                             <th scope="col">Màu sắc</th>
                         </tr>
@@ -105,8 +107,6 @@
 
                             <!--              <td th:text="${item.getGiaBan()}">0</td>-->
                             <td th:text="${item.getDoanhSo()}">0</td>
-                            <td th:text="${item.getKieuDang()}">0</td>
-                            <td th:text="${item.getChatLieu()}">0</td>
                             <td th:text="${item.getKichCo()}">0</td>
                             <td th:text="${item.getMauSac()}">0</td>
                         </tr>

@@ -56,8 +56,8 @@ $(document).ready(function () {
                             Swal.fire({
                                 icon: "success",
                                 title: "Thành công",
-                                text: "Tạo hóa đơn thành công !",
-                                timer: 2000
+                                text: 'Tạo hóa đơn #HD' + idHoaDon + ' thành công !',
+                                showCancelButton: false,
                             }).then(function () {
                                 // Nếu thanh toán thành công, thực hiện in hóa đơn
                                 sessionStorage.setItem("isConfirmed", true);

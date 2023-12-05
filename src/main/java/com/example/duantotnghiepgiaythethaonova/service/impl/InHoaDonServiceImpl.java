@@ -358,6 +358,7 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
             String formattedNgayTao = dateFormat.format(ngayTao);
 
+
             htmlContentBuilder.append("<h3>").append("Thông tin đơn hàng").append("</h3>");
             htmlContentBuilder.append("<p>Mã đơn hàng: ").append(hoaDon.getMaDon()).append("</p>");
             htmlContentBuilder.append("<p>Ngày mua: ").append(formattedNgayTao).append("</p>");
@@ -365,6 +366,16 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             htmlContentBuilder.append("<p>Số điện thoại khách hàng: ").append(hoaDon.getSdtNguoiNhan()).append("</p>");
             htmlContentBuilder.append("<p>Trạng thái đơn: Đã thanh toán</p>");
             htmlContentBuilder.append("<p>Nhân viên bán hàng: ").append(hoaDon.getNguoiDung().getTenNguoiDung()).append("</p>");
+            htmlContentBuilder.append("<p>Phương thức mua hàng: ");
+            if (hoaDon.getLoaiHoaDon() == 1) {
+                htmlContentBuilder.append("Tại quầy");
+            } else if (hoaDon.getLoaiHoaDon() == 0) {
+                htmlContentBuilder.append("Mua online");
+            } else {
+                htmlContentBuilder.append("Không xác định");
+            }
+            htmlContentBuilder.append("</p>");
+
 
 
             String formattedTongTienDonHang = numberFormat.format(hoaDon.getTongTienDonHang());
@@ -559,9 +570,26 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             htmlContentBuilder.append("<p>Khách hàng: ").append(hoaDon.getNguoiNhan()).append("</p>");
             htmlContentBuilder.append("<p>Số điện thoại khách hàng: ").append(hoaDon.getSdtNguoiNhan()).append("</p>");
             htmlContentBuilder.append("<p>Trạng thái đơn: Đã thanh toán</p>");
+            htmlContentBuilder.append("<p>Phương thức mua hàng: ");
+            if (hoaDon.getLoaiHoaDon() == 1) {
+                htmlContentBuilder.append("Tại quầy");
+            } else if (hoaDon.getLoaiHoaDon() == 0) {
+                htmlContentBuilder.append("Mua online");
+            } else {
+                htmlContentBuilder.append("Không xác định");
+            }
+            htmlContentBuilder.append("</p>");
+
 
             String formattedTongTienDonHang = numberFormat.format(hoaDon.getTongTienDonHang());
             String formattedTongTienHoaDon = numberFormat.format(hoaDon.getTongTienHoaDon());
+            String formattedTienShip = numberFormat.format(hoaDon.getTienShip());
+            if (formattedTienShip == null){
+                formattedTienShip = "0 VNĐ";
+            }
+            else {
+                hoaDon.getTienShip();
+            }
             // Thêm chi tiết đơn hàng
             htmlContentBuilder.append("<h3>").append("Chi tiết đơn hàng").append("</h3>");
             htmlContentBuilder.append("<table>");
@@ -584,11 +612,11 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             // Thêm tổng tiền và các thông tin khác của hóa đơn nếu cần
             htmlContentBuilder.append("<p>Tổng giá trị đơn hàng: ").append(formattedTongTienDonHang).append("</p>");
             htmlContentBuilder.append("<p>Tiền giảm: ").append(formattedTienGiam).append("</p>");
+            htmlContentBuilder.append("<p>Phí ship: ").append(formattedTienShip).append("</p>");
             htmlContentBuilder.append("<p>Tổng tiền thanh toán: ").append(formattedTongTienHoaDon).append("</p>");
 
             htmlContentBuilder.append("<h3>Xin chân thành cảm ơn sự ủng hộ của bạn dành cho NOVASHOES !</h3>");
             htmlContentBuilder.append("</body></html>");
-
             // Gọi phương thức tạo file PDF từ nội dung HTML, sử dụng thư viện iText
             byte[] pdfBytes = createPdfFromHtml(htmlContentBuilder);
 
