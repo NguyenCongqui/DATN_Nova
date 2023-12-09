@@ -316,7 +316,9 @@
                                             th:name="inputSPName+${istat.index}" th:id="sanPhamId+${istat.index}"
                                             th:field="*{sanPhamIdSPTQ}" hidden>
                                         <td th:text="${item.tenSanPham}" style="vertical-align: middle;"></td>
+<!--                                        gia san pham chi tiet-->
                                         <td th:text="${#numbers.formatDecimal(item.gia, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"
+
                                             style="vertical-align: middle;"></td>
                                         <td style="vertical-align: middle;">
                                             <div style="display: grid; place-items: center;">
@@ -374,6 +376,7 @@
                                                             </div>
                                                             <div class="col-sm-5">
                                                                 <div class="product__details__option mt-5 col-sm-12">
+                                                                    <span  th:id="'giaBannHienCo' + ${item.sanPhamId}"></span>
                                                                     <div
                                                                         class="product__details__option__size mt-2 mb-2 col-sm-12">
                                                                         <span class="mr-2">Kích cỡ:</span>

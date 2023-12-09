@@ -57,17 +57,13 @@ public class GioHangRestController {
 
         Optional<MauSac> optMauSac = mauSacRepository.finMauSacByMa(mauSacId);
         Optional<KichCo> optKichCO = kichCoRepository.findByTenKichCo(tenKichCo);
-        System.out.println("jajajajaja");
         if(optKichCO.isPresent() && optMauSac.isPresent()){
             MauSac mauSac = optMauSac.get();
             KichCo kichCo = optKichCO.get();
             BigDecimal giaBanSanPhamChiTiet = sanPhamChiTietRepository.layGiaBanSanPhamChiTiet(tenKichCo, mauSac.getIdMauSac(), sanPhamId);
             System.out.println(sanPhamChiTietRepository.layGiaBanSanPhamChiTiet(tenKichCo, mauSac.getIdMauSac(), sanPhamId));
-            System.out.println("jhdsknsdlkv");
             String giaBanFormatted = giaBanSanPhamChiTiet != null ? giaBanSanPhamChiTiet.setScale(0).toString() : "0";
             response.put("giaBanSanPhamChiTiet", giaBanFormatted);
-//            BigDecimal giaBan = sanPhamChiTietService.getTienBan(sp.getIdSanPham());
-//            dto.setGiaBan(giaBan);
             return response;
         }
         return null;

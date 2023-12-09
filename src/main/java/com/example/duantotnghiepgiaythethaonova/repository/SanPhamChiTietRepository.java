@@ -52,6 +52,18 @@ public interface SanPhamChiTietRepository extends JpaRepository<ChiTietSanPham, 
                                      @Param("mauSacId") Integer mauSacId,
                                      @Param("sanPhamId") Integer sanPhamId);
 
+
+    @Query(value = """
+SELECT spt.Gia FROM dbo.SanPhamCT spt JOIN dbo.KichCo kc ON kc.IdKichCo = spt.IdKichCo
+			JOIN dbo.MauSac ms ON ms.IdMauSac = spt.IdMauSac
+			WHERE kc.TenKichCo = :tenKichCo AND ms.IdMauSac = :mauSacId
+			AND spt.IdSanPham = :sanPhamId AND spt.CoHienThi = 1 AND spt.DaXoa = 0
+""",
+            nativeQuery = true)
+    BigDecimal layGiaBanSanPhamChiTiet(@Param("tenKichCo") String tenKichCo,
+                                       @Param("mauSacId") Integer mauSacId,
+                                       @Param("sanPhamId") Integer sanPhamId);
+
     @Query(value = """
             			SELECT spt.SoLuong
             			FROM SanPhamCT spt

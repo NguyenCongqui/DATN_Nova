@@ -21,6 +21,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -187,10 +188,12 @@ public class SanPhamController {
                 }
                 ssptq.setAnhChinhs(lstHinhAnhStr);
                 ssptq.setSanPhamId(sp.getIdSanPham());
-                ssptq.setGia(sp.getGia());
+//                ssptq.setGia(sp.getGia());
                 ssptq.setTenSanPham(sp.getTenSanPham());
                 List<KichCo> lstKichCo = kichCoService.selectAllKichCoBySanPhamId(sp.getIdSanPham());
                 List<MauSac> lstMauSac = mauSacService.getAllMauSacExistBySPId(sp.getIdSanPham());
+                BigDecimal giaBan = sanPhamChiTietService.getTienBan(sp.getIdSanPham());
+                ssptq.setGia(giaBan);
                 ssptq.setLstKichCo(lstKichCo);
                 ssptq.setLstMauSac(lstMauSac);
                 lstSSPTQ.add(ssptq);

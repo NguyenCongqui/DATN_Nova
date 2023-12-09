@@ -87,6 +87,7 @@ $(document).ready(function () {
 
         if (mauSacId != "") {
             getSoLuongSanPhamChiTiettt(tenKichCo, mauSacId, sanPhamId);
+            getGiaBanSanPhamChiTiettt(tenKichCo, mauSacId, sanPhamId);
         }
 
         if (soLuongInput > soLuongHienCoCus) {
@@ -104,6 +105,7 @@ $(document).ready(function () {
 
         if (tenKichCo != "") {
             getSoLuongSanPhamChiTiettt(tenKichCo, mauSacId, sanPhamId);
+            getGiaBanSanPhamChiTiettt(tenKichCo, mauSacId, sanPhamId);
         }
 
         if (soLuongInput > soLuongHienCoCus) {
@@ -149,6 +151,25 @@ function getSoLuongSanPhamChiTiettt(tenKichCo, mauSacId, sanPhamId) {
             }
 
             $("#soLuongHienCo" + sanPhamId).text(soLuongSanPhamChiTiet);
+        }, error: function () {
+            alert("Đã xảy ra lỗi khi gửi yêu cầu đến server.");
+        },
+    });
+}
+
+function getGiaBanSanPhamChiTiettt(tenKichCo, mauSacId, sanPhamId) {
+    $.ajax({
+        type: "GET", url: "/layGiaBanSanPhamChiTiet", data: {
+            sanPhamId: sanPhamId, tenKichCo: tenKichCo, mauSacId: mauSacId,
+        }, success: function (response) {
+            let giaBanSanPhamChiTiet = response.giaBanSanPhamChiTiet;
+
+            if (giaBanSanPhamChiTiet == null || isNaN(giaBanSanPhamChiTiet)) {
+                giaBanSanPhamChiTiet = 0;
+            }
+            let formattedPrice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(giaBanSanPhamChiTiet);
+            console.log(formattedPrice);
+            $("#giaBannHienCo" + sanPhamId).text(formattedPrice);
         }, error: function () {
             alert("Đã xảy ra lỗi khi gửi yêu cầu đến server.");
         },

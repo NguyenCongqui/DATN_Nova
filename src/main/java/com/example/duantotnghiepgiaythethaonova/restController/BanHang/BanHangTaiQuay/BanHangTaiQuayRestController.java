@@ -31,6 +31,14 @@ public class BanHangTaiQuayRestController {
         return response;
     }
 
+    @RequestMapping("/layGiaBanSanPhamChiTiet")
+    public Map<String, Object> layGiaBanSanPhamChiTiet(@RequestParam("tenKichCo") String tenKichCo, @RequestParam("mauSacId") Integer mauSacId, @RequestParam("sanPhamId") Integer sanPhamId) {
+        Map<String, Object> response = new HashMap<>();
+        BigDecimal giaBanSanPhamChiTiet = sanPhamChiTietRepository.layGiaBanSanPhamChiTiet(tenKichCo, mauSacId, sanPhamId);
+        response.put("giaBanSanPhamChiTiet", giaBanSanPhamChiTiet);
+        return response;
+    }
+
     //XÓA SẢN PHẨM TRONG ĐƠN HÀNG
     @RequestMapping("/update-XoaSP/{id}")
     public ResponseEntity<String> updateXoaSP(@PathVariable("id") Integer id) {

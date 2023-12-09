@@ -246,7 +246,7 @@ public class BanHangServiceIpml implements BanHangService {
             HoaDonChiTiet hoaDonChiTiet = new HoaDonChiTiet();
             hoaDonChiTiet.setChiTietSanPham(gioHangChiTiet.getChiTietSanPham());
             hoaDonChiTiet.setSoLuong(gioHangChiTiet.getSoLuong());
-            hoaDonChiTiet.setDonGia(gioHangChiTiet.getChiTietSanPham().getSanPham().getGia());
+            hoaDonChiTiet.setDonGia(gioHangChiTiet.getChiTietSanPham().getGia());
             hoaDonChiTiet.setTongTien(gioHangChiTiet.getThanhTien());
             hoaDonChiTiet.setHoaDon(hoaDon);
             hoaDonChiTiet.setDaXoa(false);
@@ -650,6 +650,17 @@ public class BanHangServiceIpml implements BanHangService {
 
             String email = SecurityContextHolder.getContext().getAuthentication().getName();
             Optional<NguoiDung> OptNguoiDung = nguoiDungRepository.findByEmail2(email);
+            List<HoaDonChiTiet> hoaDonChiTiets1 = hoaDonChiTietRepository.findByHoaDonIdAndDaXoa(id);
+
+            for (HoaDonChiTiet hoaDonChiTiet : hoaDonChiTiets1) {
+
+                ChiTietSanPham sanPhamChiTiet = hoaDonChiTiet.getChiTietSanPham();
+                Integer soLuongSPCTBanDau = sanPhamChiTiet.getSoLuong();
+                Integer soLuongTrongHoaDon = hoaDonChiTiet.getSoLuong();
+                Integer soLuongcapNhat = soLuongSPCTBanDau - soLuongTrongHoaDon;
+                sanPhamChiTiet.setSoLuong(soLuongcapNhat);
+                sanPhamChiTietRepository.save(sanPhamChiTiet);
+            }
             if (OptNguoiDung.isPresent()) {
                 NguoiDung nguoiDung = OptNguoiDung.get();
                 //Lưu lịch sử hóa đơn
@@ -727,7 +738,7 @@ public class BanHangServiceIpml implements BanHangService {
         if (optSpct.isPresent()) {
             Optional<HoaDon> optHD = hoaDonRepository.findById(hoaDonID);
             HoaDon hoaDon = optHD.get();
-            BigDecimal giaSP = optSpct.get().getSanPham().getGia();
+            BigDecimal giaSP = optSpct.get().getGia();
             BigDecimal thanhTien = giaSP.multiply(BigDecimal.valueOf(soLuongSanPham));
 
             Optional<HoaDonChiTiet> optHdct = hoaDonChiTietRepository.findBySanPhamChiTietAndHoaDon(optSpct.get().getIdCTSP(), hoaDon.getIdHoaDon());
@@ -767,12 +778,12 @@ public class BanHangServiceIpml implements BanHangService {
             hoaDonRepository.save(hoaDon);
 
             // Cập nhật số lượng sản phẩm chi tiết
-            ChiTietSanPham sanPhamChiTiet = optSpct.get();
-            Integer soLuongSPCTBanDau = sanPhamChiTiet.getSoLuong();
-            Integer soLuongcapNhat = soLuongSPCTBanDau - soLuongSanPham;
-
-            sanPhamChiTiet.setSoLuong(soLuongcapNhat);
-            sanPhamChiTietRepository.save(sanPhamChiTiet);
+//            ChiTietSanPham sanPhamChiTiet = optSpct.get();
+//            Integer soLuongSPCTBanDau = sanPhamChiTiet.getSoLuong();
+//            Integer soLuongcapNhat = soLuongSPCTBanDau - soLuongSanPham;
+//
+//            sanPhamChiTiet.setSoLuong(soLuongcapNhat);
+//            sanPhamChiTietRepository.save(sanPhamChiTiet);
         }
     }
 

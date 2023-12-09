@@ -25,6 +25,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.persistence.criteria.CriteriaBuilder;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -74,6 +75,9 @@ public class HomeController {
 
     @Autowired
     private KichCoRepository kichCoRepository;
+
+    @Autowired
+    private SanPhamChiTietService sanPhamChiTietService;
 
     Integer sanPhamIdMauSac;
 
@@ -209,12 +213,14 @@ public class HomeController {
             }
             ssptq.setAnhChinhs(lstHinhAnhStr);
             ssptq.setSanPhamId(sp.getIdSanPham());
-            ssptq.setGia(sp.getGia());
+//            ssptq.setGia(sp.getGia());
             ssptq.setTenSanPham(sp.getTenSanPham());
             List<KichCo> lstKichCo = kichCoService.selectAllKichCoBySanPhamId(sp.getIdSanPham());
             List<MauSac> lstMauSac = mauSacService.getAllMauSacExistBySPId(sp.getIdSanPham());
             ssptq.setLstKichCo(lstKichCo);
             ssptq.setLstMauSac(lstMauSac);
+            BigDecimal giaBan = sanPhamChiTietService.getTienBan(sp.getIdSanPham());
+            ssptq.setGia(giaBan);
             lstSSPTQ.add(ssptq);
         }
         resultSP.setLstShowSanPhamTaiQua(lstSSPTQ);
@@ -322,14 +328,16 @@ public class HomeController {
             }
             dto.setAnhChinhs(lstHinhAnhStr);
             dto.setSanPhamId(sanPhamId);
-            dto.setGia(optSP.get().getGia());
+//            dto.setGia(optSP.get().getGia());
             dto.setTenSanPham(optSP.get().getTenSanPham());
             dto.setMoTa(optSP.get().getMoTa());
             dto.setSoLuong(1);
             List<KichCo> lstKichCo = kichCoService.selectAllKichCoBySanPhamId(sanPhamId);
             List<MauSac> lstMauSac = mauSacService.getAllMauSacExistBySPId(sanPhamId);
+            BigDecimal giaBan = sanPhamChiTietService.getTienBan(sanPhamId);
             dto.setLstKichCo(lstKichCo);
             dto.setLstMauSac(lstMauSac);
+            dto.setGia(giaBan);
 
             model.addAttribute("shopDetails", dto);
         }
