@@ -9,6 +9,9 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
     <script src="/static/admin/js/banHang/banHangOnline/banHangOnline.js"></script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular-route.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.5/dist/sweetalert2.min.js"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
@@ -49,8 +52,116 @@
             }
         }
     </style>
+
+    <script>
+        var app = angular.module('checkout', ["ngRoute"]);
+        app.controller('ctrl', function($scope, $http) {
+            $scope.isDiaChi = false;
+            $scope.themDiaChi = function(){
+                $scope.isDiaChi= !$scope.isDiaChi;
+                console.log("haha")
+                //get tỉnh
+                $scope.listTinh = [];
+                $http({
+                    method: "GET",
+                    url: "https://online-gateway.ghn.vn/shiip/public-api/master-data/province",
+                    headers : {
+                        'token' : 'f22a8bb9-632c-11ee-b394-8ac29577e80e'
+                    }
+                }).then(function (resp) {
+                    $scope.listTinh = resp.data.data ;
+
+                })
+                $scope.getHuyen = function(){
+                    let tinh = document.getElementById("tinh").value
+                    if(tinh  === ''){
+                        tinh  = 269;
+                    }
+                    $scope.listHuyen = [];
+                    $http({
+                        method: "GET",
+                        url: "https://online-gateway.ghn.vn/shiip/public-api/master-data/district?province_id=" + tinh,
+                        headers : {
+                            'token' : 'f22a8bb9-632c-11ee-b394-8ac29577e80e'
+                        }
+                    }).then(function (resp) {
+                        $scope.listHuyen = resp.data.data ;
+
+                    })
+                }
+                $scope.getXa = function(){
+                    let huyen = document.getElementById("huyen").value
+                    if(huyen  === ''){
+                        huyen  = 2264;
+                    }
+                    $scope.listXa = [];
+                    $http({
+                        method: "GET",
+                        url: "https://online-gateway.ghn.vn/shiip/public-api/master-data/ward?district_id=" + huyen,
+                        headers : {
+                            'token' : 'f22a8bb9-632c-11ee-b394-8ac29577e80e'
+                        }
+                    }).then(function (resp) {
+                        $scope.listXa = resp.data.data ;
+
+                    })
+                }
+
+
+                $scope.getHuyen();
+                $scope.getXa();
+            }
+
+            $scope.addDiaChi = function(){
+                let tennguoimua = document.getElementById('tennguoimua').value;
+                let sodienthoai = document.getElementById('sodienthoai').value;
+                let diachicuthe = document.getElementById('diachicuthe').value;
+                let cityId = document.getElementById('tinh').value;
+                let districtId = document.getElementById('huyen').value;
+                let wardId = document.getElementById('xa').value;
+                // Get the select element by its id
+                const selectElement = document.getElementById('tinh');
+
+// Get the selected option's text content (ProvinceName)
+                const cityName = selectElement.options[selectElement.selectedIndex].textContent;
+                // Get the select element by its id
+                const selectElement1 = document.getElementById('huyen');
+
+                // Get the selected option's text content (ProvinceName)
+                const districtName = selectElement1.options[selectElement1.selectedIndex].textContent;
+                // Get the select element by its id
+                const selectElement2 = document.getElementById('xa');
+
+                // Get the selected option's text content (ProvinceName)
+                const wardName = selectElement2.options[selectElement2.selectedIndex].textContent;
+                $http.post('http://localhost:8080/api/address/add',{
+                    hoTen : tennguoimua,
+                    soDienThoai : sodienthoai,
+                    diaChi : diachicuthe,
+                    idThanhPho : cityId,
+                    idHuyen : districtId,
+                    xa : wardId,
+                    tenThanhPho : cityName,
+                    tenQuanHuyen : districtName,
+                    teXaPhuong : wardName,
+                    // khachHangId : 1
+
+
+                }).then(function(resp){
+                    $scope.isDiaChi = false;
+                    Swal.fire('Thêm thành công !','','success');
+                    $http.get("http://localhost:8080/api/address/"+IdCustomer).then(function (address) {
+                        $scope.listAddress = address.data;
+
+                    })
+                })
+
+
+            }
+        })
+    </script>
 </head>
-<body>
+<body ng-app="checkout" ng-controller="ctrl">
 <!-- Page Content Wraper -->
 <div th:replace="customer/layout/header :: header"></div>
 <div class="page-content-wraper "
@@ -80,6 +191,8 @@
                     <article class="post-8">
 <!--                        <form class="product-checkout mt-45">-->
                             <div class="row">
+
+<!--                                <button ng-click="themDiaChi()" style="float: right;"><i class="fa-solid fa-plus"></i> Thêm địa chỉ mới</button>-->
                                 <div class="col-md-5">
                                     <h3 style="text-align: center;" id="thongTinGiaohang"><i class="fa-solid fa-circle-info"></i> Chi Tiết Thanh Toán</h3>
                                     <div class="row">
@@ -168,6 +281,8 @@
                                     </div>
 
                                 </div>
+
+
                                 <div class="col-md-7">
                                     <div class="checkout-order-review">
                                         <h3 style="text-align: center"><i
@@ -206,7 +321,7 @@
                                                                             <span>/</span>
                                                                             <span th:text="${hoaDonCT.chiTietSanPham.kichCo.tenKichCo}"></span>
                                                                             <br>
-                                                                            <span th:text="${#numbers.formatDecimal(hoaDonCT.chiTietSanPham.sanPham.gia, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'">100,000</span>
+                                                                            <span th:text="${#numbers.formatDecimal(hoaDonCT.chiTietSanPham.gia, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'">100,000</span>
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -321,6 +436,52 @@
                                                         </li>
                                                     </ul>
                                                 </di>
+                                            </div>
+
+                                            <div class="modal fade" ng-class="{ 'show': isDiaChi }">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <!-- Nội dung của popup -->
+                                                        <div class="modal-header">
+                                                            <p>Thêm địa chỉ </p>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12 ">
+                                                                <label>Tên người nhận <span class="vaid">*</span></label> <input class="haninput" id="tennguoimua">
+
+                                                            </div>
+                                                            <div class="col-md-12 ">
+                                                                <label>SĐT người nhận <span class="vaid">*</span></label> <input class="haninput" id="sodienthoai">
+
+                                                            </div>
+                                                            <div class="col-md-12 ">
+                                                                <label>Tỉnh/Thành <span class="vaid">*</span></label>  <select class="form-control" id="tinh" ng-click="getHuyen();getXa()">
+                                                                <option ng-repeat="tinh in listTinh" value="{{tinh.ProvinceID}}">{{tinh.ProvinceName}}</option>
+                                                            </select>
+
+                                                            </div>
+                                                            <div class="col-md-12 ">
+                                                                <label>Quận/Huyện <span class="vaid">*</span></label>  <select class="form-control" id="huyen" ng-click="getXa()">
+                                                                <option ng-repeat="huyen in listHuyen" value="{{huyen.DistrictID}}">{{huyen.DistrictName}}</option>
+                                                            </select>
+                                                            </div>
+                                                            <div class="col-md-12 ">
+                                                                <label>Phường/Xã <span class="vaid">*</span></label>  <select class="form-control" id="xa">
+                                                                <option ng-repeat="xa in listXa" value="{{xa.WardCode}}">{{xa.WardName}}</option>
+                                                            </select>
+                                                            </div>
+                                                            <div class="col-md-12 ">
+                                                                <label>Địa chỉ cụ thể </label> <textarea class="haninput1" id="diachicuthe"></textarea>
+
+                                                            </div>
+                                                            <div style="padding-top: 10px;">
+                                                                <button class="btn btn-primary" ng-click="themDiaChi()">X</button>
+                                                                <button class="btn btn-dark" ng-click="addDiaChi()">Thêm</button>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+                                                </div>
                                             </div>
 
 

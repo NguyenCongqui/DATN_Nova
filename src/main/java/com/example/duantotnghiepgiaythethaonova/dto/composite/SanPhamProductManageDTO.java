@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigDecimal;
 import java.util.List;
 
 @Data
@@ -14,6 +15,8 @@ public class SanPhamProductManageDTO {
 	private SanPham sanPham;
 	
 	private int tongSoLuong;
+
+	private BigDecimal giaBan;
 	
 	private List<String> anhChinhs;
 }

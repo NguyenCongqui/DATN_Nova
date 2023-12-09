@@ -7,6 +7,7 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import java.io.Serializable;
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -26,6 +27,8 @@ public class ChiTietSanPham extends BaseEntity implements Serializable {
     private Integer idCTSP;
     @Column(name = "MaSanPhamCT")
     private String maCTSP;
+    @Column(name = "Gia")
+    private BigDecimal gia;
     @Column(name = "SoLuong")
     private Integer soLuong;
     @Column(name = "CoHienThi")

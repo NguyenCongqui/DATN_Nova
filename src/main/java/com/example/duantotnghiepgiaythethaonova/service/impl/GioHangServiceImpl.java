@@ -133,7 +133,7 @@ public class GioHangServiceImpl implements GioHangService{
 
         if (opt.isPresent() && gioHang != null) {
             ChiTietSanPham sanPhamChiTiet = opt.get();
-            BigDecimal donGia = sanPhamChiTiet.getSanPham().getGia();
+            BigDecimal donGia = sanPhamChiTiet.getGia();
             BigDecimal thanhTien = donGia.multiply(BigDecimal.valueOf(soLuong));
             Integer thanhTienInt = thanhTien.intValue();
 

@@ -12,6 +12,7 @@ public class SanPhamChiTietConvertor {
 		SanPhamChiTietDTO dto = new SanPhamChiTietDTO();
 		dto.setDaXoa(entity.getDaXoa());
 		dto.setId(entity.getIdCTSP());
+		dto.setGia(entity.getGia());
 		dto.setTenKichCo(entity.getKichCo().getTenKichCo());
 		dto.setTenMauSac(entity.getMauSac().getTenMauSac());
 		dto.setTenDayGiay(entity.getDayGiay().getTenDayGiay());

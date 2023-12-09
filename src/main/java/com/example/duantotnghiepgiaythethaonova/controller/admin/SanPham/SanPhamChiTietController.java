@@ -31,6 +31,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.text.Format;
 import java.util.*;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -177,11 +178,15 @@ public class SanPhamChiTietController {
 			for (SanPham sp : resultPage.getContent()) {
 				SanPhamProductManageDTO dto = new SanPhamProductManageDTO();
 				int tongSoLuong = sanPhamChiTietService.getSumSoLuongBySanPhamId(sp.getIdSanPham());
+				System.out.println(sanPhamChiTietService.getSumSoLuongBySanPhamId(sp.getIdSanPham()));
 				dto.setTongSoLuong(tongSoLuong);
 				dto.setSanPham(sp);
 				List<HinhAnh> lstAnhChinh = hinhAnhService.getHinhAnhChinhBySanPhamId(sp.getIdSanPham());
 				List<String> anhChinhs = lstAnhChinh.stream().map(HinhAnh::getTenAnh).collect(Collectors.toList());
 				dto.setAnhChinhs(anhChinhs);
+				BigDecimal giaBan = sanPhamChiTietService.getTienBan(sp.getIdSanPham());
+				System.out.println(sanPhamChiTietService.getTienBan(sp.getIdSanPham()));
+				dto.setGiaBan(giaBan);
 				lstDto.add(dto);
 			}
 			model.addAttribute("sanPhams", lstDto);
@@ -298,7 +303,9 @@ public class SanPhamChiTietController {
 					spct.setDaXoa(false);
 					spct.setSanPham(sanPham);
 					int soLuong = data.getSoLuong();
+					BigDecimal gia = data.getGia();
 					spct.setSoLuong(soLuong);
+					spct.setGia(gia);
 
 					KichCo kichCo = new KichCo();
 					kichCo.setIdKichCo(kichCoId);
@@ -619,6 +626,33 @@ public class SanPhamChiTietController {
 				}
 			}
 		}
+
+		String[] gias = request.getParameterValues("gias");
+		String[] idsgia = request.getParameterValues("giaIds");
+		if (soLuongs != null && ids != null) {
+			for (String item : soLuongs) {
+				if (!isNumeric(item)) {
+					redirect.addFlashAttribute("messageDanger", "Giá là số");
+					return "redirect:/admin/product/edit/"+data.getSanPhamId();
+				}
+				if(Integer.parseInt(item) < 1) {
+					redirect.addFlashAttribute("messageDanger", "Giá phải lớn hơn 0");
+					return "redirect:/admin/product/edit/"+data.getSanPhamId();
+				}
+			}
+			for (String item : ids) {
+				if (!isNumeric(item)) {
+					redirect.addFlashAttribute("messageDanger", "Id phải là số");
+					return "redirect:/admin/product/edit/"+data.getSanPhamId();
+				}
+			}
+		}
+		// add key-id, value-soLuong -> map
+		Map<String, String> hm1 = new HashMap<>();
+		for (int i = 0; i < idsgia.length; i++) {
+			hm1.put(idsgia[i], gias[i]);
+		}
+
 		// add key-id, value-soLuong -> map
 		Map<String, String> hm = new HashMap<>();
 		for (int i = 0; i < ids.length; i++) {
@@ -629,6 +663,17 @@ public class SanPhamChiTietController {
 			Optional<ChiTietSanPham> opt = sanPhamChiTietService.findById(Integer.parseInt(mapItem.getKey()));
 			if (opt.isPresent()) {
 				opt.get().setSoLuong(Integer.parseInt(mapItem.getValue()));
+				sPID = opt.get().getSanPham().getIdSanPham();
+				sanPhamChiTietService.save(opt.get());
+				isSuccess = true;
+			} else
+				isSuccess = false;
+		}
+		for (Map.Entry<String, String> mapItem : hm1.entrySet()) {
+			Optional<ChiTietSanPham> opt = sanPhamChiTietService.findById(Integer.parseInt(mapItem.getKey()));
+			if (opt.isPresent()) {
+				BigDecimal giaValue = new BigDecimal(mapItem.getValue());
+				opt.get().setGia(giaValue);
 				sPID = opt.get().getSanPham().getIdSanPham();
 				sanPhamChiTietService.save(opt.get());
 				isSuccess = true;

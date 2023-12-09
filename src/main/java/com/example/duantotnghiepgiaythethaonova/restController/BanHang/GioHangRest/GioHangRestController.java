@@ -6,10 +6,12 @@ import com.example.duantotnghiepgiaythethaonova.repository.CTSPRepository;
 import com.example.duantotnghiepgiaythethaonova.repository.KichCoRepository;
 import com.example.duantotnghiepgiaythethaonova.repository.MauSacRepository;
 import com.example.duantotnghiepgiaythethaonova.service.GioHangService;
+import org.springframework.beans.BeanInfoFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Optional;
@@ -40,7 +42,32 @@ public class GioHangRestController {
             MauSac mauSac = optMauSac.get();
             KichCo kichCo = optKichCO.get();
             Integer soLuongSanPhamChiTiet = sanPhamChiTietRepository.laySoLuongSanPhamChiTiet(tenKichCo, mauSac.getIdMauSac(), sanPhamId);
+            System.out.println("bcjds"+sanPhamChiTietRepository.laySoLuongSanPhamChiTiet(tenKichCo, mauSac.getIdMauSac(), sanPhamId));
             response.put("soLuongSanPhamChiTiet", soLuongSanPhamChiTiet);
+            return response;
+        }
+        return null;
+    }
+
+    @RequestMapping("/GiaBan")
+    public Map<String, Object> layGiaBanSanPhamChiTiet(@RequestParam("tenKichCo") String tenKichCo,
+                                                        @RequestParam("mauSacId") String mauSacId,
+                                                        @RequestParam("sanPhamId") Integer sanPhamId) {
+        Map<String, Object> response = new HashMap<>();
+
+        Optional<MauSac> optMauSac = mauSacRepository.finMauSacByMa(mauSacId);
+        Optional<KichCo> optKichCO = kichCoRepository.findByTenKichCo(tenKichCo);
+        System.out.println("jajajajaja");
+        if(optKichCO.isPresent() && optMauSac.isPresent()){
+            MauSac mauSac = optMauSac.get();
+            KichCo kichCo = optKichCO.get();
+            BigDecimal giaBanSanPhamChiTiet = sanPhamChiTietRepository.layGiaBanSanPhamChiTiet(tenKichCo, mauSac.getIdMauSac(), sanPhamId);
+            System.out.println(sanPhamChiTietRepository.layGiaBanSanPhamChiTiet(tenKichCo, mauSac.getIdMauSac(), sanPhamId));
+            System.out.println("jhdsknsdlkv");
+            String giaBanFormatted = giaBanSanPhamChiTiet != null ? giaBanSanPhamChiTiet.setScale(0).toString() : "0";
+            response.put("giaBanSanPhamChiTiet", giaBanFormatted);
+//            BigDecimal giaBan = sanPhamChiTietService.getTienBan(sp.getIdSanPham());
+//            dto.setGiaBan(giaBan);
             return response;
         }
         return null;

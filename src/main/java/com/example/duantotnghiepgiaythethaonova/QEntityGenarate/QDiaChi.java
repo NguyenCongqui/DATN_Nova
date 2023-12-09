@@ -24,7 +24,7 @@ public class QDiaChi extends EntityPathBase<DiaChi> {
 
     public static final QDiaChi diaChi1 = new QDiaChi("diaChi1");
 
-    public final QBaseEntity _super = new QBaseEntity(this);
+//    public final QBaseEntity _super = new QBaseEntity(this);
 
     public final StringPath diaChi = createString("diaChi");
 
@@ -37,16 +37,16 @@ public class QDiaChi extends EntityPathBase<DiaChi> {
     public final BooleanPath laDiaChiMacDinh = createBoolean("laDiaChiMacDinh");
 
     //inherited
-    public final DateTimePath<java.util.Date> ngayCapNhat = _super.ngayCapNhat;
-
-    //inherited
-    public final DateTimePath<java.util.Date> ngayTao = _super.ngayTao;
-
-    //inherited
-    public final StringPath nguoiCapNhat = _super.nguoiCapNhat;
-
-    //inherited
-    public final StringPath nguoiTao = _super.nguoiTao;
+//    public final DateTimePath<java.util.Date> ngayCapNhat = _super.ngayCapNhat;
+//
+//    //inherited
+//    public final DateTimePath<java.util.Date> ngayTao = _super.ngayTao;
+//
+//    //inherited
+//    public final StringPath nguoiCapNhat = _super.nguoiCapNhat;
+//
+//    //inherited
+//    public final StringPath nguoiTao = _super.nguoiTao;
 
     public final StringPath soDienThoai = createString("soDienThoai");
 

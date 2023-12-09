@@ -107,14 +107,14 @@
                                                 <a href="">[[${item.sanPhamChiTietDTO.tenMauSac}]]</a>
                                             </td>
                                             <td class="product-price">
-                                            <span class="product-price-amount amount">[[${#numbers.formatDecimal(item.sanPhamChiTietDTO.sanPhamDTO.gia, 0,
+                                            <span class="product-price-amount amount">[[${#numbers.formatDecimal(item.sanPhamChiTietDTO.gia, 0,
                                                 'COMMA', 0, 'POINT')}]] VNĐ</span>
                                             </td>
                                             <td>
                                                 <div class="product-quantity">
                                                     <input type="hidden" id="cartId" th:name="ids" th:value="${item.id}">
                                                     <input type="hidden" id="donGia" th:name="donGias"
-                                                           th:value="${item.sanPhamChiTietDTO.sanPhamDTO.gia}">
+                                                           th:value="${item.sanPhamChiTietDTO.gia}">
                                                     <input type="hidden" id="thanhTien" th:value="${item.thanhTien}">
                                                     <div>
                                                     <button type="submit" data-value="+" class="quantity-btn quantityPlus"></button>

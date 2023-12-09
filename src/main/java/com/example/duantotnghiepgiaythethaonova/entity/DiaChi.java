@@ -16,7 +16,7 @@ import java.util.List;
 @Table(name = "DiaChi")
 @Builder
 @Data
-public class DiaChi extends BaseEntity implements Serializable {
+public class DiaChi implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,18 +30,24 @@ public class DiaChi extends BaseEntity implements Serializable {
     private String soDienThoai;
     @Column(name = "LaDiaChiMacDinh")
     private boolean laDiaChiMacDinh = false;
-//    @Column(name = "NgayTao")
-//    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-//    @Temporal(TemporalType.TIMESTAMP)
-//    private Date NgayTao;
-//    @Column(name = "NgayCapNhat")
-//    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-//    @Temporal(TemporalType.TIMESTAMP)
-//    private Date NgayCapNhat;
-//    @Column(name = "NguoiTao")
-//    private String NguoiTao;
-//    @Column(name = "NguoiCapNhat")
-//    private String NguoiCapNhat;
+
+    @Column(name = "IdThanhPho")
+    private Integer idThanhPho;
+
+    @Column(name = "idQuanHuyen")
+    private Integer idQuanHuyen;
+
+    @Column(name = "idXaPhuong")
+    private Integer idXaPhuong;
+
+    @Column(name = "TenThanhPho")
+    private String tenThanhPho;
+
+    @Column(name = "TenQuanHuyen")
+    private String tenQuanHuyen;
+
+    @Column(name = "TenXaPhuong")
+    private String tenXaPhuong;
 
     @ManyToOne
     @JoinColumn(name = "IdKhachHang")

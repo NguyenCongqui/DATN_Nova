@@ -23,6 +23,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -106,6 +107,12 @@ public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
     @Override
     public int getSumSoLuongBySanPhamId(Integer id) {
         return sanPhamChiTietRepository.getSumSoLuongBySanPhamId(id);
+    }
+
+    @Override
+    public BigDecimal getTienBan(Integer id) {
+
+            return sanPhamChiTietRepository.getTienBan(id);
     }
 
     @Override

@@ -20,6 +20,7 @@ import java.util.List;
 @AllArgsConstructor
 @Table(name = "KhachHang")
 @EqualsAndHashCode(callSuper=false)
+@Builder
 public class KhachHang extends BaseEntity implements Serializable {
 
     @Id

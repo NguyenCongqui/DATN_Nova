@@ -9,6 +9,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.io.IOException;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,6 +41,8 @@ public interface SanPhamChiTietService {
 	int getCountChiTietSanPhamExistBySanPhamId(Integer sanPhamId);
 
 	int getSumSoLuongBySanPhamId(Integer id);
+
+	BigDecimal getTienBan(Integer id);
 
 	Optional<ChiTietSanPham> selectChiTietSanPhamDuplicate(Integer mauSacId, Integer kichCoId, Integer sanPhamId);
 

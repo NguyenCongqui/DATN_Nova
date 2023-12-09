@@ -29,6 +29,8 @@ public class QChiTietSanPham extends EntityPathBase<ChiTietSanPham> {
 
     public final BooleanPath daXoa = createBoolean("daXoa");
 
+    public final NumberPath<java.math.BigDecimal> gia = createNumber("gia", java.math.BigDecimal.class);
+
     public final QDayGiay dayGiay;
 
     public final QDeGiay deGiay;

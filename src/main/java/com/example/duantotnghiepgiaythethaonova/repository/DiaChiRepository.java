@@ -9,11 +9,16 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+
 
 @Repository
 public interface DiaChiRepository extends JpaRepository<DiaChi,Integer> {
 	/*@Query(value="SELECT d FROM DiaChi d WHERE d.khachHang.id=?1")
 	DiaChi findByKhachHangId(Long id);*/
+
+	@Query("Select e from DiaChi e where e.laDiaChiMacDinh = false and e.khachHang.idKhachHang = :id")
+	List<DiaChi> getAddressByCustomer(@Param("id") Integer id);
 
 	@Query(value = "SELECT count(*) FROM DiaChi WHERE idKhachHang=:idKhachHang", nativeQuery = true)
 	int countByMaKhachHang(@Param("idKhachHang") Integer idKhachHang);

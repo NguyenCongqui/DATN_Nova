@@ -11,9 +11,11 @@ $(document).ready(function () {
         console.log(tenKichCo)
         kichCoDaChon = tenKichCo;
         const sanPhamId = $("#id_san_pham").data("id");
+        console.log(sanPhamId)
 
         if (mauSacId != "") {
             getSoLuongSanPhamChiTiet(tenKichCo, mauSacId, sanPhamId);
+            getGiaBanSanPhamChiTiet(tenKichCo, mauSacId, sanPhamId);
         }
 
         if (soLuongInput > soLuongHienCoCus) {
@@ -24,13 +26,16 @@ $(document).ready(function () {
     $(".chonMauSaca").click(function () {
         mauSacId = $(this).attr("data-id")
         mauSacDaChon = mauSacId;
+        console.log(mauSacId)
         const sanPhamId = $("#id_san_pham").data("id");
 
         if (tenKichCo != "") {
             getSoLuongSanPhamChiTiet(tenKichCo, mauSacId, sanPhamId);
+            getGiaBanSanPhamChiTiet(tenKichCo, mauSacId, sanPhamId);
         }
 
         const soLuongHienCoCus = $(".soLuongHienCoCus").val();
+        const giaBans = $(".giaBans").val();
         if (soLuongInput > soLuongHienCoCus) {
             soLuongInput = soLuongHienCoCus;
         }
@@ -81,6 +86,32 @@ function getSoLuongSanPhamChiTiet(tenKichCo, mauSacId, sanPhamId) {
 
             $("#soLuongHienCoCus" + sanPhamId).text(soLuongSanPhamChiTiet);
         },
+        error: function () {
+            alert("Đã xảy ra lỗi khi gửi yêu cầu đến server.");
+        },
+    });
+}
+
+function getGiaBanSanPhamChiTiet(tenKichCo, mauSacId, sanPhamId) {
+    $.ajax({
+        type: "GET",
+        url: "/GiaBan",
+        data: {
+            tenKichCo: tenKichCo,
+            mauSacId: mauSacId,
+            sanPhamId: sanPhamId,
+        },
+            success: function (response) {
+                let giaBanSanPhamChiTiet = response.giaBanSanPhamChiTiet;
+
+                if (giaBanSanPhamChiTiet == null || isNaN(giaBanSanPhamChiTiet)) {
+                    giaBanSanPhamChiTiet = 0;
+                }
+
+                let formattedPrice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(giaBanSanPhamChiTiet);
+                console.log(formattedPrice)
+                $("#giaBanHienCoCus" + sanPhamId).text(formattedPrice);
+            },
         error: function () {
             alert("Đã xảy ra lỗi khi gửi yêu cầu đến server.");
         },

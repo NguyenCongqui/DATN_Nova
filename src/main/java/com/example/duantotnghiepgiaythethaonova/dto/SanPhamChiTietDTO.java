@@ -7,6 +7,7 @@ import lombok.NoArgsConstructor;
 
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
+import java.math.BigDecimal;
 
 
 @Data
@@ -25,6 +26,8 @@ public class SanPhamChiTietDTO extends BaseDTO<BaseDTO> {
 	private Integer deGiayId;
 
 	private Integer lotGiayId;
+
+	private BigDecimal gia;
 
 
 	@NotNull(message = "Số lượng không được để trống")

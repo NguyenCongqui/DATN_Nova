@@ -14,20 +14,20 @@ public class DiaChiAPI {
     @Autowired
     private DiaChiService diaChiService;
 
-    @PostMapping("/admin/api/dia-chi")
-    public DiaChiDTO themMoiDiaChi(@RequestBody DiaChiDTO diaChiDTO) {
-
-        DiaChiDTO entityError = new DiaChiDTO();
-
-        if (diaChiDTO.getCity().equalsIgnoreCase("---Chọn thành phố---")
-                || diaChiDTO.getDistrict().equalsIgnoreCase("---Chọn thành huyện---")
-                || diaChiDTO.getWard().equalsIgnoreCase("---Chọn xã---")) {
-            return diaChiService.save(entityError);
-        }
-
-
-        return diaChiService.save(diaChiDTO);
-    }
+//    @PostMapping("/admin/api/dia-chi")
+//    public DiaChiDTO themMoiDiaChi(@RequestBody DiaChiDTO diaChiDTO) {
+//
+//        DiaChiDTO entityError = new DiaChiDTO();
+//
+//        if (diaChiDTO.getCity().equalsIgnoreCase("---Chọn thành phố---")
+//                || diaChiDTO.getDistrict().equalsIgnoreCase("---Chọn thành huyện---")
+//                || diaChiDTO.getWard().equalsIgnoreCase("---Chọn xã---")) {
+//            return diaChiService.save(entityError);
+//        }
+//
+//
+//        return diaChiService.save(diaChiDTO);
+//    }
 
 
     @DeleteMapping("/admin/api/dia-chi")

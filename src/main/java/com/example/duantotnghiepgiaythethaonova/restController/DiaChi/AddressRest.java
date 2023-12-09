@@ -14,10 +14,10 @@ public class AddressRest {
     @Autowired
     DiaChiService diaChiService;
 
-//    @GetMapping("/{id}")
-//    public ResponseEntity<?> getAddressByCustomer(@PathVariable("id") Integer id){
-//        return ResponseEntity.ok(service.getAddressByCustomer(id));
-//    }
+    @GetMapping("/{id}")
+    public ResponseEntity<?> getAddressByCustomer(@PathVariable("id") Integer id){
+        return ResponseEntity.ok(diaChiService.getAddressByCustomer(id));
+    }
 //    @GetMapping("/getBill/{code}")
 //    public ResponseEntity<?> getBill(@PathVariable("code") String code){
 //        return ResponseEntity.ok(service.getAddressByBill(code));
@@ -31,7 +31,7 @@ public class AddressRest {
 //        return ResponseEntity.ok(service.add(addressKhachLe));
 //    }
     @PostMapping("/add")
-    public ResponseEntity<?> addAddresss(@RequestBody DiaChiDTO request){
-        return ResponseEntity.ok(diaChiService.addAddress(request));
+    public ResponseEntity<?> addAddresss(@RequestBody DiaChiDTO diaChiDTO){
+        return ResponseEntity.ok(diaChiService.addAddress(diaChiDTO));
     }
 }

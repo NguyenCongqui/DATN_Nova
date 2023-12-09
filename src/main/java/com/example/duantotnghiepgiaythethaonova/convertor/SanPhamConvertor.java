@@ -10,7 +10,7 @@ public class SanPhamConvertor {
 	public SanPhamDTO toDTO(SanPham entity) {
 		SanPhamDTO dto = new SanPhamDTO();
 		dto.setIdSanPhamDTO(entity.getIdSanPham());
-		dto.setGia(entity.getGia());
+//		dto.setGia(entity.getGia());
 		dto.setMoTa(entity.getMoTa());
 		dto.setTenSanPham(entity.getTenSanPham());
 		dto.setTenChatLieu(entity.getChatLieu().getTenChatLieu());
