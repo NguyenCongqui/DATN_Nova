@@ -79,9 +79,9 @@ public class SanPhamSearchRepositoryImpl implements SanPhamSearchRepository {
             dataSearch.setGiaMax(BigDecimal.valueOf(3000000));
         } else if (dataSearch.getGiaOption().equalsIgnoreCase("4")) {
             dataSearch.setGiaMin(BigDecimal.valueOf(3000000));
-            dataSearch.setGiaMax(BigDecimal.valueOf(40000000));
+            dataSearch.setGiaMax(BigDecimal.valueOf(4000000));
         } else if (dataSearch.getGiaOption().equalsIgnoreCase("5")) {
-            dataSearch.setGiaMin(BigDecimal.valueOf(50000000));
+            dataSearch.setGiaMin(BigDecimal.valueOf(5000000));
         }
 
         if (lstCoHienThi.size() != 2 && lstCoHienThi.size() != 0) {

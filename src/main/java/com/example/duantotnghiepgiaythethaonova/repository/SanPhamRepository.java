@@ -22,9 +22,9 @@ public interface SanPhamRepository extends JpaRepository<SanPham, Integer>, SanP
 SELECT sp.*
 FROM dbo.SanPham sp
 JOIN dbo.SanPhamCT spct ON spct.IdSanPham = sp.IdSanPham
-WHERE sp.DaXoa = 0 AND spct.CoHienThi = 1\s
+WHERE sp.DaXoa = 0 AND spct.CoHienThi = 1
 GROUP BY sp.IdSanPham,sp.MaSanPham, sp.TenSanPham, sp.NgayCapNhat, sp.NgayTao, sp.NguoiCapNhat, sp.NguoiTao, sp.DaXoa, sp.Gia, sp.MoTa, sp.IdChatLieu, sp.IdKieuDang, sp.IdThuongHieu
-ORDER BY sp.IdSanPham DESC;
+ORDER BY sp.IdSanPham DESC
 """, nativeQuery = true)
     Page<SanPham> showSanPhamExistHomePage(Pageable pageable);
 

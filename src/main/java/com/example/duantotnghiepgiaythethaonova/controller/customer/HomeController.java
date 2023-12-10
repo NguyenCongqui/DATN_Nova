@@ -191,7 +191,7 @@ public class HomeController {
     @GetMapping("home")
     public String home(Model model) {
         int currentPage = 1;
-        int pageSize = 8;
+        int pageSize = 50;
         Pageable pageable = PageRequest.of(currentPage - 1, pageSize);
         SanPhamTaiQuayDTO resultSP = new SanPhamTaiQuayDTO();
         List<ShowSanPhamdto> lstSSPTQ = new ArrayList<>();
