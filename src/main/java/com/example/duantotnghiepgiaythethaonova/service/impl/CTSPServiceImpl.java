@@ -22,6 +22,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -55,12 +56,22 @@ public class CTSPServiceImpl implements CTSPService {
     public Page<ChiTietSanPham> searchProductDetailExist(SPAndSPCTSearchDto data, Pageable pageable) {
         return sanPhamChiTietSearchRepository.searchProductDetailExist(data, pageable);
     }
+    private static int productCount = 0;
 
+    public String genMaSP() {
+        productCount++;
+
+        //genMaSP 001 TU TANG
+        String formattedCount = String.format("%03d", productCount);
+
+        String code = "SP" + formattedCount;
+        return code;
+    }
     @Override
     public <S extends ChiTietSanPham> S save(S entity) {
         entity.setDaXoa(false);
-        String maSPCT = UUID.randomUUID().toString();
-        entity.setMaCTSP(maSPCT);
+//        String maSPCT = UUID.randomUUID().toString();
+        entity.setMaCTSP(genMaSP());
         return sanPhamChiTietRepository.save(entity);
     }
 

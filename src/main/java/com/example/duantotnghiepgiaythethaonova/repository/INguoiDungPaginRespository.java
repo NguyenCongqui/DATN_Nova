@@ -10,7 +10,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface INguoiDungPaginRespository extends PagingAndSortingRepository<NguoiDung , Integer> {
-
+    @Query(value = "select * from NguoiDung where daXoa = 0" , nativeQuery = true)
     Page<NguoiDung> findAll(Pageable pageable);
 
     @Query(value = "select * from NguoiDung where daXoa = 0" , nativeQuery = true)

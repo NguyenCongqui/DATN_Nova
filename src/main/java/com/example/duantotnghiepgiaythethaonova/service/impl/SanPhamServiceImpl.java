@@ -23,6 +23,7 @@ public class SanPhamServiceImpl implements SanPhamService {
 
     @Override
     public <S extends SanPham> S save(S entity) {
+//        entity.setMaSanPham(genMaSP());
         entity.setDaXoa(false);
         return sanPhamRepository.save(entity);
     }

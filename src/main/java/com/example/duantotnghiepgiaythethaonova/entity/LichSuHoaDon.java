@@ -25,26 +25,18 @@ public class LichSuHoaDon extends BaseEntity implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "IdLichSuHoaDon")
     private Integer idLichSuHoaDon;
+
     @Column(name = "NguoiThaoTac")
     private String nguoiThaoTac;
+
     @Column(name = "ThaoTac")
     private String thaoTac;
-//    @Column(name = "NgayTao")
-//    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-//    @Temporal(TemporalType.TIMESTAMP)
-//    private Date NgayTao;
-//    @Column(name = "NgayCapNhat")
-//    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-//    @Temporal(TemporalType.TIMESTAMP)
-//    private Date NgayCapNhat;
-//    @Column(name = "NguoiTao")
-//    private String NguoiTao;
-//    @Column(name = "NguoiCapNhat")
-//    private String NguoiCapNhat;
 
     @ManyToOne
     @JoinColumn(name = "IdHoaDon")
     private HoaDon hoaDon;
 
-
+    @Column(name = "trangThai_id")
+    private Integer trangThaiID;
+    
 }
