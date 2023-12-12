@@ -84,9 +84,6 @@
         <div th:replace="admin/fragments/header :: header">
             <hr>
         </div>
-        <br>
-        <br>
-        <br>
         <div class="main-content container-fluid" layout:fragment="content"><!--dynamic content-->
             <section class="container-fluid">
     <script th:inline="javascript">
@@ -173,46 +170,6 @@
                                        th:field="*{tenSanPham}" />
                                 <small id="tenSanPham" th:if="${#fields.hasErrors('tenSanPham')}" th:class="${#fields.hasErrors('tenSanPham')}?
                                             invalid-feedback : ''" th:errors="*{tenSanPham}"></small>
-                            </div>
-                            <div class="col-sm-6">
-                                <label for="gia">Giá:</label>
-                                <input type="text" class="form-control" id="giaInput" th:classappend="${#fields.hasErrors('gia')}?
-                                            is-invalid : ''" aria-describedby="giaHId" placeholder="Giá bán" />
-                                <input type="number" th:field="*{gia}" id="giaInputVal" hidden>
-                                <small id="gia" th:if="${#fields.hasErrors('gia')}" th:class="${#fields.hasErrors('gia')}?
-                                            invalid-feedback : ''" th:errors="*{gia}"></small>
-                                <script th:inline="javascript">
-                                    var inputElement = document.getElementById('giaInput');
-                                    inputElement.addEventListener('input', function (event) {
-                                        if (inputElement.value) {
-                                            var numericValue = parseFloat(event.target.value.replace(/[^\d.]/g, ''));
-                                            if (!isNaN(numericValue)) {
-                                                var formattedValue = formatCurrency(numericValue);
-                                                document.getElementById('giaInputVal').value = numericValue;
-                                                event.target.value = formattedValue;
-                                            } else {
-                                                return event.target.value = "";
-                                            }
-                                        } else {
-                                            document.getElementById('giaInputVal').value = "";
-                                        }
-                                    });
-
-                                    function formatCurrency(value) {
-                                        if (!isNaN(value)) {
-                                            var formattedCurrency = numeral(value).format('0,0');
-                                            return formattedCurrency;
-                                        } else {
-                                            return "";
-                                        }
-                                    }
-
-                                    $(document).ready(function () {
-                                        var numericValueGia = document.getElementById('giaInputVal').value;
-                                        var formattedValue = formatCurrency(numericValueGia);
-                                        document.getElementById('giaInput').value = formattedValue;
-                                    })
-                                </script>
                             </div>
                             <div class="col-sm-4 mt-3">
                                 <div class="row">
@@ -447,6 +404,46 @@
                         <small th:if="${#fields.hasErrors('soLuong')}" th:class="${#fields.hasErrors('soLuong')}?
                                 invalid-feedback : ''" th:errors="*{soLuong}"></small>
                     </div>
+                    <div class="col-sm-2 mt-3 mb-3" th:if="*{isGenaratedData == false}">
+                        <label for="gia">Giá:</label>
+                        <input type="text" class="form-control" id="giaInput" th:classappend="${#fields.hasErrors('gia')}?
+                                            is-invalid : ''" aria-describedby="giaHId" placeholder="Giá bán" />
+                        <input type="number" th:field="*{gia}" id="giaInputVal" hidden>
+                        <small id="gia" th:if="${#fields.hasErrors('gia')}" th:class="${#fields.hasErrors('gia')}?
+                                            invalid-feedback : ''" th:errors="*{gia}"></small>
+                        <script th:inline="javascript">
+                            var inputElement = document.getElementById('giaInput');
+                            inputElement.addEventListener('input', function (event) {
+                                if (inputElement.value) {
+                                    var numericValue = parseFloat(event.target.value.replace(/[^\d.]/g, ''));
+                                    if (!isNaN(numericValue)) {
+                                        var formattedValue = formatCurrency(numericValue);
+                                        document.getElementById('giaInputVal').value = numericValue;
+                                        event.target.value = formattedValue;
+                                    } else {
+                                        return event.target.value = "";
+                                    }
+                                } else {
+                                    document.getElementById('giaInputVal').value = "";
+                                }
+                            });
+
+                            function formatCurrency(value) {
+                                if (!isNaN(value)) {
+                                    var formattedCurrency = numeral(value).format('0,0');
+                                    return formattedCurrency;
+                                } else {
+                                    return "";
+                                }
+                            }
+
+                            $(document).ready(function () {
+                                var numericValueGia = document.getElementById('giaInputVal').value;
+                                var formattedValue = formatCurrency(numericValueGia);
+                                document.getElementById('giaInput').value = formattedValue;
+                            })
+                        </script>
+                    </div>
                     <div class="col-sm-12 mt-3 mb-3">
                         <div class="float-right">
                             <a class="btn btn-primary text-light" th:if="*{isGenaratedData == false}"
@@ -472,7 +469,13 @@
                                 <i class="bi bi-x-circle"></i></a>
                         </div>
                     </div>
+
                 </h6>
+                <div class="btn-group-sm">
+                    <div class="float-right">
+                        <a class="btn btn-secondary text-light" th:href="@{/admin/product}">Quay lại</a>
+                    </div>
+                </div>
             </div>
             <div class="card-body">
                 <div class="table-responsive">
@@ -945,7 +948,13 @@
                                 <input type="number" class="form-control" name="soLuongInProductDetail"
                                        placeholder="Số Lượng" />
                             </div>
+                            <div class="col-sm-2 mt-3 mb-3">
+                                <label >Giá:</label>
+                                <input type="text" class="form-control" name="giaInProductDetail"
+                                       placeholder="Giá" />
+                            </div>
                         </div>
+
                     </div>
                     <div class="modal-footer">
                         <a type="button" class="btn btn-outline-dark" data-dismiss="modal">Đóng</a>

@@ -23,6 +23,8 @@ public class SanPhamDTO {
 
     private String tenSanPham;
 
+    private String maSanPham;
+
     private BigDecimal giaBan;
 
     private BigDecimal gia;

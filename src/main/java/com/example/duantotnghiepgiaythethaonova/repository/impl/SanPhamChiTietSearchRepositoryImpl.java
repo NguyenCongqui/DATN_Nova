@@ -98,6 +98,11 @@ public class SanPhamChiTietSearchRepositoryImpl implements SanPhamChiTietSearchR
 				where.and(qSanPham.tenSanPham.containsIgnoreCase(dataSearch.getTenSanPham()));
 			}
 		}
+//		if(!dataSearch.getMaSanPham().equalsIgnoreCase("-1")) {
+//			if(StringUtils.isNotEmpty(dataSearch.getMaSanPham())) {
+//				where.and(qSanPham.maSanPham.containsIgnoreCase(dataSearch.getMaSanPham()));
+//			}
+//		}
 
 		if(lstThuongHieu.size() != 0 && !lstThuongHieu.get(0).equals(-1)) {
 			where.and(qThuongHieu.daXoa.isFalse());
@@ -135,18 +140,18 @@ public class SanPhamChiTietSearchRepositoryImpl implements SanPhamChiTietSearchR
 				!dataSearch.getGiaMax().toString().equalsIgnoreCase("-1") ) {
 			if(!dataSearch.getGiaMin().toString().isEmpty() &&
 					!dataSearch.getGiaMax().toString().isEmpty()) {
-				where.and(qSanPham.gia.between(dataSearch.getGiaMin(), dataSearch.getGiaMax()));
+				where.and(qChiTietSanPham.gia.between(dataSearch.getGiaMin(), dataSearch.getGiaMax()));
 			}
 		}
 		if(!dataSearch.getGiaMin().toString().equalsIgnoreCase("-1") &&
 				dataSearch.getGiaMax().toString().equalsIgnoreCase("-1")) {
 			if(!dataSearch.getGiaMin().toString().isEmpty()) {
-				where.and(qSanPham.gia.goe(dataSearch.getGiaMin()));
+				where.and(qChiTietSanPham.gia.goe(dataSearch.getGiaMin()));
 			}
 		}else if(dataSearch.getGiaMin().toString().equalsIgnoreCase("-1") &&
 				!dataSearch.getGiaMax().toString().equalsIgnoreCase("-1")) {
 			if(!dataSearch.getGiaMax().toString().isEmpty()) {
-				where.and(qSanPham.gia.loe(dataSearch.getGiaMax()));
+				where.and(qChiTietSanPham.gia.loe(dataSearch.getGiaMax()));
 			}
 		}
 
@@ -216,6 +221,7 @@ public class SanPhamChiTietSearchRepositoryImpl implements SanPhamChiTietSearchR
 		List<Integer> lstDeGiayId = typeHelperService.convertObjectTypeListInteger(dataSearch.getDeGiayIds());
 		List<Integer> lstLotGiayId = typeHelperService.convertObjectTypeListInteger(dataSearch.getLotGiayIds());
 		String tenSanPham = typeHelperService.convertObjectTypeString(dataSearch.getTenSanPham());
+		String maSanPham = typeHelperService.convertObjectTypeString(dataSearch.getMaSanPham());
 		BigDecimal giaHienHanhMin = typeHelperService.convertObjectTypeBigDecimal(dataSearch.getGiaMin());
 		BigDecimal giaHienHanhMax = typeHelperService.convertObjectTypeBigDecimal(dataSearch.getGiaMax());
 		int soLuongMin = typeHelperService.convertObjectTypeListInt(dataSearch.getSoLuongMin());
@@ -228,7 +234,7 @@ public class SanPhamChiTietSearchRepositoryImpl implements SanPhamChiTietSearchR
 		Date ngayCapNhatMin = typeHelperService.convertObjectTypeDate(dataSearch.getNgayCapNhatMin());
 		Date ngayCapNhatMax = typeHelperService.convertObjectTypeDate(dataSearch.getNgayCapNhatMax());
 		String tieuChiGia = typeHelperService.convertObjectTypeString(dataSearch.getTieuChiGia());
-		SPAndSPCTSearchDto result = new SPAndSPCTSearchDto(lstKieuDangId, lstChatLieuId, lstThuongHieuId, lstKichCoId, lstMauSacId,lstDayGiayId,lstDeGiayId,lstLotGiayId ,tenSanPham, giaHienHanhMin, giaHienHanhMax, soLuongMin, soLuongMax, coHienThi, nguoiTaoSPCT, nguoiCapNhatSPCT, ngayTaoMin, ngayTaoMax, ngayCapNhatMin, ngayCapNhatMax, tieuChiGia, null);
+		SPAndSPCTSearchDto result = new SPAndSPCTSearchDto(lstKieuDangId, lstChatLieuId, lstThuongHieuId, lstKichCoId, lstMauSacId,lstDayGiayId,lstDeGiayId,lstLotGiayId ,tenSanPham,maSanPham, giaHienHanhMin, giaHienHanhMax, soLuongMin, soLuongMax, coHienThi, nguoiTaoSPCT, nguoiCapNhatSPCT, ngayTaoMin, ngayTaoMax, ngayCapNhatMin, ngayCapNhatMax, tieuChiGia, null);
 		return result;
 	}
 }

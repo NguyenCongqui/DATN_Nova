@@ -8,6 +8,7 @@ import com.example.duantotnghiepgiaythethaonova.dto.composite.SanPhamProductMana
 import com.example.duantotnghiepgiaythethaonova.dto.search.SPAndSPCTSearchDto;
 import com.example.duantotnghiepgiaythethaonova.entity.*;
 import com.example.duantotnghiepgiaythethaonova.service.*;
+import org.apache.poi.hpsf.Decimal;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
@@ -31,6 +32,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 import java.io.IOException;
 import java.math.BigDecimal;
+import java.text.DecimalFormat;
 import java.text.Format;
 import java.util.*;
 import java.util.stream.Collectors;
@@ -1340,9 +1342,10 @@ public class SanPhamChiTietController {
 		String[] kichCoIdsInProductDetail = request.getParameterValues("kichCoIdsInProductDetail");
 		String[] mauSacIdsInProductDetail = request.getParameterValues("mauSacIdsInProductDetail");
 		String[] soLuongInProductDetail = request.getParameterValues("soLuongInProductDetail");
+		String[] giaInProductDetail = request.getParameterValues("giaInProductDetail");
 		int countDuplicate = 0;
 		int countNotDuplicate = 0;
-		if (kichCoIdsInProductDetail != null && mauSacIdsInProductDetail != null && soLuongInProductDetail != null) {
+		if (kichCoIdsInProductDetail != null && mauSacIdsInProductDetail != null && soLuongInProductDetail != null &&  giaInProductDetail != null) {
 			Optional<SanPham> optSP = sanPhamService.findById(data.getSanPhamId());
 			if (optSP.isPresent()) {
 				optSP.get().setDaXoa(false);
@@ -1365,7 +1368,13 @@ public class SanPhamChiTietController {
 										redirect.addFlashAttribute("messageDanger", "Số lượng không được để trống");
 										return "redirect:/admin/product/edit/" + data.getSanPhamId();
 									}
-
+									if(!giaInProductDetail[0].isEmpty()) {
+										BigDecimal gia = new BigDecimal(giaInProductDetail[0]);
+										spct.setGia(gia);
+									}else {
+										redirect.addFlashAttribute("messageDanger", "Giá không được để trống");
+										return "redirect:/admin/product/edit/" + data.getSanPhamId();
+									}
 									KichCo kichCo = new KichCo();
 									kichCo.setIdKichCo(Integer.parseInt(kichCoId));
 									spct.setKichCo(kichCo);

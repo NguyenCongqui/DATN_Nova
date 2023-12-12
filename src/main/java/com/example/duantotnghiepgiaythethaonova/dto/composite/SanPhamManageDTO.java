@@ -34,6 +34,8 @@ public class SanPhamManageDTO {
 	@NotEmpty(message = "Tên sản phẩm không được để trống")
 	private String tenSanPham;
 
+	private String maSanPham;
+
 	@NotEmpty(message = "Mô tả sản phẩm không được để trống")
 	private String moTa;
 

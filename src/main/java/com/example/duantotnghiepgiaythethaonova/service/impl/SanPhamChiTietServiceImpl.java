@@ -57,23 +57,12 @@ public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
     public Page<ChiTietSanPham> searchProductDetailExist(SPAndSPCTSearchDto data, Pageable pageable) {
         return sanPhamChiTietSearchRepository.searchProductDetailExist(data, pageable);
     }
-    private static int productCount = 0;
-
-    public String genMaSP() {
-        productCount++;
-
-        //genMaSP 001 TU TANG
-        String formattedCount = String.format("%03d", productCount);
-
-        String code = "SP" + formattedCount;
-        return code;
-    }
 
     @Override
     public <S extends ChiTietSanPham> S save(S entity) {
         entity.setDaXoa(false);
-//        String maSPCT = UUID.randomUUID().toString();
-        entity.setMaCTSP(genMaSP());
+       String maSPCT = UUID.randomUUID().toString();
+        entity.setMaCTSP(maSPCT);
         return sanPhamChiTietRepository.save(entity);
     }
 

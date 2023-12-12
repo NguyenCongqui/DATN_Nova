@@ -33,6 +33,8 @@ public class SPAndSPCTSearchDto {
 
     private String tenSanPham;
 
+    private String maSanPham;
+
     @DecimalMin(value = "0", message = "Giá nhỏ nhất không được nhỏ hơn 0")
     private BigDecimal giaMin;
 

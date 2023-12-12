@@ -42,6 +42,8 @@ public class QSanPham extends EntityPathBase<SanPham> {
 
     public final QKieuDang kieuDang;
 
+    public final StringPath maSanPham = createString("maSanPham");
+
     public final StringPath moTa = createString("moTa");
 
     //inherited
