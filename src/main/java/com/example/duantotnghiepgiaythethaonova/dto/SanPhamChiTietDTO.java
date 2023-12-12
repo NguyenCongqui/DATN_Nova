@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import javax.validation.constraints.NotNull;
 import java.math.BigDecimal;
@@ -27,6 +28,8 @@ public class SanPhamChiTietDTO extends BaseDTO<BaseDTO> {
 
 	private Integer lotGiayId;
 
+	@DecimalMin(value = "1000", message = "Giá không được nhỏ hơn 1.000")
+	@NotNull(message = "Giá không được để trống")
 	private BigDecimal gia;
 
 

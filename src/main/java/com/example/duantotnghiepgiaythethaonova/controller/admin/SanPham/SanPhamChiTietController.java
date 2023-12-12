@@ -230,6 +230,7 @@ public class SanPhamChiTietController {
 		if(opt.isPresent()) {
 			dto.setSanPhamChiTiets(lstSp);
 			dto.setGia(opt.get().getGia());
+			dto.setMaSanPham(opt.get().getMaSanPham());
 			dto.setTenChatLieu(opt.get().getChatLieu().getTenChatLieu());
 			dto.setTenKieuDang(opt.get().getKieuDang().getTenKieuDang());
 			dto.setTenThuongHieu(opt.get().getThuongHieu().getTenThuongHieu());
@@ -264,6 +265,7 @@ public class SanPhamChiTietController {
 			sanPhamManageDTONew.setMoTa(sanPhamManageDTO.get().getMoTa());
 			sanPhamManageDTONew.setSanPhamId(sanPhamManageDTO.get().getSanPhamId());
 			sanPhamManageDTONew.setSoLuong(sanPhamManageDTO.get().getSoLuong());
+			sanPhamManageDTONew.getMaSanPham();
 			sanPhamManageDTONew.setTenSanPham(sanPhamManageDTO.get().getTenSanPham());
 		}
 		model.addAttribute("sanPhamManageDTO", sanPhamManageDTONew);
@@ -280,6 +282,7 @@ public class SanPhamChiTietController {
 			SanPham sanPham = new SanPham();
 			sanPham.setDaXoa(false);
 			sanPham.setGia(data.getGia());
+			sanPham.getMaSanPham();
 			sanPham.setTenSanPham(data.getTenSanPham());
 			sanPham.setMoTa(data.getMoTa());
 
@@ -540,21 +543,23 @@ public class SanPhamChiTietController {
 	public String updateQuantityProductDetail(ModelMap model, @ModelAttribute("sanPhamManageDTO") SanPhamManageDTO data,
 											  HttpServletRequest request, HttpServletResponse response,
 											  RedirectAttributes redirect) throws IOException {
-		if(data.getGia() == null) {
-			model.addAttribute("messageDanger", "bạn không được để giá sản phẩm trống");
-			List<ChiTietSanPham> dataGen = sanPhamChiTietService.getLstChiTietSanPhamBySanPhamId(data.getSanPhamId());
-			//button - mau sac add img
-			List<MauSac> lstMauSacAddImg = mauSacService.getAllMauSacExistBySPId(data.getSanPhamId());
-			HashMap<Integer, String> lstMauSacAddImgHM = new HashMap<Integer, String>();
-			for (MauSac mauSac : lstMauSacAddImg) {
-				lstMauSacAddImgHM.put(mauSac.getIdMauSac(), mauSac.getTenMauSac());
-			}
-			data.setLstMauSacAddImg(lstMauSacAddImgHM);
-			model.addAttribute("dataGen", dataGen);
-			model.addAttribute("sanPhamManageDTO", data);
-			return "admin/product/addProduct";
-		}
-		if (data.getGia().toString().isEmpty() || data.getTenSanPham().isEmpty() || data.getMoTa().isEmpty()
+//		if(data.getGia() == null) {
+//			model.addAttribute("messageDanger", "bạn không được để giá sản phẩm trống");
+//			List<ChiTietSanPham> dataGen = sanPhamChiTietService.getLstChiTietSanPhamBySanPhamId(data.getSanPhamId());
+//			//button - mau sac add img
+//			List<MauSac> lstMauSacAddImg = mauSacService.getAllMauSacExistBySPId(data.getSanPhamId());
+//			HashMap<Integer, String> lstMauSacAddImgHM = new HashMap<Integer, String>();
+//			for (MauSac mauSac : lstMauSacAddImg) {
+//				lstMauSacAddImgHM.put(mauSac.getIdMauSac(), mauSac.getTenMauSac());
+//			}
+//			data.setLstMauSacAddImg(lstMauSacAddImgHM);
+//			model.addAttribute("dataGen", dataGen);
+//			model.addAttribute("sanPhamManageDTO", data);
+//			return "admin/product/addProduct";
+//		}
+		if (
+//				data.getGia().toString().isEmpty()||
+			data.getTenSanPham().isEmpty() || data.getMoTa().isEmpty()
 				|| data.getChatLieuId() == -1 || data.getThuongHieuId() == -1
 				|| data.getKieuDangId() == -1) {
 			model.addAttribute("messageDanger", "bạn không được để trống thông tin sản phẩm");
@@ -570,25 +575,26 @@ public class SanPhamChiTietController {
 			model.addAttribute("sanPhamManageDTO", data);
 			return "admin/product/addProduct";
 		}
-		if(data.getGia().compareTo(BigDecimal.valueOf(1000L))<0) {
-			model.addAttribute("messageDanger", "bạn không được để giá sản phẩm < 1000");
-			List<ChiTietSanPham> dataGen = sanPhamChiTietService.getLstChiTietSanPhamBySanPhamId(data.getSanPhamId());
-			//button - mau sac add img
-			List<MauSac> lstMauSacAddImg = mauSacService.getAllMauSacExistBySPId(data.getSanPhamId());
-			HashMap<Integer, String> lstMauSacAddImgHM = new HashMap<Integer, String>();
-			for (MauSac mauSac : lstMauSacAddImg) {
-				lstMauSacAddImgHM.put(mauSac.getIdMauSac(), mauSac.getTenMauSac());
-			}
-			data.setLstMauSacAddImg(lstMauSacAddImgHM);
-			model.addAttribute("dataGen", dataGen);
-			model.addAttribute("sanPhamManageDTO", data);
-			return "admin/product/addProduct";
-		}
+//		if(data.getGia().compareTo(BigDecimal.valueOf(1000L))<0) {
+//			model.addAttribute("messageDanger", "bạn không được để giá sản phẩm < 1000");
+//			List<ChiTietSanPham> dataGen = sanPhamChiTietService.getLstChiTietSanPhamBySanPhamId(data.getSanPhamId());
+//			//button - mau sac add img
+//			List<MauSac> lstMauSacAddImg = mauSacService.getAllMauSacExistBySPId(data.getSanPhamId());
+//			HashMap<Integer, String> lstMauSacAddImgHM = new HashMap<Integer, String>();
+//			for (MauSac mauSac : lstMauSacAddImg) {
+//				lstMauSacAddImgHM.put(mauSac.getIdMauSac(), mauSac.getTenMauSac());
+//			}
+//			data.setLstMauSacAddImg(lstMauSacAddImgHM);
+//			model.addAttribute("dataGen", dataGen);
+//			model.addAttribute("sanPhamManageDTO", data);
+//			return "admin/product/addProduct";
+//		}
 		boolean isSuccess = false;
 		Optional<SanPham> optSP = sanPhamService.findById(data.getSanPhamId());
 		if (optSP.isPresent()) {
 			optSP.get().setDaXoa(false);
 			optSP.get().setGia(data.getGia());
+			optSP.get().getMaSanPham();
 			optSP.get().setTenSanPham(data.getTenSanPham());
 			optSP.get().setMoTa(data.getMoTa());
 
@@ -1369,8 +1375,13 @@ public class SanPhamChiTietController {
 										return "redirect:/admin/product/edit/" + data.getSanPhamId();
 									}
 									if(!giaInProductDetail[0].isEmpty()) {
-										BigDecimal gia = new BigDecimal(giaInProductDetail[0]);
-										spct.setGia(gia);
+										try {
+											BigDecimal gia = new BigDecimal(giaInProductDetail[0]);
+											spct.setGia(gia);
+										} catch (NumberFormatException e) {
+											redirect.addFlashAttribute("messageDanger", "Giá không hợp lệ");
+											return "redirect:/admin/product/edit/" + data.getSanPhamId();
+										}
 									}else {
 										redirect.addFlashAttribute("messageDanger", "Giá không được để trống");
 										return "redirect:/admin/product/edit/" + data.getSanPhamId();

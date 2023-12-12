@@ -98,11 +98,11 @@ public class SanPhamChiTietSearchRepositoryImpl implements SanPhamChiTietSearchR
 				where.and(qSanPham.tenSanPham.containsIgnoreCase(dataSearch.getTenSanPham()));
 			}
 		}
-//		if(!dataSearch.getMaSanPham().equalsIgnoreCase("-1")) {
-//			if(StringUtils.isNotEmpty(dataSearch.getMaSanPham())) {
-//				where.and(qSanPham.maSanPham.containsIgnoreCase(dataSearch.getMaSanPham()));
-//			}
-//		}
+		if(!dataSearch.getMaSanPham().equalsIgnoreCase("-1")) {
+			if(StringUtils.isNotEmpty(dataSearch.getMaSanPham())) {
+				where.and(qSanPham.maSanPham.containsIgnoreCase(dataSearch.getMaSanPham()));
+			}
+		}
 
 		if(lstThuongHieu.size() != 0 && !lstThuongHieu.get(0).equals(-1)) {
 			where.and(qThuongHieu.daXoa.isFalse());

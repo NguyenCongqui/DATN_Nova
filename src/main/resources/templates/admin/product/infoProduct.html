@@ -188,8 +188,8 @@
                 </div>
                 <div class="file-input" th:if="${not #lists.isEmpty(imgs)}">
                     <div class="file-preview">
-                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>
-                        <div class=" file-drop-zone clearfix">
+<!--                        <button type="button" class="btn-close" data-bs-dismiss="toast" aria-label="Close"></button>-->
+                        <div class=" clearfix">
                             <div class="file-preview-thumbnails clearfix">
                                 <div class="file-preview-frame krajee-default  kv-preview-thumb rotatable"
                                     th:each="img, istatHAMS : ${imgs}">
@@ -199,11 +199,11 @@
                                             alt="">
                                     </div>
                                     <div class="file-thumbnail-footer">
-                                        <div class="file-footer-caption" title="63ea4beff683aa1e4b6dec64e1ae8e60.jfif">
-                                            <div class="file-caption-info">
-                                                ảnh sản phẩm</div>
-                                            <div class="file-size-info"> <samp></samp></div>
-                                        </div>
+<!--                                        <div class="file-footer-caption" title="63ea4beff683aa1e4b6dec64e1ae8e60.jfif">-->
+<!--                                            <div class="file-caption-info">-->
+<!--                                                ảnh sản phẩm</div>-->
+<!--                                            <div class="file-size-info"> <samp></samp></div>-->
+<!--                                        </div>-->
                                         <div class="file-thumb-progress kv-hidden">
                                             <div class="progress">
                                                 <div class="progress-bar bg-info progress-bar-info progress-bar-striped active progress-bar-animated"
@@ -213,10 +213,11 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="file-upload-indicator" title="Not uploaded yet"><i
-                                                class="bi-plus-lg text-warning"></i></div>
+                                        <br>
+<!--                                        <div class="file-upload-indicator" title="Not uploaded yet"><i-->
+<!--                                                class="bi-plus-lg text-warning"></i></div>-->
                                         <div class="file-actions">
-                                            <div class="file-footer-buttons">
+                                            <div >
                                                 <button type="button" data-toggle="popover" data-trigger="hover"
                                                     data-placement="top" data-content="Ảnh chính"
                                                     th:classappend="${img.laAnhChinh == true? 'active': ''}"

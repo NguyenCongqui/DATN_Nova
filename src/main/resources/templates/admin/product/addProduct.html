@@ -682,11 +682,11 @@
                                                 th:text="${item.tenMauSacAddImg}"></span></h6>
                                         <div class="file-input">
                                             <div class="file-preview">
-                                                <button type="button" class="close fileinput-remove"
-                                                        aria-label="Close">
-                                                    <span aria-hidden="true">×</span>
-                                                </button>
-                                                <div class="file-drop-zone clearfix"
+<!--                                                <button type="button" class="close fileinput-remove"-->
+<!--                                                        aria-label="Close">-->
+<!--                                                    <span aria-hidden="true">×</span>-->
+<!--                                                </button>-->
+                                                <div class=" clearfix"
                                                      th:id="'preview-img-'+ ${istat.index}">
 
                                                 </div>
@@ -734,11 +734,11 @@
                                         </h6>
                                         <div class="file-input" th:if="*{isCreatedValueImg == true}">
                                             <div class="file-preview">
-                                                <button type="button" class="close fileinput-remove"
-                                                        aria-label="Close">
-                                                    <span aria-hidden="true">×</span>
-                                                </button>
-                                                <div class=" file-drop-zone clearfix">
+<!--                                                <button type="button" class="close fileinput-remove"-->
+<!--                                                        aria-label="Close">-->
+<!--                                                    <span aria-hidden="true">×</span>-->
+<!--                                                </button>-->
+                                                <div class="clearfix">
                                                     <div class="file-preview-thumbnails clearfix">
                                                         <div class="file-preview-frame krajee-default  kv-preview-thumb rotatable"
                                                              th:id="'imgBoxProduct'+${istat.index}+${istatHAMS.index}"
@@ -751,12 +751,11 @@
                                                                      alt="">
                                                             </div>
                                                             <div class="file-thumbnail-footer">
-                                                                <div class="file-footer-caption"
-                                                                     title="63ea4beff683aa1e4b6dec64e1ae8e60.jfif">
-                                                                    <div class="file-caption-info">
-                                                                        Ảnh sản phẩm</div>
-                                                                    <div class="file-size-info"> <samp></samp></div>
-                                                                </div>
+<!--                                                                <div class="file-footer-caption"-->
+<!--                                                                     title="63ea4beff683aa1e4b6dec64e1ae8e60.jfif">-->
+<!--                                                                    <div class="file-caption-info"></div>-->
+<!--                                                                    <div class="file-size-info"> <samp></samp></div>-->
+<!--                                                                </div>-->
                                                                 <div class="file-thumb-progress kv-hidden">
                                                                     <div class="progress">
                                                                         <div class="progress-bar bg-info progress-bar-info progress-bar-striped active progress-bar-animated"
@@ -767,8 +766,9 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
+                                                                <br>
                                                                 <div class="file-actions">
-                                                                    <div class="file-footer-buttons">
+                                                                    <div class="">
                                                                         <button type="button"
                                                                                 th:id="'laAnhChinhBtn'+${istat.index}+${istatHAMS.index}"
                                                                                 onclick="changeLaAnhChinh(this.getAttribute('img-name'), this.getAttribute('id'), this.getAttribute('name'))"
@@ -776,7 +776,7 @@
                                                                                 data-toggle="popover"
                                                                                 data-trigger="hover"
                                                                                 data-placement="top"
-                                                                                data-content="Chọn ảnh chính"
+                                                                                data-content="Mặc định"
                                                                                 th:name="'laAnhChinhBtn'+${istat.index}"
                                                                                 th:classappend="${img.laAnhChinh == true? 'active': ''}"
                                                                                 class="btn btn-sm btn-kv btn-default btn-outline-warning"><i class="bi bi-bookmark-star"></i>
@@ -787,7 +787,7 @@
                                                                                 data-toggle="popover"
                                                                                 data-trigger="hover"
                                                                                 data-placement="top"
-                                                                                data-content="Chọn có hiển thị"
+                                                                                data-content="hiển thị"
                                                                                 th:id="'coHienThiBtn'+${istat.index}+${istatHAMS.index}"
                                                                                 onclick="changeCoHienThi(this.getAttribute('img-name'),this.getAttribute('id'))"
                                                                                 class="btn btn-sm btn-kv btn-default btn-outline-info"><i class="bi bi-back"></i>
@@ -795,7 +795,7 @@
                                                                         <button type="button" data-toggle="popover"
                                                                                 data-trigger="hover"
                                                                                 data-placement="top"
-                                                                                data-content="Xóa hình ảnh"
+                                                                                data-content="Xóa"
                                                                                 onclick="openPopupRemoveHinhAnh(this.getAttribute('imgName'),this.getAttribute('imgBox'))"
                                                                                 th:imgName="${img.tenAnh}"
                                                                                 th:imgBox="'imgBoxProduct'+${istat.index}+${istatHAMS.index}"

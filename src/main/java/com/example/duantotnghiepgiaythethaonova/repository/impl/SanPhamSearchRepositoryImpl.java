@@ -125,11 +125,11 @@ public class SanPhamSearchRepositoryImpl implements SanPhamSearchRepository {
                 where.and(qSanPham.tenSanPham.containsIgnoreCase(dataSearch.getTenSanPham()));
             }
         }
-//        if (!dataSearch.getMaSanPham().equalsIgnoreCase("-1")) {
-//            if (StringUtils.isNotEmpty(dataSearch.getMaSanPham())) {
-//                where.and(qSanPham.maSanPham.containsIgnoreCase(dataSearch.getMaSanPham()));
-//            }
-//        }
+        if (!dataSearch.getMaSanPham().equalsIgnoreCase("-1")) {
+            if (StringUtils.isNotEmpty(dataSearch.getMaSanPham())) {
+                where.and(qSanPham.maSanPham.containsIgnoreCase(dataSearch.getMaSanPham()));
+            }
+        }
         if (!dataSearch.getTieuChiGia().equalsIgnoreCase("-1")) {
             if (StringUtils.isNotEmpty(dataSearch.getTieuChiGia())) {
                 if (dataSearch.getTieuChiGia().equalsIgnoreCase(OptionContants.caoDenThap)) {
