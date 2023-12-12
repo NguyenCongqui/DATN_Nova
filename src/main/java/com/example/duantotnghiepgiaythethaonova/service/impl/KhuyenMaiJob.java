@@ -17,7 +17,8 @@ public class KhuyenMaiJob {
     private final KhuyenMaiRepository khuyenMaiRepository;
 
 //    @Scheduled(cron = "0 0/1 * * * *", zone = "Asia/Ho_Chi_Minh") 1 minute 1 time
-    @Scheduled(cron = "0/2 * * * * *", zone = "Asia/Ho_Chi_Minh")  // Thực hiện công việc cần được lên lịch mỗi 2 giây theo múi giờ Hồ Chí Minh
+//    @Scheduled(cron = "0/2 * * * * *", zone = "Asia/Ho_Chi_Minh")  // Thực hiện công việc cần được lên lịch mỗi 2 giây theo múi giờ Hồ Chí Minh
+    @Scheduled(cron = "0 0 0 * * *", zone = "Asia/Ho_Chi_Minh") //Cứ đến 12h quét 1 lần
     @Transactional
     public void updateStatusVoucher() {
         List<KhuyenMai> list = khuyenMaiRepository.findAll();
@@ -28,6 +29,7 @@ public class KhuyenMaiJob {
                 .filter(KhuyenMai::getTrangThai)
                 .map(KhuyenMai::getIdKhuyenMai)
                 .collect(Collectors.toList());
+        System.out.println("Đã check giảm giá hết hạn");
         khuyenMaiRepository.updateStatusByDate(disable, false);
 
         List<Integer> enable = list.stream()
@@ -35,6 +37,8 @@ public class KhuyenMaiJob {
                 .filter(item -> !item.getTrangThai())
                 .map(KhuyenMai::getIdKhuyenMai)
                 .collect(Collectors.toList());
+        System.out.println("Đã check giảm giá còn hạn");
         khuyenMaiRepository.updateStatusByDate(enable, true);
+
     }
 }
