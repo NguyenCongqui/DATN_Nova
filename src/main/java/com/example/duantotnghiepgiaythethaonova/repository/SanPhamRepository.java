@@ -15,8 +15,8 @@ public interface SanPhamRepository extends JpaRepository<SanPham, Integer>, SanP
     @Query(value = "SELECT * FROM dbo.SanPham sp WHERE sp.DaXoa = 0 ORDER BY sp.IdSanPham", nativeQuery = true)
     Page<SanPham> getSanPhamExist(Pageable pageable);
 
-    @Query(value = "select MAX(idSanPham) from SanPham", nativeQuery = true)
-    Integer getMaxId();
+//    @Query(value = "select MAX(idSanPham) from SanPham", nativeQuery = true)
+//    Integer getMaxId();
 
     @Query(value = """
 SELECT sp.*

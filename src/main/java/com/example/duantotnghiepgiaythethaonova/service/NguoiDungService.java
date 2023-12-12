@@ -20,10 +20,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 
+import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Optional;
+
+import static com.example.duantotnghiepgiaythethaonova.QEntityGenarate.QNguoiDung.nguoiDung;
 
 @Service
 public class NguoiDungService {
@@ -53,6 +56,11 @@ public class NguoiDungService {
     }
 
     public List<NguoiDung> getAllUsers() {
+//        List<NguoiDung> nguoiDungs = nguoiDungRepository.GetAll();
+//
+//        // Loại bỏ các đối tượng có MaNguoiDung là null
+//        nguoiDungs.removeIf(nguoiDung -> nguoiDung.getMaNguoiDung() == null);
+
         return nguoiDungRepository.findAll();
     }
 
@@ -76,7 +84,7 @@ public class NguoiDungService {
 
     public Page<NguoiDung> getAll(int page, int size) {
         Pageable pageable = PageRequest.of(page, size);
-        return iNguoiDungPaginRespository.GetAll(pageable);
+        return iNguoiDungPaginRespository.findAll(pageable);
     }
 
     public void saveNguoiDung(NguoiDung nguoiDung) {
@@ -137,10 +145,22 @@ public class NguoiDungService {
         }
     }
 
+
     public void taoNguoiDungSauKhiDangNhapVoiMangXaHoiThanhCong(String email, String fullname,
                                                                 AuthenticationProvider google) {
+        Integer maxId = nguoiDungRepository.getMaxId();
+        Integer id;
+        String ma;
+        if (maxId != null) {
+            id = maxId + 1;
+            ma = "NV" + id;
+        } else {
+            id = 1;
+            ma = "NV" + id;
+        }
         NguoiDung entity = new NguoiDung();
         entity.setEmail(email);
+        entity.setMaNguoiDung(ma);
         entity.setTenNguoiDung(fullname);
         entity.setAuthProvider(google);
         entity.setDaXoa(false);
@@ -154,8 +174,20 @@ public class NguoiDungService {
 
     public void capNhatNguoiDungSauKhiDangNhapVoiMangXaHoiThanhCong(String email, String fullname,
                                                                     AuthenticationProvider google) {
+        Integer maxId = nguoiDungRepository.getMaxId();
+        Integer id;
+        String ma;
+        if (maxId != null) {
+            id = maxId + 1;
+            ma = "NV" + id;
+        } else {
+            id = 1;
+            ma = "NV" + id;
+        }
+
         NguoiDung entity = findByEmail(email);
         entity.setEmail(email);
+        entity.setMaNguoiDung(ma);
         entity.setTenNguoiDung(fullname);
         entity.setAuthProvider(google);
         entity.setDaXoa(false);

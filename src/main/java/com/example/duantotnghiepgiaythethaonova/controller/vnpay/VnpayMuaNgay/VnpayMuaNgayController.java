@@ -1,7 +1,6 @@
 package com.example.duantotnghiepgiaythethaonova.controller.vnpay.VnpayMuaNgay;
 
 import com.example.duantotnghiepgiaythethaonova.dto.PaymentDTO;
-import com.example.duantotnghiepgiaythethaonova.service.VNPayService;
 import com.example.duantotnghiepgiaythethaonova.service.VNPayService2;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;

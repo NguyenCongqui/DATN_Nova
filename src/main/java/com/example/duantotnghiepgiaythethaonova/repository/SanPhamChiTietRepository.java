@@ -87,15 +87,22 @@ SELECT spt.Gia FROM dbo.SanPhamCT spt JOIN dbo.KichCo kc ON kc.IdKichCo = spt.Id
 
     @Query(value = "SELECT count(*) FROM SanPhamCT WHERE IdSanPham = :sanPhamId AND Daxoa = 0", nativeQuery = true)
     int getCountChiTietSanPhamExistBySanPhamId(@Param("sanPhamId") Integer sanPhamId);
-
     @Query("""
-            select new com.example.duantotnghiepgiaythethaonova.dto.BestSellerDTO(sp.idCTSP, sum(hd.soLuong))
+            select new com.example.duantotnghiepgiaythethaonova.dto.BestSellerDTO(sp.idCTSP, sum(hct.soLuong))
             			from ChiTietSanPham sp
-            			join HoaDonChiTiet hd on sp = hd.chiTietSanPham
-            			where hd.hoaDon.idHoaDon in (:listHoaDon)
+            			JOIN HoaDon hd ON sp.idCTSP = hd.idHoaDon
+                        JOIN HoaDonChiTiet hct ON hct.idHoaDonCT = hd.idHoaDon
             			group by sp.idCTSP
-            			order by sum(hd.soLuong) desc
+            			order by sum(hct.soLuong) desc
             """)
+//    @Query(value = "SELECT spct.IdSanPhamCT, ha.LaAnhChinh, sp.TenSanPham, spct.IdKichCo, spct.IdMauSac, sp.Gia , sum(hct.DonGia * hct.SoLuong) as DoanhThu\n" +
+//            "FROM SanPhamCT spct\n" +
+//            "    JOIN HoaDon hd ON spct.IdSanPhamCT = hd.IdHoaDon\n" +
+//            "    JOIN HoaDonCT hct ON hd.IdHoaDon = hct.IdHoaDonCT\n" +
+//            "    JOIN SanPham sp ON spct.IdSanPham = sp.IdSanPham\n" +
+//            "    JOIN HinhAnh ha ON sp.IdSanPham = ha.IdSanPham\n" +
+//            "GROUP BY spct.IdSanPhamCT, ha.LaAnhChinh, sp.Gia, spct.IdKichCo, sp.TenSanPham, spct.IdMauSac\n" +
+//            "order by sum(hct.DonGia * hct.SoLuong) desc", nativeQuery = true)
     List<BestSellerDTO> layIdChiTietSanPhamBanChay(List<Integer> listHoaDon, Pageable pageable);
 //
     @Query("select sp from ChiTietSanPham sp where sp.idCTSP in (:ids) order by sp.idCTSP")

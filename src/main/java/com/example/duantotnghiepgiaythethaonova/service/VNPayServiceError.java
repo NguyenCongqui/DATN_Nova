@@ -1,11 +1,9 @@
 package com.example.duantotnghiepgiaythethaonova.service;
 
 import com.example.duantotnghiepgiaythethaonova.controller.vnpay.Config;
-import com.example.duantotnghiepgiaythethaonova.dto.PaymentDTO;
 import com.example.duantotnghiepgiaythethaonova.entity.*;
 import com.example.duantotnghiepgiaythethaonova.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
@@ -20,7 +18,7 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 
 @Service
-public class VNPayService {
+public class VNPayServiceError {
     @Autowired
     HoaDonRepository hoaDonRepository;
 

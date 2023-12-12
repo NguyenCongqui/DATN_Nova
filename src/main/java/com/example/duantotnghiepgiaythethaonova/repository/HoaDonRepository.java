@@ -2,6 +2,8 @@ package com.example.duantotnghiepgiaythethaonova.repository;
 
 import com.example.duantotnghiepgiaythethaonova.entity.GiaoDich;
 import com.example.duantotnghiepgiaythethaonova.entity.HoaDon;
+import com.example.duantotnghiepgiaythethaonova.request.HoaDonRequest;
+import com.example.duantotnghiepgiaythethaonova.response.HoaDonResponse;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -44,5 +46,8 @@ public interface HoaDonRepository extends JpaRepository<HoaDon, Integer> {
     List<GiaoDich> timeLine(int trangThai, Integer hoaDonId);
 
     @Query("select hd from HoaDon hd where hd.ngayTao <= :endDate and hd.ngayTao >= :startDate")
-    List<HoaDon> getHoaDonInRangeDate(@Param("startDate") Date startDate, @Param("endDate") Date endDate);
+    List<HoaDon> getHoaDonInRangeDate(@Param("startDate") Date startDate,@Param("endDate") Date endDate);
+
+//    @Query(value = "SELECT hd.IdHoaDon, hd.GhiChu, hd.DaXoa FROM HoaDon hd",nativeQuery = true)
+//    List<HoaDonResponse> getIdHDGhiChu();
 }
