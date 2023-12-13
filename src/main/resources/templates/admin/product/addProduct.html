@@ -349,7 +349,7 @@
                     </h6>
                 </div>
                 <div class="col-sm-12 row">
-                    <div th:class="*{isGenaratedData == true? 'col-sm-6 mt-3 mb-3' : 'col-sm-5 mt-3 mb-3'}">
+                    <div th:class="*{isGenaratedData == true? 'col-sm-6 mt-3 mb-3' : 'col-sm-3 mt-3 mb-3'}">
                         <div class="row">
                             <div class="col-12">
                                 <label for="kichCoIds">Tên kích cỡ:</label>
@@ -372,7 +372,7 @@
                             </div>
                         </div>
                     </div>
-                    <div th:class="*{isGenaratedData == true? 'col-sm-6 mt-3 mb-3' : 'col-sm-5 mt-3 mb-3'}">
+                    <div th:class="*{isGenaratedData == true? 'col-sm-6 mt-3 mb-3' : 'col-sm-3 mt-3 mb-3'}">
                         <div class="row">
                             <div class="col-12"><label for="mauSacIds">Tên màu sắc:</label></div>
                             <div class="col-10" style="padding-right: 3px;">
@@ -397,14 +397,14 @@
                     </div>
 
 <!--                    soluong-->
-                    <div class="col-sm-2 mt-3 mb-3" th:if="*{isGenaratedData == false}">
+                    <div class="col-sm-3 mt-3 mb-3" th:if="*{isGenaratedData == false}">
                         <label >Số Lượng:</label>
                         <input type="number" class="form-control" name="soLuong" th:classappend="${#fields.hasErrors('soLuong')}?
                                 is-invalid : ''" placeholder="Số Lượng" th:field="*{soLuong}" />
                         <small th:if="${#fields.hasErrors('soLuong')}" th:class="${#fields.hasErrors('soLuong')}?
                                 invalid-feedback : ''" th:errors="*{soLuong}"></small>
                     </div>
-                    <div class="col-sm-2 mt-3 mb-3" th:if="*{isGenaratedData == false}">
+                    <div class="col-sm-3 mt-3 mb-3" th:if="*{isGenaratedData == false}">
                         <label for="gia">Giá:</label>
                         <input type="text" class="form-control" id="giaInput" th:classappend="${#fields.hasErrors('gia')}?
                                             is-invalid : ''" aria-describedby="giaHId" placeholder="Giá bán" />
