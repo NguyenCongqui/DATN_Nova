@@ -92,6 +92,14 @@ function getSoLuongSanPhamChiTiet(tenKichCo, mauSacId, sanPhamId) {
     });
 }
 
+function formatCurrency(value) {
+    let parts = value.toString().split(".");
+    let integerPart = parts[0];
+    let decimalPart = parts.length > 1 ? "." + parts[1] : "";
+    integerPart = integerPart.replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+    return integerPart + decimalPart + " VNĐ";
+}
+
 function getGiaBanSanPhamChiTiet(tenKichCo, mauSacId, sanPhamId) {
     $.ajax({
         type: "GET",
@@ -101,22 +109,23 @@ function getGiaBanSanPhamChiTiet(tenKichCo, mauSacId, sanPhamId) {
             mauSacId: mauSacId,
             sanPhamId: sanPhamId,
         },
-            success: function (response) {
-                let giaBanSanPhamChiTiet = response.giaBanSanPhamChiTiet;
+        success: function (response) {
+            let giaBanSanPhamChiTiet = response.giaBanSanPhamChiTiet;
 
-                if (giaBanSanPhamChiTiet == null || isNaN(giaBanSanPhamChiTiet)) {
-                    giaBanSanPhamChiTiet = 0;
-                }
+            if (giaBanSanPhamChiTiet == null || isNaN(giaBanSanPhamChiTiet)) {
+                giaBanSanPhamChiTiet = 0;
+            }
 
-                let formattedPrice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(giaBanSanPhamChiTiet);
-                console.log(formattedPrice)
-                $("#giaBanHienCoCus" + sanPhamId).text(formattedPrice);
-            },
+            let formattedPrice = formatCurrency(giaBanSanPhamChiTiet);
+            console.log(formattedPrice);
+            $("#giaBanHienCoCus" + sanPhamId).text(formattedPrice);
+        },
         error: function () {
             alert("Đã xảy ra lỗi khi gửi yêu cầu đến server.");
         },
     });
 }
+
 
 $(document).ready(function () {
     $("#themVaoGioHang").click(function () {
