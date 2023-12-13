@@ -276,6 +276,8 @@ public class HomeController {
             ssptq.setTenSanPham(sp.getTenSanPham());
             List<KichCo> lstKichCo = kichCoService.selectAllKichCoBySanPhamId(sp.getIdSanPham());
             List<MauSac> lstMauSac = mauSacService.getAllMauSacExistBySPId(sp.getIdSanPham());
+            BigDecimal giaBan = sanPhamChiTietService.getTienBan(sp.getIdSanPham());
+            ssptq.setGia(giaBan);
             ssptq.setLstKichCo(lstKichCo);
             ssptq.setLstMauSac(lstMauSac);
             lstSSPTQ.add(ssptq);

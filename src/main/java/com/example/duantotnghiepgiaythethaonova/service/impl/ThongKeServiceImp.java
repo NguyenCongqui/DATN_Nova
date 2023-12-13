@@ -131,7 +131,7 @@ public class ThongKeServiceImp implements ThongKeService {
                 if (Objects.equals(sp.getIdCTSP(), dto.getIdSanPham())) {
                     SanPham sanPham = sp.getSanPham();
                     dto.setTenSanPham(sanPham.getTenSanPham());
-                    dto.setGiaBan(sanPham.getGia().doubleValue());
+                    dto.setGiaBan(sp.getGia().doubleValue());
                     dto.setChatLieu(sanPham.getChatLieu().getTenChatLieu());
                     dto.setThuongHieu(sanPham.getThuongHieu().getTenThuongHieu());
                     dto.setKieuDang(sanPham.getKieuDang().getTenKieuDang());
