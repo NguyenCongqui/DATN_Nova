@@ -163,7 +163,7 @@
                     </div>
                     <div class="col-sm-12 row">
                         <div class="row">
-                            <div class="col-sm-6 ">
+                            <div class="col-sm-12 ">
                                 <label for="tenSanPham">Tên sản phẩm:</label>
                                 <input type="text" class="form-control" name="tenSanPham" th:classappend="${#fields.hasErrors('tenSanPham')}?
                                             is-invalid : ''" id="tenSanPhamSearch" placeholder="Tên sản phẩm"
@@ -537,54 +537,63 @@
                                            name="soLuongs" placeholder="Số lượng sản phẩm" />
                                 </td>
 <!--                                giaban-->
-                                <td style="width: 120px;">
-                                    <input type="number" name="mauSacProductIds" th:value="${data.sanPham.idSanPham}"
-                                           hidden />
-                                    <input type="number" id="giaInputVal" name="giaIds" th:value="${data.idCTSP}" hidden />
-                                    <input type="text" class="form-control text-center"
-                                           th:value="${data.gia}" id="giaInput1" th:id="${'gias'+istat.index}"
+                                <<td style="width: 200px;">
+                                <input type="number" name="mauSacProductIds" th:value="${data.sanPham.idSanPham}"
+                                       hidden />
+                                <input type="number" name="giaIds" th:value="${data.idCTSP}"   hidden />
+                                <div th:each="gia, index : ${data.gia}" class="gia-input-wrapper">
+                                    <input type="number" name="gias" class="giaInputVal" th:value="${gia}" hidden/>
+                                    <input type="text" class="form-control text-center giaInput" placeholder="Giá sản phẩm" />
+                                </div>
+                                <script th:inline="javascript">
+                                    $(document).ready(function () {
+                                        $('.giaInput').on('input', function (event) {
+                                            var giaInput = $(this);
+                                            var giaInputVal = giaInput.siblings('.giaInputVal');
 
-                                           name="gias" placeholder="Giá sản phẩm" />
-<!--                                    <small id="gia" th:if="${#fields.hasErrors('gia')}" th:class="${#fields.hasErrors('gia')}?-->
-<!--                                            invalid-feedback : ''" th:errors="*{gia}"></small>-->
-
-
-<!--                                    <input type="text" class="form-control" id="giaInput" th:classappend="${#fields.hasErrors('gia')}?-->
-<!--                                            is-invalid : ''" aria-describedby="giaHId" placeholder="Giá bán" />-->
-<!--                                    <input type="number" th:field="*{gia}" id="giaInputVal" hidden>-->
-                                    <script th:inline="javascript">
-                                        var inputElement = document.getElementById('giaInput1');
-                                        inputElement.addEventListener('input', function (event) {
-                                            if (inputElement.value) {
-                                                var numericValue = parseFloat(event.target.value.replace(/[^\d.]/g, ''));
+                                            console.log('Input event triggered');
+                                            if (giaInput.val()) {
+                                                var numericValue = parseFloat(giaInput.val().replace(/[^\d.]/g, ''));
+                                                console.log('Numeric Value:', numericValue);
                                                 if (!isNaN(numericValue)) {
-                                                    var formattedValue = formatCurrency(numericValue);
-                                                    document.getElementById('giaInputVal').value = numericValue;
-                                                    event.target.value = formattedValue;
+                                                    var formattedValue = formatCurrency1(numericValue);
+                                                    console.log('Formatted Value:', formattedValue);
+                                                    giaInputVal.val(numericValue);
+                                                    giaInput.val(formattedValue);
                                                 } else {
-                                                    return event.target.value = "";
+                                                    console.log('Invalid numeric value');
+                                                    giaInput.val("");
+                                                    giaInputVal.val("");
                                                 }
                                             } else {
-                                                document.getElementById('giaInputVal').value = "";
+                                                console.log('Input value is empty');
+                                                giaInputVal.val("");
                                             }
                                         });
 
-                                        function formatCurrency(value) {
+                                        function formatCurrency1(value) {
+                                            console.log('gia1:', value);
                                             if (!isNaN(value)) {
-                                                var formattedCurrency = numeral(value).format('0,0');
-                                                return formattedCurrency;
+                                                return numeral(value).format('0,0');
                                             } else {
+                                                console.log('Invalid numeric value for formatting');
                                                 return "";
                                             }
                                         }
 
-                                        $(document).ready(function () {
-                                            var numericValueGia = document.getElementById('giaInputVal').value;
-                                            var formattedValue = formatCurrency(numericValueGia);
-                                            document.getElementById('giaInput1').value = formattedValue;
-                                        })
-                                    </script>
-                                </td>
+                                        // Cập nhật giá khi trang được tải
+                                        $('.giaInput').each(function () {
+                                            var giaInput = $(this);
+                                            var giaInputVal = giaInput.siblings('.giaInputVal');
+                                            var numericValueGia = giaInputVal.val();
+                                            var formattedValue = formatCurrency1(numericValueGia);
+                                            giaInput.val(formattedValue);
+                                        });
+                                    });
+                                </script>
+                            </td>
+
+
                                 <td th:text="${data.kichCo.tenKichCo}"></td>
                                 <td th:text="${data.mauSac.tenMauSac}"></td>
                                 <td>
@@ -912,7 +921,7 @@
                     </div>
                     <div class="modal-body">
                         <div class="col-sm-12 row">
-                            <div class="col-sm-5 mt-3 mb-3">
+                            <div class="col-sm-3 mt-3 mb-3">
                                 <div class="row">
                                     <div class="col-12">
                                         <label for="kichCoIdsInProductDetail">Tên kích cỡ:</label>
@@ -927,7 +936,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-5 mt-3 mb-3">
+                            <div class="col-sm-3 mt-3 mb-3">
                                 <div class="row">
                                     <div class="col-12"><label for="mauSacIdsInProductDetail">Tên màu sắc:</label>
                                     </div>
@@ -943,16 +952,50 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-sm-2 mt-3 mb-3">
+                            <div class="col-sm-3 mt-3 mb-3">
                                 <label >Số Lượng:</label>
                                 <input type="number" class="form-control" name="soLuongInProductDetail"
                                        placeholder="Số Lượng" />
                             </div>
-                            <div class="col-sm-2 mt-3 mb-3">
+                            <div class="col-sm-3 mt-3 mb-3">
                                 <label >Giá:</label>
-                                <input type="text" class="form-control" name="giaInProductDetail"
+                                <input type="number" name="giaInProductDetail" id="giaInputVal2" >
+                                <input type="text" class="form-control" id="giaInput2"
                                        placeholder="Giá" />
                             </div>
+                            <script th:inline="javascript">
+                                var inputElement = document.getElementById('giaInput2');
+                                inputElement.addEventListener('input', function (event) {
+                                    if (inputElement.value) {
+                                        var numericValue = parseFloat(event.target.value.replace(/[^\d.]/g, ''));
+                                        if (!isNaN(numericValue)) {
+                                            var formattedValue = formatCurrency2(numericValue);
+                                            document.getElementById('giaInputVal2').value = numericValue;
+                                            event.target.value = formattedValue;
+                                        } else {
+                                            return event.target.value = "";
+                                        }
+                                    } else {
+                                        document.getElementById('giaInputVal2').value = "";
+                                    }
+                                });
+
+                                function formatCurrency2(value) {
+                                    if (!isNaN(value)) {
+                                        var formatCurrency2 = numeral(value).format('0,0');
+                                        return formatCurrency2;
+                                    } else {
+                                        return "";
+                                    }
+                                }
+
+                                $(document).ready(function () {
+                                    var numericValueGia = document.getElementById('giaInputVal2').value;
+                                    var formattedValue = formatCurrency2(numericValueGia);
+                                    document.getElementById('giaInput2').value = formattedValue;
+                                })
+                            </script>
+
                         </div>
 
                     </div>

@@ -319,12 +319,12 @@ public class HomeController {
                     lstHinhAnhStr.add("default.png");
                 }
             }
-            if (lstHinhAnhStr.size() % 2 == 0) {
+            if (lstHinhAnhStr.size() % 1 == 0) {
                 dto.setAnhChinhs1(lstHinhAnhStr.subList(0, lstHinhAnhStr.size() / 2));
-                dto.setAnhChinhs2(lstHinhAnhStr.subList(lstHinhAnhStr.size() / 2, lstHinhAnhStr.size()));
+//                dto.setAnhChinhs2(lstHinhAnhStr.subList(lstHinhAnhStr.size() / 2, lstHinhAnhStr.size()));
             } else {
                 dto.setAnhChinhs1(lstHinhAnhStr.subList(0, lstHinhAnhStr.size() / 2 + 1));
-                dto.setAnhChinhs2(lstHinhAnhStr.subList(lstHinhAnhStr.size() / 2 + 1, lstHinhAnhStr.size()));
+//                dto.setAnhChinhs2(lstHinhAnhStr.subList(lstHinhAnhStr.size() / 2 + 1, lstHinhAnhStr.size()));
             }
             dto.setAnhChinhs(lstHinhAnhStr);
             dto.setSanPhamId(sanPhamId);

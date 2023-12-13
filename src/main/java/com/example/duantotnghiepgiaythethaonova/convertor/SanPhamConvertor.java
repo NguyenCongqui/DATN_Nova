@@ -15,8 +15,6 @@ public class SanPhamConvertor {
 		dto.setTenSanPham(entity.getTenSanPham());
 		dto.setTenChatLieu(entity.getChatLieu().getTenChatLieu());
 		dto.setTenKieuDang(entity.getKieuDang().getTenKieuDang());
-//		dto.setTenLoaiSanPham(entity.get.getTenLoaiSanPham());
-//		dto.setTenPhongCach(entity.getPhongCach().getTenPhongCach());
 		return dto ;
 	}
 	
