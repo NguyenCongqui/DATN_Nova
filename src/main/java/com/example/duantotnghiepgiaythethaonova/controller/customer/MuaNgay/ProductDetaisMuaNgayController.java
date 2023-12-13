@@ -14,6 +14,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -76,6 +77,8 @@ public class ProductDetaisMuaNgayController {
             dto.setSoLuong(1);
             List<KichCo> lstKichCo = kichCoService.selectAllKichCoBySanPhamId(sanPhamId);
             List<MauSac> lstMauSac = mauSacService.getAllMauSacExistBySPId(sanPhamId);
+            BigDecimal giaBan = sanPhamChiTietService.getTienBan(sanPhamId);
+            dto.setGia(giaBan);
             dto.setLstKichCo(lstKichCo);
             dto.setLstMauSac(lstMauSac);
             model.addAttribute("shopDetails", dto);
