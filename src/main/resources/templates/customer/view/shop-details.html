@@ -162,8 +162,9 @@
                                         <div class="product-price">
 
                                             <span><span class="product-price-sign"></span>
-                        <span class="product-price-text" th:text="${#numbers.formatDecimal(shopDetails.gia, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"
-                              th:id="'giaBanHienCoCus' + ${shopDetails.sanPhamId}"></span></span>
+     <span class="product-price-text"
+           th:text="${#numbers.formatDecimal(shopDetails.gia, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></span></span>
+                                        </div>
                                         </div>
                                         <div class="row product-filters product__details__option">
                                             <form class="col-md-12 filters-color product__details__option__color">

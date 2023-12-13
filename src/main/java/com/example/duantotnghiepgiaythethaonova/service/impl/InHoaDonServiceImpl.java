@@ -145,14 +145,14 @@ public class InHoaDonServiceImpl implements InHoaDonService {
 
             // Kiểm tra nếu khuyến mãi là null hoặc không có id
             if (km == null || km.getIdKhuyenMai() == null) {
-                formattedTienGiam = "0 VNĐ";
+                formattedTienGiam = "0 ₫";
             } else {
                 BigDecimal tienGiamToiDa = BigDecimal.valueOf(km.getGiaTriToiThieu());
 
                 BigDecimal tienGiamHoaDon = hoaDon.getTienGiam();
 
                 if (tienGiamHoaDon == null) {
-                    formattedTienGiam = "0 VNĐ";
+                    formattedTienGiam = "0 ₫";
                 } else if (tienGiamHoaDon.compareTo(tienGiamToiDa) >= 0) {
                     formattedTienGiam = numberFormat.format(tienGiamHoaDon);
                 } else {
@@ -168,9 +168,17 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             htmlContentBuilder.append("<p>Ngày mua: ").append(formattedNgayTao).append("</p>");
             htmlContentBuilder.append("<p>Khách hàng: ").append(hoaDon.getNguoiNhan()).append("</p>");
             htmlContentBuilder.append("<p>Số điện thoại khách hàng: ").append(hoaDon.getSdtNguoiNhan()).append("</p>");
-            htmlContentBuilder.append("<p>Trạng thái đơn: Đã thanh toán</p>");
             htmlContentBuilder.append("<p>Nhân viên bán hàng: ").append(hoaDon.getNguoiDung().getTenNguoiDung()).append("</p>");
-
+            htmlContentBuilder.append("<p>Phương thức mua hàng: ");
+            if (hoaDon.getLoaiHoaDon() == 1) {
+                htmlContentBuilder.append("Tại quầy");
+            } else if (hoaDon.getLoaiHoaDon() == 0) {
+                htmlContentBuilder.append("Mua online");
+            } else {
+                htmlContentBuilder.append("Không xác định");
+            }
+            htmlContentBuilder.append("</p>");
+            htmlContentBuilder.append("<p>Trạng thái đơn: Đã thanh toán</p>");
 
             String formattedTongTienDonHang = numberFormat.format(hoaDon.getTongTienDonHang());
             String formattedTongTienHoaDon = numberFormat.format(hoaDon.getTongTienHoaDon());
@@ -340,14 +348,14 @@ public class InHoaDonServiceImpl implements InHoaDonService {
 
             // Kiểm tra nếu khuyến mãi là null hoặc không có id
             if (km == null || km.getIdKhuyenMai() == null) {
-                formattedTienGiam = "0 VNĐ";
+                formattedTienGiam = "0 ₫";
             } else {
                 BigDecimal tienGiamToiDa = BigDecimal.valueOf(km.getGiaTriToiThieu());
 
                 BigDecimal tienGiamHoaDon = hoaDon.getTienGiam();
 
                 if (tienGiamHoaDon == null) {
-                    formattedTienGiam = "0 VNĐ";
+                    formattedTienGiam = "0 ₫";
                 } else if (tienGiamHoaDon.compareTo(tienGiamToiDa) >= 0) {
                     formattedTienGiam = numberFormat.format(tienGiamHoaDon);
                 } else {
@@ -364,7 +372,6 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             htmlContentBuilder.append("<p>Ngày mua: ").append(formattedNgayTao).append("</p>");
             htmlContentBuilder.append("<p>Khách hàng: ").append(hoaDon.getNguoiNhan()).append("</p>");
             htmlContentBuilder.append("<p>Số điện thoại khách hàng: ").append(hoaDon.getSdtNguoiNhan()).append("</p>");
-            htmlContentBuilder.append("<p>Trạng thái đơn: Đã thanh toán</p>");
             htmlContentBuilder.append("<p>Nhân viên bán hàng: ").append(hoaDon.getNguoiDung().getTenNguoiDung()).append("</p>");
             htmlContentBuilder.append("<p>Phương thức mua hàng: ");
             if (hoaDon.getLoaiHoaDon() == 1) {
@@ -375,7 +382,7 @@ public class InHoaDonServiceImpl implements InHoaDonService {
                 htmlContentBuilder.append("Không xác định");
             }
             htmlContentBuilder.append("</p>");
-
+            htmlContentBuilder.append("<p>Trạng thái đơn: Đã thanh toán</p>");
 
 
             String formattedTongTienDonHang = numberFormat.format(hoaDon.getTongTienDonHang());
@@ -546,14 +553,14 @@ public class InHoaDonServiceImpl implements InHoaDonService {
 
             // Kiểm tra nếu khuyến mãi là null hoặc không có id
             if (km == null || km.getIdKhuyenMai() == null) {
-                formattedTienGiam = "0 VNĐ";
+                formattedTienGiam = "0 ₫";
             } else {
                 BigDecimal tienGiamToiDa = BigDecimal.valueOf(km.getGiaTriToiThieu());
 
                 BigDecimal tienGiamHoaDon = hoaDon.getTienGiam();
 
                 if (tienGiamHoaDon == null) {
-                    formattedTienGiam = "0 VNĐ";
+                    formattedTienGiam = "0 ₫";
                 } else if (tienGiamHoaDon.compareTo(tienGiamToiDa) >= 0) {
                     formattedTienGiam = numberFormat.format(tienGiamHoaDon);
                 } else {
@@ -569,7 +576,6 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             htmlContentBuilder.append("<p>Ngày mua: ").append(formattedNgayTao).append("</p>");
             htmlContentBuilder.append("<p>Khách hàng: ").append(hoaDon.getNguoiNhan()).append("</p>");
             htmlContentBuilder.append("<p>Số điện thoại khách hàng: ").append(hoaDon.getSdtNguoiNhan()).append("</p>");
-            htmlContentBuilder.append("<p>Trạng thái đơn: Đã thanh toán</p>");
             htmlContentBuilder.append("<p>Phương thức mua hàng: ");
             if (hoaDon.getLoaiHoaDon() == 1) {
                 htmlContentBuilder.append("Tại quầy");
@@ -579,13 +585,14 @@ public class InHoaDonServiceImpl implements InHoaDonService {
                 htmlContentBuilder.append("Không xác định");
             }
             htmlContentBuilder.append("</p>");
+            htmlContentBuilder.append("<p>Trạng thái đơn: Đã thanh toán</p>");
 
 
             String formattedTongTienDonHang = numberFormat.format(hoaDon.getTongTienDonHang());
             String formattedTongTienHoaDon = numberFormat.format(hoaDon.getTongTienHoaDon());
             String formattedTienShip = numberFormat.format(hoaDon.getTienShip());
             if (formattedTienShip == null){
-                formattedTienShip = "0 VNĐ";
+                formattedTienShip = "0 ₫";
             }
             else {
                 hoaDon.getTienShip();
