@@ -1495,6 +1495,7 @@ public class SanPhamChiTietController {
 					optSPCTOld.get().getSanPham().getIdSanPham().equals(sanPhamChiTietDTO.getSanPhamId()) ) {
 				optSPCTOld.get().setCoHienThi(sanPhamChiTietDTO.getCoHienThi());
 				optSPCTOld.get().setSoLuong(sanPhamChiTietDTO.getSoLuong());
+				optSPCTOld.get().setGia(sanPhamChiTietDTO.getGia());
 				sanPhamChiTietService.save(optSPCTOld.get());
 				model.addAttribute("messageSuccess", messageSuccess);
 				model.addAttribute("sanPhamChiTietDTO", sanPhamChiTietDTO);
@@ -1506,6 +1507,7 @@ public class SanPhamChiTietController {
 					sanPhamChiTietService.delete(optSPCTOld.get());
 					optSPCT.get().setCoHienThi(sanPhamChiTietDTO.getCoHienThi());
 					optSPCT.get().setSoLuong(sanPhamChiTietDTO.getSoLuong());
+					optSPCT.get().setGia(sanPhamChiTietDTO.getGia());
 
 					Optional<KichCo> optKC = kichCoService.findById(sanPhamChiTietDTO.getKichCoId());
 					if (optKC.isPresent()) {
@@ -1532,6 +1534,7 @@ public class SanPhamChiTietController {
 				} else {
 					optSPCTOld.get().setCoHienThi(sanPhamChiTietDTO.getCoHienThi());
 					optSPCTOld.get().setSoLuong(sanPhamChiTietDTO.getSoLuong());
+					optSPCT.get().setGia(sanPhamChiTietDTO.getGia());
 					Optional<KichCo> optKC = kichCoService.findById(sanPhamChiTietDTO.getKichCoId());
 					if (optKC.isPresent()) {
 						optSPCTOld.get().setKichCo(optKC.get());

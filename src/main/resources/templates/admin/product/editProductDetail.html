@@ -9,7 +9,7 @@
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <link rel="stylesheet" th:href="@{/static/admin/css/sb-admin-2.min.css}">
     <script th:src="@{/static/admin/js/bootstrap.bundle.min.js}"></script>
-
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/numeral.js/2.0.6/numeral.min.js"></script>
 
     <link rel="stylesheet" th:href="@{/static/admin/css/myCSS.css}">
 
@@ -102,7 +102,7 @@
                         </h6>
                     </div>
                     <div class="col-sm-12 row">
-                        <div class="col-sm-4 mt-3">
+                        <div class="col-sm-3 mt-3">
                             <div class="row">
                                 <div class="col-12"><label for="kichCoId">Tên kích cỡ:</label></div>
                                 <div class="col-10" style="padding-right: 3px;">
@@ -123,7 +123,7 @@
 <!--                                </div>-->
                             </div>
                         </div>
-                        <div class="col-sm-4 mt-3 mb-3">
+                        <div class="col-sm-3 mt-3 mb-3">
                             <div class="row">
                                 <div class="col-12"><label for="mauSacId">Tên màu sắc:</label></div>
                                 <div class="col-10" style="padding-right: 3px;">
@@ -150,6 +150,49 @@
                                 is-invalid : ''" placeholder="Số Lượng sản phẩm" th:field="*{soLuong}" />
                             <small th:if="${#fields.hasErrors('soLuong')}" th:class="${#fields.hasErrors('soLuong')}?
                                 invalid-feedback : ''" th:errors="*{soLuong}"></small>
+                        </div>
+
+                        <div class="col-sm-2 mt-3 mb-3">
+                            <label >Giá:</label>
+                            <input type="number" name="giaInProductDetail" id="giaInputVal2" th:classappend="${#fields.hasErrors('gia')}?
+                                is-invalid : ''" th:field="*{gia}" hidden>
+
+                            <input type="text" class="form-control" id="giaInput2"  placeholder="Giá Sản Phẩm"  />
+
+                            <small th:if="${#fields.hasErrors('gia')}" th:class="${#fields.hasErrors('gia')}?
+                                invalid-feedback : ''" th:errors="*{gia}"></small>
+                            <script th:inline="javascript">
+                                var inputElement = document.getElementById('giaInput2');
+                                inputElement.addEventListener('input', function (event) {
+                                    if (inputElement.value) {
+                                        var numericValue = parseFloat(event.target.value.replace(/[^\d.]/g, ''));
+                                        if (!isNaN(numericValue)) {
+                                            var formattedValue = formatCurrency2(numericValue);
+                                            document.getElementById('giaInputVal2').value = numericValue;
+                                            event.target.value = formattedValue;
+                                        } else {
+                                            return event.target.value = "";
+                                        }
+                                    } else {
+                                        document.getElementById('giaInputVal2').value = "";
+                                    }
+                                });
+
+                                function formatCurrency2(value) {
+                                    if (!isNaN(value)) {
+                                        var formatCurrency2 = numeral(value).format('0,0');
+                                        return formatCurrency2;
+                                    } else {
+                                        return "";
+                                    }
+                                }
+
+                                $(document).ready(function () {
+                                    var numericValueGia = document.getElementById('giaInputVal2').value;
+                                    var formattedValue = formatCurrency2(numericValueGia);
+                                    document.getElementById('giaInput2').value = formattedValue;
+                                })
+                            </script>
                         </div>
                         <div class="col-sm-2 mt-3 mb-3 text-center">
                             <label >Có hiển thị:</label>
