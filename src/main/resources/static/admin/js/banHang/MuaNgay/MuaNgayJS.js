@@ -14,6 +14,7 @@ $(document).ready(function () {
 
         if (mauSacId != "") {
             getSoLuongSanPhamChiTiet(tenKichCo, mauSacId, sanPhamId);
+            getGiaBanSanPhamChiTiet(tenKichCo, mauSacId, sanPhamId);
         }
 
         if (soLuongInput > soLuongHienCoCus) {
@@ -28,6 +29,7 @@ $(document).ready(function () {
 
         if (tenKichCo != "") {
             getSoLuongSanPhamChiTiet(tenKichCo, mauSacId, sanPhamId);
+            getGiaBanSanPhamChiTiet(tenKichCo, mauSacId, sanPhamId);
         }
 
         const soLuongHienCoCus = $(".soLuongHienCoCus").val();
@@ -85,7 +87,31 @@ function getSoLuongSanPhamChiTiet(tenKichCo, mauSacId, sanPhamId) {
         },
     });
 }
+function getGiaBanSanPhamChiTiet(tenKichCo, mauSacId, sanPhamId) {
+    $.ajax({
+        type: "GET",
+        url: "/GiaBan",
+        data: {
+            tenKichCo: tenKichCo,
+            mauSacId: mauSacId,
+            sanPhamId: sanPhamId,
+        },
+        success: function (response) {
+            let giaBanSanPhamChiTiet = response.giaBanSanPhamChiTiet;
 
+            if (giaBanSanPhamChiTiet == null || isNaN(giaBanSanPhamChiTiet)) {
+                giaBanSanPhamChiTiet = 0;
+            }
+
+            let formattedPrice = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(giaBanSanPhamChiTiet);
+            console.log(formattedPrice)
+            $("#giaBanHienCoCus" + sanPhamId).text(formattedPrice);
+        },
+        error: function () {
+            alert("Đã xảy ra lỗi khi gửi yêu cầu đến server.");
+        },
+    });
+}
 $(document).ready(function () {
     $("#muaNgaySanPham").click(function () {
         const auth = $('#auth').val();

@@ -371,13 +371,13 @@ public class BanHangServiceIpml implements BanHangService {
         Optional<ChiTietSanPham> optionalSanPhamChiTiet = sanPhamChiTietService.getSanPhamChiTietByMauSacSizeSanPhamId(sanPhamId, mauSacId, kichCoId);
         if (optionalSanPhamChiTiet.isPresent()) {
             ChiTietSanPham sanPhamChiTiet = optionalSanPhamChiTiet.get();
-            BigDecimal tongTienSanPham = sanPhamChiTiet.getSanPham().getGia();
+            BigDecimal tongTienSanPham = sanPhamChiTiet.getGia();
             BigDecimal soLuongDecimal = BigDecimal.valueOf(soLuong);
             tongTienDonhang = tongTienSanPham.multiply(soLuongDecimal);
             HoaDonChiTiet hoaDonChiTiet = new HoaDonChiTiet();
             hoaDonChiTiet.setChiTietSanPham(sanPhamChiTiet);
             hoaDonChiTiet.setSoLuong(soLuong);
-            hoaDonChiTiet.setDonGia(sanPhamChiTiet.getSanPham().getGia());
+            hoaDonChiTiet.setDonGia(sanPhamChiTiet.getGia());
             hoaDonChiTiet.setTongTien(tongTienDonhang);
             hoaDonChiTiet.setHoaDon(hoaDon);
             hoaDonChiTiet.setDaXoa(false);
