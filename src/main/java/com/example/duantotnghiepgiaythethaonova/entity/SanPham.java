@@ -32,8 +32,8 @@ public class SanPham extends BaseEntity implements Serializable {
     @Column(name = "MaSanPham")
     private String maSanPham;
 
-    @Column(name = "Gia")
-    private BigDecimal gia;
+//    @Column(name = "Gia")
+//    private BigDecimal gia;
     @Column(name = "MoTa")
     private String moTa;
 //    @Column(name = "NgayTao")

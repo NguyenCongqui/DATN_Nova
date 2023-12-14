@@ -229,7 +229,7 @@ public class SanPhamChiTietController {
 		List<ChiTietSanPham> lstSp = sanPhamChiTietService.getLstChiTietSanPhamBySanPhamId(id);
 		if(opt.isPresent()) {
 			dto.setSanPhamChiTiets(lstSp);
-			dto.setGia(opt.get().getGia());
+//			dto.setGia(opt.get().getGia());
 			dto.setMaSanPham(opt.get().getMaSanPham());
 			dto.setTenChatLieu(opt.get().getChatLieu().getTenChatLieu());
 			dto.setTenKieuDang(opt.get().getKieuDang().getTenKieuDang());
@@ -281,7 +281,7 @@ public class SanPhamChiTietController {
 		} else {
 			SanPham sanPham = new SanPham();
 			sanPham.setDaXoa(false);
-			sanPham.setGia(data.getGia());
+//			sanPham.setGia(data.getGia());
 			sanPham.getMaSanPham();
 			sanPham.setTenSanPham(data.getTenSanPham());
 			sanPham.setMoTa(data.getMoTa());
@@ -593,7 +593,7 @@ public class SanPhamChiTietController {
 		Optional<SanPham> optSP = sanPhamService.findById(data.getSanPhamId());
 		if (optSP.isPresent()) {
 			optSP.get().setDaXoa(false);
-			optSP.get().setGia(data.getGia());
+//			optSP.get().setGia(data.getGia());
 			optSP.get().getMaSanPham();
 			optSP.get().setTenSanPham(data.getTenSanPham());
 			optSP.get().setMoTa(data.getMoTa());

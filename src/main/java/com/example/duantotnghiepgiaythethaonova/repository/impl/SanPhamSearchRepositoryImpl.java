@@ -248,7 +248,6 @@ public class SanPhamSearchRepositoryImpl implements SanPhamSearchRepository {
                 qSanPham.kieuDang.idKieuDang,
                 qSanPham.thuongHieu.idThuongHieu,
                 qSanPham.daXoa,
-                qSanPham.gia,
                 qSanPham.moTa,
                 qSanPham.tenSanPham,qSanPham.maSanPham);
         List<SanPham> result = querydsl.applyPagination(pageable, query).fetch();

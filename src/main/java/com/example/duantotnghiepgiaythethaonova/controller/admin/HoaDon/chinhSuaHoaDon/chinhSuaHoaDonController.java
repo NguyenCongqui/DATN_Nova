@@ -209,7 +209,7 @@ public class chinhSuaHoaDonController {
                 }
                 ssptq.setAnhChinhs(lstHinhAnhStr);
                 ssptq.setSanPhamId(sp.getIdSanPham());
-                ssptq.setGia(sp.getGia());
+//                ssptq.setGia(sp.getGia());
                 ssptq.setTenSanPham(sp.getTenSanPham());
                 List<KichCo> lstKichCo = kichCoService.selectAllKichCoBySanPhamId(sp.getIdSanPham());
                 List<MauSac> lstMauSac = mauSacService.getAllMauSacExistBySPId(sp.getIdSanPham());

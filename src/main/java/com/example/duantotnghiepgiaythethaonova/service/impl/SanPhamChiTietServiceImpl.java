@@ -220,7 +220,7 @@ public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
                 bodyCell.setCellStyle(bodyStyle);
 
                 bodyCell = body.createCell(3);
-                bodyCell.setCellValue("" + dto.getSanPham().getGia().toString());
+                bodyCell.setCellValue("" + dto.getChiTietSanPham().getGia().toString());
                 bodyCell.setCellStyle(bodyStyle);
 
                 bodyCell = body.createCell(4);

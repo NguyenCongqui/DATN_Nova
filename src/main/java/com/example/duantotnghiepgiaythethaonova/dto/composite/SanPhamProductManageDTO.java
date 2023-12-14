@@ -1,5 +1,6 @@
 package com.example.duantotnghiepgiaythethaonova.dto.composite;
 
+import com.example.duantotnghiepgiaythethaonova.entity.ChiTietSanPham;
 import com.example.duantotnghiepgiaythethaonova.entity.SanPham;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -13,6 +14,8 @@ import java.util.List;
 @AllArgsConstructor
 public class SanPhamProductManageDTO {
 	private SanPham sanPham;
+
+	private ChiTietSanPham chiTietSanPham;
 	
 	private int tongSoLuong;
 

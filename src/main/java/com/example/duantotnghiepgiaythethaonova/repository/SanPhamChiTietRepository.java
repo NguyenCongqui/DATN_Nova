@@ -38,6 +38,7 @@ public interface SanPhamChiTietRepository extends JpaRepository<ChiTietSanPham, 
     @Query(value = "SELECT DISTINCT s.IdMauSac FROM SanPhamCT s WHERE s.IdSanPham = :sanPhamId AND s.Daxoa = 0 ORDER BY s.IdMauSac DESC", nativeQuery = true)
     List<Integer> getLstMauSacBySanPhamId(@Param("sanPhamId") Integer sanPhamId);
 
+
     @Query(value = "SELECT * FROM SanPhamCT s WHERE s.IdSanPham = :sanPhamId AND s.IdMauSac = :mauSacId AND s.IdKichCo = :kichCoId AND s.Daxoa = 0", nativeQuery = true)
     Optional<ChiTietSanPham> getChiTietSanPhamByMauSacSizeSanPhamId(@Param("sanPhamId") Integer sanPhamId, @Param("mauSacId") Integer mauSacId, @Param("kichCoId") Integer kichCoId);
 

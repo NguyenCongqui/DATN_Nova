@@ -71,7 +71,6 @@ public class ProductDetaisMuaNgayController {
             }
             dto.setAnhChinhs(lstHinhAnhStr);
             dto.setSanPhamId(sanPhamId);
-            dto.setGia(optSP.get().getGia());
             dto.setTenSanPham(optSP.get().getTenSanPham());
             dto.setMoTa(optSP.get().getMoTa());
             dto.setSoLuong(1);

@@ -45,6 +45,8 @@ public class HoaDonServiceImpl implements HoaDonService {
 
     @Autowired
     CTSPService sanPhamChiTietService;
+@Autowired
+    SanPhamChiTietService sanPhamChiTietService1;
 
     @Autowired
     GiaoDichRepository giaoDichRepository;
@@ -183,7 +185,7 @@ public class HoaDonServiceImpl implements HoaDonService {
         if (optSpct.isPresent()) {
             Optional<HoaDon> optHD = hoaDonRepository.findById(hoaDonID);
             HoaDon hoaDon = optHD.get();
-            BigDecimal giaSP = optSpct.get().getSanPham().getGia();
+            BigDecimal giaSP = optSpct.get().getGia();
             BigDecimal thanhTien = giaSP.multiply(BigDecimal.valueOf(soLuongSanPham));
 
             Optional<HoaDonChiTiet> optHdct = hoaDonChiTietRepository.findBySanPhamChiTietAndHoaDon(optSpct.get().getIdCTSP(), hoaDon.getIdHoaDon());
@@ -280,7 +282,9 @@ public class HoaDonServiceImpl implements HoaDonService {
                 }
                 ssptq.setAnhChinhs(lstHinhAnhStr);
                 ssptq.setSanPhamId(sp.getIdSanPham());
-                ssptq.setGia(sp.getGia());
+                BigDecimal giaBan = sanPhamChiTietService1.getTienBan(sp.getIdSanPham());
+                ssptq.setGia(giaBan);
+//                ssptq.setGia(sp.getGia());
                 ssptq.setTenSanPham(sp.getTenSanPham());
                 List<KichCo> lstKichCo = kichCoService.selectAllKichCoBySanPhamId(sp.getIdSanPham());
                 List<MauSac> lstMauSac = mauSacService.getAllMauSacExistBySPId(sp.getIdSanPham());
