@@ -44,7 +44,7 @@ public class SanPhamManageDTO {
 	private Integer soLuong;
 
 //	@DecimalMin(value = "1000", message = "Giá không được nhỏ hơn 1.000")
-//	@NotNull(message = "Giá không được để trống")
+	@NotNull(message = "Giá không được để trống")
 	private BigDecimal gia;
 
 	@NotEmpty(message = "Danh sách kích cỡ sản phẩm không được để trống")
