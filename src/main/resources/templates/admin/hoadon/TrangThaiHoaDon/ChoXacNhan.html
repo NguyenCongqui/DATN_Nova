@@ -70,7 +70,7 @@
                 </div>
             </div>
         </div>
-        <button id="HuyTatCa" class="b1">Hủy tất cả</button>
+        <button id="HuyTatCa" class="b1 btn btn-dark">Hủy tất cả</button>
         <div class="modal fade huyTatCaModal" tabindex="-1" aria-labelledby="huyTatCaModalLabel"
              aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
@@ -117,64 +117,66 @@
             <td>
                 <div class="button-group">
                     <!--XÁC NHẬN ĐƠN HÀNG-->
-                    <button class="action-button XacNhanDon" th:attr="data-id=${hoaDon.idHoaDon}"
-                            th:data-target="'#modalXacNhanDon-' + ${hoaDon.idHoaDon}">
+                    <button class="btn btn-success xacNhan" id="xacNhanDonId" th:value="${hoaDon.idHoaDon}" onclick="xacNhanDon()" title="Xác nhận đơn hàng">
                         <i class="fas fa-check"></i>
                     </button>
-                    <br>
-                    <div class="modal fade xacNhanModal" th:id="'modalXacNhanDon-' + ${hoaDon.idHoaDon}" tabindex="-1"
-                         aria-labelledby="xacNhanModalLabel"
-                         aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="xacNhanModalLabel">Xác nhận đơn</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Xác nhận đơn hàng?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary btn-dong-y">Đồng ý</button>
-                                    <button type="button" class="btn btn-secondary btn-khong"
-                                            data-bs-dismiss="modal">Không
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!--                    <button class="action-button XacNhanDon" th:attr="data-id=${hoaDon.idHoaDon}"-->
+                    <!--                            th:data-target="'#modalXacNhanDon-' + ${hoaDon.idHoaDon}">-->
+                    <!--                        <i class="fas fa-check"></i>-->
+                    <!--                    </button>-->
+                    <!--                    <br>-->
+                    <!--                    <div class="modal fade xacNhanModal" th:id="'modalXacNhanDon-' + ${hoaDon.idHoaDon}" tabindex="-1"-->
+                    <!--                         aria-labelledby="xacNhanModalLabel"-->
+                    <!--                         aria-hidden="true">-->
+                    <!--                        <div class="modal-dialog modal-dialog-centered">-->
+                    <!--                            <div class="modal-content">-->
+                    <!--                                <div class="modal-header">-->
+                    <!--                                    <h5 class="modal-title" id="xacNhanModalLabel">Xác nhận đơn</h5>-->
+                    <!--                                    <button type="button" class="btn-close" data-bs-dismiss="modal"-->
+                    <!--                                            aria-label="Close"></button>-->
+                    <!--                                </div>-->
+                    <!--                                <div class="modal-body">-->
+                    <!--                                    Xác nhận đơn hàng?-->
+                    <!--                                </div>-->
+                    <!--                                <div class="modal-footer">-->
+                    <!--                                    <button type="button" class="btn btn-primary btn-dong-y">Đồng ý</button>-->
+                    <!--                                    <button type="button" class="btn btn-secondary btn-khong"-->
+                    <!--                                            data-bs-dismiss="modal">Không-->
+                    <!--                                    </button>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
                     <!--HỦY ĐƠN HÀNG-->
-                    <button class="action-button HuyDon" th:attr="data-id=${hoaDon.idHoaDon}"
-                            th:data-target="'#modalHuyDon-' + ${hoaDon.idHoaDon}">
+                    <button class="btn btn-danger" id="hoaDonId" th:value="${hoaDon.idHoaDon}" onclick="huyDon()" title="Hủy đơn hàng">
                         <i class="fas fa-times"></i>
                     </button>
                     <br>
-                    <div class="modal fade huyModal" th:id="'modalHuyDon-' + ${hoaDon.idHoaDon}" tabindex="-1"
-                         aria-labelledby="huyDonModalLabel"
-                         aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="huyDonModalLabel">Hủy đơn hàng</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Hủy đơn hàng?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary btn-dong-y">Đồng ý</button>
-                                    <button type="button" class="btn btn-secondary btn-khong"
-                                            data-bs-dismiss="modal">Không
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!--                    <div class="modal fade huyModal" th:id="'modalHuyDon-' + ${hoaDon.idHoaDon}" tabindex="-1"-->
+                    <!--                         aria-labelledby="huyDonModalLabel"-->
+                    <!--                         aria-hidden="true">-->
+                    <!--                        <div class="modal-dialog modal-dialog-centered">-->
+                    <!--                            <div class="modal-content">-->
+                    <!--                                <div class="modal-header">-->
+                    <!--                                    <h5 class="modal-title" id="huyDonModalLabel">Hủy đơn hàng</h5>-->
+                    <!--                                    <button type="button" class="btn-close" data-bs-dismiss="modal"-->
+                    <!--                                            aria-label="Close"></button>-->
+                    <!--                                </div>-->
+                    <!--                                <div class="modal-body">-->
+                    <!--                                    Hủy đơn hàng?-->
+                    <!--                                </div>-->
+                    <!--                                <div class="modal-footer">-->
+                    <!--                                    <button type="button" class="btn btn-primary btn-dong-y">Đồng ý</button>-->
+                    <!--                                    <button type="button" class="btn btn-secondary btn-khong"-->
+                    <!--                                            data-bs-dismiss="modal">Không-->
+                    <!--                                    </button>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
 
                     <!--XEM CHI TIẾT HÓA ĐƠN-->
-                    <div class="btn-group">
+                    <div class="btn-group" title="Xem chi tiết đơn hàng">
                         <a th:href="@{'/ChiTietHoaDon/ChoXacNhan/hoa-don-id=' + ${hoaDon.idHoaDon}}"
                            class="btn btn-warning btn-sm" type="submit">
                             <i class="fas fa-info-circle"></i>

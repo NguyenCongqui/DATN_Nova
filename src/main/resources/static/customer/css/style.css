@@ -2200,6 +2200,7 @@ form label.error {
 .header-main .logo a img {
   width: 100%;
   vertical-align: middle;
+  padding-bottom: 8px;
 }
 
 @media only screen and (max-width: 420px) {

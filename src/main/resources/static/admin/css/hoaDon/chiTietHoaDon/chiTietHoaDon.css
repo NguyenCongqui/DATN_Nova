@@ -1,7 +1,72 @@
 .button-group {
     display: flex;
+
+}
+/*back*/
+.action-button-back:hover {
+    background-color: #2A3547;
 }
 
+.action-button-back {
+    flex: 0 0 100px; /* Đặt kích thước nút */
+    max-width: 100px; /* Đặt kích thước tối đa */
+    margin-right: 5px; /* Khoảng cách giữa các nút */
+}
+
+.action-button-back:last-child {
+    margin-right: 0; /* Loại bỏ margin phải của nút cuối cùng */
+}
+.action-button-back:hover {
+    background-color: #2A3547;
+}
+
+.action-button-back:focus {
+    outline: none;
+}
+
+/*in*/
+.action-button-in:hover {
+    background-color: #2A3547;
+}
+
+.action-button-in {
+    flex: 0 0 100px; /* Đặt kích thước nút */
+    max-width: 100px; /* Đặt kích thước tối đa */
+    margin-right: 5px; /* Khoảng cách giữa các nút */
+}
+
+.action-button-in:last-child {
+    margin-right: 0; /* Loại bỏ margin phải của nút cuối cùng */
+}
+.action-button-in:hover {
+    background-color: #2A3547;
+}
+
+.action-button-in:focus {
+    outline: none;
+}
+/*huy*/
+.action-button-huy:hover {
+    background-color: #2A3547;
+}
+
+.action-button-huy {
+    flex: 0 0 100px; /* Đặt kích thước nút */
+    max-width: 100px; /* Đặt kích thước tối đa */
+    margin-right: 5px; /* Khoảng cách giữa các nút */
+}
+
+.action-button-huy:last-child {
+    margin-right: 0; /* Loại bỏ margin phải của nút cuối cùng */
+}
+.action-button-huy:hover {
+    background-color: #dc3545;
+}
+
+.action-button-huy:focus {
+    outline: none;
+}
+/*xac nhamn*/
 .action-button {
     flex: 0 0 100px; /* Đặt kích thước nút */
     max-width: 100px; /* Đặt kích thước tối đa */
@@ -12,7 +77,7 @@
     margin-right: 0; /* Loại bỏ margin phải của nút cuối cùng */
 }
 .action-button:hover {
-    background-color: #0056b3;
+    background-color: #046904;
 }
 
 .action-button:focus {
@@ -22,12 +87,45 @@
 .action-button {
     padding: 5px 10px;
     font-size: 14px;
+    background-color: #046904;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+.action-button-huy {
+    padding: 5px 10px;
+    font-size: 14px;
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.action-button-in {
+    padding: 5px 10px;
+    font-size: 14px;
+    background-color: #2A3547;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.action-button-back {
+    padding: 5px 10px;
+    font-size: 14px;
     background-color: #007bff;
     color: #fff;
     border: none;
     border-radius: 4px;
     cursor: pointer;
 }
+.GiaoHang{
+    background-color: #17a2b8;
+}
+
 
 .pagination li {
     margin: 0 5px;
@@ -130,7 +228,6 @@ body {
     font-size: 14px;
     border-radius: 5px;
     width: 15px;
-    background-color: #4c9aff;
     border: 1px solid #ccc;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;

@@ -172,12 +172,11 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             htmlContentBuilder.append("<p>Phương thức mua hàng: ");
             if (hoaDon.getLoaiHoaDon() == 1) {
                 htmlContentBuilder.append("Tại quầy");
-            } else if (hoaDon.getLoaiHoaDon() == 0) {
+            } else if (hoaDon.getLoaiHoaDon() == 0 || hoaDon.getLoaiHoaDon() == 2) {
                 htmlContentBuilder.append("Mua online");
             } else {
                 htmlContentBuilder.append("Không xác định");
             }
-            htmlContentBuilder.append("</p>");
             htmlContentBuilder.append("<p>Trạng thái đơn: Đã thanh toán</p>");
 
             String formattedTongTienDonHang = numberFormat.format(hoaDon.getTongTienDonHang());
@@ -376,7 +375,7 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             htmlContentBuilder.append("<p>Phương thức mua hàng: ");
             if (hoaDon.getLoaiHoaDon() == 1) {
                 htmlContentBuilder.append("Tại quầy");
-            } else if (hoaDon.getLoaiHoaDon() == 0) {
+            } else if (hoaDon.getLoaiHoaDon() == 0 ? hoaDon.getLoaiHoaDon() == 0 : hoaDon.getLoaiHoaDon() == 2) {
                 htmlContentBuilder.append("Mua online");
             } else {
                 htmlContentBuilder.append("Không xác định");
@@ -579,7 +578,7 @@ public class InHoaDonServiceImpl implements InHoaDonService {
             htmlContentBuilder.append("<p>Phương thức mua hàng: ");
             if (hoaDon.getLoaiHoaDon() == 1) {
                 htmlContentBuilder.append("Tại quầy");
-            } else if (hoaDon.getLoaiHoaDon() == 0) {
+            } else if (hoaDon.getLoaiHoaDon() == 0 || hoaDon.getLoaiHoaDon() == 2) {
                 htmlContentBuilder.append("Mua online");
             } else {
                 htmlContentBuilder.append("Không xác định");

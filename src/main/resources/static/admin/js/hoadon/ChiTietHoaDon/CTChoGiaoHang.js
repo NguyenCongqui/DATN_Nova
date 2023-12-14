@@ -1,59 +1,106 @@
 <!-- JS CHỜ GIAO HÀNG -> ĐANG GIAO HÀNG -->
-$(document).ready(function () {
-    $('.GiaoHang').click(function () {
-        const hoaDonId = $(this).data('id');
-
-        // Hiển thị modal xác nhận
-        $('.giaoHangModal').modal('show');
-
-        // Xử lý sự kiện khi bấm nút Đồng ý
-        $('.giaoHangModal .btn-dong-y').click(function () {
-            // Gửi yêu cầu xác nhận đơn hàng bằng Ajax
+// $(document).ready(function () {
+//     $('.GiaoHang').click(function () {
+//         const hoaDonId = $(this).data('id');
+//
+//         // Hiển thị modal xác nhận
+//         $('.giaoHangModal').modal('show');
+//
+//         // Xử lý sự kiện khi bấm nút Đồng ý
+//         $('.giaoHangModal .btn-dong-y').click(function () {
+//             // Gửi yêu cầu xác nhận đơn hàng bằng Ajax
+//             $.get('/updateGiaoHang/' + hoaDonId, function (response) {
+//                 // Lưu trạng thái đã xác nhận vào sessionStorage
+//                 Swal.fire({
+//                     icon: 'success',
+//                     title: 'Đã chuyển hàng cho đơn vị vận chuyển thành công !',
+//                     showConfirmButton: false,
+//                     timer: 2000
+//                 }).then(function () {
+//                     // Lưu trạng thái đã xác nhận vào sessionStorage
+//                     sessionStorage.setItem('isConfirmed', true);
+//
+//                     window.location.href = "/admin/DonHang/ChoGiaoHang/danhSach";
+//                 });
+//             });
+//
+//             // Đóng modal
+//             $('.giaoHangModal').modal('hide');
+//         });
+//
+//         // Xử lý sự kiện khi bấm nút Không
+//         $('.giaoHangModal .btn-khong').click(function () {
+//             // Đóng modal
+//             $('.giaoHangModal').modal('hide');
+//         });
+//     });
+// });
+function choGiaoHang() {
+    let hoaDonId = $("#choGiaoHangId").val();
+    Swal.fire({
+        icon: 'question',
+        title: 'Xác nhận giao hàng cho đơn vị vận chuyển HD' + hoaDonId,
+        showCancelButton: true,
+        confirmButtonText: "Xác nhận",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Gửi yêu cầu hủy đơn hàng bằng Ajax
             $.get('/updateGiaoHang/' + hoaDonId, function (response) {
+                // Hiển thị thông báo hủy thành công với SweetAlert2
+            }).then(function (resp) {
                 // Lưu trạng thái đã xác nhận vào sessionStorage
                 Swal.fire({
                     icon: 'success',
                     title: 'Đã chuyển hàng cho đơn vị vận chuyển thành công !',
                     showConfirmButton: false,
                     timer: 2000
-                }).then(function () {
+                }).then(function (resp) {
                     // Lưu trạng thái đã xác nhận vào sessionStorage
                     sessionStorage.setItem('isConfirmed', true);
 
+                    // Tải lại trang
+                    // location.reload();
                     window.location.href = "/admin/DonHang/ChoGiaoHang/danhSach";
                 });
             });
-
-            // Đóng modal
-            $('.giaoHangModal').modal('hide');
-        });
-
-        // Xử lý sự kiện khi bấm nút Không
-        $('.giaoHangModal .btn-khong').click(function () {
-            // Đóng modal
-            $('.giaoHangModal').modal('hide');
-        });
+        }
     });
-});
+}
 
 function quayLai() {
     window.location.href = "/admin/DonHang/ChoGiaoHang/danhSach";
 }
 
-$(document).ready(function () {
-    $(".inHoaDonChiTiet").click(function () {
-        $('.inHoaDonModal').modal('show');
-        $('.inHoaDonModal .btn-dong-y').click(function () {
-            let hoaDonID = $("#idChiTietHoaDon").val();
-            printHoaDon(hoaDonID);
-            $('.inHoaDonModal').modal('hide');
-        });
+// inHoaDon
+function inHoaDonChiTiet() {
+    let hoaDonId = $("#inHoaDon").val();
+    Swal.fire({
+        icon: 'question',
+        title: 'Bạn có muốn in hóa đơn cho đơn hàng HD' + hoaDonId,
+        showCancelButton: true,
+        confirmButtonText: "In",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            printHoaDon(hoaDonId);
 
-        $('.inHoaDonModal .btn-khong').click(function () {
-            $('.inHoaDonModal').modal('hide');
-        });
+        }
     });
-});
+}
+
+// $(document).ready(function () {
+//     $(".inHoaDonChiTiet").click(function () {
+//         $('.inHoaDonModal').modal('show');
+//         $('.inHoaDonModal .btn-dong-y').click(function () {
+//             let hoaDonID = $("#idChiTietHoaDon").val();
+//             printHoaDon(hoaDonID);
+//             $('.inHoaDonModal').modal('hide');
+//         });
+//
+//         $('.inHoaDonModal .btn-khong').click(function () {
+//             $('.inHoaDonModal').modal('hide');
+//         });
+//     });
+// });
 
 function printHoaDon(hoaDonId) {
     // Tạo tên file PDF mới bằng UUID

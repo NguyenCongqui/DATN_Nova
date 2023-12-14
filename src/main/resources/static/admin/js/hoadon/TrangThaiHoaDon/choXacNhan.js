@@ -19,25 +19,67 @@ function redirectToDahuy() {
 }
 
 <!-- JS XÁC CHỜ XÁC NHẬN -> CHỜ LẤY HÀNG-->
-$(document).ready(function () {
-    $('.XacNhanDon').click(function () {
-        let hoaDonId = $(this).data('id');
-        let modalId = $(this).data('target');
+// $(document).ready(function () {
+//     $('.XacNhanDon').click(function () {
+//         let hoaDonId = $(this).data('id');
+//         let modalId = $(this).data('target');
+//
+//         // Hiển thị modal xác nhận
+//         $(modalId).modal('show');
+//
+//         // Xử lý sự kiện khi bấm nút Đồng ý
+//         $(modalId + ' .btn-dong-y').click(function () {
+//             // Gửi yêu cầu xác nhận đơn hàng bằng Ajax
+//             $.get('/updateXacNhan/' + hoaDonId, function (response) {
+//                 // Hiển thị thông báo xác nhận thành công với SweetAlert2
+//                 Swal.fire({
+//                     icon: 'success',
+//                     title: 'Đã xác nhận thành công !',
+//                     showConfirmButton: false,
+//                     timer: 1500
+//                 }).then(function () {
+//                     // Lưu trạng thái đã xác nhận vào sessionStorage
+//                     sessionStorage.setItem('isConfirmed', true);
+//
+//                     // Tải lại trang
+//                     // location.reload();
+//                     window.location.href = "/admin/DonHang/ChoXacNhanDonHang/danhSach";
+//                 });
+//             });
+//
+//             // Đóng modal
+//             $(modalId).modal('hide');
+//         });
+//
+//         // Xử lý sự kiện khi bấm nút Không
+//         $(modalId + ' .btn-khong').click(function () {
+//             // Đóng modal
+//             $(modalId).modal('hide');
+//         });
+//     });
+// });
 
-        // Hiển thị modal xác nhận
-        $(modalId).modal('show');
-
-        // Xử lý sự kiện khi bấm nút Đồng ý
-        $(modalId + ' .btn-dong-y').click(function () {
-            // Gửi yêu cầu xác nhận đơn hàng bằng Ajax
+// xac nhan don onclick
+function xacNhanDon(){
+    let hoaDonId = $("#xacNhanDonId").val();
+    Swal.fire({
+        icon: 'question',
+        title: 'Xác nhận đơn hàng HD' + hoaDonId,
+        showCancelButton: true,
+        confirmButtonText: "Xác nhận",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Gửi yêu cầu hủy đơn hàng bằng Ajax
             $.get('/updateXacNhan/' + hoaDonId, function (response) {
-                // Hiển thị thông báo xác nhận thành công với SweetAlert2
+                // Hiển thị thông báo hủy thành công với SweetAlert2
+            }).then(function (resp) {
+                // Lưu trạng thái đã xác nhận vào sessionStorage
                 Swal.fire({
                     icon: 'success',
                     title: 'Đã xác nhận thành công !',
                     showConfirmButton: false,
-                    timer: 1500
-                }).then(function () {
+                    timer: 2000
+                }).then(function (resp) {
                     // Lưu trạng thái đã xác nhận vào sessionStorage
                     sessionStorage.setItem('isConfirmed', true);
 
@@ -46,18 +88,9 @@ $(document).ready(function () {
                     window.location.href = "/admin/DonHang/ChoXacNhanDonHang/danhSach";
                 });
             });
-
-            // Đóng modal
-            $(modalId).modal('hide');
-        });
-
-        // Xử lý sự kiện khi bấm nút Không
-        $(modalId + ' .btn-khong').click(function () {
-            // Đóng modal
-            $(modalId).modal('hide');
-        });
+        }
     });
-});
+}
 
 
 <!-- JS XÁC NHẬN TẤT CẢ-->
@@ -91,7 +124,7 @@ $(document).ready(function () {
                 // Lưu trạng thái đã xác nhận vào sessionStorage
                 Swal.fire({
                     icon: 'success',
-                    title: 'Đã xác nhận tất cả thành công',
+                    title: 'Đã xác nhận tất cả thành công !',
                     showConfirmButton: false,
                     timer: 2000
                 }).then(function () {
@@ -117,59 +150,93 @@ $(document).ready(function () {
 });
 
 <!-- JS CHỜ CHỜ XÁC NHẬN -> ĐÃ HỦY -->
-$(document).ready(function () {
-    $('.HuyDon').click(function () {
-        let hoaDonId = $(this).data('id');
-        let modalId = $(this).data('target');
 
-        // Hiển thị modal xác nhận
-        $(modalId).modal('show');
+function huyDon() {
+    let hoaDonId = $("#hoaDonId").val();
+    Swal.fire({
+        icon: 'question',
+        title: 'Bạn có muốn hủy đơn hàng HD' + hoaDonId,
+        showCancelButton: true,
+        confirmButtonText: "Hủy",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Gửi yêu cầu hủy đơn hàng bằng Ajax
+            $.get('/updateHuyDon/' + hoaDonId, function (response) {
+                // Hiển thị thông báo hủy thành công với SweetAlert2
+            }).then(function (resp) {
+                // Lưu trạng thái đã xác nhận vào sessionStorage
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Hủy đơn hàng thành công !',
+                    text: 'Bạn đã hủy đơn hàng HD' + hoaDonId,
+                    showConfirmButton: false,
+                    timer: 2000
+                }).then(function (resp) {
+                    // Lưu trạng thái đã xác nhận vào sessionStorage
+                    sessionStorage.setItem('isConfirmed', true);
 
-        // Xử lý sự kiện khi bấm nút Đồng ý
-        $(modalId + ' .btn-dong-y').click(function () {
-            Swal.fire({
-                // title: "Xác nhận hủy đơn hàng " +hoaDonId +" ?",
-                title: 'Xác nhận hủy đơn hàng #HD' + hoaDonId,
-                icon: 'question',
-                inputLabel: 'Ghi chú',
-                input: 'textarea',
-                showCancelButton: true,
-                confirmButtonText: "Xác nhận",
-            }).then((result) => {
-                if (result.isConfirmed){
-                    // Gửi yêu cầu hủy đơn hàng bằng Ajax
-                    $.get('/updateHuyDon/' + hoaDonId, function (response) {
-                        // Hiển thị thông báo hủy thành công với SweetAlert2
-                        }).then(function (resp) {
-                            // Lưu trạng thái đã xác nhận vào sessionStorage
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Hủy đơn hàng thành công !',
-                            showConfirmButton: false,
-                            timer: 2000
-                        }).then(function () {
-                            // Lưu trạng thái đã xác nhận vào sessionStorage
-                            sessionStorage.setItem('isConfirmed', true);
-
-                            // Tải lại trang
-                            // location.reload();
-                            window.location.href = "/admin/DonHang/ChoXacNhanDonHang/danhSach";
-                        });
-                        });
-                }
+                    // Tải lại trang
+                    // location.reload();
+                    window.location.href = "/admin/DonHang/ChoXacNhanDonHang/danhSach";
+                });
             });
-
-            // Đóng modal
-            $(modalId).modal('hide');
-        });
-
-        // Xử lý sự kiện khi bấm nút Không
-        $(modalId + ' .btn-khong').click(function () {
-            // Đóng modal
-            $(modalId).modal('hide');
-        });
+        }
     });
-});
+}
+
+// $(document).ready(function () {
+//     $('.HuyDon').click(function () {
+//         let hoaDonId = $(this).data('id');
+//         let modalId = $(this).data('target');
+//
+//         // Hiển thị modal xác nhận
+//         $(modalId).modal('show');
+//
+//         // Xử lý sự kiện khi bấm nút Đồng ý
+//         $(modalId + ' .btn-dong-y').click(function () {
+//             Swal.fire({
+//                 // title: "Xác nhận hủy đơn hàng " +hoaDonId +" ?",
+//                 title: 'Xác nhận hủy đơn hàng #HD' + hoaDonId,
+//                 icon: 'question',
+//                 inputLabel: 'Ghi chú',
+//                 input: 'textarea',
+//                 showCancelButton: true,
+//                 confirmButtonText: "Xác nhận",
+//             }).then((result) => {
+//                 if (result.isConfirmed){
+//                     // Gửi yêu cầu hủy đơn hàng bằng Ajax
+//                     $.get('/updateHuyDon/' + hoaDonId, function (response) {
+//                         // Hiển thị thông báo hủy thành công với SweetAlert2
+//                         }).then(function (resp) {
+//                             // Lưu trạng thái đã xác nhận vào sessionStorage
+//                         Swal.fire({
+//                             icon: 'success',
+//                             title: 'Hủy đơn hàng thành công !',
+//                             showConfirmButton: false,
+//                             timer: 2000
+//                         }).then(function () {
+//                             // Lưu trạng thái đã xác nhận vào sessionStorage
+//                             sessionStorage.setItem('isConfirmed', true);
+//
+//                             // Tải lại trang
+//                             // location.reload();
+//                             window.location.href = "/admin/DonHang/ChoXacNhanDonHang/danhSach";
+//                         });
+//                         });
+//                 }
+//             });
+//
+//             // Đóng modal
+//             $(modalId).modal('hide');
+//         });
+//
+//         // Xử lý sự kiện khi bấm nút Không
+//         $(modalId + ' .btn-khong').click(function () {
+//             // Đóng modal
+//             $(modalId).modal('hide');
+//         });
+//     });
+// });
 
 
 <!-- JS HỦY TẤT CẢ-->
@@ -233,7 +300,7 @@ $(document).ready(function () {
         if (selectedDate) {
             let formattedDate = formatDate(selectedDate);
             window.location.href = "/admin/DonHang/ChoXacNhanDonHang/Ngay/" + formattedDate;
-        }else {
+        } else {
             Swal.fire({
                 icon: 'warning',
                 title: 'Vui lòng nhập vào ngày',

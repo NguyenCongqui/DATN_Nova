@@ -64,11 +64,11 @@
             <td th:text="${hoaDon.nguoiNhan}"></td>
             <td th:text="${hoaDon.sdtNguoiNhan}"></td>
             <td th:text="${#dates.format(hoaDon.ngayTao, 'dd/MM/yyyy')}"></td>
-            <td th:text="${#numbers.formatDecimal(hoaDon.tongTienHoaDon, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></td>
+            <td th:text="${#numbers.formatDecimal(hoaDon.tongTienHoaDon , 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></td>
             <td th:text="${hoaDon.ghiChu}"></td>
             <td>
                 <div class="button-group-a">
-                    <div class="btn-group">
+                    <div class="btn-group" title="Xem chi tiết">
                         <a th:href="@{'/ChiTietHoaDon/DaGiaoHang/hoa-don-id=' + ${hoaDon.idHoaDon}}"
                            class="btn btn-warning btn-sm"
                            type="submit">

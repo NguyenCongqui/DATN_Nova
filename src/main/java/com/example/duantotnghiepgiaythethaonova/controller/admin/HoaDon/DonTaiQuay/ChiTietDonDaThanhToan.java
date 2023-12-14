@@ -22,7 +22,7 @@ public class ChiTietDonDaThanhToan {
     @RequestMapping("DonTaiQuay/ChiTietHoaDon/DonDaHuy/hoa-don-id={id}")
     public String ChiTietHoaDonTaiQuayDaHuy(@PathVariable("id") Integer id, Model model) {
         donHangTaiQuayService.ChiTietHoaDonTaiQuayDaThanhToan(id, model);
-        return "admin/hoadon/DonTaiQuay/ChiTietHoaDonTaiQuay";
+        return "admin/hoadon/DonTaiQuay/ChiTietHoaDonTaiQuayDaHuy";
     }
 
 }

@@ -39,81 +39,163 @@ $(document).ready(function () {
         });
     });
 });
-<!-- JS CHỜ CHỜ XÁC NHẬN -> ĐÃ HỦY -->
-$(document).ready(function () {
-    $('.HuyDon').click(function () {
-        let hoaDonId = $(this).data('id');
-        let modalId = $(this).data('target');
-        let ghiChu = $(this).val();
 
-        // Hiển thị modal xác nhận
-        $(modalId).modal('show');
+function dangGiaoHang() {
+    let hoaDonId = $("#dangGiaoId").val();
+    // Lưu trạng thái tab hiện tại vào sessionStorage
+    const activeTab = $('.nav-link.active').attr('href');
+    sessionStorage.setItem('activeTab', activeTab);
+    Swal.fire({
+        icon: 'question',
+        title: 'Xác nhận đơn hàng HD' + hoaDonId + ' đã hoàn thành',
+        showCancelButton: true,
+        confirmButtonText: "Xác nhận",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Gửi yêu cầu hủy đơn hàng bằng Ajax
+            $.get('/updateGiaoHangThanhCong/' + hoaDonId, function (response) {
+                // Hiển thị thông báo hủy thành công với SweetAlert2
+            }).then(function (resp) {
+                // Lưu trạng thái đã xác nhận vào sessionStorage
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Xác nhận đơn hàng đã giao thành công !',
+                    showConfirmButton: false,
+                    timer: 2000
+                }).then(function (resp) {
+                    // Lưu trạng thái đã xác nhận vào sessionStorage
+                    sessionStorage.setItem('isConfirmed', true);
 
-        // Xử lý sự kiện khi bấm nút Đồng ý
-        $(modalId + ' .btn-dong-y').click(function () {
-            Swal.fire({
-                // title: "Xác nhận hủy đơn hàng " +hoaDonId +" ?",
-                title: 'Xác nhận hủy đơn hàng #HD' + hoaDonId,
-                icon: 'question',
-                inputLabel: 'Ghi chú',
-                input: 'textarea',
-                showCancelButton: true,
-                confirmButtonText: "Xác nhận",
-            }).then((result) => {
-                if (result.isConfirmed){
-                    // Gửi yêu cầu hủy đơn hàng bằng Ajax
-                    $.get('/updateHuyDon/' + hoaDonId, function (response) {
-                        // Hiển thị thông báo hủy thành công với SweetAlert2
-                    }).then(function (resp) {
-                        // Lưu trạng thái đã xác nhận vào sessionStorage
-                        Swal.fire({
-                            icon: 'success',
-                            title: 'Hủy đơn hàng thành công !',
-                            showConfirmButton: false,
-                            timer: 2000
-                        }).then(function () {
-                            // Lưu trạng thái đã xác nhận vào sessionStorage
-                            sessionStorage.setItem('isConfirmed', true);
-
-                            // Tải lại trang
-                            // location.reload();
-                            window.location.href = "/admin/DonHang/ChoXacNhanDonHang/danhSach";
-                        });
-                    });
-                }
+                    // Tải lại trang
+                    // location.reload();
+                    window.location.href = "/admin/DonHang/DangGiaoHang/danhSach";
+                });
             });
-
-
-            // Đóng modal
-            $(modalId).modal('hide');
-        });
-
-        // Xử lý sự kiện khi bấm nút Không
-        $(modalId + ' .btn-khong').click(function () {
-            // Đóng modal
-            $(modalId).modal('hide');
-        });
+        }
     });
-});
+}
+<!-- JS CHỜ CHỜ XÁC NHẬN -> ĐÃ HỦY -->
+// $(document).ready(function () {
+//     $('.HuyDon').click(function () {
+//         let hoaDonId = $(this).data('id');
+//         let modalId = $(this).data('target');
+//         let ghiChu = $(this).val();
+//
+//         // Hiển thị modal xác nhận
+//         $(modalId).modal('show');
+//
+//         // Xử lý sự kiện khi bấm nút Đồng ý
+//         $(modalId + ' .btn-dong-y').click(function () {
+//             Swal.fire({
+//                 // title: "Xác nhận hủy đơn hàng " +hoaDonId +" ?",
+//                 title: 'Xác nhận hủy đơn hàng #HD' + hoaDonId,
+//                 icon: 'question',
+//                 inputLabel: 'Ghi chú',
+//                 input: 'textarea',
+//                 showCancelButton: true,
+//                 confirmButtonText: "Xác nhận",
+//             }).then((result) => {
+//                 if (result.isConfirmed){
+//                     // Gửi yêu cầu hủy đơn hàng bằng Ajax
+//                     $.get('/updateHuyDon/' + hoaDonId, function (response) {
+//                         // Hiển thị thông báo hủy thành công với SweetAlert2
+//                     }).then(function (resp) {
+//                         // Lưu trạng thái đã xác nhận vào sessionStorage
+//                         Swal.fire({
+//                             icon: 'success',
+//                             title: 'Hủy đơn hàng thành công !',
+//                             showConfirmButton: false,
+//                             timer: 2000
+//                         }).then(function () {
+//                             // Lưu trạng thái đã xác nhận vào sessionStorage
+//                             sessionStorage.setItem('isConfirmed', true);
+//
+//                             // Tải lại trang
+//                             // location.reload();
+//                             window.location.href = "/admin/DonHang/ChoXacNhanDonHang/danhSach";
+//                         });
+//                     });
+//                 }
+//             });
+//
+//
+//             // Đóng modal
+//             $(modalId).modal('hide');
+//         });
+//
+//         // Xử lý sự kiện khi bấm nút Không
+//         $(modalId + ' .btn-khong').click(function () {
+//             // Đóng modal
+//             $(modalId).modal('hide');
+//         });
+//     });
+// });
+function huyDon() {
+    let hoaDonId = $("#hoaDonId").val();
+    Swal.fire({
+        icon: 'question',
+        title: 'Bạn có muốn hủy đơn hàng HD' + hoaDonId,
+        showCancelButton: true,
+        confirmButtonText: "Xác nhận",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Gửi yêu cầu hủy đơn hàng bằng Ajax
+            $.get('/updateHuyDon/' + hoaDonId, function (response) {
+                // Hiển thị thông báo hủy thành công với SweetAlert2
+            }).then(function (resp) {
+                // Lưu trạng thái đã xác nhận vào sessionStorage
+                Swal.fire({
+                    icon: 'success',
+                    title: 'Hủy đơn hàng thành công !',
+                    text: 'Bạn đã hủy đơn hàng HD' + hoaDonId,
+                    showConfirmButton: false,
+                    timer: 2000
+                }).then(function (resp) {
+                    // Lưu trạng thái đã xác nhận vào sessionStorage
+                    sessionStorage.setItem('isConfirmed', true);
+
+                    // Tải lại trang
+                    // location.reload();
+                    window.location.href = "/admin/DonHang/ChoXacNhanDonHang/danhSach";
+                });
+            });
+        }
+    });
+}
 
 function quayLai() {
     window.location.href = "/admin/DonHang/DangGiaoHang/danhSach";
 }
 
-$(document).ready(function () {
-    $(".inHoaDonChiTiet").click(function () {
-        $('.inHoaDonModal').modal('show');
-        $('.inHoaDonModal .btn-dong-y').click(function () {
-            let hoaDonID = $("#idChiTietHoaDon").val();
-            printHoaDon(hoaDonID);
-            $('.inHoaDonModal').modal('hide');
-        });
+function inHoaDonChiTiet() {
+    let hoaDonId = $("#inHoaDon").val();
+    Swal.fire({
+        icon: 'question',
+        title: 'Bạn có muốn in hóa đơn cho đơn hàng HD' + hoaDonId,
+        showCancelButton: true,
+        confirmButtonText: "In",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            printHoaDon(hoaDonId);
 
-        $('.inHoaDonModal .btn-khong').click(function () {
-            $('.inHoaDonModal').modal('hide');
-        });
+        }
     });
-});
+}
+
+// $(document).ready(function () {
+//     $(".inHoaDonChiTiet").click(function () {
+//         $('.inHoaDonModal').modal('show');
+//         $('.inHoaDonModal .btn-dong-y').click(function () {
+//             let hoaDonID = $("#idChiTietHoaDon").val();
+//             printHoaDon(hoaDonID);
+//             $('.inHoaDonModal').modal('hide');
+//         });
+//
+//         $('.inHoaDonModal .btn-khong').click(function () {
+//             $('.inHoaDonModal').modal('hide');
+//         });
+//     });
+// });
 
 function printHoaDon(hoaDonId) {
     // Tạo tên file PDF mới bằng UUID

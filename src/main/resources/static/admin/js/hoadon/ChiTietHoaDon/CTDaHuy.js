@@ -1,20 +1,35 @@
 function quayLai() {
     window.location.href = "/admin/DonHang/DaHuyHang/danhSach";
 }
-$(document).ready(function () {
-    $(".inHoaDonChiTiet").click(function () {
-        $('.inHoaDonModal').modal('show');
-        $('.inHoaDonModal .btn-dong-y').click(function () {
-            let hoaDonID = $("#idChiTietHoaDon").val();
-            printHoaDon(hoaDonID);
-            $('.inHoaDonModal').modal('hide');
-        });
 
-        $('.inHoaDonModal .btn-khong').click(function () {
-            $('.inHoaDonModal').modal('hide');
-        });
+function inHoaDonChiTiet() {
+    let hoaDonId = $("#inHoaDon").val();
+    Swal.fire({
+        icon: 'question',
+        title: 'Bạn có muốn in hóa đơn cho đơn hàng HD' + hoaDonId,
+        showCancelButton: true,
+        confirmButtonText: "In",
+    }).then((result) => {
+        if (result.isConfirmed) {
+            printHoaDon(hoaDonId);
+
+        }
     });
-});
+}
+// $(document).ready(function () {
+//     $(".inHoaDonChiTiet").click(function () {
+//         $('.inHoaDonModal').modal('show');
+//         $('.inHoaDonModal .btn-dong-y').click(function () {
+//             let hoaDonID = $("#idChiTietHoaDon").val();
+//             printHoaDon(hoaDonID);
+//             $('.inHoaDonModal').modal('hide');
+//         });
+//
+//         $('.inHoaDonModal .btn-khong').click(function () {
+//             $('.inHoaDonModal').modal('hide');
+//         });
+//     });
+// });
 
 function printHoaDon(hoaDonId) {
     // Tạo tên file PDF mới bằng UUID

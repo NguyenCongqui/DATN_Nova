@@ -18,6 +18,8 @@ import org.springframework.stereotype.Service;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 @Service
 public class NhanVienServiceImpl implements NhanVienService {
@@ -55,6 +57,12 @@ public class NhanVienServiceImpl implements NhanVienService {
         if (existingNguoiDungByEmail != null) {
             response.put("warning", true);
             response.put("error", "Email này đã tồn tại!");
+            return response;
+        }
+
+        if (!isValidEmail(email)) {
+            response.put("warning", true);
+            response.put("error", "Email không đúng định dạng!");
             return response;
         }
 
@@ -203,5 +211,11 @@ public class NhanVienServiceImpl implements NhanVienService {
             return ResponseEntity.notFound().build();
         }
 
+    }
+    private boolean isValidEmail(String email) {
+        String emailRegex = "^[a-zA-Z0-9_+&*-]+(?:\\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\\.)+[a-zA-Z]{2,7}$";
+        Pattern pattern = Pattern.compile(emailRegex);
+        Matcher matcher = pattern.matcher(email);
+        return matcher.matches();
     }
 }

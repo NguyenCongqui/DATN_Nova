@@ -387,9 +387,9 @@ body {
 
 /* Style cho tab button được chọn */
 .tab-button.active {
-    background-color: #4c9aff;
+    background-color: #2A3547;
     color: #fff;
-    border-color: #4c9aff;
+    border-color: #2A3547;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 

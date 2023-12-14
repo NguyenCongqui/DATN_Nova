@@ -155,11 +155,14 @@ body {
     font-size: 14px;
     border-radius: 5px;
     width: 15px;
-    background-color: #4c9aff;
     border: 1px solid #ccc;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
 }
+.xacNhan{
+    background-color: #046904;
+}
+
 
 .button-group-a button:hover {
     background-color: #357ae8;
@@ -196,10 +199,10 @@ body {
     font-size: 14px;
     border-radius: 5px;
     width: 150px;
-    background-color: #4c9aff;
     border: 1px solid #ccc;
     cursor: pointer;
     transition: background-color 0.3s, color 0.3s;
+    background-color: #357ae8;
 }
 
 .hduong1 button:hover {
@@ -249,9 +252,9 @@ body {
     font-size: 16px;
     border-radius: 5px;
     border: none;
-    background-color: #4c9aff;
     color: #fff;
     cursor: pointer;
+    background-color: #2A3547;
 }
 
 .b1:hover {
@@ -352,9 +355,9 @@ body {
 
 /* Style cho tab button được chọn */
 .tab-button.active {
-    background-color: #4c9aff;
+    background-color: #2A3547;
     color: #fff;
-    border-color: #4c9aff;
+    border-color: #2A3547;
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
 }
 

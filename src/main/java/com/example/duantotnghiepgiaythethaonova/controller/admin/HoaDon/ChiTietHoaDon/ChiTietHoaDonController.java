@@ -1,7 +1,9 @@
 package com.example.duantotnghiepgiaythethaonova.controller.admin.HoaDon.ChiTietHoaDon;
 
 
+import com.example.duantotnghiepgiaythethaonova.dto.TimeLineDTO;
 import com.example.duantotnghiepgiaythethaonova.service.ChiTietHoaDonService;
+import com.example.duantotnghiepgiaythethaonova.service.TimeLineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,10 +15,16 @@ public class ChiTietHoaDonController {
     @Autowired
     ChiTietHoaDonService chiTietHoaDonService;
 
+    @Autowired
+    TimeLineService timeLineService;
+
     //CHỜ XÁC NHẬN
     @RequestMapping("ChiTietHoaDon/ChoXacNhan/hoa-don-id={id}")
     public String ChoXacNhan(@PathVariable("id") Integer id, Model model) {
-        chiTietHoaDonService.choXacNhan(id, model);
+//        chiTietHoaDonService.choXacNhan(id, model);
+        TimeLineDTO timeLineDTO = timeLineService.getTimeLineChoXacNhan(id);
+        model.addAttribute("timeLine", timeLineDTO);
+        System.out.println(timeLineDTO);
         return "admin/hoadon/ChiTiethoaDon/CTChoXacNhan";
     }
 

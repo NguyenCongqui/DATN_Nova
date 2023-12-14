@@ -84,6 +84,8 @@ public class HoaDonCustomerServiceImpl implements HoaDonCustomerService {
         model.addAttribute("choXacNhanCustomer", choXacNhan.getContent());
         model.addAttribute("pageChoXacNhan", choXacNhan.getTotalPages());
         model.addAttribute("page", page);
+        System.out.println(choXacNhan.getContent());
+        System.out.println(choXacNhan.getTotalPages());
     }
 
     @Override

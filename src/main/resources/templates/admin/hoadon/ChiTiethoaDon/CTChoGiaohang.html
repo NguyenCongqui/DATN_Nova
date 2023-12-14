@@ -153,60 +153,70 @@
         </div>
 
         <div class="button-group">
-            <button class="action-button GiaoHang" th:attr="data-id=${hoaDon.idHoaDon}"><i class="fas fa-truck"></i>
-                Giao hàng
+            <!--XÁC NHẬN CHỜ GIAO ĐƠN HÀNG-->
+            <button class="action-button GiaoHang" id="choGiaoHangId" th:value="${hoaDon.idHoaDon}"
+                    onclick="choGiaoHang()"
+                    title="Chờ giao hàng">
+                <i class="fas fa-truck"></i> Giao hàng
             </button>
-            <br>
-            <div class="modal fade giaoHangModal" tabindex="-1" aria-labelledby="giaoHangModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="giaoHangModalLabel">Xác nhận đơn</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            Xác nhận giao hàng cho đơn vị vận chuyển?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary btn-dong-y">Đồng ý</button>
-                            <button type="button" class="btn btn-secondary btn-khong"
-                                    data-bs-dismiss="modal">Không
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            <!--            <button class="action-button GiaoHang" th:attr="data-id=${hoaDon.idHoaDon}"><i class="fas fa-truck"></i>-->
+            <!--                Giao hàng-->
+            <!--            </button>-->
+            <!--            <br>-->
+            <!--            <div class="modal fade giaoHangModal" tabindex="-1" aria-labelledby="giaoHangModalLabel"-->
+            <!--                 aria-hidden="true">-->
+            <!--                <div class="modal-dialog modal-dialog-centered">-->
+            <!--                    <div class="modal-content">-->
+            <!--                        <div class="modal-header">-->
+            <!--                            <h5 class="modal-title" id="giaoHangModalLabel">Xác nhận đơn</h5>-->
+            <!--                            <button type="button" class="btn-close" data-bs-dismiss="modal"-->
+            <!--                                    aria-label="Close"></button>-->
+            <!--                        </div>-->
+            <!--                        <div class="modal-body">-->
+            <!--                            Xác nhận giao hàng cho đơn vị vận chuyển?-->
+            <!--                        </div>-->
+            <!--                        <div class="modal-footer">-->
+            <!--                            <button type="button" class="btn btn-primary btn-dong-y">Đồng ý</button>-->
+            <!--                            <button type="button" class="btn btn-secondary btn-khong"-->
+            <!--                                    data-bs-dismiss="modal">Không-->
+            <!--                            </button>-->
+            <!--                        </div>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </div>-->
+            <!--            <button class="action-button-in" id="inHoaDon" th:value="${hoaDon.idHoaDon}" onclick="inHoaDonChiTiet()"-->
+            <!--                    title="In hóa đơn">-->
+            <!--                <i class="fas fa-receipt"></i> In hóa đơn-->
 
-            <button class="action-button inHoaDonChiTiet"><i class="fas
-            fa-receipt"></i> In hóa đơn
+            <!--            </button>-->
+<!--                        <button class="action-button-in inHoaDonChiTiet"><i class="fas-->
+<!--                        fa-receipt"></i> In hóa đơn-->
 
-            </button>
-            <input type="hidden" id="idChiTietHoaDon" th:value="${hoaDon.idHoaDon}">
-            <div class="modal fade inHoaDonModal" tabindex="-1" aria-labelledby="inHoaDonModalLabel"
-                 aria-hidden="true">
-                <div class="modal-dialog modal-dialog-centered">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="inHoaDonModalLabel">In hóa đơn</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                    aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            Bạn muốn in hóa đơn?
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-primary btn-dong-y">Đồng ý</button>
-                            <button type="button" class="btn btn-secondary btn-khong"
-                                    data-bs-dismiss="modal">Không
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+<!--                        </button>-->
+            <!--            <input type="hidden" id="idChiTietHoaDon" th:value="${hoaDon.idHoaDon}">-->
+            <!--            <div class="modal fade inHoaDonModal" tabindex="-1" aria-labelledby="inHoaDonModalLabel"-->
+            <!--                 aria-hidden="true">-->
+            <!--                <div class="modal-dialog modal-dialog-centered">-->
+            <!--                    <div class="modal-content">-->
+            <!--                        <div class="modal-header">-->
+            <!--                            <h5 class="modal-title" id="inHoaDonModalLabel">In hóa đơn</h5>-->
+            <!--                            <button type="button" class="btn-close" data-bs-dismiss="modal"-->
+            <!--                                    aria-label="Close"></button>-->
+            <!--                        </div>-->
+            <!--                        <div class="modal-body">-->
+            <!--                            Bạn muốn in hóa đơn?-->
+            <!--                        </div>-->
+            <!--                        <div class="modal-footer">-->
+            <!--                            <button type="button" class="btn btn-primary btn-dong-y">Đồng ý</button>-->
+            <!--                            <button type="button" class="btn btn-secondary btn-khong"-->
+            <!--                                    data-bs-dismiss="modal">Không-->
+            <!--                            </button>-->
+            <!--                        </div>-->
+            <!--                    </div>-->
+            <!--                </div>-->
+            <!--            </div>-->
 
-            <button class="action-button" onclick="quayLai()"><i
+            <button class="action-button-back" onclick="quayLai()"><i
                     class="fas fa-arrow-left"></i> Quay lại
             </button>
         </div>

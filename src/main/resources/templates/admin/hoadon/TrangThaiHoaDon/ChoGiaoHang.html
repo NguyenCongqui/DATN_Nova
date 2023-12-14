@@ -97,36 +97,40 @@
             <td>
                 <!--UPDATE TRẠNG THÁI HÓA ĐƠN-->
                 <div class="button-group">
-                    <button class="action-button GiaoHang" th:attr="data-id=${hoaDon.idHoaDon}"
-                            th:data-target="'#modalGiaoHang-' + ${hoaDon.idHoaDon}">
+                    <button class="action-button GiaoHang" id="choGiaoHangId" th:value="${hoaDon.idHoaDon}" onclick="choGiaoHang()"
+                            title="Chờ giao hàng">
                         <i class="fas fa-truck"></i>
                     </button>
-                    <br>
-                    <div class="modal fade giaoHangModal" th:id="'modalGiaoHang-' + ${hoaDon.idHoaDon}" tabindex="-1"
-                         aria-labelledby="giaoHangModalLabel"
-                         aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="giaoHangModalLabel">Xác nhận đơn</h5>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                            aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    Xác nhận giao hàng cho đơn vị vận chuyển?
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-primary btn-dong-y">Đồng ý</button>
-                                    <button type="button" class="btn btn-secondary btn-khong"
-                                            data-bs-dismiss="modal">Không
-                                    </button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+                    <!--                    <button class="action-button GiaoHang" th:attr="data-id=${hoaDon.idHoaDon}"-->
+                    <!--                            th:data-target="'#modalGiaoHang-' + ${hoaDon.idHoaDon}">-->
+                    <!--                        <i class="fas fa-truck"></i>-->
+                    <!--                    </button>-->
+                    <!--                    <br>-->
+                    <!--                    <div class="modal fade giaoHangModal" th:id="'modalGiaoHang-' + ${hoaDon.idHoaDon}" tabindex="-1"-->
+                    <!--                         aria-labelledby="giaoHangModalLabel"-->
+                    <!--                         aria-hidden="true">-->
+                    <!--                        <div class="modal-dialog modal-dialog-centered">-->
+                    <!--                            <div class="modal-content">-->
+                    <!--                                <div class="modal-header">-->
+                    <!--                                    <h5 class="modal-title" id="giaoHangModalLabel">Xác nhận đơn</h5>-->
+                    <!--                                    <button type="button" class="btn-close" data-bs-dismiss="modal"-->
+                    <!--                                            aria-label="Close"></button>-->
+                    <!--                                </div>-->
+                    <!--                                <div class="modal-body">-->
+                    <!--                                    Xác nhận giao hàng cho đơn vị vận chuyển?-->
+                    <!--                                </div>-->
+                    <!--                                <div class="modal-footer">-->
+                    <!--                                    <button type="button" class="btn btn-primary btn-dong-y">Đồng ý</button>-->
+                    <!--                                    <button type="button" class="btn btn-secondary btn-khong"-->
+                    <!--                                            data-bs-dismiss="modal">Không-->
+                    <!--                                    </button>-->
+                    <!--                                </div>-->
+                    <!--                            </div>-->
+                    <!--                        </div>-->
+                    <!--                    </div>-->
 
                     <!--XEM CHI TIẾT HÓA ĐƠN-->
-                    <div class="btn-group">
+                    <div class="btn-group" title="Xem chi tiết hóa đơn">
                         <a th:href="@{'/ChiTietHoaDon/ChoGiaoHang/hoa-don-id=' + ${hoaDon.idHoaDon}}"
                            class="btn btn-warning btn-sm"
                            type="submit">
