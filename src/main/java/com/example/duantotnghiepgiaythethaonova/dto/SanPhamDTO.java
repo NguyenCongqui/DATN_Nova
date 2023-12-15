@@ -15,6 +15,8 @@ import java.util.List;
 public class SanPhamDTO {
     private Integer idSanPhamDTO;
 
+    private Integer maSanPhamDTO;
+
     private Integer kieuDangId;
 
     private Integer chatLieuId;

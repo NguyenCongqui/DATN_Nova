@@ -637,10 +637,10 @@ public class SanPhamChiTietController {
 
 		String[] gias = request.getParameterValues("gias");
 		String[] idsgia = request.getParameterValues("giaIds");
-		if (gias != null && ids != null) {
-			for (String item : gias) {
+		if (soLuongs != null && ids != null) {
+			for (String item : soLuongs) {
 				if (!isNumeric(item)) {
-					redirect.addFlashAttribute("messageDanger", "Giá là số");
+					redirect.addFlashAttribute("messageDanger", "Giá phải là số");
 					return "redirect:/admin/product/edit/"+data.getSanPhamId();
 				}
 				if(Integer.parseInt(item) < 1) {
@@ -655,7 +655,7 @@ public class SanPhamChiTietController {
 				}
 			}
 		}
-		// add key-id, value-gia -> map
+		// add key-id, value-soLuong -> map
 		Map<String, String> hm1 = new HashMap<>();
 		for (int i = 0; i < idsgia.length; i++) {
 			hm1.put(idsgia[i], gias[i]);
@@ -1491,8 +1491,8 @@ public class SanPhamChiTietController {
 		final String messageDanger ="Cập nhật sản phẩm chi tiết thất bại";
 		if(optSPCTOld.isPresent()) {
 			if(optSPCTOld.get().getKichCo().getIdKichCo().equals(sanPhamChiTietDTO.getKichCoId()) &&
-					optSPCTOld.get().getMauSac().getIdMauSac().equals(sanPhamChiTietDTO.getMauSacId()) &&
-					optSPCTOld.get().getSanPham().getIdSanPham().equals(sanPhamChiTietDTO.getSanPhamId()) ) {
+				optSPCTOld.get().getMauSac().getIdMauSac().equals(sanPhamChiTietDTO.getMauSacId()) &&
+				optSPCTOld.get().getSanPham().getIdSanPham().equals(sanPhamChiTietDTO.getSanPhamId()) ) {
 				optSPCTOld.get().setCoHienThi(sanPhamChiTietDTO.getCoHienThi());
 				optSPCTOld.get().setSoLuong(sanPhamChiTietDTO.getSoLuong());
 				optSPCTOld.get().setGia(sanPhamChiTietDTO.getGia());
@@ -1534,7 +1534,7 @@ public class SanPhamChiTietController {
 				} else {
 					optSPCTOld.get().setCoHienThi(sanPhamChiTietDTO.getCoHienThi());
 					optSPCTOld.get().setSoLuong(sanPhamChiTietDTO.getSoLuong());
-					optSPCT.get().setGia(sanPhamChiTietDTO.getGia());
+					optSPCTOld.get().setGia(sanPhamChiTietDTO.getGia());
 					Optional<KichCo> optKC = kichCoService.findById(sanPhamChiTietDTO.getKichCoId());
 					if (optKC.isPresent()) {
 						optSPCTOld.get().setKichCo(optKC.get());
