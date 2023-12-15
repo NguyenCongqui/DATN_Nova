@@ -123,12 +123,16 @@ public class GioHangChiTietCustomerController {
         KhachHangDTO khachHangDT0 = khachHangService.findByEmail(auth);
         List<Integer> listSoLuong = toListInterger(soLuongs);
         if (ids != null && soLuongs != null) {
+            System.out.println("gio hang");
             for (int i = 0; i < ids.length; i++) {
                 Integer id = (Integer) Array.get(ids, i);
                 Integer soLuong = listSoLuong.get((int) i);
                 if (soLuong > 0) {
                     GioHangChiTietDTO gioHangChiTietDTO = gioHangChiTietService.findById(id);
-                    if (soLuong > gioHangChiTietDTO.getSanPhamChiTietDTO().getSoLuong() + gioHangChiTietDTO.getSoLuong()) {
+                    System.out.println(soLuong);
+//                    System.out.println(gioHangChiTietService.findById(id));
+                    System.out.println(gioHangChiTietDTO.getSanPhamChiTietDTO().getSoLuong()+gioHangChiTietDTO.getSoLuong());
+                    if (soLuong > gioHangChiTietDTO.getSanPhamChiTietDTO().getSoLuong()) {
                         model.addAttribute("message", "Số lượng  sản phẩm " + gioHangChiTietDTO.getSanPhamChiTietDTO().getSanPhamDTO().getTenSanPham() +
                                 " ,kích cỡ " + gioHangChiTietDTO.getSanPhamChiTietDTO().getTenKichCo() + " ,màu " + gioHangChiTietDTO.getSanPhamChiTietDTO().getTenMauSac() +
                                 " không đủ !");
