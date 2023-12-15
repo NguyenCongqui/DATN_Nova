@@ -2,7 +2,6 @@ package com.example.duantotnghiepgiaythethaonova.repository;
 
 import com.example.duantotnghiepgiaythethaonova.dto.BestSellerDTO;
 import com.example.duantotnghiepgiaythethaonova.entity.ChiTietSanPham;
-import com.example.duantotnghiepgiaythethaonova.service.SanPhamChiTietSearchRepository;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 import org.springframework.data.domain.Page;
@@ -44,9 +43,9 @@ public interface SanPhamChiTietRepository extends JpaRepository<ChiTietSanPham, 
 
     @Query(value = " SELECT spt.SoLuong\n" +
             "FROM SanPhamCT spt\n" +
-            			"JOIN KichCo kc ON spt.IdKichCo = kc.IdKichCo\n" +
-            			"JOIN MauSac ms ON spt.IdMauSac = ms.IdMauSac\n" +
-            			"WHERE kc.TenKichCo = :tenKichCo AND ms.IdMauSac = :mauSacId AND spt.IdSanPham = :sanPhamId AND spt.CoHienThi = 1 AND spt.Daxoa = 0\n",
+            "JOIN KichCo kc ON spt.IdKichCo = kc.IdKichCo\n" +
+            "JOIN MauSac ms ON spt.IdMauSac = ms.IdMauSac\n" +
+            "WHERE kc.TenKichCo = :tenKichCo AND ms.IdMauSac = :mauSacId AND spt.IdSanPham = :sanPhamId AND spt.CoHienThi = 1 AND spt.Daxoa = 0\n",
 
             nativeQuery = true)
     Integer laySoLuongChiTietSanPham(@Param("tenKichCo") String tenKichCo,
@@ -55,11 +54,11 @@ public interface SanPhamChiTietRepository extends JpaRepository<ChiTietSanPham, 
 
 
     @Query(value = """
-SELECT spt.Gia FROM dbo.SanPhamCT spt JOIN dbo.KichCo kc ON kc.IdKichCo = spt.IdKichCo
-			JOIN dbo.MauSac ms ON ms.IdMauSac = spt.IdMauSac
-			WHERE kc.TenKichCo = :tenKichCo AND ms.IdMauSac = :mauSacId
-			AND spt.IdSanPham = :sanPhamId AND spt.CoHienThi = 1 AND spt.DaXoa = 0
-""",
+            SELECT spt.Gia FROM dbo.SanPhamCT spt JOIN dbo.KichCo kc ON kc.IdKichCo = spt.IdKichCo
+            			JOIN dbo.MauSac ms ON ms.IdMauSac = spt.IdMauSac
+            			WHERE kc.TenKichCo = :tenKichCo AND ms.IdMauSac = :mauSacId
+            			AND spt.IdSanPham = :sanPhamId AND spt.CoHienThi = 1 AND spt.DaXoa = 0
+            """,
             nativeQuery = true)
     BigDecimal layGiaBanSanPhamChiTiet(@Param("tenKichCo") String tenKichCo,
                                        @Param("mauSacId") Integer mauSacId,
@@ -88,14 +87,17 @@ SELECT spt.Gia FROM dbo.SanPhamCT spt JOIN dbo.KichCo kc ON kc.IdKichCo = spt.Id
 
     @Query(value = "SELECT count(*) FROM SanPhamCT WHERE IdSanPham = :sanPhamId AND Daxoa = 0", nativeQuery = true)
     int getCountChiTietSanPhamExistBySanPhamId(@Param("sanPhamId") Integer sanPhamId);
+
     @Query("""
-            select new com.example.duantotnghiepgiaythethaonova.dto.BestSellerDTO(sp.idCTSP, sum(hct.soLuong))
-            			from ChiTietSanPham sp
-            			JOIN HoaDon hd ON sp.idCTSP = hd.idHoaDon
-                        JOIN HoaDonChiTiet hct ON hct.idHoaDonCT = hd.idHoaDon
-            			group by sp.idCTSP
-            			order by sum(hct.soLuong) desc
+            select new com.example.duantotnghiepgiaythethaonova.dto.BestSellerDTO(sp.idCTSP, sum(hd.soLuong))
+            from ChiTietSanPham sp
+            join HoaDonChiTiet hd on sp = hd.chiTietSanPham
+            where hd.hoaDon.idHoaDon in (:listHoaDon)
+            group by sp.idCTSP
+            order by sum(hd.soLuong * hd.chiTietSanPham.gia) desc
             """)
+    List<BestSellerDTO> layIdChiTietSanPhamBanChay(List<Integer> listHoaDon, Pageable pageable);
+
 //    @Query(value = "SELECT spct.IdSanPhamCT, ha.LaAnhChinh, sp.TenSanPham, spct.IdKichCo, spct.IdMauSac, sp.Gia , sum(hct.DonGia * hct.SoLuong) as DoanhThu\n" +
 //            "FROM SanPhamCT spct\n" +
 //            "    JOIN HoaDon hd ON spct.IdSanPhamCT = hd.IdHoaDon\n" +
@@ -104,22 +106,10 @@ SELECT spt.Gia FROM dbo.SanPhamCT spt JOIN dbo.KichCo kc ON kc.IdKichCo = spt.Id
 //            "    JOIN HinhAnh ha ON sp.IdSanPham = ha.IdSanPham\n" +
 //            "GROUP BY spct.IdSanPhamCT, ha.LaAnhChinh, sp.Gia, spct.IdKichCo, sp.TenSanPham, spct.IdMauSac\n" +
 //            "order by sum(hct.DonGia * hct.SoLuong) desc", nativeQuery = true)
-    List<BestSellerDTO> layIdChiTietSanPhamBanChay(List<Integer> listHoaDon, Pageable pageable);
-//
+
     @Query("select sp from ChiTietSanPham sp where sp.idCTSP in (:ids) order by sp.idCTSP")
+//    @Query("select sp from ChiTietSanPham sp where sp.idCTSP in (:ids) order by field(sp.idCTSP, :ids)")
     List<ChiTietSanPham> layChiTietSanPhamBanChay(List<Integer> ids);
-
-//    @Query("SELECT sp \n" +
-//            "FROM ChiTietSanPham sp \n" +
-//            "WHERE sp.idCTSP IN (:ids) \n" +
-//            "ORDER BY \n" +
-//            "    CASE sp.idCTSP\n" +
-//            "        WHEN :id1 THEN 1\n" +
-//            "        WHEN :id2 THEN 2\n" +
-//            "        ELSE NULL\n" +
-//            "    END\n")
-//    List<ChiTietSanPham> layChiTietSanPhamBanChay(List<Integer> ids);
-
 
     @Query(value = "SELECT COALESCE(sum(spct.SoLuong),0) FROM SanPhamCT spct WHERE spct.IdSanPham = :sanPhamId AND spct.Daxoa = 0", nativeQuery = true)
     int getSumSoLuongBySanPhamId(@Param("sanPhamId") Integer id);

@@ -161,9 +161,9 @@
                                     <td th:text="${item.mauSac.tenMauSac}"></td>
                                     <td th:text="${#numbers.formatDecimal(item.soLuong, 0, 'COMMA', 0, 'POINT')}"></td>
                                     <td th:text="${item.nguoiTao}"></td>
-                                    <td th:text="${item.ngayTao}"></td>
+                                    <td th:text="${#dates.format(item.ngayTao, 'dd/MM/yyyy HH:mm:ss')}"></td>
                                     <td th:text="${item.nguoiCapNhat}"></td>
-                                    <td th:text="${item.ngayCapNhat}"></td>
+                                    <td th:text="${#dates.format(item.ngayCapNhat, 'dd/MM/yyyy HH:mm:ss')}"></td>
                                     <td class="text-center">
                                         <div class="custom-control custom-switch align-items-center">
                                             <input type="checkbox" class="custom-control-input"

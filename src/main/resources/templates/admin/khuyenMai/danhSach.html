@@ -49,7 +49,7 @@
         </div>
     </div>
 
-    <h1 class="h3 mb-2 text-center">Quản Lý Khuyến Mại</h1>
+    <h1 class="h3 mb-2 text-center">Quản Lý Khuyến Mãi</h1>
     <hr>
     <div class="container-fluid mt-4">
         <div class="card">
@@ -101,7 +101,7 @@
         </div>
         <br>
         <div class="row">
-            <div class="col-10 text-end">
+            <div class="col-10 text-end" th:if="${#request.isUserInRole('ROLE_ADMIN')}">
                 <a th:href="@{/admin/voucher/create}" class="btn btn-success">Tạo mã giảm giá</a>
             </div>
             <div class="col-1">

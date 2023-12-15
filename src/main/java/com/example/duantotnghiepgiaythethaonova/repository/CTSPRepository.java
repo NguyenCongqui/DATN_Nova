@@ -83,18 +83,18 @@ SELECT spt.Gia FROM dbo.SanPhamCT spt JOIN dbo.KichCo kc ON kc.IdKichCo = spt.Id
     @Query(value="SELECT count(*) FROM SanPhamCT WHERE IdSanPham = :IdSanPham AND DaXoa = 0", nativeQuery = true)
     int getCountSanPhamChiTietExistBySanPhamId(@Param("IdSanPham") Integer sanPhamId);
 
-    @Query("""
-            select new com.example.duantotnghiepgiaythethaonova.dto.BestSellerDTO(sp.idCTSP, sum(hd.soLuong))
-            from ChiTietSanPham sp
-            join HoaDonChiTiet hd on sp = hd.chiTietSanPham
-            where hd.hoaDon.idHoaDon in (:listHoaDon)
-            group by sp.idCTSP
-            order by sum(hd.soLuong) desc
-            """)
-    List<BestSellerDTO> layIdSanPhamChiTietBanChay(List<Integer> listHoaDon, Pageable pageable);
+//    @Query("""
+//            select new com.example.duantotnghiepgiaythethaonova.dto.BestSellerDTO(sp.idCTSP, sum(hd.soLuong))
+//            from ChiTietSanPham sp
+//            join HoaDonChiTiet hd on sp = hd.chiTietSanPham
+//            where hd.hoaDon.idHoaDon in (:listHoaDon)
+//            group by sp.idCTSP
+//            order by sum(hd.soLuong) desc
+//            """)
+//    List<BestSellerDTO> layIdSanPhamChiTietBanChay(List<Integer> listHoaDon, Pageable);
 
-    @Query("select sp from ChiTietSanPham sp where sp.idCTSP in (:ids) order by field(sp.id, :ids)")
-    List<ChiTietSanPham> laySanPhamChiTietBanChay(List<Integer> ids);
+//    @Query("select sp from ChiTietSanPham sp where sp.idCTSP in (:ids) order by field(sp.idCTSP, :ids)")
+//    List<ChiTietSanPham> laySanPhamChiTietBanChay(List<Integer> ids);
 
     @Query(value="SELECT COALESCE(sum(spct.SoLuong),0) FROM SanPhamCT spct WHERE spct.IdSanPham = :IdSanPham AND spct.DaXoa = 0", nativeQuery = true)
     int getSumSoLuongBySanPhamId(@Param("IdSanPham") Integer id);
