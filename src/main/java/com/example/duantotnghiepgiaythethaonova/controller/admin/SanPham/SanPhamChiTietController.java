@@ -1487,6 +1487,7 @@ public class SanPhamChiTietController {
 	public String updateProductDetail(@Valid @ModelAttribute("sanPhamChiTietDTO") SanPhamChiTietDTO sanPhamChiTietDTO,
 									  BindingResult result, Model model) {
 		Optional<ChiTietSanPham> optSPCTOld = sanPhamChiTietService.findById(sanPhamChiTietDTO.getSanPhamId());
+		System.out.println(sanPhamChiTietDTO.getSanPhamId() + "hiha");
 		final String messageSuccess = "Cập nhật sản phẩm chi tiết thành công";
 		final String messageDanger ="Cập nhật sản phẩm chi tiết thất bại";
 		if(optSPCTOld.isPresent()) {
