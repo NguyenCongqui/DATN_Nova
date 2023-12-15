@@ -637,25 +637,25 @@ public class SanPhamChiTietController {
 
 		String[] gias = request.getParameterValues("gias");
 		String[] idsgia = request.getParameterValues("giaIds");
-		if (soLuongs != null && ids != null) {
-			for (String item : soLuongs) {
+		if (gias != null && idsgia != null) {
+			for (String item : gias) {
 				if (!isNumeric(item)) {
 					redirect.addFlashAttribute("messageDanger", "Giá phải là số");
 					return "redirect:/admin/product/edit/"+data.getSanPhamId();
 				}
-				if(Integer.parseInt(item) < 1) {
+				if(Double.parseDouble(item) < 1) {
 					redirect.addFlashAttribute("messageDanger", "Giá phải lớn hơn 0");
 					return "redirect:/admin/product/edit/"+data.getSanPhamId();
 				}
 			}
-			for (String item : ids) {
+			for (String item : idsgia) {
 				if (!isNumeric(item)) {
 					redirect.addFlashAttribute("messageDanger", "Id phải là số");
 					return "redirect:/admin/product/edit/"+data.getSanPhamId();
 				}
 			}
 		}
-		// add key-id, value-soLuong -> map
+		// add key-id, value-gia -> map
 		Map<String, String> hm1 = new HashMap<>();
 		for (int i = 0; i < idsgia.length; i++) {
 			hm1.put(idsgia[i], gias[i]);
