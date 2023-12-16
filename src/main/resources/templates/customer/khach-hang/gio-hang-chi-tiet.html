@@ -1,261 +1,282 @@
-<!DOCTYPE html>
-<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{customer/layout/index}">
-<head>
-    <meta charset="UTF-8">
-    <title>Giỏ Hàng</title>
-    <style>
-        .shopping__cart__table {
-            max-height: 450px;
-            overflow-y: auto;
-        }
+    <!DOCTYPE html>
+    <html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+          layout:decorate="~{customer/layout/index}">
+    <head>
+        <meta charset="UTF-8">
+        <title>Giỏ Hàng</title>
+        <style>
+            .shopping__cart__table {
+                max-height: 450px;
+                overflow-y: auto;
+            }
 
-        .create-invoice-button {
-            background-color: black;
-            color: white;
-            font-size: 1.1em;
-            padding: 10px 20px;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-        }
+            .create-invoice-button {
+                background-color: black;
+                color: white;
+                font-size: 1.1em;
+                padding: 10px 20px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
+            }
 
-        .create-invoice-button:hover {
-            background-color: #333;
-        }
+            .create-invoice-button:hover {
+                background-color: #333;
+            }
 
-        .centered {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-        }
-        .breadcrumb__text{
-            margin-bottom: 50px;
-            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-        }
-    </style>
-    <link rel="shortcut icon" th:href="@{/static/customer/img/NOVA.png}" type="image/x-icon">
-    <script src="../../../static/admin/js/banHang/banHangOnline/datHang.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
-</head>
-<body>
-<!-- Page Content Wraper -->
-<div class="page-content-wraper" layout:fragment="content" th:object="${gioHangDTO}">
-    <!-- Bread Crumb -->
-    <section class="breadcrumb">
-        <div class="container">
-            <div class="row">
-                <div class="col-12">
-                    <nav class="breadcrumb-link">
-                        <a th:href="@{/khachhang/home}">Trang chủ</a>
-                        <span>Giỏ Hàng</span>
-                    </nav>
+            .centered {
+                position: absolute;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+            }
+            .breadcrumb__text{
+                margin-bottom: 50px;
+                font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            }
+        </style>
+        <link rel="shortcut icon" th:href="@{/static/customer/img/NOVA.png}" type="image/x-icon">
+        <script src="../../../static/admin/js/banHang/banHangOnline/datHang.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+
+    </head>
+    <body>
+    <!-- Page Content Wraper -->
+    <div class="page-content-wraper" layout:fragment="content" th:object="${gioHangDTO}">
+        <!-- Bread Crumb -->
+        <section class="breadcrumb">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <nav class="breadcrumb-link">
+                            <a th:href="@{/khachhang/home}">Trang chủ</a>
+                            <span>Giỏ Hàng</span>
+                        </nav>
+                    </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <!-- Bread Crumb -->
+        </section>
+        <!-- Bread Crumb -->
 
-    <!-- Page Content -->
-    <section class="content-page">
-        <th:block th:if="${message != null}">
-            <span class="text-danger">[[${message}]]</span>
-        </th:block>
-        <div class="container mb-80">
-            <div class="row">
-                <div class="col-sm-12">
-                    <article class="post-8">
-                        <form class="cart-form" action="#" method="post" th:action="@{/khachhang/gio-hang-chi-tiet}">
-                            <div class="cart-product-table-wrap responsive-table shopping__cart__table">
-                                <table>
-                                    <th:block th:if="*{!listGioHangChiTiets.isEmpty()}">
-                                        <thead>
-                                        <tr>
-                                            <th>
-                                                <input type="checkbox"  value="" th:id="checkAll" name="checkAll"/>
-                                            </th>
-                                            <th class="product-thumbnail"></th>
-                                            <th class="product-name">Sản Phẩm</th>
-                                            <th class="product-price">Kích Thước</th>
-                                            <th class="product-price">Màu Sắc</th>
-                                            <th class="product-price">Đơn Giá</th>
-                                            <th class="product-quantity">Số Lượng</th>
-                                            <th class="product-subtotal">Tổng</th>
-                                            <th class="product-remove">Xóa</th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                        <tr th:each="item : *{listGioHangChiTiets}">
-                                            <td>
-                                                <input type="checkbox"  class="form-checkbox" th:value="${item.id}"/>
-                                            </td>
+        <!-- Page Content -->
+        <section class="content-page">
+            <th:block th:if="${message != null}">
+                <span class="text-danger"></span>
+            </th:block>
 
-                                            <td class="product-thumbnail">
-                                                <a>
-                                                    <img th:src="@{|/uploads/images/${item.sanPhamChiTietDTO.sanPhamDTO.tenHinhAnh}|}"
-                                                         alt=""/></a>
-                                            </td>
-                                            <td class="product-name">
-                                                <a>[[${item.sanPhamChiTietDTO.sanPhamDTO.tenSanPham}]]</a>
-                                            </td>
-                                            <td class="product-price">
-                                                <a href="">[[${item.sanPhamChiTietDTO.tenKichCo}]]</a>
-                                            </td>
-                                            <td class="product-price">
-                                                <a href="">[[${item.sanPhamChiTietDTO.tenMauSac}]]</a>
-                                            </td>
-                                            <td class="product-price">
-                                            <span class="product-price-amount amount">[[${#numbers.formatDecimal(item.sanPhamChiTietDTO.gia, 0,
-                                                'COMMA', 0, 'POINT')}]] VNĐ</span>
-                                            </td>
-                                            <td>
-                                                <div class="product-quantity">
-                                                    <input type="hidden" id="cartId" th:name="ids" th:value="${item.id}">
-                                                    <input type="hidden" id="donGia" th:name="donGias"
-                                                           th:value="${item.sanPhamChiTietDTO.gia}">
-                                                    <input type="hidden" id="thanhTien" th:value="${item.thanhTien}">
-                                                    <div>
-                                                    <span type="submit" data-value="+" class="quantity-btn quantityPlus"></span>
-                                                    <input class="quantity input-lg" step="1" min="1" name="quantity"
-                                                           value="1" title="Quantity" type="number" th:name="soLuongs" th:value="${item.soLuong}"/>
-                                                    <span type="submit" data-value="-" class="quantity-btn quantityMinus"></span>
+            <script th:inline="javascript">
+                $(document).ready(function () {
+                    // Kiểm tra xem có thông báo cần hiển thị hay không
+                    var errorMessage = /*[[${message}]]*/ null;
+
+                    if (errorMessage) {
+                        // Hiển thị SweetAlert2 với hẹn giờ
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Lỗi',
+                            html: errorMessage,
+                            showConfirmButton: false,
+                            timer: 5000
+                        });
+                    }
+                });
+            </script>
+
+            <div class="container mb-80">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <article class="post-8">
+                            <form class="cart-form" action="#" method="post" th:action="@{/khachhang/gio-hang-chi-tiet}">
+                                <div class="cart-product-table-wrap responsive-table shopping__cart__table">
+                                    <table>
+                                        <th:block th:if="*{!listGioHangChiTiets.isEmpty()}">
+                                            <thead>
+                                            <tr>
+                                                <th>
+                                                    <input type="checkbox"  value="" th:id="checkAll" name="checkAll"/>
+                                                </th>
+                                                <th class="product-thumbnail"></th>
+                                                <th class="product-name">Sản Phẩm</th>
+                                                <th class="product-price">Kích Thước</th>
+                                                <th class="product-price">Màu Sắc</th>
+                                                <th class="product-price">Đơn Giá</th>
+                                                <th class="product-quantity">Số Lượng</th>
+                                                <th class="product-subtotal">Tổng</th>
+                                                <th class="product-remove">Xóa</th>
+                                            </tr>
+                                            </thead>
+                                            <tbody>
+                                            <tr th:each="item : *{listGioHangChiTiets}">
+                                                <td>
+                                                    <input type="checkbox"
+                                                           class="form-checkbox" th:value="${item.id}"/>
+                                                </td>
+
+                                                <td class="product-thumbnail">
+                                                    <a>
+                                                        <img th:src="@{|/uploads/images/${item.sanPhamChiTietDTO.sanPhamDTO.tenHinhAnh}|}"
+                                                             alt=""/></a>
+                                                </td>
+                                                <td class="product-name">
+                                                    <a>[[${item.sanPhamChiTietDTO.sanPhamDTO.tenSanPham}]]</a>
+                                                </td>
+                                                <td class="product-price">
+                                                    <a href="">[[${item.sanPhamChiTietDTO.tenKichCo}]]</a>
+                                                </td>
+                                                <td class="product-price">
+                                                    <a href="">[[${item.sanPhamChiTietDTO.tenMauSac}]]</a>
+                                                </td>
+                                                <td class="product-price">
+                                                <span class="product-price-amount amount">[[${#numbers.formatDecimal(item.sanPhamChiTietDTO.gia, 0,
+                                                    'COMMA', 0, 'POINT')}]] VNĐ</span>
+                                                </td>
+                                                <td>
+                                                    <div class="product-quantity">
+                                                        <input type="hidden" id="cartId" th:name="ids" th:value="${item.id}">
+                                                        <input type="hidden" id="donGia" th:name="donGias"
+                                                               th:value="${item.sanPhamChiTietDTO.gia}">
+                                                        <input type="hidden" id="thanhTien" th:value="${item.thanhTien}">
+
+    <!--                                                    <span type="submit" data-value="+" class="quantity-btn quantityPlus"></span>-->
+                                                        <input class="quantity input-lg" step="1" min="1" width="20px"
+                                                               value="1" type="number" th:name="soLuongs" th:value="${item.soLuong}"/>
+    <!--                                                    <span type="submit" data-value="-" class="quantity-btn quantityMinus"></span>-->
+
                                                     </div>
-                                                </div>
-                                            </td>
-                                            <td class="product-subtotal">
-                                            <span class="product-price-sub_totle amount">
-                                           [[${#numbers.formatDecimal(item.thanhTien, 0, 'COMMA', 0,
-                                        'POINT')}]] VNĐ
-                                            </span>
-                                            </td>
-                                            <td class="product-remove">
-                                                <button href="javascript:void(0)" type="button" data-toggle="modal"
-                                                   th:attr="data-target='#xoaGioHang'+${item.id}"><i class="fa fa-times-circle"
-                                                                                aria-hidden="true"></i></button>
+                                                </td>
+                                                <td class="product-subtotal">
+                                                <span class="product-price-sub_totle amount">
+                                               [[${#numbers.formatDecimal(item.thanhTien, 0, 'COMMA', 0,
+                                            'POINT')}]] VNĐ
+                                                </span>
+                                                </td>
+                                                <td class="product-remove">
+                                                    <button href="javascript:void(0)" type="button" data-toggle="modal"
+                                                       th:attr="data-target='#xoaGioHang'+${item.id}"><i class="fa fa-times-circle"
+                                                                                    aria-hidden="true"></i></button>
 
-                                                <div class="modal fade bd-example-modal-sm" th:attr="id='xoaGioHang'+${item.id}"
-                                                     tabindex="-1" role="dialog" aria-labelledby="exampleModalLabell"
-                                                     aria-hidden="true">
-                                                    <div class="modal-dialog" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalLabell">Xóa giỏ
-                                                                    hàng</h5>
-                                                                <button type="button" class="close" data-dismiss="modal"
-                                                                        aria-label="Close">
-                                                                    <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <span>Bạn có muốn xóa sản phẩm [[${item.sanPhamChiTietDTO.sanPhamDTO.tenSanPham}]] khỏi giỏ hàng ?</span>
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <a type="button"
-                                                                   th:href="@{|/khachhang/gio-hang-chi-tiet/xoa-gio-hang?id=${item.id}|}"
-                                                                   class="btn btn-danger">Xóa</a>
+                                                    <div class="modal fade bd-example-modal-sm" th:attr="id='xoaGioHang'+${item.id}"
+                                                         tabindex="-1" role="dialog" aria-labelledby="exampleModalLabell"
+                                                         aria-hidden="true">
+                                                        <div class="modal-dialog" role="document">
+                                                            <div class="modal-content">
+                                                                <div class="modal-header">
+                                                                    <h5 class="modal-title" id="exampleModalLabell">Xóa giỏ
+                                                                        hàng</h5>
+                                                                    <button type="button" class="close" data-dismiss="modal"
+                                                                            aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                    </button>
+                                                                </div>
+                                                                <div class="modal-body">
+                                                                    <span>Bạn có muốn xóa sản phẩm [[${item.sanPhamChiTietDTO.sanPhamDTO.tenSanPham}]] khỏi giỏ hàng ?</span>
+                                                                </div>
+                                                                <div class="modal-footer">
+                                                                    <a type="button"
+                                                                       th:href="@{|/khachhang/gio-hang-chi-tiet/xoa-gio-hang?id=${item.id}|}"
+                                                                       class="btn btn-danger">Xóa</a>
+                                                                </div>
                                                             </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </td>
-                                        </tr>
-                                        </tbody>
-                                    </th:block>
-                                </table>
-                                <div class="alert alert-warning container mt-3 text-center"
-                                     th:if="*{listGioHangChiTiets.isEmpty()}"
-                                     style="background-color: transparent; border: none;">
-                                    <img th:src="@{/static/admin/img/gioHangTrong1.png}" alt="Không có sản phẩm"
-                                         style="width: 350px; height: 200px;">
-                                    <br>
-                                    <p class="empty-message" style="margin-top: 20px; font-size: 1.8em;">Bạn chưa có sản phẩm
-                                        nào trong giỏ hàng!</p>
-                                </div>
-                            </div>
-                            <th:block th:if="*{!listGioHangChiTiets.isEmpty()}">
-                            <div class="row cart-actions">
-                                <div class="col-md-6">
-                                    <div class="coupon">
-<!--                                    <input class="input-md" id="coupon_code" name="coupon_code" title="Coupon Code" value="" placeholder="Enter Coupon Code" type="text">-->
-                                        <a class="btn btn-md btn-black"  data-target="#xoaSachGioHang" data-toggle="modal"  name="coupon_code" value="Xóa Sạch" type="submit">
-                                            <i class="fa fa-trash-o" aria-hidden="true"> </i>
-                                            Xóa Sạch</a>
+                                                </td>
+                                            </tr>
+                                            </tbody>
+                                        </th:block>
+                                    </table>
+                                    <div class="alert alert-warning container mt-3 text-center"
+                                         th:if="*{listGioHangChiTiets.isEmpty()}"
+                                         style="background-color: transparent; border: none;">
+                                        <img th:src="@{/static/admin/img/gioHangTrong1.png}" alt="Không có sản phẩm"
+                                             style="width: 350px; height: 200px;">
+                                        <br>
+                                        <p class="empty-message" style="margin-top: 20px; font-size: 1.8em;">Bạn chưa có sản phẩm
+                                            nào trong giỏ hàng!</p>
                                     </div>
                                 </div>
-<!--                                <div class="col-md-6 text-right">-->
-<!--                                    <input class="btn btn-md btn-black" name="update_cart" value="Update cart"-->
-<!--                                           disabled="" type="submit">-->
-<!--                                </div>-->
+                                <th:block th:if="*{!listGioHangChiTiets.isEmpty()}">
+                                <div class="row cart-actions">
+                                    <div class="col-md-6">
+                                        <div class="coupon">
+    <!--                                    <input class="input-md" id="coupon_code" name="coupon_code" title="Coupon Code" value="" placeholder="Enter Coupon Code" type="text">-->
+                                            <a class="btn btn-md btn-black"  data-target="#xoaSachGioHang" data-toggle="modal"  name="coupon_code" value="Xóa Sạch" type="submit">
+                                                <i class="fa fa-trash-o" aria-hidden="true"> </i>
+                                                Xóa Sạch</a>
+                                        </div>
+                                    </div>
+    <!--                                <div class="col-md-6 text-right">-->
+    <!--                                    <input class="btn btn-md btn-black" name="update_cart" value="Update cart"-->
+    <!--                                           disabled="" type="submit">-->
+    <!--                                </div>-->
 
-                                <div class="col-lg-4 col-md-4 col-sm-4">
-                                    <div class="continue__btn update__btn">
-                                        <button type="submit" class="btn btn-md btn-primary" style="margin-left: 125px">
-                                            <i class="fa fa-spinner "></i>Cập nhật giỏ hàng
-                                        </button>
+                                    <div class="col-lg-4 col-md-4 col-sm-4">
+                                        <div class="continue__btn update__btn">
+                                            <button type="submit" class="btn btn-md btn-primary" style="margin-left: 125px">
+                                                <i class="fa fa-spinner "></i>Cập nhật giỏ hàng
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                </th:block>
+                            </form>
+                            <th:block th:if="*{!listGioHangChiTiets.isEmpty()}">
+                            <div class="cart-collateral">
+                                <div class="cart_totals">
+    <!--                                <h3>Tổng Giỏ Hàng</h3>-->
+                                    <div class="responsive-table">
+                                        <table>
+                                            <tbody>
+                                            <tr class="order-total">
+                                                <th>Tổng Tiền</th>
+                                                <td><span class="product-price-amount amount" id="tongTienGioHang">
+
+                                                    </span>
+                                                    <span class="currency-sign">VND
+                                                      </span></td>
+                                            </tr>
+                                            </tbody>
+                                        </table>
+                                    </div>
+                                    <div class="product-proceed-to-checkout">
+                                        <a class="btn btn-lg btn-color form-full-width" type="button"  onclick="kiemTraSoLuongVaTaoHoaDon()">Đặt Hàng</a>
                                     </div>
                                 </div>
                             </div>
                             </th:block>
-                        </form>
-                        <th:block th:if="*{!listGioHangChiTiets.isEmpty()}">
-                        <div class="cart-collateral">
-                            <div class="cart_totals">
-<!--                                <h3>Tổng Giỏ Hàng</h3>-->
-                                <div class="responsive-table">
-                                    <table>
-                                        <tbody>
-                                        <tr class="order-total">
-                                            <th>Tổng Tiền</th>
-                                            <td><span class="product-price-amount amount" id="tongTienGioHang">
-
-                                                </span>
-                                                <span class="currency-sign">VND
-                                                  </span></td>
-                                        </tr>
-                                        </tbody>
-                                    </table>
-                                </div>
-                                <div class="product-proceed-to-checkout">
-                                    <a class="btn btn-lg btn-color form-full-width" type="button"  onclick="taoHoaDon()">Đặt Hàng</a>
-                                </div>
-                            </div>
+                        </article>
+                    </div>
+                </div>
+            </div>
+            <div class="modal fade bd-example-modal-sm" id="xoaSachGioHang" tabindex="-1" role="dialog"
+                 aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog modalXoaSachGioHang" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Làm sạch giỏ hàng</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
                         </div>
-                        </th:block>
-                    </article>
-                </div>
-            </div>
-        </div>
-        <div class="modal fade bd-example-modal-sm" id="xoaSachGioHang" tabindex="-1" role="dialog"
-             aria-labelledby="exampleModalLabel" aria-hidden="true">
-            <div class="modal-dialog modalXoaSachGioHang" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Làm sạch giỏ hàng</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <span>Bạn có muốn xóa tất cả sản phẩm khỏi giỏ hàng ?</span>
-                    </div>
-                    <div class="modal-footer">
-                        <button id="xoaSachGioHang-button" type="button"  onclick="xoaSachGiohang()" class="btn btn-danger">Xóa</button>
-                        <input id="idGioHang" type="hidden" th:value="${gioHangDTO.id}">
+                        <div class="modal-body">
+                            <span>Bạn có muốn xóa tất cả sản phẩm khỏi giỏ hàng ?</span>
+                        </div>
+                        <div class="modal-footer">
+                            <button id="xoaSachGioHang-button" type="button"  onclick="xoaSachGiohang()" class="btn btn-danger">Xóa</button>
+                            <input id="idGioHang" type="hidden" th:value="${gioHangDTO.id}">
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <script src="/static/customer/js/khach-hang/gio-hang.js"></script>
-        <script th:inline="javascript">
+            <script src="/static/customer/js/khach-hang/gio-hang.js"></script>
+            <script th:inline="javascript">
 
-        </script>
+            </script>
 
-    </section>
-    <!-- End Page Content -->
+        </section>
+        <!-- End Page Content -->
 
 
-</div>
-</body>
-</html>
+    </div>
+    </body>
+    </html>

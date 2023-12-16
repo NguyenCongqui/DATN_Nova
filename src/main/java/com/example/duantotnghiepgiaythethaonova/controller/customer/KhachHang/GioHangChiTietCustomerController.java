@@ -1,9 +1,6 @@
 package com.example.duantotnghiepgiaythethaonova.controller.customer.KhachHang;
 
-import com.example.duantotnghiepgiaythethaonova.dto.GioHangChiTietDTO;
-import com.example.duantotnghiepgiaythethaonova.dto.GioHangDTO;
-import com.example.duantotnghiepgiaythethaonova.dto.KhachHangDTO;
-import com.example.duantotnghiepgiaythethaonova.dto.KhuyenMaiDTO;
+import com.example.duantotnghiepgiaythethaonova.dto.*;
 import com.example.duantotnghiepgiaythethaonova.entity.ChiTietSanPham;
 import com.example.duantotnghiepgiaythethaonova.entity.GioHangChiTiet;
 import com.example.duantotnghiepgiaythethaonova.repository.GioHangChiTietRepository;
@@ -12,20 +9,17 @@ import com.example.duantotnghiepgiaythethaonova.repository.HoaDonRepository;
 import com.example.duantotnghiepgiaythethaonova.repository.SanPhamChiTietRepository;
 import com.example.duantotnghiepgiaythethaonova.service.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.lang.reflect.Array;
 import java.math.BigDecimal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 @Controller
 public class GioHangChiTietCustomerController {
@@ -198,5 +192,65 @@ public class GioHangChiTietCustomerController {
         }
         model.addAttribute("gioHangDTO", gioHangDTO);
         return "/customer/khach-hang/gio-hang-chi-tiet";
+    }
+
+    @PostMapping("/khachhang/gio-hang-chi-tiet/kiem-tra-so-luong")
+    @ResponseBody
+    public ResponseEntity<Map<String, Object>> kiemTraSoLuong(@RequestBody List<Integer> gioHangChiTietIds) {
+        Map<String, Object> response = new HashMap<>();
+
+        try {
+            List<KiemTraSoLuong> invalidProducts = new ArrayList<>();
+
+            for (Integer gioHangChiTietId : gioHangChiTietIds) {
+                GioHangChiTietDTO gioHangChiTietDTO = gioHangChiTietService.findById(gioHangChiTietId);
+
+                if (gioHangChiTietDTO.getSoLuong() <= 0 || gioHangChiTietDTO.getSoLuong() > gioHangChiTietDTO.getSanPhamChiTietDTO().getSoLuong()) {
+                    KiemTraSoLuong invalidProductInfo = new KiemTraSoLuong();
+                    invalidProductInfo.setGioHangChiTietDTO1(gioHangChiTietDTO);
+                    invalidProductInfo.setSoLuongCuaKhachHang(gioHangChiTietDTO.getSoLuong());
+
+                    invalidProducts.add(invalidProductInfo);
+                }
+            }
+
+            if (!invalidProducts.isEmpty()) {
+                response.put("canProceed", false);
+                response.put("message", "Số lượng sản phẩm không đủ hoặc không hợp lệ.");
+                response.put("invalidProducts", invalidProducts);
+            } else {
+                response.put("canProceed", true);
+            }
+
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            response.put("canProceed", false);
+            response.put("message", "Đã xảy ra lỗi khi kiểm tra số lượng sản phẩm.");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(response);
+        }
+    }
+
+    // Hàm kiểm tra số lượng sản phẩm
+    private boolean kiemTraSoLuongHopLe(List<Integer> gioHangChiTietIds) {
+        for (Integer gioHangChiTietId : gioHangChiTietIds) {
+            GioHangChiTietDTO gioHangChiTietDTO = gioHangChiTietService.findById(gioHangChiTietId);
+            if (gioHangChiTietDTO.getSoLuong() <= 0 || gioHangChiTietDTO.getSoLuong() > gioHangChiTietDTO.getSanPhamChiTietDTO().getSoLuong()) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+    private List<GioHangChiTietDTO> danhSachSPTuSoLuongKhongHopLe(List<Integer> gioHangChiTietIds) {
+        List<GioHangChiTietDTO> danhSachSPTuSoLuongKhongHopLe = new ArrayList<>();
+
+        for (Integer gioHangChiTietId : gioHangChiTietIds) {
+            GioHangChiTietDTO gioHangChiTietDTO = gioHangChiTietService.findById(gioHangChiTietId);
+            if (gioHangChiTietDTO.getSoLuong() <= 0 || gioHangChiTietDTO.getSoLuong() > gioHangChiTietDTO.getSanPhamChiTietDTO().getSoLuong()) {
+                danhSachSPTuSoLuongKhongHopLe.add(gioHangChiTietDTO);
+            }
+        }
+
+        return danhSachSPTuSoLuongKhongHopLe;
     }
 }
