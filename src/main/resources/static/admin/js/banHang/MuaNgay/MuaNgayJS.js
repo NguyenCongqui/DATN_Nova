@@ -36,13 +36,27 @@ $(document).ready(function () {
         if (soLuongInput > soLuongHienCoCus) {
             soLuongInput = soLuongHienCoCus;
         }
+
+        console.log("Số lượng hiện có:", soLuongInput);
+
+        // if (soLuongHienCoCus === 0) {
+        //     // Nếu số lượng là 0, ẩn nút "Mua Ngay"
+        //     $("#muaNgaySanPham").hide();
+        //     // Hoặc, bạn có thể hiển thị một thông báo cho biết sản phẩm đã hết hàng
+        //      //$("#muaNgaySanPham").text("Hết hàng").prop("disabled", true);
+        // } else {
+        //     // Nếu số lượng lớn hơn 0, hiển thị nút "Mua Ngay"
+        //     $("#muaNgaySanPham").show();
+        // }
     });
+
+
 
     $(".daucatmoi").on("input", function () {
         let soLuongInput = $(".daucatmoi").val();
         let sanPhamId = $("#id_san_pham").data("id");
         let soLuongHienCo = parseInt($("#soLuongHienCoCus" + sanPhamId).text());
-
+        console.log("Số lượng hiện có1:", soLuongInput);
         if (soLuongInput > soLuongHienCo) {
             Swal.fire({
                 icon: "error",
@@ -61,6 +75,13 @@ $(document).ready(function () {
             });
             $(this).val(1);
         }
+        // Kiểm tra nếu số lượng là 0, ẩn nút "Mua Ngay"
+        // if (soLuongHienCo === 0) {
+        //     $("#muaNgaySanPham").show();
+        // } else {
+        //     // Nếu số lượng lớn hơn 0, hiển thị nút "Mua Ngay"
+        //     $("#muaNgaySanPham").hidden();
+        // }
     });
 });
 
@@ -81,6 +102,21 @@ function getSoLuongSanPhamChiTiet(tenKichCo, mauSacId, sanPhamId) {
             }
 
             $("#soLuongHienCoCus" + sanPhamId).text(soLuongSanPhamChiTiet);
+            console.log("Số lượng hiện có:", soLuongSanPhamChiTiet);
+            if (soLuongSanPhamChiTiet === 0) {
+                // Nếu số lượng là 0, ẩn nút "Mua Ngay"
+               // $("#muaNgaySanPham").hide();
+                // Hoặc, bạn có thể hiển thị một thông báo cho biết sản phẩm đã hết hàng
+                $("#muaNgaySanPham")
+                    .text("Hết hàng").css("color", "red")
+                    .removeClass("btn-black");
+                return;
+            } else {
+                // Nếu số lượng lớn hơn 0, hiển thị nút "Mua Ngay"
+                $("#muaNgaySanPham").html('<i class="fa fa-shopping-bag"></i>Mua Ngay').addClass("btn-black btn btn-lg");
+            }
+
+
         },
         error: function () {
             alert("Đã xảy ra lỗi khi gửi yêu cầu đến server.");
@@ -162,6 +198,12 @@ $(document).ready(function () {
                 title: "Lỗi",
                 text: "Bạn chưa chọn số lượng",
             });
+            return;
+        }
+
+        // Kiểm tra xem nút có phải là "Hết hàng" không
+        if ($("#muaNgaySanPham").text().trim().toLowerCase() === "hết hàng") {
+            // Nếu là "Hết hàng", không thực hiện hành động mua ngay
             return;
         }
 

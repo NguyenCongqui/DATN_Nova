@@ -57,6 +57,12 @@
         label.msActive:after {
             border: 1px solid black;
         }
+        .out-of-stock {
+            /* Thêm kiểu dáng tùy chọn, ví dụ: màu đỏ và chữ nhỏ */
+            color: red;
+            font-size: 14px;
+            /* Bạn có thể thêm các kiểu dáng khác tùy thuộc vào thiết kế của bạn */
+        }
     </style>
     <script th:src="@{/static/admin/js/banHang/MuaNgay/MuaNgayJS.js}"></script>
 </head>
@@ -224,8 +230,8 @@
                                             <span data-value="-" class="quantity-btn quantityMinus"></span>
                                         </div>
                                         <a id="muaNgaySanPham" th:data-id="${shopDetails.sanPhamId}"
-                                           class="btn btn-lg btn-black"><i
-                                                class="fa fa-shopping-bag" aria-hidden="true"></i>Mua Ngay
+                                           class="btn btn-lg btn-black out-of-stock">
+                                            <i class="fa fa-shopping-bag" ></i>Mua Ngay
                                             <input type="hidden" id="auth" th:value="${#authentication.name}">
                                             <a/>
                                     </form>
