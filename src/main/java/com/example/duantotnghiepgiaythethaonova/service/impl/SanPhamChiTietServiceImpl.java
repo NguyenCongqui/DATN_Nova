@@ -1,6 +1,5 @@
 package com.example.duantotnghiepgiaythethaonova.service.impl;
 
-
 import com.example.duantotnghiepgiaythethaonova.dto.composite.SanPhamProductManageDTO;
 import com.example.duantotnghiepgiaythethaonova.dto.search.SPAndSPCTSearchDto;
 import com.example.duantotnghiepgiaythethaonova.entity.ChiTietSanPham;
@@ -131,8 +130,8 @@ public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
             sheet.setColumnWidth(0, 4000);
             sheet.setColumnWidth(1, 5000);
             sheet.setColumnWidth(2, 6000);
-            sheet.setColumnWidth(3, 4000);
-            sheet.setColumnWidth(4, 8000);
+            sheet.setColumnWidth(3, 8000);
+//            sheet.setColumnWidth(4, 8000);
 
             sheet.setDefaultRowHeightInPoints(sheet.getColumnWidthInPixels(1));
 
@@ -166,11 +165,11 @@ public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
             headerCell.setCellStyle(headerStyle);
 
 
-            headerCell = header.createCell(3);
-            headerCell.setCellValue("Giá");
-            headerCell.setCellStyle(headerStyle);
+//            headerCell = header.createCell(3);
+//            headerCell.setCellValue("Giá");
+//            headerCell.setCellStyle(headerStyle);
 
-            headerCell = header.createCell(4);
+            headerCell = header.createCell(3);
             headerCell.setCellValue("Tổng số lượng");
             headerCell.setCellStyle(headerStyle);
             row++;
@@ -219,11 +218,11 @@ public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
                 bodyCell.setCellValue(dto.getSanPham().getTenSanPham());
                 bodyCell.setCellStyle(bodyStyle);
 
-                bodyCell = body.createCell(3);
-                bodyCell.setCellValue("" + dto.getChiTietSanPham().getGia().toString());
-                bodyCell.setCellStyle(bodyStyle);
+//                bodyCell = body.createCell(3);
+//                bodyCell.setCellValue("" + dto.getChiTietSanPham().getGia().toString());
+//                bodyCell.setCellStyle(bodyStyle);
 
-                bodyCell = body.createCell(4);
+                bodyCell = body.createCell(3);
                 bodyCell.setCellValue(dto.getTongSoLuong());
                 bodyCell.setCellStyle(bodyStyle);
 

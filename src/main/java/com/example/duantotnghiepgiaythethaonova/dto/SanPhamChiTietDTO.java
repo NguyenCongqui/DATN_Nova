@@ -28,14 +28,13 @@ public class SanPhamChiTietDTO extends BaseDTO<BaseDTO> {
 
 	private Integer lotGiayId;
 
-	@DecimalMin(value = "1000", message = "Giá không được nhỏ hơn 1.000")
-	@NotNull(message = "Giá không được để trống")
-	private BigDecimal gia;
-
-
 	@NotNull(message = "Số lượng không được để trống")
 	@Min(value = 0, message = "Số lượng không được nhỏ hơn 0")
 	private Integer soLuong;
+
+	@DecimalMin(value = "1000", message = "Giá không được nhỏ hơn 1.000")
+	@NotNull(message = "Giá không được để trống")
+	private BigDecimal gia;
 
 	private Boolean coHienThi;
 

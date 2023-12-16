@@ -30,26 +30,13 @@ public class ChiTietSanPham extends BaseEntity implements Serializable {
     private Integer idCTSP;
     @Column(name = "MaSanPhamCT")
     private String maCTSP;
-    @DecimalMin(value = "1000", message = "Giá không được nhỏ hơn 1.000")
-    @NotNull(message = "Giá không được để trống")
     @Column(name = "Gia")
     private BigDecimal gia;
     @Column(name = "SoLuong")
     private Integer soLuong;
     @Column(name = "CoHienThi")
     private Boolean coHienThi;
-    //    @Column(name = "NgayTao")
-//    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-//    @Temporal(TemporalType.TIMESTAMP)
-//    private Date NgayTao;
-//    @Column(name = "NgayCapNhat")
-//    @DateTimeFormat(pattern = "yyyy-MM-dd'T'HH:mm")
-//    @Temporal(TemporalType.TIMESTAMP)
-//    private Date NgayCapNhat;
-//    @Column(name = "NguoiTao")
-//    private String NguoiTao;
-//    @Column(name = "NguoiCapNhat")
-//    private String NguoiCapNhat;
+
     @Column(name = "DaXoa")
     private Boolean daXoa;
 
