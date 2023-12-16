@@ -1,22 +1,17 @@
 package com.example.duantotnghiepgiaythethaonova.dto;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
+import java.math.BigDecimal;
 
+@Data
 public class BestSellerDTO {
 
     private Integer idSanPham;
     private String tenSanPham;
     private String anhChinhs;
     private Double giaBan;
-    private Long doanhSo;
+    private int soLuong;
     private String thuongHieu;
     private String kieuDang;
     private String chatLieu;
@@ -25,12 +20,11 @@ public class BestSellerDTO {
     private String dayGiay;
     private String deGiay;
     private String lotGiay;
+    private Long doanhThu;
+    private BigDecimal tongDoanhthu;
 
-    public BestSellerDTO(Integer id, Long doanhSo){
-        this.idSanPham = id;
-        this.doanhSo = doanhSo;
-        this.anhChinhs = "";
-        this.tenSanPham = "";
-        this.giaBan = 0D;
+    public BestSellerDTO(Integer idSanPham, Long doanhThu) {
+        this.idSanPham = idSanPham;
+        this.doanhThu = doanhThu;
     }
 }

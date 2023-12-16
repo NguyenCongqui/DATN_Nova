@@ -4,6 +4,7 @@ import com.example.duantotnghiepgiaythethaonova.dto.BestSellerDTO;
 import com.example.duantotnghiepgiaythethaonova.dto.DoanhSoChart;
 import com.example.duantotnghiepgiaythethaonova.dto.DoanhSoDTO;
 import com.example.duantotnghiepgiaythethaonova.entity.*;
+import com.example.duantotnghiepgiaythethaonova.repository.HoaDonChiTietRepository;
 import com.example.duantotnghiepgiaythethaonova.repository.HoaDonRepository;
 import com.example.duantotnghiepgiaythethaonova.repository.SanPhamChiTietRepository;
 import com.example.duantotnghiepgiaythethaonova.service.HinhAnhService;
@@ -11,6 +12,7 @@ import com.example.duantotnghiepgiaythethaonova.service.HoaDonService;
 import com.example.duantotnghiepgiaythethaonova.service.ThongKeService;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -31,6 +33,9 @@ public class ThongKeServiceImp implements ThongKeService {
     private static final Integer TRANGTHAI_HOAN_THANH = 7;
     private static final Integer TRANGTHAI_DA_GIAO = 4;
     private static final Integer TRANGTHAI_DANG_GIAO = 3;
+
+    @Autowired
+    HoaDonChiTietRepository hoaDonChiTietRepository;
 
 
     @Override
@@ -122,13 +127,19 @@ public class ThongKeServiceImp implements ThongKeService {
                 .map(HoaDon::getIdHoaDon)
                 .collect(Collectors.toList());
 
-        Pageable top5 = PageRequest.of(0, 5); // Page 0, Size 5
+        Pageable top5 = PageRequest.of(0, 5);
         List<BestSellerDTO> result = sanPhamChiTietRepository.layIdChiTietSanPhamBanChay(listHoaDonId, top5);
         List<Integer> sanPhamId = result.stream().map(BestSellerDTO::getIdSanPham).collect(Collectors.toList());
         List<ChiTietSanPham> sanPhams = sanPhamChiTietRepository.layChiTietSanPhamBanChay(sanPhamId);
         for (BestSellerDTO dto : result) {
+            BigDecimal tongDoanhSo = BigDecimal.ZERO;
             for (ChiTietSanPham sp : sanPhams) {
                 if (Objects.equals(sp.getIdCTSP(), dto.getIdSanPham())) {
+                    //get doanh so
+                    int soLuong = sp.getSoLuong();
+                    BigDecimal donGia = sp.getGia();
+                    tongDoanhSo = tongDoanhSo.add(BigDecimal.valueOf(soLuong).multiply(donGia));
+
                     SanPham sanPham = sp.getSanPham();
                     dto.setTenSanPham(sanPham.getTenSanPham());
                     dto.setGiaBan(sp.getGia().doubleValue());
@@ -137,10 +148,11 @@ public class ThongKeServiceImp implements ThongKeService {
                     dto.setKieuDang(sanPham.getKieuDang().getTenKieuDang());
                     dto.setMauSac(sp.getMauSac().getTenMauSac());
                     dto.setKichCo(sp.getKichCo().getTenKichCo());
+                    dto.setSoLuong(sp.getSoLuong());
                     List<HinhAnh> lstAnhChinh = hinhAnhService.getHinhAnhChinhBySanPhamId(sanPham.getIdSanPham());
                     String anhChinhs = lstAnhChinh.stream().filter(HinhAnh::getLaAnhChinh).findFirst().map(HinhAnh::getTenAnh).orElse("");
                     dto.setAnhChinhs(anhChinhs);
-
+                    dto.setTongDoanhthu(tongDoanhSo);
                 }
             }
         }

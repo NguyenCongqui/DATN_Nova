@@ -14,6 +14,8 @@ public class TimeLineDTO {
 
     private String thaoTac;
 
+    private String nguoiThaoTac;
+
     private Date ngayTao;
 
     private String tenTrangThai;
@@ -38,6 +40,10 @@ public class TimeLineDTO {
 
     private List<LichSuHoaDon> timeLineChoGiaoHang;
 
+    private List<LichSuHoaDon> timeLineDangGiaoHang;
 
+    private List<LichSuHoaDon> timeLineDaGiaoHang;
+
+    private List<LichSuHoaDon> timeLineDaHuy;
 
 }

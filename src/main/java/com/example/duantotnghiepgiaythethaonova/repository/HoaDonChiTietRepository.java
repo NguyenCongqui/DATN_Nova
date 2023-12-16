@@ -33,5 +33,7 @@ public interface HoaDonChiTietRepository extends JpaRepository<HoaDonChiTiet, In
     @Query(value = "SELECT * FROM dbo.HoaDonCT WHERE IdHoaDonCT = ? AND DaXoa = 0", nativeQuery = true)
     List<HoaDonChiTiet> findbyHoaDonIdAndDaXoa(Integer id);
 
+    @Query(value = "select * from HoaDonCT where IdSanPhamCT = ?", nativeQuery = true)
+    List<HoaDonChiTiet> test(Integer IdSanPhamCT);
 
 }
