@@ -8,7 +8,8 @@
 <div id="sidebar" class='active' th:fragment="sidebar"><!--sidebar-->
     <div class="sidebar-wrapper active">
         <div class="sidebar-header img1">
-            <a th:href="@{/admin/home}"><img th:src="@{/static/admin/images/logo-Nova-remove.png}" alt="NOVAShoes" srcset=""> </a>
+            <a th:href="@{/admin/home}"><img th:src="@{/static/admin/images/logo-Nova-remove.png}" alt="NOVAShoes"
+                                             srcset=""> </a>
         </div>
         <div class="sidebar-menu">
             <ul class="menu">
@@ -22,7 +23,7 @@
 
                 </li>
                 <hr>
-                <li class="sidebar-item">
+                <li class="sidebar-item" th:if="${#request.isUserInRole('ROLE_ADMIN')}">
                     <a th:href="@{/admin/thong-ke}" class='sidebar-link'>
                         <i class="fa-solid fa-chart-column" width="20"></i>
                         <span>Thống kê</span>
@@ -50,28 +51,28 @@
                         <li>
                             <a th:href="@{/admin/product}">Danh sách sản phẩm</a>
                         </li>
-                        <li>
+                        <li th:if="${#request.isUserInRole('ROLE_ADMIN')}">
                             <a th:href="@{/admin/kich-co}">Kích Cỡ</a>
                         </li>
-                        <li>
+                        <li th:if="${#request.isUserInRole('ROLE_ADMIN')}">
                             <a th:href="@{/admin/mau-sac}">Màu Sắc</a>
                         </li>
-                        <li>
+                        <li th:if="${#request.isUserInRole('ROLE_ADMIN')}">
                             <a th:href="@{/admin/kieu-dang}">Kiểu Dáng</a>
                         </li>
-                        <li>
+                        <li th:if="${#request.isUserInRole('ROLE_ADMIN')}">
                             <a th:href="@{/admin/chat-lieu}">Chất Liệu</a>
                         </li>
-                        <li>
+                        <li th:if="${#request.isUserInRole('ROLE_ADMIN')}">
                             <a th:href="@{/admin/thuong-hieu}">Thương Hiệu</a>
                         </li>
-                        <li>
+                        <li th:if="${#request.isUserInRole('ROLE_ADMIN')}">
                             <a th:href="@{/admin/day-giay}">Dây Giày</a>
                         </li>
-                        <li>
+                        <li th:if="${#request.isUserInRole('ROLE_ADMIN')}">
                             <a th:href="@{/admin/de-giay}">Đế Giày</a>
                         </li>
-                        <li>
+                        <li th:if="${#request.isUserInRole('ROLE_ADMIN')}">
                             <a th:href="@{/admin/lot-giay}">Lót Giày</a>
                         </li>
 
@@ -81,7 +82,7 @@
 
                 <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
-<!--                        <i class="fas fa-money-bill" ></i>-->
+                        <!--                        <i class="fas fa-money-bill" ></i>-->
                         <i class="fa-solid fa-file-invoice" width="20"></i>
                         <span>Hóa đơn</span>
                     </a>
@@ -94,7 +95,8 @@
 
 
                         <li>
-                            <a class="collapse-item" th:href="@{/admin/DonHang/ChoXacNhanDonHang/danhSach}">Đơn đặt hàng</a>
+                            <a class="collapse-item" th:href="@{/admin/DonHang/ChoXacNhanDonHang/danhSach}">Đơn đặt
+                                hàng</a>
                         </li>
 
                     </ul>
@@ -123,7 +125,7 @@
                 </li>
 
 
-                <li class="sidebar-item  has-sub" >
+                <li class="sidebar-item  has-sub">
                     <a href="#" class='sidebar-link'>
                         <i class="fas fa-ad" with="20"></i>
                         <span>Khuyến mãi</span>
@@ -135,7 +137,7 @@
                             <a th:href="@{/admin/voucher}">Danh sách</a>
                         </li>
 
-                        <li>
+                        <li th:if="${#request.isUserInRole('ROLE_ADMIN')}">
                             <a th:href="@{/admin/voucher/create}">Tạo mới</a>
                         </li>
 
@@ -172,13 +174,13 @@
                 <br>
                 <br>
                 <br>
-<!--                <script th:inline="javascript">-->
-<!--                    $(document).ready(function () {-->
-<!--                        $('#nguoiDangDangNhap').click(function () {-->
-<!--                            window.location.href = "/admin/thongTinNhanVienDangDangNhap";-->
-<!--                        });-->
-<!--                    });-->
-<!--                </script>-->
+                <!--                <script th:inline="javascript">-->
+                <!--                    $(document).ready(function () {-->
+                <!--                        $('#nguoiDangDangNhap').click(function () {-->
+                <!--                            window.location.href = "/admin/thongTinNhanVienDangDangNhap";-->
+                <!--                        });-->
+                <!--                    });-->
+                <!--                </script>-->
 
             </ul>
         </div>

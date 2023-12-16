@@ -139,8 +139,9 @@ function huyDon() {
         confirmButtonText: "Xác nhận",
     }).then((result) => {
         if (result.isConfirmed) {
+
             // Gửi yêu cầu hủy đơn hàng bằng Ajax
-            $.get('/updateHuyDon/' + hoaDonId, function (response) {
+            $.post('/updateHuyDon/' + hoaDonId, function (response) {
                 // Hiển thị thông báo hủy thành công với SweetAlert2
             }).then(function (resp) {
                 // Lưu trạng thái đã xác nhận vào sessionStorage

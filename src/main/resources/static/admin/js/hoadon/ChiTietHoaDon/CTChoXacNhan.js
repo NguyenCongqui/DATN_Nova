@@ -351,7 +351,7 @@ $(document).ready(function () {
             success: function (response) {
                 // Xử lý thành công
                 Swal.fire({
-                    icon: 'success', title: 'Cập nhật số lượng thành công !', showConfirmButton: false, timer: 2000
+                    icon: 'success', title: 'Cập nhật số lượng thành công!', showConfirmButton: false, timer: 2000
                 }).then(function () {
                     sessionStorage.setItem('isConfirmed', true);
                     location.reload();

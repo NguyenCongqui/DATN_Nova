@@ -1,5 +1,13 @@
 let statisticChart = null; // Declare myChart as a global variable
-function fetchDataChart(){
+
+// không cho chọn ngày tương lai
+var today = new Date().toISOString().split('T')[0];
+document.getElementById("startDate").max = today;
+document.getElementById("endDate").max = today;
+document.getElementById("startDateData").max = today;
+document.getElementById("endDateData").max = today;
+
+function fetchDataChart() {
     const startDate = document.getElementById('startDate').value;
     const endDate = document.getElementById('endDate').value;
     const url = `/api/doanh-so/chart?startDate=${startDate}&endDate=${endDate}`;
@@ -13,7 +21,8 @@ function fetchDataChart(){
             return response.json();
         });
 }
-function fetchDataSale(){
+
+function fetchDataSale() {
     const startDate = document.getElementById('startDateData').value;
     const endDate = document.getElementById('endDateData').value;
     const url = `/api/doanh-so/data?startDate=${startDate}&endDate=${endDate}`;
@@ -27,6 +36,7 @@ function fetchDataSale(){
             return response.json();
         });
 }
+
 function updateChart() {
     if (statisticChart) {
         statisticChart.destroy();
@@ -43,7 +53,7 @@ function updateChart() {
 
 function createSale(data) {
     if (data == null) return;
-    const formatter = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' , maximumFractionDigits: 3})
+    const formatter = new Intl.NumberFormat('vi-VN', {style: 'currency', currency: 'VND', maximumFractionDigits: 3})
     const doanhSo = document.getElementById('doanhSo');
     const doanhSoNgay = document.getElementById('doanhSoNgay');
     const hangBanDuoc = document.getElementById('hangBanDuoc');
@@ -92,6 +102,7 @@ window.onload = () => {
     updateChart();
     updateSale();
 }
+
 // Create the Bar Chart
 function createChart(chartData) {
     const ctx = document.getElementById('myChart').getContext('2d');

@@ -317,7 +317,7 @@ $(document).ready(function () {
                     ghiChu: ghiChu,
                     tienShipHD: shippingFeeIndex
                 }
-                console.log(data)
+                console.table(data)
                 fetch('http://localhost:8080/payment/create', {
                     // Cấu hình request
                     method: 'POST',

@@ -158,7 +158,7 @@
 							<th>Số điện thoại</th>
 							<th>Email</th>
 							<th>Trang thái</th>
-							<th colspan="2">Thao tác</th>
+							<th th:if="${#request.isUserInRole('ROLE_ADMIN')}" colspan="2">Thao tác</th>
 						</tr>
 						</thead>
 						<tbody th:each="item : *{listKhachHangDTO}">
@@ -183,7 +183,7 @@
 										</div>
 									</div>
 								</td>
-								<td><a th:href="@{|/admin/khach-hang/danh-sach/chinh-sua?id=${item.id}&page=1|}"
+								<td><a th:if="${#request.isUserInRole('ROLE_ADMIN')}" th:href="@{|/admin/khach-hang/danh-sach/chinh-sua?id=${item.id}&page=1|}"
 									   class="btn btn-outline-primary" title="Cập nhật"><i
 										class="fas fa-edit text-primary"></i>
 								</a></td>
