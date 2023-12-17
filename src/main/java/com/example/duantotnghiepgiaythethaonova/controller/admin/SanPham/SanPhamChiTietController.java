@@ -230,7 +230,7 @@ public class SanPhamChiTietController {
 		if(opt.isPresent()) {
 			dto.setSanPhamChiTiets(lstSp);
 //			dto.setGia(opt.get().getGia());
-			dto.setMaSanPham(opt.get().getMaSanPham());
+//			dto.setMaSanPham(opt.get().getMaSanPham());
 			dto.setTenChatLieu(opt.get().getChatLieu().getTenChatLieu());
 			dto.setTenKieuDang(opt.get().getKieuDang().getTenKieuDang());
 			dto.setTenThuongHieu(opt.get().getThuongHieu().getTenThuongHieu());
@@ -265,7 +265,7 @@ public class SanPhamChiTietController {
 			sanPhamManageDTONew.setMoTa(sanPhamManageDTO.get().getMoTa());
 			sanPhamManageDTONew.setSanPhamId(sanPhamManageDTO.get().getSanPhamId());
 			sanPhamManageDTONew.setSoLuong(sanPhamManageDTO.get().getSoLuong());
-			sanPhamManageDTONew.getMaSanPham();
+//			sanPhamManageDTONew.getMaSanPham();
 			sanPhamManageDTONew.setTenSanPham(sanPhamManageDTO.get().getTenSanPham());
 		}
 		model.addAttribute("sanPhamManageDTO", sanPhamManageDTONew);
@@ -282,7 +282,7 @@ public class SanPhamChiTietController {
 			SanPham sanPham = new SanPham();
 			sanPham.setDaXoa(false);
 //			sanPham.setGia(data.getGia());
-			sanPham.getMaSanPham();
+//			sanPham.getMaSanPham();
 			sanPham.setTenSanPham(data.getTenSanPham());
 			sanPham.setMoTa(data.getMoTa());
 
@@ -594,7 +594,7 @@ public class SanPhamChiTietController {
 		if (optSP.isPresent()) {
 			optSP.get().setDaXoa(false);
 //			optSP.get().setGia(data.getGia());
-			optSP.get().getMaSanPham();
+//			optSP.get().getMaSanPham();
 			optSP.get().setTenSanPham(data.getTenSanPham());
 			optSP.get().setMoTa(data.getMoTa());
 

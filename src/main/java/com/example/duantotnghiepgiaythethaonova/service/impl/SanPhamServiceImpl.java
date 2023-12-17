@@ -12,6 +12,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.text.DecimalFormat;
+import java.time.Instant;
 import java.util.Optional;
 @Service
 @AllArgsConstructor
@@ -30,23 +31,28 @@ public class SanPhamServiceImpl implements SanPhamService {
 //        String code = "SP" + formattedCount;
 //        return code;
 //    }
-
+public  String genMa(){
+    long gen = Instant.now().getEpochSecond();
+    String code = "SP" + gen;
+    return code;
+}
     @Override
     public <S extends SanPham> S save(S entity) {
-        Integer maxId = sanPhamRepository.getMaxId();
-        int idMax;
-        String ma;
-
-        if (maxId != null) {
-            idMax = maxId + 1;
-        } else {
-            idMax = 1;
-        }
-
-        DecimalFormat df = new DecimalFormat("00");
-        String formattedId = df.format(idMax);
-        ma = "SP" + formattedId;
-        entity.setMaSanPham(ma);
+//        Integer maxId = sanPhamRepository.getMaxId();
+//        int idMax;
+//        String ma;
+//
+//        if (maxId != null) {
+//            idMax = maxId + 1;
+//        } else {
+//            idMax = 1;
+//        }
+//
+//        DecimalFormat df = new DecimalFormat("00");
+//        String formattedId = df.format(idMax);
+//        ma = "SP" + formattedId;
+//        entity.setMaSanPham(ma);
+        entity.setMaSanPham(genMa());
         entity.setDaXoa(false);
         return sanPhamRepository.save(entity);
     }
