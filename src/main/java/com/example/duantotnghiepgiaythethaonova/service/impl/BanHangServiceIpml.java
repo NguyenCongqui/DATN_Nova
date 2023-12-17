@@ -1,5 +1,6 @@
 package com.example.duantotnghiepgiaythethaonova.service.impl;
 
+import com.example.duantotnghiepgiaythethaonova.dto.TimeLineDTO;
 import com.example.duantotnghiepgiaythethaonova.dto.search.SPAndSPCTSearchDto;
 import com.example.duantotnghiepgiaythethaonova.entity.*;
 import com.example.duantotnghiepgiaythethaonova.repository.*;
@@ -136,11 +137,16 @@ public class BanHangServiceIpml implements BanHangService {
             gd.setHoaDon(hoaDon);
             gd.setNgayCapNhat(new Date());
             gd.setNgayTao(new Date());
-            gd.setNguoiCapNhat("Linh Update");
-            gd.setNguoiTao("Linh Create");
+            gd.setNguoiCapNhat("ABC");
+            gd.setNguoiTao("ABC");
             gd.setTrangThai(tt);
             giaoDichRepository.save(gd);
-
+//            LichSuHoaDon lichSuHoaDon = new LichSuHoaDon();
+//            lichSuHoaDon.setNguoiThaoTac("a");
+//            lichSuHoaDon.setHoaDon(hoaDon);
+//            lichSuHoaDon.setTrangThaiID(hoaDon.getTrangThai().getIdTrangThai());
+//            lichSuHoaDon.setThaoTac("Tao don hang");
+//            lichSuHoaDonRepository.save(lichSuHoaDon);
 
             Optional<NguoiDung> OptNguoiDung = nguoiDungRepository.findByEmail2(email);
             if (OptNguoiDung.isPresent()) {
@@ -167,11 +173,11 @@ public class BanHangServiceIpml implements BanHangService {
                 sanPhamChiTiet.setSoLuong(soLuongcapNhat);
                 sanPhamChiTietRepository.save(sanPhamChiTiet);
             }
-
-            if (email == null) {
-                gd.setNguoiTao(nguoiNhan);
-                giaoDichRepository.save(gd);
-            }
+//
+//            if (email == null) {
+//                gd.setNguoiTao(nguoiNhan);
+//                giaoDichRepository.save(gd);
+//            }
 
             try {
                 emailService.sendOrderConfirmationEmail(emailNguoiNhan, hoaDon);

@@ -21,10 +21,10 @@ public class ChiTietHoaDonController {
     //CHỜ XÁC NHẬN
     @RequestMapping("ChiTietHoaDon/ChoXacNhan/hoa-don-id={id}")
     public String ChoXacNhan(@PathVariable("id") Integer id, Model model) {
-//        chiTietHoaDonService.choXacNhan(id, model);
-        TimeLineDTO timeLineDTO = timeLineService.getTimeLineChoXacNhan(id);
-        model.addAttribute("timeLine", timeLineDTO);
-        System.out.println(timeLineDTO);
+        chiTietHoaDonService.choXacNhan(id, model);
+//        TimeLineDTO timeLineDTO = timeLineService.getTimeLineChoXacNhan(id);
+//        model.addAttribute("timeLine", timeLineDTO);
+//        System.out.println(timeLineDTO);
         return "admin/hoadon/ChiTiethoaDon/CTChoXacNhan";
     }
 
@@ -32,6 +32,11 @@ public class ChiTietHoaDonController {
     @RequestMapping("ChiTietHoaDon/ChoGiaoHang/hoa-don-id={id}")
     public String ChoGiaoHang(@PathVariable("id") Integer id, Model model) {
         chiTietHoaDonService.choGiaoHang(id, model);
+//        TimeLineDTO timeLineDTOCXN = timeLineService.getTimeLineChoXacNhan(id);
+//        model.addAttribute("timeLine", timeLineDTOCXN);
+//        TimeLineDTO timeLineDTO = timeLineService.getTimeLineChoGiao(id);
+//        model.addAttribute("timeLineChoGiao", timeLineDTO);
+//        System.out.println(timeLineDTO + "cho giao");
         return "admin/hoadon/ChiTiethoaDon/CTChoGiaohang";
     }
 

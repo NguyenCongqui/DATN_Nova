@@ -158,7 +158,7 @@
                             <a th:href="@{/admin/khach-hang/danh-sach}">Danh sách</a>
                         </li>
 
-                        <li>
+                        <li th:if="${#request.isUserInRole('ROLE_ADMIN')}">
                             <a th:href="@{/admin/khach-hang/danh-sach/chinh-sua}">Tạo mới</a>
                         </li>
 

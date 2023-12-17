@@ -51,7 +51,7 @@
             <th scope="col">Số điện thoại</th>
             <th scope="col">Ngày tạo đơn</th>
             <th scope="col">Tổng tiền</th>
-            <th scope="col">Ghi chú</th>
+<!--            <th scope="col">Ghi chú</th>-->
             <th scope="col">Thao tác</th>
         </tr>
         </thead>
@@ -62,7 +62,7 @@
             <th th:text="${hoaDon.sdtNguoiNhan}"></th>
             <td th:text="${#dates.format(hoaDon.ngayTao, 'dd/MM/yyyy')}"></td>
             <td th:text="${#numbers.formatDecimal(hoaDon.tongTienHoaDon, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></td>
-            <td th:text="${hoaDon.ghiChu}"></td>
+<!--            <td th:text="${hoaDon.ghiChu}"></td>-->
             <td>
                 <!--XEM CHI TIẾT HÓA ĐƠN-->
                 <div class="btn-group" title="Xem chi tiết">

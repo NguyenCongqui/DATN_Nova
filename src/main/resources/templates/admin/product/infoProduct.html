@@ -146,7 +146,7 @@
                                     <th>Ngày tạo</th>
                                     <th>Người chỉnh sửa</th>
                                     <th>Ngày chỉnh sửa</th>
-                                    <th>Có hiển thị</th>
+                                    <th th:if="${#request.isUserInRole('ROLE_ADMIN')}">Có hiển thị</th>
                                 </tr>
                                 <tr th:if="${not #lists.isEmpty(sanPhamChiTiets)}">
                                     <td colspan="9">
@@ -164,7 +164,7 @@
                                     <td th:text="${#dates.format(item.ngayTao, 'dd/MM/yyyy HH:mm:ss')}"></td>
                                     <td th:text="${item.nguoiCapNhat}"></td>
                                     <td th:text="${#dates.format(item.ngayCapNhat, 'dd/MM/yyyy HH:mm:ss')}"></td>
-                                    <td class="text-center">
+                                    <td class="text-center" th:if="${#request.isUserInRole('ROLE_ADMIN')}">
                                         <div class="custom-control custom-switch align-items-center">
                                             <input type="checkbox" class="custom-control-input"
                                                 th:id="customSwitch + ${item.idCTSP}" th:data-id="${item.idCTSP}"
@@ -216,8 +216,8 @@
                                         <br>
 <!--                                        <div class="file-upload-indicator" title="Not uploaded yet"><i-->
 <!--                                                class="bi-plus-lg text-warning"></i></div>-->
-                                        <div class="file-actions">
-                                            <div >
+                                        <div class="file-actions" th:if="${#request.isUserInRole('ROLE_ADMIN')}">
+                                            <div  >
                                                 <button type="button" data-toggle="popover" data-trigger="hover"
                                                     data-placement="top" data-content="Ảnh chính"
                                                     th:classappend="${img.laAnhChinh == true? 'active': ''}"

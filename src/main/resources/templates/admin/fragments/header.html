@@ -79,7 +79,7 @@
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-end">
-                    <a class="dropdown-item" href="#" id="nguoiDangDangNhap"><i data-feather="user"></i> Thông tin</a>
+                    <a th:if="${#request.isUserInRole('ROLE_ADMIN')}" class="dropdown-item" href="#" id="nguoiDangDangNhap"><i data-feather="user"></i> Thông tin</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" th:href="@{/security/logoff}" onclick="dangXuat()"><i class="fa-solid
                         fa-power-off"></i> Đăng xuất</a>

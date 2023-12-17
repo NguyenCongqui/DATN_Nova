@@ -333,6 +333,13 @@ public class HoaDonServiceImpl implements HoaDonService {
             hoaDon.setNguoiCapNhat("linh");
             hoaDonRepository.save(hoaDon);
 
+//            LichSuHoaDon lichSuHoaDon = new LichSuHoaDon();
+//            lichSuHoaDon.setNguoiThaoTac("a");
+//            lichSuHoaDon.setHoaDon(hoaDon);
+//            lichSuHoaDon.setTrangThaiID(3);
+//            lichSuHoaDon.setThaoTac("Xac chờ don");
+//            lichSuHoaDonRepository.save(lichSuHoaDon);
+
             GiaoDich gd = new GiaoDich();
             gd.setHoaDon(hoaDon);
             gd.setNgayCapNhat(new Date());
@@ -375,6 +382,7 @@ public class HoaDonServiceImpl implements HoaDonService {
                 hoaDon.setNgayCapNhat(new Date());
                 hoaDon.setNguoiCapNhat("linh");
                 hoaDonRepository.save(hoaDon);
+
                 GiaoDich gd = new GiaoDich();
                 gd.setHoaDon(hoaDon);
                 gd.setNgayCapNhat(new Date());
@@ -419,6 +427,13 @@ public class HoaDonServiceImpl implements HoaDonService {
             hoaDon.setNguoiCapNhat("linh");
             hoaDonRepository.save(hoaDon);
             String message = "Xác nhận thành công !";
+
+//            LichSuHoaDon lichSuHoaDon = new LichSuHoaDon();
+//            lichSuHoaDon.setHoaDon(hoaDon);
+//            lichSuHoaDon.setTrangThaiID(2);
+//            lichSuHoaDon.setThaoTac("Xac nhan don");
+//            lichSuHoaDonRepository.save(lichSuHoaDon);
+
             GiaoDich gd = new GiaoDich();
             gd.setHoaDon(hoaDon);
             gd.setNgayCapNhat(new Date());
@@ -450,17 +465,16 @@ public class HoaDonServiceImpl implements HoaDonService {
 
     @Override
     public ResponseEntity<String> updateHuyDonChoXacNhan(Integer hoaDonId) {
-        String lyDon = "";
         Optional<HoaDon> optionalHoaDon = hoaDonRepository.findById(hoaDonId);
         if (optionalHoaDon.isPresent()) {
             HoaDon hoaDon = optionalHoaDon.get();
             TrangThai tt = new TrangThai();
             tt.setIdTrangThai(5);
             hoaDon.setTrangThai(tt);
-            hoaDon.setGhiChu(lyDon);
             hoaDon.setNgayCapNhat(new Date());
             hoaDon.setNguoiCapNhat("linh");
             hoaDonRepository.save(hoaDon);
+
             GiaoDich gd = new GiaoDich();
             gd.setHoaDon(hoaDon);
             gd.setNgayCapNhat(new Date());
@@ -506,8 +520,6 @@ public class HoaDonServiceImpl implements HoaDonService {
             return ResponseEntity.notFound().build();
         }
     }
-
-
 
 
     @Override

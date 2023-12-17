@@ -129,7 +129,7 @@
                         <th class="text-center">Thời gian</th>
                         <th class="text-center">Trạng thái</th>
                         <th class="text-center">Kích hoạt</th>
-                        <th class="text-center">Hành động</th>
+                        <th class="text-center" th:if="${#request.isUserInRole('ROLE_ADMIN')}">Hành động</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -145,19 +145,20 @@
                             <span> - </span>
                             <span th:text="${#dates.format(voucher.ngayKetThuc, 'dd/MM/yyyy')}"></span>
                         </td>
-                        <td th:text="${voucher.trangThai ? 'Đang hoạt động': 'Hết hiệu lực'}" class="text-center">
+                        <td style="text-align: center" th:text="${voucher.trangThai ? 'Đang hoạt động': 'Hết hiệu lực'}"
+                            th:class="${voucher.trangThai ? 'text-success' : 'text-danger'}"></td>
                         <td class="text-center">
                             <a th:href="@{/admin/voucher/toggle/{id}(id=${voucher.id})}">
                                 <i th:class="${voucher.trangThai ? 'bi bi-toggle-on' : 'bi bi-toggle-off'}"
                                    style="font-size: 25px;"></i>
                             </a>
                         </td>
-                        <td class="text-center">
+                        <td th:if="${#request.isUserInRole('ROLE_ADMIN')}" class="text-center">
                             <a th:href="@{/admin/voucher/edit/{id}(id=${voucher.id})}" class="btn btn-warning btn-sm">
                                 <!-- <i class="bi bi-pencil"></i> -->
                                 <i class="fas fa-edit text-primary"></i>
                             </a>
-                            <a class="btn btn-outline-danger btn-sm" th:data-id="${voucher.id}"
+                            <a  class="btn btn-outline-danger btn-sm" th:data-id="${voucher.id}"
                                data-toggle="popover" data-trigger="hover" data-placement="top"
                                data-content="Xóa voucher"
                                onclick="showConfirmModalDeleteDialogVoucher(this.getAttribute('data-id'))">
