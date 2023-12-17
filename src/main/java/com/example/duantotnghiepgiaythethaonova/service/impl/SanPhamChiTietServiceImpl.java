@@ -131,7 +131,8 @@ public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
             sheet.setColumnWidth(1, 5000);
             sheet.setColumnWidth(2, 6000);
             sheet.setColumnWidth(3, 8000);
-//            sheet.setColumnWidth(4, 8000);
+            sheet.setColumnWidth(4, 8000);
+//            sheet.setColumnWidth(5, 8000);
 
             sheet.setDefaultRowHeightInPoints(sheet.getColumnWidthInPixels(1));
 
@@ -165,13 +166,17 @@ public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
             headerCell.setCellStyle(headerStyle);
 
 
-//            headerCell = header.createCell(3);
-//            headerCell.setCellValue("Giá");
-//            headerCell.setCellStyle(headerStyle);
-
             headerCell = header.createCell(3);
+            headerCell.setCellValue("Mã sản phẩm");
+            headerCell.setCellStyle(headerStyle);
+
+            headerCell = header.createCell(4);
             headerCell.setCellValue("Tổng số lượng");
             headerCell.setCellStyle(headerStyle);
+
+//            headerCell = header.createCell(5);
+//            headerCell.setCellValue("id");
+//            headerCell.setCellStyle(headerStyle);
             row++;
             for (SanPhamProductManageDTO dto : lstDto) {
                 // body
@@ -218,14 +223,17 @@ public class SanPhamChiTietServiceImpl implements SanPhamChiTietService {
                 bodyCell.setCellValue(dto.getSanPham().getTenSanPham());
                 bodyCell.setCellStyle(bodyStyle);
 
-//                bodyCell = body.createCell(3);
-//                bodyCell.setCellValue("" + dto.getChiTietSanPham().getGia().toString());
-//                bodyCell.setCellStyle(bodyStyle);
-
                 bodyCell = body.createCell(3);
+                bodyCell.setCellValue(dto.getSanPham().getMaSanPham());
+                bodyCell.setCellStyle(bodyStyle);
+
+                bodyCell = body.createCell(4);
                 bodyCell.setCellValue(dto.getTongSoLuong());
                 bodyCell.setCellStyle(bodyStyle);
 
+//                bodyCell = body.createCell(5);
+//                bodyCell.setCellValue(dto.getChiTietSanPham().getIdCTSP());
+//                bodyCell.setCellStyle(bodyStyle);
                 indexItemOfSheet++;
             }
             // finaly

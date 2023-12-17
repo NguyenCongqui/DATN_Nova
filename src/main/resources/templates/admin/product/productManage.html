@@ -132,6 +132,12 @@
                                     th:field="*{tenSanPham}">
                             </div>
                             <div class="col-sm-3">
+                                <label>Mã sản phẩm:</label>
+                                <input type="text" class="form-control" name="maSanPham"
+                                       id="maSanPhamSearchProductManage" placeholder="Mã sản phẩm"
+                                       th:field="*{maSanPham}">
+                            </div>
+                            <div class="col-sm-3">
                                 <label for="kieuDangId">Tên kiểu dáng:</label>
                                 <select class="selectpicker" name="kieuDangId" id="kieuDangId" th:field="*{kieuDangIds}"
                                     multiple>
@@ -148,18 +154,19 @@
                                         th:text="${item.tenChatLieu} "></option>
                                 </select>
                             </div>
-                            <div class="col-sm-3">
-                                <label for="thuongHieuIds">Tên thương hiệu:</label>
-                                <select class="selectpicker" name="thuongHieuIds" id="thuongHieuIds"
-                                    th:field="*{thuongHieuIds}" multiple>
-                                    <option th:each="item : ${lstThuongHieu}" th:value="${item.idThuongHieu}"
-                                        th:text="${item.tenThuongHieu}">
-                                    </option>
-                                </select>
-                            </div>
+
                         </div>
                         <!-- --- -->
                         <div class="row mt-3">
+                            <div class="col-sm-3">
+                                <label for="thuongHieuIds">Tên thương hiệu:</label>
+                                <select class="selectpicker" name="thuongHieuIds" id="thuongHieuIds"
+                                        th:field="*{thuongHieuIds}" multiple>
+                                    <option th:each="item : ${lstThuongHieu}" th:value="${item.idThuongHieu}"
+                                            th:text="${item.tenThuongHieu}">
+                                    </option>
+                                </select>
+                            </div>
                             <div class="col-sm-3">
                                 <label for="kichCoIds">Tên kích cỡ:</label>
                                 <select class="selectpicker" name="kichCoIds" id="kichCoIds" th:field="*{kichCoIds}"
@@ -207,8 +214,7 @@
                             </div>
                             <div class="col-sm-3">
                                 <label for="hienThi">Loại hiển thị:</label>
-                                <select class="selectpicker" name="hienThi" id="hienThi" th:field="*{coHienThi}"
-                                    multiple>
+                                <select class="selectpicker show-tick" name="hienThi" id="hienThi" th:field="*{coHienThi}">
                                     <option value="1">Đang hiển thị</option>
                                     <option value="0">Không hiển thị</option>
                                 </select>
@@ -368,7 +374,7 @@
                             <div class="btn-group-sm">
                                 <div class="float-right">
                                     <a class="btn btn-success mr-sm-1 text-light"
-                                        th:href="@{/admin/product/exportExcelProduct}">Export <svg
+                                        th:href="@{/admin/product/exportExcelProduct}">Xuất Excel <svg
                                             xmlns="http://www.w3.org/2000/svg" width="16" height="16"
                                             fill="currentColor" class="bi bi-filetype-xls" viewBox="0 0 16 16">
                                             <path fill-rule="evenodd"

@@ -77,10 +77,9 @@
                                     th:value="${sanPham.tenSanPham}" readonly />
                             </div>
                             <div class="col-sm-6">
-                                <label >Giá:</label>
-                                <input type="text" class="form-control" name="gia" id="gia"
-                                    th:value="${#numbers.formatDecimal(sanPham.gia, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"
-                                    readonly />
+                                <label >Mã sản phẩm:</label>
+                                <input type="text" class="form-control"placeholder="Mã sản phẩm"
+                                       th:value="${sanPham.maSanPham}" readonly />
                             </div>
                             <div class="col-sm-3 mt-3">
                                 <div class="col-sm-12">
@@ -142,6 +141,10 @@
                                     <th>Kích cỡ</th>
                                     <th>Màu sắc</th>
                                     <th>Số lượng</th>
+                                    <th>Giá</th>
+                                    <th>Dây giày</th>
+                                    <th>Đế giày</th>
+                                    <th>Lót giày</th>
                                     <th>Người tạo</th>
                                     <th>Ngày tạo</th>
                                     <th>Người chỉnh sửa</th>
@@ -160,6 +163,10 @@
                                     <td th:text="${item.kichCo.tenKichCo}"></td>
                                     <td th:text="${item.mauSac.tenMauSac}"></td>
                                     <td th:text="${#numbers.formatDecimal(item.soLuong, 0, 'COMMA', 0, 'POINT')}"></td>
+                                    <td th:text="${#numbers.formatDecimal(item.gia, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></td>
+                                    <td th:text="${item.dayGiay.tenDayGiay}"></td>
+                                    <td th:text="${item.deGiay.tenDeGiay}"></td>
+                                    <td th:text="${item.lotGiay.tenLotGiay}"></td>
                                     <td th:text="${item.nguoiTao}"></td>
                                     <td th:text="${#dates.format(item.ngayTao, 'dd/MM/yyyy HH:mm:ss')}"></td>
                                     <td th:text="${item.nguoiCapNhat}"></td>

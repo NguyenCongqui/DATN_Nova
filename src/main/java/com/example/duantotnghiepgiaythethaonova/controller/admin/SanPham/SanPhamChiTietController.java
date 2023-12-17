@@ -230,7 +230,7 @@ public class SanPhamChiTietController {
 		if(opt.isPresent()) {
 			dto.setSanPhamChiTiets(lstSp);
 //			dto.setGia(opt.get().getGia());
-//			dto.setMaSanPham(opt.get().getMaSanPham());
+			dto.setMaSanPham(opt.get().getMaSanPham());
 			dto.setTenChatLieu(opt.get().getChatLieu().getTenChatLieu());
 			dto.setTenKieuDang(opt.get().getKieuDang().getTenKieuDang());
 			dto.setTenThuongHieu(opt.get().getThuongHieu().getTenThuongHieu());
@@ -622,7 +622,7 @@ public class SanPhamChiTietController {
 					redirect.addFlashAttribute("messageDanger", "Số lượng phải là số");
 					return "redirect:/admin/product/edit/"+data.getSanPhamId();
 				}
-				if(Integer.parseInt(item) < 1) {
+				if(Integer.parseInt(item) < 0) {
 					redirect.addFlashAttribute("messageDanger", "Số lượng phải lớn hơn 0");
 					return "redirect:/admin/product/edit/"+data.getSanPhamId();
 				}
@@ -1594,6 +1594,7 @@ public class SanPhamChiTietController {
 				for (SanPham sanPham : resultPage.getContent()) {
 					int countSPCT = sanPhamChiTietService.getCountChiTietSanPhamExistBySanPhamId(sanPham.getIdSanPham());
 					List<HinhAnh> lstHA = hinhAnhService.getHinhAnhChinhBySanPhamId(sanPham.getIdSanPham());
+//					ChiTietSanPham lstctsp = sanPhamChiTietService.getLstChiTietSanPhamBySanPhamId(sanPham.getIdSanPham());
 					List<String> lstHAStr = new ArrayList<>();
 					for (HinhAnh hinhAnh : lstHA) {
 						lstHAStr.add(hinhAnh.getTenAnh());
@@ -1602,10 +1603,11 @@ public class SanPhamChiTietController {
 					spMN.setSanPham(sanPham);
 					spMN.setAnhChinhs(lstHAStr);
 					spMN.setTongSoLuong(countSPCT);
+//					spMN.setChiTietSanPham(lstctsp);
 					lstDto.add(spMN);
 				}
 			}else {
-				redirect.addFlashAttribute("messageDanger", "Không có dữ liệu để export");
+				redirect.addFlashAttribute("messageDanger", "Không có dữ liệu để xuất");
 				return "redirect:/admin/product";
 			}
 		}
@@ -1617,9 +1619,9 @@ public class SanPhamChiTietController {
 			e.printStackTrace();
 		}
 		if(!checked) {
-			redirect.addFlashAttribute("messageSuccess", "Export excel thành công");
+			redirect.addFlashAttribute("messageSuccess", "Xuất excel thành công");
 		}else {
-			redirect.addFlashAttribute("messageDanger", "Export excel thất bại");
+			redirect.addFlashAttribute("messageDanger", "Xuất excel thất bại");
 		}
 		return "redirect:/admin/product";
 	}
