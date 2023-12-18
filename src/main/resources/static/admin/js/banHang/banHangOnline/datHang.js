@@ -29,7 +29,7 @@ function kiemTraSoLuongVaTaoHoaDon() {
                 Swal.fire({
                     icon: 'error',
                     title: 'Lỗi',
-                    html: `${errorMessage}<br><br>Sản phẩm :<br>${hienThiDanhSachSanPhamKhongHopLe(invalidProducts)}`,
+                    html: `${errorMessage}<br><br>Sản phẩm :${hienThiDanhSachSanPhamKhongHopLe(invalidProducts)}`,
                     showConfirmButton: false,
                     timer: 5000
                 });

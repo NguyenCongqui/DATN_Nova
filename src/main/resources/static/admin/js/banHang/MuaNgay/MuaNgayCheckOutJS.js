@@ -304,10 +304,14 @@ $(document).ready(function () {
     //         $("#paymentForm").submit();
     //     }
     // });
+
+
+
+
     $("#buttonThanhToan").click(function () {
         $(".thanhToanVNPAYMuaNgay").modal('show');
 
-        $(".thanhToanVNPAYMuaNgay .btn-dong-y").click(function () {
+        $(".thanhToanVNPAYMuaNgay .btn-dong-y").click (function () {
             // Lấy các giá trị từ các trường thông tin
             let diaChiGiaoHang = getFullAddress();
             let nguoiNhan = $("#hoTen").val();
@@ -320,11 +324,22 @@ $(document).ready(function () {
             let tien_giam = parseFloat($("#discount").text().replace(/[^\d]/g, ""));
             let nameGiamGia = $("#tenGiamGia").text();
             let emailNguoiNhan = $("#nhapEmail").val();
+            let id_hd1 = $("#id-hoa-don").val();
 
             // Lấy giá trị tiền giảm và tiền ship dưới dạng số nguyên (chỉ số)
             const tienGiamIndex = Math.round(tien_giam);
             const shippingFeeIndex = Math.round(shippingFee);
-
+            kiemTraSoLuongSanPham(id_hd1, function (thongBao) {
+                if (thongBao.length > 0) {
+                    // Nếu có vấn đề với số lượng sản phẩm, hiển thị thông báo lỗi
+                    Swal.fire({
+                        icon: "error",
+                        title: "Số lượng sản phẩm không đủ",
+                        html: thongBao.join("<br/>"),
+                        showConfirmButton: false,
+                        timer: 4000,
+                    });
+                } else {
             // Gán giá trị vào các trường input ẩn để truyền vào from -> VNPay
             $("#diaChiGiaoHang").val(diaChiGiaoHang);
             $("#nguoiNhan").val(nguoiNhan);
@@ -334,7 +349,7 @@ $(document).ready(function () {
             $("#tienGiamGia").val(tienGiamIndex);
             $("#nameGiamGia").val(nameGiamGia);
             $("#emailNguoiNhann").val(emailNguoiNhan);
-            let amount =  $("#amountInput").val();
+            let amount = $("#amountInput").val();
             let id_hd = $("#id-hoa-don").val();
 
             let tienShipCheck = $("#shippingFee").text();
@@ -347,7 +362,7 @@ $(document).ready(function () {
                     timer: 2000,
                 });
             } else {
-                let data ={
+                let data = {
                     orderCode: id_hd,
                     amount: amount,
                     diaChiGiaoHang: diaChiGiaoHang,
@@ -385,14 +400,112 @@ $(document).ready(function () {
                 // console.log("hehe")
                 // $("#paymentForm").submit();
             }
+        }
         });
 
         $(".thanhToanVNPAYMuaNgay .btn-khong").click(function () {
             $('.thanhToanVNPAYMuaNgay').modal('hide');
         });
     });
+    });
 });
 
+// $(".thanhToanVNPAYMuaNgay .btn-dong-y").off('click').on('click', function () {
+//     // Lấy các giá trị từ các trường thông tin
+//     let diaChiGiaoHang = getFullAddress();
+//     let nguoiNhan = $("#hoTen").val();
+//     let sdtNguoiNhan = $("#sdt").val();
+//     let ghiChu = $("#note").val();
+//     let shippingFee = parseFloat(
+//         $("#shippingFee").text().replace(/[^\d]/g, "")
+//     );
+//
+//     let tien_giam = parseFloat($("#discount").text().replace(/[^\d]/g, ""));
+//     let nameGiamGia = $("#tenGiamGia").text();
+//     let emailNguoiNhan = $("#nhapEmail").val();
+//
+//     // Lấy giá trị tiền giảm và tiền ship dưới dạng số nguyên (chỉ số)
+//     const tienGiamIndex = Math.round(tien_giam);
+//     const shippingFeeIndex = Math.round(shippingFee);
+//
+//     // Kiểm tra số lượng sản phẩm trước khi thực hiện thanh toán
+//     kiemTraSoLuongSanPham(id_hd, function (thongBao) {
+//         if (thongBao.length > 0) {
+//             // Nếu có vấn đề với số lượng sản phẩm, hiển thị thông báo lỗi
+//             Swal.fire({
+//                 icon: "error",
+//                 title: "Số lượng sản phẩm không đủ",
+//                 html: thongBao.join("<br/>"),
+//                 showConfirmButton: false,
+//                 timer: 4000,
+//             });
+//         } else {
+//             // Nếu không có vấn đề, tiếp tục xử lý thanh toán
+//
+//             // Gán giá trị vào các trường input ẩn để truyền vào form -> VNPay
+//             $("#diaChiGiaoHang").val(diaChiGiaoHang);
+//             $("#nguoiNhan").val(nguoiNhan);
+//             $("#sdtNguoiNhan").val(sdtNguoiNhan);
+//             $("#ghiChu").val(ghiChu);
+//             $("#tienShipHD").val(shippingFeeIndex);
+//             $("#tienGiamGia").val(tienGiamIndex);
+//             $("#nameGiamGia").val(nameGiamGia);
+//             $("#emailNguoiNhann").val(emailNguoiNhan);
+//             let amount = $("#amountInput").val();
+//             let id_hd = $("#id-hoa-don").val();
+//
+//             let tienShipCheck = $("#shippingFee").text();
+//
+//             if (nguoiNhan === "" || sdtNguoiNhan === "" || emailNguoiNhan === "" || tienShipCheck === "") {
+//                 Swal.fire({
+//                     icon: "error",
+//                     title: "Vui lòng điền đầy đủ thông tin !",
+//                     showConfirmButton: false,
+//                     timer: 2000,
+//                 });
+//             } else {
+//                 let data = {
+//                     orderCode: id_hd,
+//                     amount: amount,
+//                     diaChiGiaoHang: diaChiGiaoHang,
+//                     nguoiNhan: nguoiNhan,
+//                     emailNguoiNhann: emailNguoiNhan,
+//                     tienGiamGia: tienGiamIndex,
+//                     sdtNguoiNhan: sdtNguoiNhan,
+//                     ghiChu: ghiChu,
+//                     tienShipHD: shippingFeeIndex
+//                 }
+//                 console.log(data)
+//                 fetch('http://localhost:8080/MuaNgay/payment/create', {
+//                     // Cấu hình request
+//                     method: 'POST',
+//                     headers: {
+//                         'Content-Type': 'application/json'
+//                     },
+//                     body: JSON.stringify(data)
+//                 })
+//                     .then(response => {
+//                         // Phản hồi khi request thực hiện xong
+//                         return response.json(); // Chuyển đổi định dạng JSON
+//                     })
+//                     .then(data => {
+//                         // data chứa dữ liệu trả về từ backend
+//                         window.location.href = data.body
+//                     });
+//             }
+//         }
+//     });
+// });
+
+
+function kiemTraSoLuongSanPham(id_hd, callback) {
+    fetch('http://localhost:8080/mua-ngay/kiem-tra-so-luong/' + id_hd)
+        .then(response => response.json())
+        .then(data => {
+            // data chứa thông báo về số lượng sản phẩm
+            callback(data.thongBao);
+        });
+}
 // $(document).ready(function () {
 //     $("#buttonDatHang").click(function () {
 //         const orderId = $(this).data("id");

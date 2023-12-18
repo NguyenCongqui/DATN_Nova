@@ -2,6 +2,7 @@ package com.example.duantotnghiepgiaythethaonova.restController.BanHang.BanHangO
 
 import com.example.duantotnghiepgiaythethaonova.service.BanHangService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -57,6 +58,20 @@ public class BanHangOnlineRestController {
     @PostMapping("/banHang/themMaGiamGiaOnline")
     public ResponseEntity<Map<String, String>> themMaGiamGia(@RequestParam String couponCode) {
         return banHangService.themMaGiamGiaBanHangOnline(couponCode);
+    }
+
+    @GetMapping("/khach-hang/kiem-tra-so-luong/{idHoaDon}")
+    public ResponseEntity<Map<String, Object>> kiemTraSoLuongSanPham(@PathVariable("idHoaDon") Integer idHoaDon) {
+        try {
+            List<String> thongBao = banHangService.kiemTraSoLuongHang(idHoaDon);
+            Map<String, Object> response = new HashMap<>();
+            response.put("thongBao", thongBao);
+            return ResponseEntity.ok(response);
+        } catch (Exception e) {
+            Map<String, Object> errorResponse = new HashMap<>();
+            errorResponse.put("error", e.getMessage());
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
+        }
     }
 
 

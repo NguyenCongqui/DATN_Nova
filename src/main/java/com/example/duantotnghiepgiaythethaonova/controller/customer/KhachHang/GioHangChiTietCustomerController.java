@@ -118,6 +118,10 @@ public class GioHangChiTietCustomerController {
         List<Integer> listSoLuong = toListInterger(soLuongs);
         if (ids != null && soLuongs != null) {
             System.out.println("gio hang");
+            if (listSoLuong.isEmpty()) {
+                model.addAttribute("message", "Số lượng không được bỏ trống !");
+                return "/customer/khach-hang/gio-hang-chi-tiet";
+            }
             for (int i = 0; i < ids.length; i++) {
                 Integer id = (Integer) Array.get(ids, i);
                 Integer soLuong = listSoLuong.get((int) i);
@@ -132,6 +136,12 @@ public class GioHangChiTietCustomerController {
                                 " không đủ !");
                         return "/customer/khach-hang/gio-hang-chi-tiet";
                     }
+                } else if (soLuong == null) {
+                    model.addAttribute("message", "Số lượng sản phẩm trống !");
+                    return "/customer/khach-hang/gio-hang-chi-tiet";
+                } else if (soLuong <= 0) {
+                    model.addAttribute("message", "Số lượng sản phẩm phải lớn hơn 0");
+                    return "/customer/khach-hang/gio-hang-chi-tiet";
                 }
             }
             for (Integer soLuong : soLuongs) {
@@ -143,6 +153,8 @@ public class GioHangChiTietCustomerController {
                     return "/customer/khach-hang/gio-hang-chi-tiet";
                 }
             }
+
+
             gioHangChiTietService.capNhatSoLuongGioHangChiTiet(ids, soLuongs, donGias);
             //Mốt là thay bằng spring security
             gioHangService.capNhatTongTien(khachHangDT0.getId());
@@ -216,7 +228,7 @@ public class GioHangChiTietCustomerController {
 
             if (!invalidProducts.isEmpty()) {
                 response.put("canProceed", false);
-                response.put("message", "Số lượng sản phẩm không đủ hoặc không hợp lệ.");
+                response.put("message", "Số lượng sản phẩm không đủ.");
                 response.put("invalidProducts", invalidProducts);
             } else {
                 response.put("canProceed", true);

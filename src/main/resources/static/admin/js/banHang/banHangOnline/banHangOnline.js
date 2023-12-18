@@ -293,10 +293,22 @@ $(document).ready(function () {
             $("#tienGiamGia").val(tienGiamIndex);
             $("#nameGiamGia").val(nameGiamGia);
             $("#emailNguoiNhann").val(emailNguoiNhan);
-            let amount =  $("#amountInput").val();
+            let amount = $("#amountInput").val();
             let id_hd = $("#id-hoa-don").val();
 
             let tienShipCheck = $("#shippingFee").text();
+            let id_hd1 = $("#id-hoa-don").val();
+            kiemTraSoLuongSanPham(id_hd1, function (thongBao) {
+                if (thongBao.length > 0) {
+                    // Nếu có vấn đề với số lượng sản phẩm, hiển thị thông báo lỗi
+                    Swal.fire({
+                        icon: "error",
+                        title: "Số lượng sản phẩm không đủ",
+                        html: thongBao.join("<br/>"),
+                        showConfirmButton: false,
+                        timer: 4000,
+                    });
+                } else {
 
             if (nguoiNhan === "" || sdtNguoiNhan === "" || emailNguoiNhan === "" || tienShipCheck === "") {
                 Swal.fire({
@@ -306,7 +318,7 @@ $(document).ready(function () {
                     timer: 2000,
                 });
             } else {
-                let data ={
+                let data = {
                     orderCode: id_hd,
                     amount: amount,
                     diaChiGiaoHang: diaChiGiaoHang,
@@ -341,15 +353,26 @@ $(document).ready(function () {
                 // $("#paymentForm").submit();
                 // console.log("hehe")
 
-            };
+            }
+            ;
+        };
         });
 
         $(".thanhToanVNPAY .btn-khong").click(function () {
             $('.thanhToanVNPAY').modal('hide');
         });
     });
-});
+    });
 
+});
+function kiemTraSoLuongSanPham(id_hd, callback) {
+    fetch('http://localhost:8080/khach-hang/kiem-tra-so-luong/' + id_hd)
+        .then(response => response.json())
+        .then(data => {
+            // data chứa thông báo về số lượng sản phẩm
+            callback(data.thongBao);
+        });
+}
 $(document).ready(function () {
     $("#buttonDatHang").click(function () {
         const orderId = $(this).data("id");
