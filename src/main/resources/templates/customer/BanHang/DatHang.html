@@ -209,7 +209,7 @@
                                             <label class="left">Họ Và Tên <abbr class="form-required" title="required">*</abbr></label>
                                             <input class="input-md form-full-width" id="hoTen" name="hoTen"
                                                    title="Company Name" value=""
-                                                   th:value="${hoaDon.getKhachHang() != null ? hoaDon.getKhachHang().hoTen : ''}"
+                                                   th:value="${hoaDon.getKhachHang() != null ? hoaDon.getKhachHang().getDiaChi().getHoTen()  : hoaDon.getKhachHang().hoTen}"
                                                    placeholder="Họ Và Tên" type="text">
                                         </div>
                                         <div class="form-field-wrapper form-center col-sm-6">
@@ -217,7 +217,7 @@
                                                 Số Điện Thoại
                                                 <abbr class="form-required" title="required">*</abbr></label>
                                             <input class="input-md form-full-width" id="sdt" name="sdt" title="phone"
-                                                   th:value="${hoaDon.getKhachHang() != null ? hoaDon.getKhachHang().soDienThoai : ''}"
+                                                   th:value="${hoaDon.getKhachHang() != null ? hoaDon.getKhachHang().getDiaChi().getSoDienThoai() : hoaDon.getKhachHang().soDienThoai}"
                                                    value="" placeholder="(+84)" type="tel" required=""
                                                    aria-required="true">
                                         </div>
