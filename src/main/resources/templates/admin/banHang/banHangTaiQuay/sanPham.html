@@ -376,9 +376,11 @@
                                                             </div>
                                                             <div class="col-sm-5">
                                                                 <div class="product__details__option mt-5 col-sm-12">
-                                                                    <span  th:id="'giaBannHienCo' + ${item.sanPhamId}"></span>
                                                                     <div
                                                                         class="product__details__option__size mt-2 mb-2 col-sm-12">
+                                                                        <span class="mr-2">Giá: </span>
+                                                                        <span th:id="'giaBannHienCo' + ${item.sanPhamId}"></span>
+                                                                        <br>
                                                                         <span class="mr-2">Kích cỡ:</span>
                                                                         <label class="img-thumbnail"
                                                                             th:for="${kc.tenKichCo}+${istat.index}+${istatKC.index}"

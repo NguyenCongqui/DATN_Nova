@@ -5,6 +5,8 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Quản lý tài khoản</title>
+	<script src="https://kit.fontawesome.com/999051c9de.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -96,7 +98,7 @@
 							<label class="labels">Số điện thoại<span class="text-danger">(*)</span></label>
 							<small th:if="${#fields.hasErrors('soDienThoai')}" th:errors="*{soDienThoai}"
 								   class="text-danger"></small>
-							<input type="text" th:field="*{soDienThoai}" class="form-control" disabled="disabled"
+							<input type="text" th:field="*{soDienThoai}" class="form-control"
 								   placeholder="Số điện thoại" value="">
 							<input type="hidden" th:field="*{id}" class="form-control" value=""> <input
 								type="hidden" th:field="*{page}" class="form-control" value=""> <input type="hidden"
@@ -106,9 +108,9 @@
 																																																																		  class="form-control"> <input type="hidden" th:field="*{ward}" class="form-control">
 						</div>
 						<br>
-						<div class="col-md-12">
-							<button class="btn btn-secondary" type="submit">
-								<i class="fa fa-download" aria-hidden="true"></i>
+						<div class="col-md-12" title="Cập nhật">
+							<button class="btn btn-primary" type="submit">
+								<i class="fa fa-pen-to-square" aria-hidden="true"> Cập nhật</i>
 							</button>
 						</div>
 					</form>
