@@ -88,9 +88,9 @@
 							</div>
 						</div>
 					</form>
-					<div class="col-md-4">
+					<div class="col-md-4" >
 						<div class="row">
-							<div class="col-md-5">
+							<div class="col-md-5" th:if="${#request.isUserInRole('ROLE_ADMIN')}">
 								<div class="row">
 									<div class="col-md-4">
 										<button id="btnDelete" type="button"
@@ -110,7 +110,7 @@
 											</span>
 										</button>
 									</div>
-									<div class="col-md-4">
+									<div class="col-md-4" >
 										<a flag="info" th:href="@{/admin/khach-hang/danh-sach/chinh-sua}"
 										   class="dt-button buttons-colvis btn btn-white btn-primary btn-bold"
 										   data-toggle="tooltip" title='Thêm bài viết'>
@@ -165,7 +165,7 @@
 
 						<tr>
 							<th:block th:if="*{listKhachHangDTO != null}">
-								<td>
+								<td th:if="${#request.isUserInRole('ROLE_ADMIN')}">
 									<input type="checkbox" class="form-checkbox" th:value="${item.id}"
 										   th:id="'checkbox_'+${item.id}" />
 								</td>

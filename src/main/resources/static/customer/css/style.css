@@ -5396,11 +5396,16 @@ ul.pagination-numbers,
   -webkit-appearance: none !important;
   -moz-appearance: textfield !important;
   width: 100%;
-  min-width: 80px;
+  min-width: 100px;
   border-color: #ddd;
   text-align: center;
   padding-left: 35px;
   padding-right: 35px;
+}
+.to{
+  min-width: 200px;
+  margin-left: 35px;
+
 }
 
 .product-quantity input[type="number"]::-webkit-outer-spin-button,

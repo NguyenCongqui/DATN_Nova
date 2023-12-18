@@ -341,6 +341,13 @@ public class HomeController {
             dto.setLstMauSac(lstMauSac);
             dto.setGia(giaBan);
 
+            dto.setTenKieuDang(optSP.get().getKieuDang().getTenKieuDang());
+            dto.setTenChatLieu(optSP.get().getChatLieu().getTenChatLieu());
+            dto.setTenThuongHieu(optSP.get().getThuongHieu().getTenThuongHieu());
+
+
+
+
             model.addAttribute("shopDetails", dto);
         }
         List<String> mauSacList = mauSacRepository.getMauSauBySanPhamId(sanPhamId);

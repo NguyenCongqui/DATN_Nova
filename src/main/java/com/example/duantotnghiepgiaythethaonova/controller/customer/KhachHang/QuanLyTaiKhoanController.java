@@ -106,6 +106,6 @@ public class QuanLyTaiKhoanController {
         diaChiDTO.setKhachHangId(idKhachHang);
         diaChiService.update(diaChiDTO);
         redirectAttributes.addFlashAttribute("message", "Cập nhật địa chỉ thành công !");
-        return "redirect:/khachhang/quan-ly-tai-khoan?page=1";
+        return "redirect:/khach-hang/quan-ly-tai-khoan?page=1";
     }
 }

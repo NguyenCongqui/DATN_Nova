@@ -34,6 +34,7 @@
 
                                 <span class="newest-label" id="newestLabel">Mới nhất</span>
                                 <div abbr="" class="product-img-wrap">
+                                    <a th:href="${'/khach-hang/san-pham-chi-tiet/'+item.sanPhamId}">
                                     <div class="carousel-item" th:name="'divImgIsActive'+${istat.index}"
                                          th:id="'imgActive'+${istat.index}+${istatAC.index}"
                                          th:classappend="${#numbers.formatInteger(istat.index+''+istatAC.index,5) == #numbers.formatInteger(istat.index+''+0,5)? 'active':''}"
@@ -41,6 +42,7 @@
                                         <img th:src="${'/khach-hang/images/'+img}" class="d-block img-responsive"
                                              alt="...">
                                     </div>
+                                    </a>
                                 </div>
                                 <div class="product-button">
                                     <a th:href="${'/khach-hang/san-pham-chi-tiet/'+item.sanPhamId}" class="js_tooltip"

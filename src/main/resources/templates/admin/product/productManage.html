@@ -440,7 +440,7 @@
                                 <tbody class="text-center">
                                     <tr th:each="item, istat : ${sanPhams}">
                                         <th style="vertical-align: middle;">
-                                            <div class="checkbox-wrapper-30">
+                                            <div class="checkbox-wrapper-30" th:if="${#request.isUserInRole('ROLE_ADMIN')}">
                                                 <span class="checkbox">
                                                     <input type="checkbox" name="productIds"
                                                         th:value="${item.sanPham.idSanPham}" />

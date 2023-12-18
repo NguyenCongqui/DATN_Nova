@@ -55,12 +55,12 @@ public class CustomSecurityConfig extends WebSecurityConfigurerAdapter {
 
         http.authorizeRequests()
                 .antMatchers(
-                        "/customer/css/**", "/customer/fonts/**", "/customer/js/**", "/khachhang/images/**","/customer/img/**", "/customer/view/**",
-                        "/khachhang/home/**", "/khachhang/shop/**", "/khachhang/shop-details/**", "/khachhang/SoLuongSanPhamChiTiet",
+                        "/customer/css/**", "/customer/fonts/**", "/customer/js/**", "/khach-hang/images/**","/customer/img/**", "/customer/view/**",
+                        "/khach-hang/home/**", "/khach-hang/shop/**", "/khach-hang/shop-details/**", "/khach-hang/SoLuongSanPhamChiTiet",
                         "/MuaNgaySanPham/checkout/**",
 
                         "/admin/css/**", "/admin/images/**", "/admin/img/**", "/admin/imgLibr/**",
-                        "/admin/js/**", "/admin/js/khachhang/**", "/admin/scss/**", "/admin/vendor/**", "/admin/vendor test/**",
+                        "/admin/js/**", "/admin/js/khach-hang/**", "/admin/scss/**", "/admin/vendor/**", "/admin/vendor test/**",
 
                         "/security/**",
                         "/oauth2/**"
@@ -68,7 +68,7 @@ public class CustomSecurityConfig extends WebSecurityConfigurerAdapter {
                 .permitAll()
                 .antMatchers("/admin/NguoiDung/danhSach").hasAnyRole("ADMIN")
                 .antMatchers("/admin/**").hasAnyRole("ADMIN", "STAFF")
-                .antMatchers("/khachhang/**").hasAnyRole("ADMIN", "STAFF", "CUSTOMER")
+                .antMatchers("/khach-hang/**").hasAnyRole("ADMIN", "STAFF", "CUSTOMER")
                 .and().formLogin().
                 loginPage("/security/login/form")
                 .loginProcessingUrl("/security/login")

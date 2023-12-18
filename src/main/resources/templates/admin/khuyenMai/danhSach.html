@@ -128,7 +128,7 @@
                         <th class="text-center">Tiền giảm tối đa</th>
                         <th class="text-center">Thời gian</th>
                         <th class="text-center">Trạng thái</th>
-                        <th class="text-center">Kích hoạt</th>
+                        <th class="text-center" th:if="${#request.isUserInRole('ROLE_ADMIN')}">Kích hoạt</th>
                         <th class="text-center" th:if="${#request.isUserInRole('ROLE_ADMIN')}">Hành động</th>
                     </tr>
                     </thead>
@@ -147,7 +147,7 @@
                         </td>
                         <td style="text-align: center" th:text="${voucher.trangThai ? 'Đang hoạt động': 'Hết hiệu lực'}"
                             th:class="${voucher.trangThai ? 'text-success' : 'text-danger'}"></td>
-                        <td class="text-center">
+                        <td class="text-center" th:if="${#request.isUserInRole('ROLE_ADMIN')}">
                             <a th:href="@{/admin/voucher/toggle/{id}(id=${voucher.id})}">
                                 <i th:class="${voucher.trangThai ? 'bi bi-toggle-on' : 'bi bi-toggle-off'}"
                                    style="font-size: 25px;"></i>

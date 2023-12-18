@@ -437,6 +437,9 @@
                                     <div class="product-item-inner">
                                         <div class="product-img-wrap">
                                             <div abbr="" class="product-img-wrap">
+                                                <a th:href="${'/khach-hang/san-pham-chi-tiet/'+item.sanPhamId}">
+
+
                                                 <div class="carousel-item" th:name="'divImgIsActive'+${istat.index}"
                                                      th:id="'imgActive'+${istat.index}+${istatAC.index}"
                                                      th:classappend="${#numbers.formatInteger(istat.index+''+istatAC.index,5) == #numbers.formatInteger(istat.index+''+0,5)? 'active':''}"
@@ -445,6 +448,7 @@
                                                          class="d-block img-responsive"
                                                          alt="...">
                                                 </div>
+                                                </a>
                                             </div>
                                         </div>
                                         <div class="product-button">
