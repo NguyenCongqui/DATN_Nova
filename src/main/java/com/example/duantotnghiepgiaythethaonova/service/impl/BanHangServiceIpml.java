@@ -525,7 +525,7 @@ public class BanHangServiceIpml implements BanHangService {
                     thongBao.add("Sản phẩm " + sanPhamChiTiet.getSanPham().getTenSanPham() +
                             " (Màu: " + sanPhamChiTiet.getMauSac().getTenMauSac() +
                             ", Kích thước: " + sanPhamChiTiet.getKichCo().getTenKichCo() +
-                            ") vượt quá số lượng cho phép.");
+                            ") vượt quá số lượng của san phẩm:" + sanPhamChiTiet.getSoLuong());
                 }
             }
         }

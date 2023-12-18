@@ -304,9 +304,8 @@ $(document).ready(function () {
                     Swal.fire({
                         icon: "error",
                         title: "Số lượng sản phẩm không đủ",
-                        html: thongBao.join("<br/>"),
-                        showConfirmButton: false,
-                        timer: 4000,
+                        html: thongBao.join("<br><br/>"),
+                        showConfirmButton: true,
                     });
                 } else {
 

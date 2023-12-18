@@ -83,10 +83,11 @@
 
                         <script type="text/javascript">
                             function showErrorAlert(errorMessage) {
+                                errorMessage = errorMessage.replace(/\n/g, "<br></<br>");
                                 Swal.fire({
                                     icon: 'error',
-                                    title: 'Lỗi',
-                                    text: errorMessage,
+                                    title: 'Số lượng sản phẩm không đủ',
+                                    html: errorMessage,
                                     showConfirmButton: true
                                 });
                             }
