@@ -14,7 +14,7 @@ public class ChoGiaoHangCustomerController {
     HoaDonCustomerService hoaDonCustomerService;
 
     //CHỜ GIAO HÀNG
-    @RequestMapping("khachhang/DonHang/ChoGiaoHang")
+    @RequestMapping("khach-hang/don-hang/cho-giao-hang")
     public String choGiaoHang(@RequestParam(defaultValue = "1") int page,
                               @RequestParam(defaultValue = "3") int size,
                               Model model) {
@@ -22,7 +22,7 @@ public class ChoGiaoHangCustomerController {
         return "customer/HoaDon/DanhSach/choGiaoHangCustomer";
     }
 
-    @RequestMapping("khachhang/DonHang/ChiTietHoaDon/ChoGiaoHang/hoa-don-id={id}")
+    @RequestMapping("khach-hang/don-hang/chi-tiet-hoa-don/cho-giao-hang/hoa-don-id={id}")
     public String CTChoGiaoHang(@PathVariable("id") Integer id, Model model) {
         hoaDonCustomerService.chiTietChoGiaoHangCustomer(id, model);
         return "customer/HoaDon/ChiTietHoaDon/CTChoGiaoHangCustomer";

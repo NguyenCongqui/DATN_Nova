@@ -17,31 +17,27 @@ public class DiaChiDTO extends BaseDTO<DiaChiDTO> {
 
     private String diaChi;
 
-   // @NotBlank(message = "Chưa chọn thành phố !")
-    private String tenThanhPho;
+    @NotBlank(message="Chưa chọn thành phố !")
+    private String city ;
 
-   // @NotBlank(message = "Chưa chọn quận huyện !")
-    private String tenQuanHuyen;
+    @NotBlank(message="Chưa chọn quận huyện !")
+    private String district ;
 
-   // @NotBlank(message = "Chưa chọn xã !")
-    private String teXaPhuong;
+    @NotBlank(message="Chưa chọn xã !")
+    private String ward ;
 
-   // @NotBlank(message = "Vui lòng nhập số nhà !")
-    private String soNha;
+    @NotBlank(message="Vui lòng nhập số nhà !")
+    private String soNha ;
 
-   // @NotBlank(message = "Vui lòng nhập họ tên !")
-    private String hoTen;
+    @NotBlank(message="Vui lòng nhập họ tên !")
+    private String hoTen ;
 
-   // @NotBlank(message = "Vui lòng nhập số điện thoại !")
-    private String soDienThoai;
+    @NotBlank(message="Vui lòng nhập số điện thoại !")
+    private String soDienThoai ;
 
-    private int idThanhPho;
-    private int idHuyen;
-    private int xa;
+    private int page ;
 
-    private int page;
-
-    private int limit;
+    private int limit ;
 
     private int totalPages;
 
@@ -49,7 +45,7 @@ public class DiaChiDTO extends BaseDTO<DiaChiDTO> {
 
     private List<DiaChiDTO> listDiaChiDTO = new ArrayList<DiaChiDTO>();
 
-    private Integer khachHangId;
+    private Integer khachHangId ;
 
     private boolean laDiaChiMacDinh;
 }

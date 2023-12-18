@@ -25,7 +25,7 @@ public interface DiaChiService {
 
     void save(KhachHangDTO khachHangDTO);
 
-     DiaChi addAddress(DiaChiDTO diaChiDTO);
+//     DiaChi addAddress(DiaChiDTO diaChiDTO);
      List<DiaChi> getAddressByCustomer(Integer Id);
 
 

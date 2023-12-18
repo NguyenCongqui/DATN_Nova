@@ -30,7 +30,7 @@ public class TaiKhoanAPI {
 	@Autowired
 	private DiaChiService diaChiService ;
 	
-	@PutMapping("/khachhang/api/tai-khoan/doi-mat-khau")
+	@PutMapping("/khach-hang/api/tai-khoan/doi-mat-khau")
 	public ResponseEntity<String> doiMatKhauTaiKhoan(@RequestBody TaiKhoanDTO taiKhoanDTO) {
 		if(taiKhoanDTO.getPassword().equals(taiKhoanDTO.getConfirm_password())){
 			khachHangService.capNhatMatKhau(taiKhoanDTO);
@@ -40,11 +40,11 @@ public class TaiKhoanAPI {
 			return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Mật khẩu không khớp !");
 		}
 	}
-	@PostMapping("/khachhang/api/dia-chi/khach-hang-dang-nhap")
+	@PostMapping("/khach-hang/api/dia-chi/khach-hang-dang-nhap")
 	public DiaChiDTO themMoiDiaChiKhachHangDangNhap(@RequestBody DiaChiDTO diaChiDTO) {
 		return diaChiService.save(diaChiDTO);
 	}
-	@DeleteMapping("/khachhang/api/dia-chi")
+	@DeleteMapping("/khach-hang/api/dia-chi")
 	public void xoaDiaChi(@RequestBody Integer[] ids) {
 		diaChiService.delete(ids);
 	}
@@ -55,7 +55,7 @@ public class TaiKhoanAPI {
 	@Autowired
 	private DiaChiRepository diaChiRepository ;
 	
-	@PostMapping("/khachhang/api/update-dia-chi-mac-dinh")
+	@PostMapping("/khach-hang/api/update-dia-chi-mac-dinh")
     public @ResponseBody Map<String, Object> updateDiaChiMacDinh(@RequestParam("DiaChiID") Integer DiaChiID,
                                                                  @RequestParam("KhachHangID") Integer KhachHangID) {
         Map<String, Object> response = new HashMap<>();

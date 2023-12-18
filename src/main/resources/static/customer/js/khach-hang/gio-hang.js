@@ -53,7 +53,7 @@ function tinhTienGioHang() {
 function xoaSachGiohang() {
     let id = $("#idGioHang").val();
     $.ajax({
-        url: "/khachhang/gio-hang-chi-tiet/xoa-sach-gio-hang",
+        url: "/khach-hang/gio-hang-chi-tiet/xoa-sach-gio-hang",
         type: "GET",
         data: {
             id: id

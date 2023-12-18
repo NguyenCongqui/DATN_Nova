@@ -14,7 +14,7 @@ public class DangGiaoCustomerController {
     @Autowired
     HoaDonCustomerService hoaDonCustomerService;
 
-    @RequestMapping("khachhang/DonHang/DangGiaoHang")
+    @RequestMapping("khach-hang/don-hang/dang-giao-hang")
     public String DangGiaoCustomer(Model model,
                                    @RequestParam(defaultValue = "1") int page,
                                    @RequestParam(defaultValue = "3") int size) {
@@ -22,19 +22,19 @@ public class DangGiaoCustomerController {
         return "customer/HoaDon/DanhSach/dangGiaoCustomer";
     }
 
-    @RequestMapping("khachhang/DonHang/ChiTietHoaDon/DangGiaoHang/hoa-don-id={id}")
+    @RequestMapping("khach-hang/don-hang/chi-tiet-hoa-don/dang-giao-hang/hoa-don-id={id}")
     public String CTDangGiaoCustomer(@PathVariable("id") Integer id,
                                      Model model) {
         hoaDonCustomerService.chiTietDangGiaoCustomer(id, model);
         return "customer/HoaDon/ChiTietHoaDon/CTDangGiaoCustomer";
     }
 
-    @RequestMapping("khachhang/updateGiaoHangThanhCong/{id}")
+    @RequestMapping("khach-hang/updateGiaoHangThanhCong/{id}")
     public ResponseEntity<String> updateGiaoHangThanhCong(@PathVariable("id") Integer hoaDonId) {
         return hoaDonCustomerService.updateGiaoHangThanhCongCustomer(hoaDonId);
     }
 
-    @RequestMapping("khachhang/updateThanhCongAll")
+    @RequestMapping("khach-hang/updateThanhCongAll")
     public ResponseEntity<String> updateThanhCongAll() {
         return hoaDonCustomerService.updateThanhCongAllCustomer();
     }

@@ -31,23 +31,23 @@ public class DiaChi implements Serializable {
     @Column(name = "LaDiaChiMacDinh")
     private boolean laDiaChiMacDinh = false;
 
-    @Column(name = "IdThanhPho")
-    private Integer idThanhPho;
-
-    @Column(name = "idQuanHuyen")
-    private Integer idQuanHuyen;
-
-    @Column(name = "idXaPhuong")
-    private Integer idXaPhuong;
-
-    @Column(name = "TenThanhPho")
-    private String tenThanhPho;
-
-    @Column(name = "TenQuanHuyen")
-    private String tenQuanHuyen;
-
-    @Column(name = "TenXaPhuong")
-    private String tenXaPhuong;
+//    @Column(name = "IdThanhPho")
+//    private Integer idThanhPho;
+//
+//    @Column(name = "idQuanHuyen")
+//    private Integer idQuanHuyen;
+//
+//    @Column(name = "idXaPhuong")
+//    private Integer idXaPhuong;
+//
+//    @Column(name = "TenThanhPho")
+//    private String tenThanhPho;
+//
+//    @Column(name = "TenQuanHuyen")
+//    private String tenQuanHuyen;
+//
+//    @Column(name = "TenXaPhuong")
+//    private String tenXaPhuong;
 
     @ManyToOne
     @JoinColumn(name = "IdKhachHang")

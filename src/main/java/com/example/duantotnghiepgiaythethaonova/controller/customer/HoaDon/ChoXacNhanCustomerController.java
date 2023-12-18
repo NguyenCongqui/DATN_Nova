@@ -18,7 +18,7 @@ public class ChoXacNhanCustomerController {
     @Autowired
     HoaDonCustomerService hoaDonCustomerService;
 
-    @RequestMapping("khachhang/DonHang/ChoXacNhan")
+    @RequestMapping("khach-hang/don-hang/cho-xac-nhan")
     public String choXacNhan(@RequestParam(defaultValue = "1") int page,
                              @RequestParam(defaultValue = "3") int size,
                              Model model) {
@@ -26,12 +26,12 @@ public class ChoXacNhanCustomerController {
         return "customer/HoaDon/DanhSach/choXacNhanCustomer";
     }
     
-    @RequestMapping("khachhang/updateHuyDon/{id}")
+    @RequestMapping("khach-hang/updateHuyDon/{id}")
     public ResponseEntity<String> updateHuyDon(@PathVariable("id") Integer hoaDonId) {
         return hoaDonCustomerService.updateHuyDonHangCustomer(hoaDonId);
     }
 
-    @RequestMapping("khachhang/DonHang/ChiTietHoaDon/ChoXacNhan/hoa-don-id={id}")
+    @RequestMapping("khach-hang/don-hang/chi-tiet-hoa-don/cho-xac-nhan/hoa-don-id={id}")
     public String CTChoGiaoHang(@PathVariable("id") Integer id, Model model) {
         hoaDonCustomerService.chiTietChoXacNhanCustomer(id, model);
         return "customer/HoaDon/ChiTietHoaDon/CTChoXacNhanCustomer";

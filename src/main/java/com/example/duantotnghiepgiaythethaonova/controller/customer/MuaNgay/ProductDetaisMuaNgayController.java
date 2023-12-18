@@ -42,7 +42,7 @@ public class ProductDetaisMuaNgayController {
     @Autowired
     private KichCoRepository kichCoRepository;
 
-    @RequestMapping("MuaNgay/shop-details/{id}")
+    @RequestMapping("mua-ngay/san-pham-chi-tiet/{id}")
     public String shopDetails(Model model, @PathVariable("id") Integer sanPhamId) {
         Optional<SanPham> optSP = sanPhamService.findById(sanPhamId);
         if (optSP.isPresent()) {

@@ -66,6 +66,7 @@ public interface BanHangService {
                                 String sdtNguoiNhan,
                                 String ghiChu,
                           Integer id);
+    List<String> kiemTraSoLuongHang(Integer idHoaDon);
 
 
 }

@@ -1,19 +1,19 @@
 function redirectToChoxacNhanCustomer() {
-    window.location.href = "/khachhang/DonHang/ChoXacNhan";
+    window.location.href = "/khach-hang/don-hang/cho-xac-nhan";
 }
 
 function redirectToChoGiaoHangCustomer() {
-    window.location.href = "/khachhang/DonHang/ChoGiaoHang";
+    window.location.href = "/khach-hang/don-hang/cho-giao-hang";
 }
 
 function redirectToDangGiaoCustomer() {
-    window.location.href = "/khachhang/DonHang/DangGiaoHang";
+    window.location.href = "/khach-hang/don-hang/dang-giao-hang";
 }
 
 function redirectToDaGiaoCustomer() {
-    window.location.href = "/khachhang/DonHang/DaGiaoHang";
+    window.location.href = "/khach-hang/don-hang/da-giao-hang";
 }
 
 function redirectToDahuyCustomer() {
-    window.location.href = "/khachhang/DonHang/DaHuy";
+    window.location.href = "/khach-hang/don-hang/da-huy";
 }

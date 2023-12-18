@@ -237,7 +237,7 @@ $(document).ready(function () {
 });
 
 function banHangOnlQuayLai() {
-    window.location.href = "/khachhang/gio-hang-chi-tiet";
+    window.location.href = "/khach-hang/gio-hang-chi-tiet";
 }
 
 $(document).ready(function () {
@@ -400,10 +400,11 @@ $(document).ready(function () {
                                 timer: 2000,
                             }).then(function () {
                                 sessionStorage.setItem("isConfirmed", true);
-                                window.location.href = "/khachhang/DonHang/ChoXacNhan";
+                                window.location.href = "/khach-hang/don-hang/cho-xac-nhan";
                             });
                         } else {
                             // Xử lý khi lưu hóa đơn không thành công
+                            showErrorAlert(response.message);
                             console.log("Lưu hóa đơn thất bại: " + response.error);
                         }
                     },

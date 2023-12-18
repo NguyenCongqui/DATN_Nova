@@ -35,11 +35,11 @@
                             <!--Thả xuống-->
                             <div class="dropdown-menu">
                                 <ul>
-                                    <li><a th:href="@{/khachhang/tai-khoan}"><i class="fas fa-user"></i> Thông Tin Tài
+                                    <li><a th:href="@{/khach-hang/tai-khoan}"><i class="fas fa-user"></i> Thông Tin Tài
                                         Khoản</a></li>
-                                    <li><a th:href="@{/khachhang/DonHang/ChoXacNhan}"><i
+                                    <li><a th:href="@{/khach-hang/don-hang/cho-xac-nhan}"><i
                                             class="fas fa-file-signature"></i> Đơn Hàng Của Tôi</a></li>
-                                    <li><a th:href="@{/khachhang/tai-khoan}"><i class="fas fa-sync-alt"></i> Đổi Mật
+                                    <li><a th:href="@{/khach-hang/tai-khoan}"><i class="fas fa-sync-alt"></i> Đổi Mật
                                         Khẩu</a></li>
                                     <li><a th:href="@{/security/logoff}"><i class="fas fa-power-off"></i> Đăng Xuất</a>
                                     </li>
@@ -70,7 +70,7 @@
         <div class="header-main-inner">
             <!-- Logo -->
             <div class="logo">
-                <a th:href="@{/khachhang/home}">
+                <a th:href="@{/khach-hang/home}">
                     <!-- // <img src="img/NOVA.jpg" alt="BEENOVA" /> -->
                     <img src="/static/customer/img/NOVA.png" alt="NOVA"/>
                 </a>
@@ -93,11 +93,11 @@
                         <!-- Giỏ hàng-->
                         <li><a id="sidebar_toggle_btn">
                             <div class="cart-icon">
-                                <a aria-hidden="true" th:href="@{/khachhang/gio-hang-chi-tiet}"
+                                <a aria-hidden="true" th:href="@{/khach-hang/gio-hang-chi-tiet}"
                                    class="fa fa-shopping-bag"></a>
                             </div>
 
-                            <div class="cart-title" th:href="@{/khachhang/gio-hang-chi-tiet}">
+                            <div class="cart-title" th:href="@{/khach-hang/gio-hang-chi-tiet}">
                             <span class="cart-count daucatmoi" th:if="${soLuong gt 0}">
                            <sup th:text="${soLuong}"></sup>
                             </span>
@@ -121,11 +121,11 @@
             <!-- Navigation Menu -->
             <nav class="navigation-menu">
                 <ul>
-                    <li th:class="${#request.requestURI} == @{/khachhang/home}? 'active': '' ">
-                        <a th:href="@{/khachhang/home}">Trang chủ</a>
+                    <li th:class="${#request.requestURI} == @{/khach-hang/home}? 'active': '' ">
+                        <a th:href="@{/khach-hang/home}">Trang chủ</a>
                     </li>
-                    <li th:class="${#request.requestURI} == @{/khachhang/shop}? 'active': '' ">
-                        <a th:href="@{/khachhang/shop}">Sản Phẩm</a>
+                    <li th:class="${#request.requestURI} == @{/khach-hang/san-pham}? 'active': '' ">
+                        <a th:href="@{/khach-hang/san-pham}">Sản Phẩm</a>
                     </li>
                 </ul>
                 <!-- thả xuống Menu ------->

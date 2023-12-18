@@ -7,14 +7,14 @@ function chooseOptionLabel(labelName, labelId, inputName, inputId) {
   $(inputIdName).removeAttr("checked");
   $("#" + inputId).attr("checked", "true");
 
-  flexUrlSubmit("/shop", "get");
+  flexUrlSubmit("/san-pham", "get");
 }
 
 function clearChooseOptionLabel(labelName, labelId, inputName, inputId) {
   var inputIdName = document.getElementsByName("" + inputName);
   $(inputIdName).removeAttr("checked");
 
-  flexUrlSubmit("/shop", "get");
+  flexUrlSubmit("/san-pham", "get");
 }
 
 function chooseOptionLi(labelName, labelId, inputName, inputId) {
@@ -33,7 +33,7 @@ function chooseOptionLi(labelName, labelId, inputName, inputId) {
     document.getElementById("" + labelId).style.color = "#111111";
   }
 
-  flexUrlSubmit("/shop", "get");
+  flexUrlSubmit("/san-pham", "get");
 }
 
 function clearChooseOptionLi(labelName, labelId, inputName, inputId) {
@@ -50,11 +50,11 @@ function clearChooseOptionLi(labelName, labelId, inputName, inputId) {
     document.getElementById("" + labelId).style.color = "#111111";
   }
 
-  flexUrlSubmit("/shop", "get");
+  flexUrlSubmit("/san-pham", "get");
 }
 
 function flexUrlSubmit(url, method) {
-  $("#flexUrlTableFormShop").attr("action", "/khachhang" + url);
+  $("#flexUrlTableFormShop").attr("action", "/khach-hang" + url);
   $("#flexUrlTableFormShop").attr("method", method);
   document.getElementById("flexUrlTableFormShop").submit();
 }
@@ -69,7 +69,7 @@ function clearChooseOptionLabel(name, labelName) {
   $("#allMauSacId").addClass("msActive");
   var mauSacIdName = document.getElementsByName(name);
   $(mauSacIdName).removeAttr("checked");
-  flexUrlSubmit("/shop", "get");
+  flexUrlSubmit("/san-pham", "get");
 }
 
 function chooseOptionColorLabel(labelId, labelName, inputName, inputId) {
@@ -97,7 +97,7 @@ function chooseOptionColorLabel(labelId, labelName, inputName, inputId) {
   // } else {
   //   return;
   // }
-  flexUrlSubmit("/shop", "get");
+  flexUrlSubmit("/san-pham", "get");
 }
 
 function chooseOptionColorLabelImg(

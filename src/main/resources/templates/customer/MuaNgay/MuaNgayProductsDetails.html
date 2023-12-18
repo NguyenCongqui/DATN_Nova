@@ -79,7 +79,7 @@
                     <div class="row">
                         <div class="col-12">
                             <nav class="breadcrumb-link">
-                                <a th:href="@{/khachhang/shop}">Danh Sách Sản Phẩm</a>
+                                <a th:href="@{/khach-hang/san-pham}">Danh Sách Sản Phẩm</a>
                                 <span>Chi tiết sản phẩm</span>
                             </nav>
                         </div>
@@ -104,8 +104,8 @@
                                              id="product-image-gallery" data-pswp-uid="3">
                                             <div class="item" th:each="img, istat : ${shopDetails.anhChinhs1}"
                                                  th:id="'nav-item-s1-'+${istat.index}">
-                                                <a class="product-gallery-item" th:href="${'/khachhang/images/'+img}"
-                                                   data-size="" th:data-med="${'/khachhang/images/'+img}"
+                                                <a class="product-gallery-item" th:href="${'/khach-hang/images/'+img}"
+                                                   data-size="" th:data-med="${'/khach-hang/images/'+img}"
                                                    data-med-size=""
                                                    th:tab-id="'tabs-s1-'+${istat.index}"
                                                    th:id="'imgActiveS1'+${istat.index}"
@@ -113,7 +113,7 @@
                                                    th:nav-id="'nav-item-s1-'+${istat.index}"
                                                    onmouseover="changeTab(this.getAttribute('tab-id'),this.getAttribute('nav-id'))"
                                                 >
-                                                    <img th:src="${'/khachhang/images/'+img}" alt="">
+                                                    <img th:src="${'/khach-hang/images/'+img}" alt="">
                                                 </a>
                                             </div>
                                         </div>
@@ -131,7 +131,7 @@
                                              th:classappend="${istat.index == 0? 'active':''}"
                                              th:each="img, istat : ${shopDetails.anhChinhs1}"
                                         >
-                                            <img th:src="${'/khachhang/images/'+img}" alt="image 1"/>
+                                            <img th:src="${'/khach-hang/images/'+img}" alt="image 1"/>
                                         </div>
 
                                     </div>
@@ -247,7 +247,7 @@
                                 <div class="col-md-4 mtb-sm-30 promo-item">
                                     <div class="icon"><i class="fa fa-truck-fast" aria-hidden="true"></i></div>
                                     <div class="info">
-                                        <a href="/khachhang/home">
+                                        <a href="/khach-hang/home">
                                             <h6 class="normal">GIAO HÀNG TOÀN QUỐC</h6>
                                         </a>
                                         <p>Hỗ trợ giao hàng trên 63 tỉnh thành.</p>
@@ -257,7 +257,7 @@
                                     <div class="icon"><i class="fa-regular fa-credit-card"
                                                          aria-hidden="true"></i></div>
                                     <div class="info">
-                                        <a href="/khachhang/home">
+                                        <a href="/khach-hang/home">
                                             <h6 class="normal">THANH TOÁN BẢO MẬT</h6>
                                         </a>
                                         <p>Tất cả các thanh toán đều được bảo mật.</p>
@@ -266,7 +266,7 @@
                                 <div class="col-md-4 mtb-sm-30 promo-item">
                                     <div class="icon"><i class="fa fa-headphones" aria-hidden="true"></i></div>
                                     <div class="info">
-                                        <a href="/khachhang/home">
+                                        <a href="/khach-hang/home">
                                             <h6 class="normal">HỖ TRỢ TRỰC TUYẾN</h6>
                                         </a>
                                         <p>Chúng tôi hỗ trợ 24/7.</p>

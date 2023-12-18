@@ -33,7 +33,7 @@ import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 @Controller
-@RequestMapping("khachhang")
+@RequestMapping("khach-hang")
 public class HomeController {
     @Autowired
     private HinhAnhService hinhAnhService;
@@ -244,7 +244,7 @@ public class HomeController {
         return "customer/view/home";
     }
 
-    @GetMapping("shop")
+    @GetMapping("san-pham")
     public String shop(Model model, @RequestParam("page") Optional<Integer> page,
                        @ModelAttribute(name = "dataSearch") SPAndSPCTSearchDto dataSearch) {
         int currentPage = page.orElse(1);
@@ -304,7 +304,7 @@ public class HomeController {
         return "customer/view/shop";
     }
 
-    @GetMapping("shop-details/{id}")
+    @GetMapping("san-pham-chi-tiet/{id}")
     public String shopDetails(Model model, @PathVariable("id") Integer sanPhamId) {
         Optional<SanPham> optSP = sanPhamService.findById(sanPhamId);
         if (optSP.isPresent()) {

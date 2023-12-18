@@ -30,7 +30,7 @@ public class GioHangRestController {
     @Autowired
     KichCoRepository kichCoRepository;
 
-    @RequestMapping("/khachhang/SoLuongSanPhamChiTiet")
+    @RequestMapping("/khach-hang/SoLuongSanPhamChiTiet")
     public Map<String, Object> laySoLuongSanPhamChiTiet(@RequestParam("tenKichCo") String tenKichCo,
                                                         @RequestParam("mauSacId") String mauSacId,
                                                         @RequestParam("sanPhamId") Integer sanPhamId) {
@@ -69,7 +69,7 @@ public class GioHangRestController {
         return null;
     }
 
-    @PostMapping("/khachhang/addToCart")
+    @PostMapping("/khach-hang/addToCart")
     public ResponseEntity<String> addToCart(@RequestParam("sanPhamId") Integer sanPhamId,
                                             @RequestParam("mauSacId") String mauSacId,
                                             @RequestParam("kichCoId") String kichCoId,
@@ -82,7 +82,7 @@ public class GioHangRestController {
         return gioHangService.addToCart(sanPhamId, id_Ms, id_kichCo, soLuong);
     }
 
-    @RequestMapping("/khachhang/gio-hang-chi-tiet/xoa-sach-gio-hang")
+    @RequestMapping("/khach-hang/gio-hang-chi-tiet/xoa-sach-gio-hang")
     public @ResponseBody Map<String, Object> xoaSachGioHang(@RequestParam Integer id) {
         Map<String, Object> response = new HashMap<>();
         try {

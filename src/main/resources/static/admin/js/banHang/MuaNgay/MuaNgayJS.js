@@ -88,7 +88,7 @@ $(document).ready(function () {
 function getSoLuongSanPhamChiTiet(tenKichCo, mauSacId, sanPhamId) {
     $.ajax({
         type: "GET",
-        url: "/khachhang/SoLuongSanPhamChiTiet",
+        url: "/khach-hang/SoLuongSanPhamChiTiet",
         data: {
             tenKichCo: tenKichCo,
             mauSacId: mauSacId,
@@ -214,7 +214,7 @@ $(document).ready(function () {
 function DatHangNgay(sanPhamID,soLuong) {
     $.ajax({
         type: "POST",
-        url: "http://localhost:8080/MuaNgay/checkout",
+        url: "http://localhost:8080/mua-ngay/checkout",
         data: {
             sanPhamId: sanPhamID,
             mauSacId: mauSacDaChon,
@@ -233,7 +233,7 @@ function DatHangNgay(sanPhamID,soLuong) {
                 sessionStorage.setItem('isConfirmed', true);
 
                 // Tải lại trang
-                window.location.href = "/MuaNgaySanPham/checkout/" + response;
+                window.location.href = "/mua-ngay-san-pham/checkout/" + response;
             });
         },
         error: function (error) {

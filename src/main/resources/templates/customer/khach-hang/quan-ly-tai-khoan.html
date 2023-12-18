@@ -78,7 +78,7 @@
 					</div>
 				</div>
 				<div class="row mt-3">
-					<form th:action="@{/khachhang/quan-ly-tai-khoan/cap-nhat}" method="POST">
+					<form th:action="@{/khach-hang/quan-ly-tai-khoan/cap-nhat}" method="POST">
 						<div class="col-md-12">
 							<label class="labels">Email<span class="text-danger">(*)</span></label> <input
 								type="email" th:field="*{email}" readonly="readonly" class="form-control"
@@ -177,7 +177,7 @@
 											</div>
 											<div class="modal-body">
 												<form class="col-md-12"
-													  th:action="@{/khachhang/quan-ly-tai-khoan/cap-nhat-dia-chi}"
+													  th:action="@{/khach-hang/quan-ly-tai-khoan/cap-nhat-dia-chi}"
 													  method="POST">
 													<div class="row pt-4">
 														<div class="col-md-12">
@@ -247,18 +247,18 @@
 						<nav aria-label="Page navigation example">
 							<ul class="pagination">
 								<li th:class="*{page > 1 ? 'page-item' : 'page-item disabled'}"><a class="page-link"
-																								   th:href="@{|/khachhang/quan-ly-tai-khoan?page=1|}" aria-label="First"> <span
+																								   th:href="@{|/khach-hang/quan-ly-tai-khoan?page=1|}" aria-label="First"> <span
 										aria-hidden="true">Đầu tiên</span>
 								</a></li>
 								<li th:class="*{page > 1 ? 'page-item' : 'page-item disabled'}"><a class="page-link"
-																								   th:href="@{|/khachhang/quan-ly-tai-khoan?page=*{page - 1}|}"
+																								   th:href="@{|/khach-hang/quan-ly-tai-khoan?page=*{page - 1}|}"
 																								   aria-label="Previous"> <span aria-hidden="true">Quay lại</span>
 								</a></li>
 								<th:block th:if="*{totalPages <= 10}">
 									<li th:each="i :*{#numbers.sequence(1,totalPages)}"
 										th:class="${khachHangDTO.page != i    ? 'page-item' : 'page-item disabled'}">
 										<a class="page-link"
-										   th:href="@{|/khachhang/quan-ly-tai-khoan?page=${i}|}">[[${i}]]</a>
+										   th:href="@{|/khach-hang/quan-ly-tai-khoan?page=${i}|}">[[${i}]]</a>
 									</li>
 								</th:block>
 								<th:block th:if="*{totalPages > 10}">
@@ -266,25 +266,25 @@
 										<li th:each="i :*{#numbers.sequence(1,5)}"
 											th:class="${khachHangDTO.page != i  ? 'page-item' : 'page-item disabled'}">
 											<a class="page-link"
-											   th:href="@{|/khachhang/quan-ly-tai-khoan?page=${i}|}">[[${i}]]</a>
+											   th:href="@{|/khach-hang/quan-ly-tai-khoan?page=${i}|}">[[${i}]]</a>
 										</li>
 										<a class="page-link"
-										   th:href="@{|/khachhang/quan-ly-tai-khoan?page=6|}">....</a>
+										   th:href="@{|/khach-hang/quan-ly-tai-khoan?page=6|}">....</a>
 										<li th:each="i :*{#numbers.sequence(totalPages - 4,totalPages)}"
 											th:class="${khachHangDTO.page != i  ? 'page-item' : 'page-item disabled'}">
 											<a class="page-link"
-											   th:href="@{|/khachhang/quan-ly-tai-khoan?page=${i}|}">[[${i}]]</a>
+											   th:href="@{|/khach-hang/quan-ly-tai-khoan?page=${i}|}">[[${i}]]</a>
 										</li>
 									</th:block>
 								</th:block>
 								<li th:class="*{page < totalPages ? 'page-item' : 'page-item disabled'}"><a
 										class="page-link"
-										th:href="@{|/khachhang/quan-ly-tai-khoan?page=*{page + 1}|}"
+										th:href="@{|/khach-hang/quan-ly-tai-khoan?page=*{page + 1}|}"
 										aria-label="Next"> <span aria-hidden="true">Đi tiếp</span>
 								</a></li>
 								<li th:class="*{page < totalPages ? 'page-item' : 'page-item disabled'}"><a
 										class="page-link"
-										th:href="@{|/khachhang/quan-ly-tai-khoan?page=*{totalPages}|}"
+										th:href="@{|/khach-hang/quan-ly-tai-khoan?page=*{totalPages}|}"
 										aria-label="Next"> <span aria-hidden="true">Cuối cùng</span>
 								</a></li>
 							</ul>

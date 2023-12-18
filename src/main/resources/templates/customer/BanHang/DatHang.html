@@ -173,7 +173,7 @@
             <div class="row">
                 <div class="col-12">
                     <nav class="breadcrumb-link">
-                        <a th:href="@{/khachhang/home}">Trang chủ</a>
+                        <a th:href="@{/khach-hang/home}">Trang chủ</a>
                         <span>Thanh toán</span>
                     </nav>
                 </div>
@@ -191,13 +191,22 @@
                     <article class="post-8">
 <!--                        <form class="product-checkout mt-45">-->
                             <div class="row">
-
+                                <script type="text/javascript">
+                                    function showErrorAlert(errorMessage) {
+                                        Swal.fire({
+                                            icon: 'error',
+                                            title: 'Lỗi',
+                                            text: errorMessage,
+                                            showConfirmButton: true
+                                        });
+                                    }
+                                </script>
 <!--                                <button ng-click="themDiaChi()" style="float: right;"><i class="fa-solid fa-plus"></i> Thêm địa chỉ mới</button>-->
                                 <div class="col-md-5">
                                     <h3 style="text-align: center;" id="thongTinGiaohang"><i class="fa-solid fa-circle-info"></i> Chi Tiết Thanh Toán</h3>
                                     <div class="row">
                                         <div class="form-field-wrapper form-center col-sm-12">
-                                            <label class="left">Họ Và Tên</label>
+                                            <label class="left">Họ Và Tên <abbr class="form-required" title="required">*</abbr></label>
                                             <input class="input-md form-full-width" id="hoTen" name="hoTen"
                                                    title="Company Name" value=""
                                                    th:value="${hoaDon.getKhachHang() != null ? hoaDon.getKhachHang().hoTen : ''}"
@@ -275,7 +284,7 @@
                                                     </textarea>
                                         </div>
                                        <div>
-                                          <button class="btn btn-md btn-black"><a th:href="@{/khachhang/gio-hang-chi-tiet}" class="cart-link2" style="color: #FFFFFF"><i class="fa-solid fa-arrow-left"></i> Quay Lại Giỏ hàng</a></button>
+                                          <button class="btn btn-md btn-black"><a th:href="@{/khach-hang/gio-hang-chi-tiet}" class="cart-link2" style="color: #FFFFFF"><i class="fa-solid fa-arrow-left"></i> Quay Lại Giỏ hàng</a></button>
                                        </div>
 
                                     </div>
@@ -303,7 +312,7 @@
                                                             th:each="hoaDonCT, iter: ${hoaDonChiTiet}">
                                                             <td>
                                                                 <div style="display: flex; align-items: center;">
-                                                                    <img th:src="${'/khachhang/images/' + tenAnhChinhList[iter.index]}"
+                                                                    <img th:src="${'/khach-hang/images/' + tenAnhChinhList[iter.index]}"
                                                                          alt=""
                                                                          style="margin-right: 10px;" width="100px"
                                                                          height="100px">

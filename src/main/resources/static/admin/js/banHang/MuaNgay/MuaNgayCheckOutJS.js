@@ -237,7 +237,7 @@ $(document).ready(function () {
 });
 
 function banHangOnlQuayLai() {
-    window.location.href = "/khachhang/gio-hang-chi-tiet";
+    window.location.href = "/khach-hang/gio-hang-chi-tiet";
 }
 
 $(document).ready(function () {
@@ -370,7 +370,8 @@ $(document).ready(function () {
                     .then(response => {
 
                         // Phản hồi khi request thực hiện xong
-                        return response.json(); // Chuyển đổi response sang định dạng JSON
+
+                        return response.json(); // Chuyển đổi reịnh dạng JSON
 
                     })
                     .then(data => {
@@ -481,7 +482,7 @@ $(document).ready(function () {
                 });
             } else {
                 $.ajax({
-                    url: "/MuaNgay/save-order/" + orderId,
+                    url: "/mua-ngay/save-order/" + orderId,
                     type: "POST",
                     data: {
                         totalAmount: totalAmount,
@@ -504,10 +505,11 @@ $(document).ready(function () {
                                 timer: 2000,
                             }).then(function () {
                                 sessionStorage.setItem("isConfirmed", true);
-                                window.location.href = "/khachhang/home";
+                                window.location.href = "/khach-hang/home";
                             });
                         } else {
                             // Xử lý khi lưu hóa đơn không thành công
+                            showErrorAlert(response.message);
                             console.log("Lưu hóa đơn thất bại: " + response.error);
                         }
                     },

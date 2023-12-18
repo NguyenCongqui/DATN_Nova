@@ -1,6 +1,5 @@
 package com.example.duantotnghiepgiaythethaonova.service.impl;
 
-import com.example.duantotnghiepgiaythethaonova.dto.TimeLineDTO;
 import com.example.duantotnghiepgiaythethaonova.dto.search.SPAndSPCTSearchDto;
 import com.example.duantotnghiepgiaythethaonova.entity.*;
 import com.example.duantotnghiepgiaythethaonova.repository.*;
@@ -90,6 +89,13 @@ public class BanHangServiceIpml implements BanHangService {
         Optional<HoaDon> optHoaDon = hoaDonRepository.findById(id);
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         if (optHoaDon.isPresent()) {
+
+            List<String> thongBaoBanHangOnline = kiemTraSoLuongHang(id);
+            if (thongBaoBanHangOnline != null && !thongBaoBanHangOnline.isEmpty()) {
+                // Nếu có vấn đề với số lượng sản phẩm, xử lý hoặc ném ngoại lệ tùy thuộc vào yêu cầu
+                // Ví dụ: nếu sử dụng ngoại lệ
+                throw new RuntimeException(String.join("\n", thongBaoBanHangOnline));
+            }
             Optional<KhuyenMai> optionalKhuyenMai = khuyenMaiRepository.findKhuyenMaiByTenKhuyenMai(tenGiamGia);
             if (optionalKhuyenMai.isPresent()) {
                 KhuyenMai khuyenMai = optionalKhuyenMai.get();
@@ -100,6 +106,8 @@ public class BanHangServiceIpml implements BanHangService {
                     hoaDon.setKhuyenMai(null);
                 }
             }
+
+
 
             //LƯU HÓA ĐƠN
             HoaDon hoaDon = optHoaDon.get();
@@ -137,16 +145,11 @@ public class BanHangServiceIpml implements BanHangService {
             gd.setHoaDon(hoaDon);
             gd.setNgayCapNhat(new Date());
             gd.setNgayTao(new Date());
-            gd.setNguoiCapNhat("ABC");
-            gd.setNguoiTao("ABC");
+            gd.setNguoiCapNhat("Linh Update");
+            gd.setNguoiTao("Linh Create");
             gd.setTrangThai(tt);
             giaoDichRepository.save(gd);
-//            LichSuHoaDon lichSuHoaDon = new LichSuHoaDon();
-//            lichSuHoaDon.setNguoiThaoTac("a");
-//            lichSuHoaDon.setHoaDon(hoaDon);
-//            lichSuHoaDon.setTrangThaiID(hoaDon.getTrangThai().getIdTrangThai());
-//            lichSuHoaDon.setThaoTac("Tao don hang");
-//            lichSuHoaDonRepository.save(lichSuHoaDon);
+
 
             Optional<NguoiDung> OptNguoiDung = nguoiDungRepository.findByEmail2(email);
             if (OptNguoiDung.isPresent()) {
@@ -173,11 +176,11 @@ public class BanHangServiceIpml implements BanHangService {
                 sanPhamChiTiet.setSoLuong(soLuongcapNhat);
                 sanPhamChiTietRepository.save(sanPhamChiTiet);
             }
-//
-//            if (email == null) {
-//                gd.setNguoiTao(nguoiNhan);
-//                giaoDichRepository.save(gd);
-//            }
+
+            if (email == null) {
+                gd.setNguoiTao(nguoiNhan);
+                giaoDichRepository.save(gd);
+            }
 
             try {
                 emailService.sendOrderConfirmationEmail(emailNguoiNhan, hoaDon);
@@ -417,6 +420,12 @@ public class BanHangServiceIpml implements BanHangService {
     public void saveOrderMuaNgay(BigDecimal totalAmount, BigDecimal shippingFee, BigDecimal tien_giam, String tenGiamGia, String emailNguoiNhan, String diaChiGiaoHang, String nguoiNhan, String sdtNguoiNhan, String ghiChu, Integer id) {
         Optional<HoaDon> optHoaDon = hoaDonRepository.findById(id);
         if (optHoaDon.isPresent()) {
+            List<String> thongBao = kiemTraSoLuongHang(id);
+            if (thongBao != null && !thongBao.isEmpty()) {
+                // Nếu có vấn đề với số lượng sản phẩm, xử lý hoặc ném ngoại lệ tùy thuộc vào yêu cầu
+                // Ví dụ: nếu sử dụng ngoại lệ
+                throw new RuntimeException(String.join("\n", thongBao));
+            }
             Optional<KhuyenMai> optionalKhuyenMai = khuyenMaiRepository.findKhuyenMaiByTenKhuyenMai(tenGiamGia);
             if (optionalKhuyenMai.isPresent()) {
                 KhuyenMai khuyenMai = optionalKhuyenMai.get();
@@ -491,6 +500,40 @@ public class BanHangServiceIpml implements BanHangService {
             }
         }
     }
+
+    @Override
+    public List<String> kiemTraSoLuongHang(Integer idHoaDon) {
+        List<String> thongBao = new ArrayList<>();
+        Optional<HoaDon> optHoaDon = hoaDonRepository.findById(idHoaDon);
+
+        if (optHoaDon.isPresent()) {
+            HoaDon hoaDon = optHoaDon.get();
+            List<HoaDonChiTiet> hoaDonChiTiets = hoaDon.getHoaDonChiTiets();
+
+            for (HoaDonChiTiet hoaDonChiTiet : hoaDonChiTiets) {
+                ChiTietSanPham sanPhamChiTiet = hoaDonChiTiet.getChiTietSanPham();
+                Integer soLuongSPCTBanDau = sanPhamChiTiet.getSoLuong();
+                Integer soLuongTrongHoaDon = hoaDonChiTiet.getSoLuong();
+
+                if (soLuongTrongHoaDon > soLuongSPCTBanDau) {
+                    // Nếu có sản phẩm vượt quá số lượng, thêm thông báo vào danh sách
+                    System.out.println(" thong bao qua so luong");
+                    System.out.println("Sản phẩm " + sanPhamChiTiet.getSanPham().getTenSanPham() +
+                            " (Màu: " + sanPhamChiTiet.getMauSac().getTenMauSac() +
+                            ", Kích thước: " + sanPhamChiTiet.getKichCo().getTenKichCo() +
+                            ") vượt quá số lượng cho phép.");
+                    thongBao.add("Sản phẩm " + sanPhamChiTiet.getSanPham().getTenSanPham() +
+                            " (Màu: " + sanPhamChiTiet.getMauSac().getTenMauSac() +
+                            ", Kích thước: " + sanPhamChiTiet.getKichCo().getTenKichCo() +
+                            ") vượt quá số lượng cho phép.");
+                }
+            }
+        }
+
+        return thongBao;
+    }
+
+
 
     @Override
     public ResponseEntity<String> updateXoaSanPhamBanHangTaiQuay(Integer id) {

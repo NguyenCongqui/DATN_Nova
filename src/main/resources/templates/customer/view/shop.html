@@ -79,8 +79,8 @@
             <div class="row">
                 <div class="col-12">
                     <nav class="breadcrumb-link">
-                        <a th:href="@{/khachhang/home}">Trang chủ</a>
-                        <a th:href="@{/khachhang/shop}">Danh sách sản phẩm</a>
+                        <a th:href="@{/khach-hang/home}">Trang chủ</a>
+                        <a th:href="@{/khach-hang/san-pham}">Danh sách sản phẩm</a>
                     </nav>
                 </div>
             </div>
@@ -411,7 +411,7 @@
                                     <div class="shop__product__option__right">
                                         <p>Xếp theo giá: </p>
                                         <select th:field="${dataSearch.tieuChiGia}"
-                                                onchange="flexUrlSubmit('/shop', 'get')">
+                                                onchange="flexUrlSubmit('/sah-pham', 'get')">
                                             <option value="">Tất cả</option>
                                             <option value="thapDenCao">Từ thấp đến cao</option>
                                             <option value="caoDenThap">Từ cao đến thấp</option>
@@ -441,20 +441,20 @@
                                                      th:id="'imgActive'+${istat.index}+${istatAC.index}"
                                                      th:classappend="${#numbers.formatInteger(istat.index+''+istatAC.index,5) == #numbers.formatInteger(istat.index+''+0,5)? 'active':''}"
                                                      th:each="img, istatAC : ${item.anhChinhs}">
-                                                    <img th:src="${'/khachhang/images/'+img}"
+                                                    <img th:src="${'/khach-hang/images/'+img}"
                                                          class="d-block img-responsive"
                                                          alt="...">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="product-button">
-                                            <a th:href="${'/khachhang/shop-details/'+item.sanPhamId}"
+                                            <a th:href="${'/khach-hang/san-pham-chi-tiet/'+item.sanPhamId}"
                                                class="js_tooltip" data-mode="top" data-tip="Thêm vào giỏ"><i
                                                     class="fas fa-cart-plus"></i></a>
 <!--                                            <a th:href="${'/khachhang/shop-details/'+item.sanPhamId}" class="js_tooltip"-->
 <!--                                               data-mode="top" data-tip="Xem chi&nbsp;tiết"><i class="fa fa-eye"></i></a>-->
 
-                                            <a th:href="${'/MuaNgay/shop-details/'+item.sanPhamId}" class="js_tooltip"
+                                            <a th:href="${'/mua-ngay/san-pham-chi-tiet/'+item.sanPhamId}" class="js_tooltip"
                                                data-mode="top" data-tip="Mua ngay"><img
                                                     th:src="@{/static/customer/img/buy-now.png}"
                                                     style="width: 25px; height: 25px; text-align: center"/>
@@ -463,7 +463,7 @@
                                     </div>
                                     <div class="product-detail">
                                         <a class="tag" href="#">Men Fashion</a>
-                                        <p class="product-title"><a th:href="${'/khachhang/shop-details/'+item.sanPhamId}"
+                                        <p class="product-title"><a th:href="${'/khach-hang/san-pham-chi-tiet/'+item.sanPhamId}"
                                                                     th:text="${item.tenSanPham}"></a></p>
                                         <h5 class="item-price"
                                             th:text="${#numbers.formatDecimal(item.gia, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></h5>

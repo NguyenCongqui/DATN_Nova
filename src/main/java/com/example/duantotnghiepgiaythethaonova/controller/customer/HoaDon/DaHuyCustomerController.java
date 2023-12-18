@@ -13,7 +13,7 @@ public class DaHuyCustomerController {
     @Autowired
     HoaDonCustomerService hoaDonCustomerService;
 
-    @RequestMapping("khachhang/DonHang/DaHuy")
+    @RequestMapping("khach-hang/don-hang/da-huy")
     public String daHuyCustomer(@RequestParam(defaultValue = "1") int page,
                                 @RequestParam(defaultValue = "3") int size,
                                 Model model) {
@@ -21,7 +21,7 @@ public class DaHuyCustomerController {
         return "customer/HoaDon/DanhSach/daHuyCustomer";
     }
 
-    @RequestMapping("khachhang/DonHang/ChiTietHoaDon/DaHuy/hoa-don-id={id}")
+    @RequestMapping("khach-hang/don-hang/chi-tiet-hoa-don/da-huy/hoa-don-id={id}")
     public String DaHuy(@PathVariable("id") Integer id, Model model) {
         hoaDonCustomerService.chiTietDaHuyCustomer(id, model);
         return "customer/HoaDon/ChiTietHoaDon/CTDaHuyCustomer";

@@ -27,7 +27,7 @@ $('#btnDoiMatKhauTaiKhoan').click(function (e) {
 
 function capNhatMatKhau(data) {
     $.ajax({
-        url: 'http://localhost:8080/khachhang/api/tai-khoan/doi-mat-khau',
+        url: 'http://localhost:8080/khach-hang/api/tai-khoan/doi-mat-khau',
         type: 'PUT',
         contentType: 'application/json',
         data: JSON.stringify(data),
@@ -40,7 +40,7 @@ function capNhatMatKhau(data) {
             });
             console.log(result);
 //     		window.location.href = "http://localhost:8080/customer/quan-ly-tai-khoan?page=1&message=insert_success" ;
-            setTimeout("location.href = ' http://localhost:8080/khachhang/quan-ly-tai-khoan?page=1'   ", 2000);
+            setTimeout("location.href = ' http://localhost:8080/khach-hang/quan-ly-tai-khoan?page=1'   ", 2000);
         },
         error: function (error) {
             Swal.fire({
@@ -88,7 +88,7 @@ $('#btnThemMoiDiaChiDangNhap').click(function (e) {
 
 function themDiaChi(data) {
     $.ajax({
-        url: 'http://localhost:8080/khachhang/api/dia-chi/khach-hang-dang-nhap',
+        url: 'http://localhost:8080/khach-hang/api/dia-chi/khach-hang-dang-nhap',
         type: 'POST',
         contentType: 'application/json',
         data: JSON.stringify(data),
@@ -100,7 +100,7 @@ function themDiaChi(data) {
                 timer: 1500
             });
 //     		window.location.href = "http://localhost:8080/customer/quan-ly-tai-khoan?page=1&message=insert_success" ;
-            setTimeout("location.href = ' http://localhost:8080/khachhang/quan-ly-tai-khoan?page=1&message=insert_success'   ", 2000);
+            setTimeout("location.href = ' http://localhost:8080/khach-hang/quan-ly-tai-khoan?page=1&message=insert_success'   ", 2000);
         },
         error: function (error) {
             $('#themMoiDiaChiKhachHangDangNhapModal').modal('hide');
@@ -152,7 +152,7 @@ function xacNhanXoaDiaChiDangNhap() {
 
 function xoaDiaChi(ids) {
     $.ajax({
-        url: 'http://localhost:8080/khachhang/api/dia-chi',
+        url: 'http://localhost:8080/khach-hang/api/dia-chi',
         type: 'DELETE',
         contentType: 'application/json',
         data: JSON.stringify(ids),
@@ -163,7 +163,7 @@ function xoaDiaChi(ids) {
                 showConfirmButton: false,
                 timer: 1500
             });
-            setTimeout("location.href = ' http://localhost:8080/khachhang/quan-ly-tai-khoan?page=1&message=delete_success'   ", 2000);
+            setTimeout("location.href = ' http://localhost:8080/khach-hang/quan-ly-tai-khoan?page=1&message=delete_success'   ", 2000);
         },
         error: function (error) {
             $('#liveToast').html('<div class="toast-header"><strong class="mr-auto">Thông báo !</strong><small>1 giây trước </small><button type="button" class="ml-2 mb-1 close" data-dismiss="toast" aria-label="Close"><span aria-hidden="true">&times;</span></button></div><div class="toast-body"><p class="fw-bold text-danger">Xóa địa chỉ thất bại !</p></div>');
@@ -186,7 +186,7 @@ $(document).ready(function () {
 
     function updateDiaChiMacDinh(diaChiId, khachHangId) {
         $.ajax({
-            url: "/khachhang/api/update-dia-chi-mac-dinh",
+            url: "/khach-hang/api/update-dia-chi-mac-dinh",
             type: "POST",
             data: {
                 DiaChiID: diaChiId,

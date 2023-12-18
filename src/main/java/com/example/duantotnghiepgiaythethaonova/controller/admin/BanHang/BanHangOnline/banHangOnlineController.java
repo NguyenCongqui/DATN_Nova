@@ -17,13 +17,13 @@ public class banHangOnlineController {
     @Autowired
     BanHangService banHangService;
 
-    @PostMapping("/khachhang/gio-hang-chi-tiet/tao-hoa-don")
+    @PostMapping("/khach-hang/gio-hang-chi-tiet/tao-hoa-don")
     public String taoHoaDon(@RequestBody List<Integer> selectedCartItemIds, RedirectAttributes redirectAttributes) {
-        long hoaDonID = banHangService.taoHoaDonBanHangOnline(selectedCartItemIds, redirectAttributes);
-        return "redirect:/khachhang/checkout/" + hoaDonID;
+        Integer hoaDonID = banHangService.taoHoaDonBanHangOnline(selectedCartItemIds, redirectAttributes);
+        return "redirect:/khach-hang/checkout/" + hoaDonID;
     }
 
-    @RequestMapping("khachhang/checkout/{id}")
+    @RequestMapping("khach-hang/checkout/{id}")
     public String banHangBanHangOnline(@PathVariable("id") Integer id, Model model) {
         banHangService.BanHangBanHangOnline(id, model);
         return "customer/BanHang/DatHang";

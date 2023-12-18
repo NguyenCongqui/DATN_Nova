@@ -38,22 +38,22 @@
                                          th:id="'imgActive'+${istat.index}+${istatAC.index}"
                                          th:classappend="${#numbers.formatInteger(istat.index+''+istatAC.index,5) == #numbers.formatInteger(istat.index+''+0,5)? 'active':''}"
                                          th:each="img, istatAC : ${item.anhChinhs}">
-                                        <img th:src="${'/khachhang/images/'+img}" class="d-block img-responsive"
+                                        <img th:src="${'/khach-hang/images/'+img}" class="d-block img-responsive"
                                              alt="...">
                                     </div>
                                 </div>
                                 <div class="product-button">
-                                    <a th:href="${'/khachhang/shop-details/'+item.sanPhamId}" class="js_tooltip"
+                                    <a th:href="${'/khach-hang/san-pham-chi-tiet/'+item.sanPhamId}" class="js_tooltip"
                                        data-mode="top" data-tip="Thêm vào giỏ"><i class="fas fa-cart-plus"></i></a>
                                     <!-- <a href="#" class="js_tooltip" data-mode="top" data-tip="Add To Whishlist"><i class="fa fa-heart"></i></a>-->
-                                     <a th:href="${'/khachhang/shop-details/'+item.sanPhamId}" class="js_tooltip" data-mode="top" data-tip="Xem chi&nbsp;tiết"><i class="fa fa-eye"></i></a>
+                                     <a th:href="${'/khach-hang/san-pham-chi-tiet/'+item.sanPhamId}" class="js_tooltip" data-mode="top" data-tip="Xem chi&nbsp;tiết"><i class="fa fa-eye"></i></a>
                                 </div>
 
                             </div>
 
                             <div class="product-detail">
                                 <a class="tag" href="#">Men Fashion</a>
-                                <p class="product-title"><a th:href="${'/khachhang/shop-details/'+item.sanPhamId}"
+                                <p class="product-title"><a th:href="${'/khach-hang/san-pham-chi-tiet/'+item.sanPhamId}"
                                                             th:text="${item.tenSanPham}"></a></p>
                                 <div class="product-rating">
                                     <div class="star-rating" itemprop="reviewRating" itemscope=""
@@ -169,47 +169,47 @@
     <section id="brand-logo" class="section-padding brand-logo">
         <div class="container">
             <ul class="list-none-ib brand-logo-carousel owl-carousel owl-theme">
-                <li class="brand-item"><a th:href="@{/khachhang/home}">
+                <li class="brand-item"><a th:href="@{/khach-hang/home}">
                     <img th:src="@{/static/customer/img/logo/adi-logo.png}" alt="nileforest"/>
                 </a>
                 </li>
                 <li class="brand-item">
-                    <a th:href="@{/khachhang/home}">
+                    <a th:href="@{/khach-hang/home}">
                         <img th:src="@{/static/customer/img/logo/logo-convertse.png}" alt="niletheme"/>
                     </a>
                 </li>
                 <li class="brand-item">
-                    <a th:href="@{/khachhang/home}">
+                    <a th:href="@{/khach-hang/home}">
                         <img th:src="@{/static/customer/img/logo/new-bla.png}" alt="nile"/>
                     </a>
                 </li>
                 <li class="brand-item">
-                    <a th:href="@{/khachhang/home}">
+                    <a th:href="@{/khach-hang/home}">
                         <img th:src="@{/static/customer/img/logo/nike-logo.png}" alt="forest"/>
                     </a>
                 </li>
                 <li class="brand-item">
-                    <a th:href="@{/khachhang/home}">
+                    <a th:href="@{/khach-hang/home}">
                         <img th:src="@{/static/customer/img/logo/van-logo.png}" alt="themeforest"/>
                     </a>
                 </li>
                 <li class="brand-item">
-                    <a th:href="@{/khachhang/home}">
+                    <a th:href="@{/khach-hang/home}">
                         <img th:src="@{/static/customer/img/logo/logo-ana.png}" alt="woocommerce"/>
                     </a>
                 </li>
                 <li class="brand-item">
-                    <a th:href="@{/khachhang/home}">
+                    <a th:href="@{/khach-hang/home}">
                         <img th:src="@{/static/customer/img/logo/puma-logo.png}" alt="ecommerce"/>
                     </a>
                 </li>
                 <li class="brand-item">
-                    <a th:href="@{/khachhang/home}">
+                    <a th:href="@{/khach-hang/home}">
                         <img th:src="@{/static/customer/img/logo/reebok-logo.png}" alt="html"/>
                     </a>
                 </li>
                 <li class="brand-item">
-                    <a th:href="@{/khachhang/home}">
+                    <a th:href="@{/khach-hang/home}">
                         <img th:src="@{/static/customer/img/logo/logo-ana.png}" alt="multiprapose"/>
                     </a>
                 </li>

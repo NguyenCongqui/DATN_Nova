@@ -54,7 +54,7 @@ public class OAuth2LoginSuccessHandler extends SimpleUrlAuthenticationSuccessHan
             khachHangService.capNhatKhachHang(email, fullname, AuthenticationProvider.GOOGLE);
         }
 
-        redirectStrategy.sendRedirect(request, response, "/khachhang/home");
+        redirectStrategy.sendRedirect(request, response, "/khach-hang/home");
         super.onAuthenticationSuccess(request, response, authentication);
     }
 }

@@ -8,7 +8,7 @@ $(document).ready(function () {
 
     $('.dangGiaoModalCustomer .btn-dong-y').click(function () {
         // Gửi yêu cầu xác nhận đơn hàng bằng Ajax
-        $.get('/khachhang/updateGiaoHangThanhCong/' + currentHoaDonId, function (response) {
+        $.get('/khach-hang/updateGiaoHangThanhCong/' + currentHoaDonId, function (response) {
             // Lưu trạng thái đã xác nhận vào sessionStorage
             Swal.fire({
                 icon: 'success',
@@ -46,7 +46,7 @@ $(document).ready(function () {
 
         $('.hoanThanhTatCaModal .btn-dong-y').click(function () {
             // Gửi yêu cầu hoàn thành tất cả bằng Ajax
-            $.get('/khachhhang/updateThanhCongAll', function (response) {
+            $.get('/khach-hhang/updateThanhCongAll', function (response) {
                 // Hiển thị thông báo thành công
                 Swal.fire({
                     icon: 'success',

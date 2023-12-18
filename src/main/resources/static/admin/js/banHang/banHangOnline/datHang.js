@@ -9,7 +9,7 @@ function kiemTraSoLuongVaTaoHoaDon() {
     });
 
     // Gửi yêu cầu kiểm tra số lượng sản phẩm trước khi tạo hóa đơn
-    fetch('/khachhang/gio-hang-chi-tiet/kiem-tra-so-luong', {
+    fetch('/khach-hang/gio-hang-chi-tiet/kiem-tra-so-luong', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',
@@ -82,7 +82,7 @@ function taoHoaDon() {
         }
     });
 
-    fetch('/khachhang/gio-hang-chi-tiet/tao-hoa-don', {
+    fetch('/khach-hang/gio-hang-chi-tiet/tao-hoa-don', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json',

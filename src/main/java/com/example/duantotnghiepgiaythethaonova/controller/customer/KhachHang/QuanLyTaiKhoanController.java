@@ -30,12 +30,12 @@ public class QuanLyTaiKhoanController {
     private DiaChiService diaChiService;
 
 
-    @RequestMapping("khachhang/tai-khoan")
+    @RequestMapping("khach-hang/tai-khoan")
     public String redirect() {
-        return "redirect:/khachhang/quan-ly-tai-khoan?page=1";
+        return "redirect:/khach-hang/quan-ly-tai-khoan?page=1";
     }
 
-    @RequestMapping("khachhang/quan-ly-tai-khoan")
+    @RequestMapping("khach-hang/quan-ly-tai-khoan")
     public String thongTinKhachHang(@RequestParam(name = "page", defaultValue = "1") Integer page, Model model, RedirectAttributes redirectAttributes) {
         String email = SecurityContextHolder.getContext().getAuthentication().getName();
         if (email == null) {
@@ -63,7 +63,7 @@ public class QuanLyTaiKhoanController {
         return "/customer/khach-hang/quan-ly-tai-khoan";
     }
 
-    @PostMapping("khachhang/quan-ly-tai-khoan/cap-nhat")
+    @PostMapping("khach-hang/quan-ly-tai-khoan/cap-nhat")
     public String chinhSuaThongTin(
             @Valid @ModelAttribute("khachHangDTO") KhachHangDTO khachHangDTO, BindingResult result,
             @RequestParam(name = "page", defaultValue = "1") Integer page
@@ -85,12 +85,12 @@ public class QuanLyTaiKhoanController {
             khachHangService.save(khachHangDTO);
             redirectAttributes.addFlashAttribute("message", "Cập nhật thành công !");
             model.addAttribute("khachHangDTO", khachHangDTO);
-            return "redirect:/khachhang/quan-ly-tai-khoan?page=" + khachHangDTO.getPage();
+            return "redirect:/khach-hang/quan-ly-tai-khoan?page=" + khachHangDTO.getPage();
         }
 
     }
 
-    @PostMapping("khachhang/quan-ly-tai-khoan/cap-nhat-dia-chi")
+    @PostMapping("khach-hang/quan-ly-tai-khoan/cap-nhat-dia-chi")
     public String capNhatDiaChi(@RequestParam("diaChi") String diaChi,
                                 @RequestParam("hoTen") String hoTen,
                                 @RequestParam("soDienThoai") String soDienThoai,

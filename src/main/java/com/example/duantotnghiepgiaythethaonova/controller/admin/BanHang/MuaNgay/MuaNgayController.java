@@ -12,7 +12,7 @@ public class MuaNgayController {
     @Autowired
     BanHangService banHangService;
 
-    @RequestMapping("MuaNgaySanPham/checkout/{id}")
+    @RequestMapping("mua-ngay-san-pham/checkout/{id}")
     public String banHangBanHangOnline(@PathVariable("id") Integer id, Model model) {
         banHangService.BanHangBanHangOnline(id, model);
         return "customer/MuaNgay/MuaNgayCheckOut";

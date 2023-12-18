@@ -71,7 +71,7 @@ $(document).ready(function () {
 function getSoLuongSanPhamChiTiet(tenKichCo, mauSacId, sanPhamId) {
     $.ajax({
         type: "GET",
-        url: "/khachhang/SoLuongSanPhamChiTiet",
+        url: "/khach-hang/SoLuongSanPhamChiTiet",
         data: {
             tenKichCo: tenKichCo,
             mauSacId: mauSacId,
@@ -85,6 +85,20 @@ function getSoLuongSanPhamChiTiet(tenKichCo, mauSacId, sanPhamId) {
             }
 
             $("#soLuongHienCoCus" + sanPhamId).text(soLuongSanPhamChiTiet);
+
+            console.log("Số lượng hiện có:", soLuongSanPhamChiTiet);
+            if (soLuongSanPhamChiTiet === 0) {
+                // Nếu số lượng là 0, ẩn nút "Mua Ngay"
+                // $("#muaNgaySanPham").hide();
+                // Hoặc, bạn có thể hiển thị một thông báo cho biết sản phẩm đã hết hàng
+                $(".giohang")
+                    .text("Hết hàng").css("color", "red")
+                    .removeClass("btn-black fas fa-cart-plus");
+                return;
+            } else {
+                // Nếu số lượng lớn hơn 0, hiển thị nút "Mua Ngay"
+                $(".giohang").html('<i class="fas fa-cart-plus"></i>THÊM VÀO GIỎ').addClass("btn-black btn btn-lg");
+            }
         },
         error: function () {
             alert("Đã xảy ra lỗi khi gửi yêu cầu đến server.");
@@ -135,6 +149,9 @@ $(document).ready(function () {
         // const mauSacId = $("button[name='mauSacId']:checked").val();
         // const kichCoId = $("input[name='kichCoId']:checked").val();
         const soLuong = $(".daucatmoi").val();
+        console.log(soLuong);
+        console.log("auth:", auth);
+        console.log("mauSacDaChon:", mauSacDaChon);
 
 
         if (soLuong <= 0) {
@@ -171,8 +188,13 @@ $(document).ready(function () {
             return;
         }
 
+        if ($("#themVaoGioHang").text().trim().toLowerCase() === "hết hàng") {
+            // Nếu là "Hết hàng", không thực hiện hành động mua ngay
+            return;
+        }
+
         if (auth != 'anonymousUser') {
-            themVaoGioHang(sanPhamID, soLuong);
+           themVaoGioHang(sanPhamID,soLuong)
         } else {
             Swal.fire({
                 icon: "danger",
@@ -190,7 +212,7 @@ $(document).ready(function () {
 function themVaoGioHang(sanPhamID, soLuong) {
     $.ajax({
         type: "POST",
-        url: "http://localhost:8080/khachhang/addToCart",
+        url: "http://localhost:8080/khach-hang/addToCart",
         data: {
             sanPhamId: sanPhamID,
             mauSacId: mauSacDaChon,
@@ -207,7 +229,7 @@ function themVaoGioHang(sanPhamID, soLuong) {
                 sessionStorage.setItem('isConfirmed', true);
 
                 // Tải lại trang
-                window.location.href = "/khachhang/shop-details/" + sanPhamID;
+                window.location.href = "/khach-hang/san-pham-chi-tiet/" + sanPhamID;
             });
         },
         error: function (error) {
