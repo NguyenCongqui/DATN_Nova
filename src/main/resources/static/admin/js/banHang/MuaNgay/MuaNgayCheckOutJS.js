@@ -330,6 +330,7 @@ $(document).ready(function () {
             const tienGiamIndex = Math.round(tien_giam);
             const shippingFeeIndex = Math.round(shippingFee);
             kiemTraSoLuongSanPham(id_hd1, function (thongBao) {
+
                 if (thongBao.length > 0) {
                     // Nếu có vấn đề với số lượng sản phẩm, hiển thị thông báo lỗi
                     Swal.fire({
@@ -339,7 +340,18 @@ $(document).ready(function () {
                         showConfirmButton: true,
 
                     });
-                } else {
+                }
+                else if(sdtNguoiNhan.length !== 0) {
+                    // Nếu có vấn đề với số lượng sản phẩm, hiển thị thông báo lỗi
+                    Swal.fire({
+                        icon: "error",
+                        title: "Số điện thoại phải đủ 10 chữ số",
+                        showConfirmButton: false,
+                        timer: 2000,
+
+                    });
+                }
+                else {
             // Gán giá trị vào các trường input ẩn để truyền vào from -> VNPay
             $("#diaChiGiaoHang").val(diaChiGiaoHang);
             $("#nguoiNhan").val(nguoiNhan);
@@ -354,14 +366,25 @@ $(document).ready(function () {
 
             let tienShipCheck = $("#shippingFee").text();
 
-            if (nguoiNhan === "" || sdtNguoiNhan === "" || emailNguoiNhan === "" || tienShipCheck === "") {
+            if (nguoiNhan === "" || sdtNguoiNhan === "" || emailNguoiNhan === "" || tienShipCheck === "" ) {
                 Swal.fire({
                     icon: "error",
                     title: "Vui lòng điền đầy đủ thông tin !",
                     showConfirmButton: false,
                     timer: 2000,
                 });
-            } else {
+            }
+            else if(sdtNguoiNhan.length !== 0) {
+                // Nếu có vấn đề với số lượng sản phẩm, hiển thị thông báo lỗi
+                Swal.fire({
+                    icon: "error",
+                    title: "Số điện thoại phải đủ 10 chữ số",
+                    showConfirmButton: false,
+                    timer: 2000,
+
+                });
+            }
+            else {
                 let data = {
                     orderCode: id_hd,
                     amount: amount,
@@ -593,7 +616,16 @@ $(document).ready(function () {
                     showConfirmButton: false,
                     timer: 2000,
                 });
-            } else {
+            }
+            else if (sdtNguoiNhan.length !== 10) {
+                Swal.fire({
+                    icon: "error",
+                    title: "Số điện thoại phải đủ 10 chữ số",
+                    showConfirmButton: false,
+                    timer: 2000,
+                });
+            }
+            else {
                 $.ajax({
                     url: "/mua-ngay/save-order/" + orderId,
                     type: "POST",
