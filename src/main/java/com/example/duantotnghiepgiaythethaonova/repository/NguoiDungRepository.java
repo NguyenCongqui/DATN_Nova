@@ -29,13 +29,13 @@ public interface NguoiDungRepository extends JpaRepository<NguoiDung, Integer> {
     @Query(value = "UPDATE NguoiDung SET daXoa = 1 where idNguoiDung= :id", nativeQuery = true)
     void xoaNguoiDung(@Param("id") Integer id);
 
-    @Query(value = "select * from NguoiDung  where trangThai= ?1", nativeQuery = true)
+    @Query(value = "select * from NguoiDung where trangThai= ?1", nativeQuery = true)
     List<NguoiDung> findByTrangThai(Integer trangThai);
 
-    @Query(value = "SELECT * FROM NguoiDung  where Email= ?1 AND DaXoa= 0", nativeQuery = true)
+    @Query(value = "SELECT * FROM NguoiDung where Email= ?1 AND DaXoa= 0", nativeQuery = true)
     NguoiDung findByEmail(String email);
 
-    @Query(value = "select * from NguoiDung  where email= ?1 AND daXoa= 0", nativeQuery = true)
+    @Query(value = "select * from NguoiDung where email= ?1 AND daXoa= 0", nativeQuery = true)
     Optional<NguoiDung> findByEmail2(String email);
 
     @Query(value = "select * from NguoiDung where soDienThoai  = ?1 AND daXoa=0", nativeQuery = true)

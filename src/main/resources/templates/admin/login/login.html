@@ -1,10 +1,171 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <title>Đăng nhập</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="shortcut icon" th:href="@{/static/customer/img/NOVA.png}" type="image/x-icon">
+    <!--    <link rel="stylesheet" th:href="@{/admin/css/login/login1.scss}">-->
+    <link rel="stylesheet" th:href="@{/static/admin/css/login/login.css}">
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css"
+          integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+          crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+            integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+            crossorigin="anonymous"></script>
+    <script
+            src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js"
+            integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+            crossorigin="anonymous"></script>
+    <script
+            src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js"
+            integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+            crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="https://kit.fontawesome.com/999051c9de.js"
+            crossorigin="anonymous"></script>
+    <style>
+        .form {
+            background-color: #fff;
+            display: block;
+            padding: 1rem;
+            max-width: 350px;
+            border-radius: 0.5rem;
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        .form-title {
+            font-size: 1.25rem;
+            line-height: 1.75rem;
+            font-weight: 600;
+            text-align: center;
+            color: #000;
+        }
+
+        .input-container {
+            position: relative;
+        }
+
+        .input-container input, .form button {
+            outline: none;
+            border: 1px solid #e5e7eb;
+            margin: 8px 0;
+        }
+
+        .input-container input {
+            background-color: #fff;
+            padding: 1rem;
+            padding-right: 3rem;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            width: 300px;
+            border-radius: 0.5rem;
+            box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        }
+
+        .submit {
+            display: block;
+            padding-top: 0.75rem;
+            padding-bottom: 0.75rem;
+            padding-left: 1.25rem;
+            padding-right: 1.25rem;
+            background-color: #4F46E5;
+            color: #ffffff;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            font-weight: 500;
+            width: 100%;
+            border-radius: 0.5rem;
+            text-transform: uppercase;
+        }
+
+        .signup-link {
+            color: #6B7280;
+            font-size: 0.875rem;
+            line-height: 1.25rem;
+            text-align: center;
+        }
+
+        .signup-link a {
+            text-decoration: underline;
+        }
+    </style>
 </head>
 <body>
-$END$
+<form class="form" th:action="@{/security/admin/login}" action="login" method="post">
+    <p class="form-title">Sign in to your account</p>
+    <p>
+        <th:block th:if="${alert == 'danger'}">
+            <i class="pull-left text-danger" th:text="${message}"></i>
+        </th:block>
+        <th:block th:if="${alert == 'success'}">
+            <i class="pull-left text-success" th:text="${message}"></i>
+        </th:block>
+    <div th:if="${param.logout}">
+        <i class="pull-left text-success">Đăng xuất thành công !</i>
+    </div>
+    </p>
+    <div class="input-container">
+        <input type="email" id="userName"
+               name="username" placeholder="Nhập email..." required/>
+        <span>
+          </span>
+    </div>
+    <div class="input-container">
+        <input type="password" id="password" class="form-control form-control-lg"
+               name="password" placeholder="Nhập mật khẩu..." onclick="showPass()" required=""/>
+        <i class="fa-solid fa-eye-slash password-toggle-icon" id="togglePassword"
+           style="display: none;"></i>
+        <span toggle="#password-field"></span>
+    </div>
+    <div class="form-outline mb-4">
+        <!--                                        <input type="checkbox"  name="checkbox"  id="rememberMeCheckbox" checked> Lưu mật khẩu ?-->
+        <a class="small text-muted i" th:href="@{/security/forgot-password}">Quên mật
+            khẩu!</a>
+
+    </div>
+    <button type="submit" class="submit">
+        Sign in
+    </button>
+
+</form>
+<script>
+
+    function showPass() {
+        const togglePassword = document.getElementById('togglePassword');
+        const passwordField = document.getElementById('password');
+
+        // Call hiện/ẩn hiển thị mật khẩu
+        function togglePasswordIcon() {
+            if (passwordField.value === '') {
+                togglePassword.style.display = 'none';
+            } else {
+                togglePassword.style.display = 'block';
+            }
+        }
+
+        // Call nếu nhập vào text thi hiển thị icon
+        togglePasswordIcon();
+
+        togglePassword.addEventListener('click', function () {
+            const type = passwordField.getAttribute('type') === 'password' ? 'text' : 'password';
+            passwordField.setAttribute('type', type);
+
+            // Change icon
+            if (type === 'password') {
+                togglePassword.classList.add('fa-eye-slash');
+                togglePassword.classList.remove('fa-eye');
+            } else {
+                togglePassword.classList.remove('fa-eye-slash');
+                togglePassword.classList.add('fa-eye');
+            }
+        });
+
+        // Kiểm tra input value khi nhập
+        passwordField.addEventListener('input', togglePasswordIcon);
+    }
+</script>
 </body>
 </html>
