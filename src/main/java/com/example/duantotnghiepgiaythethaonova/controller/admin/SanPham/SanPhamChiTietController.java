@@ -500,16 +500,16 @@ public class SanPhamChiTietController {
 			for (String item : ids) {
 				Optional<SanPham> opt = sanPhamService.findById(Integer.parseInt(item));
 				if (opt.isPresent()) {
-					List<HinhAnh> lstHinhAnh = hinhAnhService.getHinhAnhBySanPhamId(Integer.parseInt(item));
-					for (HinhAnh ha : lstHinhAnh) {
-						if (!ha.getTenAnh().isEmpty()) {
-							storageService.delete(ha.getTenAnh());
-							hinhAnhService.delete(ha);
-						} else {
-							redirectAttributes.addFlashAttribute("messageDanger",
-									"Tên hình ảnh: '" + ha.getTenAnh() + "' không tồn tại");
-						}
-					}
+//					List<HinhAnh> lstHinhAnh = hinhAnhService.getHinhAnhBySanPhamId(Integer.parseInt(item));
+//					for (HinhAnh ha : lstHinhAnh) {
+//						if (!ha.getTenAnh().isEmpty()) {
+//							//storageService.delete(ha.getTenAnh());
+//							//hinhAnhService.delete(ha);
+//						} else {
+//							redirectAttributes.addFlashAttribute("messageDanger",
+//									"Tên hình ảnh: '" + ha.getTenAnh() + "' không tồn tại");
+//						}
+//					}
 					sanPhamService.delete(opt.get());
 					for (ChiTietSanPham spct : opt.get().getChiTietSanPhams()) {
 						sanPhamChiTietService.delete(spct);
@@ -1058,25 +1058,25 @@ public class SanPhamChiTietController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 
-	@GetMapping("removeHinhAnh/{imgName}")
-	@ResponseBody
-	public ResponseEntity<String> removeHinhAnh(ModelMap model, @PathVariable("imgName") String imgName)
-			throws IOException {
-		Optional<HinhAnh> opt = hinhAnhService.getHinhAnhByName(imgName);
-		if (opt.isPresent()) {
-			if(opt.get().getLaAnhChinh() == true) {
-				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-			}else {
-				if (!opt.get().getTenAnh().isEmpty()) {
-					storageService.delete(opt.get().getTenAnh());
-					hinhAnhService.delete(opt.get());
-				}
-				hinhAnhService.delete(opt.get());
-				return new ResponseEntity<>(HttpStatus.OK);
-			}
-		} else
-			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-	}
+//	@GetMapping("removeHinhAnh/{imgName}")
+//	@ResponseBody
+//	public ResponseEntity<String> removeHinhAnh(ModelMap model, @PathVariable("imgName") String imgName)
+//			throws IOException {
+//		Optional<HinhAnh> opt = hinhAnhService.getHinhAnhByName(imgName);
+//		if (opt.isPresent()) {
+//			if(opt.get().getLaAnhChinh() == true) {
+//				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//			}else {
+//				if (!opt.get().getTenAnh().isEmpty()) {
+//					storageService.delete(opt.get().getTenAnh());
+//					hinhAnhService.delete(opt.get());
+//				}
+//				hinhAnhService.delete(opt.get());
+//				return new ResponseEntity<>(HttpStatus.OK);
+//			}
+//		} else
+//			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//	}
 
 	@PostMapping("saveValueImageProduct")
 	public ModelAndView saveProduct(ModelMap model,
@@ -1270,15 +1270,15 @@ public class SanPhamChiTietController {
 		Optional<SanPham> opt = sanPhamService.findById(sanPhamId);
 		if (opt.isPresent()) {
 			List<HinhAnh> lstHinhAnh = hinhAnhService.getHinhAnhBySanPhamId(sanPhamId);
-			for (HinhAnh ha : lstHinhAnh) {
-				if (!ha.getTenAnh().isEmpty()) {
-					storageService.delete(ha.getTenAnh());
-					hinhAnhService.delete(ha);
-				} else {
-					redirectAttributes.addFlashAttribute("messageDanger",
-							"Tên hình ảnh: '" + ha.getTenAnh() + "' không tồn tại");
-				}
-			}
+//			for (HinhAnh ha : lstHinhAnh) {
+//				if (!ha.getTenAnh().isEmpty()) {
+//					storageService.delete(ha.getTenAnh());
+//					hinhAnhService.delete(ha);
+//				} else {
+//					redirectAttributes.addFlashAttribute("messageDanger",
+//							"Tên hình ảnh: '" + ha.getTenAnh() + "' không tồn tại");
+//				}
+//			}
 			sanPhamService.delete(opt.get());
 			for (ChiTietSanPham spct : opt.get().getChiTietSanPhams()) {
 				sanPhamChiTietService.delete(spct);
@@ -1312,15 +1312,15 @@ public class SanPhamChiTietController {
 							if (countHinhAnh == 0) {
 								List<HinhAnh> lstHA = hinhAnhService.getHinhAnhBySanPhamIdAndMauSacId(
 										sanPhamManageDTO.getSanPhamId(), hinhAnhMauSacDTO.getMauSacAddImagesId());
-								for (HinhAnh hinhAnh : lstHA) {
-									if (!hinhAnh.getTenAnh().isEmpty()) {
-										storageService.delete(hinhAnh.getTenAnh());
-										hinhAnhService.delete(hinhAnh);
-									} else {
-										redirect.addFlashAttribute("messageDanger",
-												"Tên hình ảnh: '" + hinhAnh.getTenAnh() + "' không tồn tại");
-									}
-								}
+//								for (HinhAnh hinhAnh : lstHA) {
+//									if (!hinhAnh.getTenAnh().isEmpty()) {
+//										storageService.delete(hinhAnh.getTenAnh());
+//										hinhAnhService.delete(hinhAnh);
+//									} else {
+//										redirect.addFlashAttribute("messageDanger",
+//												"Tên hình ảnh: '" + hinhAnh.getTenAnh() + "' không tồn tại");
+//									}
+//								}
 							}
 						}
 					}
@@ -1446,26 +1446,26 @@ public class SanPhamChiTietController {
 		if (opt.isPresent()) {
 			sanPhamChiTietService.delete(opt.get());
 			idSuccess = true;
-			if(sanPhamManageDTO.getLstHinhAnhMauSacDTO() != null) {
-				for (HinhAnhMauSacDTO hinhAnhMauSacDTO : sanPhamManageDTO.getLstHinhAnhMauSacDTO()) {
-					int countHinhAnh = sanPhamChiTietService.getCountChiTietSanPhamExistBySanPhamIdAndMauSacId(
-							sanPhamManageDTO.getSanPhamId(), hinhAnhMauSacDTO.getMauSacAddImagesId());
-					if (countHinhAnh == 0) {
-						List<HinhAnh> lstHA = hinhAnhService.getHinhAnhBySanPhamIdAndMauSacId(
-								sanPhamManageDTO.getSanPhamId(), hinhAnhMauSacDTO.getMauSacAddImagesId());
-						for (HinhAnh hinhAnh : lstHA) {
-							if (!hinhAnh.getTenAnh().isEmpty()) {
-								storageService.delete(hinhAnh.getTenAnh());
-								hinhAnhService.delete(hinhAnh);
-							} else {
-								idSuccess = false;
-								redirect.addFlashAttribute("messageDanger",
-										"Tên hình ảnh: '" + hinhAnh.getTenAnh() + "' không tồn tại");
-							}
-						}
-					}
-				}
-			}
+//			if(sanPhamManageDTO.getLstHinhAnhMauSacDTO() != null) {
+//				for (HinhAnhMauSacDTO hinhAnhMauSacDTO : sanPhamManageDTO.getLstHinhAnhMauSacDTO()) {
+//					int countHinhAnh = sanPhamChiTietService.getCountChiTietSanPhamExistBySanPhamIdAndMauSacId(
+//							sanPhamManageDTO.getSanPhamId(), hinhAnhMauSacDTO.getMauSacAddImagesId());
+//					if (countHinhAnh == 0) {
+//						List<HinhAnh> lstHA = hinhAnhService.getHinhAnhBySanPhamIdAndMauSacId(
+//								sanPhamManageDTO.getSanPhamId(), hinhAnhMauSacDTO.getMauSacAddImagesId());
+//						for (HinhAnh hinhAnh : lstHA) {
+//							if (!hinhAnh.getTenAnh().isEmpty()) {
+//								storageService.delete(hinhAnh.getTenAnh());
+//								hinhAnhService.delete(hinhAnh);
+//							} else {
+//								idSuccess = false;
+//								redirect.addFlashAttribute("messageDanger",
+//										"Tên hình ảnh: '" + hinhAnh.getTenAnh() + "' không tồn tại");
+//							}
+//						}
+//					}
+//				}
+//			}
 			int countSPCTExist = sanPhamChiTietService
 					.getCountChiTietSanPhamExistBySanPhamId(sanPhamManageDTO.getSanPhamId());
 			if (countSPCTExist == 0) {

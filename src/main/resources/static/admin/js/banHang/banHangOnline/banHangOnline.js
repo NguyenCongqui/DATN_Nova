@@ -474,12 +474,23 @@ $(document).ready(function () {
                 // Kiểm tra nếu ngày kết thúc khuyến mãi đã qua so với ngày hiện tại
                 let endDate = new Date(response.ngayKetThuc); // Chuyển đổi ngày kết thúc thành đối tượng Date
                 let currentDate = new Date(); // Lấy ngày hiện tại
+                let start = new Date(response.ngayBatDau)
+
 
                 if (endDate < currentDate) {
                     Swal.fire({
                         icon: "error",
                         title: "Lỗi",
                         text: "Khuyến mãi đã kết thúc, không thể sử dụng mã giảm giá",
+                    });
+                    return;
+                }
+
+                if (start > currentDate) {
+                    Swal.fire({
+                        icon: "error",
+                        title: "Lỗi",
+                        text: "Khuyến mãi chưa đến ngày, không thể sử dụng mã giảm giá",
                     });
                     return;
                 }

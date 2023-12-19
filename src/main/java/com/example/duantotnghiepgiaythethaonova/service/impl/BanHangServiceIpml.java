@@ -199,12 +199,14 @@ public class BanHangServiceIpml implements BanHangService {
             Integer tienGiamToiDa = khuyenMai.getGiaTriToiThieu();
             String tenGiamGia = khuyenMai.getTenKhuyenMai();
             Date ngayKetThuc = khuyenMai.getNgayKetThuc();
+            Date ngayBatDau= khuyenMai.getNgayBatDau();
 
             Map<String, String> response = new HashMap<>();
             response.put("tenGiamGia", tenGiamGia.toString());
             response.put("tienGiamToiDa", tienGiamToiDa.toString());
             response.put("tienGiam", tienGiam.toString());
             response.put("ngayKetThuc", ngayKetThuc.toString());
+            response.put("ngayBatDau", ngayBatDau.toString());
 
             return ResponseEntity.ok(response);
         } else {
