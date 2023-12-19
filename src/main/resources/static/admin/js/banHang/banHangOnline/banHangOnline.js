@@ -298,6 +298,7 @@ $(document).ready(function () {
 
             let tienShipCheck = $("#shippingFee").text();
             let id_hd1 = $("#id-hoa-don").val();
+
             kiemTraSoLuongSanPham(id_hd1, function (thongBao) {
                 if (thongBao.length > 0) {
                     // Nếu có vấn đề với số lượng sản phẩm, hiển thị thông báo lỗi
@@ -386,6 +387,7 @@ $(document).ready(function () {
         let ghiChu = $("#note").val();
         let emailNguoiNhan = $("#nhapEmail").val();
         let tienShipCheck = $("#shippingFee").text();
+        const sodienthoai = 10;
 
         $(".DatHangShipCod").modal('show');
 
@@ -397,7 +399,15 @@ $(document).ready(function () {
                     showConfirmButton: false,
                     timer: 2000,
                 });
-            } else {
+            }else if(sdtNguoiNhan.length !== sodienthoai){
+                Swal.fire({
+                    icon: "error",
+                    title: "Số điện thoại phải đủ 10 số",
+                    showConfirmButton: false,
+                    timer: 2000,
+                });
+            }
+            else {
                 $.ajax({
                     url: "/save-order/" + orderId,
                     type: "POST",
