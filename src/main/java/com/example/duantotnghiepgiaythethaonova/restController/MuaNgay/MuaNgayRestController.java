@@ -5,6 +5,7 @@ import com.example.duantotnghiepgiaythethaonova.entity.MauSac;
 import com.example.duantotnghiepgiaythethaonova.repository.KichCoRepository;
 import com.example.duantotnghiepgiaythethaonova.repository.MauSacRepository;
 import com.example.duantotnghiepgiaythethaonova.service.BanHangService;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -51,6 +52,29 @@ public class MuaNgayRestController {
                                                        @RequestParam("ghiChu") String ghiChu,
                                                        @PathVariable("id") Integer id) {
         try {
+
+
+            // Kiểm tra xem có trường nào bị để trống không
+//            if (StringUtils.isBlank(nguoiNhan) || StringUtils.isBlank(sdtNguoiNhan) || StringUtils.isBlank(emailNguoiNhan)) {
+//                Map<String, Object> errorResponse1 = new HashMap<>();
+//                errorResponse1.put("success", false);
+//                errorResponse1.put("message", "Vui lòng điền đầy đủ thông tin bắt buộc.");
+//                return errorResponse1;
+//            }
+//
+//            if (sdtNguoiNhan.length() != 10) {
+//                Map<String, Object> errorResponse1 = new HashMap<>();
+//                errorResponse1.put("success", false);
+//                errorResponse1.put("message", "Số điện thoại phải có đúng 10 số.");
+//                return errorResponse1;
+//            }
+//
+//            if (!sdtNguoiNhan.startsWith("0")) {
+//                Map<String, Object> errorResponse1 = new HashMap<>();
+//                errorResponse1.put("success", false);
+//                errorResponse1.put("message", "Số điện thoại phải bắt đầu bằng số 0.");
+//                return errorResponse1;
+//            }
             // Kiểm tra số lượng trước khi lưu thanh toán
             List<String> thongBao = banHangService.kiemTraSoLuongHang(id);
             if (!thongBao.isEmpty()) {

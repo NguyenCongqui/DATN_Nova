@@ -699,17 +699,17 @@ public class BanHangServiceIpml implements BanHangService {
 
             String email = SecurityContextHolder.getContext().getAuthentication().getName();
             Optional<NguoiDung> OptNguoiDung = nguoiDungRepository.findByEmail2(email);
-            List<HoaDonChiTiet> hoaDonChiTiets1 = hoaDonChiTietRepository.findByHoaDonIdAndDaXoa(id);
+          //  List<HoaDonChiTiet> hoaDonChiTiets1 = hoaDonChiTietRepository.findByHoaDonIdAndDaXoa(id);
 
-            for (HoaDonChiTiet hoaDonChiTiet : hoaDonChiTiets1) {
-
-                ChiTietSanPham sanPhamChiTiet = hoaDonChiTiet.getChiTietSanPham();
-                Integer soLuongSPCTBanDau = sanPhamChiTiet.getSoLuong();
-                Integer soLuongTrongHoaDon = hoaDonChiTiet.getSoLuong();
-                Integer soLuongcapNhat = soLuongSPCTBanDau - soLuongTrongHoaDon;
-                sanPhamChiTiet.setSoLuong(soLuongcapNhat);
-                sanPhamChiTietRepository.save(sanPhamChiTiet);
-            }
+//            for (HoaDonChiTiet hoaDonChiTiet : hoaDonChiTiets1) {
+//
+//                ChiTietSanPham sanPhamChiTiet = hoaDonChiTiet.getChiTietSanPham();
+//                Integer soLuongSPCTBanDau = sanPhamChiTiet.getSoLuong();
+//                Integer soLuongTrongHoaDon = hoaDonChiTiet.getSoLuong();
+//                Integer soLuongcapNhat = soLuongSPCTBanDau - soLuongTrongHoaDon;
+//                sanPhamChiTiet.setSoLuong(soLuongcapNhat);
+//                sanPhamChiTietRepository.save(sanPhamChiTiet);
+//            }
             if (OptNguoiDung.isPresent()) {
                 NguoiDung nguoiDung = OptNguoiDung.get();
                 //Lưu lịch sử hóa đơn
@@ -827,12 +827,12 @@ public class BanHangServiceIpml implements BanHangService {
             hoaDonRepository.save(hoaDon);
 
             // Cập nhật số lượng sản phẩm chi tiết
-//            ChiTietSanPham sanPhamChiTiet = optSpct.get();
-//            Integer soLuongSPCTBanDau = sanPhamChiTiet.getSoLuong();
-//            Integer soLuongcapNhat = soLuongSPCTBanDau - soLuongSanPham;
-//
-//            sanPhamChiTiet.setSoLuong(soLuongcapNhat);
-//            sanPhamChiTietRepository.save(sanPhamChiTiet);
+            ChiTietSanPham sanPhamChiTiet = optSpct.get();
+            Integer soLuongSPCTBanDau = sanPhamChiTiet.getSoLuong();
+            Integer soLuongcapNhat = soLuongSPCTBanDau - soLuongSanPham;
+
+            sanPhamChiTiet.setSoLuong(soLuongcapNhat);
+            sanPhamChiTietRepository.save(sanPhamChiTiet);
         }
     }
 
@@ -845,6 +845,18 @@ public class BanHangServiceIpml implements BanHangService {
             response.put("error", "Số điện thoại này đã được sử dụng");
             return ResponseEntity.badRequest().body(response);
         }
+        // Kiểm tra xem số điện thoại có bắt đầu bằng số 0 hay không
+        if (!SDTKhachHang.startsWith("0")) {
+            response.put("error", "Số điện thoại phải bắt đầu bằng số 0");
+            return ResponseEntity.badRequest().body(response);
+        }
+
+
+        if (SDTKhachHang.length() != 10) {
+            response.put("error", "Số điện thoại phải có đúng 10 số");
+            return ResponseEntity.badRequest().body(response);
+        }
+
 
         Optional<HoaDon> optionalHoaDon = hoaDonRepository.findById(IdHoaDon);
 

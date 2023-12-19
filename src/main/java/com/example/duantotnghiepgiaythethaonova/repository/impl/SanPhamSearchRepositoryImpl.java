@@ -67,21 +67,21 @@ public class SanPhamSearchRepositoryImpl implements SanPhamSearchRepository {
 
         if (dataSearch.getGiaOption().equalsIgnoreCase("0")) {
             dataSearch.setGiaMin(BigDecimal.valueOf(0));
-            dataSearch.setGiaMax(BigDecimal.valueOf(100000));
-        } else if (dataSearch.getGiaOption().equalsIgnoreCase("1")) {
-            dataSearch.setGiaMin(BigDecimal.valueOf(100000));
-            dataSearch.setGiaMax(BigDecimal.valueOf(200000));
-        } else if (dataSearch.getGiaOption().equalsIgnoreCase("2")) {
-            dataSearch.setGiaMin(BigDecimal.valueOf(200000));
-            dataSearch.setGiaMax(BigDecimal.valueOf(300000));
-        } else if (dataSearch.getGiaOption().equalsIgnoreCase("3")) {
-            dataSearch.setGiaMin(BigDecimal.valueOf(300000));
             dataSearch.setGiaMax(BigDecimal.valueOf(500000));
-        } else if (dataSearch.getGiaOption().equalsIgnoreCase("4")) {
+        } else if (dataSearch.getGiaOption().equalsIgnoreCase("1")) {
             dataSearch.setGiaMin(BigDecimal.valueOf(500000));
             dataSearch.setGiaMax(BigDecimal.valueOf(1000000));
-        } else if (dataSearch.getGiaOption().equalsIgnoreCase("5")) {
+        } else if (dataSearch.getGiaOption().equalsIgnoreCase("2")) {
             dataSearch.setGiaMin(BigDecimal.valueOf(1000000));
+            dataSearch.setGiaMax(BigDecimal.valueOf(1500000));
+        } else if (dataSearch.getGiaOption().equalsIgnoreCase("3")) {
+            dataSearch.setGiaMin(BigDecimal.valueOf(2000000));
+            dataSearch.setGiaMax(BigDecimal.valueOf(3000000));
+        } else if (dataSearch.getGiaOption().equalsIgnoreCase("4")) {
+            dataSearch.setGiaMin(BigDecimal.valueOf(3000000));
+            dataSearch.setGiaMax(BigDecimal.valueOf(40000000));
+        } else if (dataSearch.getGiaOption().equalsIgnoreCase("5")) {
+            dataSearch.setGiaMin(BigDecimal.valueOf(50000000));
         }
 
         if (lstCoHienThi.size() != 2 && lstCoHienThi.size() != 0) {

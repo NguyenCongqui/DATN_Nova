@@ -93,6 +93,18 @@
                             }
                         </script>
 
+                        <script type="text/javascript">
+                            function showErrorAlert(errorResponse1) {
+                                errorResponse1 = errorResponse1.replace(/\n/g, "<br></<br>");
+                                Swal.fire({
+                                    icon: 'error',
+                                    title: 'hihi',
+                                    html: errorResponse1,
+                                    showConfirmButton: true
+                                });
+                            }
+                        </script>
+
                         <!--                        <form class="product-checkout mt-45">-->
                             <div class="row">
                                 <div class="col-md-6">
@@ -233,7 +245,7 @@
                                                         </td>
                                                     </tr>
                                                     <tr class="shipping">
-                                                        <th>Phí Vận Chuyển: </th>
+                                                        <th for="shippingFee" >Phí Vận Chuyển: </th>
                                                         <td>
                                                             <ul id="shipping_method">
                                                                 <li>

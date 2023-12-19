@@ -84,12 +84,12 @@ public class HomeController {
     @ModelAttribute("lstGia")
     public List<String> getListGia() {
         List<String> gia = new ArrayList<>();
-        gia.add("0VNĐ - 100.000VNĐ");
-        gia.add("100.000VNĐ - 200.000VNĐ");
-        gia.add("200.000VNĐ - 300.000VNĐ");
-        gia.add("300.000VNĐ - 500.000VNĐ");
+        gia.add("Dưới 500.000VNĐ");
         gia.add("500.000VNĐ - 1.000.000VNĐ");
-        gia.add("1.000.000VNĐ+");
+        gia.add("1.000.000VNĐ - 1.500.000VNĐ");
+        gia.add("2.000.000VNĐ - 3.000.000VNĐ");
+        gia.add("3.000.000VNĐ - 4.000.000VNĐ");
+        gia.add("Trên 5.000.000VNĐ");
         return gia;
     }
 
