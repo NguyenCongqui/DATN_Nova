@@ -249,7 +249,7 @@
                                             style="vertical-align: middle;">
                                         </td>
                                         <td>
-                                            <div class="row col-sm-6 offset-3" style="height: 160px; width: 160px;">
+                                            <div class="row col-sm-10 offset-2" style="height: 160px; width: 200px;">
                                                 <div th:id="'carouselExampleIndicators'+${istat.index}"
                                                     class="carousel slide" data-ride="carousel">
                                                     <ol class="carousel-indicators">
@@ -293,22 +293,23 @@
                                                             <span class="sr-only">Next</span>
                                                         </a>
                                                     </div>
-                                                    <a class="carousel-control-prev"
-                                                        th:href="'#carouselExampleIndicators'+${istat.index}"
-                                                        role="button" data-slide="prev"
-                                                        th:if="${not #lists.isEmpty(item.anhChinhs)}">
-                                                        <span class="carousel-control-prev-icon"
-                                                            aria-hidden="true"></span>
-                                                        <span class="sr-only">Previous</span>
-                                                    </a>
-                                                    <a class="carousel-control-next"
-                                                        th:href="'#carouselExampleIndicators'+${istat.index}"
-                                                        role="button" data-slide="next"
-                                                        th:if="${not #lists.isEmpty(item.anhChinhs)}">
-                                                        <span class="carousel-control-next-icon"
-                                                            aria-hidden="true"></span>
-                                                        <span class="sr-only">Next</span>
-                                                    </a>
+
+<!--                                                    <a class="carousel-control-prev"-->
+<!--                                                        th:href="'#carouselExampleIndicators'+${istat.index}"-->
+<!--                                                        role="button" data-slide="prev"-->
+<!--                                                        th:if="${not #lists.isEmpty(item.anhChinhs)}">-->
+<!--                                                        <span class="carousel-control-prev-icon"-->
+<!--                                                            aria-hidden="true"></span>-->
+<!--                                                        <span class="sr-only">Previous</span>-->
+<!--                                                    </a>-->
+<!--                                                    <a class="carousel-control-next"-->
+<!--                                                        th:href="'#carouselExampleIndicators'+${istat.index}"-->
+<!--                                                        role="button" data-slide="next"-->
+<!--                                                        th:if="${not #lists.isEmpty(item.anhChinhs)}">-->
+<!--                                                        <span class="carousel-control-next-icon"-->
+<!--                                                            aria-hidden="true"></span>-->
+<!--                                                        <span class="sr-only">Next</span>-->
+<!--                                                    </a>-->
                                                 </div>
                                             </div>
                                         </td>
