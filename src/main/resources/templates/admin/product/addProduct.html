@@ -188,8 +188,8 @@
                                                th:class="${#fields.hasErrors('thuongHieuId')}?
                                                 invalid-feedback : ''" th:errors="*{thuongHieuId}"></small>
                                     </div>
-                                    <div class="col-lg-3" style="padding-right: 0;">
-                                        <a class="btn btn-outline-info col-sm-12 row"
+                                    <div class="col-lg-2" style="padding-right: 0px">
+                                        <a class="btn btn-outline-primary col-sm-12"
                                            onclick="openPopupIsShowSpeedAddProduct('Thương hiệu', 'thuongHieu')">
                                             <img th:src="@{/static/admin/img/icons/plus.svg}"></a>
                                     </div>
@@ -213,8 +213,8 @@
                                         <small id="kieuDangId" th:if="${#fields.hasErrors('kieuDangId')}" th:class="${#fields.hasErrors('kieuDangId')}?
                                             invalid-feedback : ''" th:errors="*{kieuDangId}"></small>
                                     </div>
-                                    <div class="col-3" style="padding-right: 0;">
-                                        <a class="btn btn-outline-info col-sm-12 row"
+                                    <div class="col-lg-2" style="padding-right: 0px">
+                                        <a class="btn btn-outline-primary col-sm-12"
                                            onclick="openPopupIsShowSpeedAddProduct('Tên kiểu dáng', 'kieuDang')">
                                             <img th:src="@{/static/admin/img/icons/plus.svg}"></a>
                                     </div>
@@ -235,8 +235,8 @@
                                         <small id="chatLieuId" th:if="${#fields.hasErrors('chatLieuId')}" th:class="${#fields.hasErrors('chatLieuId')}?
                                             invalid-feedback : ''" th:errors="*{chatLieuId}"></small>
                                     </div>
-                                    <div class="col-lg-3" style="padding-right: 0;">
-                                        <a class="btn btn-outline-info col-sm-12 row"
+                                    <div class="col-lg-2" style="padding-right: 0px">
+                                        <a class="btn btn-outline-primary col-sm-12"
                                            onclick="openPopupIsShowSpeedAddProduct('Tên chất liệu', 'chatLieu')">
                                             <img th:src="@{/static/admin/img/icons/plus.svg}"></a>
                                     </div>
@@ -273,8 +273,8 @@
                                                th:class="${#fields.hasErrors('deGiayId')}?
                                                 invalid-feedback : ''" th:errors="*{deGiayId}"></small>
                                     </div>
-                                    <div class="col-lg-3" style="padding-right: 0;">
-                                        <a class="btn btn-outline-info col-sm-12 row"
+                                    <div class="col-lg-2" style="padding-right: 0px">
+                                        <a class="btn btn-outline-primary col-sm-12"
                                            onclick="openPopupIsShowSpeedAddProduct('Đế giày', 'deGiay')">
                                             <img th:src="@{/static/admin/img/icons/plus.svg}"></a>
                                     </div>
@@ -296,8 +296,8 @@
                                                th:class="${#fields.hasErrors('lotGiayId')}?
                                                 invalid-feedback : ''" th:errors="*{lotGiayId}"></small>
                                     </div>
-                                    <div class="col-lg-3" style="padding-right: 0;">
-                                        <a class="btn btn-outline-info col-sm-12 row"
+                                    <div class="col-lg-2" style="padding-right: 0px">
+                                        <a class="btn btn-outline-primary col-sm-12"
                                            onclick="openPopupIsShowSpeedAddProduct('Lót giày', 'lotGiay')">
                                             <img th:src="@{/static/admin/img/icons/plus.svg}"></a>
                                     </div>
@@ -319,8 +319,8 @@
                                                th:class="${#fields.hasErrors('dayGiayId')}?
                                                 invalid-feedback : ''" th:errors="*{dayGiayId}"></small>
                                     </div>
-                                    <div class="col-lg-3" style="padding-right: 0;">
-                                        <a class="btn btn-outline-info col-sm-12 row"
+                                    <div class="col-lg-2" style="padding-right: 0px">
+                                        <a class="btn btn-outline-primary col-sm-12"
                                            onclick="openPopupIsShowSpeedAddProduct('Dây giày', 'dayGiay')">
                                             <img th:src="@{/static/admin/img/icons/plus.svg}"></a>
                                     </div>
@@ -365,8 +365,8 @@
                                 <small id="kichCoIds" th:if="${#fields.hasErrors('kichCoIds')}" th:class="${#fields.hasErrors('kichCoIds')}?
                                             invalid-feedback : ''" th:errors="*{kichCoIds}"></small>
                             </div>
-                            <div class="col-2" style="padding-right: 0px;">
-                                <a class="btn btn-outline-info row col-sm-12"
+                            <div class="col-lg-2" style="padding-right: 0px">
+                                <a class="btn btn-outline-primary col-sm-12"
                                    onclick="openPopupIsShowSpeedAddProduct('Tên kích cỡ', 'kichCo')">
                                     <img th:src="@{/static/admin/img/icons/plus.svg}"></a>
                             </div>
@@ -388,8 +388,8 @@
                                 <small id="mauSacIds" th:if="${#fields.hasErrors('mauSacIds')}" th:class="${#fields.hasErrors('mauSacIds')}?
                                     invalid-feedback : ''" th:errors="*{mauSacIds}"></small>
                             </div>
-                            <div class="col-2" style="padding-right: 0px;">
-                                <a class="btn btn-outline-info col-sm-12 row"
+                            <div class="col-lg-2" style="padding-right: 0px">
+                                <a class="btn btn-outline-primary col-sm-12"
                                    onclick="openPopupIsShowSpeedAddProduct('Tên màu sắc', 'mauSac')">
                                     <img th:src="@{/static/admin/img/icons/plus.svg}"></a>
                             </div>
@@ -799,7 +799,7 @@
                                                                                 data-content="hiển thị"
                                                                                 th:id="'coHienThiBtn'+${istat.index}+${istatHAMS.index}"
                                                                                 onclick="changeCoHienThi(this.getAttribute('img-name'),this.getAttribute('id'))"
-                                                                                class="btn btn-sm btn-kv btn-default btn-outline-info"><i class="bi bi-back"></i>
+                                                                                class="btn btn-sm btn-kv btn-default btn-outline-primary"><i class="bi bi-back"></i>
                                                                         </button>
                                                                         <button type="button" data-toggle="popover"
                                                                                 data-trigger="hover"
