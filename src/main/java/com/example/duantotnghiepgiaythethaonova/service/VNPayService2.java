@@ -184,6 +184,7 @@ public class VNPayService2 {
             if (optionalKhuyenMai.isPresent()) {
                 KhuyenMai khuyenMai = optionalKhuyenMai.get();
                 HoaDon hoaDon = optHoaDon.get();
+                System.out.println(nameGiamGia + "NameGiamGiaVNPAY");
                 if (nameGiamGia != null) {
                     hoaDon.setKhuyenMai(khuyenMai);
                 } else {
@@ -361,6 +362,7 @@ public class VNPayService2 {
             if (optionalKhuyenMai.isPresent()) {
                 KhuyenMai khuyenMai = optionalKhuyenMai.get();
                 HoaDon hoaDon = optHoaDon.get();
+                System.out.println(nameGiamGia + "NameGiamGiaVNPAYMuaNgay");
                 if (nameGiamGia != null) {
                     hoaDon.setKhuyenMai(khuyenMai);
                 } else {

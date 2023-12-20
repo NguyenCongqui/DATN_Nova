@@ -393,6 +393,7 @@ $(document).ready(function () {
                     sdtNguoiNhan: sdtNguoiNhan,
                     ghiChu: ghiChu,
                     tienShipHD: shippingFeeIndex,
+                    nameGiamGia: nameGiamGia,
                 }
                 console.table(data)
                 fetch('http://localhost:8080/MuaNgay/payment/create', {

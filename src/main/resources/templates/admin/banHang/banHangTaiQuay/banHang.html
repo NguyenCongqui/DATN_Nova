@@ -78,6 +78,17 @@
                     $(this).val("");
                     return;
                 }
+                let inputVl = inputValue.split(",");
+                let value = "";
+                for (let i = 0; i < inputVl.length; i++) {
+                    value += inputVl[i];
+                }
+                if (parseFloat(value) > 99999999){
+                    Swal.fire("Tiền khách đưa quá lớn", '',"warning");
+                    $(this).val("99,999,999");
+                    return;
+
+                }
 
                 const tienTraLaiInput = $("#tienTralai").val();
                 let tienKhachDuaInput = parseInt($(this).val());
