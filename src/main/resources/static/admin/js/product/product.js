@@ -293,18 +293,18 @@ function readAndPreview(indexPreview, file) {
         " style='width: auto; height: auto; max-width: 100%; max-height: 100%; image-orientation: from-image;'> " +
         " </div> " +
         " <div class='file-thumbnail-footer'> " +
-        " <div class='file-footer-caption' " +
-        " title=' " +
-        file.name +
-        " '> " +
-        " <div class='file-caption-info'> " +
-        file.name +
-        " </div> " +
-        " <div class='file-size-info'> <samp>( " +
-        file.size +
-        " KB)</samp> " +
-        " </div> " +
-        " </div> " +
+        // " <div class='file-footer-caption' " +
+        // " title=' " +
+        // file.name +
+        // " '> " +
+        // " <div class='file-caption-info'> " +
+        // file.name +
+        // " </div> " +
+        // " <div class='file-size-info'> <samp>( " +
+        // file.size +
+        // " KB)</samp> " +
+        // " </div> " +
+        // " </div> " +
         " <div class='file-thumb-progress kv-hidden'> " +
         " <div class='progress'> " +
         " <div class='progress-bar bg-info progress-bar-info progress-bar-striped active progress-bar-animated' " +
@@ -315,9 +315,9 @@ function readAndPreview(indexPreview, file) {
         " </div> " +
         " </div> " +
         " </div> " +
-        " <div class='file-upload-indicator' " +
-        " title='Not uploaded yet'><i " +
-        " class='bi-plus-lg text-warning'></i></div> " +
+        // " <div class='file-upload-indicator' " +
+        // " title='Not uploaded yet'><i " +
+        // " class='bi-plus-lg text-warning'></i></div> " +
         " <div class='file-actions'>" +
         // "  <div class='file-footer-buttons'> " +
         // " <button type='button' " +

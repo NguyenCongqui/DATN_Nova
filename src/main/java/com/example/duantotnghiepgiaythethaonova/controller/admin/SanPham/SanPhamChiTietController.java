@@ -265,7 +265,7 @@ public class SanPhamChiTietController {
 			sanPhamManageDTONew.setMoTa(sanPhamManageDTO.get().getMoTa());
 			sanPhamManageDTONew.setSanPhamId(sanPhamManageDTO.get().getSanPhamId());
 			sanPhamManageDTONew.setSoLuong(sanPhamManageDTO.get().getSoLuong());
-//			sanPhamManageDTONew.getMaSanPham();
+			sanPhamManageDTONew.setMaSanPham(sanPhamManageDTO.get().getMaSanPham());
 			sanPhamManageDTONew.setTenSanPham(sanPhamManageDTO.get().getTenSanPham());
 		}
 		model.addAttribute("sanPhamManageDTO", sanPhamManageDTONew);
@@ -282,7 +282,7 @@ public class SanPhamChiTietController {
 			SanPham sanPham = new SanPham();
 			sanPham.setDaXoa(false);
 //			sanPham.setGia(data.getGia());
-//			sanPham.getMaSanPham();
+			sanPham.setMaSanPham(data.getMaSanPham());
 			sanPham.setTenSanPham(data.getTenSanPham());
 			sanPham.setMoTa(data.getMoTa());
 
@@ -559,7 +559,7 @@ public class SanPhamChiTietController {
 //		}
 		if (
 //				data.getGia().toString().isEmpty()||
-			data.getTenSanPham().isEmpty() || data.getMoTa().isEmpty()
+			data.getTenSanPham().isEmpty() || data.getMoTa().isEmpty() || data.getMaSanPham().isEmpty()
 				|| data.getChatLieuId() == -1 || data.getThuongHieuId() == -1
 				|| data.getKieuDangId() == -1) {
 			model.addAttribute("messageDanger", "bạn không được để trống thông tin sản phẩm");
@@ -594,7 +594,7 @@ public class SanPhamChiTietController {
 		if (optSP.isPresent()) {
 			optSP.get().setDaXoa(false);
 //			optSP.get().setGia(data.getGia());
-//			optSP.get().getMaSanPham();
+			optSP.get().setMaSanPham(data.getMaSanPham());
 			optSP.get().setTenSanPham(data.getTenSanPham());
 			optSP.get().setMoTa(data.getMoTa());
 
