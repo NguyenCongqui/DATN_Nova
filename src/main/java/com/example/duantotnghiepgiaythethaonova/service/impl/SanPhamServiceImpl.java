@@ -31,11 +31,11 @@ public class SanPhamServiceImpl implements SanPhamService {
 //        String code = "SP" + formattedCount;
 //        return code;
 //    }
-public  String genMa(){
-    long gen = Instant.now().getEpochSecond();
-    String code = "SP" + gen;
-    return code;
-}
+//public  String genMa(){
+//    long gen = Instant.now().getEpochSecond();
+//    String code = "SP" + gen;
+//    return code;
+//}
     @Override
     public <S extends SanPham> S save(S entity) {
 //        Integer maxId = sanPhamRepository.getMaxId();
@@ -52,7 +52,7 @@ public  String genMa(){
 //        String formattedId = df.format(idMax);
 //        ma = "SP" + formattedId;
 //        entity.setMaSanPham(ma);
-        entity.setMaSanPham(genMa());
+//        entity.setMaSanPham(genMa());
         entity.setDaXoa(false);
         return sanPhamRepository.save(entity);
     }
