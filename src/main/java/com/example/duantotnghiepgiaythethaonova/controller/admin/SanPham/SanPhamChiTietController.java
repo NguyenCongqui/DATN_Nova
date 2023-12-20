@@ -265,7 +265,7 @@ public class SanPhamChiTietController {
 			sanPhamManageDTONew.setMoTa(sanPhamManageDTO.get().getMoTa());
 			sanPhamManageDTONew.setSanPhamId(sanPhamManageDTO.get().getSanPhamId());
 			sanPhamManageDTONew.setSoLuong(sanPhamManageDTO.get().getSoLuong());
-			sanPhamManageDTONew.setMaSanPham(sanPhamManageDTO.get().getMaSanPham());
+//			sanPhamManageDTONew.setMaSanPham(sanPhamManageDTO.get().getMaSanPham());
 			sanPhamManageDTONew.setTenSanPham(sanPhamManageDTO.get().getTenSanPham());
 		}
 		model.addAttribute("sanPhamManageDTO", sanPhamManageDTONew);
@@ -282,7 +282,7 @@ public class SanPhamChiTietController {
 			SanPham sanPham = new SanPham();
 			sanPham.setDaXoa(false);
 //			sanPham.setGia(data.getGia());
-			sanPham.setMaSanPham(data.getMaSanPham());
+//			sanPham.setMaSanPham(data.getMaSanPham());
 			sanPham.setTenSanPham(data.getTenSanPham());
 			sanPham.setMoTa(data.getMoTa());
 
@@ -559,7 +559,7 @@ public class SanPhamChiTietController {
 //		}
 		if (
 //				data.getGia().toString().isEmpty()||
-			data.getTenSanPham().isEmpty() || data.getMoTa().isEmpty() || data.getMaSanPham().isEmpty()
+			data.getTenSanPham().isEmpty() || data.getMoTa().isEmpty()
 				|| data.getChatLieuId() == -1 || data.getThuongHieuId() == -1
 				|| data.getKieuDangId() == -1) {
 			model.addAttribute("messageDanger", "bạn không được để trống thông tin sản phẩm");
@@ -594,7 +594,7 @@ public class SanPhamChiTietController {
 		if (optSP.isPresent()) {
 			optSP.get().setDaXoa(false);
 //			optSP.get().setGia(data.getGia());
-			optSP.get().setMaSanPham(data.getMaSanPham());
+//			optSP.get().setMaSanPham(data.getMaSanPham());
 			optSP.get().setTenSanPham(data.getTenSanPham());
 			optSP.get().setMoTa(data.getMoTa());
 
@@ -626,6 +626,10 @@ public class SanPhamChiTietController {
 					redirect.addFlashAttribute("messageDanger", "Số lượng phải lớn hơn 0");
 					return "redirect:/admin/product/edit/"+data.getSanPhamId();
 				}
+				if(Integer.parseInt(item) >9999999) {
+					redirect.addFlashAttribute("messageDanger", "Số lượng phải nhỏ hơn 9,999,999");
+					return "redirect:/admin/product/edit/"+data.getSanPhamId();
+				}
 			}
 			for (String item : ids) {
 				if (!isNumeric(item)) {
@@ -645,6 +649,10 @@ public class SanPhamChiTietController {
 				}
 				if(Double.parseDouble(item) < 1) {
 					redirect.addFlashAttribute("messageDanger", "Giá phải lớn hơn 0");
+					return "redirect:/admin/product/edit/"+data.getSanPhamId();
+				}
+				if(Double.parseDouble(item) > 99999999) {
+					redirect.addFlashAttribute("messageDanger", "Giá phải nhỏ hơn 99,999,999");
 					return "redirect:/admin/product/edit/"+data.getSanPhamId();
 				}
 			}

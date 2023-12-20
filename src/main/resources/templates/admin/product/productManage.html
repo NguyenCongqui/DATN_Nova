@@ -131,12 +131,12 @@
                                     id="tenSanPhamSearchProductManage" placeholder="Tên sản phẩm"
                                     th:field="*{tenSanPham}">
                             </div>
-                            <div class="col-sm-3">
-                                <label>Mã sản phẩm:</label>
-                                <input type="text" class="form-control" name="maSanPham"
-                                       id="maSanPhamSearchProductManage" placeholder="Mã sản phẩm"
-                                       th:field="*{maSanPham}">
-                            </div>
+<!--                            <div class="col-sm-3">-->
+<!--                                <label>Mã sản phẩm:</label>-->
+<!--                                <input type="text" class="form-control" name="maSanPham"-->
+<!--                                       id="maSanPhamSearchProductManage" placeholder="Mã sản phẩm"-->
+<!--                                       th:field="*{maSanPham}">-->
+<!--                            </div>-->
                             <div class="col-sm-3">
                                 <label for="kieuDangId">Tên kiểu dáng:</label>
                                 <select class="selectpicker" name="kieuDangId" id="kieuDangId" th:field="*{kieuDangIds}"
@@ -412,7 +412,7 @@
                                         </th>
                                         <th>#</th>
                                         <th>Ảnh chính</th>
-                                        <th>Mã sản phẩm</th>
+<!--                                        <th>Mã sản phẩm</th>-->
                                         <th>Tên sản phẩm</th>
                                         <!-- <th>Số lượng</th> -->
                                         <th>Giá</th>
@@ -508,7 +508,7 @@
                                                 </div>
                                             </div>
                                         </td>
-                                        <td style="vertical-align: middle;" th:text="${item.sanPham.maSanPham}"></td>
+<!--                                        <td style="vertical-align: middle;" th:text="${item.sanPham.maSanPham}"></td>-->
                                         <td style="vertical-align: middle;" th:text="${item.sanPham.tenSanPham}"></td>
                                         <td style="vertical-align: middle;"
                                             th:text="${#numbers.formatDecimal(item.giaBan, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'">

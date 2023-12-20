@@ -163,7 +163,7 @@
                     </div>
                     <div class="col-sm-12 row">
                         <div class="row">
-                            <div class="col-sm-6 ">
+                            <div class="col-sm-12 ">
                                 <label for="tenSanPham">Tên sản phẩm:</label>
                                 <input type="text" class="form-control" name="tenSanPham" th:classappend="${#fields.hasErrors('tenSanPham')}?
                                             is-invalid : ''" id="tenSanPhamSearch" placeholder="Tên sản phẩm"
@@ -171,14 +171,14 @@
                                 <small id="tenSanPham" th:if="${#fields.hasErrors('tenSanPham')}" th:class="${#fields.hasErrors('tenSanPham')}?
                                             invalid-feedback : ''" th:errors="*{tenSanPham}"></small>
                             </div>
-                            <div class="col-sm-6 ">
-                                <label for="maSanPham">Mã sản phẩm:</label>
-                                <input type="text" class="form-control" name="maSanPham" th:classappend="${#fields.hasErrors('maSanPham')}?
-                                            is-invalid : ''" id="maSanPhamSearch" placeholder="Mã sản phẩm"
-                                       th:field="*{maSanPham}" />
-                                <small id="maSanPham" th:if="${#fields.hasErrors('maSanPham')}" th:class="${#fields.hasErrors('maSanPham')}?
-                                            invalid-feedback : ''" th:errors="*{maSanPham}"></small>
-                            </div>
+<!--                            <div class="col-sm-6 ">-->
+<!--                                <label for="maSanPham">Mã sản phẩm:</label>-->
+<!--                                <input type="text" class="form-control" name="maSanPham" th:classappend="${#fields.hasErrors('maSanPham')}?-->
+<!--                                            is-invalid : ''" id="maSanPhamSearch" placeholder="Mã sản phẩm"-->
+<!--                                       th:field="*{maSanPham}" />-->
+<!--                                <small id="maSanPham" th:if="${#fields.hasErrors('maSanPham')}" th:class="${#fields.hasErrors('maSanPham')}?-->
+<!--                                            invalid-feedback : ''" th:errors="*{maSanPham}"></small>-->
+<!--                            </div>-->
                             <div class="col-sm-4 mt-3">
                                 <div class="row">
                                     <div class="col-lg-12"><label for="thuongHieuId">Thương hiệu:</label></div>
