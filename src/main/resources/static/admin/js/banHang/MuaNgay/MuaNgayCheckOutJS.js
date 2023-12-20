@@ -320,7 +320,6 @@ $(document).ready(function () {
             let shippingFee = parseFloat(
                 $("#shippingFee").text().replace(/[^\d]/g, "")
             );
-
             let tien_giam = parseFloat($("#discount").text().replace(/[^\d]/g, ""));
             let nameGiamGia = $("#tenGiamGia").text();
             let emailNguoiNhan = $("#nhapEmail").val();
@@ -341,16 +340,16 @@ $(document).ready(function () {
 
                     });
                 }
-                else if(sdtNguoiNhan.length !== 0) {
+                else if (!/^[0-9]+$/.test(sdtNguoiNhan) || sdtNguoiNhan.length !== 10 || !sdtNguoiNhan.startsWith('0')) {
                     // Nếu có vấn đề với số lượng sản phẩm, hiển thị thông báo lỗi
                     Swal.fire({
                         icon: "error",
-                        title: "Số điện thoại phải đủ 10 chữ số",
+                        title: "Số điện thoại phải bắt đầu từ 0, chỉ chứa số và đủ 10 chữ số",
                         showConfirmButton: false,
                         timer: 2000,
-
                     });
                 }
+
                 else {
             // Gán giá trị vào các trường input ẩn để truyền vào from -> VNPay
             $("#diaChiGiaoHang").val(diaChiGiaoHang);
@@ -374,14 +373,13 @@ $(document).ready(function () {
                     timer: 2000,
                 });
             }
-            else if(sdtNguoiNhan.length !== 0) {
+            else if (!/^[0-9]+$/.test(sdtNguoiNhan) || sdtNguoiNhan.length !== 10 || !sdtNguoiNhan.startsWith('0')) {
                 // Nếu có vấn đề với số lượng sản phẩm, hiển thị thông báo lỗi
                 Swal.fire({
                     icon: "error",
-                    title: "Số điện thoại phải đủ 10 chữ số",
+                    title: "Số điện thoại phải bắt đầu từ 0, chỉ chứa số và đủ 10 chữ số",
                     showConfirmButton: false,
                     timer: 2000,
-
                 });
             }
             else {
@@ -394,9 +392,9 @@ $(document).ready(function () {
                     tienGiamGia: tienGiamIndex,
                     sdtNguoiNhan: sdtNguoiNhan,
                     ghiChu: ghiChu,
-                    tienShipHD: shippingFeeIndex
+                    tienShipHD: shippingFeeIndex,
                 }
-                console.log(data)
+                console.table(data)
                 fetch('http://localhost:8080/MuaNgay/payment/create', {
                     // Cấu hình request
                     method: 'POST',
@@ -617,10 +615,11 @@ $(document).ready(function () {
                     timer: 2000,
                 });
             }
-            else if (sdtNguoiNhan.length !== 10) {
+            else if (!/^[0-9]+$/.test(sdtNguoiNhan) || sdtNguoiNhan.length !== 10 || !sdtNguoiNhan.startsWith('0')) {
+                // Nếu có vấn đề với số lượng sản phẩm, hiển thị thông báo lỗi
                 Swal.fire({
                     icon: "error",
-                    title: "Số điện thoại phải đủ 10 chữ số",
+                    title: "Số điện thoại phải bắt đầu từ 0, chỉ chứa số và đủ 10 chữ số",
                     showConfirmButton: false,
                     timer: 2000,
                 });
