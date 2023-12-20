@@ -85,17 +85,17 @@
                 <!-- Product -->
                 <div id="product-detail" class="container">
                     <div class="row">
-                        <div class="col-lg-9 col-md-12 product-content sidebar-position-right">
+                        <div class="col-lg-9 col-md-12 ">
                             <div class="row">
                                 <!-- Product Image -->
                                 <div class="col-lg-6 col-md-12 col-sm-12 mb-30">
-                                    <div class="product-page-image">
+                                    <div>
                                         <!-- Slick Image Slider -->
-                                        <div class="product-image-slider product-image-gallery"
-                                             id="product-image-gallery" data-pswp-uid="3">
+                                        <div class="product-image-slider"
+                                            >
                                             <div class="item" th:each="img, istat : ${shopDetails.anhChinhs1}"
                                                  th:id="'nav-item-s1-'+${istat.index}">
-                                                <a class="product-gallery-item" th:href="${'/khach-hang/images/'+img}"
+                                                <a  th:href="${'/khach-hang/images/'+img}"
                                                    data-size="" th:data-med="${'/khach-hang/images/'+img}"
                                                    data-med-size=""
                                                    th:tab-id="'tabs-s1-'+${istat.index}"
@@ -110,8 +110,8 @@
                                         </div>
                                         <!-- End Slick Image Slider -->
 
-                                        <a href="javascript:void(0)" id="zoom-images-button" class="zoom-images-button"><i
-                                                class="fa fa-expand" aria-hidden="true"></i></a>
+<!--                                        <a href="javascript:void(0)" id="zoom-images-button" class="zoom-images-button"><i-->
+<!--                                                class="fa fa-expand" aria-hidden="true"></i></a> -->
 
 
                                     </div>
