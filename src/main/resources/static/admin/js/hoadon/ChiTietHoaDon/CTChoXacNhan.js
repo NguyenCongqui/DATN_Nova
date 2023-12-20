@@ -241,7 +241,7 @@ $(document).ready(function () {
             $.get('/admin/xoaHoaDonChiTiet/' + hoaDonCTId, function (response) {
                 // Hiển thị thông báo xóa thành công với SweetAlert2
                 Swal.fire({
-                    icon: 'error',
+                    icon: 'success',
                     title: 'Xóa sản phẩm thành công !',
                     showConfirmButton: false,
                     timer: 2000

@@ -94,7 +94,7 @@ public interface SanPhamChiTietRepository extends JpaRepository<ChiTietSanPham, 
             join HoaDonChiTiet hd on sp = hd.chiTietSanPham
             where hd.hoaDon.idHoaDon in (:listHoaDon)
             group by sp.idCTSP
-            order by sum(hd.soLuong * hd.chiTietSanPham.gia) desc
+            order by sum(hd.soLuong * hd.donGia) desc 
             """)
     List<BestSellerDTO> layIdChiTietSanPhamBanChay(List<Integer> listHoaDon, Pageable pageable);
 

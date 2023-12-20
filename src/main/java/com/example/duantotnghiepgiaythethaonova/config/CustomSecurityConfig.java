@@ -57,7 +57,7 @@ public class CustomSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers(
                         "/customer/css/**", "/customer/fonts/**", "/customer/js/**", "/khach-hang/images/**","/customer/img/**", "/customer/view/**",
                         "/khach-hang/home/**", "/khach-hang/san-pham/**", "/khach-hang/shop-details/**","/khach-hang/san-pham-chi-tiet/**" , "/khach-hang/SoLuongSanPhamChiTiet",
-                        "/MuaNgaySanPham/checkout/**", "/mua-ngay-san-pham/checkout/**",
+                        "/MuaNgaySanPham/checkout/**", "/mua-ngay-san-pham/checkout/**", "/admin/danh-sach/images/**",
 
                         "/admin/css/**", "/admin/images/**", "/admin/img/**", "/admin/imgLibr/**",
                         "/admin/js/**", "/admin/js/khach-hang/**", "/admin/scss/**", "/admin/vendor/**", "/admin/vendor test/**",

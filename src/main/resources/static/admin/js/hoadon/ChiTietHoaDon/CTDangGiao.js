@@ -157,7 +157,7 @@ function huyDon() {
 
                     // Tải lại trang
                     // location.reload();
-                    window.location.href = "/admin/DonHang/ChoXacNhanDonHang/danhSach";
+                    window.location.href = "/admin/DonHang/DangGiaoHang/danhSach";
                 });
             });
         }

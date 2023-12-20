@@ -101,14 +101,33 @@ public class HoaDonServiceImpl implements HoaDonService {
             Optional<HoaDon> optionalHoaDon = hoaDonRepository.findById(hoaDonId);
             if (optionalHoaDon.isPresent()) {
                 HoaDon hoaDon = optionalHoaDon.get();
-                BigDecimal tongTienDonHang = hoaDon.getHoaDonChiTiets().stream()
-                        .filter(hdct -> !hdct.getDaXoa())
-                        .map(HoaDonChiTiet::getTongTien)
-                        .reduce(BigDecimal.ZERO, BigDecimal::add);
+                //Tieenf don hang nhan vs tienGiampHAM TRAM /100
+                //ép tiền giảm
+                BigDecimal tongTienDonHang = hoaDon.getHoaDonChiTiets().stream().filter(hdct -> !hdct.getDaXoa()).map(HoaDonChiTiet::getTongTien).reduce(BigDecimal.ZERO, BigDecimal::add);
+                BigDecimal tienGiam = null;
+                System.out.println(hoaDon.getTienGiam().doubleValue());
+                System.out.println(hoaDon.getKhuyenMai().getGiaTriToiThieu());
+                if(hoaDon.getTienGiam().doubleValue() >= Double.parseDouble(String.valueOf(hoaDon.getKhuyenMai().getGiaTriToiThieu()))){
+                    System.out.println("1");
+                    tienGiam = hoaDon.getTienGiam();
+
+                }
+                else{
+                    System.out.println("2");
+                    tienGiam = tongTienDonHang.multiply(hoaDon.getTienGiam().divide(BigDecimal.valueOf(100.0)));
+
+
+                }
+                System.out.println(tienGiam);
+                //cập nhật Tổng giá trị đơn hàng
+                BigDecimal tongTienHoaDon = hoaDon.getHoaDonChiTiets().stream().filter(hdct -> !hdct.getDaXoa()).map(HoaDonChiTiet::getTongTien).reduce(BigDecimal.ZERO, BigDecimal::add).add(hoaDon.getTienShip());
+                //cập tongTienHD - tien giam
+                BigDecimal tongTienHD = tongTienHoaDon.subtract(tienGiam);
+                hoaDon.setTongTienHoaDon(tongTienHD);
+                hoaDon.setTongTienDonHang(tongTienDonHang);
 
                 BigDecimal tienShip = hoaDon.getTienShip();
-                hoaDon.setTongTienDonHang(tongTienDonHang);
-                hoaDon.setTongTienHoaDon(tongTienDonHang.add(tienShip));
+
 
                 // Lưu lại hóa đơn sau khi cập nhật tổng tiền
                 hoaDonRepository.save(hoaDon);
@@ -155,6 +174,7 @@ public class HoaDonServiceImpl implements HoaDonService {
 
             // Cập nhật tổng tiền của hóa đơn
             HoaDon hoaDon = hoaDonCT.getHoaDon();
+            //Tieenf don hang nhan vs tienGiampHAM TRAM /100
             //ép tiền giảm
             BigDecimal tongTienDonHang = hoaDon.getHoaDonChiTiets().stream().filter(hdct -> !hdct.getDaXoa()).map(HoaDonChiTiet::getTongTien).reduce(BigDecimal.ZERO, BigDecimal::add);
             BigDecimal tienGiam = null;
@@ -235,15 +255,36 @@ public class HoaDonServiceImpl implements HoaDonService {
                 hoaDonRepository.save(hoaDon);
             }
 
-            BigDecimal tongTienDonHang = hoaDon.getHoaDonChiTiets().stream()
-                    .filter(hdct -> !hdct.getDaXoa())
-                    .map(HoaDonChiTiet::getTongTien)
-                    .reduce(BigDecimal.ZERO, BigDecimal::add);
+            //Tieenf don hang nhan vs tienGiampHAM TRAM /100
+            //ép tiền giảm
+            BigDecimal tongTienDonHang = hoaDon.getHoaDonChiTiets().stream().filter(hdct -> !hdct.getDaXoa()).map(HoaDonChiTiet::getTongTien).reduce(BigDecimal.ZERO, BigDecimal::add);
+            BigDecimal tienGiam = null;
+            System.out.println(hoaDon.getTienGiam().doubleValue());
+            System.out.println(hoaDon.getKhuyenMai().getGiaTriToiThieu());
+            if(hoaDon.getTienGiam().doubleValue() >= Double.parseDouble(String.valueOf(hoaDon.getKhuyenMai().getGiaTriToiThieu()))){
+                System.out.println("1");
+                tienGiam = hoaDon.getTienGiam();
+
+            }
+            else{
+                System.out.println("2");
+                tienGiam = tongTienDonHang.multiply(hoaDon.getTienGiam().divide(BigDecimal.valueOf(100.0)));
+
+
+            }
+            System.out.println(tienGiam);
+            //cập nhật Tổng giá trị đơn hàng
+            BigDecimal tongTienHoaDon = hoaDon.getHoaDonChiTiets().stream().filter(hdct -> !hdct.getDaXoa()).map(HoaDonChiTiet::getTongTien).reduce(BigDecimal.ZERO, BigDecimal::add).add(hoaDon.getTienShip());
+            //cập tongTienHD - tien giam
+            BigDecimal tongTienHD = tongTienHoaDon.subtract(tienGiam);
+            hoaDon.setTongTienHoaDon(tongTienHD);
+            hoaDon.setTongTienDonHang(tongTienDonHang);
 
             BigDecimal tienShip = hoaDon.getTienShip();
-            hoaDon.setTongTienDonHang(tongTienDonHang);
-            hoaDon.setTongTienHoaDon(tongTienDonHang.add(tienShip));
+
+
             hoaDonRepository.save(hoaDon);
+
 
             // Cập nhật số lượng sản phẩm chi tiết
             ChiTietSanPham sanPhamChiTiet = optSpct.get();
