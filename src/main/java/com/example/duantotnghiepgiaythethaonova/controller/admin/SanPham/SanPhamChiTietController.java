@@ -1066,25 +1066,25 @@ public class SanPhamChiTietController {
 			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
 	}
 
-//	@GetMapping("removeHinhAnh/{imgName}")
-//	@ResponseBody
-//	public ResponseEntity<String> removeHinhAnh(ModelMap model, @PathVariable("imgName") String imgName)
-//			throws IOException {
-//		Optional<HinhAnh> opt = hinhAnhService.getHinhAnhByName(imgName);
-//		if (opt.isPresent()) {
-//			if(opt.get().getLaAnhChinh() == true) {
-//				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//			}else {
-//				if (!opt.get().getTenAnh().isEmpty()) {
-//					storageService.delete(opt.get().getTenAnh());
-//					hinhAnhService.delete(opt.get());
-//				}
-//				hinhAnhService.delete(opt.get());
-//				return new ResponseEntity<>(HttpStatus.OK);
-//			}
-//		} else
-//			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-//	}
+	@GetMapping("removeHinhAnh/{imgName}")
+	@ResponseBody
+	public ResponseEntity<String> removeHinhAnh(ModelMap model, @PathVariable("imgName") String imgName)
+			throws IOException {
+		Optional<HinhAnh> opt = hinhAnhService.getHinhAnhByName(imgName);
+		if (opt.isPresent()) {
+			if(opt.get().getLaAnhChinh() == true) {
+				return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+			}else {
+				if (!opt.get().getTenAnh().isEmpty()) {
+					storageService.delete(opt.get().getTenAnh());
+					hinhAnhService.delete(opt.get());
+				}
+				hinhAnhService.delete(opt.get());
+				return new ResponseEntity<>(HttpStatus.OK);
+			}
+		} else
+			return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+	}
 
 	@PostMapping("saveValueImageProduct")
 	public ModelAndView saveProduct(ModelMap model,

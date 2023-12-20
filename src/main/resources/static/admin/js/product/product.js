@@ -212,36 +212,36 @@ function openPopupNoteImg() {
   $('#imageNoteModalId').modal("show");
 }
 
-// function removeHinhAnh(imgName, imgBox) {
-//   $.ajax({
-//     url:
-//         "http://localhost:8080/admin/product/removeHinhAnh/" +
-//         imgName,
-//     type: "GET",
-//     contentType: "application/json",
-//     success: function (result) {
-//       var html =
-//           "<div class='toast-header'> <svg class='bd-placeholder-img rounded mr-2' width='20' height='20' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMidYMid slice' focusable='false' role='img'><rect width='100%' height='100%' fill='blue'></rect></svg><strong class='mr-auto'>Thông báo hệ thống</strong><small>Now</small><button type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div><div class='toast-body'>Xóa hình ảnh sản phẩm thành công</div>";
-//       $("#toastsCustomCss").attr(
-//           "style",
-//           "position: fixed; top: 10px; right: 0;z-index: 10000;"
-//       );
-//       $("#toastAjax").html(html);
-//       $("#toastAjax").toast("show");
-//       $('#' + imgBox).remove();
-//     },
-//     error: function (result) {
-//       var html =
-//           "<div class='toast-header'> <svg class='bd-placeholder-img rounded mr-2' width='20' height='20' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMidYMid slice' focusable='false' role='img'><rect width='100%' height='100%' fill='red'></rect></svg><strong class='mr-auto'>Thông báo hệ thống</strong><small>Now</small><button type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div><div class='toast-body'>Xóa hình ảnh sản phẩm thất bại</div>";
-//       $("#toastsCustomCss").attr(
-//           "style",
-//           "position: fixed; top: 10px; right: 0;z-index: 1;"
-//       );
-//       $("#toastAjax").html(html);
-//       $("#toastAjax").toast("show");
-//     },
-//   });
-// }
+function removeHinhAnh(imgName, imgBox) {
+  $.ajax({
+    url:
+        "http://localhost:8080/admin/product/removeHinhAnh/" +
+        imgName,
+    type: "GET",
+    contentType: "application/json",
+    success: function (result) {
+      var html =
+          "<div class='toast-header'> <svg class='bd-placeholder-img rounded mr-2' width='20' height='20' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMidYMid slice' focusable='false' role='img'><rect width='100%' height='100%' fill='blue'></rect></svg><strong class='mr-auto'>Thông báo hệ thống</strong><small>Now</small><button type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div><div class='toast-body'>Xóa hình ảnh sản phẩm thành công</div>";
+      $("#toastsCustomCss").attr(
+          "style",
+          "position: fixed; top: 10px; right: 0;z-index: 10000;"
+      );
+      $("#toastAjax").html(html);
+      $("#toastAjax").toast("show");
+      $('#' + imgBox).remove();
+    },
+    error: function (result) {
+      var html =
+          "<div class='toast-header'> <svg class='bd-placeholder-img rounded mr-2' width='20' height='20' xmlns='http://www.w3.org/2000/svg' preserveAspectRatio='xMidYMid slice' focusable='false' role='img'><rect width='100%' height='100%' fill='red'></rect></svg><strong class='mr-auto'>Thông báo hệ thống</strong><small>Now</small><button type='button' class='ml-2 mb-1 close' data-dismiss='toast' aria-label='Close'><span aria-hidden='true'>&times;</span></button></div><div class='toast-body'>Xóa hình ảnh sản phẩm thất bại</div>";
+      $("#toastsCustomCss").attr(
+          "style",
+          "position: fixed; top: 10px; right: 0;z-index: 1;"
+      );
+      $("#toastAjax").html(html);
+      $("#toastAjax").toast("show");
+    },
+  });
+}
 
 $(document).ready(function () {
   $('[data-toggle="popover"]').popover();
