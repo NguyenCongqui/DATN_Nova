@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import javax.validation.constraints.DecimalMax;
 import javax.validation.constraints.DecimalMin;
 import javax.validation.constraints.Min;
 import java.math.BigDecimal;
@@ -45,6 +46,7 @@ public class SPAndSPCTSearchDto {
     private Integer soLuongMin;
 
     @Min(value = 0, message = "Số lượng lớn nhất không được nhỏ hơn 0")
+    @DecimalMax(value = "99999999",message = "Số lượng lớn nhất phải nhỏ hơn 99,999,999")
     private Integer soLuongMax;
 
     private List<Boolean> coHienThi;

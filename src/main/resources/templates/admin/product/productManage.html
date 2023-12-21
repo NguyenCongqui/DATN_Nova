@@ -338,8 +338,8 @@
                             </div>
                             <div class="col-sm-6">
 
-                                <label>Số lượng sản phẩm chi tiết:</label>
-                                <div class="row">
+                                <label hidden>Số lượng sản phẩm chi tiết:</label>
+                                <div class="row" hidden>
                                     <div class="col-sm-4">
                                         <input type="number" class="form-control" th:field="*{soLuongMin}"
                                                th:classappend="${#fields.hasErrors('soLuongMin')}?
@@ -514,7 +514,7 @@
                                             th:text="${#numbers.formatDecimal(item.giaBan, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'">
                                         </td>
                                         <td style="vertical-align: middle;"
-                                            th:text="${#numbers.formatDecimal(item.tongSoLuong, 0, 'COMMA', 0, 'POINT')}">
+                                            th:text="${item.tongSoLuong}">
                                         </td>
                                         <!-- <td style="vertical-align: middle;"
                                             th:text="${item.sanPham.kieuDang.tenKieuDang}"></td>

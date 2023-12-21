@@ -162,7 +162,7 @@
                                     <td th:text="${istat.index + 1}"></td>
                                     <td th:text="${item.kichCo.tenKichCo}"></td>
                                     <td th:text="${item.mauSac.tenMauSac}"></td>
-                                    <td th:text="${#numbers.formatDecimal(item.soLuong, 0, 'COMMA', 0, 'POINT')}"></td>
+                                    <td th:text="${item.soLuong}"></td>
                                     <td th:text="${#numbers.formatDecimal(item.gia, 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></td>
                                     <td th:text="${item.dayGiay.tenDayGiay}"></td>
                                     <td th:text="${item.deGiay.tenDeGiay}"></td>
