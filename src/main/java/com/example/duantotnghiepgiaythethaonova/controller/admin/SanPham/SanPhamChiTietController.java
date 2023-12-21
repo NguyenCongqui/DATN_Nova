@@ -1328,7 +1328,7 @@ public class SanPhamChiTietController {
 //										redirect.addFlashAttribute("messageDanger",
 //												"Tên hình ảnh: '" + hinhAnh.getTenAnh() + "' không tồn tại");
 //									}
-//								}
+//								}s
 							}
 						}
 					}
