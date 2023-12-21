@@ -842,24 +842,25 @@ public class BanHangServiceIpml implements BanHangService {
     public ResponseEntity<Map<String, String>> themKhachHangVaoHoaDonTaiQuay(Integer IdHoaDon, Integer IDKhachHang, String TenKhachHang, String SDTKhachHang) {
         Map<String, String> response = new HashMap<>();
         Optional<KhachHang> optionalKhachHang = khachHangRepository.findKhachHangBySDT(SDTKhachHang);
-        if (optionalKhachHang.isPresent() && IDKhachHang == 0) {
-            // Nếu tồn tại, báo lỗi và không thực hiện thêm vào hóa đơn
-            response.put("error", "Số điện thoại này đã được sử dụng");
-            return ResponseEntity.badRequest().body(response);
+        if (optionalKhachHang.isPresent()) {
+            if (IDKhachHang == 0) {
+                // Nếu tồn tại và IDKhachHang == 0, báo lỗi và không thực hiện thêm vào hóa đơn
+                response.put("error", "Số điện thoại này đã được sử dụng");
+                return ResponseEntity.badRequest().body(response);
+            }
+
+            // Kiểm tra xem số điện thoại có bắt đầu bằng số 0 hay không
+//            if (SDTKhachHang.startsWith("0")) {
+//                response.put("error", "Số điện thoại phải bắt đầu bằng số 0");
+//                return ResponseEntity.badRequest().body(response);
+//            }
+
+            // Kiểm tra độ dài của số điện thoại
+//            if (SDTKhachHang.length() != 10) {
+//                response.put("error", "Số điện thoại phải có đúng 10 số");
+//                return ResponseEntity.badRequest().body(response);
+//            }
         }
-        // Kiểm tra xem số điện thoại có bắt đầu bằng số 0 hay không
-        if (!SDTKhachHang.startsWith("0")) {
-            response.put("error", "Số điện thoại phải bắt đầu bằng số 0");
-            return ResponseEntity.badRequest().body(response);
-        }
-
-
-        if (SDTKhachHang.length() != 10) {
-            response.put("error", "Số điện thoại phải có đúng 10 số");
-            return ResponseEntity.badRequest().body(response);
-        }
-
-
         Optional<HoaDon> optionalHoaDon = hoaDonRepository.findById(IdHoaDon);
 
         if (optionalHoaDon.isPresent()) {

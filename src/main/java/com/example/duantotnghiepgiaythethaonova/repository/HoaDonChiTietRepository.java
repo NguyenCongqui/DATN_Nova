@@ -2,6 +2,7 @@ package com.example.duantotnghiepgiaythethaonova.repository;
 
 import com.example.duantotnghiepgiaythethaonova.entity.GioHangChiTiet;
 import com.example.duantotnghiepgiaythethaonova.entity.HoaDonChiTiet;
+import com.example.duantotnghiepgiaythethaonova.response.ThongKe;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -35,5 +36,17 @@ public interface HoaDonChiTietRepository extends JpaRepository<HoaDonChiTiet, In
 
     @Query(value = "select * from HoaDonCT where IdSanPhamCT = ?", nativeQuery = true)
     List<HoaDonChiTiet> test(Integer IdSanPhamCT);
+
+    @Query(value = "select top 5 sanpham.IdSanPham, sanpham.MaSanPham,sanpham.TenSanPham,SUM(hdct.SoLuong) as 'SoLuong', SUM(hdct.SoLuong * hdct.DonGia) as 'TongDoanhThu'\n" +
+            "from SanPhamCT sp\n" +
+            "join SanPham sanpham on sp.IdSanPham = sanpham.IdSanPham\n" +
+            "join HinhAnh ha on ha.IdSanPham = sanpham.IdSanPham\n" +
+            "join HoaDonCT hdct on sp.IdSanPhamCT = hdct.IdSanPhamCT\n" +
+            "join HoaDon hd on hd.IdHoaDon = hdct.IdHoaDon\n" +
+            "join TrangThai tt on tt.IdTrangThai = hd.IdTrangThai\n" +
+            "where tt.IdTrangThai = 4 or tt.IdTrangThai = 7\n" +
+            "Group by sanpham.TenSanPham,sanpham.MaSanPham, sanpham.IdSanPham\n" +
+            "order by SUM(hdct.SoLuong) desc",nativeQuery = true)
+    List<ThongKe> thongKe();
 
 }

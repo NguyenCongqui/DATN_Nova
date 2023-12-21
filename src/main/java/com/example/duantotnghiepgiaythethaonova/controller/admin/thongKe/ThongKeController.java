@@ -22,6 +22,7 @@ public class ThongKeController {
     @GetMapping("/admin/thong-ke")
     public String index(Model model){
         model.addAttribute("bestSeller", thongKeService.getMatHangBanChay());
+        model.addAttribute("thongkespbanchay",thongKeService.getSPBanChay());
         return "admin/thongke/index";
     }
     @GetMapping("/api/doanh-so/chart")

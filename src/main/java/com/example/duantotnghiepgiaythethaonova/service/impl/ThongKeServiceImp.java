@@ -7,12 +7,14 @@ import com.example.duantotnghiepgiaythethaonova.entity.*;
 import com.example.duantotnghiepgiaythethaonova.repository.HoaDonChiTietRepository;
 import com.example.duantotnghiepgiaythethaonova.repository.HoaDonRepository;
 import com.example.duantotnghiepgiaythethaonova.repository.SanPhamChiTietRepository;
+import com.example.duantotnghiepgiaythethaonova.response.ThongKe;
 import com.example.duantotnghiepgiaythethaonova.service.HinhAnhService;
 import com.example.duantotnghiepgiaythethaonova.service.HoaDonService;
 import com.example.duantotnghiepgiaythethaonova.service.ThongKeService;
 import lombok.RequiredArgsConstructor;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -122,42 +124,53 @@ public class ThongKeServiceImp implements ThongKeService {
 
     @Override
     public List<BestSellerDTO> getMatHangBanChay() {
-        List<Integer> listHoaDonId = hoaDonService.getAll().stream()
-                .filter(hoaDon -> hoaDon.getTrangThai() != null && checkTrangThaiDonHang(hoaDon.getTrangThai().getIdTrangThai()))
-                .map(HoaDon::getIdHoaDon)
-                .collect(Collectors.toList());
+//        List<Integer> listHoaDonId = hoaDonService.getAll().stream()
+//                .filter(hoaDon -> hoaDon.getTrangThai() != null && checkTrangThaiDonHang(hoaDon.getTrangThai().getIdTrangThai()))
+//                .map(HoaDon::getIdHoaDon)
+//                .collect(Collectors.toList());
+//
+//        Pageable top5 = PageRequest.of(0, 5);
+//        List<BestSellerDTO> result = sanPhamChiTietRepository.layIdChiTietSanPhamBanChay(listHoaDonId, top5);
+//        List<Integer> sanPhamId = result.stream().map(BestSellerDTO::getIdSanPham).collect(Collectors.toList());
+//        List<ChiTietSanPham> sanPhams = sanPhamChiTietRepository.layChiTietSanPhamBanChay(sanPhamId);
+//        List<ThongKe> hoaDonChiTiets = hoaDonChiTietRepository.thongKe();
+//        for (BestSellerDTO dto : result) {
+//            BigDecimal tongDoanhSo = BigDecimal.ZERO;
+//            for (ThongKe hdct  : hoaDonChiTiets) {
+//                for(ChiTietSanPham sp : sanPhams){
+//                    if (Objects.equals(sp.getIdCTSP(), dto.getIdSanPham())) {
+//                        //get doanh so
+//                        int soLuong = hdct.getSoLuong();
+//                        tongDoanhSo = hdct.getTongDoanhThu();
+////                        tongDoanhSo = tongDoanhSo.add(BigDecimal.valueOf(soLuong).multiply(donGia));
+//
+//                        SanPham sanPham = sp.getSanPham();
+//                        dto.setTenSanPham(sanPham.getTenSanPham());
+//                        dto.setGiaBan(sp.getGia().doubleValue());
+//                        dto.setChatLieu(sanPham.getChatLieu().getTenChatLieu());
+//                        dto.setThuongHieu(sanPham.getThuongHieu().getTenThuongHieu());
+//                        dto.setKieuDang(sanPham.getKieuDang().getTenKieuDang());
+//                        dto.setMauSac(sp.getMauSac().getTenMauSac());
+//                        dto.setKichCo(sp.getKichCo().getTenKichCo());
+//                        dto.setSoLuong(soLuong);
+//                        List<HinhAnh> lstAnhChinh = hinhAnhService.getHinhAnhChinhBySanPhamId(sanPham.getIdSanPham());
+//                        String anhChinhs = lstAnhChinh.stream().filter(HinhAnh::getLaAnhChinh).findFirst().map(HinhAnh::getTenAnh).orElse("");
+//                        dto.setAnhChinhs(anhChinhs);
+//                        dto.setTongDoanhthu(tongDoanhSo);
+//                    }
+//                }
+//
+//            }
+//        }
+//
+//        return result;
+    return null;
+    }
 
-        Pageable top5 = PageRequest.of(0, 5);
-        List<BestSellerDTO> result = sanPhamChiTietRepository.layIdChiTietSanPhamBanChay(listHoaDonId, top5);
-        List<Integer> sanPhamId = result.stream().map(BestSellerDTO::getIdSanPham).collect(Collectors.toList());
-        List<ChiTietSanPham> sanPhams = sanPhamChiTietRepository.layChiTietSanPhamBanChay(sanPhamId);
-        for (BestSellerDTO dto : result) {
-            BigDecimal tongDoanhSo = BigDecimal.ZERO;
-            for (ChiTietSanPham sp : sanPhams) {
-                if (Objects.equals(sp.getIdCTSP(), dto.getIdSanPham())) {
-                    //get doanh so
-                    int soLuong = sp.getSoLuong();
-                    BigDecimal donGia = sp.getGia();
-                    tongDoanhSo = tongDoanhSo.add(BigDecimal.valueOf(soLuong).multiply(donGia));
 
-                    SanPham sanPham = sp.getSanPham();
-                    dto.setTenSanPham(sanPham.getTenSanPham());
-                    dto.setGiaBan(sp.getGia().doubleValue());
-                    dto.setChatLieu(sanPham.getChatLieu().getTenChatLieu());
-                    dto.setThuongHieu(sanPham.getThuongHieu().getTenThuongHieu());
-                    dto.setKieuDang(sanPham.getKieuDang().getTenKieuDang());
-                    dto.setMauSac(sp.getMauSac().getTenMauSac());
-                    dto.setKichCo(sp.getKichCo().getTenKichCo());
-                    dto.setSoLuong(sp.getSoLuong());
-                    List<HinhAnh> lstAnhChinh = hinhAnhService.getHinhAnhChinhBySanPhamId(sanPham.getIdSanPham());
-                    String anhChinhs = lstAnhChinh.stream().filter(HinhAnh::getLaAnhChinh).findFirst().map(HinhAnh::getTenAnh).orElse("");
-                    dto.setAnhChinhs(anhChinhs);
-                    dto.setTongDoanhthu(tongDoanhSo);
-                }
-            }
-        }
-
-        return result;
+    @Override
+    public List<ThongKe> getSPBanChay() {
+        return hoaDonChiTietRepository.thongKe();
     }
 
     private boolean checkTrangThaiDonHang(Integer idTrangThai) {

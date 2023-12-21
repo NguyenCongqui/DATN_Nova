@@ -94,34 +94,36 @@
                 <div class="col-md-12 table-responsive">
                     <div class="card">
                         <div class="card-body">
-                            <h5 class="card-title" style="text-align: center;">Top 5 sản phẩm bán chạy nhất</h5>
+                            <h5 class="card-title" style="text-align: center;">Top 5 sản phẩm bán chạy</h5>
                             <table class="table table-striped">
                                 <th ead>
                                     <tr>
                                 <th scope="col">STT</th>
-                                <th scope="col">Ảnh</th>
+<!--                                <th scope="col">Ảnh</th>-->
+<!--                                <th scope="col">Mã sản phẩm</th>-->
                                 <th scope="col">Tên sản phẩm</th>
-                                <th scope="col">Giá bán</th>
+<!--                                <th scope="col">Giá bán</th>-->
                                 <th scope="col">Số lượng</th>
-                                <th scope="col">Kích cỡ</th>
-                                <th scope="col">Màu sắc</th>
+<!--                                <th scope="col">Kích cỡ</th>-->
+<!--                                <th scope="col">Màu sắc</th>-->
                                 <th scope="col">Doanh thu</th>
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr th:each="item, istat : ${bestSeller}">
+                                <tr th:each="item, istat : ${thongkespbanchay}">
                                     <td th:text="${istat.index + 1}"></td>
-                                    <td>
-                                        <img class="d-block img-responsive"
-                                             th:src="${'/admin/product/images/'+ item.getAnhChinhs()}"
-                                             alt="First slide" style="width: 150px; height: 150px;">
-                                    </td>
+<!--                                    <td>-->
+<!--                                        <img class="d-block img-responsive"-->
+<!--                                             th:src="${'/admin/product/images/'+ item.getAnhChinhs()}"-->
+<!--                                             alt="First slide" style="width: 150px; height: 150px;">-->
+<!--                                    </td>-->
+<!--                                    <td th:text="${item.getMaSanPham()}"></td>-->
                                     <td th:text="${item.getTenSanPham()}"></td>
-                                    <td th:text="${#numbers.formatDecimal(item.getGiaBan(), 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></td>
+<!--                                    <td th:text="${#numbers.formatDecimal(item.getGiaBan(), 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></td>-->
                                     <td th:text="${item.getSoLuong()}">0</td>
-                                    <td th:text="${item.getKichCo()}">0</td>
-                                    <td th:text="${item.getMauSac()}">0</td>
-                                    <td th:text="${#numbers.formatDecimal(item.getTongDoanhthu(), 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></td>
+<!--                                    <td th:text="${item.getKichCo()}">0</td>-->
+<!--                                    <td th:text="${item.getMauSac()}">0</td>-->
+                                    <td th:text="${#numbers.formatDecimal(item.getTongDoanhThu(), 0, 'COMMA', 0, 'POINT')} + ' VNĐ'"></td>
 
                                 </tr>
                                 </tbody>
