@@ -77,7 +77,7 @@
                 <div class="card shadow mb-1 pt-sm-2 pb-sm-3" th:object="${dataSearch}">
                     <div class="col-sm-12">
                         <div class="row">
-                            <div class="col-sm-3">
+                            <div class="col-sm-6">
                                 <label for="tenSanPham">Tên sản phẩm:</label>
                                 <input type="text" class="form-control" name="tenSanPham"
                                     id="tenSanPhamSearchProductManage" placeholder="Tên sản phẩm"
@@ -100,36 +100,8 @@
                                         th:text="${item.tenChatLieu} "></option>
                                 </select>
                             </div>
-                            <div class="col-sm-3">
-                                <label for="dayGiayIds">Tên dây giày:</label>
-                                <select class="selectpicker" name="dayGiayIds" id="dayGiayIds" th:field="*{dayGiayIds}"
-                                        multiple>
-                                    <option th:each="item, istat : ${lstDayGiay}" th:value="${item.idDayGiay}"
-                                            th:text="${item.tenDayGiay}">
-                                    </option>
-                                </select>
-                            </div>
                         </div>
-                        <!---->
                         <div class="row mt-3">
-                            <div class="col-sm-3">
-                                <label for="deGiayIds">Tên đế giày:</label>
-                                <select class="selectpicker" name="deGiayIds" id="deGiayIds" th:field="*{deGiayIds}"
-                                        multiple>
-                                    <option th:each="item, istat : ${lstDeGiay}" th:value="${item.idDeGiay}"
-                                            th:text="${item.tenDeGiay}">
-                                    </option>
-                                </select>
-                            </div>
-                            <div class="col-sm-3">
-                                <label for="lotGiayIds">Tên lót giày:</label>
-                                <select class="selectpicker" name="lotGiayIds" id="lotGiayIds" th:field="*{lotGiayIds}"
-                                        multiple>
-                                    <option th:each="item, istat : ${lstLotGiay}" th:value="${item.idLotGiay}"
-                                            th:text="${item.tenLotGiay}">
-                                    </option>
-                                </select>
-                            </div>
                             <div class="col-sm-3">
                                 <label for="thuongHieuIds">Tên thương hiệu:</label>
                                 <select class="selectpicker" name="thuongHieuIds" id="thuongHieuIds"
@@ -148,18 +120,50 @@
                                     </option>
                                 </select>
                             </div>
-                        </div>
-                        <!-- --- -->
-                        <div class="row mt-3">
                             <div class="col-sm-3">
                                 <label for="mauSacIds">Tên màu sắc:</label>
                                 <select class="selectpicker" name="mauSacIds" id="mauSacIds" th:field="*{mauSacIds}"
-                                    multiple>
+                                        multiple>
                                     <option th:each="item, istat : ${lstMauSac}" th:value="${item.idMauSac}"
-                                        th:text="${item.tenMauSac}">
+                                            th:text="${item.tenMauSac}">
                                     </option>
                                 </select>
                             </div>
+                            <div class="col-sm-3">
+                                <label for="dayGiayIds">Tên dây giày:</label>
+                                <select class="selectpicker" name="dayGiayIds" id="dayGiayIds" th:field="*{dayGiayIds}"
+                                        multiple>
+                                    <option th:each="item, istat : ${lstDayGiay}" th:value="${item.idDayGiay}"
+                                            th:text="${item.tenDayGiay}">
+                                    </option>
+                                </select>
+                            </div>
+                        <!---->
+
+                            <div class="col-sm-3">
+                                <label for="deGiayIds">Tên đế giày:</label>
+                                <select class="selectpicker" name="deGiayIds" id="deGiayIds" th:field="*{deGiayIds}"
+                                        multiple>
+                                    <option th:each="item, istat : ${lstDeGiay}" th:value="${item.idDeGiay}"
+                                            th:text="${item.tenDeGiay}">
+                                    </option>
+                                </select>
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="lotGiayIds">Tên lót giày:</label>
+                                <select class="selectpicker" name="lotGiayIds" id="lotGiayIds" th:field="*{lotGiayIds}"
+                                        multiple>
+                                    <option th:each="item, istat : ${lstLotGiay}" th:value="${item.idLotGiay}"
+                                            th:text="${item.tenLotGiay}">
+                                    </option>
+                                </select>
+                            </div>
+
+
+
+                        <!-- --- -->
+<!--                        <div class="row mt-3">-->
+
                             <div class="col-sm-3">
                                 <label for="hienThi">Loại hiển thị:</label>
                                 <select class="selectpicker" name="hienThi" id="hienThi" th:field="*{coHienThi}"
@@ -168,8 +172,8 @@
                                     <option value="0">Không hiển thị</option>
                                 </select>
                             </div>
-                        </div>
-                        <div class="row mt-3">
+<!--                        </div>-->
+
                             <div class="col-sm-3">
                                 <label>Giá:</label>
                                 <div class="row">
@@ -187,9 +191,11 @@
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="row mt-3">
                             <div class="col-sm-3">
-                                <label>Số lượng sản phẩm:</label>
-                                <div class="row">
+                                <label hidden>Số lượng sản phẩm:</label>
+                                <div class="row" hidden>
                                     <div class="col-sm-6">
                                         <input type="number" class="form-control" th:field="*{soLuongMin}"
                                             th:classappend="${#fields.hasErrors('soLuongMin')}?
