@@ -616,15 +616,15 @@ $(document).ready(function () {
                     timer: 2000,
                 });
             }
-            else if (!/^[0-9]+$/.test(sdtNguoiNhan) || sdtNguoiNhan.length !== 10 || !sdtNguoiNhan.startsWith('0')) {
-                // Nếu có vấn đề với số lượng sản phẩm, hiển thị thông báo lỗi
-                Swal.fire({
-                    icon: "error",
-                    title: "Số điện thoại phải bắt đầu từ 0, chỉ chứa số và đủ 10 chữ số",
-                    showConfirmButton: false,
-                    timer: 2000,
-                });
-            }
+            // else if (!/^[0-9]+$/.test(sdtNguoiNhan) || sdtNguoiNhan.length !== 10 || !sdtNguoiNhan.startsWith('0')) {
+            //     // Nếu có vấn đề với số lượng sản phẩm, hiển thị thông báo lỗi
+            //     Swal.fire({
+            //         icon: "error",
+            //         title: "Số điện thoại phải bắt đầu từ 0, chỉ chứa số và đủ 10 chữ số",
+            //         showConfirmButton: false,
+            //         timer: 2000,
+            //     });
+            // }
             else {
                 $.ajax({
                     url: "/mua-ngay/save-order/" + orderId,
