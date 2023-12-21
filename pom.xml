@@ -104,7 +104,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-thymeleaf</artifactId>
         </dependency>
-
+<!--        chia layout-->
         <dependency>
             <groupId>nz.net.ultraq.thymeleaf</groupId>
             <artifactId>thymeleaf-layout-dialect</artifactId>
@@ -125,14 +125,17 @@
             <artifactId>spring-boot-starter-tomcat</artifactId>
             <scope>provided</scope>
         </dependency>
+<!--        goi Annotation-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
         </dependency>
+<!--        (authorization) và xác thực người dùng (authentication)-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
         </dependency>
+<!--        kiểm tra xem người dùng có được phép truy cập vào-->
         <dependency>
             <groupId>org.springframework.security</groupId>
             <artifactId>spring-security-test</artifactId>
@@ -142,6 +145,7 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-oauth2-client</artifactId>
         </dependency>
+<!--        cau hinh duong dan-->
         <dependency>
             <groupId>org.thymeleaf.extras</groupId>
             <artifactId>thymeleaf-extras-springsecurity5</artifactId>
@@ -151,6 +155,7 @@
             <artifactId>poi</artifactId>
             <version>5.2.0</version>
         </dependency>
+<!--        doc ghi ex-->
         <dependency>
             <groupId>org.apache.poi</groupId>
             <artifactId>poi-ooxml</artifactId>
@@ -161,6 +166,7 @@
             <artifactId>jxls-jexcel</artifactId>
             <version>1.0.9</version>
         </dependency>
+<!--        in hd-->
         <dependency>
             <groupId>com.itextpdf</groupId>
             <artifactId>html2pdf</artifactId>
@@ -171,16 +177,19 @@
             <artifactId>json-simple</artifactId>
             <version>1.1.1</version>
         </dependency>
+<!--        Đối với thư viện OkHttp sẽ giúp bạn dễ dàng quản lý việc kết nối mạng khi sử dụng giao thức http-->
         <dependency>
             <groupId>com.squareup.okhttp3</groupId>
             <artifactId>okhttp</artifactId>
             <version>4.9.1</version>
         </dependency>
+<!--        mã hóa MD5-->
         <dependency>
             <groupId>commons-codec</groupId>
             <artifactId>commons-codec</artifactId>
             <version>1.15</version>
         </dependency>
+<!--        Tạo một chuỗi ngẫu nhiên có chiều dài là số ký tự được chỉ định, không giới hạn loại ký tự-->
         <dependency>
             <groupId>commons-io</groupId>
             <artifactId>commons-io</artifactId>
@@ -191,20 +200,17 @@
             <artifactId>commons-lang3</artifactId>
             <version>3.12.0</version>
         </dependency>
+<!--        truy vấn bên repoImpl-->
         <dependency>
             <groupId>com.querydsl</groupId>
             <artifactId>querydsl-jpa</artifactId>
             <version>[5.0.0]</version>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>com.querydsl</groupId>-->
-<!--            <artifactId>querydsl-apt</artifactId>-->
-<!--            <version>[5.0.0]</version>-->
-<!--        </dependency>-->
         <dependency>
             <groupId>org.springframework.data</groupId>
             <artifactId>spring-data-commons</artifactId>
         </dependency>
+<!--        được sử dụng để ánh xạ các đối tượng Java-->
         <dependency>
             <groupId>org.modelmapper</groupId>
             <artifactId>modelmapper</artifactId>
