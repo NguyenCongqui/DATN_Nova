@@ -125,11 +125,11 @@
                 <div class="card shadow mb-1 pt-sm-2 pb-sm-3">
                     <div class="col-sm-12">
                         <div class="row">
-                            <div class="col-sm-3">
+                            <div class="col-sm-6">
                                 <label>Tên sản phẩm:</label>
                                 <input type="text" class="form-control" name="tenSanPham"
-                                    id="tenSanPhamSearchProductManage" placeholder="Tên sản phẩm"
-                                    th:field="*{tenSanPham}">
+                                       id="tenSanPhamSearchProductManage" placeholder="Tên sản phẩm"
+                                       th:field="*{tenSanPham}">
                             </div>
 <!--                            <div class="col-sm-3">-->
 <!--                                <label>Mã sản phẩm:</label>-->
@@ -219,50 +219,6 @@
                                     <option value="0">Không hiển thị</option>
                                 </select>
                             </div>
-
-                        </div>
-                        <!-- --- -->
-                        <!-- <div class="row mt-3">
-                            <div class="col-sm-3">
-                                <label for="createdBy">Người tạo:</label>
-                                <input type="text" class="form-control" name="createdBy" id="createdBy"
-                                    placeholder="Người tạo" th:field="*{nguoiTaoSPCT}">
-                            </div>
-                            <div class="col-sm-3">
-                                <label for="createdTime">Thời gian tạo:</label>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <input type="date" class="form-control" name="minCreatedTime"
-                                            id="minCreatedTime" th:field="*{ngayTaoMin}">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="date" class="form-control" name="maxCreatedTime"
-                                            id="maxCreatedTime" th:field="*{ngayTaoMax}">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <label for="lastModifedBy">Người sửa đổi cuối:</label>
-                                <input type="text" class="form-control" name="lastModifedTime" id="lastModifedTime"
-                                    placeholder="Người sửa đổi cuối" th:field="*{nguoiCapNhatSPCT}">
-                            </div>
-                            <div class="col-sm-3">
-                                <label for="lastModifedTime">Thời gian sửa đổi cuối:</label>
-                                <div class="row">
-                                    <div class="col-sm-6">
-                                        <input type="date" class="form-control" name="minLastModifedTime"
-                                            id="minLastModifedTime" placeholder="Người tạo"
-                                            th:field="*{ngayCapNhatMin}">
-                                    </div>
-                                    <div class="col-sm-6">
-                                        <input type="date" class="form-control" name="maxLastModifedTime"
-                                            id="maxLastModifedTime" placeholder="Thời gian sửa đổi cuối"
-                                            th:field="*{ngayCapNhatMax}">
-                                    </div>
-                                </div>
-                            </div>
-                        </div> -->
-                        <div class="row mt-3">
                             <div class="col-sm-3">
                                 <label>Giá:</label>
                                 <div class="row">
@@ -270,15 +226,15 @@
                                         <input type="text" class="form-control" id="giaMinInput" th:classappend="${#fields.hasErrors('giaMin')}?
                                         is-invalid : ''" placeholder="Giá trị đầu">
                                         <input type="number" class="form-control" id="giaMinHid" th:field="*{giaMin}"
-                                            hidden>
+                                               hidden>
                                         <small id="giaMin" th:if="${#fields.hasErrors('giaMin')}" th:class="${#fields.hasErrors('giaMin')}?
                                             invalid-feedback : ''" th:errors="*{giaMin}"></small>
                                     </div>
                                     <div class="col-sm-6">
                                         <input type="text" class="form-control" id="giaMaxInput" th:classappend="${#fields.hasErrors('giaMax')}?
-                                        is-invalid : ''" placeholder="Giá trị đầu">
+                                        is-invalid : ''" placeholder="Giá trị cuối">
                                         <input type="number" class="form-control" id="giaMaxHid" th:field="*{giaMax}"
-                                            hidden>
+                                               hidden>
                                         <small id="giaMax" th:if="${#fields.hasErrors('giaMax')}" th:class="${#fields.hasErrors('giaMax')}?
                                             invalid-feedback : ''" th:errors="*{giaMax}"></small>
                                     </div>
@@ -336,6 +292,50 @@
                                     })
                                 </script>
                             </div>
+                        </div>
+                        <!-- --- -->
+                        <!-- <div class="row mt-3">
+                            <div class="col-sm-3">
+                                <label for="createdBy">Người tạo:</label>
+                                <input type="text" class="form-control" name="createdBy" id="createdBy"
+                                    placeholder="Người tạo" th:field="*{nguoiTaoSPCT}">
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="createdTime">Thời gian tạo:</label>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <input type="date" class="form-control" name="minCreatedTime"
+                                            id="minCreatedTime" th:field="*{ngayTaoMin}">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="date" class="form-control" name="maxCreatedTime"
+                                            id="maxCreatedTime" th:field="*{ngayTaoMax}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="lastModifedBy">Người sửa đổi cuối:</label>
+                                <input type="text" class="form-control" name="lastModifedTime" id="lastModifedTime"
+                                    placeholder="Người sửa đổi cuối" th:field="*{nguoiCapNhatSPCT}">
+                            </div>
+                            <div class="col-sm-3">
+                                <label for="lastModifedTime">Thời gian sửa đổi cuối:</label>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <input type="date" class="form-control" name="minLastModifedTime"
+                                            id="minLastModifedTime" placeholder="Người tạo"
+                                            th:field="*{ngayCapNhatMin}">
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <input type="date" class="form-control" name="maxLastModifedTime"
+                                            id="maxLastModifedTime" placeholder="Thời gian sửa đổi cuối"
+                                            th:field="*{ngayCapNhatMax}">
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                        <div class="row mt-3">
+
                             <div class="col-sm-6">
 
                                 <label hidden>Số lượng sản phẩm chi tiết:</label>
